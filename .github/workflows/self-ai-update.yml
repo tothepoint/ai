@@ -1,0 +1,39 @@
+name: Generate and Update Code
+
+on:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  update-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Gemini CLI
+        run: npm install -g @google/gemini-cli
+
+      - name: Generate updated code with Gemini
+        id: generate-code
+        run: |
+          # Use Gemini CLI to generate or update content
+          # This example generates a simple greeting and saves it to a file.
+          # The '--yolo' flag bypasses prompts, which is essential for automation.
+          gemini 'Write an index.html which prints a random themed interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible.' --yolo --output-format json > output.json
+          
+          # Extract the content from the JSON output and save to a file.
+          # You will need to parse the JSON output to get the generated code.
+          jq -r '.text' output.json > index.html
+          
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add index.html
+          git commit -m "feat: Update code with Gemini API" || echo "No changes to commit"
+          git push
