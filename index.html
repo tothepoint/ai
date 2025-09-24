@@ -1,86 +1,115 @@
-I have created the `index.html` file. You can open it in a web browser to see a random fact with a themed background color.
-itial-scale=1.0">
-    <title>Random Interesting Fact</title>
+I have created the `index.html` file as you requested. It will display a random fact with a corresponding background color and contrasting text color.
+e>Random Interesting Fact</title>
     <style>
         body {
             margin: 0;
             padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            font-family: sans-serif;
             transition: background-color 0.5s ease;
         }
         .fact-container {
             text-align: center;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 80%;
+            padding: 40px;
+            border-radius: 15px;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
         #fact {
-            font-size: 2em;
-            transition: color 0.5s ease;
+            font-size: 2.5em;
+            font-weight: bold;
+            line-height: 1.4;
         }
     </style>
 </head>
 <body>
+
     <div class="fact-container">
         <p id="fact"></p>
     </div>
 
     <script>
         const facts = [
-            { theme: 'space', text: 'A day on Venus is longer than a year on Venus.' },
-            { theme: 'nature', text: 'The Amazon rainforest produces 20% of the world\'s oxygen.' },
-            { theme: 'history', text: 'The Great Wall of China is not visible from the moon with the naked eye.' },
-            { theme: 'technology', text: 'The first computer mouse was made of wood.' },
-            { theme: 'animals', text: 'A group of flamingos is called a flamboyance.' },
-            { theme: 'science', text: 'There are more trees on Earth than stars in the Milky Way galaxy.' },
-            { theme: 'space', text: 'The footprints on the moon will be there for 100 million years.' },
-            { theme: 'nature', text: 'Honey never spoils.' },
-            { theme: 'history', text: 'Cleopatra was not Egyptian, she was Greek.' },
-            { theme: 'technology', text: 'The first text message was "Merry Christmas".' }
+            {
+                fact: "A single cloud can weigh more than 1 million pounds.",
+                theme: "Nature",
+                color: "#87CEEB" // Sky Blue
+            },
+            {
+                fact: "The heart of a shrimp is located in its head.",
+                theme: "Animal",
+                color: "#FF69B4" // Hot Pink
+            },
+            {
+                fact: "Slugs have four noses.",
+                theme: "Animal",
+                color: "#8FBC8F" // Dark Sea Green
+            },
+            {
+                fact: "The Eiffel Tower can be 15 cm taller during the summer, due to thermal expansion.",
+                theme: "Science",
+                color: "#A9A9A9" // Dark Gray
+            },
+            {
+                fact: "Bananas are berries, but strawberries aren't.",
+                theme: "Nature",
+                color: "#FFD700" // Gold
+            },
+            {
+                fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+                theme: "Space",
+                color: "#000080" // Navy
+            },
+            {
+                fact: "Octopuses have three hearts.",
+                theme: "Animal",
+                color: "#4682B4" // Steel Blue
+            },
+            {
+                fact: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
+                theme: "Food",
+                color: "#FFC300" // Vivid Amber
+            },
+            {
+                fact: "A day on Venus is longer than a year on Venus.",
+                theme: "Space",
+                color: "#E6E6FA" // Lavender
+            },
+            {
+                fact: "The unicorn is the national animal of Scotland.",
+                theme: "Culture",
+                color: "#4169E1" // Royal Blue
+            }
         ];
 
-        const themeColors = {
-            space: '#000020',
-            nature: '#228B22',
-            history: '#8B4513',
-            technology: '#4682B4',
-            animals: '#FFD700',
-            science: '#6A5ACD'
-        };
-
-        function getTextColor(bgColor) {
-            const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
-            const r = parseInt(color.substring(0, 2), 16);
-            const g = parseInt(color.substring(2, 4), 16);
-            const b = parseInt(color.substring(4, 6), 16);
-            const uicolors = [r / 255, g / 255, b / 255];
-            const c = uicolors.map((col) => {
-                if (col <= 0.03928) {
-                    return col / 12.92;
-                }
-                return Math.pow((col + 0.055) / 1.055, 2.4);
-            });
-            const L = (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
-            return (L > 0.179) ? '#000000' : '#FFFFFF';
+        function getTextColor(hexColor) {
+            const r = parseInt(hexColor.substr(1, 2), 16);
+            const g = parseInt(hexColor.substr(3, 2), 16);
+            const b = parseInt(hexColor.substr(5, 2), 16);
+            const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+            return (yiq >= 128) ? '#000000' : '#FFFFFF';
         }
 
         function displayRandomFact() {
             const randomIndex = Math.floor(Math.random() * facts.length);
-            const fact = facts[randomIndex];
-            const backgroundColor = themeColors[fact.theme];
-            const textColor = getTextColor(backgroundColor);
-
-            document.body.style.backgroundColor = backgroundColor;
+            const randomFact = facts[randomIndex];
             const factElement = document.getElementById('fact');
-            factElement.textContent = fact.text;
+            const bodyElement = document.body;
+
+            factElement.innerText = randomFact.fact;
+            bodyElement.style.backgroundColor = randomFact.color;
+            const textColor = getTextColor(randomFact.color);
             factElement.style.color = textColor;
         }
 
-        window.onload = displayRandomFact;
+        displayRandomFact();
     </script>
+
 </body>
 </html>
