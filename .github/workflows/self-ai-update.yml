@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.BOT_PAT }}
 
       - name: Install Gemini CLI
         run: npm install -g @google/gemini-cli
@@ -28,8 +30,17 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Make sure the bot is configured correctly
+          git config --local user.email "automatogreenhouse@gmail.com"
+          git config --local user.name "Automato"
+          
+          # Stage the file.
           git add index.html
-          git commit -m "feat: Update code with Gemini API" || echo "No changes to commit"
-          git push
+          
+          # Check if there are changes to commit
+          if ! git diff-index --quiet HEAD --; then
+            git commit -m "feat: Automated commit from self-ai-update workflow"
+            git push # Push the changes to the repository
+          else
+            echo "No changes to commit."
+          fi
