@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Fascinating Fact About Space</title>
+    <title>A Fascinating Fact About The Ocean</title>
     <style>
         body {
-            background-color: #2E2E2E; /* Dark Gray */
+            background-color: #00008B; /* Dark Blue */
             color: #FFFFFF; /* White */
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -22,6 +22,7 @@
         .container {
             max-width: 800px;
             margin-bottom: 20px;
+            animation: fadeIn 2s ease-in-out;
         }
         h1 {
             font-size: 3.5rem;
@@ -32,34 +33,26 @@
             font-size: 1.75rem;
             line-height: 1.6;
         }
-        button {
-            background-color: #FFFFFF; /* White */
-            color: #2E2E2E; /* Dark Gray */
-            border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        button:hover {
-            background-color: #CCCCCC; /* Light Gray */
-            color: #000000; /* Black */
-        }
         #countdown {
             font-size: 1.2rem;
-            color: #CCCCCC; /* Light Gray */
+            color: #ADD8E6; /* Light Blue */
             opacity: 0.8;
             margin-top: auto;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>A Day on Venus</h1>
-        <p>Did you know that a day on Venus is longer than its year?</p>
-        <button id="another-fact-btn">Tell me another fact!</button>
+        <h1>The Immense Pacific Ocean</h1>
+        <p>Did you know that the Pacific Ocean is wider than the moon? At its widest point, it's more than five times the diameter of the moon.</p>
     </div>
     <div id="countdown"></div>
     
@@ -87,15 +80,6 @@
         
         // Initial call to set the countdown immediately
         updateCountdown();
-
-        const anotherFactBtn = document.getElementById('another-fact-btn');
-        anotherFactBtn.addEventListener('click', () => {
-            const factContainer = document.querySelector('.container');
-            factContainer.innerHTML = `
-                <h1>Venus's Atmosphere</h1>
-                <p>The atmospheric pressure on Venus is 92 times greater than the Earth's.</p>
-            `;
-        });
     </script>
 </body>
 </html>
