@@ -23,7 +23,7 @@ jobs:
           # Use Gemini CLI to generate or update content
           # This example generates a simple greeting and saves it to a file.
           # The '--yolo' flag bypasses prompts, which is essential for automation.
-          gemini 'Strictly generate only the raw HTML content, beginning with `<!DOCTYPE html>` and ending with `</html>`. The output must not contain any prose, explanations, or comments. The HTML must produce an `index.html` file. Your entire response must be a single block of pure HTML code. Only output the HTML content itself, no comments, no explanations, nothing additional. Pick a random theme and choose one very interesting fact from it. The index.html should display that interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible. At the bottom it should have a text that the next automatic evoltion of the site will start in: xx hours xx seconds and will take a couple minutes. It should calculate the values for the text basing on the client time and the fact that the website evolution starts at the beginning of every hour.' -o 'json' --yolo > output.json
+          gemini 'Read the index.html. You'll have to update it and return only the HTML content of the updated version. Pick a random theme and choose one very interesting fact from it. The site should display that interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible.' -o 'json' --yolo > output.json
 
           # Print the response for debugging purposes.
           cat output.json
