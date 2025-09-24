@@ -1,30 +1,37 @@
-I have created the `index.html` file as you requested. It will display a random fact with a corresponding background color and contrasting text color.
-e>Random Interesting Fact</title>
+I have created the `index.html` file as requested.
+harset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Interesting Fact</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
         body {
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
-            transition: background-color 0.5s ease;
-        }
-        .fact-container {
+            height: 100vh;
+            transition: background-color 1s ease;
             text-align: center;
+        }
+
+        .fact-container {
+            max-width: 800px;
             padding: 40px;
             border-radius: 15px;
-            max-width: 800px;
             background-color: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
         }
+
         #fact {
-            font-size: 2.5em;
-            font-weight: bold;
-            line-height: 1.4;
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -37,54 +44,54 @@ e>Random Interesting Fact</title>
     <script>
         const facts = [
             {
-                fact: "A single cloud can weigh more than 1 million pounds.",
-                theme: "Nature",
-                color: "#87CEEB" // Sky Blue
+                text: "The footprints on the Moon will be there for 100 million years because there is no wind or water to erode them.",
+                theme: "space",
+                color: "#0a0a2a"
             },
             {
-                fact: "The heart of a shrimp is located in its head.",
-                theme: "Animal",
-                color: "#FF69B4" // Hot Pink
+                text: "A group of flamingos is called a 'flamboyance'.",
+                theme: "nature",
+                color: "#ff69b4"
             },
             {
-                fact: "Slugs have four noses.",
-                theme: "Animal",
-                color: "#8FBC8F" // Dark Sea Green
+                text: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after just 38 minutes.",
+                theme: "history",
+                color: "#d2b48c"
             },
             {
-                fact: "The Eiffel Tower can be 15 cm taller during the summer, due to thermal expansion.",
-                theme: "Science",
-                color: "#A9A9A9" // Dark Gray
+                text: "Octopuses have three hearts: two pump blood through the gills, and one pumps it to the rest of the body.",
+                theme: "science",
+                color: "#008080"
             },
             {
-                fact: "Bananas are berries, but strawberries aren't.",
-                theme: "Nature",
-                color: "#FFD700" // Gold
+                text: "The world's first computer mouse, invented by Douglas Engelbart in 1964, was made of wood.",
+                theme: "technology",
+                color: "#8b4513"
             },
             {
-                fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-                theme: "Space",
-                color: "#000080" // Navy
+                text: "A single snail can sleep for up to three years if the weather conditions are not ideal for it.",
+                theme: "biology",
+                color: "#556b2f"
             },
             {
-                fact: "Octopuses have three hearts.",
-                theme: "Animal",
-                color: "#4682B4" // Steel Blue
+                text: "The human brain takes in 11 million bits of information every second but is consciously aware of only about 40.",
+                theme: "human_body",
+                color: "#c0c0c0"
             },
             {
-                fact: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
-                theme: "Food",
-                color: "#FFC300" // Vivid Amber
+                text: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
+                theme: "food",
+                color: "#ffc107"
             },
             {
-                fact: "A day on Venus is longer than a year on Venus.",
-                theme: "Space",
-                color: "#E6E6FA" // Lavender
+                text: "A day on Venus is longer than a year on Venus. It takes Venus longer to rotate on its axis than to orbit the Sun.",
+                theme: "space",
+                color: "#e4a853"
             },
             {
-                fact: "The unicorn is the national animal of Scotland.",
-                theme: "Culture",
-                color: "#4169E1" // Royal Blue
+                text: "There are more trees on Earth than stars in the Milky Way galaxy. There are about 3 trillion trees, compared to 100-400 billion stars.",
+                theme: "nature",
+                color: "#228b22"
             }
         ];
 
@@ -92,23 +99,26 @@ e>Random Interesting Fact</title>
             const r = parseInt(hexColor.substr(1, 2), 16);
             const g = parseInt(hexColor.substr(3, 2), 16);
             const b = parseInt(hexColor.substr(5, 2), 16);
-            const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
-            return (yiq >= 128) ? '#000000' : '#FFFFFF';
+            const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+            return luminance > 140 ? '#000000' : '#FFFFFF';
         }
 
         function displayRandomFact() {
+            const factElement = document.getElementById('fact');
+            const body = document.body;
+
             const randomIndex = Math.floor(Math.random() * facts.length);
             const randomFact = facts[randomIndex];
-            const factElement = document.getElementById('fact');
-            const bodyElement = document.body;
 
-            factElement.innerText = randomFact.fact;
-            bodyElement.style.backgroundColor = randomFact.color;
-            const textColor = getTextColor(randomFact.color);
-            factElement.style.color = textColor;
+            const backgroundColor = randomFact.color;
+            const textColor = getTextColor(backgroundColor);
+
+            body.style.backgroundColor = backgroundColor;
+            body.style.color = textColor;
+            factElement.textContent = randomFact.text;
         }
 
-        displayRandomFact();
+        document.addEventListener('DOMContentLoaded', displayRandomFact);
     </script>
 
 </body>
