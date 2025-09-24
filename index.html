@@ -1,1 +1,76 @@
-I have created the `index.html` file with the interesting fact about Venus, a matching color scheme, and a countdown timer as you requested.
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>An Interesting Fact</title>
+	<style>
+		body {
+			background-color: #0c0c2c;
+			color: #F0F0F0;
+			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			margin: 0;
+			text-align: center;
+			padding: 20px;
+			box-sizing: border-box; /* This is the fix */
+		}
+		.container {
+			max-width: 800px;
+			margin-bottom: 20px;
+		}
+		h1 {
+			font-size: 3.5rem;
+			margin-bottom: 1rem;
+			text-shadow: 2px 2px 8px rgba(240, 240, 240, 0.2);
+		}
+		p {
+			font-size: 1.75rem;
+			line-height: 1.6;
+		}
+		#countdown {
+			font-size: 1.2rem;
+			color: #ccc;
+			opacity: 0.8;
+			margin-top: auto;
+		}
+	</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deep Space</h1>
+        <p>A neutron star is so dense that a teaspoonful of its material would weigh about 6 billion tons.</p>
+    </div>
+    <div id="countdown"></div>
+    
+    <script>
+        function updateCountdown() {
+            const now = new Date();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            // Calculate time to the next hour (60 minutes)
+            const remainingMinutes = 59 - minutes;
+            const remainingSeconds = 59 - seconds;
+            
+            const countdownElement = document.getElementById('countdown');
+            countdownElement.textContent = `The site will start updating itself using AI in: ${remainingMinutes} minutes ${remainingSeconds} seconds. It should take a couple of minutes.`;
+            
+            // Check if it's the beginning of the hour (or close to it)
+            if (minutes === 0 && seconds === 0) {
+                 countdownElement.textContent = `The site is now updating. Please wait a few moments.`;
+            }
+        }
+        
+        // Update the countdown every second
+        setInterval(updateCountdown, 1000);
+        
+        // Initial call to set the countdown immediately
+        updateCountdown();
+    </script>
+</body>
+</html>
