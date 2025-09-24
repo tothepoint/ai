@@ -1,125 +1,39 @@
-I have created the `index.html` file as requested.
-harset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Interesting Fact</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+OK. I have updated `index.html` with the new content.
 
+et="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interesting Fact</title>
+    <style>
         body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Montserrat', sans-serif;
+            background-color: #0A192F; /* Deep Sea Blue */
+            color: #E6F1FF; /* Light Blue/White */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            transition: background-color 1s ease;
+            margin: 0;
             text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
         }
-
         .fact-container {
             max-width: 800px;
-            padding: 40px;
-            border-radius: 15px;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
         }
-
-        #fact {
-            font-size: 2rem;
-            font-weight: 400;
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        p {
+            font-size: 1.5em;
             line-height: 1.6;
         }
     </style>
 </head>
 <body>
-
     <div class="fact-container">
-        <p id="fact"></p>
+        <h1>Did you know?</h1>
+        <p>The blobfish, often voted the world's ugliest animal, looks like a gelatinous blob on the surface. However, in its natural deep-sea habitat, under immense pressure, its body has a much more normal, fish-like appearance.</p>
     </div>
-
-    <script>
-        const facts = [
-            {
-                text: "The footprints on the Moon will be there for 100 million years because there is no wind or water to erode them.",
-                theme: "space",
-                color: "#0a0a2a"
-            },
-            {
-                text: "A group of flamingos is called a 'flamboyance'.",
-                theme: "nature",
-                color: "#ff69b4"
-            },
-            {
-                text: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after just 38 minutes.",
-                theme: "history",
-                color: "#d2b48c"
-            },
-            {
-                text: "Octopuses have three hearts: two pump blood through the gills, and one pumps it to the rest of the body.",
-                theme: "science",
-                color: "#008080"
-            },
-            {
-                text: "The world's first computer mouse, invented by Douglas Engelbart in 1964, was made of wood.",
-                theme: "technology",
-                color: "#8b4513"
-            },
-            {
-                text: "A single snail can sleep for up to three years if the weather conditions are not ideal for it.",
-                theme: "biology",
-                color: "#556b2f"
-            },
-            {
-                text: "The human brain takes in 11 million bits of information every second but is consciously aware of only about 40.",
-                theme: "human_body",
-                color: "#c0c0c0"
-            },
-            {
-                text: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.",
-                theme: "food",
-                color: "#ffc107"
-            },
-            {
-                text: "A day on Venus is longer than a year on Venus. It takes Venus longer to rotate on its axis than to orbit the Sun.",
-                theme: "space",
-                color: "#e4a853"
-            },
-            {
-                text: "There are more trees on Earth than stars in the Milky Way galaxy. There are about 3 trillion trees, compared to 100-400 billion stars.",
-                theme: "nature",
-                color: "#228b22"
-            }
-        ];
-
-        function getTextColor(hexColor) {
-            const r = parseInt(hexColor.substr(1, 2), 16);
-            const g = parseInt(hexColor.substr(3, 2), 16);
-            const b = parseInt(hexColor.substr(5, 2), 16);
-            const luminance = (0.299 * r + 0.587 * g + 0.114 * b);
-            return luminance > 140 ? '#000000' : '#FFFFFF';
-        }
-
-        function displayRandomFact() {
-            const factElement = document.getElementById('fact');
-            const body = document.body;
-
-            const randomIndex = Math.floor(Math.random() * facts.length);
-            const randomFact = facts[randomIndex];
-
-            const backgroundColor = randomFact.color;
-            const textColor = getTextColor(backgroundColor);
-
-            body.style.backgroundColor = backgroundColor;
-            body.style.color = textColor;
-            factElement.textContent = randomFact.text;
-        }
-
-        document.addEventListener('DOMContentLoaded', displayRandomFact);
-    </script>
-
 </body>
 </html>
