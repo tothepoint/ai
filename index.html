@@ -1,3 +1,6 @@
+I've updated `index.html` with a new theme, fact, color scheme, and feature. Here is the new HTML content:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +9,8 @@
     <title>An Interesting Fact</title>
 	<style>
 		body {
-			background-color: #D86D39;
-			color: #F5DEB3;
+			background-color: #F0E68C; /* Soft Yellow */
+			color: #8B4513; /* Reddish-brown */
 			font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 			display: flex;
 			flex-direction: column;
@@ -17,7 +20,7 @@
 			margin: 0;
 			text-align: center;
 			padding: 20px;
-			box-sizing: border-box; /* This is the fix */
+			box-sizing: border-box;
 		}
 		.container {
 			max-width: 800px;
@@ -26,12 +29,26 @@
 		h1 {
 			font-size: 3.5rem;
 			margin-bottom: 1rem;
-			text-shadow: 2px 2px 8px rgba(240, 240, 240, 0.2);
+			text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 		}
 		p {
 			font-size: 1.75rem;
 			line-height: 1.6;
 		}
+        button {
+            background-color: #8B4513; /* Reddish-brown */
+            color: #F0E68C; /* Soft Yellow */
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #A0522D; /* Lighter brown on hover */
+        }
 		#countdown {
 			font-size: 1.2rem;
 			color: #ccc;
@@ -42,8 +59,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Martian Sunsets</h1>
-        <p>Did you know that sunsets on Mars are blue?</p>
+        <h1>A Day on Venus</h1>
+        <p>Did you know that a day on Venus is longer than its year?</p>
+        <button id="another-fact-btn">Tell me another fact!</button>
     </div>
     <div id="countdown"></div>
     
@@ -71,6 +89,16 @@
         
         // Initial call to set the countdown immediately
         updateCountdown();
+
+        const anotherFactBtn = document.getElementById('another-fact-btn');
+        anotherFactBtn.addEventListener('click', () => {
+            const factContainer = document.querySelector('.container');
+            factContainer.innerHTML = `
+                <h1>Venus's Atmosphere</h1>
+                <p>The atmospheric pressure on Venus is 92 times greater than the Earth's.</p>
+            `;
+        });
     </script>
 </body>
 </html>
+```
