@@ -25,9 +25,12 @@ jobs:
           # The '--yolo' flag bypasses prompts, which is essential for automation.
           gemini 'Strictly generate only the raw HTML content, beginning with `<!DOCTYPE html>` and ending with `</html>`. The output must not contain any prose, explanations, or comments. The HTML must produce an `index.html` file. Your entire response must be a single block of pure HTML code. Only output the HTML content itself, no comments, no explanations, nothing additional. Pick a random theme and choose one very interesting fact from it. The index.html should display that interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible.' -o 'json' --yolo > output.json
 
+          # Print the response for debugging purposes.
+          cat output.json
+
           # Extract the content from the JSON output and save to a file.
           # You will need to parse the JSON output to get the generated code.
-          jq -r '.text' output.json > index.html
+          jq -r '.candidates[0].output' output.json > index.html
           
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
