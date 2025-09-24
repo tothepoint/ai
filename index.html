@@ -1,0 +1,86 @@
+I have created the `index.html` file. You can open it in a web browser to see a random fact with a themed background color.
+itial-scale=1.0">
+    <title>Random Interesting Fact</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        .fact-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 80%;
+        }
+        #fact {
+            font-size: 2em;
+            transition: color 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="fact-container">
+        <p id="fact"></p>
+    </div>
+
+    <script>
+        const facts = [
+            { theme: 'space', text: 'A day on Venus is longer than a year on Venus.' },
+            { theme: 'nature', text: 'The Amazon rainforest produces 20% of the world\'s oxygen.' },
+            { theme: 'history', text: 'The Great Wall of China is not visible from the moon with the naked eye.' },
+            { theme: 'technology', text: 'The first computer mouse was made of wood.' },
+            { theme: 'animals', text: 'A group of flamingos is called a flamboyance.' },
+            { theme: 'science', text: 'There are more trees on Earth than stars in the Milky Way galaxy.' },
+            { theme: 'space', text: 'The footprints on the moon will be there for 100 million years.' },
+            { theme: 'nature', text: 'Honey never spoils.' },
+            { theme: 'history', text: 'Cleopatra was not Egyptian, she was Greek.' },
+            { theme: 'technology', text: 'The first text message was "Merry Christmas".' }
+        ];
+
+        const themeColors = {
+            space: '#000020',
+            nature: '#228B22',
+            history: '#8B4513',
+            technology: '#4682B4',
+            animals: '#FFD700',
+            science: '#6A5ACD'
+        };
+
+        function getTextColor(bgColor) {
+            const color = (bgColor.charAt(0) === '#') ? bgColor.substring(1, 7) : bgColor;
+            const r = parseInt(color.substring(0, 2), 16);
+            const g = parseInt(color.substring(2, 4), 16);
+            const b = parseInt(color.substring(4, 6), 16);
+            const uicolors = [r / 255, g / 255, b / 255];
+            const c = uicolors.map((col) => {
+                if (col <= 0.03928) {
+                    return col / 12.92;
+                }
+                return Math.pow((col + 0.055) / 1.055, 2.4);
+            });
+            const L = (0.2126 * c[0]) + (0.7152 * c[1]) + (0.0722 * c[2]);
+            return (L > 0.179) ? '#000000' : '#FFFFFF';
+        }
+
+        function displayRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const fact = facts[randomIndex];
+            const backgroundColor = themeColors[fact.theme];
+            const textColor = getTextColor(backgroundColor);
+
+            document.body.style.backgroundColor = backgroundColor;
+            const factElement = document.getElementById('fact');
+            factElement.textContent = fact.text;
+            factElement.style.color = textColor;
+        }
+
+        window.onload = displayRandomFact;
+    </script>
+</body>
+</html>
