@@ -1,9 +1,6 @@
 name: Generate and Update Code
 
 on:
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
   # Schedules the workflow to run every hour on the hour
   schedule:
     - cron: '0 * * * *'
