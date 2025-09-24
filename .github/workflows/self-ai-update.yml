@@ -23,7 +23,7 @@ jobs:
           # Use Gemini CLI to generate or update content
           # This example generates a simple greeting and saves it to a file.
           # The '--yolo' flag bypasses prompts, which is essential for automation.
-          gemini 'Write an index.html which prints a random themed interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible.' --yolo > index.html
+          gemini 'Only output the HTML itself, no comments. Write an index.html which prints a random themed interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible.' --yolo > index.html
           
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
