@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Fascinating Fact About Space</title>
+    <title>A Fascinating Fact About Ancient Rome</title>
     <style>
         body {
-            background-color: #2E2E2E; /* Dark Gray */
-            color: #FFFFFF; /* White */
-            font-family: 'Arial', sans-serif;
+            background-color: #D2B48C; /* Tan */
+            color: #3C3C3C; /* Dark Gray */
+            font-family: 'Georgia', serif;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -26,16 +26,16 @@
         h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
         }
         p {
             font-size: 1.75rem;
             line-height: 1.6;
         }
         button {
-            background-color: #FFFFFF; /* White */
-            color: #2E2E2E; /* Dark Gray */
-            border: none;
+            background-color: #3C3C3C; /* Dark Gray */
+            color: #D2B48C; /* Tan */
+            border: 2px solid #3C3C3C;
             padding: 15px 30px;
             font-size: 1.2rem;
             cursor: pointer;
@@ -44,12 +44,12 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #CCCCCC; /* Light Gray */
-            color: #000000; /* Black */
+            background-color: #D2B48C; /* Tan */
+            color: #3C3C3C; /* Dark Gray */
         }
         #countdown {
             font-size: 1.2rem;
-            color: #CCCCCC; /* Light Gray */
+            color: #3C3C3C; /* Dark Gray */
             opacity: 0.8;
             margin-top: auto;
         }
@@ -57,8 +57,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>A Day on Venus</h1>
-        <p>Did you know that a day on Venus is longer than its year?</p>
+        <h1>Roman Aqueducts</h1>
+        <p>The Romans had a complex system of aqueducts that supplied water to their cities. The Aqua Appia, the first Roman aqueduct, was built in 312 BC and was over 16 kilometers long.</p>
         <button id="another-fact-btn">Tell me another fact!</button>
     </div>
     <div id="countdown"></div>
@@ -92,8 +92,8 @@
         anotherFactBtn.addEventListener('click', () => {
             const factContainer = document.querySelector('.container');
             factContainer.innerHTML = `
-                <h1>Venus's Atmosphere</h1>
-                <p>The atmospheric pressure on Venus is 92 times greater than the Earth's.</p>
+                <h1>Roman Roads</h1>
+                <p>The Romans built over 80,000 kilometers of roads, many of which are still in use today. The saying "all roads lead to Rome" reflects the importance of this network.</p>
             `;
         });
     </script>
