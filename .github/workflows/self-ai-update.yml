@@ -30,7 +30,7 @@ jobs:
 
           # Extract the content from the JSON output and save to a file.
           # You will need to parse the JSON output to get the generated code.
-          jq -r '.candidates[0].output' output.json > index.html
+          jq -r '.response' output.json > index.html
           
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
