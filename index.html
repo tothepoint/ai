@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,8 +7,8 @@
     <title>A Fascinating Fact About Space</title>
     <style>
         body {
-            background-color: #2E2E2E; /* Dark Gray */
-            color: #FFFFFF; /* White */
+            background-color: #0A1128; /* Deep Blue */
+            color: #E0E0E0; /* Light Grey */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -33,8 +34,8 @@
             line-height: 1.6;
         }
         button {
-            background-color: #FFFFFF; /* White */
-            color: #2E2E2E; /* Dark Gray */
+            background-color: #E0E0E0; /* Light Grey */
+            color: #0A1128; /* Deep Blue */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -44,26 +45,51 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #CCCCCC; /* Light Gray */
+            background-color: #CCCCCC; /* Lighter Grey */
             color: #000000; /* Black */
         }
         #countdown {
             font-size: 1.2rem;
-            color: #CCCCCC; /* Light Gray */
-            opacity: 0.8;
+            color: #E0E0E0; /* Light Grey */
+            background-color: #1B2A41; /* Slightly lighter blue for footer */
+            padding: 10px 20px;\n            border-radius: 5px;
+            opacity: 0.9;
             margin-top: auto;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>A Day on Venus</h1>
-        <p>Did you know that a day on Venus is longer than its year?</p>
+        <h1>Bioluminescence in the Deep Sea</h1>
+        <p>Did you know that around three-quarters of all deep-sea creatures produce their own light through chemical reactions?</p>
         <button id="another-fact-btn">Tell me another fact!</button>
     </div>
     <div id="countdown"></div>
     
     <script>
+        const facts = [
+            {
+                title: "Bioluminescence in the Deep Sea",
+                text: "Did you know that around three-quarters of all deep-sea creatures produce their own light through chemical reactions?"
+            },
+            {
+                title: "Deep-Sea Gigantism",
+                text: "Many deep-sea invertebrates and other animals tend to be larger than their shallower-water relatives, a phenomenon known as deep-sea gigantism."
+            }
+        ];
+        let currentFactIndex = 0;
+
+        function updateFact() {
+            currentFactIndex = (currentFactIndex + 1) % facts.length;
+            const factContainer = document.querySelector('.container');
+            factContainer.innerHTML = `
+                <h1>${facts[currentFactIndex].title}</h1>
+                <p>${facts[currentFactIndex].text}</p>
+                <button id="another-fact-btn">Tell me another fact!</button>
+            `;
+            document.getElementById('another-fact-btn').addEventListener('click', updateFact);
+        }
+
         function updateCountdown() {
             const now = new Date();
             const minutes = now.getMinutes();
@@ -88,14 +114,8 @@
         // Initial call to set the countdown immediately
         updateCountdown();
 
-        const anotherFactBtn = document.getElementById('another-fact-btn');
-        anotherFactBtn.addEventListener('click', () => {
-            const factContainer = document.querySelector('.container');
-            factContainer.innerHTML = `
-                <h1>Venus's Atmosphere</h1>
-                <p>The atmospheric pressure on Venus is 92 times greater than the Earth's.</p>
-            `;
-        });
+        document.getElementById('another-fact-btn').addEventListener('click', updateFact);
     </script>
 </body>
 </html>
+```
