@@ -1,13 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fascinating Space Facts</title>
+    <title>Fascinating Ancient Egypt Facts</title>
     <style>
         body {
-            background-color: #001F3F; /* Dark Midnight Blue for deep sea theme */
-            color: #ADD8E6; /* Light Blue for text */
+            background-color: #DAA520; /* Goldenrod for desert theme */
+            color: #36454F; /* Charcoal for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -33,10 +34,17 @@
             line-height: 1.6;
             opacity: 0; /* Start hidden for fade-in */
             animation: fadeIn 2s forwards; /* Fade-in animation */
+            cursor: pointer; /* Indicate clickable */
+        }
+        #more-info {
+            font-size: 1.2rem;
+            color: #2F4F4F; /* Dark Slate Gray */
+            margin-top: 10px;
+            display: none; /* Hidden by default */
         }
         button {
-            background-color: #E0FFFF; /* Light Cyan */
-            color: #0A0A1A; /* Deep Space Black */
+            background-color: #F0E68C; /* Khaki */
+            color: #36454F; /* Charcoal */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -46,15 +54,16 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #B0E0E6; /* Slightly darker cyan */
-            color: #050505; /* Even darker black */
+            background-color: #BDB76B; /* Dark Khaki */
+            color: #000000; /* Black */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #ADD8E6; /* Light Blue */
-            background-color: #003366; /* Darker Blue for footer */
+            color: #F0E68C; /* Khaki for footer text */
+            background-color: #2F4F4F; /* Dark Slate Gray for footer background */
             padding: 10px 20px;
-            border-radius: 5px;\n            opacity: 0.9;
+            border-radius: 5px;
+            opacity: 0.9;
             margin-top: auto;
         }
         @keyframes fadeIn {
@@ -65,32 +74,47 @@
 </head>
 <body>
     <div class="container">
-        <h1>Mysteries of the Deep Sea</h1>
-        <p>We have better maps of Mars than we do of the ocean floor, and only a handful of people have ever visited the Challenger Deep.</p>
+        <h1>Wonders of Ancient Egypt</h1>
+        <p id="main-fact">Ancient Egyptian workers were known to organize labor strikes, with one instance recorded on papyrus over 3000 years ago where workers refused to work until their back rations were paid.</p>
+        <p id="more-info">Did you know? This particular strike occurred during the reign of Pharaoh Ramses III, demonstrating early forms of labor activism!</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
     </div>
-    <div id="footer-info">Dive into the unknown!</div>
+    <div id="footer-info">Explore the rich history of Ancient Egypt!</div>
     
     <script>
         function copyFactToClipboard() {
-            const factText = document.querySelector('.container p').textContent;
+            const factText = document.getElementById('main-fact').textContent;
             navigator.clipboard.writeText(factText).then(() => {
                 alert('Fact copied to clipboard!');
             }).catch(err => {
-                console.error('Failed to copy fact: ', err);\n            });
+                console.error('Failed to copy fact: ', err);
+            });
         }
 
         function shareFactOnTwitter() {
-            const factText = document.querySelector('.container p').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #SpaceFacts #Astronomy")}`;
+            const factText = document.getElementById('main-fact').textContent;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #AncientEgypt #HistoryFacts")}`;
             window.open(tweetUrl, '_blank');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);
             document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);
+
+            const mainFact = document.getElementById('main-fact');
+            const moreInfo = document.getElementById('more-info');
+
+            mainFact.addEventListener('click', () => {
+                if (moreInfo.style.display === 'none' || moreInfo.style.display === '') {
+                    moreInfo.style.display = 'block';
+                } else {
+                    moreInfo.style.display = 'none';
+                }
+            });
         });
     </script>
 </body>
 </html>
+```
+
