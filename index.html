@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fascinating Ancient Egypt Facts</title>
+    <title>Fascinating Space Exploration Facts</title>
     <style>
         body {
-            background-color: #DAA520; /* Goldenrod for desert theme */
-            color: #36454F; /* Charcoal for text */
+            background-color: #1A2B4C; /* Dark blue for space theme */
+            color: #E0E0E0; /* Light grey for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -38,13 +38,13 @@
         }
         #more-info {
             font-size: 1.2rem;
-            color: #2F4F4F; /* Dark Slate Gray */
+            color: #A0A0A0; /* Medium grey */
             margin-top: 10px;
             display: none; /* Hidden by default */
         }
         button {
-            background-color: #F0E68C; /* Khaki */
-            color: #36454F; /* Charcoal */
+            background-color: #4A69BD; /* Lighter blue */
+            color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -54,13 +54,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #BDB76B; /* Dark Khaki */
-            color: #000000; /* Black */
+            background-color: #3A57A0; /* Darker blue */
+            color: #FFFFFF; /* White */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #F0E68C; /* Khaki for footer text */
-            background-color: #2F4F4F; /* Dark Slate Gray for footer background */
+            color: #CCCCCC; /* Lighter grey for footer text */
+            background-color: #333333; /* Dark grey for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -74,13 +74,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Wonders of Ancient Egypt</h1>
-        <p id="main-fact">Ancient Egyptian workers were known to organize labor strikes, with one instance recorded on papyrus over 3000 years ago where workers refused to work until their back rations were paid.</p>
-        <p id="more-info">Did you know? This particular strike occurred during the reign of Pharaoh Ramses III, demonstrating early forms of labor activism!</p>
+        <h1>Wonders of Space Exploration</h1>
+        <p id="main-fact">Russia achieved many 'firsts' in space, including launching the first artificial satellite, Sputnik 1, in 1957, and sending the first human, Yuri Gagarin, into space in 1961.</p>
+        <p id="more-info">Did you know? Yuri Gagarin orbited Earth once in 108 minutes, a monumental achievement that paved the way for future human spaceflight!</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
     </div>
-    <div id="footer-info">Explore the rich history of Ancient Egypt!</div>
+    <div id="footer-info">Explore the vastness of space!</div>
     
     <script>
         function copyFactToClipboard() {
@@ -94,7 +94,7 @@
 
         function shareFactOnTwitter() {
             const factText = document.getElementById('main-fact').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #AncientEgypt #HistoryFacts")}`;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #SpaceExploration #SpaceFacts")}`;
             window.open(tweetUrl, '_blank');
         }
 
@@ -117,4 +117,3 @@
 </body>
 </html>
 ```
-
