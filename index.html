@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +65,7 @@
         const body = document.body;
         const footer = document.querySelector('footer');
 
-        const spaceFacts = [
+        const facts = [
             {
                 fact: "A day on Venus is longer than a year on Venus.",
                 bgColor: "#2C3E50", // Dark blue-grey
@@ -94,12 +95,18 @@
                 bgColor: "#465362", // Slate grey
                 textColor: "#F8F8FF", // Ghost white
                 footerColor: "#5A6B7C" // Darker slate grey
+            },
+            {
+                fact: "The ocean produces around half of the Earth's oxygen, thanks to photosynthesizing plankton.",
+                bgColor: "#003366", // Deep ocean blue
+                textColor: "#E0FFFF", // Light cyan
+                footerColor: "#002244" // Even darker ocean blue
             }
         ];
 
         function getRandomFact() {
-            const randomIndex = Math.floor(Math.random() * spaceFacts.length);
-            return spaceFacts[randomIndex];
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            return facts[randomIndex];
         }
 
         function updateFact() {
@@ -113,8 +120,24 @@
 
         newFactButton.addEventListener('click', updateFact);
 
+        // Add a copy to clipboard button
+        const copyButton = document.createElement('button');
+        copyButton.textContent = 'Copy Fact';
+        copyButton.id = 'copy-fact-button';
+        newFactButton.parentNode.insertBefore(copyButton, newFactButton.nextSibling);
+
+        copyButton.addEventListener('click', () => {
+            const factText = factDisplay.textContent;
+            navigator.clipboard.writeText(factText).then(() => {
+                alert('Fact copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy fact: ', err);
+            });
+        });
+
         // Initial fact load
         updateFact();
     </script>
 </body>
 </html>
+```
