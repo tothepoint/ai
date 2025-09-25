@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fascinating Ocean Facts</title>
+    <title>Fascinating Deep Sea Facts</title>
     <style>
         body {
-            background-color: #1A1A2E; /* Deep Space Blue */
-            color: #E0E0E0; /* Light Gray for text */
+            background-color: #0A192F; /* Deep Ocean Blue */
+            color: #E0FFFF; /* Light Cyan for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -34,8 +34,8 @@
             line-height: 1.6;
         }
         button {
-            background-color: #E0E0E0; /* Light Gray */
-            color: #1A1A2E; /* Deep Space Blue */
+            background-color: #E0FFFF; /* Light Cyan */
+            color: #0A192F; /* Deep Ocean Blue */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -45,13 +45,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #B0B0B0; /* Slightly darker gray */
-            color: #0F0F1A; /* Even darker blue */
+            background-color: #B0E0E6; /* Slightly darker cyan */
+            color: #050C1A; /* Even darker blue */
         }
         #countdown {
             font-size: 1.2rem;
-            color: #E0E0E0; /* Light Gray */
-            background-color: #0F0F1A; /* Darker Space Blue for footer */
+            color: #E0FFFF; /* Light Cyan */
+            background-color: #003366; /* Darker Muted Blue for footer */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -69,30 +69,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>The Scent of Space</h1>
-        <p>Astronauts report the Moon smells like wet ashes or gunpowder, and space itself like burned steak!</p>
+        <h1>Bioluminescence in the Deep Sea</h1>
+        <p>Around three-quarters of all deep-sea creatures produce their own light through a chemical reaction. This light is used for attracting prey, confusing predators, and communication!</p>
         <button id="another-fact-btn">Tell me another fact!</button>
         <button id="copy-fact-btn" style="margin-left: 10px;">Copy Fact</button>
+        <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
     </div>
     <div id="countdown"></div>
     
     <script>
         const facts = [
             {
-                title: "The Scent of Space",
-                text: "Astronauts report the Moon smells like wet ashes or gunpowder, and space itself like burned steak!"
+                title: "Bioluminescence in the Deep Sea",
+                text: "Around three-quarters of all deep-sea creatures produce their own light through a chemical reaction. This light is used for attracting prey, confusing predators, and communication!"
             },
             {
-                title: "Silent Space",
-                text: "Space is a vacuum, meaning there's no medium for sound to travel through. So, space is completely silent!"
+                title: "Pressure Resistance",
+                text: "Deep-sea creatures have developed ways to withstand the crushing pressure of the deep ocean. Many have flexible, gelatinous bodies and reduced skeletal structures, often made of cartilage, which allows their bodies to compress and bend without breaking."
             },
             {
-                title: "Footprints on the Moon",
-                text: "Because there's no wind or atmosphere on the Moon, the footprints left by astronauts could last for millions of years."
+                title: "Deep-Sea Gigantism",
+                text: "Some deep-sea invertebrates and other animals are significantly larger than their relatives in shallower waters, a phenomenon known as deep-sea gigantism."
             },
             {
-                title: "The Sun's Mass",
-                text: "The Sun accounts for 99.86% of the mass in our solar system, with Jupiter making up most of the rest."
+                title: "Marine Snow",
+                text: "The primary food source in the deep sea comes from 'marine snow,' which are sinking particles of dead single-celled organisms and other organic material from the upper ocean layers."
             }
         ];
         let currentFactIndex = 0;
@@ -110,9 +111,11 @@
                     <p>${facts[currentFactIndex].text}</p>
                     <button id="another-fact-btn">Tell me another fact!</button>
                     <button id="copy-fact-btn" style="margin-left: 10px;">Copy Fact</button>
+                    <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
                 `;
                 document.getElementById('another-fact-btn').addEventListener('click', updateFactAndResetCountdown);
                 document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);
+                document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);
                 factContainer.classList.remove('fade-out');
                 factContainer.classList.add('fade-in');
                 resetCountdown();
@@ -158,10 +161,17 @@
             });
         }
 
+        function shareFactOnTwitter() {
+            const factText = facts[currentFactIndex].text;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #DeepSeaFacts #Bioluminescence")}`;
+            window.open(tweetUrl, '_blank');
+        }
+
         // Initial setup
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('another-fact-btn').addEventListener('click', updateFactAndResetCountdown);
             document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);
+            document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);
             startCountdown(); // Start countdown when the page loads
         });
     </script>
