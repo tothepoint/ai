@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fascinating Space Exploration</title>
+    <title>Mysteries of the Deep Sea</title>
     <style>
         body {
-            background-color: #0A1931; /* Deep space blue */
-            color: #E0E0E0; /* Light grey for text */
+            background-color: #001F3F; /* Dark Midnight Blue for deep sea */
+            color: #ADD8E6; /* Light Blue for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
         button {
-            background-color: #4A2C2A; /* Dark reddish-brown for buttons */
+            background-color: #005073; /* Slightly lighter blue for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
@@ -66,13 +66,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #8B4513; /* SaddleBrown on hover */
+            background-color: #007EA7; /* Even lighter blue on hover */
             color: #FFFFFF; /* White */
         }
         #footer-info {
             font-size: 1.2rem;
             color: #E0E0E0; /* Light grey for footer text */
-            background-color: #1F4287; /* Medium blue for footer background */
+            background-color: #003366; /* Darker Blue for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -86,15 +86,15 @@
 </head>
 <body>
     <div class="container">
-        <h1>Fascinating Space Exploration</h1>
-        <p id="main-fact">🚀 Astronauts have reported that the Moon smells like wet ashes or spent gunpowder, and space itself has been described as smelling faintly of burned steak.</p>
-        <p id="more-info">One astronaut, John Young of Apollo 16, even tasted a bit of the Moon and said "it wasn't bad".</p>
+        <h1>Mysteries of the Deep Sea</h1>
+        <p id="main-fact">🌊 The deepest point on Earth is the Challenger Deep in the Mariana Trench, nearly 11 kilometers (7 miles) deep. If Mount Everest were placed in it, its peak would still be over a mile below the surface.</p>
+        <p id="more-info">The pressure at this depth is approximately 1,100 times greater than surface pressure, equivalent to being crushed by more than 50 jumbo jets.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
     </div>
-    <div id="footer-info">Explore the cosmos!</div>
+    <div id="footer-info">Dive into the unknown!</div>
     
     <script>
         function copyFactToClipboard() {
@@ -108,17 +108,17 @@
 
         function shareFactOnTwitter() {
             const factText = document.getElementById('main-fact').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #SpaceFacts #SpaceExploration")}`;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #DeepSeaFacts #OceanExploration")}`;
             window.open(tweetUrl, '_blank');
         }
 
         function loadNewFact() {
             const facts = [
-                { main: "🚀 Astronauts have reported that the Moon smells like wet ashes or spent gunpowder, and space itself has been described as smelling faintly of burned steak.", more: "One astronaut, John Young of Apollo 16, even tasted a bit of the Moon and said \"it wasn't bad\"." },
-                { main: "🌌 The observable universe is estimated to be about 93 billion light-years in diameter, but it's constantly expanding.", more: "This expansion means that galaxies are moving away from each other, and the light from very distant galaxies may never reach us." },
-                { main: "🛰️ The International Space Station (ISS) orbits Earth every 90 minutes, meaning astronauts on board experience about 16 sunrises and sunsets every day.", more: "This rapid orbit allows for unique perspectives and research opportunities in microgravity." },
-                { main: "🌟 There are more stars in the universe than grains of sand on all the beaches on Earth.", more: "This vast number, estimated to be around 10^22 to 10^24, highlights the immense scale of the cosmos." },
-                { main: "🪐 A day on Venus is longer than its year. It takes Venus 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.", more: "This slow rotation and relatively fast orbit create a unique celestial rhythm." }
+                { main: "🌊 The deepest point on Earth is the Challenger Deep in the Mariana Trench, nearly 11 kilometers (7 miles) deep. If Mount Everest were placed in it, its peak would still be over a mile below the surface.", more: "The pressure at this depth is approximately 1,100 times greater than surface pressure, equivalent to being crushed by more than 50 jumbo jets." },
+                { main: "🦑 Many deep-sea creatures are bioluminescent, meaning they produce their own light to attract prey or mates in the perpetual darkness.", more: "Some have gigantic eyes to detect faint light, while others have no eyes at all, relying on other senses." },
+                { main: "🐠 We have better maps of Mars than we do of the ocean floor, and more than 95% of the ocean remains unexplored.", more: "Only a handful of people have ever visited the Challenger Deep, highlighting how much of our own planet is still a mystery." },
+                { main: "🦈 The Greenland shark, a deep-sea dweller, has an extraordinary lifespan of 300 to 500 years, making it one of the longest-living vertebrates known.", more: "These sharks live in the cold waters of the North Atlantic and grow very slowly, contributing to their longevity." },
+                { main: "🌋 Hydrothermal vents on the ocean floor release superheated fluid and minerals, creating unique ecosystems teeming with life despite extreme temperatures and pressures.", more: "These vents are considered potential cradles of early life on Earth, supporting chemosynthetic organisms that form the base of the food chain." }
             ];
             const randomIndex = Math.floor(Math.random() * facts.length);
             document.getElementById('main-fact').textContent = facts[randomIndex].main;
@@ -149,3 +149,4 @@
 </body>
 </html>
 ```
+
