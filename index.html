@@ -1,13 +1,14 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mysteries of the Deep Sea</title>
+    <title>Wonders of Space Exploration</title>
     <style>
         body {
-            background-color: #0A192F; /* Deep blue for deep sea theme */
-            color: #E0FFFF; /* Light cyan for text */
+            background-color: #0D1B2A; /* Dark blue for space theme */
+            color: #E0E0E0; /* Light grey for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -54,7 +55,7 @@
             opacity: 1;
         }
         button {
-            background-color: #007BFF; /* A standard blue for buttons */
+            background-color: #4A90E2; /* A space-themed blue for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
@@ -65,31 +66,33 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #0056b3; /* Darker blue on hover */
+            background-color: #357ABD; /* Darker blue on hover */
             color: #FFFFFF; /* White */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #E0FFFF; /* Light cyan for footer text */
-            background-color: #004D40; /* Dark teal for footer background */
+            color: #E0E0E0; /* Light grey for footer text */
+            background-color: #1B263B; /* Slightly lighter dark blue for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
             margin-top: auto;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }\n            to { opacity: 1; }\n        }
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Mysteries of the Deep Sea</h1>
-        <p id="main-fact">🌊 The deepest known point on Earth is the Challenger Deep in the Mariana Trench, which is about 11 kilometers (36,200 feet) deep. Mount Everest would fit inside it with over a mile of space to spare.</p>
-        <p id="more-info">Only a handful of people have ever visited the Challenger Deep, highlighting how much of our own planet remains unexplored.</p>
+        <h1>Wonders of Space Exploration</h1>
+        <p id="main-fact">🌌 Space is completely silent because there's no air or atmosphere for sound waves to travel through.</p>
+        <p id="more-info">Did you know? Astronauts have reported that space itself has a slight scent of burned steak.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
     </div>
-    <div id="footer-info">Dive into the unknown!</div>
+    <div id="footer-info">Explore the cosmos!</div>
     
     <script>
         function copyFactToClipboard() {
@@ -103,7 +106,7 @@
 
         function shareFactOnTwitter() {
             const factText = document.getElementById('main-fact').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #DeepSea #OceanFacts")}`;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #SpaceFacts #SpaceExploration")}`;
             window.open(tweetUrl, '_blank');
         }
 
@@ -121,3 +124,5 @@
     </script>
 </body>
 </html>
+```
+
