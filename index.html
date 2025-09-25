@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Fascinating Fact About Space</title>
+    <title>Fascinating Universe Facts</title>
     <style>
         body {
-            background-color: #0A1128; /* Deep Blue */
-            color: #E0E0E0; /* Light Grey */
+            background-color: #1A0033; /* Deep Space Purple */
+            color: #F0E68C; /* Khaki - soft yellow for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -34,8 +34,8 @@
             line-height: 1.6;
         }
         button {
-            background-color: #E0E0E0; /* Light Grey */
-            color: #0A1128; /* Deep Blue */
+            background-color: #F0E68C; /* Khaki */
+            color: #1A0033; /* Deep Space Purple */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -45,14 +45,15 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #CCCCCC; /* Lighter Grey */
+            background-color: #E0D880; /* Lighter Khaki */
             color: #000000; /* Black */
         }
         #countdown {
             font-size: 1.2rem;
-            color: #E0E0E0; /* Light Grey */
-            background-color: #1B2A41; /* Slightly lighter blue for footer */
-            padding: 10px 20px;\n            border-radius: 5px;
+            color: #F0E68C; /* Khaki */
+            background-color: #330066; /* Slightly lighter purple for footer */
+            padding: 10px 20px;
+            border-radius: 5px;
             opacity: 0.9;
             margin-top: auto;
         }
@@ -60,8 +61,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Bioluminescence in the Deep Sea</h1>
-        <p>Did you know that around three-quarters of all deep-sea creatures produce their own light through chemical reactions?</p>
+        <h1>The Mystery of Dark Matter and Dark Energy</h1>
+        <p>Only about 5% of the universe is made up of ordinary matter (atoms) that we can see and interact with. The remaining 95% is composed of mysterious dark matter (about 27%) and dark energy (about 68%).</p>
         <button id="another-fact-btn">Tell me another fact!</button>
     </div>
     <div id="countdown"></div>
@@ -69,12 +70,20 @@
     <script>
         const facts = [
             {
-                title: "Bioluminescence in the Deep Sea",
-                text: "Did you know that around three-quarters of all deep-sea creatures produce their own light through chemical reactions?"
+                title: "The Mystery of Dark Matter and Dark Energy",
+                text: "Only about 5% of the universe is made up of ordinary matter (atoms) that we can see and interact with. The remaining 95% is composed of mysterious dark matter (about 27%) and dark energy (about 68%)."
             },
             {
-                title: "Deep-Sea Gigantism",
-                text: "Many deep-sea invertebrates and other animals tend to be larger than their shallower-water relatives, a phenomenon known as deep-sea gigantism."
+                title: "The Expanding Universe",
+                text: "The universe is constantly expanding, and this expansion is accelerating, driven by dark energy. This means galaxies are moving further apart from each other at an increasing rate."
+            },
+            {
+                title: "The Immense Size of the Universe",
+                text: "The observable universe is estimated to be about 93 billion light-years in diameter. However, the actual size of the entire universe could be infinite."
+            },
+            {
+                title: "Stars Outnumber Grains of Sand",
+                text: "There are more stars in the universe than grains of sand on all the beaches on Earth. Estimates suggest there are between 100 billion and 1 trillion stars in our galaxy alone, and billions of galaxies."
             }
         ];
         let currentFactIndex = 0;
@@ -119,3 +128,4 @@
 </body>
 </html>
 ```
+
