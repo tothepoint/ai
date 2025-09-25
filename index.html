@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interesting Fact</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+            transition: background-color 0.5s ease;
+        }
+        .fact-container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 800px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.8em;
+            transition: background-color 0.5s ease;
+        }
+    </style>
+</head>
+<body>
+    <div class="fact-container">
+        <h1 id="fact-display"></h1>
+        <button id="new-fact-button">Get Another Fact</button>
+    </div>
+    <footer>
+        <p>&copy; 2025 Interesting Facts</p>
+    </footer>
 
+    <script>
+        const factDisplay = document.getElementById('fact-display');
+        const newFactButton = document.getElementById('new-fact-button');
+        const body = document.body;
+        const footer = document.querySelector('footer');
+
+        const spaceFacts = [
+            {
+                fact: "A day on Venus is longer than a year on Venus.",
+                bgColor: "#2C3E50", // Dark blue-grey
+                textColor: "#ECF0F1", // Light grey
+                footerColor: "#34495E" // Slightly darker blue-grey
+            },
+            {
+                fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+                bgColor: "#1A2B3C", // Very dark blue
+                textColor: "#FDFEFE", // White
+                footerColor: "#21374B" // Darker blue
+            },
+            {
+                fact: "The largest known asteroid, Ceres, is about 940 kilometers (585 miles) in diameter.",
+                bgColor: "#36454F", // Charcoal grey
+                textColor: "#F5F5DC", // Beige
+                footerColor: "#4A5B6B" // Darker charcoal grey
+            },
+            {
+                fact: "One million Earths could fit inside the Sun.",
+                bgColor: "#0A192F", // Deep navy
+                textColor: "#E0FFFF", // Light cyan
+                footerColor: "#1C2E4A" // Darker navy
+            },
+            {
+                fact: "The footprints left on the Moon by the Apollo astronauts will likely stay there for at least 100 million years.",
+                bgColor: "#465362", // Slate grey
+                textColor: "#F8F8FF", // Ghost white
+                footerColor: "#5A6B7C" // Darker slate grey
+            }
+        ];
+
+        function getRandomFact() {
+            const randomIndex = Math.floor(Math.random() * spaceFacts.length);
+            return spaceFacts[randomIndex];
+        }
+
+        function updateFact() {
+            const { fact, bgColor, textColor, footerColor } = getRandomFact();
+            factDisplay.textContent = fact;
+            body.style.backgroundColor = bgColor;
+            body.style.color = textColor;
+            footer.style.backgroundColor = footerColor;
+            footer.style.color = textColor; // Keep footer text color consistent
+        }
+
+        newFactButton.addEventListener('click', updateFact);
+
+        // Initial fact load
+        updateFact();
+    </script>
+</body>
+</html>
