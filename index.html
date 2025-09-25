@@ -1,14 +1,13 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fascinating Space Exploration Facts</title>
+    <title>Mysteries of the Deep Sea</title>
     <style>
         body {
-            background-color: #2C2C2C; /* Dark grey for space theme with a hint of 'burned' */
-            color: #F0E68C; /* Khaki for text */
+            background-color: #0A192F; /* Deep blue for deep sea theme */
+            color: #E0FFFF; /* Light cyan for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -34,6 +33,13 @@
             line-height: 1.6;
             cursor: pointer; /* Indicate clickable */
         }
+        #main-fact {
+            animation: pulse 2s infinite alternate; /* Pulsing animation */
+        }
+        @keyframes pulse {
+            from { transform: scale(1); opacity: 1; }
+            to { transform: scale(1.02); opacity: 0.9; }
+        }
         #more-info {
             font-size: 1.2rem;
             color: #A0A0A0; /* Medium grey */
@@ -48,7 +54,7 @@
             opacity: 1;
         }
         button {
-            background-color: #4A69BD; /* Lighter blue */
+            background-color: #007BFF; /* A standard blue for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
@@ -59,33 +65,31 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #3A57A0; /* Darker blue */
+            background-color: #0056b3; /* Darker blue on hover */
             color: #FFFFFF; /* White */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #F0E68C; /* Khaki for footer text */
-            background-color: #1A1A1A; /* Even darker grey for footer background */
+            color: #E0FFFF; /* Light cyan for footer text */
+            background-color: #004D40; /* Dark teal for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
             margin-top: auto;
         }
         @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+            from { opacity: 0; }\n            to { opacity: 1; }\n        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Wonders of Space Exploration</h1>
-        <p id="main-fact">Astronauts have reported that the Moon smells like wet ashes or spent gunpowder, and space itself has been described as smelling faintly of burned steak.</p>
-        <p id="more-info">This unique aroma is thought to be caused by chemical reactions when lunar dust or space particles come into contact with oxygen inside the spacecraft.</p>
+        <h1>Mysteries of the Deep Sea</h1>
+        <p id="main-fact">🌊 The deepest known point on Earth is the Challenger Deep in the Mariana Trench, which is about 11 kilometers (36,200 feet) deep. Mount Everest would fit inside it with over a mile of space to spare.</p>
+        <p id="more-info">Only a handful of people have ever visited the Challenger Deep, highlighting how much of our own planet remains unexplored.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
     </div>
-    <div id="footer-info">Explore the vastness of space!</div>
+    <div id="footer-info">Dive into the unknown!</div>
     
     <script>
         function copyFactToClipboard() {
@@ -99,7 +103,7 @@
 
         function shareFactOnTwitter() {
             const factText = document.getElementById('main-fact').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #SpaceExploration #SpaceFacts")}`;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #DeepSea #OceanFacts")}`;
             window.open(tweetUrl, '_blank');
         }
 
@@ -117,5 +121,3 @@
     </script>
 </body>
 </html>
-```
-
