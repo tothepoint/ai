@@ -7,8 +7,8 @@
     <title>Fascinating Ocean Facts</title>
     <style>
         body {
-            background-color: #004D40; /* Deep Teal for Ocean Oxygen */
-            color: #E0F2F7; /* Light Cyan for text */
+            background-color: #1A1A2E; /* Deep Space Blue */
+            color: #E0E0E0; /* Light Gray for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -34,8 +34,8 @@
             line-height: 1.6;
         }
         button {
-            background-color: #E0F2F7; /* Light Cyan */
-            color: #004D40; /* Deep Teal */
+            background-color: #E0E0E0; /* Light Gray */
+            color: #1A1A2E; /* Deep Space Blue */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -45,13 +45,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #B2EBF2; /* Lighter Cyan */
-            color: #00251A; /* Darker Teal */
+            background-color: #B0B0B0; /* Slightly darker gray */
+            color: #0F0F1A; /* Even darker blue */
         }
         #countdown {
             font-size: 1.2rem;
-            color: #E0F2F7; /* Light Cyan */
-            background-color: #00332B; /* Darker Teal for footer */
+            color: #E0E0E0; /* Light Gray */
+            background-color: #0F0F1A; /* Darker Space Blue for footer */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -69,29 +69,30 @@
 </head>
 <body>
     <div class="container">
-        <h1>The Ocean: Earth's Breath</h1>
-        <p>The ocean produces around half of the Earth's oxygen, primarily through phytoplankton!</p>
+        <h1>The Scent of Space</h1>
+        <p>Astronauts report the Moon smells like wet ashes or gunpowder, and space itself like burned steak!</p>
         <button id="another-fact-btn">Tell me another fact!</button>
+        <button id="copy-fact-btn" style="margin-left: 10px;">Copy Fact</button>
     </div>
     <div id="countdown"></div>
     
     <script>
         const facts = [
             {
-                title: "The Ocean: Earth's Breath",
-                text: "The ocean produces around half of the Earth's oxygen, primarily through phytoplankton!"
+                title: "The Scent of Space",
+                text: "Astronauts report the Moon smells like wet ashes or gunpowder, and space itself like burned steak!"
             },
             {
-                title: "Deep Sea Wonders",
-                text: "The deepest part of the ocean is the Mariana Trench, plunging about 11,000 meters (36,000 feet) below the surface. It's deeper than Mount Everest is tall!"
+                title: "Silent Space",
+                text: "Space is a vacuum, meaning there's no medium for sound to travel through. So, space is completely silent!"
             },
             {
-                title: "Coral Reefs: Underwater Cities",
-                text: "Coral reefs, though covering less than 1% of the ocean floor, are home to more than 25% of all marine life, acting as vital nurseries for many species."
+                title: "Footprints on the Moon",
+                text: "Because there's no wind or atmosphere on the Moon, the footprints left by astronauts could last for millions of years."
             },
             {
-                title: "Male Seahorses Get Pregnant",
-                text: "Seahorses are one of the few species in the animal kingdom where the male carries the eggs and gives birth to the young."
+                title: "The Sun's Mass",
+                text: "The Sun accounts for 99.86% of the mass in our solar system, with Jupiter making up most of the rest."
             }
         ];
         let currentFactIndex = 0;
@@ -108,8 +109,10 @@
                     <h1>${facts[currentFactIndex].title}</h1>
                     <p>${facts[currentFactIndex].text}</p>
                     <button id="another-fact-btn">Tell me another fact!</button>
+                    <button id="copy-fact-btn" style="margin-left: 10px;">Copy Fact</button>
                 `;
                 document.getElementById('another-fact-btn').addEventListener('click', updateFactAndResetCountdown);
+                document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);
                 factContainer.classList.remove('fade-out');
                 factContainer.classList.add('fade-in');
                 resetCountdown();
@@ -146,9 +149,19 @@
             resetCountdown(); // Ensure countdown resets even if manually triggered
         }
 
+        function copyFactToClipboard() {
+            const factText = facts[currentFactIndex].text;
+            navigator.clipboard.writeText(factText).then(() => {
+                alert('Fact copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy fact: ', err);
+            });
+        }
+
         // Initial setup
         document.addEventListener('DOMContentLoaded', () => {
             document.getElementById('another-fact-btn').addEventListener('click', updateFactAndResetCountdown);
+            document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);
             startCountdown(); // Start countdown when the page loads
         });
     </script>
