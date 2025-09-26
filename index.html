@@ -7,8 +7,8 @@
     <title>Wonders of Nature</title>
     <style>
         body {
-            background-color: #224229; /* Deep forest green */
-            color: #F5F5DC; /* Light beige for text */
+            background-color: #0A192F; /* Deep ocean blue */
+            color: #E0FFFF; /* Light cyan for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -47,15 +47,17 @@
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s ease-out, opacity 0.7s ease-out;
+            transition: max-height 0.7s ease-out, opacity 0.7s ease-out, transform 0.7s ease-out;
             opacity: 0;
+            transform: translateY(-10px);
         }
         #more-info.show-more-info {
             max-height: 100px; /* Sufficiently large to show content */
             opacity: 1;
+            transform: translateY(0);
         }
         button {
-            background-color: #3A5E42; /* Darker green for buttons */
+            background-color: #00508C; /* Medium blue for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
@@ -66,13 +68,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #5A8062; /* Lighter green on hover */
+            background-color: #007ACC; /* Lighter blue on hover */
             color: #FFFFFF; /* White */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #F5F5DC; /* Light beige for footer text */
-            background-color: #1A3320; /* Darker green for footer background */
+            color: #E0FFFF; /* Light cyan for footer text */
+            background-color: #003366; /* Darker muted blue for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -87,8 +89,8 @@
 <body>
     <div class="container">
         <h1>Wonders of Nature</h1>
-        <p id="main-fact">🍄 A single fungus in Oregon's Malheur National Forest is the largest living organism, covering approximately 2,400 acres and estimated to be thousands of years old.</p>
-        <p id="more-info">This massive organism, Armillaria ostoyae, is also known as the "humongous fungus" and is mostly hidden underground.</p>
+        <p id="main-fact">🐙 Octopuses have three hearts! Two pump blood through the gills, and a third circulates it to the rest of the body.</p>
+        <p id="more-info">This unique circulatory system helps them thrive in their deep-sea environments, allowing for efficient oxygen delivery.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
@@ -98,11 +100,7 @@
     
     <script>
         const facts = [
-            { main: "🍄 A single fungus in Oregon's Malheur National Forest is the largest living organism, covering approximately 2,400 acres and estimated to be thousands of years old.", more: "This massive organism, Armillaria ostoyae, is also known as the \"humongous fungus\" and is mostly hidden underground." },
-            { main: "🌳 Trees can communicate with each other through an underground network of fungi, often called the 'Wood Wide Web'.", more: "They share nutrients and send warning signals about pests to neighboring trees." },
-            { main: "🌊 Oceans produce most of the Earth's oxygen, primarily through phytoplankton.", more: "These microscopic marine plants release oxygen as a byproduct of photosynthesis." },
-            { main: "🐸 Some frogs can freeze solid during winter and then thaw out in spring, with their hearts restarting.", more: "They produce a natural antifreeze that protects their cells from damage." },
-            { main: "🕷️ Spider webs are stronger and harder than steel by weight, due to their unique protein structure.", more: "This makes them incredibly resilient and flexible." }
+            { main: "🐙 Octopuses have three hearts! Two pump blood through the gills, and a third circulates it to the rest of the body.", more: "This unique circulatory system helps them thrive in their deep-sea environments, allowing for efficient oxygen delivery." }
         ];
 
         function copyFactToClipboard() {
@@ -110,8 +108,7 @@
             navigator.clipboard.writeText(factText).then(() => {
                 alert('Fact copied to clipboard!');
             }).catch(err => {
-                console.error('Failed to copy fact: ', err);
-            });
+                console.error('Failed to copy fact: ', err);\n            });
         }
 
         function shareFactOnTwitter() {
@@ -121,17 +118,11 @@
         }
 
         function loadNewFact() {
-            const randomIndex = Math.floor(Math.random() * facts.length);
-            document.getElementById('main-fact').textContent = facts[randomIndex].main;
-            document.getElementById('more-info').textContent = facts[randomIndex].more;
-            document.getElementById('more-info').classList.remove('show-more-info'); // Hide more info when new fact loads
-            document.getElementById('toggle-more-info-btn').textContent = 'Show More Info';
+            const randomIndex = Math.floor(Math.random() * facts.length);\n            document.getElementById('main-fact').textContent = facts[randomIndex].main;\n            document.getElementById('more-info').textContent = facts[randomIndex].more;\n            document.getElementById('more-info').classList.remove('show-more-info'); // Hide more info when new fact loads\n            document.getElementById('toggle-more-info-btn').textContent = 'Show More Info';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);
-            document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);
-            document.getElementById('new-fact-btn').addEventListener('click', loadNewFact);
+            document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);\n            document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);\n            document.getElementById('new-fact-btn').addEventListener('click', loadNewFact);
 
             const mainFact = document.getElementById('main-fact');
             const moreInfo = document.getElementById('more-info');
