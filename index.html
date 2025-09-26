@@ -85,15 +85,15 @@
 <body>
     <div class="container">
         <h1>Interesting Facts</h1>
-        <p id="main-fact">☀️ The Sun is so massive that 1 million Earths could fit inside it.</p>
-        <p id="more-info">Oceanic plankton, algae, seaweed, and other marine organisms generate most of the Earth's oxygen through photosynthesis.</p>
+        <p id="main-fact">🌊 The Great Barrier Reef is the largest living structure on Earth and can be seen from space.</p>
+        <p id="more-info">It is composed of over 3,000 individual reefs and 900 islands stretching for over 2,300 kilometers.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
         <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
     </div>
-    <div id="footer-info">Explore the vastness of the cosmos!</div>
+    <div id="footer-info">Explore the wonders of the ocean!</div>
     
     <script>
         const facts = [
@@ -176,8 +176,8 @@
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
-        // Initial display - show a random fact
-        displayFact(Math.floor(Math.random() * facts.length));
+        // Initial display - show the Great Barrier Reef fact
+        displayFact(0);
     </script>
 </body>
 </html>
