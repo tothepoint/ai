@@ -7,7 +7,7 @@
     <title>Cosmic Curiosities</title>
     <style>
         body {
-            background-color: #4A235A; /* Dark Purple - for diamond planet theme */
+            background-color: #8B4000; /* Burnt Orange/Sienna - for Sun's mass theme */
             color: #FDFEFE; /* Light White - contrasting with background */
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -85,7 +85,7 @@
 <body>
     <div class="container">
         <h1>Cosmic Curiosities</h1>
-        <p id="main-fact">🪐 A day on Venus is longer than its year.</p>
+        <p id="main-fact">☀️ The Sun is so massive that 1 million Earths could fit inside it.</p>
         <p id="more-info">Oceanic plankton, algae, seaweed, and other marine organisms generate most of the Earth's oxygen through photosynthesis.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
@@ -97,6 +97,7 @@
     
     <script>
         const facts = [
+            { main: "☀️ The Sun is so massive that 1 million Earths could fit inside it.", more: "The Sun accounts for about 99.86% of the total mass of the Solar System." },
             { main: "🪐 A day on Venus is longer than its year.", more: "It takes about 243 Earth days to complete one rotation, but only 225 Earth days to orbit the Sun." },
             { main: "🌌 Space is completely silent.", more: "Because there is no atmosphere in space, sound has no medium or way to carry sound waves to be heard." },
             { main: "✨ There are more stars in the universe than grains of sand on all the beaches on Earth.", more: "Scientists estimate there are about 10^22 to 10^24 stars, while grains of sand are estimated to be around 10^18." },
@@ -115,15 +116,7 @@
         const factSourceBtn = document.getElementById('fact-source-btn');
         const bodyElement = document.body;
 
-        const spaceColors = [
-            '#2C3E50', '#34495E', '#212F3D', '#1C2833', '#4A235A', // Dark blues/purples
-            '#5B2C6F', '#6C3483', '#7D3C98', '#8E44AD', '#9B59B6', // Purples
-            '#1A5276', '#21618C', '#2874A6', '#2E86C1', '#3498DB'  // Blues
-        ];
 
-        function getRandomSpaceColor() {
-            return spaceColors[Math.floor(Math.random() * spaceColors.length)];
-        }
 
         function displayFact(index) {
             // Apply animation by resetting and reapplying it
@@ -150,7 +143,7 @@
         newFactBtn.addEventListener('click', () => {
             currentFactIndex = Math.floor(Math.random() * facts.length);
             displayFact(currentFactIndex);
-            bodyElement.style.backgroundColor = getRandomSpaceColor(); // Change background color
+
         });
 
         copyFactBtn.addEventListener('click', () => {
@@ -186,4 +179,3 @@
 </body>
 </html>
 ```
-
