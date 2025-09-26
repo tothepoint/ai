@@ -7,8 +7,8 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: #2C3E50; /* Midnight Blue - for Human Brain theme */
-            color: #ECF0F1; /* Clouds - contrasting with background */
+            background-color: #1A237E; /* Deep Indigo - for Space theme */
+            color: #E0F2F7; /* Light Blue-Grey - contrasting with background */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -78,7 +78,7 @@
         #footer-info {
             font-size: 1.2rem;
             color: #ECF0F1; /* Clouds for footer text */
-            background-color: #34495E; /* Wet Asphalt - clearly visible footer color */
+            background-color: #283593; /* Slightly lighter Indigo - clearly visible footer color */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -90,15 +90,15 @@
 <body>
     <div class="container">
         <h1>Interesting Facts</h1>
-        <p id="main-fact">🧠 The human brain weighs about 3 pounds but uses 20% of the body's oxygen and calories.</p>
-        <p id="more-info">It contains approximately 86 billion neurons, more than the number of stars in our galaxy.</p>
+        <p id="main-fact">🌌 There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        <p id="more-info">Scientists estimate there are about 10^22 to 10^24 stars, while grains of sand are estimated to be around 10^18.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
         <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
     </div>
-    <div id="footer-info">Delve into the mysteries of the human mind!</div>
+    <div id="footer-info">Explore the vastness of the cosmos!</div>
     
     <script>
         const facts = [
@@ -181,9 +181,23 @@
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
-        // Initial display - show the Great Barrier Reef fact
-        displayFact(0);
+        // Initial display - show the Space fact
+        displayFact(5);
+
+        // New feature: Keyboard navigation for facts
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowRight') {
+                currentFactIndex = (currentFactIndex + 1) % facts.length;
+                displayFact(currentFactIndex);
+                bodyElement.style.backgroundColor = randomColors[Math.floor(Math.random() * randomColors.length)];
+            } else if (event.key === 'ArrowLeft') {
+                currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
+                displayFact(currentFactIndex);
+                bodyElement.style.backgroundColor = randomColors[Math.floor(Math.random() * randomColors.length)];
+            }
+        });
     </script>
 </body>
 </html>
 ```
+
