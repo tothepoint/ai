@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonders of Space</title>
+    <title>Wonders of Nature</title>
     <style>
         body {
-            background-color: #0A0A2A; /* Dark blue-purple for space */
-            color: #E0E0FF; /* Light lavender/silver for text */
+            background-color: #224229; /* Deep forest green */
+            color: #F5F5DC; /* Light beige for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -43,7 +43,7 @@
         }
         #more-info {
             font-size: 1.2rem;
-            color: #BBBBEE; /* Slightly darker light blue for more info */
+            color: #D0D0B0; /* Slightly darker beige for more info */
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
@@ -55,7 +55,7 @@
             opacity: 1;
         }
         button {
-            background-color: #3A3A6A; /* Darker blue-purple for buttons */
+            background-color: #3A5E42; /* Darker green for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
@@ -66,13 +66,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #5A5AA0; /* Lighter blue-purple on hover */
+            background-color: #5A8062; /* Lighter green on hover */
             color: #FFFFFF; /* White */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #BBBBEE; /* Light lavender/silver for footer text */
-            background-color: #1A1A3A; /* Darker blue-purple for footer background */
+            color: #F5F5DC; /* Light beige for footer text */
+            background-color: #1A3320; /* Darker green for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -86,17 +86,25 @@
 </head>
 <body>
     <div class="container">
-        <h1>Wonders of Space</h1>
-        <p id="main-fact">🌌 Space is a vacuum, meaning there's no medium for sound to travel, so it is completely silent.</p>
-        <p id="more-info">This is why astronauts use radios to communicate, as sound waves cannot propagate in the absence of air or other matter.</p>
+        <h1>Wonders of Nature</h1>
+        <p id="main-fact">🍄 A single fungus in Oregon's Malheur National Forest is the largest living organism, covering approximately 2,400 acres and estimated to be thousands of years old.</p>
+        <p id="more-info">This massive organism, Armillaria ostoyae, is also known as the "humongous fungus" and is mostly hidden underground.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
     </div>
-    <div id="footer-info">Explore the cosmos!</div>
+    <div id="footer-info">Explore the natural world!</div>
     
     <script>
+        const facts = [
+            { main: "🍄 A single fungus in Oregon's Malheur National Forest is the largest living organism, covering approximately 2,400 acres and estimated to be thousands of years old.", more: "This massive organism, Armillaria ostoyae, is also known as the \"humongous fungus\" and is mostly hidden underground." },
+            { main: "🌳 Trees can communicate with each other through an underground network of fungi, often called the 'Wood Wide Web'.", more: "They share nutrients and send warning signals about pests to neighboring trees." },
+            { main: "🌊 Oceans produce most of the Earth's oxygen, primarily through phytoplankton.", more: "These microscopic marine plants release oxygen as a byproduct of photosynthesis." },
+            { main: "🐸 Some frogs can freeze solid during winter and then thaw out in spring, with their hearts restarting.", more: "They produce a natural antifreeze that protects their cells from damage." },
+            { main: "🕷️ Spider webs are stronger and harder than steel by weight, due to their unique protein structure.", more: "This makes them incredibly resilient and flexible." }
+        ];
+
         function copyFactToClipboard() {
             const factText = document.getElementById('main-fact').textContent;
             navigator.clipboard.writeText(factText).then(() => {
@@ -108,22 +116,16 @@
 
         function shareFactOnTwitter() {
             const factText = document.getElementById('main-fact').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #SpaceFacts #SpaceExploration")}`;
+            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #NatureFacts #ExploreNature")}`;
             window.open(tweetUrl, '_blank');
         }
 
         function loadNewFact() {
-            const facts = [
-                { main: "🌌 Space is a vacuum, meaning there's no medium for sound to travel, so it is completely silent.", more: "This is why astronauts use radios to communicate, as sound waves cannot propagate in the absence of air or other matter." },
-                { main: "🚀 A rocket needs to travel at 17,600 miles per hour to achieve orbit around Earth.", more: "This incredible speed is necessary to overcome Earth's gravity and maintain a stable orbit." },
-                { main: "🛰️ The International Space Station (ISS) orbits Earth every 90 minutes, meaning astronauts witness about 16 sunrises and sunsets each day.", more: "The ISS travels at approximately 17,150 miles per hour (27,600 km/h)." },
-                { main: "🌟 There are more stars in the universe than grains of sand on all the beaches on Earth.", more: "Scientists estimate there are between 100 billion and 200 billion galaxies, each containing hundreds of billions of stars." },
-                { main: "🪐 Jupiter's Great Red Spot is a gigantic storm larger than Earth that has been raging for at least 350 years.", more: "The storm's winds can reach speeds of up to 400 miles per hour (640 km/h)." }
-            ];
             const randomIndex = Math.floor(Math.random() * facts.length);
             document.getElementById('main-fact').textContent = facts[randomIndex].main;
             document.getElementById('more-info').textContent = facts[randomIndex].more;
             document.getElementById('more-info').classList.remove('show-more-info'); // Hide more info when new fact loads
+            document.getElementById('toggle-more-info-btn').textContent = 'Show More Info';
         }
 
         document.addEventListener('DOMContentLoaded', () => {
