@@ -1,16 +1,14 @@
-The updated HTML content is as follows:
-
 ```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wonders of Nature</title>
+    <title>Wonders of Space</title>
     <style>
         body {
-            background-color: #4A6B6A; /* Muted deep greenish-blue (murky river) */
-            color: #F0EAD6; /* Light sandy beige for text */
+            background-color: #A0522D; /* Sienna - deep orange-brown for Venusian atmosphere */
+            color: #FFF8DC; /* Cornsilk - pale yellow for text, contrasting with background */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -45,7 +43,7 @@ The updated HTML content is as follows:
         }
         #more-info {
             font-size: 1.2rem;
-            color: #D0D0B0; /* Slightly darker beige for more info */
+            color: #F5DEB3; /* Slightly darker pale yellow for more info */
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
@@ -59,10 +57,109 @@ The updated HTML content is as follows:
             transform: translateY(0);
         }
         button {
-            background-color: #5A8D8C; /* Complementary blue-green for buttons */
+            background-color: #CD853F; /* Peru - a slightly lighter orange-brown for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 5px;\n            margin-top: 20px;\n            transition: background-color 0.3s, color 0.3s;\n        }\n        button:hover {\n            background-color: #6AA09F; /* Lighter blue-green on hover */\n            color: #FFFFFF; /* White */\n        }\n        #footer-info {\n            font-size: 1.2rem;\n            color: #F0EAD6; /* Light sandy beige for footer text */\n            background-color: #3A5B5A; /* Darker shade of background for footer */\n            padding: 10px 20px;\n            border-radius: 5px;\n            opacity: 0.9;\n            margin-top: auto;\n        }\n        @keyframes fadeIn {\n            from { opacity: 0; }\n            to { opacity: 1; }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Wonders of Nature</h1>\n        <p id=\"main-fact\">🦛 Hippos cannot swim; they perform a slow-motion gallop on the riverbed.</p>\n        <p id=\"more-info\">They can even sleep underwater, bobbing up for air without waking, a remarkable adaptation for their semi-aquatic lifestyle.</p>\n        <button id=\"copy-fact-btn\">Copy Fact</button>\n        <button id=\"share-twitter-btn\" style=\"margin-left: 10px;\">Share on Twitter</button>\n        <button id=\"new-fact-btn\" style=\"margin-left: 10px;\">New Fact</button>\n        <button id=\"toggle-more-info-btn\" style=\"margin-left: 10px;\">Show More Info</button>\n    </div>\n    <div id=\"footer-info\">Explore the natural world!</div>\n    \n    <script>\n        const facts = [\n            { main: \"🦛 Hippos cannot swim; they perform a slow-motion gallop on the riverbed.\", more: \"They can even sleep underwater, bobbing up for air without waking, a remarkable adaptation for their semi-aquatic lifestyle.\" },\n            { main: \"🐙 Octopuses have three hearts! Two pump blood through the gills, and a third circulates it to the rest of the body.\", more: \"This unique circulatory system helps them thrive in their deep-sea environments, allowing for efficient oxygen delivery.\" },\n            { main: \"☁️ A cloud can weigh around a million tonnes!\", more: \"Despite their immense weight, clouds float because the water droplets and ice crystals are spread over a very large volume, making their density less than the surrounding dry air.\" },\n            { main: \"⚔️ The shortest war in history, the Anglo-Zanzibar War, lasted 38 minutes.\", more: \"This conflict occurred on August 27, 1896, between the United Kingdom and the Zanzibar Sultanate, making it one of the most peculiar events in military history.\" },\n            { main: \"🐠 All clownfish are born male and can become female later in life.\", more: \"This fascinating ability, known as sequential hermaphroditism, allows them to adapt their gender based on social hierarchy within their anemone home.\" }\n        ];\n\n        function copyFactToClipboard() {\n            const factText = document.getElementById('main-fact').textContent;\n            navigator.clipboard.writeText(factText).then(() => {\n                alert('Fact copied to clipboard!');\n            }).catch(err => {\n                console.error('Failed to copy fact: ', err);\n            });\n        }\n\n        function shareFactOnTwitter() {\n            const factText = document.getElementById('main-fact').textContent;\n            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + \" #NatureFacts #ExploreNature\")}`;\n            window.open(tweetUrl, '_blank');\n        }\n\n        function loadNewFact() {\n            const randomIndex = Math.floor(Math.random() * facts.length);\n            document.getElementById('main-fact').textContent = facts[randomIndex].main;\n            document.getElementById('more-info').textContent = facts[randomIndex].more;\n            document.getElementById('more-info').classList.remove('show-more-info'); // Hide more info when new fact loads\n            document.getElementById('toggle-more-info-btn').textContent = 'Show More Info';\n        }\n\n        document.addEventListener('DOMContentLoaded', () => {\n            document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);\n            document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);\n            document.getElementById('new-fact-btn').addEventListener('click', loadNewFact);\n\n            const mainFact = document.getElementById('main-fact');\n            const moreInfo = document.getElementById('more-info');\n            const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');\n\n            mainFact.addEventListener('click', () => {\n                moreInfo.classList.toggle('show-more-info');\n                toggleMoreInfoBtn.textContent = moreInfo.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';\n            });\n\n            toggleMoreInfoBtn.addEventListener('click', () => {\n                moreInfo.classList.toggle('show-more-info');\n                toggleMoreInfoBtn.textContent = moreInfo.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';\n            });\n        });\n    </script>\n</body>\n</html>\n```
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        button:hover {
+            background-color: #D2B48C; /* Tan - even lighter on hover */
+            color: #333333; /* Dark grey on hover for better contrast */
+        }
+        #footer-info {
+            font-size: 1.2rem;
+            color: #FFF8DC; /* Cornsilk for footer text */
+            background-color: #6B2E0F; /* Darker shade of background for footer */
+            padding: 10px 20px;
+            border-radius: 5px;
+            opacity: 0.9;
+            margin-top: auto;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Wonders of Space</h1>
+        <p id="main-fact">🪐 A day on Venus is longer than its year.</p>
+        <p id="more-info">Venus rotates incredibly slowly, taking 243 Earth days to complete one rotation, while its orbit around the Sun takes only 225 Earth days.</p>
+        <button id="copy-fact-btn">Copy Fact</button>
+        <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
+        <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
+        <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
+        <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
+    </div>
+    <div id="footer-info">Explore the cosmos!</div>
+    
+    <script>
+        const facts = [
+            { main: "🪐 A day on Venus is longer than its year.", more: "Venus rotates incredibly slowly, taking 243 Earth days to complete one rotation, while its orbit around the Sun takes only 225 Earth days." },
+            { main: "🌌 There are more stars in the universe than grains of sand on all the beaches on Earth.", more: "This number is estimated to be around 10^22 to 10^24, a truly mind-boggling scale." },
+            { main: "💧 A single cloud can weigh over a million pounds.", more: "This immense weight is due to the vast amount of water droplets and ice crystals it contains." },
+            { main: "🧠 The human brain generates enough electricity to power a lightbulb.", more: "This electrical activity is crucial for transmitting signals and processing information throughout the nervous system." },
+            { main: "🐝 Honey never spoils.", more: "Its low water content and acidic pH create an environment where bacteria cannot thrive, preserving it indefinitely." }
+        ];
+
+        let currentFactIndex = 0;
+
+        const mainFactElement = document.getElementById('main-fact');
+        const moreInfoElement = document.getElementById('more-info');
+        const copyFactBtn = document.getElementById('copy-fact-btn');
+        const shareTwitterBtn = document.getElementById('share-twitter-btn');
+        const newFactBtn = document.getElementById('new-fact-btn');
+        const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');
+        const factSourceBtn = document.getElementById('fact-source-btn');
+
+        function displayFact(index) {
+            mainFactElement.textContent = facts[index].main;
+            moreInfoElement.textContent = facts[index].more;
+            moreInfoElement.classList.remove('show-more-info');
+            toggleMoreInfoBtn.textContent = 'Show More Info';
+        }
+
+        newFactBtn.addEventListener('click', () => {
+            currentFactIndex = (currentFactIndex + 1) % facts.length;
+            displayFact(currentFactIndex);
+        });
+
+        copyFactBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(mainFactElement.textContent).then(() => {
+                alert('Fact copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy fact: ', err);
+            });
+        });
+
+        shareTwitterBtn.addEventListener('click', () => {
+            const text = encodeURIComponent(mainFactElement.textContent + " #SpaceFacts #Science");
+            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
+        });
+
+        toggleMoreInfoBtn.addEventListener('click', () => {
+            moreInfoElement.classList.toggle('show-more-info');
+            if (moreInfoElement.classList.contains('show-more-info')) {
+                toggleMoreInfoBtn.textContent = 'Hide More Info';
+            } else {
+                toggleMoreInfoBtn.textContent = 'Show More Info';
+            }
+        });
+
+        factSourceBtn.addEventListener('click', () => {
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, '')); // Remove emoji and first word
+            window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
+        });
+
+        // Initial display
+        displayFact(currentFactIndex);
+    </script>
+</body>
+</html>
+```
