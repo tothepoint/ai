@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oceanic Wonders</title>
+    <title>Cosmic Curiosities</title>
     <style>
         body {
-            background-color: #2196F3; /* Vibrant Blue - for oxygen-rich ocean */
-            color: #FFFFFF; /* White - contrasting with background */
+            background-color: #E67E22; /* Burnt Orange - for Venus's atmosphere */
+            color: #FDFEFE; /* Light White - contrasting with background */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -44,7 +44,7 @@
         }
         #more-info {
             font-size: 1.2rem;
-            color: #E3F2FD; /* Lighter blue for more info, contrasting with new background */
+            color: #FDFEFE; /* Light white for more info, contrasting with new background */
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
@@ -61,8 +61,7 @@
             background-color: #1976D2; /* Darker Blue - for buttons */
             color: #FFFFFF; /* White */
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 15px 30px;\n            font-size: 1.2rem;
             cursor: pointer;
             border-radius: 5px;
             margin-top: 20px;
@@ -74,8 +73,8 @@
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #FFFFFF; /* White for footer text */
-            background-color: #1976D2; /* Darker Blue - clearly visible footer color */
+            color: #FDFEFE; /* Light White for footer text */
+            background-color: #34495E; /* Dark Brown/Grey - clearly visible footer color */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -85,8 +84,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Oceanic Wonders</h1>
-        <p id="main-fact">🌊 The Earth's oceans produce 50-80% of our oxygen.</p>
+        <h1>Cosmic Curiosities</h1>
+        <p id="main-fact">🪐 A day on Venus is longer than its year.</p>
         <p id="more-info">Oceanic plankton, algae, seaweed, and other marine organisms generate most of the Earth's oxygen through photosynthesis.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
@@ -94,15 +93,15 @@
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
         <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
     </div>
-    <div id="footer-info">Dive deep into the wonders of the ocean!</div>
+    <div id="footer-info">Explore the vastness of the cosmos!</div>
     
     <script>
         const facts = [
-            { main: "🐙 Octopuses have three hearts and blue blood.", more: "Two hearts pump blood through the gills, while the third circulates it to the rest of the body. Their blood is blue because it contains hemocyanin, a copper-rich protein, instead of iron-rich hemoglobin." },
-            { main: "🌊 The Earth's oceans produce 50-80% of our oxygen.", more: "Oceanic plankton, algae, seaweed, and other marine organisms generate most of the Earth's oxygen through photosynthesis." },
-            { main: "🦈 Sharks existed before trees.", more: "The earliest sharks appeared around 400 million years ago, while the first trees emerged about 350 million years ago." },
-            { main: "🐠 The Great Barrier Reef is the largest living structure on Earth.", more: "Stretching over 2,000 kilometers, it is composed of billions of tiny organisms called coral polyps." },
-            { main: "🐳 A blue whale's heart is the size of a small car.", more: "It beats only 2-10 times per minute and can be heard from two miles away." }
+            { main: "🪐 A day on Venus is longer than its year.", more: "It takes about 243 Earth days to complete one rotation, but only 225 Earth days to orbit the Sun." },
+            { main: "🌌 Space is completely silent.", more: "Because there is no atmosphere in space, sound has no medium or way to carry sound waves to be heard." },
+            { main: "✨ There are more stars in the universe than grains of sand on all the beaches on Earth.", more: "Scientists estimate there are about 10^22 to 10^24 stars, while grains of sand are estimated to be around 10^18." },
+            { main: "🚀 The footprints left on the Moon by astronauts will remain there for 100 million years.", more: "There is no wind or water on the Moon to erode or wash away the footprints, so they will stay preserved for an incredibly long time." },
+            { main: "💎 There might be a planet made of diamonds.", more: "Scientists suggest there might be a rocky planet called 55 Cancri e, twice the size of Earth and with eight times its mass, that could have a surface made of graphite and diamond." }
         ];
 
         let currentFactIndex = 0;
@@ -116,14 +115,14 @@
         const factSourceBtn = document.getElementById('fact-source-btn');
         const bodyElement = document.body;
 
-        const oceanColors = [
-            '#003366', '#004477', '#005588', '#006699', '#0077AA', // Darker blues
-            '#0088BB', '#0099CC', '#00AADD', '#00BBEE', '#00CCFF', // Medium blues
-            '#336666', '#337777', '#338888', '#339999', '#33AAAA'  // Darker teals/greens
+        const spaceColors = [
+            '#2C3E50', '#34495E', '#212F3D', '#1C2833', '#4A235A', // Dark blues/purples
+            '#5B2C6F', '#6C3483', '#7D3C98', '#8E44AD', '#9B59B6', // Purples
+            '#1A5276', '#21618C', '#2874A6', '#2E86C1', '#3498DB'  // Blues
         ];
 
-        function getRandomOceanColor() {
-            return oceanColors[Math.floor(Math.random() * oceanColors.length)];
+        function getRandomSpaceColor() {
+            return spaceColors[Math.floor(Math.random() * spaceColors.length)];
         }
 
         function displayFact(index) {
@@ -151,7 +150,7 @@
         newFactBtn.addEventListener('click', () => {
             currentFactIndex = (currentFactIndex + 1) % facts.length;
             displayFact(currentFactIndex);
-            bodyElement.style.backgroundColor = getRandomOceanColor(); // Change background color
+            bodyElement.style.backgroundColor = getRandomSpaceColor(); // Change background color
         });
 
         copyFactBtn.addEventListener('click', () => {
@@ -163,7 +162,7 @@
         });
 
         shareTwitterBtn.addEventListener('click', () => {
-            const text = encodeURIComponent(mainFactElement.textContent + " #OceanicWonders #ScienceFacts");
+            const text = encodeURIComponent(mainFactElement.textContent + " #CosmicCuriosities #SpaceFacts");
             window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
         });
 
@@ -177,7 +176,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -187,3 +186,4 @@
 </body>
 </html>
 ```
+
