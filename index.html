@@ -1,3 +1,5 @@
+The updated HTML content is as follows:
+
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -7,8 +9,8 @@
     <title>Wonders of Nature</title>
     <style>
         body {
-            background-color: #0A192F; /* Deep ocean blue */
-            color: #E0FFFF; /* Light cyan for text */
+            background-color: #4A6B6A; /* Muted deep greenish-blue (murky river) */
+            color: #F0EAD6; /* Light sandy beige for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -57,88 +59,10 @@
             transform: translateY(0);
         }
         button {
-            background-color: #00508C; /* Medium blue for buttons */
+            background-color: #5A8D8C; /* Complementary blue-green for buttons */
             color: #FFFFFF; /* White */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        button:hover {
-            background-color: #007ACC; /* Lighter blue on hover */
-            color: #FFFFFF; /* White */
-        }
-        #footer-info {
-            font-size: 1.2rem;
-            color: #E0FFFF; /* Light cyan for footer text */
-            background-color: #003366; /* Darker muted blue for footer background */
-            padding: 10px 20px;
-            border-radius: 5px;
-            opacity: 0.9;
-            margin-top: auto;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Wonders of Nature</h1>
-        <p id="main-fact">🐙 Octopuses have three hearts! Two pump blood through the gills, and a third circulates it to the rest of the body.</p>
-        <p id="more-info">This unique circulatory system helps them thrive in their deep-sea environments, allowing for efficient oxygen delivery.</p>
-        <button id="copy-fact-btn">Copy Fact</button>
-        <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
-        <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
-        <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
-    </div>
-    <div id="footer-info">Explore the natural world!</div>
-    
-    <script>
-        const facts = [
-            { main: "🐙 Octopuses have three hearts! Two pump blood through the gills, and a third circulates it to the rest of the body.", more: "This unique circulatory system helps them thrive in their deep-sea environments, allowing for efficient oxygen delivery." }
-        ];
-
-        function copyFactToClipboard() {
-            const factText = document.getElementById('main-fact').textContent;
-            navigator.clipboard.writeText(factText).then(() => {
-                alert('Fact copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy fact: ', err);\n            });
-        }
-
-        function shareFactOnTwitter() {
-            const factText = document.getElementById('main-fact').textContent;
-            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + " #NatureFacts #ExploreNature")}`;
-            window.open(tweetUrl, '_blank');
-        }
-
-        function loadNewFact() {
-            const randomIndex = Math.floor(Math.random() * facts.length);\n            document.getElementById('main-fact').textContent = facts[randomIndex].main;\n            document.getElementById('more-info').textContent = facts[randomIndex].more;\n            document.getElementById('more-info').classList.remove('show-more-info'); // Hide more info when new fact loads\n            document.getElementById('toggle-more-info-btn').textContent = 'Show More Info';
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);\n            document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);\n            document.getElementById('new-fact-btn').addEventListener('click', loadNewFact);
-
-            const mainFact = document.getElementById('main-fact');
-            const moreInfo = document.getElementById('more-info');
-            const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');
-
-            mainFact.addEventListener('click', () => {
-                moreInfo.classList.toggle('show-more-info');
-                toggleMoreInfoBtn.textContent = moreInfo.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
-            });
-
-            toggleMoreInfoBtn.addEventListener('click', () => {
-                moreInfo.classList.toggle('show-more-info');
-                toggleMoreInfoBtn.textContent = moreInfo.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
-            });
-        });
-    </script>
-</body>
-</html>
-```
+            border-radius: 5px;\n            margin-top: 20px;\n            transition: background-color 0.3s, color 0.3s;\n        }\n        button:hover {\n            background-color: #6AA09F; /* Lighter blue-green on hover */\n            color: #FFFFFF; /* White */\n        }\n        #footer-info {\n            font-size: 1.2rem;\n            color: #F0EAD6; /* Light sandy beige for footer text */\n            background-color: #3A5B5A; /* Darker shade of background for footer */\n            padding: 10px 20px;\n            border-radius: 5px;\n            opacity: 0.9;\n            margin-top: auto;\n        }\n        @keyframes fadeIn {\n            from { opacity: 0; }\n            to { opacity: 1; }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Wonders of Nature</h1>\n        <p id=\"main-fact\">🦛 Hippos cannot swim; they perform a slow-motion gallop on the riverbed.</p>\n        <p id=\"more-info\">They can even sleep underwater, bobbing up for air without waking, a remarkable adaptation for their semi-aquatic lifestyle.</p>\n        <button id=\"copy-fact-btn\">Copy Fact</button>\n        <button id=\"share-twitter-btn\" style=\"margin-left: 10px;\">Share on Twitter</button>\n        <button id=\"new-fact-btn\" style=\"margin-left: 10px;\">New Fact</button>\n        <button id=\"toggle-more-info-btn\" style=\"margin-left: 10px;\">Show More Info</button>\n    </div>\n    <div id=\"footer-info\">Explore the natural world!</div>\n    \n    <script>\n        const facts = [\n            { main: \"🦛 Hippos cannot swim; they perform a slow-motion gallop on the riverbed.\", more: \"They can even sleep underwater, bobbing up for air without waking, a remarkable adaptation for their semi-aquatic lifestyle.\" },\n            { main: \"🐙 Octopuses have three hearts! Two pump blood through the gills, and a third circulates it to the rest of the body.\", more: \"This unique circulatory system helps them thrive in their deep-sea environments, allowing for efficient oxygen delivery.\" },\n            { main: \"☁️ A cloud can weigh around a million tonnes!\", more: \"Despite their immense weight, clouds float because the water droplets and ice crystals are spread over a very large volume, making their density less than the surrounding dry air.\" },\n            { main: \"⚔️ The shortest war in history, the Anglo-Zanzibar War, lasted 38 minutes.\", more: \"This conflict occurred on August 27, 1896, between the United Kingdom and the Zanzibar Sultanate, making it one of the most peculiar events in military history.\" },\n            { main: \"🐠 All clownfish are born male and can become female later in life.\", more: \"This fascinating ability, known as sequential hermaphroditism, allows them to adapt their gender based on social hierarchy within their anemone home.\" }\n        ];\n\n        function copyFactToClipboard() {\n            const factText = document.getElementById('main-fact').textContent;\n            navigator.clipboard.writeText(factText).then(() => {\n                alert('Fact copied to clipboard!');\n            }).catch(err => {\n                console.error('Failed to copy fact: ', err);\n            });\n        }\n\n        function shareFactOnTwitter() {\n            const factText = document.getElementById('main-fact').textContent;\n            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factText + \" #NatureFacts #ExploreNature\")}`;\n            window.open(tweetUrl, '_blank');\n        }\n\n        function loadNewFact() {\n            const randomIndex = Math.floor(Math.random() * facts.length);\n            document.getElementById('main-fact').textContent = facts[randomIndex].main;\n            document.getElementById('more-info').textContent = facts[randomIndex].more;\n            document.getElementById('more-info').classList.remove('show-more-info'); // Hide more info when new fact loads\n            document.getElementById('toggle-more-info-btn').textContent = 'Show More Info';\n        }\n\n        document.addEventListener('DOMContentLoaded', () => {\n            document.getElementById('copy-fact-btn').addEventListener('click', copyFactToClipboard);\n            document.getElementById('share-twitter-btn').addEventListener('click', shareFactOnTwitter);\n            document.getElementById('new-fact-btn').addEventListener('click', loadNewFact);\n\n            const mainFact = document.getElementById('main-fact');\n            const moreInfo = document.getElementById('more-info');\n            const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');\n\n            mainFact.addEventListener('click', () => {\n                moreInfo.classList.toggle('show-more-info');\n                toggleMoreInfoBtn.textContent = moreInfo.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';\n            });\n\n            toggleMoreInfoBtn.addEventListener('click', () => {\n                moreInfo.classList.toggle('show-more-info');\n                toggleMoreInfoBtn.textContent = moreInfo.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';\n            });\n        });\n    </script>\n</body>\n</html>\n```
