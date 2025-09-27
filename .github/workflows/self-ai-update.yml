@@ -38,6 +38,44 @@ jobs:
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
 
+      - name: Read and Clean index.html
+        id: cleanup_html
+        uses: actions/github-script@v7
+        with:
+          # Set the script to run Node.js code
+          script: |
+            const fs = require('fs');
+            const filePath = './index.html'; // Path to your file
+      
+            // 1. Read the file content
+            if (!fs.existsSync(filePath)) {
+                core.setFailed(`File not found: ${filePath}`);
+                return;
+            }
+            let dirtyHtml = fs.readFileSync(filePath, 'utf8');
+      
+            // 2. Define the cleanup Regular Expression
+            // /<!doctype[\s\S]*?<\/html>/i
+            // - i: case-insensitive
+            // - [\s\S]*?: matches any character (including newlines) non-greedily
+            const regex = /<!doctype[\s\S]*?<\/html>/i;
+      
+            // 3. Match and Extract the clean HTML
+            const match = dirtyHtml.match(regex);
+      
+            if (match) {
+                const cleanHtml = match[0];
+                console.log(`Successfully extracted clean HTML (${cleanHtml.length} characters).`);
+                
+                // 4. Overwrite the file with the clean content
+                fs.writeFileSync(filePath, cleanHtml, 'utf8');
+                
+                // Optional: Set the clean content as a step output as well
+                core.setOutput('clean_html', cleanHtml);
+            } else {
+                core.setFailed("Could not find a complete <!doctype...</html> block in index.html.");
+            }
+
       - name: Commit and push changes
         run: |
           # Make sure the bot is configured correctly
