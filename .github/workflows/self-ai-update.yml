@@ -26,7 +26,18 @@ jobs:
           # Use Gemini CLI to generate or update content
           # This example generates a simple greeting and saves it to a file.
           # The '--yolo' flag bypasses prompts, which is essential for automation.
-          gemini 'Read the index.html. You will have to update it and return only the HTML content of the updated version. Pick a random theme and choose one very interesting fact from it. The site should display that interesting fact. It should also choose the best matching color for the fact and use it as a background color for the website. It should also choose text color for the text to be clearly visible. Updated the footer color to also be clearly visible. Think about a small interesting feature that you could add. If it seems worth, add it too.' -m gemini-2.5-flash -o json --yolo > output.json
+          gemini \
+            'Read the index.html. You will have to update it and return only the HTML content of the updated version. \
+            Pick a random theme and choose one very interesting fact from it. The site should display that interesting fact. \
+            It should also choose the best matching color for the fact and use it as a background color for the website. \
+            It should also choose text color for the text to be clearly visible. Updated the footer color to also be clearly visible. \
+            Review the UI/UX and improve it.  \
+            Make the UI clean and emphasize what is essential. \
+            Think of an interesting feature and implement it. \
+            When thinking of UI/UX, think of it creatively, this should be as fun as a game! \
+            -m gemini-2.5-flash \
+            -o json \
+            --yolo > output.json
 
           # Print the response for debugging purposes.
           cat output.json
