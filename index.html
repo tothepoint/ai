@@ -7,7 +7,7 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: hsl(40, 60%, 95%); /* Light, warm beige for Cosmic Latte */
+            background-color: hsl(160, 30%, 90%); /* Light, desaturated blue-green for Sloth/Ocean theme */
             color: hsl(240, 20%, 20%); /* Dark, slightly desaturated blue for text */
             font-family: 'Arial', sans-serif;
             display: flex;
@@ -79,8 +79,8 @@
         }
         #footer-info {
             font-size: 1.2rem;
-            color: hsl(40, 60%, 98%); /* Very light beige for footer text */
-            background-color: hsl(210, 30%, 35%); /* Muted blue for footer background */
+            color: hsl(160, 30%, 98%); /* Very light blue-green for footer text */
+            background-color: hsl(160, 20%, 40%); /* Muted blue-green for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -92,8 +92,8 @@
 <body>
     <div class="container">
         <h1>Interesting Facts</h1>
-        <p id="main-fact">🌌 The Universe's average color is called 'Cosmic Latte'.</p>
-        <p id="more-info">This color was determined by a team of astronomers in 2002, averaging the light from over 200,000 galaxies.</p>
+        <p id="main-fact">🦥 Sloths can hold their breath longer than dolphins.</p>
+        <p id="more-info">Sloths can slow their heart rate and hold their breath underwater for up to 40 minutes, which is longer than dolphins can.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
@@ -106,6 +106,7 @@
     
     <script>
         const facts = [
+            { main: "🦥 Sloths can hold their breath longer than dolphins.", more: "Sloths can slow their heart rate and hold their breath underwater for up to 40 minutes, which is longer than dolphins can.", theme: "Animals" },
             { main: "🌌 The Universe's average color is called 'Cosmic Latte'.", more: "This color was determined by a team of astronomers in 2002, averaging the light from over 200,000 galaxies.", theme: "Space" },
             { main: "🌌 A day on Venus is longer than its year.", more: "It takes about 243 Earth days to complete one spin on its axis, but only 225 Earth days to orbit the Sun.", theme: "Space" },
             { main: "🥛 Hippopotamus milk is pink.", more: "This unique color is due to two distinct acids, hipposudoric acid and norhipposudoric acid, which act as natural pigments and also have antibiotic properties.", theme: "Animals" },
@@ -137,7 +138,7 @@
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         factOfTheDayElement.textContent = `Fact of the Day: ${today.toLocaleDateString(undefined, options)}`;
 
-        const randomColors = ["hsl(40, 60%, 95%)", "hsl(200, 40%, 90%)", "hsl(280, 30%, 92%)", "hsl(100, 30%, 90%)", "hsl(10, 50%, 93%)"]; // Light, complementary colors for Cosmic Latte theme
+        const randomColors = ["hsl(160, 30%, 90%)", "hsl(180, 40%, 92%)", "hsl(140, 35%, 93%)", "hsl(200, 30%, 90%)", "hsl(170, 25%, 91%)"]; // Light, complementary blue-green colors for Sloth/Ocean theme
 
         function displayFact(index) {
             // Apply animation by resetting and reapplying it
@@ -195,7 +196,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
