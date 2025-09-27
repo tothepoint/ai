@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,7 +55,8 @@
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s ease-out, opacity 0.7s ease-out, transform 0.7s ease-out;\n            opacity: 0;
+            transition: max-height 0.7s ease-out, opacity 0.7s ease-out, transform 0.7s ease-out;
+            opacity: 0;
             transform: translateY(-10px);
         }
         #more-info.show-more-info {
@@ -89,6 +89,12 @@
             margin-top: auto;
             animation: slideInFromBottom 0.7s ease-out forwards; /* New animation for footer */
         }
+        #fact-of-the-day {
+            font-size: 1rem;
+            color: #F0E68C;
+            margin-top: 10px;
+            margin-bottom: 10px; /* Added margin for spacing */
+        }
     </style>
 </head>
 <body>
@@ -104,7 +110,7 @@
         <button id="read-aloud-btn" style="margin-left: 10px;">Read Fact Aloud</button>
         <button id="like-fact-btn" style="margin-left: 10px;">Like Fact</button>
     </div>
-    <div id="fact-of-the-day" style="font-size: 1rem; color: #F0E68C; margin-top: 10px;"></div>
+    <div id="fact-of-the-day"></div>
     <div id="footer-info">Explore the amazing world of Space!</div>
     
     <script>
@@ -124,7 +130,7 @@
             { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" }
         ];
 
-        let currentFactIndex = Math.floor(Math.random() * facts.length); // Start with a random fact
+        let currentFactIndex; // Declare without immediate assignment
 
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
@@ -219,7 +225,8 @@
             navigator.clipboard.writeText(mainFactElement.textContent).then(() => {
                 alert('Fact copied to clipboard!');
             }).catch(err => {
-                console.error('Failed to copy fact: ', err);\n            });
+                console.error('Failed to copy fact: ', err);
+            });
         });
 
         shareTwitterBtn.addEventListener('click', () => {
@@ -237,7 +244,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -255,7 +262,8 @@
             alert('You liked this fact!');
         });
 
-        // Initial display - show the Human Body fact
+        // Initial display - show a random fact
+        currentFactIndex = Math.floor(Math.random() * facts.length);
         displayFact(currentFactIndex);
 
         // New feature: Keyboard navigation for facts
@@ -271,4 +279,3 @@
     </script>
 </body>
 </html>
-```
