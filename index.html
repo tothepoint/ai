@@ -6,8 +6,8 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background: linear-gradient(135deg, hsl(30, 40%, 25%) 0%, hsl(40, 30%, 20%) 100%); /* Animals theme gradient background */
-            color: hsl(0, 0%, 95%); /* Animals theme text */
+            background: linear-gradient(135deg, hsl(120, 30%, 20%) 0%, hsl(100, 25%, 15%) 100%); /* Nature theme gradient background */
+            color: hsl(60, 80%, 90%); /* Nature theme text */
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -158,8 +158,8 @@
         }
         #footer-info {
             font-size: 1.3rem;
-            color: hsl(0, 0%, 98%); /* Very light text for footer */
-            background-color: hsl(30, 30%, 20%); /* Animals theme footer background */
+            color: hsl(60, 80%, 90%); /* Nature theme text for footer */
+            background-color: hsl(120, 20%, 15%); /* Nature theme footer background */
             padding: 18px 35px;
             border-radius: 12px;
             opacity: 0.98;
@@ -316,8 +316,7 @@
         }
         #history-list li {
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n        }
         #history-list li:last-child {
             border-bottom: none;
         }
@@ -327,8 +326,8 @@
     <div class="container">
         <h1 id="main-title">Interesting Facts</h1>
         <div id="fact-display-area">
-            <p id="main-fact">🦥 Sloths can hold their breath longer than dolphins.</p>
-            <p id="more-info">Sloths can slow their heart rate and hold their breath underwater for up to 40 minutes, which is longer than dolphins can.</p>
+            <p id="main-fact">🌳 Trees can communicate with each other, and forests can even create their own rain through a process called the Biotic Pump Theory.</p>
+            <p id="more-info">This communication happens through a network of fungi in their roots, and the Biotic Pump Theory suggests that forests can influence atmospheric pressure and humidity to generate rainfall.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -373,7 +372,7 @@
         <div id="fact-of-the-day"></div>
     </div>
     
-    <div id="footer-info">Explore the amazing world of Animals!</div>
+    <div id="footer-info">Explore the amazing world of Nature!</div>
 
     <div id="fact-history" class="collapsible-section">
         <h3 id="history-toggle">Fact History <span class="toggle-icon">▼</span></h3>
@@ -535,7 +534,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -780,7 +779,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main === "🦥 Sloths can hold their breath longer than dolphins.");
+        currentFactIndex = facts.findIndex(fact => fact.main.includes("Trees can communicate"));
         if (currentFactIndex === -1) {
             currentFactIndex = Math.floor(Math.random() * facts.length); // Fallback if not found
         }
