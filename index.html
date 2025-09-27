@@ -7,8 +7,8 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: hsl(160, 30%, 20%); /* Dark Teal/Green for Nature theme */
-            color: hsl(60, 80%, 90%); /* Pale Yellow for text */
+            background-color: hsl(210, 10%, 25%); /* Cool Grey/Blue-Grey for Human Body theme */
+            color: hsl(0, 0%, 95%); /* Soft White for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -81,8 +81,8 @@
         }
         #footer-info {
             font-size: 1.2rem;
-            color: hsl(60, 80%, 90%); /* Pale Yellow for footer text */
-            background-color: hsl(160, 20%, 15%); /* Slightly darker teal/green for footer background */
+            color: hsl(0, 0%, 95%); /* Soft White for footer text */
+            background-color: hsl(210, 10%, 15%); /* Slightly darker cool grey for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -123,7 +123,7 @@
             { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" }
         ];
 
-        let currentFactIndex = 0; // Start with the new Nature fact
+        let currentFactIndex = 9; // Start with the Human Body fact
 
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
@@ -141,6 +141,40 @@
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         factOfTheDayElement.textContent = `Fact of the Day: ${today.toLocaleDateString(undefined, options)}`;
 
+        // Define color palettes for each theme
+        const themeColors = {
+            "Space": {
+                background: 'hsl(240, 30%, 15%)',
+                text: 'hsl(60, 80%, 90%)',
+                footerBackground: 'hsl(240, 20%, 10%)'
+            },
+            "Nature": {
+                background: 'hsl(120, 30%, 20%)',
+                text: 'hsl(60, 80%, 90%)',
+                footerBackground: 'hsl(120, 20%, 15%)'
+            },
+            "Animals": {
+                background: 'hsl(30, 40%, 25%)',
+                text: 'hsl(0, 0%, 95%)',
+                footerBackground: 'hsl(30, 30%, 20%)'
+            },
+            "Ocean": {
+                background: 'hsl(200, 50%, 20%)',
+                text: 'hsl(180, 70%, 90%)',
+                footerBackground: 'hsl(200, 40%, 15%)'
+            },
+            "Human Body": {
+                background: 'hsl(210, 10%, 25%)',
+                text: 'hsl(0, 0%, 95%)',
+                footerBackground: 'hsl(210, 10%, 15%)'
+            },
+            "Everyday Life": {
+                background: 'hsl(40, 20%, 30%)',
+                text: 'hsl(0, 0%, 95%)',
+                footerBackground: 'hsl(40, 15%, 25%)'
+            }
+        };
+
         function displayFact(index) {
             // Apply animation by resetting and reapplying it
             mainFactElement.style.animation = 'none';
@@ -154,6 +188,15 @@
 
             // Update footer text based on the fact's theme
             footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
+
+            // Dynamically change background and footer color based on theme
+            const theme = facts[index].theme;
+            if (themeColors[theme]) {
+                bodyElement.style.backgroundColor = themeColors[theme].background;
+                bodyElement.style.color = themeColors[theme].text; // Update text color for body
+                footerInfoElement.style.backgroundColor = themeColors[theme].footerBackground;
+                footerInfoElement.style.color = themeColors[theme].text; // Update text color for footer
+            }
         }
 
         // New feature: Click main fact to toggle more info
@@ -169,7 +212,6 @@
         newFactBtn.addEventListener('click', () => {
             currentFactIndex = Math.floor(Math.random() * facts.length);
             displayFact(currentFactIndex);
-            // No random background color change on new fact, keeping the space theme
         });
 
         copyFactBtn.addEventListener('click', () => {
@@ -207,9 +249,8 @@
             }
         });
 
-        // Initial display - show the new Nature fact
+        // Initial display - show the Human Body fact
         displayFact(currentFactIndex);
-        bodyElement.style.backgroundColor = 'hsl(160, 30%, 20%)'; // Set initial background color for Nature theme
 
         // New feature: Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
