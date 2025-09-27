@@ -7,8 +7,8 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: hsl(240, 20%, 15%); /* Very dark desaturated blue/purple, almost black */
-            color: hsl(60, 100%, 90%); /* Pale yellow, almost white */
+            background-color: hsl(40, 60%, 95%); /* Light, warm beige for Cosmic Latte */
+            color: hsl(240, 20%, 20%); /* Dark, slightly desaturated blue for text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -28,7 +28,7 @@
         h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5); /* Darker shadow for lighter background */
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2); /* Lighter shadow for lighter background */
         }
         p {
             font-size: 1.75rem;
@@ -47,12 +47,10 @@
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes slideInFromBottom {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 0.9; }
-        }
+            from { transform: translateY(100%); opacity: 0; }\n            to { transform: translateY(0); opacity: 0.9; }\n        }
         #more-info {
             font-size: 1.2rem;
-            color: hsl(0, 0%, 80%); /* Slightly lighter grey for more info */
+            color: hsl(240, 15%, 35%); /* Slightly lighter shade of main text color */
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
@@ -66,7 +64,7 @@
             transform: translateY(0);
         }
         button {
-            background-color: hsl(180, 20%, 50%); /* Muted Teal for buttons */
+            background-color: hsl(210, 40%, 50%); /* Muted Blue for buttons */
             color: #FFFFFF; /* White text */
             border: none;
             padding: 15px 30px;\n            font-size: 1.2rem;
@@ -76,13 +74,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: hsl(180, 30%, 60%); /* Lighter Teal on hover */
+            background-color: hsl(210, 50%, 60%); /* Lighter Blue on hover */
             color: #FFFFFF; /* White text on hover */
         }
         #footer-info {
             font-size: 1.2rem;
-            color: hsl(0, 0%, 95%); /* Off-white for footer text */
-            background-color: hsl(270, 50%, 40%); /* Muted purple - clearly visible footer color */
+            color: hsl(40, 60%, 98%); /* Very light beige for footer text */
+            background-color: hsl(210, 30%, 35%); /* Muted blue for footer background */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -94,8 +92,8 @@
 <body>
     <div class="container">
         <h1>Interesting Facts</h1>
-        <p id="main-fact">🥛 Hippopotamus milk is pink.</p>
-        <p id="more-info">This unique color is due to two distinct acids, hipposudoric acid and norhipposudoric acid, which act as natural pigments and also have antibiotic properties.</p>
+        <p id="main-fact">🌌 The Universe's average color is called 'Cosmic Latte'.</p>
+        <p id="more-info">This color was determined by a team of astronomers in 2002, averaging the light from over 200,000 galaxies.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
@@ -108,6 +106,7 @@
     
     <script>
         const facts = [
+            { main: "🌌 The Universe's average color is called 'Cosmic Latte'.", more: "This color was determined by a team of astronomers in 2002, averaging the light from over 200,000 galaxies.", theme: "Space" },
             { main: "🌌 A day on Venus is longer than its year.", more: "It takes about 243 Earth days to complete one spin on its axis, but only 225 Earth days to orbit the Sun.", theme: "Space" },
             { main: "🥛 Hippopotamus milk is pink.", more: "This unique color is due to two distinct acids, hipposudoric acid and norhipposudoric acid, which act as natural pigments and also have antibiotic properties.", theme: "Animals" },
             { main: "🌊 The Great Barrier Reef is the largest living structure on Earth and can be seen from space.", more: "It is composed of over 3,000 individual reefs and 900 islands stretching for over 2,300 kilometers.", theme: "Ocean" },
@@ -116,12 +115,11 @@
             { main: "🧠 The human brain weighs about 3 pounds but uses 20% of the body's oxygen and calories.", more: "It contains approximately 86 billion neurons, more than the number of stars in our galaxy.", theme: "Human Body" },
             { main: "💡 The average person will spend 6 months of their life waiting for red lights to turn green.", more: "This is based on an average commute and daily activities involving traffic lights.", theme: "Everyday Life" },
             { main: "🌳 There are more trees on Earth than stars in the Milky Way galaxy.", more: "Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.", theme: "Nature" },
-            { main: "🥛 Hippopotamus milk is pink.", more: "This is due to a unique combination of two acids, hipposudoric acid and norhipposudoric acid, which are natural pigments.", theme: "Animals" },
             { main: "🌌 In the vacuum of space, two pieces of the same metal will permanently bond if they touch.", more: "This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.", theme: "Space" },
             { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" }
         ];
 
-        let currentFactIndex = 0; // Index for the new Venus fact
+        let currentFactIndex = 0; // Index for the new Cosmic Latte fact
 
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
@@ -139,7 +137,7 @@
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         factOfTheDayElement.textContent = `Fact of the Day: ${today.toLocaleDateString(undefined, options)}`;
 
-        const randomColors = ["hsl(240, 20%, 15%)", "hsl(180, 40%, 30%)", "hsl(210, 50%, 40%)", "hsl(60, 40%, 35%)", "hsl(30, 60%, 45%)", "hsl(270, 30%, 30%)"]; // New set of complementary colors
+        const randomColors = ["hsl(40, 60%, 95%)", "hsl(200, 40%, 90%)", "hsl(280, 30%, 92%)", "hsl(100, 30%, 90%)", "hsl(10, 50%, 93%)"]; // Light, complementary colors for Cosmic Latte theme
 
         function displayFact(index) {
             // Apply animation by resetting and reapplying it
