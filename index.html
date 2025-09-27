@@ -11,9 +11,9 @@
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between; /* Distribute space between content and footer */
             align-items: center;
-            height: 100vh;
+            min-height: 100vh; /* Use min-height to allow content to expand */
             margin: 0;
             text-align: center;
             padding: 20px;
@@ -21,25 +21,53 @@
             transition: background-color 0.5s ease; /* Smooth transition for background color change */
         }
         .container {
-            max-width: 800px;
+            max-width: 900px;
+            width: 100%;
             margin-bottom: 20px;
+            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent background for container */
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+            backdrop-filter: blur( 4px );
+            -webkit-backdrop-filter: blur( 4px );
+            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            flex-grow: 1; /* Allow container to grow */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        h1#main-title {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            color: hsl(0, 0%, 100%);
+        }
+        #fact-display-area, #quiz-area {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 90%;
+            max-width: 700px;
         }
         p {
-            font-size: 1.75rem;
+            font-size: 1.8rem;
             line-height: 1.6;
+            margin-bottom: 1.5rem;
             cursor: pointer; /* Indicate clickable */
-            transition: transform 0.2s ease-in-out; /* Smooth transition for hover effect */
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out; /* Smooth transition for hover effect */
         }
         p:hover {
             transform: scale(1.02); /* Slightly enlarge on hover */
+            color: hsl(60, 100%, 80%); /* Highlight text on hover */
         }
         #main-fact {
             animation: fadeInScale 1s ease-out forwards; /* New animation for fact appearance */
+            min-height: 100px; /* Ensure consistent height */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         @keyframes fadeInScale {
             from { opacity: 0; transform: scale(0.95); }
@@ -47,75 +75,211 @@
         }
         @keyframes slideInFromBottom {
             from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 0.9; }
-        }
+            to { transform: translateY(0); opacity: 0.9; }\n        }
         #more-info {
-            font-size: 1.2rem;
-            color: hsl(60, 70%, 80%); /* Slightly darker pale yellow */
-            margin-top: 10px;
+            font-size: 1.3rem;
+            color: hsl(0, 0%, 85%); /* Slightly darker pale yellow */
+            margin-top: 15px;
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.7s ease-out, opacity 0.7s ease-out, transform 0.7s ease-out;
             opacity: 0;
             transform: translateY(-10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 15px;
         }
         #more-info.show-more-info {
-            max-height: 100px; /* Sufficiently large to show content */
+            max-height: 200px; /* Sufficiently large to show content */
             opacity: 1;
             transform: translateY(0);
+        }
+        .fact-actions, .social-actions {
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
         button {
             background-color: hsl(210, 40%, 50%); /* Muted Blue for buttons */
             color: #FFFFFF; /* White text */
             border: none;
-            padding: 15px 30px;
-            font-size: 1.2rem;
+            padding: 12px 25px;
+            font-size: 1.1rem;
             cursor: pointer;
-            border-radius: 5px;
-            margin-top: 20px;
-            transition: background-color 0.3s, color 0.3s;
+            border-radius: 8px;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         button:hover {
             background-color: hsl(210, 50%, 60%); /* Lighter Blue on hover */
-            color: #FFFFFF; /* White text on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .main-action-btn {
+            background-color: hsl(160, 60%, 40%); /* Greenish for main actions */
+            font-size: 1.3rem;
+            padding: 15px 30px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+        .main-action-btn:hover {
+            background-color: hsl(160, 70%, 50%);
         }
         #footer-info {
             font-size: 1.2rem;
             color: hsl(0, 0%, 95%); /* Soft White for footer text */
             background-color: hsl(210, 10%, 15%); /* Slightly darker cool grey for footer background */
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 15px 30px;
+            border-radius: 10px;
             opacity: 0.9;
-            margin-top: auto;
+            margin-top: 30px; /* Increased margin-top */
             animation: slideInFromBottom 0.7s ease-out forwards; /* New animation for footer */
+            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
         }
         #fact-of-the-day {
-            font-size: 1rem;
-            color: #F0E68C;
-            margin-top: 10px;
-            margin-bottom: 10px; /* Added margin for spacing */
+            font-size: 1.1rem;
+            color: hsl(60, 70%, 80%);
+            margin-top: 15px;
+            margin-bottom: 15px; /* Added margin for spacing */
+        }
+
+        /* Quiz Specific Styles */
+        #quiz-area h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: hsl(60, 100%, 85%);
+        }
+        #quiz-fact {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            min-height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #quiz-options {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .quiz-option-btn {
+            background-color: hsl(200, 30%, 30%);
+            color: #FFFFFF;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            min-width: 120px;
+        }
+        .quiz-option-btn:hover {
+            background-color: hsl(200, 40%, 40%);
+            transform: translateY(-2px);
+        }
+        .quiz-option-btn.correct {
+            background-color: hsl(120, 50%, 40%);
+        }
+        .quiz-option-btn.incorrect {
+            background-color: hsl(0, 50%, 40%);
+        }
+        #quiz-feedback {
+            font-size: 1.5rem;
+            font-weight: bold;
+            min-height: 30px;
+        }
+
+        /* Collapsible History */
+        .collapsible-section {
+            margin-top: 30px;
+            width: 90%;
+            max-width: 700px;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: max-height 0.7s ease-out;
+            max-height: 80px; /* Initial collapsed height */
+        }
+        .collapsible-section.expanded {
+            max-height: 400px; /* Expanded height */
+        }
+        #history-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: hsl(0, 0%, 90%);
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #history-toggle .toggle-icon {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        .collapsible-section.expanded #history-toggle .toggle-icon {
+            transform: rotate(180deg);
+        }
+        #history-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: left;
+            color: hsl(0, 0%, 80%);
+            font-size: 1.1rem;
+        }
+        #history-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        #history-list li:last-child {
+            border-bottom: none;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Interesting Facts</h1>
-        <p id="main-fact">In the vacuum of space, two pieces of the same metal will permanently bond if they touch.</p>
-        <p id="more-info">This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.</p>
-        <button id="copy-fact-btn">Copy Fact</button>
-        <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
-        <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
-        <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
-        <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
-        <button id="read-aloud-btn" style="margin-left: 10px;">Read Fact Aloud</button>
-        <button id="like-fact-btn" style="margin-left: 10px;">Like Fact</button>
+        <h1 id="main-title">Interesting Facts</h1>
+        <div id="fact-display-area">
+            <p id="main-fact">In the vacuum of space, two pieces of the same metal will permanently bond if they touch.</p>
+            <p id="more-info">This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.</p>
+            <div class="fact-actions">
+                <button id="new-fact-btn">New Fact</button>
+                <button id="toggle-more-info-btn">Show More Info</button>
+                <button id="read-aloud-btn">Read Aloud</button>
+            </div>
+            <div class="social-actions">
+                <button id="copy-fact-btn">Copy</button>
+                <button id="share-twitter-btn">Share</button>
+                <button id="fact-source-btn">Source</button>
+                <button id="like-fact-btn">Like</button>
+            </div>
+        </div>
+
+        <div id="quiz-area" style="display: none;">
+            <h2>Fact Quiz!</h2>
+            <p id="quiz-fact"></p>
+            <div id="quiz-options"></div>
+            <p id="quiz-feedback"></p>
+            <button id="next-quiz-btn" style="display: none;">Next Question</button>
+        </div>
+
+        <button id="toggle-quiz-btn" class="main-action-btn">Start Fact Quiz</button>
+        <div id="fact-of-the-day"></div>
     </div>
-    <div id="fact-of-the-day"></div>
+    
     <div id="footer-info">Explore the amazing world of Space!</div>
 
-    <div id="fact-history" style="margin-top: 20px; font-size: 1rem; color: hsl(0, 0%, 70%);">
-        <h3>Fact History</h3>
-        <ul id="history-list" style="list-style: none; padding: 0;"></ul>
+    <div id="fact-history" class="collapsible-section">
+        <h3 id="history-toggle">Fact History <span class="toggle-icon">▼</span></h3>
+        <ul id="history-list"></ul>
     </div>
     
     <script>
@@ -135,8 +299,12 @@
             { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" }
         ];
 
-        let currentFactIndex; // Declare without immediate assignment
+        let currentFactIndex;
+        let quizScore = 0;
+        let currentQuizFact = null;
 
+        const mainTitleElement = document.getElementById('main-title');
+        const factDisplayArea = document.getElementById('fact-display-area');
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
         const copyFactBtn = document.getElementById('copy-fact-btn');
@@ -145,15 +313,26 @@
         const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');
         const factSourceBtn = document.getElementById('fact-source-btn');
         const readAloudBtn = document.getElementById('read-aloud-btn');
+        const likeFactBtn = document.getElementById('like-fact-btn');
         const bodyElement = document.body;
         const footerInfoElement = document.getElementById('footer-info');
-
         const factOfTheDayElement = document.getElementById('fact-of-the-day');
+
+        const quizArea = document.getElementById('quiz-area');
+        const quizFactElement = document.getElementById('quiz-fact');
+        const quizOptionsElement = document.getElementById('quiz-options');
+        const quizFeedbackElement = document.getElementById('quiz-feedback');
+        const nextQuizBtn = document.getElementById('next-quiz-btn');
+        const toggleQuizBtn = document.getElementById('toggle-quiz-btn');
+
+        const factHistorySection = document.getElementById('fact-history');
+        const historyToggle = document.getElementById('history-toggle');
+        const historyListElement = document.getElementById('history-list');
+
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
         factOfTheDayElement.textContent = `Fact of the Day: ${today.toLocaleDateString(undefined, options)}`;
 
-        // Define color palettes for each theme
         const themeColors = {
             "Space": {
                 background: 'hsl(240, 30%, 15%)',
@@ -183,14 +362,22 @@
             "Everyday Life": {
                 background: 'hsl(40, 20%, 30%)',
                 text: 'hsl(0, 0%, 95%)',
-                footerBackground: 'hsl(40, 15%, 25%)\'
+                footerBackground: 'hsl(40, 15%, 25%)'
             }
         };
 
+        function applyThemeColors(theme) {
+            if (themeColors[theme]) {
+                bodyElement.style.backgroundColor = themeColors[theme].background;
+                bodyElement.style.color = themeColors[theme].text;
+                footerInfoElement.style.backgroundColor = themeColors[theme].footerBackground;
+                footerInfoElement.style.color = themeColors[theme].text;
+            }
+        }
+
         function displayFact(index) {
-            // Apply animation by resetting and reapplying it
             mainFactElement.style.animation = 'none';
-            void mainFactElement.offsetWidth; // Trigger reflow
+            void mainFactElement.offsetWidth;
             mainFactElement.style.animation = 'fadeInScale 1s ease-out forwards';
 
             mainFactElement.textContent = facts[index].main;
@@ -198,28 +385,15 @@
             moreInfoElement.classList.remove('show-more-info');
             toggleMoreInfoBtn.textContent = 'Show More Info';
 
-            // Update footer text based on the fact's theme
             footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
-
-            // Dynamically change background and footer color based on theme
-            const theme = facts[index].theme;
-            if (themeColors[theme]) {
-                bodyElement.style.backgroundColor = themeColors[theme].background;
-                bodyElement.style.color = themeColors[theme].text; // Update text color for body
-                footerInfoElement.style.backgroundColor = themeColors[theme].footerBackground;
-                footerInfoElement.style.color = themeColors[theme].text; // Update text color for footer
-            }
-            updateFactHistory(facts[index].main); // Update history with the new fact
+            applyThemeColors(facts[index].theme);
+            updateFactHistory(facts[index].main);
         }
 
-        // New feature: Click main fact to toggle more info
+        // Fact Display Event Listeners
         mainFactElement.addEventListener('click', () => {
             moreInfoElement.classList.toggle('show-more-info');
-            if (moreInfoElement.classList.contains('show-more-info')) {
-                toggleMoreInfoBtn.textContent = 'Hide More Info';
-            } else {
-                toggleMoreInfoBtn.textContent = 'Show More Info';
-            }
+            toggleMoreInfoBtn.textContent = moreInfoElement.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
         });
 
         newFactBtn.addEventListener('click', () => {
@@ -236,21 +410,17 @@
         });
 
         shareTwitterBtn.addEventListener('click', () => {
-            const text = encodeURIComponent(mainFactElement.textContent + " #ScienceFacts #InterestingFacts");
+            const text = encodeURIComponent(mainFactElement.textContent + " #InterestingFacts #FactOfTheDay");
             window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
         });
 
         toggleMoreInfoBtn.addEventListener('click', () => {
             moreInfoElement.classList.toggle('show-more-info');
-            if (moreInfoElement.classList.contains('show-more-info')) {
-                toggleMoreInfoBtn.textContent = 'Hide More Info';
-            } else {
-                toggleMoreInfoBtn.textContent = 'Show More Info';
-            }
+            toggleMoreInfoBtn.textContent = moreInfoElement.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -263,19 +433,17 @@
             }
         });
 
-        const likeFactBtn = document.getElementById('like-fact-btn');
         likeFactBtn.addEventListener('click', () => {
             alert('You liked this fact!');
         });
 
+        // Fact History Logic
         const factHistory = [];
-        const historyListElement = document.getElementById('history-list');
 
         function updateFactHistory(fact) {
-            // Add fact to history if it's not the same as the last one
             if (factHistory.length === 0 || factHistory[factHistory.length - 1] !== fact) {
                 factHistory.push(fact);
-                if (factHistory.length > 5) { // Keep history to a maximum of 5 facts
+                if (factHistory.length > 5) {
                     factHistory.shift();
                 }
             }
@@ -283,7 +451,7 @@
         }
 
         function renderFactHistory() {
-            historyListElement.innerHTML = ''; // Clear existing history
+            historyListElement.innerHTML = '';
             factHistory.forEach((fact, index) => {
                 const listItem = document.createElement('li');
                 listItem.textContent = `${index + 1}. ${fact}`;
@@ -291,19 +459,102 @@
             });
         }
 
-        // Initial display - show a random fact
+        historyToggle.addEventListener('click', () => {
+            factHistorySection.classList.toggle('expanded');
+        });
+
+        // Quiz Logic
+        const availableThemes = Object.keys(themeColors);
+
+        toggleQuizBtn.addEventListener('click', () => {
+            if (factDisplayArea.style.display !== 'none') {
+                factDisplayArea.style.display = 'none';
+                quizArea.style.display = 'block';
+                toggleQuizBtn.textContent = 'Back to Facts';
+                mainTitleElement.textContent = 'Fact Quiz!';
+                startQuiz();
+            } else {
+                quizArea.style.display = 'none';
+                factDisplayArea.style.display = 'block';
+                toggleQuizBtn.textContent = 'Start Fact Quiz';
+                mainTitleElement.textContent = 'Interesting Facts';
+                // Reset quiz state
+                quizScore = 0;
+                quizFeedbackElement.textContent = '';
+                nextQuizBtn.style.display = 'none';
+            }
+        });
+
+        function startQuiz() {
+            quizScore = 0;
+            quizFeedbackElement.textContent = '';
+            nextQuizBtn.style.display = 'none';
+            displayQuizQuestion();
+        }
+
+        function displayQuizQuestion() {
+            quizOptionsElement.innerHTML = '';
+            quizFeedbackElement.textContent = '';
+            nextQuizBtn.style.display = 'none';
+
+            const randomFactIndex = Math.floor(Math.random() * facts.length);
+            currentQuizFact = facts[randomFactIndex];
+            quizFactElement.textContent = currentQuizFact.main;
+
+            let options = [currentQuizFact.theme];
+            while (options.length < 4) {
+                const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
+                if (!options.includes(randomTheme)) {
+                    options.push(randomTheme);
+                }
+            }
+            options.sort(() => Math.random() - 0.5); // Shuffle options
+
+            options.forEach(theme => {
+                const button = document.createElement('button');
+                button.textContent = theme;
+                button.classList.add('quiz-option-btn');
+                button.addEventListener('click', () => checkAnswer(button, theme));
+                quizOptionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedButton, selectedTheme) {
+            Array.from(quizOptionsElement.children).forEach(button => {
+                button.disabled = true;
+                if (button.textContent === currentQuizFact.theme) {
+                    button.classList.add('correct');
+                } else {
+                    button.classList.add('incorrect');
+                }
+            });
+
+            if (selectedTheme === currentQuizFact.theme) {
+                quizFeedbackElement.textContent = 'Correct! 🎉';
+                quizScore++;
+            } else {
+                quizFeedbackElement.textContent = `Incorrect. The answer was ${currentQuizFact.theme}.`;
+            }
+            nextQuizBtn.style.display = 'block';
+        }
+
+        nextQuizBtn.addEventListener('click', displayQuizQuestion);
+
+        // Initial display
         currentFactIndex = Math.floor(Math.random() * facts.length);
         displayFact(currentFactIndex);
-        updateFactHistory(facts[currentFactIndex].main); // Add initial fact to history
+        updateFactHistory(facts[currentFactIndex].main);
 
-        // New feature: Keyboard navigation for facts
+        // Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
-            if (event.key === 'ArrowRight') {
-                currentFactIndex = (currentFactIndex + 1) % facts.length;
-                displayFact(currentFactIndex);
-            } else if (event.key === 'ArrowLeft') {
-                currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
-                displayFact(currentFactIndex);
+            if (factDisplayArea.style.display !== 'none') { // Only navigate facts if not in quiz mode
+                if (event.key === 'ArrowRight') {
+                    currentFactIndex = (currentFactIndex + 1) % facts.length;
+                    displayFact(currentFactIndex);
+                } else if (event.key === 'ArrowLeft') {
+                    currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
+                    displayFact(currentFactIndex);
+                }
             }
         });
     </script>
