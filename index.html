@@ -102,6 +102,7 @@
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
         <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
         <button id="read-aloud-btn" style="margin-left: 10px;">Read Fact Aloud</button>
+        <button id="like-fact-btn" style="margin-left: 10px;">Like Fact</button>
     </div>
     <div id="fact-of-the-day" style="font-size: 1rem; color: #F0E68C; margin-top: 10px;"></div>
     <div id="footer-info">Explore the amazing world of Space!</div>
@@ -123,7 +124,7 @@
             { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" }
         ];
 
-        let currentFactIndex = 9; // Start with the Human Body fact
+        let currentFactIndex = Math.floor(Math.random() * facts.length); // Start with a random fact
 
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
@@ -236,7 +237,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -247,6 +248,11 @@
             } else {
                 alert("Sorry, your browser doesn't support text to speech.");
             }
+        });
+
+        const likeFactBtn = document.getElementById('like-fact-btn');
+        likeFactBtn.addEventListener('click', () => {
+            alert('You liked this fact!');
         });
 
         // Initial display - show the Human Body fact
