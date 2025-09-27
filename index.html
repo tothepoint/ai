@@ -7,8 +7,8 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: #FFC0CB; /* Light Pink - for Hippopotamus milk theme */
-            color: #333333; /* Dark Grey - contrasting with background */
+            background-color: #0A1931; /* Deep Space Blue - for Stars in the Universe theme */
+            color: #FFFFFF; /* White - contrasting with dark background */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -28,7 +28,7 @@
         h1 {
             font-size: 3.5rem;
             margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Lighter shadow for lighter background */
+            text-shadow: 2px 2px 8px rgba(255, 255, 255, 0.3); /* Lighter shadow for lighter background */
         }
         p {
             font-size: 1.75rem;
@@ -52,7 +52,7 @@
         }
         #more-info {
             font-size: 1.2rem;
-            color: #555555; /* Slightly lighter dark grey for more info */
+            color: #BBBBBB; /* Slightly lighter dark grey for more info */
             margin-top: 10px;
             max-height: 0;
             overflow: hidden;
@@ -66,8 +66,8 @@
             transform: translateY(0);
         }
         button {
-            background-color: #E0BBE4; /* Darker Pink - for buttons */
-            color: #333333; /* Dark text */
+            background-color: #2C5D9E; /* Medium Blue - for buttons */
+            color: #FFFFFF; /* White text */
             border: none;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -77,13 +77,13 @@
             transition: background-color 0.3s, color 0.3s;
         }
         button:hover {
-            background-color: #957DAD; /* Slightly darker pink on hover */
+            background-color: #4A7BB7; /* Slightly lighter blue on hover */
             color: #FFFFFF; /* White text on hover */
         }
         #footer-info {
             font-size: 1.2rem;
             color: #FFFFFF; /* White for footer text */
-            background-color: #E0BBE4; /* Darker Pink - clearly visible footer color */
+            background-color: #1F4287; /* Medium Blue - clearly visible footer color */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -95,13 +95,14 @@
 <body>
     <div class="container">
         <h1>Interesting Facts</h1>
-        <p id="main-fact">🥛 Hippopotamus milk is pink.</p>
-        <p id="more-info">This is due to a unique combination of two acids, hipposudoric acid and norhipposudoric acid, which are natural pigments.</p>
+        <p id="main-fact">🌌 There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        <p id="more-info">Scientists estimate there are about 10^22 to 10^24 stars, while grains of sand are estimated to be around 10^18.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
         <button id="toggle-more-info-btn" style="margin-left: 10px;">Show More Info</button>
         <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
+        <button id="read-aloud-btn" style="margin-left: 10px;">Read Fact Aloud</button>
     </div>
     <div id="footer-info">Discover the wonders of the animal kingdom!</div>
     
@@ -116,7 +117,7 @@
             { main: "🥛 Hippopotamus milk is pink.", more: "This is due to a unique combination of two acids, hipposudoric acid and norhipposudoric acid, which are natural pigments." }
         ];
 
-        let currentFactIndex = facts.length - 1; // Start with the new fact
+        let currentFactIndex = 5; // Index for "🌌 There are more stars in the universe..."
 
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
@@ -125,9 +126,10 @@
         const newFactBtn = document.getElementById('new-fact-btn');
         const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');
         const factSourceBtn = document.getElementById('fact-source-btn');
+        const readAloudBtn = document.getElementById('read-aloud-btn');
         const bodyElement = document.body;
 
-        const randomColors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7CAC9", "#8367C7", "#FFD166", "#FFC0CB"]; // Added the new pink color
+        const randomColors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7CAC9", "#8367C7", "#FFD166", "#0A1931"]; // Added the new deep space blue color
 
 
         function displayFact(index) {
@@ -185,6 +187,15 @@
         factSourceBtn.addEventListener('click', () => {
             const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
+        });
+
+        readAloudBtn.addEventListener('click', () => {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(mainFactElement.textContent + ". " + moreInfoElement.textContent);
+                speechSynthesis.speak(utterance);
+            } else {
+                alert("Sorry, your browser doesn't support text to speech.");
+            }
         });
 
         // Initial display - show the new Hippopotamus fact
