@@ -112,6 +112,11 @@
     </div>
     <div id="fact-of-the-day"></div>
     <div id="footer-info">Explore the amazing world of Space!</div>
+
+    <div id="fact-history" style="margin-top: 20px; font-size: 1rem; color: hsl(0, 0%, 70%);">
+        <h3>Fact History</h3>
+        <ul id="history-list" style="list-style: none; padding: 0;"></ul>
+    </div>
     
     <script>
         const facts = [
@@ -178,7 +183,7 @@
             "Everyday Life": {
                 background: 'hsl(40, 20%, 30%)',
                 text: 'hsl(0, 0%, 95%)',
-                footerBackground: 'hsl(40, 15%, 25%)'
+                footerBackground: 'hsl(40, 15%, 25%)\'
             }
         };
 
@@ -204,6 +209,7 @@
                 footerInfoElement.style.backgroundColor = themeColors[theme].footerBackground;
                 footerInfoElement.style.color = themeColors[theme].text; // Update text color for footer
             }
+            updateFactHistory(facts[index].main); // Update history with the new fact
         }
 
         // New feature: Click main fact to toggle more info
@@ -244,7 +250,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -262,9 +268,33 @@
             alert('You liked this fact!');
         });
 
+        const factHistory = [];
+        const historyListElement = document.getElementById('history-list');
+
+        function updateFactHistory(fact) {
+            // Add fact to history if it's not the same as the last one
+            if (factHistory.length === 0 || factHistory[factHistory.length - 1] !== fact) {
+                factHistory.push(fact);
+                if (factHistory.length > 5) { // Keep history to a maximum of 5 facts
+                    factHistory.shift();
+                }
+            }
+            renderFactHistory();
+        }
+
+        function renderFactHistory() {
+            historyListElement.innerHTML = ''; // Clear existing history
+            factHistory.forEach((fact, index) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = `${index + 1}. ${fact}`;
+                historyListElement.appendChild(listItem);
+            });
+        }
+
         // Initial display - show a random fact
         currentFactIndex = Math.floor(Math.random() * facts.length);
         displayFact(currentFactIndex);
+        updateFactHistory(facts[currentFactIndex].main); // Add initial fact to history
 
         // New feature: Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
