@@ -6,32 +6,32 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: hsl(210, 10%, 25%); /* Cool Grey/Blue-Grey for Human Body theme */
-            color: hsl(0, 0%, 95%); /* Soft White for text */
+            background-color: hsl(240, 30%, 15%); /* Space theme background */
+            color: hsl(60, 80%, 90%); /* Space theme text */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distribute space between content and footer */
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh; /* Use min-height to allow content to expand */
+            min-height: 100vh;
             margin: 0;
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            transition: background-color 0.5s ease; /* Smooth transition for background color change */
+            transition: background-color 0.5s ease;
         }
         .container {
             max-width: 900px;
             width: 100%;
             margin-bottom: 20px;
             padding: 30px;
-            background-color: rgba(255, 255, 255, 0.05); /* Slightly transparent background for container */
+            background-color: rgba(255, 255, 255, 0.05);
             border-radius: 15px;
             box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
             backdrop-filter: blur( 4px );
             -webkit-backdrop-filter: blur( 4px );
             border: 1px solid rgba( 255, 255, 255, 0.18 );
-            flex-grow: 1; /* Allow container to grow */
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -43,7 +43,7 @@
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
             color: hsl(0, 0%, 100%);
         }
-        #fact-display-area, #quiz-area {
+        #fact-display-area, #quiz-area, #challenge-area {
             background-color: rgba(0, 0, 0, 0.2);
             padding: 25px;
             border-radius: 10px;
@@ -55,16 +55,16 @@
             font-size: 1.8rem;
             line-height: 1.6;
             margin-bottom: 1.5rem;
-            cursor: pointer; /* Indicate clickable */
-            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out; /* Smooth transition for hover effect */
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
         }
         p:hover {
-            transform: scale(1.02); /* Slightly enlarge on hover */
-            color: hsl(60, 100%, 80%); /* Highlight text on hover */
+            transform: scale(1.02);
+            color: hsl(60, 100%, 80%);
         }
-        #main-fact {
-            animation: fadeInScale 1s ease-out forwards; /* New animation for fact appearance */
-            min-height: 100px; /* Ensure consistent height */
+        #main-fact, #quiz-fact, #challenge-fact {
+            animation: fadeInScale 1s ease-out forwards;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,10 +75,11 @@
         }
         @keyframes slideInFromBottom {
             from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 0.9; }\n        }
+            to { transform: translateY(0); opacity: 0.9; }
+        }
         #more-info {
             font-size: 1.3rem;
-            color: hsl(0, 0%, 85%); /* Slightly darker pale yellow */
+            color: hsl(0, 0%, 85%);
             margin-top: 15px;
             max-height: 0;
             overflow: hidden;
@@ -89,11 +90,11 @@
             padding-top: 15px;
         }
         #more-info.show-more-info {
-            max-height: 200px; /* Sufficiently large to show content */
+            max-height: 200px;
             opacity: 1;
             transform: translateY(0);
         }
-        .fact-actions, .social-actions {
+        .fact-actions, .social-actions, .challenge-actions {
             margin-top: 20px;
             display: flex;
             flex-wrap: wrap;
@@ -101,8 +102,8 @@
             gap: 10px;
         }
         button {
-            background-color: hsl(210, 40%, 50%); /* Muted Blue for buttons */
-            color: #FFFFFF; /* White text */
+            background-color: hsl(210, 40%, 50%);
+            color: #FFFFFF;
             border: none;
             padding: 12px 25px;
             font-size: 1.1rem;
@@ -112,7 +113,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         button:hover {
-            background-color: hsl(210, 50%, 60%); /* Lighter Blue on hover */
+            background-color: hsl(210, 50%, 60%);
             transform: translateY(-2px);
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
         }
@@ -121,7 +122,7 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
         .main-action-btn {
-            background-color: hsl(160, 60%, 40%); /* Greenish for main actions */
+            background-color: hsl(160, 60%, 40%);
             font-size: 1.3rem;
             padding: 15px 30px;
             margin-top: 30px;
@@ -132,29 +133,29 @@
         }
         #footer-info {
             font-size: 1.2rem;
-            color: hsl(0, 0%, 95%); /* Soft White for footer text */
-            background-color: hsl(210, 10%, 15%); /* Slightly darker cool grey for footer background */
+            color: hsl(60, 80%, 90%); /* Space theme text for footer */
+            background-color: hsl(240, 20%, 10%); /* Space theme footer background */
             padding: 15px 30px;
             border-radius: 10px;
             opacity: 0.9;
-            margin-top: 30px; /* Increased margin-top */
-            animation: slideInFromBottom 0.7s ease-out forwards; /* New animation for footer */
+            margin-top: 30px;
+            animation: slideInFromBottom 0.7s ease-out forwards;
             box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
         }
         #fact-of-the-day {
             font-size: 1.1rem;
             color: hsl(60, 70%, 80%);
             margin-top: 15px;
-            margin-bottom: 15px; /* Added margin for spacing */
+            margin-bottom: 15px;
         }
 
         /* Quiz Specific Styles */
-        #quiz-area h2 {
+        #quiz-area h2, #challenge-area h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             color: hsl(60, 100%, 85%);
         }
-        #quiz-fact {
+        #quiz-fact, #challenge-fact {
             font-size: 1.6rem;
             margin-bottom: 2rem;
             min-height: 80px;
@@ -162,14 +163,14 @@
             align-items: center;
             justify-content: center;
         }
-        #quiz-options {
+        #quiz-options, #challenge-options {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 15px;
             margin-bottom: 20px;
         }
-        .quiz-option-btn {
+        .quiz-option-btn, .challenge-option-btn {
             background-color: hsl(200, 30%, 30%);
             color: #FFFFFF;
             padding: 12px 25px;
@@ -179,20 +180,28 @@
             transition: background-color 0.3s, transform 0.2s;
             min-width: 120px;
         }
-        .quiz-option-btn:hover {
+        .quiz-option-btn:hover, .challenge-option-btn:hover {
             background-color: hsl(200, 40%, 40%);
             transform: translateY(-2px);
         }
-        .quiz-option-btn.correct {
+        .quiz-option-btn.correct, .challenge-option-btn.correct {
             background-color: hsl(120, 50%, 40%);
         }
-        .quiz-option-btn.incorrect {
+        .quiz-option-btn.incorrect, .challenge-option-btn.incorrect {
             background-color: hsl(0, 50%, 40%);
         }
-        #quiz-feedback {
+        #quiz-feedback, #challenge-feedback {
             font-size: 1.5rem;
             font-weight: bold;
             min-height: 30px;
+        }
+
+        /* Challenge Specific Styles */
+        #challenge-timer {
+            font-size: 2rem;
+            font-weight: bold;
+            color: hsl(0, 100%, 70%);
+            margin-bottom: 1rem;
         }
 
         /* Collapsible History */
@@ -206,10 +215,10 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             overflow: hidden;
             transition: max-height 0.7s ease-out;
-            max-height: 80px; /* Initial collapsed height */
+            max-height: 80px;
         }
         .collapsible-section.expanded {
-            max-height: 400px; /* Expanded height */
+            max-height: 400px;
         }
         #history-toggle {
             cursor: pointer;
@@ -248,8 +257,8 @@
     <div class="container">
         <h1 id="main-title">Interesting Facts</h1>
         <div id="fact-display-area">
-            <p id="main-fact">In the vacuum of space, two pieces of the same metal will permanently bond if they touch.</p>
-            <p id="more-info">This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.</p>
+            <p id="main-fact">The Milky Way galaxy is thought to smell of rum, raspberries, and booze.</p>
+            <p id="more-info">This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -271,7 +280,22 @@
             <button id="next-quiz-btn" style="display: none;">Next Question</button>
         </div>
 
-        <button id="toggle-quiz-btn" class="main-action-btn">Start Fact Quiz</button>
+        <div id="challenge-area" style="display: none;">
+            <h2>Fact Challenge!</h2>
+            <p id="challenge-fact"></p>
+            <div id="challenge-timer">Time: 10s</div>
+            <div id="challenge-options"></div>
+            <p id="challenge-feedback"></p>
+            <div class="challenge-actions">
+                <button id="next-challenge-btn" style="display: none;">Next Challenge</button>
+                <button id="restart-challenge-btn" style="display: none;">Restart Challenge</button>
+            </div>
+        </div>
+
+        <div class="fact-actions">
+            <button id="toggle-quiz-btn" class="main-action-btn">Start Fact Quiz</button>
+            <button id="toggle-challenge-btn" class="main-action-btn">Start Fact Challenge</button>
+        </div>
         <div id="fact-of-the-day"></div>
     </div>
     
@@ -302,6 +326,10 @@
         let currentFactIndex;
         let quizScore = 0;
         let currentQuizFact = null;
+        let challengeScore = 0;
+        let challengeTimer;
+        let timeLeft = 10;
+        let currentChallengeFact = null;
 
         const mainTitleElement = document.getElementById('main-title');
         const factDisplayArea = document.getElementById('fact-display-area');
@@ -324,6 +352,15 @@
         const quizFeedbackElement = document.getElementById('quiz-feedback');
         const nextQuizBtn = document.getElementById('next-quiz-btn');
         const toggleQuizBtn = document.getElementById('toggle-quiz-btn');
+
+        const challengeArea = document.getElementById('challenge-area');
+        const challengeFactElement = document.getElementById('challenge-fact');
+        const challengeTimerElement = document.getElementById('challenge-timer');
+        const challengeOptionsElement = document.getElementById('challenge-options');
+        const challengeFeedbackElement = document.getElementById('challenge-feedback');
+        const nextChallengeBtn = document.getElementById('next-challenge-btn');
+        const restartChallengeBtn = document.getElementById('restart-challenge-btn');
+        const toggleChallengeBtn = document.getElementById('toggle-challenge-btn');
 
         const factHistorySection = document.getElementById('fact-history');
         const historyToggle = document.getElementById('history-toggle');
@@ -420,7 +457,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -467,18 +504,20 @@
         const availableThemes = Object.keys(themeColors);
 
         toggleQuizBtn.addEventListener('click', () => {
-            if (factDisplayArea.style.display !== 'none') {
+            if (factDisplayArea.style.display !== 'none' || challengeArea.style.display !== 'none') {
                 factDisplayArea.style.display = 'none';
+                challengeArea.style.display = 'none';
                 quizArea.style.display = 'block';
                 toggleQuizBtn.textContent = 'Back to Facts';
+                toggleChallengeBtn.style.display = 'none';
                 mainTitleElement.textContent = 'Fact Quiz!';
                 startQuiz();
             } else {
                 quizArea.style.display = 'none';
                 factDisplayArea.style.display = 'block';
                 toggleQuizBtn.textContent = 'Start Fact Quiz';
+                toggleChallengeBtn.style.display = 'inline-block';
                 mainTitleElement.textContent = 'Interesting Facts';
-                // Reset quiz state
                 quizScore = 0;
                 quizFeedbackElement.textContent = '';
                 nextQuizBtn.style.display = 'none';
@@ -508,7 +547,7 @@
                     options.push(randomTheme);
                 }
             }
-            options.sort(() => Math.random() - 0.5); // Shuffle options
+            options.sort(() => Math.random() - 0.5);
 
             options.forEach(theme => {
                 const button = document.createElement('button');
@@ -540,14 +579,123 @@
 
         nextQuizBtn.addEventListener('click', displayQuizQuestion);
 
+        // Challenge Logic
+        toggleChallengeBtn.addEventListener('click', () => {
+            if (factDisplayArea.style.display !== 'none' || quizArea.style.display !== 'none') {
+                factDisplayArea.style.display = 'none';
+                quizArea.style.display = 'none';
+                challengeArea.style.display = 'block';
+                toggleChallengeBtn.textContent = 'Back to Facts';
+                toggleQuizBtn.style.display = 'none';
+                mainTitleElement.textContent = 'Fact Challenge!';
+                startChallenge();
+            } else {
+                challengeArea.style.display = 'none';
+                factDisplayArea.style.display = 'block';
+                toggleChallengeBtn.textContent = 'Start Fact Challenge';
+                toggleQuizBtn.style.display = 'inline-block';
+                mainTitleElement.textContent = 'Interesting Facts';
+                challengeScore = 0;
+                challengeFeedbackElement.textContent = '';
+                nextChallengeBtn.style.display = 'none';
+                restartChallengeBtn.style.display = 'none';
+                clearInterval(challengeTimer);
+            }
+        });
+
+        function startChallenge() {
+            challengeScore = 0;
+            challengeFeedbackElement.textContent = '';
+            nextChallengeBtn.style.display = 'none';
+            restartChallengeBtn.style.display = 'none';
+            displayChallengeQuestion();
+        }
+
+        function displayChallengeQuestion() {
+            clearInterval(challengeTimer);
+            timeLeft = 10;
+            challengeTimerElement.textContent = `Time: ${timeLeft}s`;
+            challengeOptionsElement.innerHTML = '';
+            challengeFeedbackElement.textContent = '';
+            nextChallengeBtn.style.display = 'none';
+            restartChallengeBtn.style.display = 'none';
+
+            const randomFactIndex = Math.floor(Math.random() * facts.length);
+            currentChallengeFact = facts[randomFactIndex];
+            challengeFactElement.textContent = currentChallengeFact.main;
+
+            let options = [currentChallengeFact.theme];
+            while (options.length < 4) {
+                const randomTheme = availableThemes[Math.floor(Math.random() * availableThemes.length)];
+                if (!options.includes(randomTheme)) {
+                    options.push(randomTheme);
+                }
+            }
+            options.sort(() => Math.random() - 0.5);
+
+            options.forEach(theme => {
+                const button = document.createElement('button');
+                button.textContent = theme;
+                button.classList.add('challenge-option-btn');
+                button.addEventListener('click', () => checkChallengeAnswer(button, theme));
+                challengeOptionsElement.appendChild(button);
+            });
+
+            challengeTimer = setInterval(updateChallengeTimer, 1000);
+        }
+
+        function updateChallengeTimer() {
+            timeLeft--;
+            challengeTimerElement.textContent = `Time: ${timeLeft}s`;
+            if (timeLeft <= 0) {
+                clearInterval(challengeTimer);
+                challengeFeedbackElement.textContent = `Time's up! The answer was ${currentChallengeFact.theme}.`;
+                Array.from(challengeOptionsElement.children).forEach(button => {
+                    button.disabled = true;
+                    if (button.textContent === currentChallengeFact.theme) {
+                        button.classList.add('correct');
+                    }
+                });
+                nextChallengeBtn.style.display = 'block';
+                restartChallengeBtn.style.display = 'block';
+            }
+        }
+
+        function checkChallengeAnswer(selectedButton, selectedTheme) {
+            clearInterval(challengeTimer);
+            Array.from(challengeOptionsElement.children).forEach(button => {
+                button.disabled = true;
+                if (button.textContent === currentChallengeFact.theme) {
+                    button.classList.add('correct');
+                } else {
+                    button.classList.add('incorrect');
+                }
+            });
+
+            if (selectedTheme === currentChallengeFact.theme) {
+                challengeFeedbackElement.textContent = 'Correct! 🎉';
+                challengeScore++;
+            } else {
+                challengeFeedbackElement.textContent = `Incorrect. The answer was ${currentChallengeFact.theme}.`;
+            }
+            nextChallengeBtn.style.display = 'block';
+            restartChallengeBtn.style.display = 'block';
+        }
+
+        nextChallengeBtn.addEventListener('click', displayChallengeQuestion);
+        restartChallengeBtn.addEventListener('click', startChallenge);
+
         // Initial display
-        currentFactIndex = Math.floor(Math.random() * facts.length);
+        currentFactIndex = facts.findIndex(fact => fact.main === "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.");
+        if (currentFactIndex === -1) {
+            currentFactIndex = Math.floor(Math.random() * facts.length); // Fallback if not found
+        }
         displayFact(currentFactIndex);
         updateFactHistory(facts[currentFactIndex].main);
 
         // Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
-            if (factDisplayArea.style.display !== 'none') { // Only navigate facts if not in quiz mode
+            if (factDisplayArea.style.display !== 'none') {
                 if (event.key === 'ArrowRight') {
                     currentFactIndex = (currentFactIndex + 1) % facts.length;
                     displayFact(currentFactIndex);
