@@ -7,8 +7,8 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: #228B22; /* Forest Green */
-            color: #F0F0F0; /* Light Grey */
+            background-color: #1A237E; /* Deep Indigo */
+            color: #E0E0E0; /* Light Grey */
             font-family: 'Arial', sans-serif;
             display: flex;
             flex-direction: column;
@@ -82,8 +82,8 @@
         }
         #footer-info {
             font-size: 1.2rem;
-            color: #F0F0F0; /* Light Grey for footer text */
-            background-color: #3CB371; /* Medium Sea Green - clearly visible footer color */
+            color: #E0E0E0; /* Light Grey for footer text */
+            background-color: #3F51B5; /* Indigo - clearly visible footer color */
             padding: 10px 20px;
             border-radius: 5px;
             opacity: 0.9;
@@ -95,8 +95,8 @@
 <body>
     <div class="container">
         <h1>Interesting Facts</h1>
-        <p id="main-fact">🌳 There are more trees on Earth than stars in the Milky Way galaxy.</p>
-        <p id="more-info">Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.</p>
+        <p id="main-fact">🌌 In the vacuum of space, two pieces of the same metal will permanently bond if they touch.</p>
+        <p id="more-info">This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.</p>
         <button id="copy-fact-btn">Copy Fact</button>
         <button id="share-twitter-btn" style="margin-left: 10px;">Share on Twitter</button>
         <button id="new-fact-btn" style="margin-left: 10px;">New Fact</button>
@@ -104,7 +104,7 @@
         <button id="fact-source-btn" style="margin-left: 10px;">Fact Source</button>
         <button id="read-aloud-btn" style="margin-left: 10px;">Read Fact Aloud</button>
     </div>
-    <div id="footer-info">Explore the amazing world of Nature!</div>
+    <div id="footer-info">Explore the amazing world of Space!</div>
     
     <script>
         const facts = [
@@ -115,10 +115,11 @@
             { main: "🧠 The human brain weighs about 3 pounds but uses 20% of the body\\\'s oxygen and calories.", more: "It contains approximately 86 billion neurons, more than the number of stars in our galaxy.", theme: "Human Body" },
             { main: "💡 The average person will spend 6 months of their life waiting for red lights to turn green.", more: "This is based on an average commute and daily activities involving traffic lights.", theme: "Everyday Life" },
             { main: "🌳 There are more trees on Earth than stars in the Milky Way galaxy.", more: "Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.", theme: "Nature" },
-            { main: "🥛 Hippopotamus milk is pink.", more: "This is due to a unique combination of two acids, hipposudoric acid and norhipposudoric acid, which are natural pigments.", theme: "Animals" }
+            { main: "🥛 Hippopotamus milk is pink.", more: "This is due to a unique combination of two acids, hipposudoric acid and norhipposudoric acid, which are natural pigments.", theme: "Animals" },
+            { main: "🌌 In the vacuum of space, two pieces of the same metal will permanently bond if they touch.", more: "This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.", theme: "Space" }
         ];
 
-        let currentFactIndex = 6; // Index for "🌳 There are more trees on Earth than stars in the Milky Way galaxy."
+        let currentFactIndex = 8; // Index for the new space fact
 
         const mainFactElement = document.getElementById('main-fact');
         const moreInfoElement = document.getElementById('more-info');
@@ -132,7 +133,7 @@
         const footerInfoElement = document.getElementById('footer-info');
 
 
-        const randomColors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7CAC9", "#8367C7", "#FFD166", "#228B22"]; // Added Forest Green
+        const randomColors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#FFA07A", "#98D8C8", "#F7CAC9", "#8367C7", "#FFD166", "#228B22", "#1A237E"]; // Added Deep Indigo
 
 
         function displayFact(index) {
@@ -191,7 +192,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, '')); // Remove emoji and first word
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, '')); // Remove emoji and first word
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -223,3 +224,4 @@
 </body>
 </html>
 ```
+
