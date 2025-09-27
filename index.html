@@ -3,11 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interesting Facts</title>
+    <title>Cosmic Facts Explorer</title>
     <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, hsl(240, 30%, 15%) 0%, hsl(260, 25%, 10%) 100%); /* Space theme gradient */
+            --text-color: hsl(60, 80%, 90%); /* Light yellow/cream for contrast */
+            --footer-bg: hsl(240, 20%, 10%);
+            --button-primary: hsl(210, 45%, 55%);
+            --button-hover: hsl(210, 55%, 65%);
+            --main-action-btn: hsl(160, 65%, 45%);
+            --main-action-btn-hover: hsl(160, 75%, 55%);
+            --glass-bg: rgba(255, 255, 255, 0.08);
+            --glass-border: rgba(255, 255, 255, 0.25);
+            --fact-card-bg: rgba(0, 0, 0, 0.3);
+            --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.3);
+            --fact-text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            --title-color: hsl(0, 0%, 100%);
+            --title-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            --quiz-option-btn: hsl(200, 35%, 35%);
+            --quiz-option-btn-hover: hsl(200, 45%, 45%);
+            --quiz-correct: hsl(120, 55%, 45%);
+            --quiz-incorrect: hsl(0, 55%, 45%);
+            --challenge-timer-progress: hsl(0, 100%, 70%);
+            --challenge-streak-color: hsl(160, 80%, 70%);
+            --history-toggle-color: hsl(0, 0%, 95%);
+            --history-list-color: hsl(0, 0%, 85%);
+        }
+
         body {
-            background: linear-gradient(135deg, hsl(120, 30%, 20%) 0%, hsl(100, 25%, 15%) 100%); /* Nature theme gradient background */
-            color: hsl(60, 80%, 90%); /* Nature theme text */
+            background: var(--bg-gradient);
+            color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -19,19 +44,19 @@
             padding: 20px;
             box-sizing: border-box;
             transition: background 0.8s ease-in-out, color 0.5s ease;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
         .container {
             max-width: 950px;
             width: 100%;
             margin-bottom: 20px;
             padding: 40px;
-            background-color: rgba(255, 255, 255, 0.08); /* Slightly more visible glass effect */
+            background-color: var(--glass-bg);
             border-radius: 20px;
             box-shadow: 0 10px 40px 0 rgba( 31, 38, 135, 0.45 );
             backdrop-filter: blur( 8px );
             -webkit-backdrop-filter: blur( 8px );
-            border: 1px solid rgba( 255, 255, 255, 0.25 );
+            border: 1px solid var(--glass-border);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -58,19 +83,26 @@
         h1#main-title {
             font-size: 4.5rem;
             margin-bottom: 1.8rem;
-            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
-            color: hsl(0, 0%, 100%);
+            text-shadow: var(--title-shadow);
+            color: var(--title-color);
             letter-spacing: 2px;
             font-weight: 700;
         }
-        #fact-display-area, #quiz-area, #challenge-area {
-            background-color: rgba(0, 0, 0, 0.3);
+        .fact-card {
+            background-color: var(--fact-card-bg);
             padding: 30px;
             border-radius: 15px;
             margin-bottom: 25px;
             width: 95%;
             max-width: 750px;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
+            box-shadow: var(--fact-card-shadow-inset);
+            position: relative;
+            overflow: hidden;
+            min-height: 250px; /* Ensure enough space for content */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         p {
             font-size: 2rem;
@@ -78,7 +110,7 @@
             margin-bottom: 1.8rem;
             cursor: pointer;
             transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            text-shadow: var(--fact-text-shadow);
         }
         p:hover {
             transform: scale(1.03);
@@ -113,7 +145,7 @@
             padding-top: 20px;
         }
         #more-info.show-more-info {
-            max-height: 250px; /* Increased for more content */
+            max-height: 250px;
             opacity: 1;
             transform: translateY(0);
         }
@@ -125,7 +157,7 @@
             gap: 12px;
         }
         button {
-            background-color: hsl(210, 45%, 55%);
+            background-color: var(--button-primary);
             color: #FFFFFF;
             border: none;
             padding: 14px 28px;
@@ -137,7 +169,7 @@
             font-weight: 500;
         }
         button:hover {
-            background-color: hsl(210, 55%, 65%);
+            background-color: var(--button-hover);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
         }
@@ -146,7 +178,7 @@
             box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
         .main-action-btn {
-            background-color: hsl(160, 65%, 45%);
+            background-color: var(--main-action-btn);
             font-size: 1.4rem;
             padding: 18px 35px;
             margin-top: 35px;
@@ -154,12 +186,12 @@
             border-radius: 12px;
         }
         .main-action-btn:hover {
-            background-color: hsl(160, 75%, 55%);
+            background-color: var(--main-action-btn-hover);
         }
         #footer-info {
             font-size: 1.3rem;
-            color: hsl(60, 80%, 90%); /* Nature theme text for footer */
-            background-color: hsl(120, 20%, 15%); /* Nature theme footer background */
+            color: var(--text-color);
+            background-color: var(--footer-bg);
             padding: 18px 35px;
             border-radius: 12px;
             opacity: 0.98;
@@ -199,7 +231,7 @@
             margin-bottom: 25px;
         }
         .quiz-option-btn, .challenge-option-btn {
-            background-color: hsl(200, 35%, 35%);
+            background-color: var(--quiz-option-btn);
             color: #FFFFFF;
             padding: 15px 30px;
             font-size: 1.2rem;
@@ -210,15 +242,15 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .quiz-option-btn:hover, .challenge-option-btn:hover {
-            background-color: hsl(200, 45%, 45%);
+            background-color: var(--quiz-option-btn-hover);
             transform: translateY(-3px);
         }
         .quiz-option-btn.correct, .challenge-option-btn.correct {
-            background-color: hsl(120, 55%, 45%);
+            background-color: var(--quiz-correct);
             box-shadow: 0 0 15px hsl(120, 70%, 60%);
         }
         .quiz-option-btn.incorrect, .challenge-option-btn.incorrect {
-            background-color: hsl(0, 55%, 45%);
+            background-color: var(--quiz-incorrect);
             box-shadow: 0 0 15px hsl(0, 70%, 60%);
         }
         #quiz-feedback, #challenge-feedback {
@@ -226,7 +258,7 @@
             font-weight: bold;
             min-height: 40px;
             margin-top: 15px;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            text-shadow: var(--fact-text-shadow);
         }
 
         /* Challenge Specific Styles */
@@ -247,9 +279,9 @@
         #challenge-timer-progress {
             height: 100%;
             width: 100%;
-            background-color: hsl(0, 100%, 70%);
+            background-color: var(--challenge-timer-progress);
             border-radius: 15px;
-            transition: width linear; /* No duration here, set by JS */
+            transition: width linear;
             position: absolute;
             left: 0;
             top: 0;
@@ -266,7 +298,7 @@
         #challenge-streak {
             font-size: 1.5rem;
             font-weight: bold;
-            color: hsl(160, 80%, 70%);
+            color: var(--challenge-streak-color);
             margin-top: 15px;
             min-height: 30px;
         }
@@ -276,27 +308,27 @@
             margin-top: 35px;
             width: 95%;
             max-width: 750px;
-            background-color: rgba(255, 255, 255, 0.08);
+            background-color: var(--glass-bg);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
             transition: max-height 0.8s ease-out;
-            max-height: 90px; /* Initial height for toggle */
+            max-height: 90px;
         }
         .collapsible-section.expanded {
-            max-height: 450px; /* Expanded height */
+            max-height: 450px;
         }
         #history-toggle {
             cursor: pointer;
             font-size: 1.6rem;
-            color: hsl(0, 0%, 95%);
+            color: var(--history-toggle-color);
             margin-bottom: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
             font-weight: 600;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
+            text-shadow: var(--fact-text-shadow);
         }
         #history-toggle .toggle-icon {
             margin-left: 12px;
@@ -311,23 +343,67 @@
             padding: 0;
             margin: 0;
             text-align: left;
-            color: hsl(0, 0%, 85%);
+            color: var(--history-list-color);
             font-size: 1.15rem;
         }
         #history-list li {
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n        }
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1));
+        }
         #history-list li:last-child {
             border-bottom: none;
+        }
+
+        /* Fact Carousel / Navigation */
+        .fact-navigation {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 15px;
+            box-sizing: border-box;
+            pointer-events: none; /* Allow clicks to pass through to fact */
+        }
+        .nav-button {
+            background-color: rgba(255, 255, 255, 0.15);
+            border: none;
+            color: white;
+            font-size: 2.5rem;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            pointer-events: all; /* Re-enable clicks for buttons */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .nav-button:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px) scale(1.05);
+        }
+        .nav-button:active {
+            transform: translateY(0) scale(1);
+        }
+
+        /* Like Button Animation */
+        .like-button.liked {
+            animation: pulse 0.5s ease-out;
+            background-color: hsl(0, 70%, 50%); /* Red for liked */
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Interesting Facts</h1>
-        <div id="fact-display-area">
-            <p id="main-fact">🌳 Trees can communicate with each other, and forests can even create their own rain through a process called the Biotic Pump Theory.</p>
-            <p id="more-info">This communication happens through a network of fungi in their roots, and the Biotic Pump Theory suggests that forests can influence atmospheric pressure and humidity to generate rainfall.</p>
+        <h1 id="main-title">Cosmic Facts Explorer</h1>
+        <div id="fact-display-area" class="fact-card">
+            <p id="main-fact">🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.</p>
+            <p id="more-info">This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -337,11 +413,15 @@
                 <button id="copy-fact-btn">Copy</button>
                 <button id="share-twitter-btn">Share</button>
                 <button id="fact-source-btn">Source</button>
-                <button id="like-fact-btn">Like</button>
+                <button id="like-fact-btn" class="like-button">Like</button>
+            </div>
+            <div class="fact-navigation">
+                <button id="prev-fact-btn" class="nav-button">‹</button>
+                <button id="next-fact-btn" class="nav-button">›</button>
             </div>
         </div>
 
-        <div id="quiz-area" style="display: none;">
+        <div id="quiz-area" class="fact-card" style="display: none;">
             <h2>Fact Quiz!</h2>
             <p id="quiz-fact"></p>
             <div id="quiz-options"></div>
@@ -349,7 +429,7 @@
             <button id="next-quiz-btn" style="display: none;">Next Question</button>
         </div>
 
-        <div id="challenge-area" style="display: none;">
+        <div id="challenge-area" class="fact-card" style="display: none;">
             <h2>Fact Challenge!</h2>
             <p id="challenge-fact"></p>
             <div id="challenge-timer-container">
@@ -372,7 +452,7 @@
         <div id="fact-of-the-day"></div>
     </div>
     
-    <div id="footer-info">Explore the amazing world of Nature!</div>
+    <div id="footer-info">Explore the amazing world of Space!</div>
 
     <div id="fact-history" class="collapsible-section">
         <h3 id="history-toggle">Fact History <span class="toggle-icon">▼</span></h3>
@@ -404,6 +484,7 @@
         let timeLeft = 10;
         let currentChallengeFact = null;
         let challengeStreak = 0;
+        let factCarouselInterval;
 
         const mainTitleElement = document.getElementById('main-title');
         const factDisplayArea = document.getElementById('fact-display-area');
@@ -442,6 +523,9 @@
         const factHistorySection = document.getElementById('fact-history');
         const historyToggle = document.getElementById('history-toggle');
         const historyListElement = document.getElementById('history-list');
+
+        const prevFactBtn = document.getElementById('prev-fact-btn');
+        const nextFactBtn = document.getElementById('next-fact-btn');
 
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -482,10 +566,9 @@
 
         function applyThemeColors(theme) {
             if (themeColors[theme]) {
-                bodyElement.style.background = themeColors[theme].background;
-                bodyElement.style.color = themeColors[theme].text;
-                footerInfoElement.style.backgroundColor = themeColors[theme].footerBackground;
-                footerInfoElement.style.color = themeColors[theme].text;
+                document.documentElement.style.setProperty('--bg-gradient', themeColors[theme].background);
+                document.documentElement.style.setProperty('--text-color', themeColors[theme].text);
+                document.documentElement.style.setProperty('--footer-bg', themeColors[theme].footerBackground);
             }
         }
 
@@ -498,10 +581,19 @@
             moreInfoElement.textContent = facts[index].more;
             moreInfoElement.classList.remove('show-more-info');
             toggleMoreInfoBtn.textContent = 'Show More Info';
+            likeFactBtn.classList.remove('liked'); // Reset like button state
 
             footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
             applyThemeColors(facts[index].theme);
             updateFactHistory(facts[index].main);
+        }
+
+        function startFactCarousel() {
+            clearInterval(factCarouselInterval); // Clear any existing interval
+            factCarouselInterval = setInterval(() => {
+                currentFactIndex = (currentFactIndex + 1) % facts.length;
+                displayFact(currentFactIndex);
+            }, 10000); // Change fact every 10 seconds
         }
 
         // Fact Display Event Listeners
@@ -513,6 +605,7 @@
         newFactBtn.addEventListener('click', () => {
             currentFactIndex = Math.floor(Math.random() * facts.length);
             displayFact(currentFactIndex);
+            startFactCarousel(); // Restart carousel on manual new fact
         });
 
         copyFactBtn.addEventListener('click', () => {
@@ -548,7 +641,10 @@
         });
 
         likeFactBtn.addEventListener('click', () => {
-            alert('You liked this fact!');
+            likeFactBtn.classList.add('liked');
+            setTimeout(() => {
+                likeFactBtn.classList.remove('liked');
+            }, 500);
         });
 
         // Fact History Logic
@@ -588,16 +684,18 @@
                 toggleQuizBtn.textContent = 'Back to Facts';
                 toggleChallengeBtn.style.display = 'none';
                 mainTitleElement.textContent = 'Fact Quiz!';
+                clearInterval(factCarouselInterval); // Stop carousel for quiz
                 startQuiz();
             } else {
                 quizArea.style.display = 'none';
                 factDisplayArea.style.display = 'block';
                 toggleQuizBtn.textContent = 'Start Fact Quiz';
                 toggleChallengeBtn.style.display = 'inline-block';
-                mainTitleElement.textContent = 'Interesting Facts';
+                mainTitleElement.textContent = 'Cosmic Facts Explorer';
                 quizScore = 0;
                 quizFeedbackElement.textContent = '';
                 nextQuizBtn.style.display = 'none';
+                startFactCarousel(); // Restart carousel
             }
         });
 
@@ -665,13 +763,14 @@
                 toggleChallengeBtn.textContent = 'Back to Facts';
                 toggleQuizBtn.style.display = 'none';
                 mainTitleElement.textContent = 'Fact Challenge!';
+                clearInterval(factCarouselInterval); // Stop carousel for challenge
                 startChallenge();
             } else {
                 challengeArea.style.display = 'none';
                 factDisplayArea.style.display = 'block';
                 toggleChallengeBtn.textContent = 'Start Fact Challenge';
                 toggleQuizBtn.style.display = 'inline-block';
-                mainTitleElement.textContent = 'Interesting Facts';
+                mainTitleElement.textContent = 'Cosmic Facts Explorer';
                 challengeScore = 0;
                 challengeFeedbackElement.textContent = '';
                 nextChallengeBtn.style.display = 'none';
@@ -679,6 +778,7 @@
                 clearInterval(challengeTimer);
                 challengeStreak = 0;
                 challengeStreakElement.textContent = 'Streak: 0';
+                startFactCarousel(); // Restart carousel
             }
         });
 
@@ -696,10 +796,10 @@
             clearInterval(challengeTimer);
             timeLeft = 10;
             challengeTimerText.textContent = `Time: ${timeLeft}s`;
-            challengeTimerProgress.style.transition = 'none'; // Reset transition
+            challengeTimerProgress.style.transition = 'none';
             challengeTimerProgress.style.width = '100%';
-            void challengeTimerProgress.offsetWidth; // Trigger reflow
-            challengeTimerProgress.style.transition = `width ${timeLeft}s linear`; // Set transition duration
+            void challengeTimerProgress.offsetWidth;
+            challengeTimerProgress.style.transition = `width ${timeLeft}s linear`;
             challengeTimerProgress.style.width = '0%';
 
 
@@ -779,12 +879,13 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main.includes("Trees can communicate"));
+        currentFactIndex = facts.findIndex(fact => fact.main.includes("Milky Way galaxy is thought to smell"));
         if (currentFactIndex === -1) {
             currentFactIndex = Math.floor(Math.random() * facts.length); // Fallback if not found
         }
         displayFact(currentFactIndex);
         updateFactHistory(facts[currentFactIndex].main);
+        startFactCarousel(); // Start the carousel on load
 
         // Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
@@ -792,11 +893,25 @@
                 if (event.key === 'ArrowRight') {
                     currentFactIndex = (currentFactIndex + 1) % facts.length;
                     displayFact(currentFactIndex);
+                    startFactCarousel(); // Reset carousel timer on manual navigation
                 } else if (event.key === 'ArrowLeft') {
                     currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
                     displayFact(currentFactIndex);
+                    startFactCarousel(); // Reset carousel timer on manual navigation
                 }
             }
+        });
+
+        prevFactBtn.addEventListener('click', () => {
+            currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
+            displayFact(currentFactIndex);
+            startFactCarousel(); // Reset carousel timer on manual navigation
+        });
+
+        nextFactBtn.addEventListener('click', () => {
+            currentFactIndex = (currentFactIndex + 1) % facts.length;
+            displayFact(currentFactIndex);
+            startFactCarousel(); // Reset carousel timer on manual navigation
         });
     </script>
 </body>
