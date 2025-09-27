@@ -6,9 +6,9 @@
     <title>Interesting Facts</title>
     <style>
         body {
-            background-color: hsl(240, 30%, 15%); /* Space theme background */
-            color: hsl(60, 80%, 90%); /* Space theme text */
-            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, hsl(30, 40%, 25%) 0%, hsl(40, 30%, 20%) 100%); /* Animals theme gradient background */
+            color: hsl(0, 0%, 95%); /* Animals theme text */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -18,147 +18,175 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            transition: background-color 0.5s ease;
+            transition: background 0.8s ease-in-out, color 0.5s ease;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         .container {
-            max-width: 900px;
+            max-width: 950px;
             width: 100%;
             margin-bottom: 20px;
-            padding: 30px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-            backdrop-filter: blur( 4px );
-            -webkit-backdrop-filter: blur( 4px );
-            border: 1px solid rgba( 255, 255, 255, 0.18 );
+            padding: 40px;
+            background-color: rgba(255, 255, 255, 0.08); /* Slightly more visible glass effect */
+            border-radius: 20px;
+            box-shadow: 0 10px 40px 0 rgba( 31, 38, 135, 0.45 );
+            backdrop-filter: blur( 8px );
+            -webkit-backdrop-filter: blur( 8px );
+            border: 1px solid rgba( 255, 255, 255, 0.25 );
             flex-grow: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.05) 10%, transparent 70%);
+            animation: rotateBackground 20s linear infinite;
+            opacity: 0.3;
+        }
+        @keyframes rotateBackground {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
         h1#main-title {
-            font-size: 4rem;
-            margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            font-size: 4.5rem;
+            margin-bottom: 1.8rem;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
             color: hsl(0, 0%, 100%);
+            letter-spacing: 2px;
+            font-weight: 700;
         }
         #fact-display-area, #quiz-area, #challenge-area {
-            background-color: rgba(0, 0, 0, 0.2);
-            padding: 25px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            width: 90%;
-            max-width: 700px;
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            width: 95%;
+            max-width: 750px;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.3);
         }
         p {
-            font-size: 1.8rem;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            line-height: 1.7;
+            margin-bottom: 1.8rem;
             cursor: pointer;
-            transition: transform 0.2s ease-in-out, color 0.2s ease-in-out;
+            transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
         }
         p:hover {
-            transform: scale(1.02);
-            color: hsl(60, 100%, 80%);
+            transform: scale(1.03);
+            color: hsl(60, 100%, 85%);
         }
         #main-fact, #quiz-fact, #challenge-fact {
-            animation: fadeInScale 1s ease-out forwards;
-            min-height: 100px;
+            animation: fadeInScale 1.2s ease-out forwards;
+            min-height: 120px;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 600;
         }
         @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
+            from { opacity: 0; transform: scale(0.9); }
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes slideInFromBottom {
             from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 0.9; }
+            to { transform: translateY(0); opacity: 0.95; }
         }
         #more-info {
-            font-size: 1.3rem;
-            color: hsl(0, 0%, 85%);
-            margin-top: 15px;
+            font-size: 1.4rem;
+            color: hsl(0, 0%, 88%);
+            margin-top: 20px;
             max-height: 0;
             overflow: hidden;
-            transition: max-height 0.7s ease-out, opacity 0.7s ease-out, transform 0.7s ease-out;
+            transition: max-height 0.8s ease-out, opacity 0.8s ease-out, transform 0.8s ease-out;
             opacity: 0;
-            transform: translateY(-10px);
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 15px;
+            transform: translateY(-15px);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            padding-top: 20px;
         }
         #more-info.show-more-info {
-            max-height: 200px;
+            max-height: 250px; /* Increased for more content */
             opacity: 1;
             transform: translateY(0);
         }
         .fact-actions, .social-actions, .challenge-actions {
-            margin-top: 20px;
+            margin-top: 25px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
         }
         button {
-            background-color: hsl(210, 40%, 50%);
+            background-color: hsl(210, 45%, 55%);
             color: #FFFFFF;
             border: none;
-            padding: 12px 25px;
-            font-size: 1.1rem;
+            padding: 14px 28px;
+            font-size: 1.2rem;
             cursor: pointer;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            font-weight: 500;
         }
         button:hover {
-            background-color: hsl(210, 50%, 60%);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            background-color: hsl(210, 55%, 65%);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
         }
         button:active {
             transform: translateY(0);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
         }
         .main-action-btn {
-            background-color: hsl(160, 60%, 40%);
-            font-size: 1.3rem;
-            padding: 15px 30px;
-            margin-top: 30px;
-            margin-bottom: 20px;
+            background-color: hsl(160, 65%, 45%);
+            font-size: 1.4rem;
+            padding: 18px 35px;
+            margin-top: 35px;
+            margin-bottom: 25px;
+            border-radius: 12px;
         }
         .main-action-btn:hover {
-            background-color: hsl(160, 70%, 50%);
+            background-color: hsl(160, 75%, 55%);
         }
         #footer-info {
-            font-size: 1.2rem;
-            color: hsl(60, 80%, 90%); /* Space theme text for footer */
-            background-color: hsl(240, 20%, 10%); /* Space theme footer background */
-            padding: 15px 30px;
-            border-radius: 10px;
-            opacity: 0.9;
-            margin-top: 30px;
-            animation: slideInFromBottom 0.7s ease-out forwards;
-            box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.3rem;
+            color: hsl(0, 0%, 98%); /* Very light text for footer */
+            background-color: hsl(30, 30%, 20%); /* Animals theme footer background */
+            padding: 18px 35px;
+            border-radius: 12px;
+            opacity: 0.98;
+            margin-top: 35px;
+            animation: slideInFromBottom 0.8s ease-out forwards;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
         }
         #fact-of-the-day {
-            font-size: 1.1rem;
-            color: hsl(60, 70%, 80%);
-            margin-top: 15px;
-            margin-bottom: 15px;
+            font-size: 1.2rem;
+            color: hsl(60, 70%, 85%);
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
         /* Quiz Specific Styles */
         #quiz-area h2, #challenge-area h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: hsl(60, 100%, 85%);
+            font-size: 3rem;
+            margin-bottom: 1.8rem;
+            color: hsl(60, 100%, 90%);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
         }
         #quiz-fact, #challenge-fact {
-            font-size: 1.6rem;
-            margin-bottom: 2rem;
-            min-height: 80px;
+            font-size: 1.8rem;
+            margin-bottom: 2.5rem;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -167,71 +195,113 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 15px;
-            margin-bottom: 20px;
+            gap: 18px;
+            margin-bottom: 25px;
         }
         .quiz-option-btn, .challenge-option-btn {
-            background-color: hsl(200, 30%, 30%);
+            background-color: hsl(200, 35%, 35%);
             color: #FFFFFF;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 10px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s;
-            min-width: 120px;
+            min-width: 140px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
         .quiz-option-btn:hover, .challenge-option-btn:hover {
-            background-color: hsl(200, 40%, 40%);
-            transform: translateY(-2px);
+            background-color: hsl(200, 45%, 45%);
+            transform: translateY(-3px);
         }
         .quiz-option-btn.correct, .challenge-option-btn.correct {
-            background-color: hsl(120, 50%, 40%);
+            background-color: hsl(120, 55%, 45%);
+            box-shadow: 0 0 15px hsl(120, 70%, 60%);
         }
         .quiz-option-btn.incorrect, .challenge-option-btn.incorrect {
-            background-color: hsl(0, 50%, 40%);
+            background-color: hsl(0, 55%, 45%);
+            box-shadow: 0 0 15px hsl(0, 70%, 60%);
         }
         #quiz-feedback, #challenge-feedback {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
-            min-height: 30px;
+            min-height: 40px;
+            margin-top: 15px;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
         }
 
         /* Challenge Specific Styles */
-        #challenge-timer {
-            font-size: 2rem;
+        #challenge-timer-container {
+            width: 80%;
+            max-width: 400px;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+            position: relative;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #challenge-timer-progress {
+            height: 100%;
+            width: 100%;
+            background-color: hsl(0, 100%, 70%);
+            border-radius: 15px;
+            transition: width linear; /* No duration here, set by JS */
+            position: absolute;
+            left: 0;
+            top: 0;
+            transform-origin: left;
+        }
+        #challenge-timer-text {
+            position: relative;
+            z-index: 1;
+            font-size: 1.8rem;
             font-weight: bold;
-            color: hsl(0, 100%, 70%);
-            margin-bottom: 1rem;
+            color: #FFFFFF;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        #challenge-streak {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: hsl(160, 80%, 70%);
+            margin-top: 15px;
+            min-height: 30px;
         }
 
         /* Collapsible History */
         .collapsible-section {
-            margin-top: 30px;
-            width: 90%;
-            max-width: 700px;
-            background-color: rgba(255, 255, 255, 0.05);
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 35px;
+            width: 95%;
+            max-width: 750px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             overflow: hidden;
-            transition: max-height 0.7s ease-out;
-            max-height: 80px;
+            transition: max-height 0.8s ease-out;
+            max-height: 90px; /* Initial height for toggle */
         }
         .collapsible-section.expanded {
-            max-height: 400px;
+            max-height: 450px; /* Expanded height */
         }
         #history-toggle {
             cursor: pointer;
-            font-size: 1.5rem;
-            color: hsl(0, 0%, 90%);
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            color: hsl(0, 0%, 95%);
+            margin-bottom: 18px;
             display: flex;
             justify-content: center;
             align-items: center;
+            font-weight: 600;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
         }
         #history-toggle .toggle-icon {
-            margin-left: 10px;
+            margin-left: 12px;
             transition: transform 0.3s ease;
+            font-size: 1.2em;
         }
         .collapsible-section.expanded #history-toggle .toggle-icon {
             transform: rotate(180deg);
@@ -241,12 +311,12 @@
             padding: 0;
             margin: 0;
             text-align: left;
-            color: hsl(0, 0%, 80%);
-            font-size: 1.1rem;
+            color: hsl(0, 0%, 85%);
+            font-size: 1.15rem;
         }
         #history-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         #history-list li:last-child {
             border-bottom: none;
@@ -257,8 +327,8 @@
     <div class="container">
         <h1 id="main-title">Interesting Facts</h1>
         <div id="fact-display-area">
-            <p id="main-fact">The Milky Way galaxy is thought to smell of rum, raspberries, and booze.</p>
-            <p id="more-info">This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.</p>
+            <p id="main-fact">🦥 Sloths can hold their breath longer than dolphins.</p>
+            <p id="more-info">Sloths can slow their heart rate and hold their breath underwater for up to 40 minutes, which is longer than dolphins can.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -283,9 +353,13 @@
         <div id="challenge-area" style="display: none;">
             <h2>Fact Challenge!</h2>
             <p id="challenge-fact"></p>
-            <div id="challenge-timer">Time: 10s</div>
+            <div id="challenge-timer-container">
+                <div id="challenge-timer-progress"></div>
+                <span id="challenge-timer-text">Time: 10s</span>
+            </div>
             <div id="challenge-options"></div>
             <p id="challenge-feedback"></p>
+            <p id="challenge-streak">Streak: 0</p>
             <div class="challenge-actions">
                 <button id="next-challenge-btn" style="display: none;">Next Challenge</button>
                 <button id="restart-challenge-btn" style="display: none;">Restart Challenge</button>
@@ -299,7 +373,7 @@
         <div id="fact-of-the-day"></div>
     </div>
     
-    <div id="footer-info">Explore the amazing world of Space!</div>
+    <div id="footer-info">Explore the amazing world of Animals!</div>
 
     <div id="fact-history" class="collapsible-section">
         <h3 id="history-toggle">Fact History <span class="toggle-icon">▼</span></h3>
@@ -330,6 +404,7 @@
         let challengeTimer;
         let timeLeft = 10;
         let currentChallengeFact = null;
+        let challengeStreak = 0;
 
         const mainTitleElement = document.getElementById('main-title');
         const factDisplayArea = document.getElementById('fact-display-area');
@@ -355,12 +430,15 @@
 
         const challengeArea = document.getElementById('challenge-area');
         const challengeFactElement = document.getElementById('challenge-fact');
-        const challengeTimerElement = document.getElementById('challenge-timer');
+        const challengeTimerContainer = document.getElementById('challenge-timer-container');
+        const challengeTimerProgress = document.getElementById('challenge-timer-progress');
+        const challengeTimerText = document.getElementById('challenge-timer-text');
         const challengeOptionsElement = document.getElementById('challenge-options');
         const challengeFeedbackElement = document.getElementById('challenge-feedback');
         const nextChallengeBtn = document.getElementById('next-challenge-btn');
         const restartChallengeBtn = document.getElementById('restart-challenge-btn');
         const toggleChallengeBtn = document.getElementById('toggle-challenge-btn');
+        const challengeStreakElement = document.getElementById('challenge-streak');
 
         const factHistorySection = document.getElementById('fact-history');
         const historyToggle = document.getElementById('history-toggle');
@@ -372,32 +450,32 @@
 
         const themeColors = {
             "Space": {
-                background: 'hsl(240, 30%, 15%)',
+                background: 'linear-gradient(135deg, hsl(240, 30%, 15%) 0%, hsl(260, 25%, 10%) 100%)',
                 text: 'hsl(60, 80%, 90%)',
                 footerBackground: 'hsl(240, 20%, 10%)'
             },
             "Nature": {
-                background: 'hsl(120, 30%, 20%)',
+                background: 'linear-gradient(135deg, hsl(120, 30%, 20%) 0%, hsl(100, 25%, 15%) 100%)',
                 text: 'hsl(60, 80%, 90%)',
                 footerBackground: 'hsl(120, 20%, 15%)'
             },
             "Animals": {
-                background: 'hsl(30, 40%, 25%)',
+                background: 'linear-gradient(135deg, hsl(30, 40%, 25%) 0%, hsl(40, 30%, 20%) 100%)',
                 text: 'hsl(0, 0%, 95%)',
                 footerBackground: 'hsl(30, 30%, 20%)'
             },
             "Ocean": {
-                background: 'hsl(200, 50%, 20%)',
+                background: 'linear-gradient(135deg, hsl(200, 50%, 20%) 0%, hsl(220, 45%, 15%) 100%)',
                 text: 'hsl(180, 70%, 90%)',
                 footerBackground: 'hsl(200, 40%, 15%)'
             },
             "Human Body": {
-                background: 'hsl(210, 10%, 25%)',
+                background: 'linear-gradient(135deg, hsl(210, 10%, 25%) 0%, hsl(230, 15%, 20%) 100%)',
                 text: 'hsl(0, 0%, 95%)',
                 footerBackground: 'hsl(210, 10%, 15%)'
             },
             "Everyday Life": {
-                background: 'hsl(40, 20%, 30%)',
+                background: 'linear-gradient(135deg, hsl(40, 20%, 30%) 0%, hsl(50, 15%, 25%) 100%)',
                 text: 'hsl(0, 0%, 95%)',
                 footerBackground: 'hsl(40, 15%, 25%)'
             }
@@ -405,7 +483,7 @@
 
         function applyThemeColors(theme) {
             if (themeColors[theme]) {
-                bodyElement.style.backgroundColor = themeColors[theme].background;
+                bodyElement.style.background = themeColors[theme].background;
                 bodyElement.style.color = themeColors[theme].text;
                 footerInfoElement.style.backgroundColor = themeColors[theme].footerBackground;
                 footerInfoElement.style.color = themeColors[theme].text;
@@ -414,8 +492,8 @@
 
         function displayFact(index) {
             mainFactElement.style.animation = 'none';
-            void mainFactElement.offsetWidth;
-            mainFactElement.style.animation = 'fadeInScale 1s ease-out forwards';
+            void mainFactElement.offsetWidth; // Trigger reflow
+            mainFactElement.style.animation = 'fadeInScale 1.2s ease-out forwards';
 
             mainFactElement.textContent = facts[index].main;
             moreInfoElement.textContent = facts[index].more;
@@ -600,6 +678,8 @@
                 nextChallengeBtn.style.display = 'none';
                 restartChallengeBtn.style.display = 'none';
                 clearInterval(challengeTimer);
+                challengeStreak = 0;
+                challengeStreakElement.textContent = 'Streak: 0';
             }
         });
 
@@ -608,13 +688,22 @@
             challengeFeedbackElement.textContent = '';
             nextChallengeBtn.style.display = 'none';
             restartChallengeBtn.style.display = 'none';
+            challengeStreak = 0;
+            challengeStreakElement.textContent = 'Streak: 0';
             displayChallengeQuestion();
         }
 
         function displayChallengeQuestion() {
             clearInterval(challengeTimer);
             timeLeft = 10;
-            challengeTimerElement.textContent = `Time: ${timeLeft}s`;
+            challengeTimerText.textContent = `Time: ${timeLeft}s`;
+            challengeTimerProgress.style.transition = 'none'; // Reset transition
+            challengeTimerProgress.style.width = '100%';
+            void challengeTimerProgress.offsetWidth; // Trigger reflow
+            challengeTimerProgress.style.transition = `width ${timeLeft}s linear`; // Set transition duration
+            challengeTimerProgress.style.width = '0%';
+
+
             challengeOptionsElement.innerHTML = '';
             challengeFeedbackElement.textContent = '';
             nextChallengeBtn.style.display = 'none';
@@ -646,7 +735,7 @@
 
         function updateChallengeTimer() {
             timeLeft--;
-            challengeTimerElement.textContent = `Time: ${timeLeft}s`;
+            challengeTimerText.textContent = `Time: ${timeLeft}s`;
             if (timeLeft <= 0) {
                 clearInterval(challengeTimer);
                 challengeFeedbackElement.textContent = `Time's up! The answer was ${currentChallengeFact.theme}.`;
@@ -658,6 +747,8 @@
                 });
                 nextChallengeBtn.style.display = 'block';
                 restartChallengeBtn.style.display = 'block';
+                challengeStreak = 0;
+                challengeStreakElement.textContent = 'Streak: 0';
             }
         }
 
@@ -675,9 +766,12 @@
             if (selectedTheme === currentChallengeFact.theme) {
                 challengeFeedbackElement.textContent = 'Correct! 🎉';
                 challengeScore++;
+                challengeStreak++;
             } else {
                 challengeFeedbackElement.textContent = `Incorrect. The answer was ${currentChallengeFact.theme}.`;
+                challengeStreak = 0;
             }
+            challengeStreakElement.textContent = `Streak: ${challengeStreak}`;
             nextChallengeBtn.style.display = 'block';
             restartChallengeBtn.style.display = 'block';
         }
@@ -686,7 +780,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main === "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.");
+        currentFactIndex = facts.findIndex(fact => fact.main === "🦥 Sloths can hold their breath longer than dolphins.");
         if (currentFactIndex === -1) {
             currentFactIndex = Math.floor(Math.random() * facts.length); // Fallback if not found
         }
