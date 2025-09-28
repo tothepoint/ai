@@ -105,8 +105,8 @@
             align-items: center;
         }
         p {
-            font-size: 2rem;
-            line-height: 1.7;
+            font-size: 2.2rem; /* Increased font size */
+            line-height: 1.6;
             margin-bottom: 1.8rem;
             cursor: pointer;
             transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -201,11 +201,13 @@
             font-weight: 500;
         }
         #fact-of-the-day {
-            font-size: 1.2rem;
-            color: hsl(60, 70%, 85%);
-            margin-top: 20px;
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: var(--text-color); /* Use theme's text color */
+            margin-top: 25px;
+            margin-bottom: 25px;
             font-style: italic;
+            font-weight: 500;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
         }
 
         /* Quiz Specific Styles */
@@ -396,6 +398,9 @@
             50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
+        .fact-card.animate-in {
+            animation: fadeInScale 1.2s ease-out forwards;
+        }
     </style>
 </head>
 <body>
@@ -573,9 +578,9 @@
         }
 
         function displayFact(index) {
-            mainFactElement.style.animation = 'none';
-            void mainFactElement.offsetWidth; // Trigger reflow
-            mainFactElement.style.animation = 'fadeInScale 1.2s ease-out forwards';
+            factDisplayArea.classList.remove('animate-in');
+            void factDisplayArea.offsetWidth; // Trigger reflow
+            factDisplayArea.classList.add('animate-in');
 
             mainFactElement.textContent = facts[index].main;
             moreInfoElement.textContent = facts[index].more;
@@ -628,7 +633,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
