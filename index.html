@@ -895,7 +895,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = 3; // Set to the Cosmic Latte fact initially
+        currentFactIndex = Math.floor(Math.random() * facts.length); // Set to a random fact initially
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
