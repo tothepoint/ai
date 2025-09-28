@@ -152,8 +152,7 @@
         .fact-actions, .social-actions, .challenge-actions {
             margin-top: 25px;
             display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: wrap;\n            justify-content: center;
             gap: 12px;
         }
         button {
@@ -882,7 +881,6 @@
         // Initial display
         currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact on load
         displayFact(currentFactIndex);
-        updateFactHistory(facts[currentFactIndex].main);
         startFactCarousel(); // Start the carousel on load
 
         // Keyboard navigation for facts
