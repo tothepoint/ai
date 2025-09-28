@@ -402,8 +402,8 @@
         <h1 id="main-title">Cosmic Facts Explorer</h1>
         <div id="fact-of-the-day"></div>
         <div id="fact-display-area" class="fact-card">
-            <p id="main-fact">🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.</p>
-            <p id="more-info">This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.</p>
+            <p id="main-fact">🌳 There are more trees on Earth than stars in the Milky Way galaxy.</p>
+            <p id="more-info">Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -627,7 +627,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -879,7 +879,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact on load
+        currentFactIndex = 11; // Pick the 'Nature' fact on load
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
