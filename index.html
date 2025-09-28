@@ -529,7 +529,7 @@
 
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        factOfTheDayElement.textContent = `Fact of the Day: ${facts[currentFactIndex].main}`;
+        // factOfTheDayElement.textContent = `Fact of the Day: ${facts[currentFactIndex].main}`; // This will be set after initial displayFact call
 
         const themeColors = {
             "Space": {
@@ -586,6 +586,7 @@
             footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
             applyThemeColors(facts[index].theme);
             updateFactHistory(facts[index].main);
+            factOfTheDayElement.textContent = `Fact of the Day: ${facts[index].main}`; // Update fact of the day
         }
 
         function startFactCarousel() {
@@ -627,7 +628,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -879,17 +880,11 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main.includes('The Milky Way galaxy is thought to smell of rum')); // Set initial fact to the 'Milky Way scent' fact
-        if (currentFactIndex === -1) { // Fallback if not found
-            currentFactIndex = 0;
-        }
+        currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact on load
         displayFact(currentFactIndex);
         updateFactHistory(facts[currentFactIndex].main);
         startFactCarousel(); // Start the carousel on load
 
-        // Update Fact of the Day with the initial fact
-        factOfTheDayElement.textContent = `Fact of the Day: ${facts[currentFactIndex].main}`;
-        footerInfoElement.textContent = `Explore the amazing world of ${facts[currentFactIndex].theme}!`;
         // Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
             if (factDisplayArea.style.display !== 'none') {
