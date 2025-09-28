@@ -478,7 +478,8 @@
             { main: "🧠 The human brain weighs about 3 pounds but uses 20% of the body's oxygen and calories.", more: "It contains approximately 86 billion neurons, more than the number of stars in our galaxy.", theme: "Human Body" },
             { main: "💡 The average person will spend 6 months of their life waiting for red lights to turn green.", more: "This is based on an average commute and daily activities involving traffic lights.", theme: "Everyday Life" },
             { main: "🌳 There are more trees on Earth than stars in the Milky Way galaxy.", more: "Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.", theme: "Nature" },
-            { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" }
+            { main: "🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.", more: "This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.", theme: "Space" },
+            { main: "🌐 The first webcam was created in 1991 to monitor a coffee pot at Cambridge University.", more: "Researchers at the University of Cambridge set up a camera to monitor the Trojan Room coffee pot so they wouldn't make a wasted trip to an empty pot.", theme: "Technology" }
         ];
 
         let currentFactIndex;
@@ -566,6 +567,11 @@
                 background: 'linear-gradient(135deg, hsl(40, 20%, 30%) 0%, hsl(50, 15%, 25%) 100%)',
                 text: 'hsl(0, 0%, 95%)',
                 footerBackground: 'hsl(40, 15%, 25%)'
+            },
+            "Technology": {
+                background: 'linear-gradient(135deg, hsl(200, 20%, 20%) 0%, hsl(220, 15%, 15%) 100%)',
+                text: 'hsl(180, 70%, 90%)',
+                footerBackground: 'hsl(200, 15%, 15%)'
             }
         };
 
@@ -633,7 +639,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -885,7 +891,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.length - 1; // Set to the Milky Way fact initially
+        currentFactIndex = facts.length - 1; // Set to the new Technology fact initially
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
