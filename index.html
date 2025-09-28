@@ -237,7 +237,7 @@
             font-size: 1.2rem;
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;\
+            transition: background-color 0.3s, transform 0.2s;
             min-width: 140px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -393,7 +393,7 @@
         }
         @keyframes pulse {
             0% { transform: scale(1); }
-            50% { transform: scale(1.1); }\
+            50% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
     </style>
@@ -403,8 +403,8 @@
         <h1 id="main-title">Cosmic Facts Explorer</h1>
         <div id="fact-of-the-day"></div>
         <div id="fact-display-area" class="fact-card">
-            <p id="main-fact">🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.</p>
-            <p id="more-info">This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.</p>
+            <p id="main-fact">🌳 There are more trees on Earth than stars in the Milky Way galaxy.</p>
+            <p id="more-info">Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -627,7 +627,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -879,7 +879,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main.includes('Milky Way galaxy is thought to smell')); // Set initial fact to the 'Milky Way galaxy smell' fact
+        currentFactIndex = facts.findIndex(fact => fact.main.includes('There are more trees on Earth')); // Set initial fact to the 'More trees than stars' fact
         if (currentFactIndex === -1) { // Fallback if not found
             currentFactIndex = 0;
         }
