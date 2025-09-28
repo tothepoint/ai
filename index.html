@@ -95,7 +95,7 @@
             margin-bottom: 25px;
             width: 95%;
             max-width: 750px;
-            box-shadow: var(--fact-card-shadow-inset);
+            box-shadow: 0 0 25px rgba(0,0,0,0.5), var(--fact-card-shadow-inset); /* Added outer shadow */
             position: relative;
             overflow: hidden;
             min-height: 250px; /* Ensure enough space for content */
@@ -152,7 +152,8 @@
         .fact-actions, .social-actions, .challenge-actions {
             margin-top: 25px;
             display: flex;
-            flex-wrap: wrap;\n            justify-content: center;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 12px;
         }
         button {
@@ -402,8 +403,8 @@
         <h1 id="main-title">Cosmic Facts Explorer</h1>
         <div id="fact-of-the-day"></div>
         <div id="fact-display-area" class="fact-card">
-            <p id="main-fact">🌳 There are more trees on Earth than stars in the Milky Way galaxy.</p>
-            <p id="more-info">Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.</p>
+            <p id="main-fact"></p>
+            <p id="more-info"></p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -451,7 +452,7 @@
         </div>
     </div>
     
-    <div id="footer-info">Explore the amazing world of Space!</div>
+    <div id="footer-info"></div>
 
     <div id="fact-history" class="collapsible-section">
         <h3 id="history-toggle">Fact History <span class="toggle-icon">▼</span></h3>
@@ -627,7 +628,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -879,7 +880,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = 11; // Pick the 'Nature' fact on load
+        currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact on load
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
