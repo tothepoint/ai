@@ -403,8 +403,8 @@
         <h1 id="main-title">Cosmic Facts Explorer</h1>
         <div id="fact-of-the-day"></div>
         <div id="fact-display-area" class="fact-card">
-            <p id="main-fact">🌳 There are more trees on Earth than stars in the Milky Way galaxy.</p>
-            <p id="more-info">Scientists estimate there are about 3 trillion trees on Earth, while the Milky Way is estimated to contain 100-400 billion stars.</p>
+            <p id="main-fact">🌌 The Milky Way galaxy is thought to smell of rum, raspberries, and booze.</p>
+            <p id="more-info">This unique scent is attributed to ethyl formate, a chemical found in rum and raspberries, detected in the Sagittarius B2 cloud near the galaxy's center.</p>
             <div class="fact-actions">
                 <button id="new-fact-btn">New Fact</button>
                 <button id="toggle-more-info-btn">Show More Info</button>
@@ -529,7 +529,7 @@
 
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        factOfTheDayElement.textContent = `Fact of the Day: ${today.toLocaleDateString(undefined, options)}`;
+        factOfTheDayElement.textContent = `Fact of the Day: ${facts[currentFactIndex].main}`;
 
         const themeColors = {
             "Space": {
@@ -879,7 +879,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main.includes('more trees on Earth')); // Set initial fact to the 'trees on Earth' fact
+        currentFactIndex = facts.findIndex(fact => fact.main.includes('Milky Way galaxy is thought to smell')); // Set initial fact to the 'Milky Way galaxy smell' fact
         if (currentFactIndex === -1) { // Fallback if not found
             currentFactIndex = 0;
         }
