@@ -468,7 +468,7 @@
             { main: "🌳 Trees can communicate with each other, and forests can even create their own rain through a process called the Biotic Pump Theory.", more: "This communication happens through a network of fungi in their roots, and the Biotic Pump Theory suggests that forests can influence atmospheric pressure and humidity to generate rainfall.", theme: "Nature" },
             { main: "In the vacuum of space, two pieces of the same metal will permanently bond if they touch.", more: "This phenomenon is known as 'cold welding' and occurs because there's no atmosphere to create an oxide layer, allowing the atoms to fuse.", theme: "Space" },
             { main: "🦥 Sloths can hold their breath longer than dolphins.", more: "Sloths can slow their heart rate and hold their breath underwater for up to 40 minutes, which is longer than dolphins can.", theme: "Animals" },
-            { main: "🌌 The Universe's average color is called 'Cosmic Latte'.", more: "This color was determined by a team of astronomers in 2002, averaging the light from over 200,000 galaxies.", theme: "Space" },
+            { main: "🌌 The Universe's average color is called 'Cosmic Latte'.", more: "This color was determined by a team of astronomers in 2002, averaging the light from over 200,000 galaxies.", theme: "Cosmic Latte" },
             { main: "🌌 A day on Venus is longer than its year.", more: "It takes about 243 Earth days to complete one spin on its axis, but only 225 Earth days to orbit the Sun.", theme: "Space" },
             { main: "🥛 Hippopotamus milk is pink.", more: "This unique color is due to two distinct acids, hipposudoric acid and norhipposudoric acid, which act as natural pigments and also have antibiotic properties.", theme: "Animals" },
             { main: "🌊 The Great Barrier Reef is the largest living structure on Earth and can be seen from space.", more: "It is composed of over 3,000 individual reefs and 900 islands stretching for over 2,300 kilometers.", theme: "Ocean" },
@@ -571,6 +571,11 @@
                 background: 'linear-gradient(135deg, hsl(200, 20%, 20%) 0%, hsl(220, 15%, 15%) 100%)',
                 text: 'hsl(180, 70%, 90%)',
                 footerBackground: 'hsl(200, 15%, 15%)'
+            },
+            "Cosmic Latte": {
+                background: 'linear-gradient(135deg, hsl(40, 30%, 70%) 0%, hsl(50, 25%, 65%) 100%)',
+                text: 'hsl(30, 40%, 20%)',
+                footerBackground: 'hsl(40, 25%, 60%)'
             }
         };
 
@@ -890,7 +895,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = 13; // Set to the Technology fact initially
+        currentFactIndex = 3; // Set to the Cosmic Latte fact initially
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
