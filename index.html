@@ -237,7 +237,7 @@
             font-size: 1.2rem;
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.2s;\
             min-width: 140px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -627,7 +627,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -879,13 +879,13 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = facts.findIndex(fact => fact.main.includes("Milky Way galaxy is thought to smell"));
-        if (currentFactIndex === -1) {
-            currentFactIndex = Math.floor(Math.random() * facts.length); // Fallback if not found
-        }
+        currentFactIndex = 2; // Set to "Sloths can hold their breath longer than dolphins."
         displayFact(currentFactIndex);
         updateFactHistory(facts[currentFactIndex].main);
         startFactCarousel(); // Start the carousel on load
+
+        // Update Fact of the Day with the initial fact
+        factOfTheDayElement.textContent = `Fact of the Day: ${facts[currentFactIndex].main}`;
 
         // Keyboard navigation for facts
         document.addEventListener('keydown', (event) => {
