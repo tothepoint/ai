@@ -3,34 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Insights: Space Exploration Fact</title>
+    <title>Oceanic Wonders: Deep Sea Fact</title>
     <style>
         :root {
-            /* Space Exploration Theme Colors */
-            --bg-gradient: linear-gradient(135deg, hsl(240, 20%, 10%), hsl(260, 25%, 15%)); /* Dark blue to dark purple */
-            --text-color: hsl(60, 100%, 90%); /* Light yellow/cream for readability */
-            --footer-bg: hsl(240, 20%, 15%); /* Slightly lighter dark blue for footer */
-            --button-primary: hsl(260, 40%, 30%); /* Muted purple for buttons */
-            --button-hover: hsl(260, 50%, 40%);
-            --main-action-btn: hsl(30, 80%, 50%); /* Orange for main actions */
+            /* Ocean Life Theme Colors */
+            --bg-gradient: linear-gradient(135deg, hsl(200, 80%, 15%), hsl(220, 70%, 10%)); /* Deep ocean blue to darker blue */
+            --bg-deep-dive: linear-gradient(135deg, hsl(220, 70%, 10%), hsl(240, 60%, 5%)); /* Even deeper blue for dive */
+            --text-color: hsl(40, 100%, 90%); /* Light sandy/cream for readability */
+            --footer-bg: hsl(220, 70%, 8%); /* Darker blue for footer */
+            --button-primary: hsl(190, 60%, 30%); /* Muted teal for buttons */
+            --button-hover: hsl(190, 70%, 40%);
+            --main-action-btn: hsl(30, 80%, 50%); /* Orange for main actions (can be coral-like) */
             --main-action-btn-hover: hsl(30, 90%, 60%);
-            --glass-bg: rgba(20, 10, 40, 0.4); /* Darker, more opaque glass */
-            --glass-border: rgba(150, 100, 255, 0.3); /* Lighter purple border */
-            --fact-card-bg: rgba(0, 0, 0, 0.5);
+            --glass-bg: rgba(0, 50, 80, 0.4); /* Darker, more opaque ocean glass */
+            --glass-border: rgba(100, 200, 255, 0.3); /* Lighter blue border */
+            --fact-card-bg: rgba(0, 30, 50, 0.5);
             --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.5);
             --fact-text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow for fact text */
-            --title-color: hsl(60, 100%, 95%); /* Bright yellow for title */
+            --title-color: hsl(180, 100%, 85%); /* Bright aqua for title */
             --title-shadow: 3px 3px 20px rgba(0, 0, 0, 0.8); /* Stronger title shadow */
-            --quiz-option-btn: hsl(260, 35%, 35%);
-            --quiz-option-btn-hover: hsl(260, 45%, 45%);
+            --quiz-option-btn: hsl(190, 45%, 35%);
+            --quiz-option-btn-hover: hsl(190, 55%, 45%);
             --quiz-correct: hsl(120, 55%, 45%);
             --quiz-incorrect: hsl(0, 55%, 45%);
             --challenge-timer-progress: hsl(0, 100%, 70%);
             --challenge-streak-color: hsl(160, 80%, 70%);
             --history-toggle-color: hsl(0, 0%, 95%);
-            --history-list-color: hsl(60, 80%, 85%); /* Lighter yellow for history list */
-            --hint-button-bg: hsl(260, 60%, 30%);
-            --hint-button-hover: hsl(260, 70%, 40%);
+            --history-list-color: hsl(40, 80%, 85%); /* Lighter sandy for history list */
+            --hint-button-bg: hsl(190, 60%, 30%);
+            --hint-button-hover: hsl(190, 70%, 40%);
             --reveal-button-bg: hsl(30, 80%, 40%);
             --reveal-button-hover: hsl(30, 90%, 50%);
         }
@@ -50,6 +51,9 @@
             box-sizing: border-box;
             transition: background 0.8s ease-in-out, color 0.5s ease;
             overflow-x: hidden;
+        }
+        body.deep-dive {
+            background: var(--bg-deep-dive);
         }
         .container {
             max-width: 950px;
@@ -135,8 +139,7 @@
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes slideInFromBottom {
-            from { transform: translateY(100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 0.95; }
+            from { transform: translateY(100%); opacity: 0; }\n            to { transform: translateY(0); opacity: 0.95; }
         }
         #footer-info {
             font-size: 1.4rem; /* Slightly larger font */
@@ -400,60 +403,28 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1#main-title {
-                font-size: 3.5rem;
-                margin-bottom: 1.5rem;
-            }
-            .container {
-                padding: 20px;
-            }
-            .fact-card {
-                padding: 25px;
-                min-height: 200px;
-            }
-            p {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-            #fact-of-the-day-text {
-                font-size: 1.8rem;
-            }
-            #footer-info {
-                font-size: 1rem;
-                padding: 15px 25px;
-            }
-            .btn, .quiz-option-btn, .challenge-option-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-            .main-action-btn {
-                font-size: 1.2rem;
-                padding: 15px 25px;
-            }
-            #did-you-know h3 {
-                font-size: 1.4rem;
-            }
-            #did-you-know-content {
-                font-size: 1rem;
-            }
-        }
+        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 1.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            .fact-card {\n                padding: 25px;\n                min-height: 200px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.8rem;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 25px;\n            }\n            .btn, .quiz-option-btn, .challenge-option-btn {\n                padding: 12px 20px;\n                font-size: 1rem;\n            }\n            .main-action-btn {\n                font-size: 1.2rem;\n                padding: 15px 25px;\n            }\n            #did-you-know h3 {\n                font-size: 1.4rem;\n            }\n            #did-you-know-content {\n                font-size: 1rem;\n            }\n        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Cosmic Insights</h1>
+        <h1 id="main-title">Oceanic Wonders</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">The International Space Station (ISS) is the largest modular space station currently in low Earth orbit. It has been continuously occupied by astronauts since November 2, 2000, making it the longest continuous human presence in space.</p>
+            <p id="fact-of-the-day-text">The deepest part of the ocean is the Mariana Trench, which is about 11,000 meters (36,000 feet) deep. If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.</p>
             <div id="challenge-buttons" style="margin-top: 20px;">
-                <button id="reveal-fact-btn" class="btn main-action-btn">Reveal Fact</button>
+                <button id="reveal-fact-btn" class="btn main-action-btn">Dive Deeper</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p id="did-you-know-content">The ISS orbits Earth at an average altitude of 400 kilometers (250 miles) and travels at a speed of 28,000 kilometers per hour (17,500 mph), completing 16 orbits per day.</p>
+                <p id="did-you-know-content">The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level.</p>
             </div>
         </div>
+    </div>
+
+    <div id="history-section">
+        <button id="history-toggle-btn">Show Fact History</button>
+        <ul id="history-list"></ul>
     </div>
 
     <footer id="footer-info">
@@ -462,21 +433,55 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const body = document.body;
             const factText = document.getElementById('fact-of-the-day-text');
             const revealFactBtn = document.getElementById('reveal-fact-btn');
             const didYouKnowSection = document.getElementById('did-you-know');
+            const didYouKnowContent = document.getElementById('did-you-know-content');
+            const historyToggleBtn = document.getElementById('history-toggle-btn');
+            const historyList = document.getElementById('history-list');
+
+            let factHistory = [];
 
             // Initially hide the fact and did you know section
             factText.classList.remove('revealed');
             didYouKnowSection.classList.remove('show-did-you-know');
 
             revealFactBtn.addEventListener('click', () => {
+                // "Dive Deeper" effect
+                body.classList.add('deep-dive');
+
                 factText.classList.add('revealed');
                 revealFactBtn.style.display = 'none'; // Hide the button after revealing
+
                 setTimeout(() => {
                     didYouKnowSection.classList.add('show-did-you-know');
                 }, 1000); // Show "Did You Know" after a short delay
+
+                // Add current fact to history
+                const currentFact = factText.textContent;
+                const currentDidYouKnow = didYouKnowContent.textContent;
+                factHistory.push({ fact: currentFact, didYouKnow: currentDidYouKnow });
+                updateHistoryList();
             });
+
+            historyToggleBtn.addEventListener('click', () => {
+                historyList.classList.toggle('show-history');
+                if (historyList.classList.contains('show-history')) {
+                    historyToggleBtn.textContent = 'Hide Fact History';
+                } else {
+                    historyToggleBtn.textContent = 'Show Fact History';
+                }
+            });
+
+            function updateHistoryList() {
+                historyList.innerHTML = ''; // Clear existing list
+                factHistory.forEach((item, index) => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<strong>Fact ${index + 1}:</strong> ${item.fact} <br> <em>Did You Know:</em> ${item.didYouKnow}`;
+                    historyList.prepend(listItem); // Add newest fact to the top
+                });
+            }
         });
     </script>
 </body>
