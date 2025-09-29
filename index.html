@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Wonders: Venus Fact</title>
+    <title>Deep Sea Wonders: Mariana Trench Fact</title>
     <style>
         :root {
-            /* Theme colors will be set dynamically by JavaScript */
-            --bg-gradient: linear-gradient(135deg, hsl(240, 40%, 15%), hsl(280, 30%, 10%));
-            --text-color: hsl(0, 0%, 90%);
-            --footer-bg: hsl(280, 30%, 20%);
-            --button-primary: hsl(210, 45%, 55%);
-            --button-hover: hsl(210, 55%, 65%);
-            --main-action-btn: hsl(160, 65%, 45%);
+            /* Deep Sea Theme Colors */
+            --bg-gradient: linear-gradient(135deg, hsl(220, 60%, 10%), hsl(190, 70%, 15%)); /* Deep blue to dark teal */
+            --text-color: hsl(180, 70%, 90%); /* Light aqua for readability */
+            --footer-bg: hsl(210, 50%, 18%); /* Darker blue for footer */
+            --button-primary: hsl(200, 60%, 40%); /* Muted blue for buttons */
+            --button-hover: hsl(200, 70%, 50%);
+            --main-action-btn: hsl(160, 65%, 45%); /* Greenish-blue for main actions */
             --main-action-btn-hover: hsl(160, 75%, 55%);
-            --glass-bg: rgba(255, 255, 255, 0.08);
-            --glass-border: rgba(255, 255, 255, 0.25);
-            --fact-card-bg: rgba(0, 0, 0, 0.3);
-            --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.3);
-            --fact-text-shadow: 1px 1px 5px rgba(0,0,0,0.3);
-            --title-color: hsl(0, 0%, 100%);
-            --title-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5);
+            --glass-bg: rgba(0, 50, 70, 0.3); /* Darker, more opaque glass */
+            --glass-border: rgba(100, 200, 255, 0.3); /* Lighter blue border */
+            --fact-card-bg: rgba(0, 0, 0, 0.4);
+            --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.4);
+            --fact-text-shadow: 1px 1px 8px rgba(0,0,0,0.6); /* Stronger shadow for fact text */
+            --title-color: hsl(180, 100%, 95%); /* Bright aqua for title */
+            --title-shadow: 3px 3px 15px rgba(0, 0, 0, 0.7); /* Stronger title shadow */
             --quiz-option-btn: hsl(200, 35%, 35%);
             --quiz-option-btn-hover: hsl(200, 45%, 45%);
             --quiz-correct: hsl(120, 55%, 45%);
@@ -28,7 +28,11 @@
             --challenge-timer-progress: hsl(0, 100%, 70%);
             --challenge-streak-color: hsl(160, 80%, 70%);
             --history-toggle-color: hsl(0, 0%, 95%);
-            --history-list-color: hsl(0, 0%, 85%);
+            --history-list-color: hsl(180, 50%, 80%); /* Lighter aqua for history list */
+            --hint-button-bg: hsl(200, 60%, 30%);
+            --hint-button-hover: hsl(200, 70%, 40%);
+            --reveal-button-bg: hsl(160, 65%, 40%);
+            --reveal-button-hover: hsl(160, 75%, 50%);
         }
 
         body {
@@ -109,14 +113,14 @@
             font-size: 2.5rem; /* Significantly increased font size for main fact */
             line-height: 1.5; /* Improved line height for readability */
             margin-bottom: 2rem; /* More space below fact text */
-            cursor: pointer;
+            cursor: default; /* Changed to default as interaction is now button-based */
             transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
             text-shadow: var(--fact-text-shadow);
             font-weight: 500; /* Slightly bolder for emphasis */
         }
         p:hover {
-            transform: scale(1.02); /* Slightly less aggressive scale on hover */
-            color: hsl(60, 100%, 90%); /* Brighter on hover */
+            transform: scale(1); /* No scale on hover for fact text */
+            color: var(--text-color); /* No color change on hover for fact text */
         }
         #main-fact, #quiz-fact, #challenge-fact {
             animation: fadeInScale 1.2s ease-out forwards;
@@ -136,7 +140,7 @@
         }
         #footer-info {
             font-size: 1.4rem; /* Slightly larger font */
-            color: hsl(0, 0%, 95%); /* Adjusted for better visibility */
+            color: hsl(180, 70%, 95%); /* Adjusted for better visibility */
             background-color: var(--footer-bg);
             padding: 20px 40px; /* Increased padding */
             border-radius: 15px; /* More rounded */
@@ -151,13 +155,13 @@
             margin-top: 25px;
             margin-bottom: 25px;
             padding: 30px 40px; /* Increased padding */
-            background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+            background-color: var(--glass-bg); /* Use glass-bg for consistency */
             border-radius: 20px; /* More rounded */
             box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
             backdrop-filter: blur(10px); /* More blur */
             -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3); /* Stronger border */
-            cursor: pointer;
+            border: 1px solid var(--glass-border); /* Stronger border */
+            cursor: default; /* Changed to default as interaction is now button-based */
             transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
@@ -170,37 +174,30 @@
             min-height: 180px; /* Ensure enough space */
         }
         #fact-of-the-day-container:hover {
-            transform: translateY(-8px) scale(1.02); /* More pronounced hover effect */
-            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+            transform: translateY(0) scale(1); /* No hover effect for container */
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Reset shadow on hover */
         }
         #fact-of-the-day-text {
             font-size: 2.4rem; /* Significantly increased font size */
-            color: var(--text-color);
+            color: transparent; /* Initially hidden */
+            background-color: rgba(255, 255, 255, 0.05); /* Placeholder background */
+            padding: 10px 20px;
+            border-radius: 10px;
             font-style: italic;
             font-weight: 600; /* Bolder */
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* Stronger text shadow */
-            transition: color 0.4s ease, filter 0.6s ease; /* Added filter transition */
+            text-shadow: none; /* No text shadow when hidden */
+            transition: color 0.8s ease, background-color 0.8s ease; /* Smooth reveal */
             line-height: 1.4; /* Improved readability */
+            min-height: 80px; /* Ensure space for text */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
         }
-        .fact-blurred {
-            filter: blur(8px); /* Apply blur effect */
-            cursor: pointer;
-            user-select: none; /* Prevent text selection */
-        }
-        .fact-blurred:hover {
-            filter: blur(4px); /* Less blur on hover */
-        }
-        #fact-of-the-day-container.revealed .fact-blurred {
-            filter: blur(0); /* Remove blur when revealed */
-        }
-        #fact-of-the-day-container.revealed #fact-of-the-day-text {
-            cursor: default; /* Change cursor after reveal */
-        }
-        #fact-of-the-day-container.revealed #fact-of-the-day-text:hover {
-            color: var(--text-color); /* Reset hover color after reveal */
-        }
-        #fact-of-the-day-container:hover #fact-of-the-day-text {
-            color: hsl(60, 100%, 90%); /* Brighter on hover */
+        #fact-of-the-day-text.revealed {
+            color: var(--text-color); /* Revealed color */
+            background-color: transparent; /* Remove placeholder background */
+            text-shadow: var(--fact-text-shadow); /* Apply text shadow when revealed */
         }
         #did-you-know {
             margin-top: 25px; /* Increased margin */
@@ -220,7 +217,7 @@
         }
         #did-you-know h3 {
             font-size: 1.6rem;
-            color: hsl(60, 100%, 85%);
+            color: hsl(160, 100%, 85%); /* Greenish-aqua for emphasis */
             margin-bottom: 10px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
@@ -235,7 +232,7 @@
         #quiz-area h2, #challenge-area h2 {
             font-size: 3rem;
             margin-bottom: 1.8rem;
-            color: hsl(60, 100%, 90%);
+            color: hsl(180, 100%, 90%);
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
         }
         #quiz-fact, #challenge-fact {
@@ -403,84 +400,4 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1#main-title {
-                font-size: 3.5rem;
-                margin-bottom: 1.5rem;
-            }
-            .container {
-                padding: 20px;
-            }
-            .fact-card {
-                padding: 25px;
-                min-height: 200px;
-            }
-            p {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-            #fact-of-the-day-text {
-                font-size: 1.8rem;
-            }
-            #footer-info {
-                font-size: 1rem;
-                padding: 15px 25px;
-            }
-            .btn, .quiz-option-btn, .challenge-option-btn {
-                padding: 12px 20px;
-                font-size: 1rem;
-            }
-            .main-action-btn {
-                font-size: 1.2rem;
-                padding: 15px 25px;
-            }
-            #did-you-know h3 {
-                font-size: 1.4rem;
-            }
-            #did-you-know-content {
-                font-size: 1rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
-
-        <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text" class="fact-blurred">A day on Venus is longer than a year on Venus.</p>
-            <div id="did-you-know">
-                <h3>Did You Know?</h3>
-                <p id="did-you-know-content">Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation. Its orbital period around the Sun is about 225 Earth days, making its day longer than its year!</p>
-            </div>
-        </div>
-
-        <!-- Placeholder for other sections like Quiz or Challenge if they were to be implemented -->
-        <!-- <div id="quiz-area" style="display: none;"></div> -->
-        <!-- <div id="challenge-area" style="display: none;"></div> -->
-
-    </div>
-
-    <footer id="footer-info">
-        Explore the universe, one fact at a time.
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const factContainer = document.getElementById('fact-of-the-day-container');
-            const factText = document.getElementById('fact-of-the-day-text');
-            const didYouKnowSection = document.getElementById('did-you-know');
-
-            factContainer.addEventListener('click', () => {
-                if (factText.classList.contains('fact-blurred')) {
-                    factText.classList.remove('fact-blurred');
-                    factContainer.classList.add('revealed');
-                    setTimeout(() => {
-                        didYouKnowSection.classList.add('show-did-you-know');
-                    }, 500); // Delay for a smoother reveal
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 1.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            .fact-card {\n                padding: 25px;\n                min-height: 200px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.8rem;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 25px;\n            }\n            .btn, .quiz-option-btn, .challenge-option-btn {\n                padding: 12px 20px;\n                font-size: 1rem;\n            }\n            .main-action-btn {\n                font-size: 1.2rem;\n                padding: 15px 25px;\n            }\n            #did-you-know h3 {\n                font-size: 1.4rem;\n            }\n            #did-you-know-content {\n                font-size: 1rem;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\"></p> <!-- Fact text is initially empty -->\n            <div id=\"challenge-buttons\" style=\"margin-top: 20px;\">\n                <button id=\"reveal-hint-btn\" class=\"btn main-action-btn\">Reveal Hint</button>\n                <button id=\"reveal-fact-btn\" class=\"btn\" style=\"display: none;\">Reveal Fact</button>\n            </div>\n            <div id=\"did-you-know\">\n                <h3>Did You Know?</h3>\n                <p id=\"did-you-know-content\">The Mariana Trench is located in the western Pacific Ocean and is the deepest oceanic trench on Earth. Its deepest point, Challenger Deep, is approximately 11,000 meters (36,000 feet) deep. To put that into perspective, if Mount Everest were placed in the trench, its peak would still be over a mile below the surface!</p>\n            </div>\n        </div>\n\n        <!-- Placeholder for other sections like Quiz or Challenge if they were to be implemented -->\n        <!-- <div id=\"quiz-area\" style=\"display: none;\"></div> -->\n        <!-- <div id=\"challenge-area\" style=\"display: none;\"></div> -->\n\n    </div>\n\n    <footer id=\"footer-info\">\n        Explore the deep, one fact at a time.\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const factTextElement = document.getElementById('fact-of-the-day-text');\n            const revealHintBtn = document.getElementById('reveal-hint-btn');\n            const revealFactBtn = document.getElementById('reveal-fact-btn');\n            const didYouKnowSection = document.getElementById('did-you-know');\n            const fullFact = \"The deepest part of the ocean, the Mariana Trench, is deeper than Mount Everest is tall.\";\n            let hintIndex = 0;\n            const hints = [\n                \"It's a geographical feature.\",\n                \"It's found in the Pacific Ocean.\",\n                \"It's known for extreme depth.\",\n                \"It's compared to a very tall mountain.\"\n            ];\n\n            factTextElement.textContent = \"Can you guess this deep sea wonder?\";\n            factTextElement.classList.add('fact-blurred'); // Add blur initially\n\n            revealHintBtn.addEventListener('click', () => {\n                if (hintIndex < hints.length) {\n                    factTextElement.textContent = hints[hintIndex];\n                    factTextElement.classList.remove('fact-blurred'); // Remove blur for hints\n                    factTextElement.classList.add('revealed');\n                    hintIndex++;\n                    if (hintIndex === hints.length) {\n                        revealHintBtn.style.display = 'none';\n                        revealFactBtn.style.display = 'inline-block';\n                    }\n                }\n            });\n\n            revealFactBtn.addEventListener('click', () => {\n                factTextElement.textContent = fullFact;\n                factTextElement.classList.remove('fact-blurred');\n                factTextElement.classList.add('revealed');\n                revealHintBtn.style.display = 'none';\n                revealFactBtn.style.display = 'none';\n                setTimeout(() => {\n                    didYouKnowSection.classList.add('show-did-you-know');\n                }, 500);\n            });\n        });\n    </script>\n</body>\n</html>
