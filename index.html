@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oceanic Wonders: Deep Sea Fact</title>
+    <title>Cosmic Wonders: Space Fact</title>
     <style>
         :root {
-            /* Ocean Life Theme Colors */
-            --bg-gradient: linear-gradient(135deg, hsl(200, 80%, 15%), hsl(220, 70%, 10%)); /* Deep ocean blue to darker blue */
-            --bg-deep-dive: linear-gradient(135deg, hsl(220, 70%, 10%), hsl(240, 60%, 5%)); /* Even deeper blue for dive */
-            --text-color: hsl(40, 100%, 90%); /* Light sandy/cream for readability */
-            --footer-bg: hsl(220, 70%, 8%); /* Darker blue for footer */
-            --button-primary: hsl(190, 60%, 30%); /* Muted teal for buttons */
-            --button-hover: hsl(190, 70%, 40%);
-            --main-action-btn: hsl(30, 80%, 50%); /* Orange for main actions (can be coral-like) */
+            /* Space Exploration Theme Colors */
+            --bg-gradient: linear-gradient(135deg, hsl(240, 80%, 8%), hsl(280, 70%, 5%)); /* Deep space blue to dark purple */
+            --bg-deep-dive: linear-gradient(135deg, hsl(280, 70%, 5%), hsl(300, 60%, 3%)); /* Even darker purple for deep dive */
+            --text-color: hsl(60, 100%, 90%); /* Light yellow/gold for readability */
+            --footer-bg: hsl(260, 70%, 8%); /* Darker purple for footer */
+            --button-primary: hsl(220, 60%, 30%); /* Muted blue for buttons */
+            --button-hover: hsl(220, 70%, 40%);
+            --main-action-btn: hsl(30, 80%, 50%); /* Orange for main actions (like a distant star) */
             --main-action-btn-hover: hsl(30, 90%, 60%);
-            --glass-bg: rgba(0, 50, 80, 0.4); /* Darker, more opaque ocean glass */
-            --glass-border: rgba(100, 200, 255, 0.3); /* Lighter blue border */
-            --fact-card-bg: rgba(0, 30, 50, 0.5);
+            --glass-bg: rgba(30, 0, 50, 0.4); /* Darker, more opaque space glass */
+            --glass-border: rgba(150, 100, 255, 0.3); /* Lighter purple border */
+            --fact-card-bg: rgba(10, 0, 20, 0.5);
             --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.5);
             --fact-text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow for fact text */
-            --title-color: hsl(180, 100%, 85%); /* Bright aqua for title */
+            --title-color: hsl(180, 100%, 80%); /* Bright cyan for title */
             --title-shadow: 3px 3px 20px rgba(0, 0, 0, 0.8); /* Stronger title shadow */
-            --quiz-option-btn: hsl(190, 45%, 35%);
-            --quiz-option-btn-hover: hsl(190, 55%, 45%);
+            --quiz-option-btn: hsl(220, 45%, 35%);
+            --quiz-option-btn-hover: hsl(220, 55%, 45%);
             --quiz-correct: hsl(120, 55%, 45%);
             --quiz-incorrect: hsl(0, 55%, 45%);
             --challenge-timer-progress: hsl(0, 100%, 70%);
             --challenge-streak-color: hsl(160, 80%, 70%);
             --history-toggle-color: hsl(0, 0%, 95%);
-            --history-list-color: hsl(40, 80%, 85%); /* Lighter sandy for history list */
-            --hint-button-bg: hsl(190, 60%, 30%);
-            --hint-button-hover: hsl(190, 70%, 40%);
+            --history-list-color: hsl(60, 80%, 85%); /* Lighter yellow for history list */
+            --hint-button-bg: hsl(220, 60%, 30%);
+            --hint-button-hover: hsl(220, 70%, 40%);
             --reveal-button-bg: hsl(30, 80%, 40%);
             --reveal-button-hover: hsl(30, 90%, 50%);
         }
@@ -408,16 +408,17 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Oceanic Wonders</h1>
+        <h1 id="main-title">Cosmic Wonders</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">The deepest part of the ocean is the Mariana Trench, which is about 11,000 meters (36,000 feet) deep. If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.</p>
+            <p id="fact-of-the-day-text">The universe is estimated to be around 13.8 billion years old, but the observable universe is much larger than 13.8 billion light-years across due to cosmic inflation.</p>
             <div id="challenge-buttons" style="margin-top: 20px;">
-                <button id="reveal-fact-btn" class="btn main-action-btn">Dive Deeper</button>
+                <button id="reveal-fact-btn" class="btn main-action-btn">Explore Fact</button>
+                <button id="generate-fact-btn" class="btn">Generate New Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p id="did-you-know-content">The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level.</p>
+                <p id="did-you-know-content">The fastest man-made object, the Parker Solar Probe, travels at speeds up to 690,000 km/h (430,000 mph) relative to the Sun, designed to study the Sun's outer corona.</p>
             </div>
         </div>
     </div>
@@ -436,6 +437,7 @@
             const body = document.body;
             const factText = document.getElementById('fact-of-the-day-text');
             const revealFactBtn = document.getElementById('reveal-fact-btn');
+            const generateFactBtn = document.getElementById('generate-fact-btn');
             const didYouKnowSection = document.getElementById('did-you-know');
             const didYouKnowContent = document.getElementById('did-you-know-content');
             const historyToggleBtn = document.getElementById('history-toggle-btn');
@@ -443,12 +445,48 @@
 
             let factHistory = [];
 
-            // Initially hide the fact and did you know section
-            factText.classList.remove('revealed');
-            didYouKnowSection.classList.remove('show-did-you-know');
+            const spaceFacts = [
+                {
+                    fact: "The universe is estimated to be around 13.8 billion years old, but the observable universe is much larger than 13.8 billion light-years across due to cosmic inflation.",
+                    didYouKnow: "The fastest man-made object, the Parker Solar Probe, travels at speeds up to 690,000 km/h (430,000 mph) relative to the Sun, designed to study the Sun's outer corona."
+                },
+                {
+                    fact: "A day on Venus is longer than its year. It takes Venus 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.",
+                    didYouKnow: "Venus rotates in the opposite direction to most other planets, meaning the Sun rises in the west and sets in the east."
+                },
+                {
+                    fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+                    didYouKnow: "Scientists estimate there are about 100 billion to 400 billion stars in our Milky Way galaxy alone, and billions of galaxies in the observable universe."
+                },
+                {
+                    fact: "Neutron stars are so dense that a sugar cube-sized amount of material from one would weigh about a billion tons.",
+                    didYouKnow: "They are formed from the collapsed cores of massive stars after a supernova explosion."
+                },
+                {
+                    fact: "The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a massive filament of galaxies stretching over 10 billion light-years.",
+                    didYouKnow: "It was discovered in 2013 by mapping the distribution of gamma-ray bursts."
+                }
+            ];
+
+            let currentFactIndex = 0; // Start with the first fact
+
+            function displayFact(index) {
+                const factData = spaceFacts[index];
+                factText.textContent = factData.fact;
+                didYouKnowContent.textContent = factData.didYouKnow;
+
+                // Reset UI for new fact
+                body.classList.remove('deep-dive');
+                factText.classList.remove('revealed');
+                didYouKnowSection.classList.remove('show-did-you-know');
+                revealFactBtn.style.display = 'inline-block'; // Show the button again
+            }
+
+            // Initial display of the first fact
+            displayFact(currentFactIndex);
 
             revealFactBtn.addEventListener('click', () => {
-                // "Dive Deeper" effect
+                // "Explore Fact" effect
                 body.classList.add('deep-dive');
 
                 factText.classList.add('revealed');
@@ -459,10 +497,19 @@
                 }, 1000); // Show "Did You Know" after a short delay
 
                 // Add current fact to history
-                const currentFact = factText.textContent;
-                const currentDidYouKnow = didYouKnowContent.textContent;
-                factHistory.push({ fact: currentFact, didYouKnow: currentDidYouKnow });
+                const currentFactData = spaceFacts[currentFactIndex];
+                factHistory.push({ fact: currentFactData.fact, didYouKnow: currentFactData.didYouKnow });
                 updateHistoryList();
+            });
+
+            generateFactBtn.addEventListener('click', () => {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * spaceFacts.length);
+                } while (newIndex === currentFactIndex); // Ensure a new fact is generated
+
+                currentFactIndex = newIndex;
+                displayFact(currentFactIndex);
             });
 
             historyToggleBtn.addEventListener('click', () => {
