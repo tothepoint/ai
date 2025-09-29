@@ -86,7 +86,7 @@
             letter-spacing: 3px; /* Increased letter spacing */
             font-weight: 800; /* Bolder title */
         }
-        .fact-card {
+        .fact-card { /* This style is now primarily for quiz/challenge areas */
             background-color: var(--fact-card-bg);
             padding: 40px; /* Increased padding */
             border-radius: 20px; /* More rounded */
@@ -130,59 +130,6 @@
         @keyframes slideInFromBottom {
             from { transform: translateY(100%); opacity: 0; }
             to { transform: translateY(0); opacity: 0.95; }
-        }
-        #more-info {
-            font-size: 1.4rem;
-            color: hsl(0, 0%, 88%);
-            margin-top: 20px;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.8s ease-out, opacity 0.8s ease-out, transform 0.8s ease-out;
-            opacity: 0;
-            transform: translateY(-15px);
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
-            padding-top: 20px;
-        }
-        #more-info.show-more-info {
-            max-height: 250px;
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .fact-actions, .social-actions, .challenge-actions {
-            margin-top: 25px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 12px;
-        }
-        button {
-            background-color: var(--button-primary);
-            color: #FFFFFF;
-            border: none;
-            padding: 14px 28px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-            font-weight: 500;
-        }
-        button:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-        }
-        button:active {
-            transform: translateY(0);
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-        }
-        .main-action-btn {
-            background-color: var(--main-action-btn);
-            font-size: 1.4rem;
-            padding: 18px 35px;
-            margin-top: 35px;
-            margin-bottom: 25px;
-            border-radius: 12px;
         }
         #footer-info {
             font-size: 1.4rem; /* Slightly larger font */
@@ -263,7 +210,6 @@
             line-height: 1.5;
             margin-bottom: 0;
         }
-        /* Removed #fact-of-the-day as it's replaced by #fact-of-the-day-container */
 
         /* Quiz Specific Styles */
         #quiz-area h2, #challenge-area h2 {
@@ -410,106 +356,18 @@
         #history-list li:last-child {
             border-bottom: none;
         }
-
-        /* Fact Carousel / Navigation */
-        .fact-navigation {
-            position: absolute;
-            top: 50%;
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            transform: translateY(-50%);
-            padding: 0 15px;
-            box-sizing: border-box;
-            pointer-events: none; /* Allow clicks to pass through to fact */
-        }
-        .nav-button {
-            background-color: rgba(255, 255, 255, 0.15);
-            border: none;
-            color: white;
-            font-size: 2.5rem;
-            padding: 10px 15px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            pointer-events: all; /* Re-enable clicks for buttons */
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-        }
-        .nav-button:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px) scale(1.05);
-        }
-        .nav-button:active {
-            transform: translateY(0) scale(1);
-        }
-
-        /* Like Button Animation */
-        .like-button.liked {
-            animation: pulse 0.5s ease-out;
-            background-color: hsl(0, 70%, 50%); /* Red for liked */
-        }
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-        .fact-card.animate-in {
-            animation: fadeInScale 1.2s ease-out forwards;
-        }
-        .fact-indicators {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-        .fact-indicator-dot {
-            width: 12px;
-            height: 12px;
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-        .fact-indicator-dot:hover {
-            background-color: rgba(255, 255, 255, 0.6);
-            transform: scale(1.1);
-        }
-        .fact-indicator-dot.active {
-            background-color: var(--main-action-btn); /* Highlight with a theme color */
-            transform: scale(1.2);
-            box-shadow: 0 0 8px var(--main-action-btn);
-        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1 id="main-title">Cosmic Facts Explorer</h1>
+
         <div id="fact-of-the-day-container">
             <div id="fact-of-the-day-text"></div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
                 <p id="did-you-know-content"></p>
             </div>
-        </div>
-        <div id="fact-display-area" class="fact-card">
-            <p id="main-fact"></p>
-            <p id="more-info"></p>
-            <div class="fact-actions">
-                <button id="new-fact-btn">New Fact</button>
-                <button id="toggle-more-info-btn">Show More Info</button>
-                <button id="read-aloud-btn">Read Aloud</button>
-            </div>
-            <div class="social-actions">
-                <button id="copy-fact-btn">Copy</button>
-                <button id="share-twitter-btn">Share</button>
-                <button id="fact-source-btn">Source</button>
-                <button id="like-fact-btn" class="like-button">Like</button>
-            </div>
-            <div class="fact-navigation">
-                <button id="prev-fact-btn" class="nav-button">‹</button>
-                <button id="next-fact-btn" class="nav-button">›</button>
-            </div>
-            <div id="fact-indicators" class="fact-indicators"></div>
         </div>
 
         <div id="quiz-area" class="fact-card" style="display: none;">
@@ -568,7 +426,7 @@
             { main: "🌐 The first webcam was created in 1991 to monitor a coffee pot at Cambridge University.", more: "Researchers at the University of Cambridge set up a camera to monitor the Trojan Room coffee pot so they wouldn't make a wasted trip to an empty pot.", theme: "Technology" }
         ];
 
-        let currentFactIndex;
+        let currentFact = facts[3]; // Set to the "Cosmic Latte" fact initially
         let quizScore = 0;
         let currentQuizFact = null;
         let challengeScore = 0;
@@ -576,25 +434,14 @@
         let timeLeft = 10;
         let currentChallengeFact = null;
         let challengeStreak = 0;
-        let factCarouselInterval;
 
         const mainTitleElement = document.getElementById('main-title');
-        const factDisplayArea = document.getElementById('fact-display-area');
-        const mainFactElement = document.getElementById('main-fact');
-        const moreInfoElement = document.getElementById('more-info');
-        const copyFactBtn = document.getElementById('copy-fact-btn');
-        const shareTwitterBtn = document.getElementById('share-twitter-btn');
-        const newFactBtn = document.getElementById('new-fact-btn');
-        const toggleMoreInfoBtn = document.getElementById('toggle-more-info-btn');
-        const factSourceBtn = document.getElementById('fact-source-btn');
-        const readAloudBtn = document.getElementById('read-aloud-btn');
-        const likeFactBtn = document.getElementById('like-fact-btn');
-        const bodyElement = document.body;
-        const footerInfoElement = document.getElementById('footer-info');
         const factOfTheDayContainer = document.getElementById('fact-of-the-day-container');
         const factOfTheDayTextElement = document.getElementById('fact-of-the-day-text');
         const didYouKnowElement = document.getElementById('did-you-know');
         const didYouKnowContentElement = document.getElementById('did-you-know-content');
+        const bodyElement = document.body;
+        const footerInfoElement = document.getElementById('footer-info');
 
         const quizArea = document.getElementById('quiz-area');
         const quizFactElement = document.getElementById('quiz-fact');
@@ -604,7 +451,6 @@
         const toggleQuizBtn = document.getElementById('toggle-quiz-btn');
 
         const challengeArea = document.getElementById('challenge-area');
-        const challengeFactElement = document.getElementById('challenge-fact');
         const challengeTimerContainer = document.getElementById('challenge-timer-container');
         const challengeTimerProgress = document.getElementById('challenge-timer-progress');
         const challengeTimerText = document.getElementById('challenge-timer-text');
@@ -619,14 +465,6 @@
         const factHistorySection = document.getElementById('fact-history');
         const historyToggle = document.getElementById('history-toggle');
         const historyListElement = document.getElementById('history-list');
-
-        const prevFactBtn = document.getElementById('prev-fact-btn');
-        const nextFactBtn = document.getElementById('next-fact-btn');
-        const factIndicatorsElement = document.getElementById('fact-indicators');
-
-        const today = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        // factOfTheDayElement.textContent = `Fact of the Day: ${facts[currentFactIndex].main}`; // This will be set after initial displayFact call
 
         const themeColors = {
             "Space": {
@@ -679,104 +517,18 @@
             }
         }
 
-        function displayFact(index) {
-            factDisplayArea.classList.remove('animate-in');
-            void factDisplayArea.offsetWidth; // Trigger reflow
-            factDisplayArea.classList.add('animate-in');
-
-            mainFactElement.textContent = facts[index].main;
-            moreInfoElement.textContent = facts[index].more;
-            moreInfoElement.classList.remove('show-more-info');
-            toggleMoreInfoBtn.textContent = 'Show More Info';
-            likeFactBtn.classList.remove('liked'); // Reset like button state
-
-            footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
-            applyThemeColors(facts[index].theme);
-            updateFactHistory(facts[index].main);
-            factOfTheDayTextElement.textContent = `Fact of the Day: ${facts[index].main}`;
-            didYouKnowContentElement.textContent = facts[index].more; // Populate Did You Know content
+        function displayFact() {
+            factOfTheDayTextElement.textContent = currentFact.main;
+            didYouKnowContentElement.textContent = currentFact.more;
             didYouKnowElement.classList.remove('show-did-you-know'); // Hide Did You Know on new fact
-            renderFactIndicators();
-        }
 
-        function renderFactIndicators() {
-            factIndicatorsElement.innerHTML = '';
-            facts.forEach((_, index) => {
-                const dot = document.createElement('div');
-                dot.classList.add('fact-indicator-dot');
-                if (index === currentFactIndex) {
-                    dot.classList.add('active');
-                }
-                dot.addEventListener('click', () => {
-                    currentFactIndex = index;
-                    displayFact(currentFactIndex);
-                    startFactCarousel(); // Reset carousel timer on manual navigation
-                });
-                factIndicatorsElement.appendChild(dot);
-            });
+            footerInfoElement.textContent = `Explore the amazing world of ${currentFact.theme}!`;
+            applyThemeColors(currentFact.theme);
+            updateFactHistory(currentFact.main);
         }
-
-        function startFactCarousel() {
-            clearInterval(factCarouselInterval); // Clear any existing interval
-            factCarouselInterval = setInterval(() => {
-                currentFactIndex = (currentFactIndex + 1) % facts.length;
-                displayFact(currentFactIndex);
-            }, 10000); // Change fact every 10 seconds
-        }
-
-        // Fact Display Event Listeners
-        mainFactElement.addEventListener('click', () => {
-            moreInfoElement.classList.toggle('show-more-info');
-            toggleMoreInfoBtn.textContent = moreInfoElement.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
-        });
 
         factOfTheDayContainer.addEventListener('click', () => {
             didYouKnowElement.classList.toggle('show-did-you-know');
-        });
-
-        newFactBtn.addEventListener('click', () => {
-            currentFactIndex = Math.floor(Math.random() * facts.length);
-            displayFact(currentFactIndex);
-            startFactCarousel(); // Restart carousel on manual new fact
-        });
-
-        copyFactBtn.addEventListener('click', () => {
-            navigator.clipboard.writeText(mainFactElement.textContent).then(() => {
-                alert('Fact copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy fact: ', err);
-            });
-        });
-
-        shareTwitterBtn.addEventListener('click', () => {
-            const text = encodeURIComponent(mainFactElement.textContent + " #InterestingFacts #FactOfTheDay");
-            window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
-        });
-
-        toggleMoreInfoBtn.addEventListener('click', () => {
-            moreInfoElement.classList.toggle('show-more-info');
-            toggleMoreInfoBtn.textContent = moreInfoElement.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
-        });
-
-        factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
-            window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
-        });
-
-        readAloudBtn.addEventListener('click', () => {
-            if ('speechSynthesis' in window) {
-                const utterance = new SpeechSynthesisUtterance(mainFactElement.textContent + ". " + moreInfoElement.textContent);
-                speechSynthesis.speak(utterance);
-            } else {
-                alert("Sorry, your browser doesn't support text to speech.");
-            }
-        });
-
-        likeFactBtn.addEventListener('click', () => {
-            likeFactBtn.classList.add('liked');
-            setTimeout(() => {
-                likeFactBtn.classList.remove('liked');
-            }, 500);
         });
 
         // Fact History Logic
@@ -799,11 +551,10 @@
                 listItem.textContent = `${index + 1}. ${fact}`;
                 listItem.style.cursor = 'pointer'; // Add cursor style to indicate clickability
                 listItem.addEventListener('click', () => {
-                    const factIndex = facts.findIndex(f => f.main === fact);
-                    if (factIndex !== -1) {
-                        currentFactIndex = factIndex;
-                        displayFact(currentFactIndex);
-                        startFactCarousel(); // Reset carousel timer on manual navigation
+                    const factObj = facts.find(f => f.main === fact);
+                    if (factObj) {
+                        currentFact = factObj;
+                        displayFact();
                         factHistorySection.classList.remove('expanded'); // Collapse history after selection
                     }
                 });
@@ -819,25 +570,23 @@
         const availableThemes = Object.keys(themeColors);
 
         toggleQuizBtn.addEventListener('click', () => {
-            if (factDisplayArea.style.display !== 'none' || challengeArea.style.display !== 'none') {
-                factDisplayArea.style.display = 'none';
+            if (factOfTheDayContainer.style.display !== 'none' || challengeArea.style.display !== 'none') {
+                factOfTheDayContainer.style.display = 'none';
                 challengeArea.style.display = 'none';
                 quizArea.style.display = 'block';
                 toggleQuizBtn.textContent = 'Back to Facts';
                 toggleChallengeBtn.style.display = 'none';
                 mainTitleElement.textContent = 'Fact Quiz!';
-                clearInterval(factCarouselInterval); // Stop carousel for quiz
                 startQuiz();
             } else {
                 quizArea.style.display = 'none';
-                factDisplayArea.style.display = 'block';
+                factOfTheDayContainer.style.display = 'block';
                 toggleQuizBtn.textContent = 'Start Fact Quiz';
                 toggleChallengeBtn.style.display = 'inline-block';
                 mainTitleElement.textContent = 'Cosmic Facts Explorer';
                 quizScore = 0;
                 quizFeedbackElement.textContent = '';
                 nextQuizBtn.style.display = 'none';
-                startFactCarousel(); // Restart carousel
             }
         });
 
@@ -898,18 +647,17 @@
 
         // Challenge Logic
         toggleChallengeBtn.addEventListener('click', () => {
-            if (factDisplayArea.style.display !== 'none' || quizArea.style.display !== 'none') {
-                factDisplayArea.style.display = 'none';
+            if (factOfTheDayContainer.style.display !== 'none' || quizArea.style.display !== 'none') {
+                factOfTheDayContainer.style.display = 'none';
                 quizArea.style.display = 'none';
                 challengeArea.style.display = 'block';
                 toggleChallengeBtn.textContent = 'Back to Facts';
                 toggleQuizBtn.style.display = 'none';
                 mainTitleElement.textContent = 'Fact Challenge!';
-                clearInterval(factCarouselInterval); // Stop carousel for challenge
                 startChallenge();
             } else {
                 challengeArea.style.display = 'none';
-                factDisplayArea.style.display = 'block';
+                factOfTheDayContainer.style.display = 'block';
                 toggleChallengeBtn.textContent = 'Start Fact Challenge';
                 toggleQuizBtn.style.display = 'inline-block';
                 mainTitleElement.textContent = 'Cosmic Facts Explorer';
@@ -920,7 +668,6 @@
                 clearInterval(challengeTimer);
                 challengeStreak = 0;
                 challengeStreakElement.textContent = 'Streak: 0';
-                startFactCarousel(); // Restart carousel
             }
         });
 
@@ -1032,36 +779,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = 3; // Set to the "Cosmic Latte" fact initially
-        displayFact(currentFactIndex);
-        startFactCarousel(); // Start the carousel on load
-
-        // Keyboard navigation for facts
-        document.addEventListener('keydown', (event) => {
-            if (factDisplayArea.style.display !== 'none') {
-                if (event.key === 'ArrowRight') {
-                    currentFactIndex = (currentFactIndex + 1) % facts.length;
-                    displayFact(currentFactIndex);
-                    startFactCarousel(); // Reset carousel timer on manual navigation
-                } else if (event.key === 'ArrowLeft') {
-                    currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
-                    displayFact(currentFactIndex);
-                    startFactCarousel(); // Reset carousel timer on manual navigation
-                }
-            }
-        });
-
-        prevFactBtn.addEventListener('click', () => {
-            currentFactIndex = (currentFactIndex - 1 + facts.length) % facts.length;
-            displayFact(currentFactIndex);
-            startFactCarousel(); // Reset carousel timer on manual navigation
-        });
-
-        nextFactBtn.addEventListener('click', () => {
-            currentFactIndex = (currentFactIndex + 1) % facts.length;
-            displayFact(currentFactIndex);
-            startFactCarousel(); // Reset carousel timer on manual navigation
-        });
+        displayFact();
     </script>
 </body>
 </html>
