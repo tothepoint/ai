@@ -6,9 +6,7 @@
     <title>Cosmic Facts Explorer</title>
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, hsl(240, 30%, 15%) 0%, hsl(260, 25%, 10%) 100%); /* Space theme gradient */
-            --text-color: hsl(60, 80%, 90%); /* Light yellow/cream for contrast */
-            --footer-bg: hsl(240, 20%, 10%);
+            /* Theme colors will be set dynamically by JavaScript */
             --button-primary: hsl(210, 45%, 55%);
             --button-hover: hsl(210, 55%, 65%);
             --main-action-btn: hsl(160, 65%, 45%);
@@ -400,6 +398,29 @@
         .fact-card.animate-in {
             animation: fadeInScale 1.2s ease-out forwards;
         }
+        .fact-indicators {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        .fact-indicator-dot {
+            width: 12px;
+            height: 12px;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .fact-indicator-dot:hover {
+            background-color: rgba(255, 255, 255, 0.6);
+            transform: scale(1.1);
+        }
+        .fact-indicator-dot.active {
+            background-color: var(--main-action-btn); /* Highlight with a theme color */
+            transform: scale(1.2);
+            box-shadow: 0 0 8px var(--main-action-btn);
+        }
     </style>
 </head>
 <body>
@@ -424,6 +445,7 @@
                 <button id="prev-fact-btn" class="nav-button">‹</button>
                 <button id="next-fact-btn" class="nav-button">›</button>
             </div>
+            <div id="fact-indicators" class="fact-indicators"></div>
         </div>
 
         <div id="quiz-area" class="fact-card" style="display: none;">
@@ -531,6 +553,7 @@
 
         const prevFactBtn = document.getElementById('prev-fact-btn');
         const nextFactBtn = document.getElementById('next-fact-btn');
+        const factIndicatorsElement = document.getElementById('fact-indicators');
 
         const today = new Date();
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -601,8 +624,25 @@
             footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
             applyThemeColors(facts[index].theme);
             updateFactHistory(facts[index].main);
-            factOfTheDayElement.textContent = `Fact of the Day: ${facts[index].main}`; // Update fact of the day
+            factOfTheDayElement.textContent = `Fact of the Day: ${facts[index].main}`;
+            renderFactIndicators();
         }
+
+        function renderFactIndicators() {
+            factIndicatorsElement.innerHTML = '';
+            facts.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('fact-indicator-dot');
+                if (index === currentFactIndex) {
+                    dot.classList.add('active');
+                }
+                dot.addEventListener('click', () => {
+                    currentFactIndex = index;
+                    displayFact(currentFactIndex);
+                    startFactCarousel(); // Reset carousel timer on manual navigation
+                });
+                factIndicatorsElement.appendChild(dot);
+            });
 
         function startFactCarousel() {
             clearInterval(factCarouselInterval); // Clear any existing interval
@@ -905,7 +945,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = 5; // Set to 'Hippopotamus milk is pink' fact initially
+        currentFactIndex = Math.floor(Math.random() * facts.length); // Set to a random fact initially
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
