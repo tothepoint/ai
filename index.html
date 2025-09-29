@@ -150,7 +150,8 @@
         .fact-actions, .social-actions, .challenge-actions {
             margin-top: 25px;
             display: flex;
-            flex-wrap: wrap;\n            justify-content: center;
+            flex-wrap: wrap;
+            justify-content: center;
             gap: 12px;
         }
         button {
@@ -373,7 +374,7 @@
             padding: 10px 15px;
             border-radius: 50%;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
             pointer-events: all; /* Re-enable clicks for buttons */
             box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
@@ -684,7 +685,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
