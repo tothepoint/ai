@@ -150,7 +150,7 @@
         .fact-actions, .social-actions, .challenge-actions {
             margin-top: 25px;
             display: flex;
-            flex-wrap: wrap;\
+            flex-wrap: wrap;
             justify-content: center;
             gap: 12px;
         }
@@ -301,7 +301,7 @@
             font-size: 1.2rem;
             border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;\
+            transition: background-color 0.3s, transform 0.2s;
             min-width: 140px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
@@ -483,7 +483,7 @@
         }
         .fact-indicator-dot.active {
             background-color: var(--main-action-btn); /* Highlight with a theme color */
-            transform: scale(1.2);\
+            transform: scale(1.2);
             box-shadow: 0 0 8px var(--main-action-btn);
         }
     </style>
@@ -644,7 +644,7 @@
             "Nature": {
                 background: 'linear-gradient(135deg, hsl(120, 30%, 20%) 0%, hsl(100, 25%, 15%) 100%)',
                 text: 'hsl(60, 80%, 90%)',
-                footerBackground: 'hsl(120, 20%, 15%)\'
+                footerBackground: 'hsl(120, 20%, 15%)'
             },
             "Animals": {
                 background: 'linear-gradient(135deg, hsl(30, 40%, 25%) 0%, hsl(40, 30%, 20%) 100%)',
@@ -766,7 +766,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -1039,7 +1039,7 @@
         restartChallengeBtn.addEventListener('click', startChallenge);
 
         // Initial display
-        currentFactIndex = 12; // Set to the "Milky Way smells of rum" fact initially
+        currentFactIndex = 3; // Set to the "Cosmic Latte" fact initially
         displayFact(currentFactIndex);
         startFactCarousel(); // Start the carousel on load
 
