@@ -79,40 +79,41 @@
             to { transform: rotate(360deg); }
         }
         h1#main-title {
-            font-size: 4.5rem;
-            margin-bottom: 1.8rem;
+            font-size: 5.5rem; /* Larger title */
+            margin-bottom: 2.5rem; /* More space below title */
             text-shadow: var(--title-shadow);
             color: var(--title-color);
-            letter-spacing: 2px;
-            font-weight: 700;
+            letter-spacing: 3px; /* Increased letter spacing */
+            font-weight: 800; /* Bolder title */
         }
         .fact-card {
             background-color: var(--fact-card-bg);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 25px;
+            padding: 40px; /* Increased padding */
+            border-radius: 20px; /* More rounded */
+            margin-bottom: 30px; /* More margin below card */
             width: 95%;
-            max-width: 750px;
-            box-shadow: 0 0 25px rgba(0,0,0,0.5), var(--fact-card-shadow-inset); /* Added outer shadow */
+            max-width: 800px; /* Increased max-width */
+            box-shadow: 0 0 30px rgba(0,0,0,0.6), var(--fact-card-shadow-inset); /* Stronger shadow */
             position: relative;
             overflow: hidden;
-            min-height: 250px; /* Ensure enough space for content */
+            min-height: 280px; /* Ensure enough space for content */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
         p {
-            font-size: 2.2rem; /* Increased font size */
-            line-height: 1.6;
-            margin-bottom: 1.8rem;
+            font-size: 2.5rem; /* Significantly increased font size for main fact */
+            line-height: 1.5; /* Improved line height for readability */
+            margin-bottom: 2rem; /* More space below fact text */
             cursor: pointer;
             transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
             text-shadow: var(--fact-text-shadow);
+            font-weight: 500; /* Slightly bolder for emphasis */
         }
         p:hover {
-            transform: scale(1.03);
-            color: hsl(60, 100%, 85%);
+            transform: scale(1.02); /* Slightly less aggressive scale on hover */
+            color: hsl(60, 100%, 90%); /* Brighter on hover */
         }
         #main-fact, #quiz-fact, #challenge-fact {
             animation: fadeInScale 1.2s ease-out forwards;
@@ -183,67 +184,72 @@
             margin-bottom: 25px;
             border-radius: 12px;
         }
-        .main-action-btn:hover {
-            background-color: var(--main-action-btn-hover);
-        }
         #footer-info {
-            font-size: 1.3rem;
+            font-size: 1.4rem; /* Slightly larger font */
             color: var(--text-color);
             background-color: var(--footer-bg);
-            padding: 18px 35px;
-            border-radius: 12px;
+            padding: 20px 40px; /* Increased padding */
+            border-radius: 15px; /* More rounded */
             opacity: 0.98;
-            margin-top: 35px;
+            margin-top: 40px; /* More margin-top */
             animation: slideInFromBottom 0.8s ease-out forwards;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-            font-weight: 500;
-            transition: background-color 0.5s ease, color 0.5s ease; /* Added transition */
+            box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.4); /* Stronger shadow */
+            font-weight: 600; /* Bolder font */
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
         #fact-of-the-day-container {
             margin-top: 25px;
             margin-bottom: 25px;
-            padding: 20px 30px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px 40px; /* Increased padding */
+            background-color: rgba(255, 255, 255, 0.15); /* Slightly more opaque */
+            border-radius: 20px; /* More rounded */
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+            backdrop-filter: blur(10px); /* More blur */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3); /* Stronger border */
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-            max-width: 800px;
+            max-width: 850px; /* Increased max-width */
             width: 95%;
+            display: flex; /* Use flexbox for centering content */
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 180px; /* Ensure enough space */
         }
         #fact-of-the-day-container:hover {
-            transform: translateY(-5px) scale(1.01);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            transform: translateY(-8px) scale(1.02); /* More pronounced hover effect */
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
         }
         #fact-of-the-day-text {
-            font-size: 1.8rem;
+            font-size: 2.4rem; /* Significantly increased font size */
             color: var(--text-color);
             font-style: italic;
-            font-weight: 500;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-            transition: color 0.3s ease;
+            font-weight: 600; /* Bolder */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* Stronger text shadow */
+            transition: color 0.4s ease;
+            line-height: 1.4; /* Improved readability */
         }
         #fact-of-the-day-container:hover #fact-of-the-day-text {
-            color: hsl(60, 100%, 80%);
+            color: hsl(60, 100%, 90%); /* Brighter on hover */
         }
         #did-you-know {
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            margin-top: 25px; /* Increased margin */
+            padding-top: 20px; /* Increased padding */
+            border-top: 1px solid rgba(255, 255, 255, 0.2); /* Stronger border */
             text-align: left;
             max-height: 0;
             overflow: hidden;
             opacity: 0;
-            transition: max-height 0.7s ease-out, opacity 0.7s ease-out;
+            transition: max-height 0.8s ease-out, opacity 0.8s ease-out, transform 0.8s ease-out; /* Added transform transition */
+            transform: translateY(20px); /* Initial slight offset */
         }
         #did-you-know.show-did-you-know {
-            max-height: 200px; /* Adjust based on expected content size */
+            max-height: 300px; /* Adjusted based on expected content size */
             opacity: 1;
+            transform: translateY(0);
         }
         #did-you-know h3 {
             font-size: 1.6rem;
@@ -256,19 +262,6 @@
             color: var(--history-list-color);
             line-height: 1.5;
             margin-bottom: 0;
-        }
-        #footer-info {
-            font-size: 1.3rem;
-            color: var(--text-color);
-            background-color: var(--footer-bg);
-            padding: 18px 35px;
-            border-radius: 12px;
-            opacity: 0.98;
-            margin-top: 35px;
-            animation: slideInFromBottom 0.8s ease-out forwards;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-            font-weight: 500;
-            transition: background-color 0.5s ease, color 0.5s ease; /* Added transition */
         }
         /* Removed #fact-of-the-day as it's replaced by #fact-of-the-day-container */
 
@@ -493,7 +486,7 @@
         <h1 id="main-title">Cosmic Facts Explorer</h1>
         <div id="fact-of-the-day-container">
             <div id="fact-of-the-day-text"></div>
-            <div id="did-you-know" style="display: none;">
+            <div id="did-you-know">
                 <h3>Did You Know?</h3>
                 <p id="did-you-know-content"></p>
             </div>
