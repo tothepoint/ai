@@ -467,6 +467,7 @@
             <div id="challenge-options"></div>
             <p id="challenge-feedback"></p>
             <p id="challenge-streak">Streak: 0</p>
+            <p id="challenge-high-score">High Score: 0</p>
             <div class="challenge-actions">
                 <button id="next-challenge-btn" style="display: none;">Next Challenge</button>
                 <button id="restart-challenge-btn" style="display: none;">Restart Challenge</button>
@@ -547,6 +548,7 @@
         const restartChallengeBtn = document.getElementById('restart-challenge-btn');
         const toggleChallengeBtn = document.getElementById('toggle-challenge-btn');
         const challengeStreakElement = document.getElementById('challenge-streak');
+        const challengeHighScoreElement = document.getElementById('challenge-high-score');
 
         const factHistorySection = document.getElementById('fact-history');
         const historyToggle = document.getElementById('history-toggle');
@@ -685,7 +687,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
@@ -857,6 +859,12 @@
             restartChallengeBtn.style.display = 'none';
             challengeStreak = 0;
             challengeStreakElement.textContent = 'Streak: 0';
+            const storedHighScore = localStorage.getItem('challengeHighScore');
+            if (storedHighScore) {
+                challengeHighScoreElement.textContent = `High Score: ${storedHighScore}`;
+            } else {
+                challengeHighScoreElement.textContent = 'High Score: 0';
+            }
             displayChallengeQuestion();
         }
 
@@ -934,6 +942,11 @@
                 challengeFeedbackElement.textContent = 'Correct! 🎉';
                 challengeScore++;
                 challengeStreak++;
+                const currentHighScore = parseInt(localStorage.getItem('challengeHighScore') || '0');
+                if (challengeStreak > currentHighScore) {
+                    localStorage.setItem('challengeHighScore', challengeStreak.toString());
+                    challengeHighScoreElement.textContent = `High Score: ${challengeStreak}`;
+                }
             } else {
                 challengeFeedbackElement.textContent = `Incorrect. The answer was ${currentChallengeFact.theme}.`;
                 challengeStreak = 0;
