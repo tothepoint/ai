@@ -150,7 +150,7 @@
         .fact-actions, .social-actions, .challenge-actions {
             margin-top: 25px;
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: wrap;\
             justify-content: center;
             gap: 12px;
         }
@@ -197,16 +197,80 @@
             animation: slideInFromBottom 0.8s ease-out forwards;
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
             font-weight: 500;
+            transition: background-color 0.5s ease, color 0.5s ease; /* Added transition */
         }
-        #fact-of-the-day {
-            font-size: 1.5rem;
-            color: var(--text-color); /* Use theme's text color */
+        #fact-of-the-day-container {
             margin-top: 25px;
             margin-bottom: 25px;
+            padding: 20px 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            max-width: 800px;
+            width: 95%;
+        }
+        #fact-of-the-day-container:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+        }
+        #fact-of-the-day-text {
+            font-size: 1.8rem;
+            color: var(--text-color);
             font-style: italic;
             font-weight: 500;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+            transition: color 0.3s ease;
         }
+        #fact-of-the-day-container:hover #fact-of-the-day-text {
+            color: hsl(60, 100%, 80%);
+        }
+        #did-you-know {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            text-align: left;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 0.7s ease-out, opacity 0.7s ease-out;
+        }
+        #did-you-know.show-did-you-know {
+            max-height: 200px; /* Adjust based on expected content size */
+            opacity: 1;
+        }
+        #did-you-know h3 {
+            font-size: 1.6rem;
+            color: hsl(60, 100%, 85%);
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+        }
+        #did-you-know-content {
+            font-size: 1.2rem;
+            color: var(--history-list-color);
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+        #footer-info {
+            font-size: 1.3rem;
+            color: var(--text-color);
+            background-color: var(--footer-bg);
+            padding: 18px 35px;
+            border-radius: 12px;
+            opacity: 0.98;
+            margin-top: 35px;
+            animation: slideInFromBottom 0.8s ease-out forwards;
+            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            font-weight: 500;
+            transition: background-color 0.5s ease, color 0.5s ease; /* Added transition */
+        }
+        /* Removed #fact-of-the-day as it's replaced by #fact-of-the-day-container */
 
         /* Quiz Specific Styles */
         #quiz-area h2, #challenge-area h2 {
@@ -419,7 +483,7 @@
         }
         .fact-indicator-dot.active {
             background-color: var(--main-action-btn); /* Highlight with a theme color */
-            transform: scale(1.2);
+            transform: scale(1.2);\
             box-shadow: 0 0 8px var(--main-action-btn);
         }
     </style>
@@ -427,7 +491,13 @@
 <body>
     <div class="container">
         <h1 id="main-title">Cosmic Facts Explorer</h1>
-        <div id="fact-of-the-day"></div>
+        <div id="fact-of-the-day-container">
+            <div id="fact-of-the-day-text"></div>
+            <div id="did-you-know" style="display: none;">
+                <h3>Did You Know?</h3>
+                <p id="did-you-know-content"></p>
+            </div>
+        </div>
         <div id="fact-display-area" class="fact-card">
             <p id="main-fact"></p>
             <p id="more-info"></p>
@@ -528,7 +598,10 @@
         const likeFactBtn = document.getElementById('like-fact-btn');
         const bodyElement = document.body;
         const footerInfoElement = document.getElementById('footer-info');
-        const factOfTheDayElement = document.getElementById('fact-of-the-day');
+        const factOfTheDayContainer = document.getElementById('fact-of-the-day-container');
+        const factOfTheDayTextElement = document.getElementById('fact-of-the-day-text');
+        const didYouKnowElement = document.getElementById('did-you-know');
+        const didYouKnowContentElement = document.getElementById('did-you-know-content');
 
         const quizArea = document.getElementById('quiz-area');
         const quizFactElement = document.getElementById('quiz-fact');
@@ -571,7 +644,7 @@
             "Nature": {
                 background: 'linear-gradient(135deg, hsl(120, 30%, 20%) 0%, hsl(100, 25%, 15%) 100%)',
                 text: 'hsl(60, 80%, 90%)',
-                footerBackground: 'hsl(120, 20%, 15%)'
+                footerBackground: 'hsl(120, 20%, 15%)\'
             },
             "Animals": {
                 background: 'linear-gradient(135deg, hsl(30, 40%, 25%) 0%, hsl(40, 30%, 20%) 100%)',
@@ -627,7 +700,9 @@
             footerInfoElement.textContent = `Explore the amazing world of ${facts[index].theme}!`;
             applyThemeColors(facts[index].theme);
             updateFactHistory(facts[index].main);
-            factOfTheDayElement.textContent = `Fact of the Day: ${facts[index].main}`;
+            factOfTheDayTextElement.textContent = `Fact of the Day: ${facts[index].main}`;
+            didYouKnowContentElement.textContent = facts[index].more; // Populate Did You Know content
+            didYouKnowElement.classList.remove('show-did-you-know'); // Hide Did You Know on new fact
             renderFactIndicators();
         }
 
@@ -662,6 +737,10 @@
             toggleMoreInfoBtn.textContent = moreInfoElement.classList.contains('show-more-info') ? 'Hide More Info' : 'Show More Info';
         });
 
+        factOfTheDayContainer.addEventListener('click', () => {
+            didYouKnowElement.classList.toggle('show-did-you-know');
+        });
+
         newFactBtn.addEventListener('click', () => {
             currentFactIndex = Math.floor(Math.random() * facts.length);
             displayFact(currentFactIndex);
@@ -687,7 +766,7 @@
         });
 
         factSourceBtn.addEventListener('click', () => {
-            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\\s]+\\s/, ''));
+            const factQuery = encodeURIComponent(mainFactElement.textContent.replace(/^[^\s]+\s/, ''));
             window.open(`https://www.google.com/search?q=${factQuery}`, '_blank');
         });
 
