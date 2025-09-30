@@ -6,27 +6,27 @@
     <title>Cosmic Wonders: Fascinating Facts</title>
     <style>
         :root {
-            /* Default Theme Colors (will be overridden by JS) */
-            --bg-gradient: linear-gradient(135deg, #0A001A, #26004D); /* Deep Purple/Blue for Diamond Planet */
-            --text-color: #E0FFFF; /* Light Cyan for Diamond sparkle */
-            --footer-bg: #050010; /* Darker for footer */
-            --glass-bg: rgba(10, 0, 26, 0.6);
-            --glass-border: rgba(224, 255, 255, 0.4);
+            /* Theme Colors for "A day on Venus is longer than its year." */
+            --bg-gradient: linear-gradient(135deg, #4B0082, #8A2BE2); /* Indigo to Blue Violet */
+            --text-color: #FFD700; /* Gold */
+            --footer-bg: #3A0066;
+            --glass-bg: rgba(75, 0, 130, 0.6);
+            --glass-border: rgba(255, 215, 0, 0.4);
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #E0FFFF; /* Light Cyan */
+            --title-color: #FFD700; /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #4B0082; /* Indigo */
-            --button-hover: #6A5ACD; /* Slate Blue */
-            --main-action-btn: #E0FFFF; /* Light Cyan */
-            --main-action-btn-hover: #AFEEEE; /* Pale Turquoise */
-            --quiz-option-btn: #4B0082;
-            --quiz-option-btn-hover: #6A5ACD;
+            --button-primary: #6A00B0; /* Darker Indigo */
+            --button-hover: #9932CC; /* Amethyst */
+            --main-action-btn: #FFD700; /* Gold */
+            --main-action-btn-hover: #FFC400; /* Brighter Gold */
+            --quiz-option-btn: #6A00B0;
+            --quiz-option-btn-hover: #9932CC;
             --quiz-correct: #32CD32;
             --quiz-incorrect: #FF4500;
-            --challenge-timer-progress: #E0FFFF;
+            --challenge-timer-progress: #FFD700;
             --challenge-streak-color: #ADFF2F;
-            --history-toggle-color: #E0FFFF; /* Light Cyan for footer text */
-            --history-list-color: #B0E0E6; /* Powder Blue */
+            --history-toggle-color: #E0E0FF; /* Light Lavender for footer text */
+            --history-list-color: #B0C4DE; /* Light Steel Blue */
             --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
         }
 
@@ -126,8 +126,7 @@
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes slideInFromBottom {
-            from { transform: translateY(120%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            from { transform: translateY(120%); opacity: 0; }\n            to { transform: translateY(0); opacity: 1; }
         }
         #footer-info {
             font-size: 1.5rem;
@@ -445,16 +444,15 @@
         <h1 id="main-title">Cosmic Wonders</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text" class="hidden-fact"></p>
+            <p id="fact-of-the-day-text"></p>
             <div id="challenge-buttons" style="margin-top: 20px;">
-                <button id="reveal-fact-btn" class="btn main-action-btn">Reveal Fact</button>
+                <button id="show-details-btn" class="btn main-action-btn">Show Details</button>
                 <button id="generate-fact-btn" class="btn">Generate New Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
                 <p id="did-you-know-content"></p>
             </div>
-            <p id="reveal-message" style="font-size: 1.4rem; color: var(--challenge-streak-color); margin-top: 15px; display: none;"></p>
         </div>
 
         <!-- New Feature: Fact Quiz -->
@@ -472,6 +470,7 @@
             </div>
             <p id="challenge-feedback" style="display: none;"></p>
             <button id="next-challenge-btn" class="btn" style="display: none; margin-top: 20px;">Next Fact</button>
+            <button id="back-to-main-facts-btn" class="btn" style="margin-top: 20px;">Back to Daily Facts</button>
         </div>
 
         <div id="history-section">
@@ -488,7 +487,7 @@
 
     <script>
         const factOfTheDayText = document.getElementById('fact-of-the-day-text');
-        const revealFactBtn = document.getElementById('reveal-fact-btn');
+        const showDetailsBtn = document.getElementById('show-details-btn');
         const generateFactBtn = document.getElementById('generate-fact-btn');
         const didYouKnow = document.getElementById('did-you-know');
         const didYouKnowContent = document.getElementById('did-you-know-content');
@@ -501,7 +500,9 @@
         const nextChallengeBtn = document.getElementById('next-challenge-btn');
         const mainTitle = document.getElementById('main-title');
         const footerInfo = document.getElementById('footer-info');
-        const revealMessage = document.getElementById('reveal-message');
+        const startChallengeBtn = document.createElement('button');
+        const backToMainFactsBtn = document.getElementById('back-to-main-facts-btn');
+
 
         const facts = [
             {
@@ -622,7 +623,7 @@
                     quizOptionBtn: '#2F4F4F',
                     quizOptionBtnHover: '#696969',
                     quizCorrect: '#32CD32',
-                    quizIncorrect: \'#FF4500\',
+                    quizIncorrect: '#FF4500',
                     challengeTimerProgress: '#F5F5DC',
                     challengeStreakColor: '#ADFF2F',
                     historyToggleColor: '#F5F5DC',
@@ -756,10 +757,10 @@
             }
         ];
 
-        let currentFact = facts[6]; // Set initial fact to "It rains diamonds on Jupiter and Saturn."
+        let currentFact = facts[1]; // Set initial fact to "A day on Venus is longer than its year."
         let factHistory = [];
-        let revealTimer;
-        const revealDuration = 3000; // 3 seconds for reveal
+        let timer;
+        const challengeDuration = 10; // seconds
 
         function applyTheme(theme) {
             const root = document.documentElement;
@@ -774,10 +775,8 @@
         function updateFactDisplay() {
             factOfTheDayText.textContent = currentFact.main;
             didYouKnowContent.textContent = currentFact.didYouKnow;
-            factOfTheDayText.classList.add('hidden-fact'); // Start hidden for reveal challenge
             didYouKnow.classList.remove('show-did-you-know'); // Did you know is hidden by default
-            revealFactBtn.textContent = "Reveal Fact";
-            revealMessage.style.display = 'none';
+            showDetailsBtn.textContent = "Show Details";
             applyTheme(currentFact.theme);
         }
 
@@ -809,8 +808,7 @@
         // Fact Challenge Logic
         let currentChallengeFact;
         let score = 0;
-        let timer;
-        const challengeDuration = 10; // seconds
+        let challengeTimer;
 
         function startFactChallenge() {
             factChallengeArea.style.display = 'flex';
@@ -818,6 +816,8 @@
             score = 0;
             updateScoreDisplay();
             generateChallengeFact();
+            backToMainFactsBtn.style.display = 'block';
+            startChallengeBtn.style.display = 'none';
         }
 
         function updateScoreDisplay() {
@@ -827,12 +827,12 @@
         function startTimer() {
             let timeLeft = challengeDuration;
             document.getElementById('challenge-timer-progress').style.width = '100%';
-            clearInterval(timer);
-            timer = setInterval(() => {
+            clearInterval(challengeTimer);
+            challengeTimer = setInterval(() => {
                 timeLeft--;
                 document.getElementById('challenge-timer-progress').style.width = `${(timeLeft / challengeDuration) * 100}%`;
                 if (timeLeft <= 0) {
-                    clearInterval(timer);
+                    clearInterval(challengeTimer);
                     challengeFeedback.textContent = "Time's up!";
                     challengeFeedback.style.color = 'var(--quiz-incorrect)';
                     challengeFeedback.style.display = 'block';
@@ -862,7 +862,7 @@
         challengeOptions.addEventListener('click', (event) => {
             const target = event.target;
             if (target.classList.contains('challenge-option-btn')) {
-                clearInterval(timer);
+                clearInterval(challengeTimer);
                 const userAnswer = target.dataset.answer === 'true';
                 challengeOptions.style.pointerEvents = 'none';
 
@@ -886,42 +886,12 @@
         nextChallengeBtn.addEventListener('click', generateChallengeFact);
 
         // Event Listeners
-        revealFactBtn.addEventListener('click', () => {
-            if (factOfTheDayText.classList.contains('hidden-fact')) {
-                // Start reveal challenge
-                let startTime = Date.now();
-                revealFactBtn.textContent = "Revealing...";
-                revealFactBtn.disabled = true;
-                revealMessage.style.display = 'block';
-                revealMessage.textContent = 'Click again for a perfect reveal!';
-
-                revealTimer = setTimeout(() => {
-                    factOfTheDayText.classList.remove('hidden-fact');
-                    revealFactBtn.textContent = "Explore Details";
-                    revealFactBtn.disabled = false;
-                    revealMessage.style.display = 'none';
-                    didYouKnow.classList.add('show-did-you-know');
-                }, revealDuration);
-
-                // Allow for "perfect reveal" click
-                const perfectRevealHandler = () => {
-                    clearTimeout(revealTimer);
-                    factOfTheDayText.classList.remove('hidden-fact');
-                    revealFactBtn.textContent = "Explore Details";
-                    revealFactBtn.disabled = false;
-                    revealMessage.textContent = 'Perfect Reveal! You\'ve got quick reflexes!';
-                    didYouKnow.classList.add('show-did-you-know');
-                    revealFactBtn.removeEventListener('click', perfectRevealHandler); // Remove handler after first click
-                };
-                revealFactBtn.addEventListener('click', perfectRevealHandler, { once: true }); // Listen for one more click
+        showDetailsBtn.addEventListener('click', () => {
+            didYouKnow.classList.toggle('show-did-you-know');
+            if (didYouKnow.classList.contains('show-did-you-know')) {
+                showDetailsBtn.textContent = "Hide Details";
             } else {
-                // Toggle did you know section
-                didYouKnow.classList.toggle('show-did-you-know');
-                if (didYouKnow.classList.contains('show-did-you-know')) {
-                    revealFactBtn.textContent = "Hide Details";
-                } else {
-                    revealFactBtn.textContent = "Explore Details";
-                }
+                showDetailsBtn.textContent = "Show Details";
             }
         });
 
@@ -941,7 +911,6 @@
         addToHistory(currentFact.main);
 
         // Add a button to start the challenge
-        const startChallengeBtn = document.createElement('button');
         startChallengeBtn.id = 'start-challenge-btn';
         startChallengeBtn.className = 'btn main-action-btn';
         startChallengeBtn.textContent = 'Start Fact Challenge!';
@@ -950,27 +919,12 @@
 
         startChallengeBtn.addEventListener('click', startFactChallenge);
 
-        // Back to main facts button
-        const backToMainFactsBtn = document.createElement('button');
-        backToMainFactsBtn.id = 'back-to-main-facts-btn';
-        backToMainFactsBtn.className = 'btn';
-        backToMainFactsBtn.textContent = 'Back to Daily Facts';
-        backToMainFactsBtn.style.marginTop = '20px';
-        backToMainFactsBtn.style.display = 'none';
-        factChallengeArea.appendChild(backToMainFactsBtn);
-
         backToMainFactsBtn.addEventListener('click', () => {
             factChallengeArea.style.display = 'none';
             document.getElementById('fact-of-the-day-container').style.display = 'flex';
             backToMainFactsBtn.style.display = 'none';
             startChallengeBtn.style.display = 'block';
-            updateFactDisplay(); // Reset the fact display to hidden
-        });
-
-        startChallengeBtn.addEventListener('click', () => {
-            startFactChallenge();
-            startChallengeBtn.style.display = 'none';
-            backToMainFactsBtn.style.display = 'block';
+            updateFactDisplay(); // Reset the fact display
         });
 
     </script>
