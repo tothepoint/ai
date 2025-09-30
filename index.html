@@ -6,34 +6,34 @@
     <title>Cosmic Wonders: Fascinating Facts</title>
     <style>
         :root {
-            /* Space Exploration Theme Colors */
-            --bg-gradient: linear-gradient(135deg, #0A0A2A, #1A0A3A); /* Deep space blue to dark purple */
-            --bg-deep-dive: linear-gradient(135deg, #1A0A3A, #2A0A4A); /* Even darker for deep dive */
-            --text-color: #E0E0FF; /* Light ethereal white/silver */
-            --footer-bg: #2A1A4A; /* Darker blue for footer */
-            --button-primary: #4A2A7A; /* Muted purple for buttons */
-            --button-hover: #6A3A9A;
-            --main-action-btn: #00BFFF; /* Deep Sky Blue for main actions */
-            --main-action-btn-hover: #00CED1; /* Dark Turquoise on hover */
-            --glass-bg: rgba(26, 10, 58, 0.6); /* Darker, more opaque space glass */
-            --glass-border: rgba(150, 100, 255, 0.4); /* Lighter purple border */
-            --fact-card-bg: rgba(10, 5, 30, 0.7);
+            /* Neutron Star Theme Colors */
+            --bg-gradient: linear-gradient(135deg, #1A0033, #330066); /* Dark purple to slightly lighter purple */
+            --bg-deep-dive: linear-gradient(135deg, #0D0026, #26004D); /* Even darker for deep dive */
+            --text-color: #FFD700; /* Gold for main fact */
+            --footer-bg: #0D0026; /* Even darker purple for footer */
+            --button-primary: #4A0080; /* Muted deep purple for buttons */
+            --button-hover: #6600CC;
+            --main-action-btn: #FFD700; /* Gold for main actions */
+            --main-action-btn-hover: #FFC400; /* Darker gold on hover */
+            --glass-bg: rgba(26, 0, 51, 0.6); /* Darker, more opaque glass */
+            --glass-border: rgba(255, 215, 0, 0.4); /* Gold border */
+            --fact-card-bg: rgba(10, 0, 20, 0.7);
             --fact-card-shadow-inset: inset 0 0 20px rgba(0,0,0,0.7);
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9); /* Stronger shadow for fact text */
-            --title-color: #9370DB; /* Medium Purple for title */
+            --title-color: #FFD700; /* Gold for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9); /* Stronger title shadow */
-            --quiz-option-btn: #3A1A6A;
-            --quiz-option-btn-hover: #5A2A8A;
+            --quiz-option-btn: #330066;
+            --quiz-option-btn-hover: #4D0099;
             --quiz-correct: #32CD32; /* Lime Green */
             --quiz-incorrect: #FF4500; /* Orange Red */
             --challenge-timer-progress: #FFD700; /* Gold */
             --challenge-streak-color: #ADFF2F; /* Green Yellow */
-            --history-toggle-color: #E0E0FF;
+            --history-toggle-color: #E0E0FF; /* Light ethereal white/silver */
             --history-list-color: #B0C4DE; /* Light Steel Blue for history list */
-            --hint-button-bg: #4A2A7A;
-            --hint-button-hover: #6A3A9A;
-            --reveal-button-bg: #00BFFF;
-            --reveal-button-hover: #00CED1;
+            --hint-button-bg: #4A0080;
+            --hint-button-hover: #6600CC;
+            --reveal-button-bg: #FFD700;
+            --reveal-button-hover: #FFC400;
         }
 
         body {
@@ -397,59 +397,21 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1#main-title {
-                font-size: 4rem;
-                margin-bottom: 2rem;
-            }
-            .container {
-                padding: 25px;
-            }
-            .fact-card {
-                padding: 30px;
-                min-height: 250px;
-            }
-            p {
-                font-size: 2rem;
-                margin-bottom: 2rem;
-            }
-            #fact-of-the-day-text {
-                font-size: 2rem;
-            }
-            #footer-info {
-                font-size: 1.1rem;
-                padding: 18px 30px;
-            }
-            .btn, .quiz-option-btn, .challenge-option-btn {
-                padding: 15px 25px;
-                font-size: 1.1rem;
-            }
-            .main-action-btn {
-                font-size: 1.3rem;
-                padding: 18px 30px;
-            }
-            #did-you-know h3 {
-                font-size: 1.6rem;
-            }
-            #did-you-know-content {
-                font-size: 1.1rem;
-            }
-        }
-    </style>
+        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 4rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 25px;\n            }\n            .fact-card {\n                padding: 30px;\n                min-height: 250px;\n            }\n            p {\n                font-size: 2rem;\n                margin-bottom: 2rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 2rem;\n            }\n            #footer-info {\n                font-size: 1.1rem;\n                padding: 18px 30px;\n            }\n            .btn, .quiz-option-btn, .challenge-option-btn {\n                padding: 15px 25px;\n                font-size: 1.1rem;\n            }\n            .main-action-btn {\n                font-size: 1.3rem;\n                padding: 18px 30px;\n            }\n            #did-you-know h3 {\n                font-size: 1.6rem;\n            }\n            #did-you-know-content {\n                font-size: 1.1rem;\n            }\n        }\n    </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
+        <h1 id="main-title">Neutron Star Nexus</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+            <p id="fact-of-the-day-text">Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.</p>
             <div id="challenge-buttons" style="margin-top: 20px;">
                 <button id="reveal-fact-btn" class="btn main-action-btn">Explore Fact</button>
                 <button id="generate-fact-btn" class="btn">Generate New Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p id="did-you-know-content">The observable universe is estimated to contain 100 billion to 200 billion galaxies, each with billions of stars.</p>
+                <p id="did-you-know-content">A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.</p>
             </div>
         </div>
 
@@ -479,7 +441,7 @@
     </div>
 
     <footer id="footer-info">
-        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>
+        <p>&copy; 2025 Neutron Star Nexus. All rights reserved.</p>
     </footer>
 
     <script>
@@ -497,15 +459,15 @@
         const nextChallengeBtn = document.getElementById('next-challenge-btn');
 
         let currentFact = {
-            main: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-            didYouKnow: "The observable universe is estimated to contain 100 billion to 200 billion galaxies, each with billions of stars.",
+            main: "Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.",
+            didYouKnow: "A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.",
             isTrue: true // For the challenge feature
         };
 
         const facts = [
             {
-                main: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-                didYouKnow: "The observable universe is estimated to contain 100 billion to 200 billion galaxies, each with billions of stars.",
+                main: "Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.",
+                didYouKnow: "A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.",
                 isTrue: true
             },
             {
