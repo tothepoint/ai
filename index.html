@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Wonders: Space Fact</title>
+    <title>Cosmic Wonders: Venus Fact</title>
     <style>
         :root {
-            /* Space Exploration Theme Colors */
-            --bg-gradient: linear-gradient(135deg, hsl(240, 80%, 8%), hsl(280, 70%, 5%)); /* Deep space blue to dark purple */
-            --bg-deep-dive: linear-gradient(135deg, hsl(280, 70%, 5%), hsl(300, 60%, 3%)); /* Even darker purple for deep dive */
+            /* Venus Theme Colors */
+            --bg-gradient: linear-gradient(135deg, hsl(15, 80%, 15%), hsl(30, 70%, 10%)); /* Deep reddish-orange to dark orange */
+            --bg-deep-dive: linear-gradient(135deg, hsl(30, 70%, 10%), hsl(45, 60%, 8%)); /* Even darker orange for deep dive */
             --text-color: hsl(60, 100%, 90%); /* Light yellow/gold for readability */
-            --footer-bg: hsl(260, 70%, 8%); /* Darker purple for footer */
-            --button-primary: hsl(220, 60%, 30%); /* Muted blue for buttons */
-            --button-hover: hsl(220, 70%, 40%);
-            --main-action-btn: hsl(30, 80%, 50%); /* Orange for main actions (like a distant star) */
-            --main-action-btn-hover: hsl(30, 90%, 60%);
-            --glass-bg: rgba(30, 0, 50, 0.4); /* Darker, more opaque space glass */
-            --glass-border: rgba(150, 100, 255, 0.3); /* Lighter purple border */
-            --fact-card-bg: rgba(10, 0, 20, 0.5);
+            --footer-bg: hsl(30, 70%, 15%); /* Darker orange for footer */
+            --button-primary: hsl(45, 60%, 30%); /* Muted yellow-orange for buttons */
+            --button-hover: hsl(45, 70%, 40%);
+            --main-action-btn: hsl(0, 80%, 50%); /* Red for main actions (like a volcanic glow) */
+            --main-action-btn-hover: hsl(0, 90%, 60%);
+            --glass-bg: rgba(50, 10, 0, 0.4); /* Darker, more opaque Venusian glass */
+            --glass-border: rgba(255, 150, 100, 0.3); /* Lighter orange border */
+            --fact-card-bg: rgba(20, 5, 0, 0.5);
             --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.5);
             --fact-text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow for fact text */
-            --title-color: hsl(180, 100%, 80%); /* Bright cyan for title */
+            --title-color: hsl(60, 100%, 80%); /* Bright yellow for title */
             --title-shadow: 3px 3px 20px rgba(0, 0, 0, 0.8); /* Stronger title shadow */
-            --quiz-option-btn: hsl(220, 45%, 35%);
-            --quiz-option-btn-hover: hsl(220, 55%, 45%);
+            --quiz-option-btn: hsl(45, 45%, 35%);
+            --quiz-option-btn-hover: hsl(45, 55%, 45%);
             --quiz-correct: hsl(120, 55%, 45%);
             --quiz-incorrect: hsl(0, 55%, 45%);
             --challenge-timer-progress: hsl(0, 100%, 70%);
             --challenge-streak-color: hsl(160, 80%, 70%);
             --history-toggle-color: hsl(0, 0%, 95%);
             --history-list-color: hsl(60, 80%, 85%); /* Lighter yellow for history list */
-            --hint-button-bg: hsl(220, 60%, 30%);
-            --hint-button-hover: hsl(220, 70%, 40%);
-            --reveal-button-bg: hsl(30, 80%, 40%);
-            --reveal-button-hover: hsl(30, 90%, 50%);
+            --hint-button-bg: hsl(45, 60%, 30%);
+            --hint-button-hover: hsl(45, 70%, 40%);
+            --reveal-button-bg: hsl(0, 80%, 40%);
+            --reveal-button-hover: hsl(0, 90%, 50%);
         }
 
         body {
@@ -139,7 +139,8 @@
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes slideInFromBottom {
-            from { transform: translateY(100%); opacity: 0; }\n            to { transform: translateY(0); opacity: 0.95; }
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 0.95; }
         }
         #footer-info {
             font-size: 1.4rem; /* Slightly larger font */
@@ -403,7 +404,44 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 1.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            .fact-card {\n                padding: 25px;\n                min-height: 200px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.8rem;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 25px;\n            }\n            .btn, .quiz-option-btn, .challenge-option-btn {\n                padding: 12px 20px;\n                font-size: 1rem;\n            }\n            .main-action-btn {\n                font-size: 1.2rem;\n                padding: 15px 25px;\n            }\n            #did-you-know h3 {\n                font-size: 1.4rem;\n            }\n            #did-you-know-content {\n                font-size: 1rem;\n            }\n        }
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 3.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .container {
+                padding: 20px;
+            }
+            .fact-card {
+                padding: 25px;
+                min-height: 200px;
+            }
+            p {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 1.8rem;
+            }
+            #footer-info {
+                font-size: 1rem;
+                padding: 15px 25px;
+            }
+            .btn, .quiz-option-btn, .challenge-option-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            .main-action-btn {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+            }
+            #did-you-know h3 {
+                font-size: 1.4rem;
+            }
+            #did-you-know-content {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -411,14 +449,14 @@
         <h1 id="main-title">Cosmic Wonders</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">The universe is estimated to be around 13.8 billion years old, but the observable universe is much larger than 13.8 billion light-years across due to cosmic inflation.</p>
+            <p id="fact-of-the-day-text">A day on Venus is longer than its year. It takes Venus 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.</p>
             <div id="challenge-buttons" style="margin-top: 20px;">
                 <button id="reveal-fact-btn" class="btn main-action-btn">Explore Fact</button>
                 <button id="generate-fact-btn" class="btn">Generate New Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p id="did-you-know-content">The fastest man-made object, the Parker Solar Probe, travels at speeds up to 690,000 km/h (430,000 mph) relative to the Sun, designed to study the Sun's outer corona.</p>
+                <p id="did-you-know-content">Venus rotates in the opposite direction to most other planets, meaning the Sun rises in the west and sets in the east.</p>
             </div>
         </div>
     </div>
@@ -468,7 +506,7 @@
                 }
             ];
 
-            let currentFactIndex = 0; // Start with the first fact
+            let currentFactIndex = 1; // Start with the Venus fact (index 1)
 
             function displayFact(index) {
                 const factData = spaceFacts[index];
@@ -482,7 +520,7 @@
                 revealFactBtn.style.display = 'inline-block'; // Show the button again
             }
 
-            // Initial display of the first fact
+            // Initial display of the chosen fact
             displayFact(currentFactIndex);
 
             revealFactBtn.addEventListener('click', () => {
