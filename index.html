@@ -6,34 +6,27 @@
     <title>Cosmic Wonders: Fascinating Facts</title>
     <style>
         :root {
-            /* Neutron Star Theme Colors */
-            --bg-gradient: linear-gradient(135deg, #1A0033, #330066); /* Dark purple to slightly lighter purple */
-            --bg-deep-dive: linear-gradient(135deg, #0D0026, #26004D); /* Even darker for deep dive */
-            --text-color: #FFD700; /* Gold for main fact */
-            --footer-bg: #0D0026; /* Even darker purple for footer */
-            --button-primary: #4A0080; /* Muted deep purple for buttons */
+            /* Default Theme Colors (will be overridden by JS) */
+            --bg-gradient: linear-gradient(135deg, #1A0033, #330066);
+            --text-color: #FFD700;
+            --footer-bg: #0D0026;
+            --glass-bg: rgba(26, 0, 51, 0.6);
+            --glass-border: rgba(255, 215, 0, 0.4);
+            --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
+            --title-color: #FFD700;
+            --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
+            --button-primary: #4A0080;
             --button-hover: #6600CC;
-            --main-action-btn: #FFD700; /* Gold for main actions */
-            --main-action-btn-hover: #FFC400; /* Darker gold on hover */
-            --glass-bg: rgba(26, 0, 51, 0.6); /* Darker, more opaque glass */
-            --glass-border: rgba(255, 215, 0, 0.4); /* Gold border */
-            --fact-card-bg: rgba(10, 0, 20, 0.7);
-            --fact-card-shadow-inset: inset 0 0 20px rgba(0,0,0,0.7);
-            --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9); /* Stronger shadow for fact text */
-            --title-color: #FFD700; /* Gold for title */
-            --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9); /* Stronger title shadow */
+            --main-action-btn: #FFD700;
+            --main-action-btn-hover: #FFC400;
             --quiz-option-btn: #330066;
             --quiz-option-btn-hover: #4D0099;
-            --quiz-correct: #32CD32; /* Lime Green */
-            --quiz-incorrect: #FF4500; /* Orange Red */
-            --challenge-timer-progress: #FFD700; /* Gold */
-            --challenge-streak-color: #ADFF2F; /* Green Yellow */
-            --history-toggle-color: #E0E0FF; /* Light ethereal white/silver */
-            --history-list-color: #B0C4DE; /* Light Steel Blue for history list */
-            --hint-button-bg: #4A0080;
-            --hint-button-hover: #6600CC;
-            --reveal-button-bg: #FFD700;
-            --reveal-button-hover: #FFC400;
+            --quiz-correct: #32CD32;
+            --quiz-incorrect: #FF4500;
+            --challenge-timer-progress: #FFD700;
+            --challenge-streak-color: #ADFF2F;
+            --history-toggle-color: #E0E0FF;
+            --history-list-color: #B0C4DE;
         }
 
         body {
@@ -52,18 +45,15 @@
             transition: background 0.8s ease-in-out, color 0.5s ease;
             overflow-x: hidden;
         }
-        body.deep-dive {
-            background: var(--bg-deep-dive);
-        }
         .container {
-            max-width: 1000px; /* Increased max-width */
+            max-width: 1000px;
             width: 100%;
             margin-bottom: 20px;
-            padding: 50px; /* Increased padding */
+            padding: 50px;
             background-color: var(--glass-bg);
-            border-radius: 25px; /* More rounded */
-            box-shadow: 0 15px 50px 0 rgba( 0, 0, 0, 0.5 ); /* Stronger shadow */
-            backdrop-filter: blur( 12px ); /* More blur */
+            border-radius: 25px;
+            box-shadow: 0 15px 50px 0 rgba( 0, 0, 0, 0.5 );
+            backdrop-filter: blur( 12px );
             -webkit-backdrop-filter: blur( 12px );
             border: 1px solid var(--glass-border);
             flex-grow: 1;
@@ -81,7 +71,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.08) 10%, transparent 70%); /* Brighter radial gradient */
+            background: radial-gradient(circle at center, rgba(255,255,255,0.08) 10%, transparent 70%);
             animation: rotateBackground 25s linear infinite;
             opacity: 0.4;
         }
@@ -90,41 +80,37 @@
             to { transform: rotate(360deg); }
         }
         h1#main-title {
-            font-size: 6rem; /* Even larger title */
-            margin-bottom: 3rem; /* More space below title */
+            font-size: 6rem;
+            margin-bottom: 3rem;
             text-shadow: var(--title-shadow);
             color: var(--title-color);
-            letter-spacing: 4px; /* Increased letter spacing */
-            font-weight: 900; /* Bolder title */
+            letter-spacing: 4px;
+            font-weight: 900;
         }
-        .fact-card { /* This style is now primarily for quiz/challenge areas */
-            background-color: var(--fact-card-bg);
-            padding: 45px; /* Increased padding */
-            border-radius: 25px; /* More rounded */
-            margin-bottom: 35px; /* More margin below card */
+        .fact-card {
+            background-color: rgba(10, 0, 20, 0.7);
+            padding: 45px;
+            border-radius: 25px;
+            margin-bottom: 35px;
             width: 90%;
-            max-width: 850px; /* Increased max-width */
-            box-shadow: 0 0 40px rgba(0,0,0,0.7), var(--fact-card-shadow-inset); /* Stronger shadow */
+            max-width: 850px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.7), inset 0 0 20px rgba(0,0,0,0.7);
             position: relative;
             overflow: hidden;
-            min-height: 300px; /* Ensure enough space for content */
+            min-height: 300px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
         }
         p {
-            font-size: 2.8rem; /* Significantly increased font size for main fact */
-            line-height: 1.6; /* Improved line height for readability */
-            margin-bottom: 2.5rem; /* More space below fact text */
+            font-size: 2.8rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
             cursor: default;
             transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
             text-shadow: var(--fact-text-shadow);
-            font-weight: 600; /* Bolder for emphasis */
-        }
-        p:hover {
-            transform: scale(1);
-            color: var(--text-color);
+            font-weight: 600;
         }
         #main-fact, #quiz-fact, #challenge-fact {
             animation: fadeInScale 1.5s ease-out forwards;
@@ -143,56 +129,52 @@
             to { transform: translateY(0); opacity: 1; }
         }
         #footer-info {
-            font-size: 1.5rem; /* Slightly larger font */
-            color: var(--history-toggle-color); /* Adjusted for better visibility */
+            font-size: 1.5rem;
+            color: var(--history-toggle-color);
             background-color: var(--footer-bg);
-            padding: 25px 50px; /* Increased padding */
-            border-radius: 20px; /* More rounded */
+            padding: 25px 50px;
+            border-radius: 20px;
             opacity: 0.98;
-            margin-top: 50px; /* More margin-top */
+            margin-top: 50px;
             animation: slideInFromBottom 1s ease-out forwards;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow */
-            font-weight: 700; /* Bolder font */
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
             transition: background-color 0.5s ease, color 0.5s ease;
         }
         #fact-of-the-day-container {
             margin-top: 30px;
             margin-bottom: 30px;
-            padding: 35px 45px; /* Increased padding */
-            background-color: var(--glass-bg); /* Use glass-bg for consistency */
-            border-radius: 25px; /* More rounded */
-            box-shadow: 0 10px 35px rgba(0,0,0,0.5); /* Stronger shadow */
-            backdrop-filter: blur(12px); /* More blur */
+            padding: 35px 45px;
+            background-color: var(--glass-bg);
+            border-radius: 25px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border); /* Stronger border */
+            border: 1px solid var(--glass-border);
             cursor: default;
             transition: all 0.5s ease;
             position: relative;
             overflow: hidden;
-            max-width: 900px; /* Increased max-width */
+            max-width: 900px;
             width: 90%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 200px; /* Ensure enough space */
-        }
-        #fact-of-the-day-container:hover {
-            transform: translateY(0) scale(1);
-            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
+            min-height: 200px;
         }
         #fact-of-the-day-text {
-            font-size: 2.6rem; /* Significantly increased font size */
+            font-size: 2.6rem;
             color: transparent;
-            background-color: rgba(255, 255, 255, 0.08); /* Brighter placeholder background */
+            background-color: rgba(255, 255, 255, 0.08);
             padding: 15px 25px;
             border-radius: 12px;
             font-style: italic;
-            font-weight: 700; /* Bolder */
+            font-weight: 700;
             text-shadow: none;
-            transition: color 1s ease, background-color 1s ease; /* Smooth reveal */
-            line-height: 1.5; /* Improved readability */
-            min-height: 100px; /* Ensure space for text */
+            transition: color 1s ease, background-color 1s ease;
+            line-height: 1.5;
+            min-height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -206,7 +188,7 @@
         #did-you-know {
             margin-top: 30px;
             padding-top: 25px;
-            border-top: 1px solid rgba(255, 255, 255, 0.3); /* Stronger border */
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
             text-align: left;
             max-height: 0;
             overflow: hidden;
@@ -215,13 +197,13 @@
             transform: translateY(30px);
         }
         #did-you-know.show-did-you-know {
-            max-height: 350px; /* Adjusted based on expected content size */
+            max-height: 350px;
             opacity: 1;
             transform: translateY(0);
         }
         #did-you-know h3 {
             font-size: 1.8rem;
-            color: hsl(40, 100%, 80%); /* Gold-yellow for emphasis */
+            color: hsl(40, 100%, 80%);
             margin-bottom: 12px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         }
@@ -233,10 +215,10 @@
         }
 
         /* Quiz Specific Styles */
-        #quiz-area h2, #challenge-area h2 {
+        #fact-challenge-area h2 {
             font-size: 3.2rem;
             margin-bottom: 2rem;
-            color: hsl(60, 100%, 92%);
+            color: var(--title-color);
             text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
         }
         #quiz-fact, #challenge-fact {
@@ -247,14 +229,14 @@
             align-items: center;
             justify-content: center;
         }
-        #quiz-options, #challenge-options {
+        #challenge-options {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
             margin-bottom: 30px;
         }
-        .quiz-option-btn, .challenge-option-btn {
+        .challenge-option-btn {
             background-color: var(--quiz-option-btn);
             color: #FFFFFF;
             padding: 18px 35px;
@@ -265,15 +247,15 @@
             min-width: 160px;
             box-shadow: 0 5px 12px rgba(0,0,0,0.3);
         }
-        .quiz-option-btn:hover, .challenge-option-btn:hover {
+        .challenge-option-btn:hover {
             background-color: var(--quiz-option-btn-hover);
             transform: translateY(-4px);
         }
-        .quiz-option-btn.correct, .challenge-option-btn.correct {
+        .challenge-option-btn.correct {
             background-color: var(--quiz-correct);
             box-shadow: 0 0 20px var(--quiz-correct);
         }
-        .quiz-option-btn.incorrect, .challenge-option-btn.incorrect {
+        .challenge-option-btn.incorrect {
             background-color: var(--quiz-incorrect);
             box-shadow: 0 0 20px var(--quiz-incorrect);
         }
@@ -306,10 +288,10 @@
         }
         #challenge-score {
             font-size: 2rem;
-            color: hsl(160, 80%, 75%);
+            color: var(--challenge-streak-color);
             margin-bottom: 20px;
             font-weight: 800;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.5); /* Stronger shadow */
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
         }
         #challenge-feedback {
             font-size: 1.8rem;
@@ -353,7 +335,7 @@
             box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
         }
         #history-list.show-history {
-            max-height: 600px; /* Adjust based on expected content */
+            max-height: 600px;
             opacity: 1;
             padding: 25px;
         }
@@ -397,21 +379,59 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 4rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 25px;\n            }\n            .fact-card {\n                padding: 30px;\n                min-height: 250px;\n            }\n            p {\n                font-size: 2rem;\n                margin-bottom: 2rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 2rem;\n            }\n            #footer-info {\n                font-size: 1.1rem;\n                padding: 18px 30px;\n            }\n            .btn, .quiz-option-btn, .challenge-option-btn {\n                padding: 15px 25px;\n                font-size: 1.1rem;\n            }\n            .main-action-btn {\n                font-size: 1.3rem;\n                padding: 18px 30px;\n            }\n            #did-you-know h3 {\n                font-size: 1.6rem;\n            }\n            #did-you-know-content {\n                font-size: 1.1rem;\n            }\n        }\n    </style>
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+            .container {
+                padding: 25px;
+            }
+            .fact-card {
+                padding: 30px;
+                min-height: 250px;
+            }
+            p {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 2rem;
+            }
+            #footer-info {
+                font-size: 1.1rem;
+                padding: 18px 30px;
+            }
+            .btn, .challenge-option-btn {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+            .main-action-btn {
+                font-size: 1.3rem;
+                padding: 18px 30px;
+            }
+            #did-you-know h3 {
+                font-size: 1.6rem;
+            }
+            #did-you-know-content {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Neutron Star Nexus</h1>
+        <h1 id="main-title">Cosmic Wonders</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.</p>
+            <p id="fact-of-the-day-text"></p>
             <div id="challenge-buttons" style="margin-top: 20px;">
                 <button id="reveal-fact-btn" class="btn main-action-btn">Explore Fact</button>
                 <button id="generate-fact-btn" class="btn">Generate New Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p id="did-you-know-content">A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.</p>
+                <p id="did-you-know-content"></p>
             </div>
         </div>
 
@@ -441,7 +461,7 @@
     </div>
 
     <footer id="footer-info">
-        <p>&copy; 2025 Neutron Star Nexus. All rights reserved.</p>
+        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>
     </footer>
 
     <script>
@@ -457,67 +477,274 @@
         const challengeOptions = document.getElementById('challenge-options');
         const challengeFeedback = document.getElementById('challenge-feedback');
         const nextChallengeBtn = document.getElementById('next-challenge-btn');
-
-        let currentFact = {
-            main: "Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.",
-            didYouKnow: "A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.",
-            isTrue: true // For the challenge feature
-        };
+        const mainTitle = document.getElementById('main-title');
+        const footerInfo = document.getElementById('footer-info');
 
         const facts = [
             {
                 main: "Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.",
                 didYouKnow: "A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.",
-                isTrue: true
+                isTrue: true,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #1A0033, #330066)',
+                    textColor: '#FFD700',
+                    footerBg: '#0D0026',
+                    glassBg: 'rgba(26, 0, 51, 0.6)',
+                    glassBorder: 'rgba(255, 215, 0, 0.4)',
+                    titleColor: '#FFD700',
+                    buttonPrimary: '#4A0080',
+                    buttonHover: '#6600CC',
+                    mainActionBtn: '#FFD700',
+                    mainActionBtnHover: '#FFC400',
+                    quizOptionBtn: '#330066',
+                    quizOptionBtnHover: '#4D0099',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#FFD700',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#E0E0FF',
+                    historyListColor: '#B0C4DE'
+                }
             },
             {
                 main: "A day on Venus is longer than its year.",
                 didYouKnow: "Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.",
-                isTrue: true
+                isTrue: true,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #4B0082, #8A2BE2)', // Indigo to Blue Violet
+                    textColor: '#FFD700', // Gold
+                    footerBg: '#3A0066',
+                    glassBg: 'rgba(75, 0, 130, 0.6)',
+                    glassBorder: 'rgba(255, 215, 0, 0.4)',
+                    titleColor: '#FFD700',
+                    buttonPrimary: '#6A00B0',
+                    buttonHover: '#9932CC',
+                    mainActionBtn: '#FFD700',
+                    mainActionBtnHover: '#FFC400',
+                    quizOptionBtn: '#6A00B0',
+                    quizOptionBtnHover: '#9932CC',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#FFD700',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#E0E0FF',
+                    historyListColor: '#B0C4DE'
+                }
             },
             {
                 main: "The Sun is a green star.",
                 didYouKnow: "While the Sun emits light across the entire visible spectrum, its peak emission is in the green part. However, due to how our eyes perceive light, it appears white or yellow.",
-                isTrue: false
+                isTrue: false,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #FFD700, #FFA500)', // Gold to Orange
+                    textColor: '#333333', // Dark Grey
+                    footerBg: '#CCAA00',
+                    glassBg: 'rgba(255, 215, 0, 0.6)',
+                    glassBorder: 'rgba(51, 51, 51, 0.4)',
+                    titleColor: '#333333',
+                    buttonPrimary: '#FFA500',
+                    buttonHover: '#FF8C00',
+                    mainActionBtn: '#333333',
+                    mainActionBtnHover: '#000000',
+                    quizOptionBtn: '#FFA500',
+                    quizOptionBtnHover: '#FF8C00',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#333333',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#333333',
+                    historyListColor: '#666666'
+                }
             },
             {
                 main: "If you could drive to the nearest star, Alpha Centauri, it would take approximately 4.5 years at 60 mph.",
                 didYouKnow: "Alpha Centauri is about 4.37 light-years away. Even at the speed of light, it would take over four years to reach it.",
-                isTrue: false // This is a false statement for the challenge, as 60mph is too slow.
+                isTrue: false, // This is a false statement for the challenge, as 60mph is too slow.
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #000000, #1C0033)', // Deep Space Black to Dark Purple
+                    textColor: '#ADD8E6', // Light Blue
+                    footerBg: '#000000',
+                    glassBg: 'rgba(0, 0, 0, 0.7)',
+                    glassBorder: 'rgba(173, 216, 230, 0.4)',
+                    titleColor: '#ADD8E6',
+                    buttonPrimary: '#4682B4', // Steel Blue
+                    buttonHover: '#5F9EA0', // Cadet Blue
+                    mainActionBtn: '#ADD8E6',
+                    mainActionBtnHover: '#87CEEB', // Sky Blue
+                    quizOptionBtn: '#4682B4',
+                    quizOptionBtnHover: '#5F9EA0',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#ADD8E6',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#ADD8E6',
+                    historyListColor: '#B0C4DE'
+                }
             },
             {
                 main: "Jupiter's Great Red Spot is a storm larger than Earth that has been raging for at least 350 years.",
                 didYouKnow: "This massive anticyclonic storm is one of the most iconic features of Jupiter and is visible even with amateur telescopes.",
-                isTrue: true
+                isTrue: true,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #8B4513, #A0522D)', // Saddle Brown to Sienna
+                    textColor: '#F5DEB3', // Wheat
+                    footerBg: '#6B2E0A',
+                    glassBg: 'rgba(139, 69, 19, 0.6)',
+                    glassBorder: 'rgba(245, 222, 179, 0.4)',
+                    titleColor: '#F5DEB3',
+                    buttonPrimary: '#CD853F', // Peru
+                    buttonHover: '#D2691E', // Chocolate
+                    mainActionBtn: '#F5DEB3',
+                    mainActionBtnHover: '#DEB887', // Burly Wood
+                    quizOptionBtn: '#CD853F',
+                    quizOptionBtnHover: '#D2691E',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#F5DEB3',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#F5DEB3',
+                    historyListColor: '#D2B48C' // Tan
+                }
             },
             {
                 main: "The Earth is the only planet in our solar system not named after a Roman or Greek deity.",
                 didYouKnow: "The name 'Earth' comes from Old English and Germanic words, meaning 'the ground'.",
-                isTrue: true
+                isTrue: true,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #004D40, #00897B)', // Dark Teal to Teal
+                    textColor: '#E0F2F1', // Light Cyan
+                    footerBg: '#00332C',
+                    glassBg: 'rgba(0, 77, 64, 0.6)',
+                    glassBorder: 'rgba(224, 242, 241, 0.4)',
+                    titleColor: '#E0F2F1',
+                    buttonPrimary: '#26A69A', // Light Sea Green
+                    buttonHover: '#4DB6AC', // Medium Aquamarine
+                    mainActionBtn: '#E0F2F1',
+                    mainActionBtnHover: '#B2DFDB', // Pale Turquoise
+                    quizOptionBtn: '#26A69A',
+                    quizOptionBtnHover: '#4DB6AC',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#E0F2F1',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#E0F2F1',
+                    historyListColor: '#80CBC4' // Aquamarine
+                }
             },
             {
                 main: "Saturn is the only planet in our solar system with rings.",
                 didYouKnow: "While Saturn has the most prominent rings, Jupiter, Uranus, and Neptune also have ring systems, though they are much fainter and harder to observe.",
-                isTrue: false
+                isTrue: false,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #36454F, #708090)', // Charcoal to Slate Gray
+                    textColor: '#F0F8FF', // Alice Blue
+                    footerBg: '#2C3E50',
+                    glassBg: 'rgba(54, 69, 79, 0.6)',
+                    glassBorder: 'rgba(240, 248, 255, 0.4)',
+                    titleColor: '#F0F8FF',
+                    buttonPrimary: '#6A5ACD', // Slate Blue
+                    buttonHover: '#836FFF', // Light Slate Blue
+                    mainActionBtn: '#F0F8FF',
+                    mainActionBtnHover: '#E6E6FA', // Lavender
+                    quizOptionBtn: '#6A5ACD',
+                    quizOptionBtnHover: '#836FFF',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#F0F8FF',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#F0F8FF',
+                    historyListColor: '#B0C4DE'
+                }
             },
             {
                 main: "Footprints left on the Moon by astronauts will remain there for millions of years.",
                 didYouKnow: "Because there is no wind or water on the Moon, there is no erosion to remove the footprints.",
-                isTrue: true
+                isTrue: true,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #1C1C1C, #36454F)', // Dark Grey to Charcoal
+                    textColor: '#D3D3D3', // Light Grey
+                    footerBg: '#0A0A0A',
+                    glassBg: 'rgba(28, 28, 28, 0.6)',
+                    glassBorder: 'rgba(211, 211, 211, 0.4)',
+                    titleColor: '#D3D3D3',
+                    buttonPrimary: '#778899', // Light Slate Gray
+                    buttonHover: '#A9A9A9', // Dark Gray
+                    mainActionBtn: '#D3D3D3',
+                    mainActionBtnHover: '#C0C0C0', // Silver
+                    quizOptionBtn: '#778899',
+                    quizOptionBtnHover: '#A9A9A9',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#D3D3D3',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#D3D3D3',
+                    historyListColor: '#B0C4DE'
+                }
             },
             {
                 main: "There is a planet made entirely of diamonds.",
                 didYouKnow: "Discovered in 2004, '55 Cancri e' is a super-Earth exoplanet that is thought to have a significant portion of its mass as diamond.",
-                isTrue: true
+                isTrue: true,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #0A001A, #26004D)', // Deep Purple/Blue
+                    textColor: '#E0FFFF', // Light Cyan (Diamond sparkle)
+                    footerBg: '#050010',
+                    glassBg: 'rgba(10, 0, 26, 0.6)',
+                    glassBorder: 'rgba(224, 255, 255, 0.4)',
+                    titleColor: '#E0FFFF',
+                    buttonPrimary: '#4B0082', // Indigo
+                    buttonHover: '#6A5ACD', // Slate Blue
+                    mainActionBtn: '#E0FFFF',
+                    mainActionBtnHover: '#AFEEEE', // Pale Turquoise
+                    quizOptionBtn: '#4B0082',
+                    quizOptionBtnHover: '#6A5ACD',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#E0FFFF',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#E0FFFF',
+                    historyListColor: '#B0E0E6' // Powder Blue
+                }
             },
             {
                 main: "The observable universe is smaller than a single atom.",
                 didYouKnow: "The observable universe is vast, spanning billions of light-years, and is significantly larger than any atom.",
-                isTrue: false
+                isTrue: false,
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #000000, #0F0F0F)', // Pure Black to Dark Grey
+                    textColor: '#FFFFFF', // White
+                    footerBg: '#000000',
+                    glassBg: 'rgba(0, 0, 0, 0.7)',
+                    glassBorder: 'rgba(255, 255, 255, 0.4)',
+                    titleColor: '#FFFFFF',
+                    buttonPrimary: '#333333',
+                    buttonHover: '#555555',
+                    mainActionBtn: '#FFFFFF',
+                    mainActionBtnHover: '#CCCCCC',
+                    quizOptionBtn: '#333333',
+                    quizOptionBtnHover: '#555555',
+                    quizCorrect: '#32CD32',
+                    quizIncorrect: '#FF4500',
+                    challengeTimerProgress: '#FFFFFF',
+                    challengeStreakColor: '#ADFF2F',
+                    historyToggleColor: '#FFFFFF',
+                    historyListColor: '#BBBBBB'
+                }
             }
         ];
 
+        let currentFact = facts[8]; // Set initial fact to "Diamond Planet"
         let factHistory = [];
+
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            for (const [key, value] of Object.entries(theme)) {
+                root.style.setProperty(`--${key}`, value);
+            }
+            mainTitle.style.color = theme.titleColor;
+            footerInfo.style.backgroundColor = theme.footerBg;
+            footerInfo.style.color = theme.historyToggleColor; // Use historyToggleColor for footer text
+        }
 
         function updateFactDisplay() {
             factOfTheDayText.textContent = currentFact.main;
@@ -525,13 +752,14 @@
             factOfTheDayText.classList.remove('revealed');
             didYouKnow.classList.remove('show-did-you-know');
             revealFactBtn.textContent = "Explore Fact";
+            applyTheme(currentFact.theme);
         }
 
         function generateRandomFact() {
             let newFact;
             do {
                 newFact = facts[Math.floor(Math.random() * facts.length)];
-            } while (newFact === currentFact); // Ensure a new fact is generated
+            } while (newFact === currentFact);
 
             currentFact = newFact;
             updateFactDisplay();
@@ -539,7 +767,7 @@
         }
 
         function addToHistory(fact) {
-            factHistory.unshift(fact); // Add to the beginning
+            factHistory.unshift(fact);
             renderHistory();
         }
 
@@ -560,7 +788,7 @@
 
         function startFactChallenge() {
             factChallengeArea.style.display = 'flex';
-            document.getElementById('fact-of-the-day-container').style.display = 'none'; // Hide main fact
+            document.getElementById('fact-of-the-day-container').style.display = 'none';
             score = 0;
             updateScoreDisplay();
             generateChallengeFact();
@@ -598,7 +826,7 @@
             challengeFact.textContent = currentChallengeFact.main;
             challengeFeedback.style.display = 'none';
             nextChallengeBtn.style.display = 'none';
-            challengeOptions.style.pointerEvents = 'auto'; // Enable buttons
+            challengeOptions.style.pointerEvents = 'auto';
             Array.from(challengeOptions.children).forEach(btn => {
                 btn.classList.remove('correct', 'incorrect');
             });
@@ -608,9 +836,9 @@
         challengeOptions.addEventListener('click', (event) => {
             const target = event.target;
             if (target.classList.contains('challenge-option-btn')) {
-                clearInterval(timer); // Stop the timer
+                clearInterval(timer);
                 const userAnswer = target.dataset.answer === 'true';
-                challengeOptions.style.pointerEvents = 'none'; // Disable buttons after selection
+                challengeOptions.style.pointerEvents = 'none';
 
                 if (userAnswer === currentChallengeFact.isTrue) {
                     challengeFeedback.textContent = "Correct! Well done.";
@@ -621,7 +849,6 @@
                     challengeFeedback.textContent = "Incorrect. The correct answer was " + (currentChallengeFact.isTrue ? "True" : "False") + ".";
                     challengeFeedback.style.color = 'var(--quiz-incorrect)';
                     target.classList.add('incorrect');
-                    // Highlight the correct answer if the user was wrong
                     Array.from(challengeOptions.children).find(btn => (btn.dataset.answer === 'true') === currentChallengeFact.isTrue).classList.add('correct');
                 }
                 updateScoreDisplay();
@@ -631,7 +858,6 @@
         });
 
         nextChallengeBtn.addEventListener('click', generateChallengeFact);
-
 
         // Event Listeners
         revealFactBtn.addEventListener('click', () => {
@@ -657,7 +883,7 @@
 
         // Initial load
         updateFactDisplay();
-        addToHistory(currentFact.main); // Add initial fact to history
+        addToHistory(currentFact.main);
 
         // Add a button to start the challenge
         const startChallengeBtn = document.createElement('button');
@@ -675,21 +901,20 @@
         backToMainFactsBtn.className = 'btn';
         backToMainFactsBtn.textContent = 'Back to Daily Facts';
         backToMainFactsBtn.style.marginTop = '20px';
-        backToMainFactsBtn.style.display = 'none'; // Initially hidden
+        backToMainFactsBtn.style.display = 'none';
         factChallengeArea.appendChild(backToMainFactsBtn);
 
         backToMainFactsBtn.addEventListener('click', () => {
             factChallengeArea.style.display = 'none';
             document.getElementById('fact-of-the-day-container').style.display = 'flex';
             backToMainFactsBtn.style.display = 'none';
-            startChallengeBtn.style.display = 'block'; // Show start challenge button again
+            startChallengeBtn.style.display = 'block';
         });
 
-        // Show "Back to Daily Facts" button when challenge is active
         startChallengeBtn.addEventListener('click', () => {
             startFactChallenge();
-            startChallengeBtn.style.display = 'none'; // Hide start challenge button
-            backToMainFactsBtn.style.display = 'block'; // Show back to main facts button
+            startChallengeBtn.style.display = 'none';
+            backToMainFactsBtn.style.display = 'block';
         });
 
     </script>
