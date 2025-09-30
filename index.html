@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Wonders: Neutron Star Fact</title>
+    <title>Ocean Depths: Fascinating Facts</title>
     <style>
         :root {
-            /* Neutron Star Theme Colors */
-            --bg-gradient: linear-gradient(135deg, hsl(240, 40%, 8%), hsl(280, 30%, 12%)); /* Deep blue-purple to dark purple */
-            --bg-deep-dive: linear-gradient(135deg, hsl(280, 30%, 12%), hsl(300, 25%, 10%)); /* Even darker purple for deep dive */
-            --text-color: hsl(200, 100%, 90%); /* Bright light blue for readability */
-            --footer-bg: hsl(260, 30%, 15%); /* Darker purple for footer */
-            --button-primary: hsl(200, 60%, 30%); /* Muted blue for buttons */
-            --button-hover: hsl(200, 70%, 40%);
-            --main-action-btn: hsl(300, 80%, 50%); /* Magenta for main actions (like a stellar glow) */
-            --main-action-btn-hover: hsl(300, 90%, 60%);
-            --glass-bg: rgba(20, 0, 30, 0.4); /* Darker, more opaque neutron star glass */
-            --glass-border: rgba(150, 100, 255, 0.3); /* Lighter purple-blue border */
-            --fact-card-bg: rgba(10, 0, 20, 0.5);
+            /* Ocean Depths Theme Colors */
+            --bg-gradient: linear-gradient(135deg, hsl(200, 80%, 5%), hsl(220, 70%, 10%)); /* Deep ocean blue to dark blue */
+            --bg-deep-dive: linear-gradient(135deg, hsl(220, 70%, 10%), hsl(240, 60%, 8%)); /* Even darker blue for deep dive */
+            --text-color: hsl(180, 100%, 90%); /* Light aquamarine for readability */
+            --footer-bg: hsl(210, 50%, 12%); /* Darker blue for footer */
+            --button-primary: hsl(200, 60%, 25%); /* Muted blue for buttons */
+            --button-hover: hsl(200, 70%, 35%);
+            --main-action-btn: hsl(170, 70%, 40%); /* Teal for main actions */
+            --main-action-btn-hover: hsl(170, 80%, 50%);
+            --glass-bg: rgba(0, 30, 50, 0.4); /* Darker, more opaque ocean glass */
+            --glass-border: rgba(100, 200, 255, 0.3); /* Lighter blue border */
+            --fact-card-bg: rgba(0, 20, 40, 0.5);
             --fact-card-shadow-inset: inset 0 0 15px rgba(0,0,0,0.5);
             --fact-text-shadow: 1px 1px 10px rgba(0,0,0,0.8); /* Stronger shadow for fact text */
-            --title-color: hsl(200, 100%, 80%); /* Bright blue for title */
+            --title-color: hsl(190, 100%, 80%); /* Bright cyan for title */
             --title-shadow: 3px 3px 20px rgba(0, 0, 0, 0.8); /* Stronger title shadow */
-            --quiz-option-btn: hsl(200, 45%, 35%);
-            --quiz-option-btn-hover: hsl(200, 55%, 45%);
-            --quiz-correct: hsl(120, 55%, 45%);
-            --quiz-incorrect: hsl(0, 55%, 45%);
-            --challenge-timer-progress: hsl(300, 100%, 70%);
-            --challenge-streak-color: hsl(160, 80%, 70%);
+            --quiz-option-btn: hsl(200, 45%, 30%);
+            --quiz-option-btn-hover: hsl(200, 55%, 40%);
+            --quiz-correct: hsl(120, 55%, 40%);
+            --quiz-incorrect: hsl(0, 55%, 40%);
+            --challenge-timer-progress: hsl(40, 100%, 60%);
+            --challenge-streak-color: hsl(60, 80%, 70%);
             --history-toggle-color: hsl(0, 0%, 95%);
-            --history-list-color: hsl(200, 80%, 85%); /* Lighter blue for history list */
-            --hint-button-bg: hsl(200, 60%, 30%);
-            --hint-button-hover: hsl(200, 70%, 40%);
-            --reveal-button-bg: hsl(300, 80%, 40%);
-            --reveal-button-hover: hsl(300, 90%, 50%);
+            --history-list-color: hsl(180, 80%, 80%); /* Lighter aquamarine for history list */
+            --hint-button-bg: hsl(200, 60%, 25%);
+            --hint-button-hover: hsl(200, 70%, 35%);
+            --reveal-button-bg: hsl(170, 70%, 35%);
+            --reveal-button-hover: hsl(170, 80%, 45%);
         }
 
         body {
@@ -163,7 +163,8 @@
             border-radius: 20px; /* More rounded */
             box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
             backdrop-filter: blur(10px); /* More blur */
-            -webkit-backdrop-filter: blur(10px);\n            border: 1px solid var(--glass-border); /* Stronger border */
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border); /* Stronger border */
             cursor: default; /* Changed to default as interaction is now button-based */
             transition: all 0.4s ease;
             position: relative;
@@ -220,7 +221,7 @@
         }
         #did-you-know h3 {
             font-size: 1.6rem;
-            color: hsl(30, 100%, 85%); /* Orange-yellow for emphasis */
+            color: hsl(40, 100%, 75%); /* Gold-yellow for emphasis */
             margin-bottom: 10px;
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
@@ -308,8 +309,7 @@
             color: hsl(160, 80%, 70%);
             margin-bottom: 15px;
             font-weight: 700;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
-        }
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.4);\n        }
         #challenge-streak {
             font-size: 1.6rem;
             color: var(--challenge-streak-color);
@@ -403,4 +403,304 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 1.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            .fact-card {\n                padding: 25px;\n                min-height: 200px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.8rem;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 25px;\n            }\n            .btn, .quiz-option-btn, .challenge-option-btn {\n                padding: 12px 20px;\n                font-size: 1rem;\n            }\n            .main-action-btn {\n                font-size: 1.2rem;\n                padding: 15px 25px;\n            }\n            #did-you-know h3 {\n                font-size: 1.4rem;\n            }\n            #did-you-know-content {\n                font-size: 1rem;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Cosmic Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">A day on Venus is longer than its year. It takes Venus 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.</p>\n            <div id=\"challenge-buttons\" style=\"margin-top: 20px;\">\n                <button id=\"reveal-fact-btn\" class=\"btn main-action-btn\">Explore Fact</button>\n                <button id=\"generate-fact-btn\" class=\"btn\">Generate New Fact</button>\n            </div>\n            <div id=\"did-you-know\">\n                <h3>Did You Know?</h3>\n                <p id=\"did-you-know-content\">Venus rotates in the opposite direction to most other planets, meaning the Sun rises in the west and sets in the east.</p>\n            </div>\n        </div>\n    </div>\n\n    <div id=\"history-section\">\n        <button id=\"history-toggle-btn\">Show Fact History</button>\n        <ul id=\"history-list\"></ul>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>&copy; 2025 Cosmic Insights. All rights reserved.</p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const body = document.body;\n            const factText = document.getElementById('fact-of-the-day-text');\n            const revealFactBtn = document.getElementById('reveal-fact-btn');\n            const generateFactBtn = document.getElementById('generate-fact-btn');\n            const didYouKnowSection = document.getElementById('did-you-know');\n            const didYouKnowContent = document.getElementById('did-you-know-content');\n            const historyToggleBtn = document.getElementById('history-toggle-btn');\n            const historyList = document.getElementById('history-list');\n\n            let factHistory = [];\n\n            const spaceFacts = [\n                {\n                    fact: \"The universe is estimated to be around 13.8 billion years old, but the observable universe is much larger than 13.8 billion light-years across due to cosmic inflation.\",\n                    didYouKnow: \"The fastest man-made object, the Parker Solar Probe, travels at speeds up to 690,000 km/h (430,000 mph) relative to the Sun, designed to study the Sun's outer corona.\"\n                },\n                {\n                    fact: \"A day on Venus is longer than its year. It takes Venus 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.\",\n                    didYouKnow: \"Venus rotates in the opposite direction to most other planets, meaning the Sun rises in the west and sets in the east.\"\n                },\n                {\n                    fact: \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\n                    didYouKnow: \"Scientists estimate there are about 100 billion to 400 billion stars in our Milky Way galaxy alone, and billions of galaxies in the observable universe.\"\n                },\n                {\n                    fact: \"Neutron stars are so dense that a sugar cube-sized amount of material from one would weigh about a billion tons.\",\n                    didYouKnow: \"They are formed from the collapsed cores of massive stars after a supernova explosion.\"\n                },\n                {\n                    fact: \"The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a massive filament of galaxies stretching over 10 billion light-years.\",\n                    didYouKnow: \"It was discovered in 2013 by mapping the distribution of gamma-ray bursts.\"\n                }\n            ];\n\n            let currentFactIndex = 3; // Start with the Neutron Star fact (index 3)\n\n            function displayFact(index) {\n                const factData = spaceFacts[index];\n                factText.textContent = factData.fact;\n                didYouKnowContent.textContent = factData.didYouKnow;\n\n                // Reset UI for new fact\n                body.classList.remove('deep-dive');\n                factText.classList.remove('revealed');\n                didYouKnowSection.classList.remove('show-did-you-know');\n                revealFactBtn.style.display = 'inline-block'; // Show the button again\n            }\n\n            // Initial display of the chosen fact\n            displayFact(currentFactIndex);\n\n            revealFactBtn.addEventListener('click', () => {\n                // \"Explore Fact\" effect\n                body.classList.add('deep-dive');\n\n                factText.classList.add('revealed');\n                revealFactBtn.style.display = 'none'; // Hide the button after revealing\n\n                setTimeout(() => {\n                    didYouKnowSection.classList.add('show-did-you-know');\n                }, 1000); // Show \"Did You Know\" after a short delay\n\n                // Add current fact to history\n                const currentFactData = spaceFacts[currentFactIndex];\n                factHistory.push({ fact: currentFactData.fact, didYouKnow: currentFactData.didYouKnow });\n                updateHistoryList();\n            });\n\n            generateFactBtn.addEventListener('click', () => {\n                let newIndex;\n                do {\n                    newIndex = Math.floor(Math.random() * spaceFacts.length);\n                } while (newIndex === currentFactIndex); // Ensure a new fact is generated\n\n                currentFactIndex = newIndex;\n                displayFact(currentFactIndex);\n            });\n\n            historyToggleBtn.addEventListener('click', () => {\n                historyList.classList.toggle('show-history');\n                if (historyList.classList.contains('show-history')) {\n                    historyToggleBtn.textContent = 'Hide Fact History';\n                } else {\n                    historyToggleBtn.textContent = 'Show Fact History';\n                }\n            });\n\n            function updateHistoryList() {\n                historyList.innerHTML = ''; // Clear existing list\n                factHistory.forEach((item, index) => {\n                    const listItem = document.createElement('li');\n                    listItem.innerHTML = `<strong>Fact ${index + 1}:</strong> ${item.fact} <br> <em>Did You Know:</em> ${item.didYouKnow}`;\n                    historyList.prepend(listItem); // Add newest fact to the top\n                });\n            }\n        });\n    </script>\n</body>\n</html>
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 3.5rem;
+                margin-bottom: 1.5rem;
+            }
+            .container {
+                padding: 20px;
+            }
+            .fact-card {
+                padding: 25px;
+                min-height: 200px;
+            }
+            p {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 1.8rem;
+            }
+            #footer-info {
+                font-size: 1rem;
+                padding: 15px 25px;
+            }
+            .btn, .quiz-option-btn, .challenge-option-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
+            .main-action-btn {
+                font-size: 1.2rem;
+                padding: 15px 25px;
+            }
+            #did-you-know h3 {
+                font-size: 1.4rem;
+            }
+            #did-you-know-content {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Ocean Depths</h1>
+
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,034 meters (36,201 feet).</p>
+            <div id="challenge-buttons" style="margin-top: 20px;">
+                <button id="reveal-fact-btn" class="btn main-action-btn">Explore Fact</button>
+                <button id="generate-fact-btn" class="btn">Generate New Fact</button>
+            </div>
+            <div id="did-you-know">
+                <h3>Did You Know?</h3>
+                <p id="did-you-know-content">If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.</p>
+            </div>
+        </div>
+
+        <!-- New Feature: Fact Challenge -->
+        <div id="fact-challenge-area" class="fact-card" style="margin-top: 40px; display: none;">
+            <h2>Fact Challenge!</h2>
+            <p id="challenge-question" style="font-size: 1.8rem; margin-bottom: 20px;">Is this statement true or false?</p>
+            <p id="challenge-fact" style="font-size: 2.2rem; font-weight: 700;"></p>
+            <div id="challenge-options">
+                <button class="challenge-option-btn" data-answer="true">True</button>
+                <button class="challenge-option-btn" data-answer="false">False</button>
+            </div>
+            <p id="challenge-feedback" style="display: none;"></p>
+            <button id="next-challenge-btn" class="btn" style="display: none; margin-top: 20px;">Next Fact</button>
+        </div>
+
+        <div id="history-section">
+            <button id="history-toggle-btn">Show Fact History</button>
+            <ul id="history-list">
+                <!-- History items will be added here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        <p>&copy; 2025 Ocean Depths. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const factOfTheDayText = document.getElementById('fact-of-the-day-text');
+        const revealFactBtn = document.getElementById('reveal-fact-btn');
+        const generateFactBtn = document.getElementById('generate-fact-btn');
+        const didYouKnow = document.getElementById('did-you-know');
+        const didYouKnowContent = document.getElementById('did-you-know-content');
+        const historyToggleBtn = document.getElementById('history-toggle-btn');
+        const historyList = document.getElementById('history-list');
+        const factChallengeArea = document.getElementById('fact-challenge-area');
+        const challengeFact = document.getElementById('challenge-fact');
+        const challengeOptions = document.getElementById('challenge-options');
+        const challengeFeedback = document.getElementById('challenge-feedback');
+        const nextChallengeBtn = document.getElementById('next-challenge-btn');
+
+        let currentFact = {
+            main: "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,034 meters (36,201 feet).",
+            didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.",
+            isTrue: true // For the challenge feature
+        };
+
+        const facts = [
+            {
+                main: "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,034 meters (36,201 feet).",
+                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.",
+                isTrue: true
+            },
+            {
+                main: "The Great Barrier Reef is the world's largest coral reef system, composed of over 3,000 individual reefs and 900 islands stretching for over 2,300 kilometers (1,400 miles).",
+                didYouKnow: "It is the only living structure visible from outer space.",
+                isTrue: true
+            },
+            {
+                main: "A group of jellyfish is called a 'smack'.",
+                didYouKnow: "Some jellyfish are immortal, capable of reverting to an earlier stage of life after reaching maturity.",
+                isTrue: true
+            },
+            {
+                main: "The ocean contains enough gold to give every person on Earth 9 pounds of it.",
+                didYouKnow: "However, it's so diluted that extracting it would be economically unfeasible.",
+                isTrue: true
+            },
+            {
+                main: "There are more historic artifacts and ruins under the sea than in all of the world's museums combined.",
+                didYouKnow: "Many ancient cities and shipwrecks lie preserved in the deep ocean.",
+                isTrue: true
+            },
+            {
+                main: "The deepest part of the ocean is called the Challenger Deep.",
+                didYouKnow: "It's located in the western Pacific Ocean, at the southern end of the Mariana Trench.",
+                isTrue: true
+            },
+            {
+                main: "The ocean is home to over 2.2 million species, with an estimated 91% yet to be discovered.",
+                didYouKnow: "New species are constantly being found in the deep sea, some with bizarre adaptations to their extreme environments.",
+                isTrue: true
+            },
+            {
+                main: "The average depth of the ocean is about 3,700 meters (12,100 feet).",
+                didYouKnow: "Only a small fraction of the ocean has been explored by humans.",
+                isTrue: true
+            },
+            {
+                main: "The 'Great Pacific Garbage Patch' is a massive island of trash floating in the Pacific Ocean, twice the size of Texas.",
+                didYouKnow: "It's primarily composed of microplastics, making it difficult to clean up.",
+                isTrue: false // This is a false statement for the challenge
+            },
+            {
+                main: "Sharks are immune to all known diseases.",
+                didYouKnow: "While sharks have a robust immune system, they are not immune to all diseases, including some cancers.",
+                isTrue: false // This is a false statement for the challenge
+            }
+        ];
+
+        let factHistory = [];
+
+        function updateFactDisplay() {
+            factOfTheDayText.textContent = currentFact.main;
+            didYouKnowContent.textContent = currentFact.didYouKnow;
+            factOfTheDayText.classList.remove('revealed');
+            didYouKnow.classList.remove('show-did-you-know');
+            revealFactBtn.textContent = "Explore Fact";
+        }
+
+        function generateRandomFact() {
+            let newFact;
+            do {
+                newFact = facts[Math.floor(Math.random() * facts.length)];
+            } while (newFact === currentFact); // Ensure a new fact is generated
+
+            currentFact = newFact;
+            updateFactDisplay();
+            addToHistory(currentFact.main);
+        }
+
+        function addToHistory(fact) {
+            factHistory.unshift(fact); // Add to the beginning
+            renderHistory();
+        }
+
+        function renderHistory() {
+            historyList.innerHTML = '';
+            factHistory.forEach(fact => {
+                const listItem = document.createElement('li');
+                listItem.textContent = fact;
+                historyList.appendChild(listItem);
+            });
+        }
+
+        // Fact Challenge Logic
+        let currentChallengeFact;
+
+        function startFactChallenge() {
+            factChallengeArea.style.display = 'flex';
+            document.getElementById('fact-of-the-day-container').style.display = 'none'; // Hide main fact
+            generateChallengeFact();
+        }
+
+        function generateChallengeFact() {
+            let newChallengeFact;
+            do {
+                newChallengeFact = facts[Math.floor(Math.random() * facts.length)];
+            } while (newChallengeFact === currentChallengeFact);
+            currentChallengeFact = newChallengeFact;
+
+            challengeFact.textContent = currentChallengeFact.main;
+            challengeFeedback.style.display = 'none';
+            nextChallengeBtn.style.display = 'none';
+            challengeOptions.style.pointerEvents = 'auto'; // Enable buttons
+            Array.from(challengeOptions.children).forEach(btn => {
+                btn.classList.remove('correct', 'incorrect');
+            });
+        }
+
+        challengeOptions.addEventListener('click', (event) => {
+            const target = event.target;
+            if (target.classList.contains('challenge-option-btn')) {
+                const userAnswer = target.dataset.answer === 'true';
+                challengeOptions.style.pointerEvents = 'none'; // Disable buttons after selection
+
+                if (userAnswer === currentChallengeFact.isTrue) {
+                    challengeFeedback.textContent = "Correct! Well done.";
+                    challengeFeedback.style.color = 'var(--quiz-correct)';
+                    target.classList.add('correct');
+                } else {
+                    challengeFeedback.textContent = "Incorrect. Try again!";
+                    challengeFeedback.style.color = 'var(--quiz-incorrect)';
+                    target.classList.add('incorrect');
+                    // Highlight the correct answer if the user was wrong
+                    Array.from(challengeOptions.children).find(btn => (btn.dataset.answer === 'true') === currentChallengeFact.isTrue).classList.add('correct');
+                }
+                challengeFeedback.style.display = 'block';
+                nextChallengeBtn.style.display = 'block';
+            }
+        });
+
+        nextChallengeBtn.addEventListener('click', generateChallengeFact);
+
+
+        // Event Listeners
+        revealFactBtn.addEventListener('click', () => {
+            factOfTheDayText.classList.toggle('revealed');
+            didYouKnow.classList.toggle('show-did-you-know');
+            if (factOfTheDayText.classList.contains('revealed')) {
+                revealFactBtn.textContent = "Hide Details";
+            } else {
+                revealFactBtn.textContent = "Explore Fact";
+            }
+        });
+
+        generateFactBtn.addEventListener('click', generateRandomFact);
+
+        historyToggleBtn.addEventListener('click', () => {
+            historyList.classList.toggle('show-history');
+            if (historyList.classList.contains('show-history')) {
+                historyToggleBtn.textContent = "Hide Fact History";
+            } else {
+                historyToggleBtn.textContent = "Show Fact History";
+            }
+        });
+
+        // Initial load
+        updateFactDisplay();
+        addToHistory(currentFact.main); // Add initial fact to history
+
+        // Add a button to start the challenge
+        const startChallengeBtn = document.createElement('button');
+        startChallengeBtn.id = 'start-challenge-btn';
+        startChallengeBtn.className = 'btn main-action-btn';
+        startChallengeBtn.textContent = 'Start Fact Challenge!';
+        startChallengeBtn.style.marginTop = '20px';
+        document.getElementById('challenge-buttons').appendChild(startChallengeBtn);
+
+        startChallengeBtn.addEventListener('click', startFactChallenge);
+
+        // Back to main facts button
+        const backToMainFactsBtn = document.createElement('button');
+        backToMainFactsBtn.id = 'back-to-main-facts-btn';
+        backToMainFactsBtn.className = 'btn';
+        backToMainFactsBtn.textContent = 'Back to Daily Facts';
+        backToMainFactsBtn.style.marginTop = '20px';
+        backToMainFactsBtn.style.display = 'none'; // Initially hidden
+        factChallengeArea.appendChild(backToMainFactsBtn);
+
+        backToMainFactsBtn.addEventListener('click', () => {
+            factChallengeArea.style.display = 'none';
+            document.getElementById('fact-of-the-day-container').style.display = 'flex';
+            backToMainFactsBtn.style.display = 'none';
+            startChallengeBtn.style.display = 'block'; // Show start challenge button again
+        });
+
+        // Show "Back to Daily Facts" button when challenge is active
+        startChallengeBtn.addEventListener('click', () => {
+            startFactChallenge();
+            startChallengeBtn.style.display = 'none'; // Hide start challenge button
+            backToMainFactsBtn.style.display = 'block'; // Show back to main facts button
+        });
+
+    </script>
+</body>
+</html>
