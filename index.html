@@ -6,21 +6,21 @@
     <title>Cosmic Wonders: Fascinating Facts</title>
     <style>
         :root {
-            /* Theme Colors for "It rains diamonds on Jupiter and Saturn." */
-            --bg-gradient: linear-gradient(135deg, #2F4F4F, #4682B4); /* Dark Slate Gray to Steel Blue */
+            /* Theme Colors for "A black hole the size of a marble would weigh more than the Earth." */
+            --bg-gradient: linear-gradient(135deg, #0A0A2A, #200040); /* Very dark blue to very dark purple */
             --text-color: #E0FFFF; /* Light Cyan */
-            --footer-bg: #223333;
-            --glass-bg: rgba(47, 79, 79, 0.6);
-            --glass-border: rgba(224, 255, 255, 0.4);
+            --footer-bg: #150030; /* Darker purple/black */
+            --glass-bg: rgba(32, 0, 64, 0.6); /* Dark purple, semi-transparent */
+            --glass-border: rgba(224, 255, 255, 0.4); /* Light Cyan, semi-transparent */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
             --title-color: #E0FFFF; /* Light Cyan */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #5F9EA0; /* Cadet Blue */
-            --button-hover: #7FFFD4; /* Aquamarine */
+            --button-primary: #4B0082; /* Indigo */
+            --button-hover: #8A2BE2; /* Blue Violet */
             --main-action-btn: #E0FFFF; /* Light Cyan */
             --main-action-btn-hover: #AFEEEE; /* Pale Turquoise */
-            --quiz-option-btn: #5F9EA0;
-            --quiz-option-btn-hover: #7FFFD4;
+            --quiz-option-btn: #4B0082;
+            --quiz-option-btn-hover: #8A2BE2;
             --quiz-correct: #32CD32;
             --quiz-incorrect: #FF4500;
             --challenge-timer-progress: #E0FFFF;
@@ -400,4 +400,247 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 4rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 25px;\n            }\n            .fact-card {\n                padding: 30px;\n                min-height: 250px;\n            }\n            p {\n                font-size: 2rem;\n                margin-bottom: 2rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 2rem;\n            }\n            #footer-info {\n                font-size: 1.1rem;\n                padding: 18px 30px;\n            }\n            .btn, .challenge-option-btn {\n                padding: 15px 25px;\n                font-size: 1.1rem;\n            }\n            .main-action-btn {\n                font-size: 1.3rem;\n                padding: 18px 30px;\n            }\n            #did-you-know h3 {\n                font-size: 1.6rem;\n            }\n            #did-you-know-content {\n                font-size: 1.1rem;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Cosmic Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">It rains diamonds on Jupiter and Saturn.</p>\n            <div id=\"challenge-buttons\" style=\"margin-top: 20px;\">\n                <button id=\"show-details-btn\" class=\"btn main-action-btn\">Show Details</button>\n                <button id=\"generate-fact-btn\" class=\"btn\">Generate New Fact</button>\n            </div>\n            <div id=\"did-you-know\">\n                <h3>Did You Know?</h3>\n                <p id=\"did-you-know-content\">Scientists believe that in the atmospheres of Jupiter and Saturn, lightning storms turn methane into soot, which is then compressed into graphite and then diamonds as it falls.</p>\n            </div>\n        </div>\n\n        <!-- New Feature: Fact Quiz -->\n        <div id=\"fact-challenge-area\" class=\"fact-card\" style=\"margin-top: 40px; display: none;\">\n            <h2>Fact Quiz!</h2>\n            <div id=\"challenge-score\" style=\"font-size: 1.8rem; color: var(--challenge-streak-color); margin-bottom: 15px; font-weight: 700; text-shadow: 1px 1px 5px rgba(0,0,0,0.4);\">Score: 0</div>\n            <div id=\"challenge-timer-bar\">\n                <div id=\"challenge-timer-progress\"></div>\n            </div>\n            <p id=\"challenge-question\" style=\"font-size: 1.8rem; margin-bottom: 20px;\">Is this statement true or false?</p>\n            <p id=\"challenge-fact\" style=\"font-size: 2.2rem; font-weight: 700;\"></p>\n            <div id=\"challenge-options\">\n                <button class=\"challenge-option-btn\" data-answer=\"true\">True</button>\n                <button class=\"challenge-option-btn\" data-answer=\"false\">False</button>\n            </div>\n            <p id=\"challenge-feedback\" style=\"display: none;\"></p>\n            <button id=\"next-challenge-btn\" class=\"btn\" style=\"display: none; margin-top: 20px;\">Next Fact</button>\n            <button id=\"back-to-main-facts-btn\" class=\"btn\" style=\"margin-top: 20px;\">Back to Daily Facts</button>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show Fact History</button>\n            <ul id=\"history-list\">\n                <!-- History items will be added here by JavaScript -->\n            </ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>\n    </footer>\n\n    <script>\n        const factOfTheDayText = document.getElementById('fact-of-the-day-text');\n        const showDetailsBtn = document.getElementById('show-details-btn');\n        const generateFactBtn = document.getElementById('generate-fact-btn');\n        const didYouKnow = document.getElementById('did-you-know');\n        const didYouKnowContent = document.getElementById('did-you-know-content');\n        const historyToggleBtn = document.getElementById('history-toggle-btn');\n        const historyList = document.getElementById('history-list');\n        const factChallengeArea = document.getElementById('fact-challenge-area');\n        const challengeFact = document.getElementById('challenge-fact');\n        const challengeOptions = document.getElementById('challenge-options');\n        const challengeFeedback = document.getElementById('challenge-feedback');\n        const nextChallengeBtn = document.getElementById('next-challenge-btn');\n        const mainTitle = document.getElementById('main-title');\n        const footerInfo = document.getElementById('footer-info');\n        const startChallengeBtn = document.createElement('button');\n        const backToMainFactsBtn = document.getElementById('back-to-main-facts-btn');\n\n\n        const facts = [\n            {\n                main: \"Neutron stars are so dense that a sugar cube-sized amount of their material would weigh more than all of humanity.\",\n                didYouKnow: \"A neutron star is the collapsed core of a massive supergiant star, which was between 10 and 29 solar masses, at the end of its life cycle.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #1A0033, #330066)',\n                    textColor: '#FFD700',\n                    footerBg: '#0D0026',\n                    glassBg: 'rgba(26, 0, 51, 0.6)',\n                    glassBorder: 'rgba(255, 215, 0, 0.4)',\n                    titleColor: '#FFD700',\n                    buttonPrimary: '#4A0080',\n                    buttonHover: '#6600CC',\n                    mainActionBtn: '#FFD700',\n                    mainActionBtnHover: '#FFC400',\n                    quizOptionBtn: '#330066',\n                    quizOptionBtnHover: '#4D0099',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#FFD700',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#E0E0FF',\n                    historyListColor: '#B0C4DE'\n                }\n            },\n            {\n                main: \"A day on Venus is longer than its year.\",\n                didYouKnow: \"Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #4B0082, #8A2BE2)', // Indigo to Blue Violet\n                    textColor: '#FFD700', // Gold\n                    footerBg: '#3A0066',\n                    glassBg: 'rgba(75, 0, 130, 0.6)',\n                    glassBorder: 'rgba(255, 215, 0, 0.4)',\n                    titleColor: '#FFD700',\n                    buttonPrimary: '#6A00B0',\n                    buttonHover: '#9932CC',\n                    mainActionBtn: '#FFD700',\n                    mainActionBtnHover: '#FFC400',\n                    quizOptionBtn: '#6A00B0',\n                    quizOptionBtnHover: '#9932CC',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#FFD700',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#E0E0FF',\n                    historyListColor: '#B0C4DE'\n                }\n            },\n            {\n                main: \"The Sun is a green star.\",\n                didYouKnow: \"While the Sun emits light across the entire visible spectrum, its peak emission is in the green part. However, due to how our eyes perceive light, it appears white or yellow.\",\n                isTrue: false,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #FFD700, #FFA500)', // Gold to Orange\n                    textColor: '#333333', // Dark Grey\n                    footerBg: '#CCAA00',\n                    glassBg: 'rgba(255, 215, 0, 0.6)',\n                    glassBorder: 'rgba(51, 51, 51, 0.4)',\n                    titleColor: '#333333',\n                    buttonPrimary: '#FF8C00',\n                    buttonHover: '#FF6347',\n                    mainActionBtn: '#333333',\n                    mainActionBtnHover: '#666666',\n                    quizOptionBtn: '#FF8C00',\n                    quizOptionBtnHover: '#FF6347',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#333333',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#333333',\n                    historyListColor: '#696969'\n                }\n            },\n            {\n                main: \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\n                didYouKnow: \"Scientists estimate there are about 100 billion to 400 billion stars in our Milky Way galaxy alone, and there are billions of galaxies in the observable universe.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #000033, #000066)', // Dark Blue\n                    textColor: '#ADD8E6', // Light Blue\n                    footerBg: '#000022',\n                    glassBg: 'rgba(0, 0, 51, 0.6)',\n                    glassBorder: 'rgba(173, 216, 230, 0.4)',\n                    titleColor: '#ADD8E6',\n                    buttonPrimary: '#4169E1', // Royal Blue\n                    buttonHover: '#6495ED', // Cornflower Blue\n                    mainActionBtn: '#ADD8E6',\n                    mainActionBtnHover: '#B0E0E6', // Powder Blue\n                    quizOptionBtn: '#4169E1',\n                    quizOptionBtnHover: '#6495ED',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#ADD8E6',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#ADD8E6',\n                    historyListColor: '#87CEEB' // Sky Blue\n                }\n            },\n            {\n                main: \"A black hole is a region of spacetime where gravity is so strong that nothing—no particles or even electromagnetic radiation such as light—can escape from it.\",\n                didYouKnow: \"The theory of general relativity predicts that a sufficiently compact mass can deform spacetime to form a black hole.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #000000, #1A1A1A)', // Black to Very Dark Grey\n                    textColor: '#F5F5DC', // Beige\n                    footerBg: '#000000',\n                    glassBg: 'rgba(0, 0, 0, 0.7)',\n                    glassBorder: 'rgba(245, 245, 220, 0.4)',\n                    titleColor: '#F5F5DC',\n                    buttonPrimary: '#2F4F4F', // Dark Slate Gray\n                    buttonHover: '#696969', // Dim Gray\n                    mainActionBtn: '#F5F5DC',\n                    mainActionBtnHover: '#E0E0D0',\n                    quizOptionBtn: '#2F4F4F',\n                    quizOptionBtnHover: '#696969',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#F5F5DC',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#F5F5DC',\n                    historyListColor: '#C0C0C0' // Silver\n                }\n            },\n            {\n                main: \"The largest known structure in the universe is the Hercules-Corona Borealis Great Wall.\",\n                didYouKnown: \"This immense structure is a galactic filament, a vast association of galaxies, spanning over 10 billion light-years.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #2C003E, #5A0080)', // Dark Violet to Deep Purple\n                    textColor: '#E6E6FA', // Lavender\n                    footerBg: '#1E002B',\n                    glassBg: 'rgba(44, 0, 62, 0.6)',\n                    glassBorder: 'rgba(230, 230, 250, 0.4)',\n                    titleColor: '#E6E6FA',\n                    buttonPrimary: '#8A2BE2', // Blue Violet\n                    buttonHover: '#9370DB', // Medium Purple\n                    mainActionBtn: '#E6E6FA',\n                    mainActionBtnHover: '#D8BFD8', // Thistle\n                    quizOptionBtn: '#8A2BE2',\n                    quizOptionBtnHover: '#9370DB',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#E6E6FA',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#E6E6FA',\n                    historyListColor: '#DDA0DD' // Plum\n                }\n            },\n            {\n                main: \"It rains diamonds on Jupiter and Saturn.\",\n                didYouKnow: \"Scientists believe that in the atmospheres of Jupiter and Saturn, lightning storms turn methane into soot, which is then compressed into graphite and then diamonds as it falls.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #2F4F4F, #4682B4)', // Dark Slate Gray to Steel Blue\n                    textColor: '#E0FFFF', // Light Cyan\n                    footerBg: '#223333',\n                    glassBg: 'rgba(47, 79, 79, 0.6)',\n                    glassBorder: 'rgba(224, 255, 255, 0.4)',\n                    titleColor: '#E0FFFF',\n                    buttonPrimary: '#5F9EA0', // Cadet Blue\n                    buttonHover: '#7FFFD4', // Aquamarine\n                    mainActionBtn: '#E0FFFF',\n                    mainActionBtnHover: '#AFEEEE', // Pale Turquoise\n                    quizOptionBtn: '#5F9EA0',\n                    quizOptionBtnHover: '#7FFFD4',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#E0FFFF',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#E0FFFF',\n                    historyListColor: '#B0E0E6' // Powder Blue\n                }\n            },\n            {\n                main: \"The Earth is perfectly round.\",\n                didYouKnow: \"The Earth is an oblate spheroid, meaning it bulges at the equator and is flattened at the poles due to its rotation.\",\n                isTrue: false,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #004D00, #008000)', // Dark Green to Green\n                    textColor: '#F0FFF0', // Honeydew\n                    footerBg: '#003300',\n                    glassBg: 'rgba(0, 77, 0, 0.6)',\n                    glassBorder: 'rgba(240, 255, 240, 0.4)',\n                    titleColor: '#F0FFF0',\n                    buttonPrimary: '#3CB371', // Medium Sea Green\n                    buttonHover: '#66CDAA', // Medium Aquamarine\n                    mainActionBtn: '#F0FFF0',\n                    mainActionBtnHover: '#98FB98', // Pale Green\n                    quizOptionBtn: '#3CB371',\n                    quizOptionBtnHover: '#66CDAA',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#F0FFF0',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#F0FFF0',\n                    historyListColor: '#C1FFC1' // Light Green\n                }\n            },\n            {\n                main: \"There is a planet made entirely of diamonds.\",\n                didYouKnow: \"Discovered in 2004, '55 Cancri e' is a super-Earth exoplanet that is thought to have a significant portion of its mass as diamond.\",\n                isTrue: true,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #0A001A, #26004D)', // Deep Purple/Blue\n                    textColor: '#E0FFFF', // Light Cyan (Diamond sparkle)\n                    footerBg: '#050010',\n                    glassBg: 'rgba(10, 0, 26, 0.6)',\n                    glassBorder: 'rgba(224, 255, 255, 0.4)',\n                    titleColor: '#E0FFFF',\n                    buttonPrimary: '#4B0082', // Indigo\n                    buttonHover: '#6A5ACD', // Slate Blue\n                    mainActionBtn: '#E0FFFF',\n                    mainActionBtnHover: '#AFEEEE', // Pale Turquoise\n                    quizOptionBtn: '#4B0082',\n                    quizOptionBtnHover: '#6A5ACD',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#E0FFFF',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#E0FFFF',\n                    historyListColor: '#B0E0E6' // Powder Blue\n                }\n            },\n            {\n                main: \"The observable universe is smaller than a single atom.\",\n                didYouKnow: \"The observable universe is vast, spanning billions of light-years, and is significantly larger than any atom.\",\n                isTrue: false,\n                theme: {\n                    bgGradient: 'linear-gradient(135deg, #000000, #0F0F0F)', // Pure Black to Dark Grey\n                    textColor: '#FFFFFF', // White\n                    footerBg: '#000000',\n                    glassBg: 'rgba(0, 0, 0, 0.7)',\n                    glassBorder: 'rgba(255, 255, 255, 0.4)',\n                    titleColor: '#FFFFFF',\n                    buttonPrimary: '#333333',\n                    buttonHover: '#555555',\n                    mainActionBtn: '#FFFFFF',\n                    mainActionBtnHover: '#CCCCCC',\n                    quizOptionBtn: '#333333',\n                    quizOptionBtnHover: '#555555',\n                    quizCorrect: '#32CD32',\n                    quizIncorrect: '#FF4500',\n                    challengeTimerProgress: '#FFFFFF',\n                    challengeStreakColor: '#ADFF2F',\n                    historyToggleColor: '#FFFFFF',\n                    historyListColor: '#BBBBBB'\n                }\n            }\n        ];\n\n        let currentFact = facts[6]; // Set initial fact to \"It rains diamonds on Jupiter and Saturn.\"\n        let factHistory = [];\n        let timer;\n        const challengeDuration = 10; // seconds\n\n        function applyTheme(theme) {\n            const root = document.documentElement;\n            for (const [key, value] of Object.entries(theme)) {\n                root.style.setProperty(`--${key}`, value);\n            }\n            mainTitle.style.color = theme.titleColor;\n            footerInfo.style.backgroundColor = theme.footerBg;\n            footerInfo.style.color = theme.historyToggleColor; // Use historyToggleColor for footer text\n        }\n\n        function updateFactDisplay() {\n            factOfTheDayText.textContent = currentFact.main;\n            didYouKnowContent.textContent = currentFact.didYouKnow;\n            didYouKnow.classList.remove('show-did-you-know'); // Did you know is hidden by default\n            showDetailsBtn.textContent = \"Show Details\";\n            applyTheme(currentFact.theme);\n        }\n\n        function generateRandomFact() {\n            let newFact;\n            do {\n                newFact = facts[Math.floor(Math.random() * facts.length)];\n            } while (newFact === currentFact);\n\n            currentFact = newFact;\n            updateFactDisplay();\n            addToHistory(currentFact.main);\n        }\n\n        function addToHistory(fact) {\n            factHistory.unshift(fact);\n            renderHistory();\n        }\n\n        function renderHistory() {\n            historyList.innerHTML = '';\n            factHistory.forEach(fact => {\n                const listItem = document.createElement('li');\n                listItem.textContent = fact;\n                historyList.appendChild(listItem);\n            });\n        }\n\n        // Fact Challenge Logic\n        let currentChallengeFact;\n        let score = 0;\n        let challengeTimer;\n\n        function startFactChallenge() {\n            factChallengeArea.style.display = 'flex';\n            document.getElementById('fact-of-the-day-container').style.display = 'none';\n            score = 0;\n            updateScoreDisplay();\n            generateChallengeFact();\n            backToMainFactsBtn.style.display = 'block';\n            startChallengeBtn.style.display = 'none';\n        }\n\n        function updateScoreDisplay() {\n            document.getElementById('challenge-score').textContent = `Score: ${score}`;\n        }\n\n        function startTimer() {\n            let timeLeft = challengeDuration;\n            document.getElementById('challenge-timer-progress').style.width = '100%';\n            clearInterval(challengeTimer);\n            challengeTimer = setInterval(() => {\n                timeLeft--;\n                document.getElementById('challenge-timer-progress').style.width = `${(timeLeft / challengeDuration) * 100}%`;\n                if (timeLeft <= 0) {\n                    clearInterval(challengeTimer);\n                    challengeFeedback.textContent = "Time's up!";\n                    challengeFeedback.style.color = 'var(--quiz-incorrect)';\n                    challengeFeedback.style.display = 'block';\n                    challengeOptions.style.pointerEvents = 'none';\n                    nextChallengeBtn.style.display = 'block';\n                }\n            }, 1000);\n        }\n\n        function generateChallengeFact() {\n            let newChallengeFact;\n            do {\n                newChallengeFact = facts[Math.floor(Math.random() * facts.length)];\n            } while (newChallengeFact === currentChallengeFact);\n            currentChallengeFact = newChallengeFact;\n\n            challengeFact.textContent = currentChallengeFact.main;\n            challengeFeedback.style.display = 'none';\n            nextChallengeBtn.style.display = 'none';\n            challengeOptions.style.pointerEvents = 'auto';\n            Array.from(challengeOptions.children).forEach(btn => {\n                btn.classList.remove('correct', 'incorrect');\n            });\n            startTimer();\n        }\n\n        challengeOptions.addEventListener('click', (event) => {\n            const target = event.target;\n            if (target.classList.contains('challenge-option-btn')) {\n                clearInterval(challengeTimer);\n                const userAnswer = target.dataset.answer === 'true';\n                challengeOptions.style.pointerEvents = 'none';\n\n                if (userAnswer === currentChallengeFact.isTrue) {\n                    challengeFeedback.textContent = "Correct! Well done.";\n                    challengeFeedback.style.color = 'var(--quiz-correct)';\n                    target.classList.add('correct');\n                    score++;\n                } else {\n                    challengeFeedback.textContent = "Incorrect. The correct answer was " + (currentChallengeFact.isTrue ? "True" : "False") + ".";\n                    challengeFeedback.style.color = 'var(--quiz-incorrect)';\n                    target.classList.add('incorrect');\n                    Array.from(challengeOptions.children).find(btn => (btn.dataset.answer === 'true') === currentChallengeFact.isTrue).classList.add('correct');\n                }\n                updateScoreDisplay();\n                challengeFeedback.style.display = 'block';\n                nextChallengeBtn.style.display = 'block';\n            }\n        });\n\n        nextChallengeBtn.addEventListener('click', generateChallengeFact);\n\n        // Event Listeners\n        showDetailsBtn.addEventListener('click', () => {\n            didYouKnow.classList.toggle('show-did-you-know');\n            if (didYouKnow.classList.contains('show-did-you-know')) {\n                showDetailsBtn.textContent = "Hide Details";\n            } else {\n                showDetailsBtn.textContent = "Show Details";\n            }\n        });\n\n        generateFactBtn.addEventListener('click', generateRandomFact);\n\n        historyToggleBtn.addEventListener('click', () => {\n            historyList.classList.toggle('show-history');\n            if (historyList.classList.contains('show-history')) {\n                historyToggleBtn.textContent = "Hide Fact History";\n            } else {\n                historyToggleBtn.textContent = "Show Fact History";\n            }\n        });\n\n        // Initial load\n        updateFactDisplay();\n        addToHistory(currentFact.main);\n\n        // Add a button to start the challenge\n        startChallengeBtn.id = 'start-challenge-btn';\n        startChallengeBtn.className = 'btn main-action-btn';\n        startChallengeBtn.textContent = 'Start Fact Challenge!';\n        startChallengeBtn.style.marginTop = '20px';\n        document.getElementById('challenge-buttons').appendChild(startChallengeBtn);\n\n        startChallengeBtn.addEventListener('click', startFactChallenge);\n\n        backToMainFactsBtn.addEventListener('click', () => {\n            factChallengeArea.style.display = 'none';\n            document.getElementById('fact-of-the-day-container').style.display = 'flex';\n            backToMainFactsBtn.style.display = 'none';\n            startChallengeBtn.style.display = 'block';\n            updateFactDisplay(); // Reset the fact display\n        });\n\n    </script>\n</body>\n</html>
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+            .container {
+                padding: 25px;
+            }
+            .fact-card {
+                padding: 30px;
+                min-height: 250px;
+            }
+            p {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 2rem;
+            }
+            #footer-info {
+                font-size: 1.1rem;
+                padding: 18px 30px;
+            }
+            .btn, .challenge-option-btn {
+                padding: 15px 25px;
+                font-size: 1.1rem;
+            }
+            .main-action-btn {
+                font-size: 1.3rem;
+                padding: 18px 30px;
+            }
+            #did-you-know h3 {
+                font-size: 1.6rem;
+            }
+            #did-you-know-content {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Wonders</h1>
+
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text" class="hidden-fact">A black hole the size of a marble would weigh more than the Earth.</p>
+            <div id="challenge-buttons" style="margin-top: 20px;">
+                <button id="reveal-fact-btn" class="btn main-action-btn">Reveal Fact</button>
+                <button id="generate-fact-btn" class="btn">Generate New Fact</button>
+            </div>
+            <div id="did-you-know">
+                <h3>Did You Know?</h3>
+                <p id="did-you-know-content">If a black hole the size of a marble were to exist, its immense density would give it a gravitational pull exceeding that of our entire planet, despite its tiny size.</p>
+            </div>
+        </div>
+
+        <!-- New Feature: Fact Quiz -->
+        <div id="fact-challenge-area" class="container" style="display: none; margin-top: 40px;">
+            <h2>Fact Challenge!</h2>
+            <p id="quiz-fact"></p>
+            <div id="challenge-options"></div>
+            <div class="quiz-feedback" id="quiz-feedback"></div>
+            <button id="next-fact-btn" class="btn" style="display: none; margin-top: 20px;">Next Fact</button>
+        </div>
+
+        <!-- History Section -->
+        <div id="history-section">
+            <button id="history-toggle-btn">Show Fact History</button>
+            <ul id="history-list">
+                <!-- History items will be dynamically added here -->
+            </ul>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        Site last updated: <span id="last-updated-time"></span>
+    </footer>
+
+    <script>
+        const factOfTheDayText = document.getElementById('fact-of-the-day-text');
+        const revealFactBtn = document.getElementById('reveal-fact-btn');
+        const generateFactBtn = document.getElementById('generate-fact-btn');
+        const didYouKnow = document.getElementById('did-you-know');
+        const didYouKnowContent = document.getElementById('did-you-know-content');
+        const lastUpdatedTime = document.getElementById('last-updated-time');
+        const historyToggleBtn = document.getElementById('history-toggle-btn');
+        const historyList = document.getElementById('history-list');
+
+        const facts = [
+            {
+                fact: "A black hole the size of a marble would weigh more than the Earth.",
+                details: "If a black hole the size of a marble were to exist, its immense density would give it a gravitational pull exceeding that of our entire planet, despite its tiny size.",
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #0A0A2A, #200040)',
+                    textColor: '#E0FFFF',
+                    footerBg: '#150030',
+                    glassBg: 'rgba(32, 0, 64, 0.6)',
+                    glassBorder: 'rgba(224, 255, 255, 0.4)',
+                    buttonPrimary: '#4B0082',
+                    buttonHover: '#8A2BE2',
+                    mainActionBtn: '#E0FFFF',
+                    mainActionBtnHover: '#AFEEEE',
+                    historyToggleColor: '#E0FFFF',
+                    historyListColor: '#B0E0E6',
+                    revealOverlayColor: 'rgba(0, 0, 0, 0.8)'
+                }
+            },
+            {
+                fact: "It rains diamonds on Jupiter and Saturn.",
+                details: "Scientists believe that in the atmospheres of Jupiter and Saturn, lightning storms turn methane into soot, which is then compressed into graphite and then diamonds as it falls.",
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #2F4F4F, #4682B4)',
+                    textColor: '#E0FFFF',
+                    footerBg: '#223333',
+                    glassBg: 'rgba(47, 79, 79, 0.6)',
+                    glassBorder: 'rgba(224, 255, 255, 0.4)',
+                    buttonPrimary: '#5F9EA0',
+                    buttonHover: '#7FFFD4',
+                    mainActionBtn: '#E0FFFF',
+                    mainActionBtnHover: '#AFEEEE',
+                    historyToggleColor: '#E0FFFF',
+                    historyListColor: '#B0E0E6',
+                    revealOverlayColor: 'rgba(0, 0, 0, 0.8)'
+                }
+            },
+            {
+                fact: "The universe is thought to be flat.",
+                details: "Current cosmological data suggests that the universe is spatially flat, meaning that parallel lines will always remain parallel, unlike a curved or spherical universe.",
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #1A2A3A, #3A4A5A)',
+                    textColor: '#F0F8FF',
+                    footerBg: '#101A20',
+                    glassBg: 'rgba(26, 42, 58, 0.6)',
+                    glassBorder: 'rgba(240, 248, 255, 0.4)',
+                    buttonPrimary: '#4682B4',
+                    buttonHover: '#6A9ACD',
+                    mainActionBtn: '#F0F8FF',
+                    mainActionBtnHover: '#D0E0F0',
+                    historyToggleColor: '#F0F8FF',
+                    historyListColor: '#B0C4DE',
+                    revealOverlayColor: 'rgba(0, 0, 0, 0.8)'
+                }
+            },
+            {
+                fact: "There are more stars than grains of sand on all the beaches on Earth.",
+                details: "Astronomers estimate there are about 100 billion to 400 billion stars in our Milky Way galaxy alone, and there are billions of galaxies in the observable universe. This number vastly exceeds the estimated number of sand grains on Earth.",
+                theme: {
+                    bgGradient: 'linear-gradient(135deg, #000000, #2C003E)',
+                    textColor: '#FFD700',
+                    footerBg: '#1A002A',
+                    glassBg: 'rgba(0, 0, 0, 0.7)',
+                    glassBorder: 'rgba(255, 215, 0, 0.4)',
+                    buttonPrimary: '#800080',
+                    buttonHover: '#BA55D3',
+                    mainActionBtn: '#FFD700',
+                    mainActionBtnHover: '#FFEC8B',
+                    historyToggleColor: '#FFD700',
+                    historyListColor: '#DA70D6',
+                    revealOverlayColor: 'rgba(0, 0, 0, 0.8)'
+                }
+            }
+        ];
+
+        let currentFactIndex = 0;
+        let factHistory = [];
+
+        function applyTheme(theme) {
+            const root = document.documentElement;
+            for (const [key, value] of Object.entries(theme)) {
+                root.style.setProperty(`--${key}`, value);
+            }
+        }
+
+        function displayFact(factObj) {
+            factOfTheDayText.textContent = factObj.fact;
+            didYouKnowContent.textContent = factObj.details;
+            applyTheme(factObj.theme);
+
+            // Reset for reveal feature
+            factOfTheDayText.classList.add('hidden-fact');
+            didYouKnow.classList.remove('show-did-you-know');
+            revealFactBtn.textContent = "Reveal Fact";
+            revealFactBtn.onclick = revealFact;
+
+            // Add to history
+            factHistory.unshift(factObj.fact); // Add to the beginning
+            updateHistoryList();
+        }
+
+        function revealFact() {
+            factOfTheDayText.classList.remove('hidden-fact');
+            didYouKnow.classList.add('show-did-you-know');
+            revealFactBtn.textContent = "Hide Details";
+            revealFactBtn.onclick = hideFactDetails;
+        }
+
+        function hideFactDetails() {
+            factOfTheDayText.classList.remove('hidden-fact'); // Fact remains visible
+            didYouKnow.classList.remove('show-did-you-know');
+            revealFactBtn.textContent = "Show Details";
+            revealFactBtn.onclick = revealFact;
+        }
+
+        function generateNewFact() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * facts.length);
+            } while (newIndex === currentFactIndex); // Ensure a different fact
+            currentFactIndex = newIndex;
+            displayFact(facts[currentFactIndex]);
+        }
+
+        function updateHistoryList() {
+            historyList.innerHTML = '';
+            factHistory.forEach(fact => {
+                const listItem = document.createElement('li');
+                listItem.textContent = fact;
+                historyList.appendChild(listItem);
+            });
+        }
+
+        function updateLastUpdatedTime() {
+            const now = new Date();
+            lastUpdatedTime.textContent = now.toLocaleString();
+        }
+
+        // Event Listeners
+        revealFactBtn.addEventListener('click', revealFact);
+        generateFactBtn.addEventListener('click', generateNewFact);
+        historyToggleBtn.addEventListener('click', () => {
+            historyList.classList.toggle('show-history');
+            historyToggleBtn.textContent = historyList.classList.contains('show-history') ? 'Hide Fact History' : 'Show Fact History';
+        });
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            currentFactIndex = 0; // Start with the black hole fact
+            displayFact(facts[currentFactIndex]);
+            updateLastUpdatedTime();
+            setInterval(updateLastUpdatedTime, 60000); // Update every minute
+        });
+    </script>
+</body>
+</html>
