@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Wonders: Space Exploration Facts</title>
+    <title>Cosmic Wonders: Jupiter Facts</title>
     <style>
         :root {
-            /* Theme Colors for "Venus" */
-            --bg-gradient: linear-gradient(135deg, #4B0000, #8B0000); /* Deep red to dark red, fiery Venus feel */
-            --text-color: #FFFACD; /* Lemon Chiffon */
-            --footer-bg: #330000; /* Very dark red for the footer */
-            --glass-bg: rgba(75, 0, 0, 0.6); /* Transparent deep red */
-            --glass-border: rgba(255, 250, 205, 0.4); /* Light border */
+            /* Theme Colors for "Jupiter" */
+            --bg-gradient: linear-gradient(135deg, #4A3F2D, #7A6F5C); /* Earthy brown to warm grey, Jovian atmosphere feel */
+            --text-color: #F0E68C; /* Khaki */
+            --footer-bg: #2C251C; /* Dark brown for the footer */
+            --glass-bg: rgba(74, 63, 45, 0.6); /* Transparent earthy brown */
+            --glass-border: rgba(240, 230, 140, 0.4); /* Light border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFFACD; /* Lemon Chiffon */
+            --title-color: #F0E68C; /* Khaki */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #8B0000; /* Dark Red */
-            --button-hover: #B22222; /* Firebrick */
-            --main-action-btn: #FFFACD; /* Lemon Chiffon */
+            --button-primary: #7A6F5C; /* Warm Grey */
+            --button-hover: #9B8F7C; /* Lighter Warm Grey */
+            --main-action-btn: #F0E68C; /* Khaki */
             --main-action-btn-hover: #FAFAD2; /* Light Goldenrod Yellow */
-            --quiz-option-btn: #8B0000;
-            --quiz-option-btn-hover: #B22222;
+            --quiz-option-btn: #7A6F5C;
+            --quiz-option-btn-hover: #9B8F7C;
             --quiz-correct: #32CD32;
             --quiz-incorrect: #FF4500;
-            --challenge-timer-progress: #FFFACD;
+            --challenge-timer-progress: #F0E68C;
             --challenge-streak-color: #FFD700; /* Gold */
-            --history-toggle-color: #FFFACD; /* Lemon Chiffon for footer text */
-            --history-list-color: #FFDAB9; /* Peach Puff */
+            --history-toggle-color: #F0E68C; /* Khaki for footer text */
+            --history-list-color: #D2B48C; /* Tan */
             --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
         }
 
@@ -460,11 +460,16 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Cosmic Wonders: Space Facts</h1>
+        <h1 id="main-title">Cosmic Wonders: Jupiter Facts</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">A day on Venus is longer than its year. It takes Venus 243 Earth days to rotate once on its axis, but only 225 Earth days to orbit the Sun.</p>
+            <p id="fact-of-the-day-text">Jupiter's Great Red Spot is a gigantic storm that has been raging for at least 350 years and is larger than Earth.</p>
             <button id="reveal-fact-btn">Reveal Fact</button>
+        </div>
+
+        <div id="did-you-know">
+            <h3>Did You Know?</h3>
+            <p id="did-you-know-content">Jupiter's atmosphere is composed primarily of hydrogen and helium, with trace amounts of other gases like methane and ammonia, giving it its distinctive banded appearance.</p>
         </div>
 
         <!-- Placeholder for other sections like quiz or challenge if they were to be implemented -->
@@ -490,10 +495,12 @@
         document.addEventListener('DOMContentLoaded', () => {
             const factText = document.getElementById('fact-of-the-day-text');
             const revealButton = document.getElementById('reveal-fact-btn');
+            const didYouKnowSection = document.getElementById('did-you-know');
 
             revealButton.addEventListener('click', () => {
                 factText.classList.add('revealed');
                 revealButton.style.display = 'none'; // Hide button after revealing
+                didYouKnowSection.classList.add('show-did-you-know'); // Show Did You Know section
             });
         });
     </script>
