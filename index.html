@@ -120,7 +120,9 @@
             to { opacity: 1; transform: scale(1); }
         }
         @keyframes slideInFromBottom {
-            from { transform: translateY(120%); opacity: 0; }\n            to { transform: translateY(0); opacity: 1; }\n        }
+            from { transform: translateY(120%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
         #footer-info {
             font-size: 1.5rem;
             color: var(--text-color); /* Explicitly set footer text color */
@@ -165,7 +167,7 @@
             font-style: italic;
             font-weight: 700;
             text-shadow: var(--fact-text-shadow);
-            transition: color 1s ease, background-color 1s ease, filter 1s ease, opacity 1s ease;
+            transition: color 1s ease, background-color 1s ease, filter 1s ease, opacity 1s ease, text-shadow 1s ease;
             line-height: 1.5;
             min-height: 100px;
             display: flex;
@@ -192,6 +194,12 @@
             transition: opacity 1s ease;
             z-index: -1;
         }
+        #fact-of-the-day-text.revealed {
+            filter: blur(0px); /* Unblur when revealed */
+            opacity: 1; /* Fully opaque when revealed */
+            color: var(--text-color); /* Restore text color */
+            text-shadow: var(--fact-text-shadow); /* Restore text shadow */
+        }
         #fact-of-the-day-text.revealed::before {
             opacity: 0; /* Hidden overlay when revealed */
         }
@@ -206,10 +214,18 @@
             transition: max-height 1s ease-out, opacity 1s ease-out, transform 1s ease-out;
             transform: translateY(0);
         }
-        #did-you-know h3 {\n            font-size: 1.8rem;\n            color: var(--button-primary); /* Adjusted for space theme */
-            margin-bottom: 12px;\n            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);\n        }
+        #did-you-know h3 {
+            font-size: 1.8rem;
+            color: var(--button-primary); /* Adjusted for space theme */
+            margin-bottom: 12px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+        }
         #did-you-know-content {
-            font-size: 1.3rem;\n            color: var(--history-list-color);\n            line-height: 1.6;\n            margin-bottom: 0;\n        }
+            font-size: 1.3rem;
+            color: var(--history-list-color);
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
 
         /* History Section */
         #history-section {
@@ -286,166 +302,4 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
-            h1#main-title {
-                font-size: 3.5rem;
-                margin-bottom: 2rem;
-            }
-            .container {
-                padding: 30px;
-            }
-            .fact-card {
-                padding: 30px;
-                min-height: 250px;
-            }
-            p {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-            #fact-of-the-day-text {
-                font-size: 1.6rem;
-                min-height: 80px;
-            }
-            #footer-info {
-                font-size: 1.2rem;
-                padding: 20px 30px;
-            }
-            #reveal-fact-btn {
-                font-size: 1.4rem;
-                padding: 15px 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1#main-title {
-                font-size: 2.5rem;
-            }
-            .container {
-                padding: 20px;
-            }
-            .fact-card {
-                padding: 20px;
-                min-height: 200px;
-            }
-            p {
-                font-size: 1.4rem;
-            }
-            #fact-of-the-day-text {
-                font-size: 1.2rem;
-                min-height: 60px;
-            }
-            #footer-info {
-                font-size: 1rem;
-                padding: 15px 20px;
-            }
-            #reveal-fact-btn {
-                font-size: 1.2rem;
-                padding: 12px 25px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 id="main-title">Cosmic Chronicles</h1>
-
-        <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text"></p>
-            <button id="reveal-fact-btn">Discover Cosmic Anomaly</button>
-        </div>
-
-        <div id="did-you-know">
-            <h3>Previous Anomaly:</h3>
-            <p id="did-you-know-content">No anomaly discovered yet. Click 'Discover Cosmic Anomaly' to begin!</p>
-        </div>
-
-        <div id="history-section">
-            <button id="history-toggle-btn">Show History</button>
-            <ul id="history-list"></ul>
-        </div>
-    </div>
-
-    <footer id="footer-info">
-        <p>&copy; 2025 Cosmic Chronicles. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const factTextElement = document.getElementById('fact-of-the-day-text');
-            const revealButton = document.getElementById('reveal-fact-btn');
-            const historyToggleButton = document.getElementById('history-toggle-btn');
-            const historyList = document.getElementById('history-list');
-            const didYouKnowContent = document.getElementById('did-you-know-content');
-
-            const spaceFacts = [
-                "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-                "A day on Venus is longer than a year on Venus.",
-                "The largest known star, UY Scuti, is so big that if it were at the center of our solar system, its outer edge would extend beyond the orbit of Jupiter.",
-                "Neutron stars are so dense that a sugar cube-sized amount of material would weigh over a billion tons.",
-                "The universe is estimated to be around 13.8 billion years old.",
-                "There is a planet made almost entirely of diamond, named 55 Cancri e.",
-                "The Sun makes up 99.86% of the mass of our solar system.",
-                "Footprints left on the Moon by astronauts will stay there for 100 million years.",
-                "It takes 8 minutes and 20 seconds for light to travel from the Sun to Earth.",
-                "The highest mountain discovered is on Mars, named Olympus Mons, which is three times taller than Mount Everest."
-            ];
-            let currentFactIndex = -1; // Initialize to -1 to indicate no fact has been displayed yet
-            let previousFact = "";
-            let typingInterval;
-
-            const typeWriterEffect = (text, element, speed) => {
-                element.textContent = ''; // Clear existing text
-                element.classList.remove('revealed'); // Ensure blur is active
-                let i = 0;
-                typingInterval = setInterval(() => {
-                    if (i < text.length) {
-                        element.textContent += text.charAt(i);
-                        i++;
-                    } else {
-                        clearInterval(typingInterval);
-                        element.classList.add('revealed'); // Remove blur after typing
-                    }
-                }, speed);
-            };
-
-            revealButton.addEventListener('click', () => {
-                clearInterval(typingInterval); // Clear any ongoing typing
-
-                if (currentFactIndex !== -1) {
-                    previousFact = spaceFacts[currentFactIndex];
-                    didYouKnowContent.textContent = previousFact;
-                }
-
-                let newFactIndex;
-                do {
-                    newFactIndex = Math.floor(Math.random() * spaceFacts.length);
-                } while (newFactIndex === currentFactIndex);
-                currentFactIndex = newFactIndex;
-                const factToDisplay = spaceFacts[currentFactIndex];
-
-                typeWriterEffect(factToDisplay, factTextElement, 50); // Adjust typing speed as needed
-                addToHistory(factToDisplay);
-            });
-
-            historyToggleButton.addEventListener('click', () => {
-                historyList.classList.toggle('show-history');
-                if (historyList.classList.contains('show-history')) {
-                    historyToggleButton.textContent = 'Hide History';
-                } else {
-                    historyToggleButton.textContent = 'Show History';
-                }
-            });
-
-            const addToHistory = (fact) => {
-                const listItem = document.createElement('li');
-                listItem.textContent = fact;
-                historyList.prepend(listItem); // Add to the beginning of the list
-            };
-
-            // Initial state: fact is hidden and blurred
-            factTextElement.textContent = ''; // Start with an empty fact text
-            factTextElement.classList.remove('revealed'); // Ensure it starts blurred
-        });
-    </script>
-</body>
-</html>
+        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 30px;\n            }\n            .fact-card {\n                padding: 30px;\n                min-height: 250px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.6rem;\n                min-height: 80px;\n            }\n            #footer-info {\n                font-size: 1.2rem;\n                padding: 20px 30px;\n            }\n            #reveal-fact-btn {\n                font-size: 1.4rem;\n                padding: 15px 30px;\n            }\n        }\n\n        @media (max-width: 480px) {\n            h1#main-title {\n                font-size: 2.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            .fact-card {\n                padding: 20px;\n                min-height: 200px;\n            }\n            p {\n                font-size: 1.4rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.2rem;\n                min-height: 60px;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 20px;\n            }\n            #reveal-fact-btn {\n                font-size: 1.2rem;\n                padding: 12px 25px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Cosmic Chronicles</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\"></p>\n            <button id=\"reveal-fact-btn\">Discover Cosmic Anomaly</button>\n        </div>\n\n        <div id=\"did-you-know\">\n            <h3>Previous Anomaly:</h3>\n            <p id=\"did-you-know-content\">No anomaly discovered yet. Click 'Discover Cosmic Anomaly' to begin!</p>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show History</button>\n            <ul id=\"history-list\"></ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>&copy; 2025 Cosmic Chronicles. All rights reserved.</p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const factTextElement = document.getElementById('fact-of-the-day-text');\n            const revealButton = document.getElementById('reveal-fact-btn');\n            const historyToggleButton = document.getElementById('history-toggle-btn');\n            const historyList = document.getElementById('history-list');\n            const didYouKnowContent = document.getElementById('did-you-know-content');\n\n            const spaceFacts = [\n                \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\n                \"A day on Venus is longer than a year on Venus.\",\n                \"The largest known star, UY Scuti, is so big that if it were at the center of our solar system, its outer edge would extend beyond the orbit of Jupiter.\",\n                \"Neutron stars are so dense that a sugar cube-sized amount of material would weigh over a billion tons.\",\n                \"The universe is estimated to be around 13.8 billion years old.\",\n                \"There is a planet made almost entirely of diamond, named 55 Cancri e.\",\n                \"The Sun makes up 99.86% of the mass of our solar system.\",\n                \"Footprints left on the Moon by astronauts will stay there for 100 million years.\",\n                \"It takes 8 minutes and 20 seconds for light to travel from the Sun to Earth.\",\n                \"The highest mountain discovered is on Mars, named Olympus Mons, which is three times taller than Mount Everest.\"\n            ];\n            let currentFactIndex = -1; // Initialize to -1 to indicate no fact has been displayed yet\n            let previousFact = \"\";\n            let typingInterval;\n            let currentFactContent = \"\"; // Store the current fact's full content\n\n            const typeWriterEffect = (text, element, speed) => {\n                element.textContent = ''; // Clear existing text\n                element.classList.remove('revealed'); // Ensure blur is active\n                let i = 0;\n                typingInterval = setInterval(() => {\n                    if (i < text.length) {\n                        element.textContent += text.charAt(i);\n                        i++;\n                    } else {\n                        clearInterval(typingInterval);\n                        element.classList.add('revealed'); // Remove blur after typing\n                    }\n                }, speed);\n            };\n\n            const displayNewFact = () => {\n                clearInterval(typingInterval); // Clear any ongoing typing\n\n                if (currentFactIndex !== -1) {\n                    previousFact = spaceFacts[currentFactIndex];\n                    didYouKnowContent.textContent = previousFact;\n                }\n\n                let newFactIndex;\n                do {\n                    newFactIndex = Math.floor(Math.random() * spaceFacts.length);\n                } while (newFactIndex === currentFactIndex);\n                currentFactIndex = newFactIndex;\n                currentFactContent = spaceFacts[currentFactIndex]; // Store the full fact content\n\n                // Apply blur and transparency before typing\n                factTextElement.style.filter = 'blur(10px)';\n                factTextElement.style.opacity = '0.2';\n                factTextElement.style.color = 'transparent';\n                factTextElement.style.textShadow = 'none';\n                factTextElement.classList.remove('revealed'); // Ensure overlay is visible\n\n                typeWriterEffect(currentFactContent, factTextElement, 50); // Adjust typing speed as needed\n                addToHistory(currentFactContent);\n            };\n\n            revealButton.addEventListener('click', () => {\n                // When revealed, unblur and make opaque\n                factTextElement.style.filter = 'blur(0)';\n                factTextElement.style.opacity = '1';\n                factTextElement.style.color = 'var(--text-color)';\n                factTextElement.style.textShadow = 'var(--fact-text-shadow)';\n                factTextElement.classList.add('revealed'); // Hide overlay\n\n                // If it's the first reveal, display a new fact. Otherwise, just reveal the current one.\n                if (factTextElement.textContent === '') { // Check if no fact is currently displayed\n                    displayNewFact();\n                } else {\n                    // If a fact is already typed, just reveal it without re-typing\n                    clearInterval(typingInterval);\n                    factTextElement.textContent = currentFactContent;\n                    factTextElement.classList.add('revealed');\n                }\n            });\n\n            historyToggleButton.addEventListener('click', () => {\n                historyList.classList.toggle('show-history');\n                if (historyList.classList.contains('show-history')) {\n                    historyToggleButton.textContent = 'Hide History';\n                } else {\n                    historyToggleButton.textContent = 'Show History';\n                }\n            });\n\n            const addToHistory = (fact) => {\n                const listItem = document.createElement('li');\n                listItem.textContent = fact;\n                historyList.prepend(listItem); // Add to the beginning of the list\n            };\n\n            // Initial state: A fact is pre-selected but hidden and blurred\n            let initialFactIndex = Math.floor(Math.random() * spaceFacts.length);\n            currentFactIndex = initialFactIndex;\n            currentFactContent = spaceFacts[currentFactIndex]; // Store the initial fact\n\n            // Set the fact text content but keep it blurred and transparent\n            factTextElement.textContent = currentFactContent;\n            factTextElement.style.filter = 'blur(10px)';\n            factTextElement.style.opacity = '0.2';\n            factTextElement.style.color = 'transparent';\n            factTextElement.style.textShadow = 'none';\n            factTextElement.classList.remove('revealed'); // Ensure overlay is visible\n        });\n    </script>\n</body>\n</html>
