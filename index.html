@@ -3,30 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Sea Wonders: Fascinating Facts</title>
+    <title>Cosmic Chronicles: Fascinating Space Facts</title>
     <style>
         :root {
-            /* Theme Colors for "Deep Sea Wonders" */
-            --bg-gradient: linear-gradient(135deg, #0A1128, #001F54); /* Deep blue to dark blue */
-            --text-color: #E0FBFC; /* Light Cyan */
-            --footer-bg: #03071E; /* Very dark blue for the footer */
-            --glass-bg: rgba(0, 31, 84, 0.6); /* Transparent deep blue */
-            --glass-border: rgba(224, 251, 252, 0.4); /* Light cyan border */
+            /* Theme Colors for "Cosmic Chronicles" */
+            --bg-gradient: linear-gradient(135deg, #0A0A2A, #2A0A4A); /* Deep space blue to dark purple */
+            --text-color: #E0E0E0; /* Light Grey */
+            --footer-bg: #1A0A3A; /* Darker purple for the footer */
+            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent deep purple */
+            --glass-border: rgba(224, 224, 224, 0.4); /* Light grey border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #98C1D9; /* Light Steel Blue */
+            --title-color: #BB86FC; /* Light Purple for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #0077B6; /* Cerulean Blue */
-            --button-hover: #0096C7; /* Brighter Cerulean */
-            --main-action-btn: #E0FBFC; /* Light Cyan */
-            --main-action-btn-hover: #C1F0F0; /* Lighter Cyan */
-            --quiz-option-btn: #0077B6;
-            --quiz-option-btn-hover: #0096C7;
-            --quiz-correct: #32CD32;
-            --quiz-incorrect: #FF4500;
-            --challenge-timer-progress: #E0FBFC;
-            --challenge-streak-color: #FFD700; /* Gold */
-            --history-toggle-color: #E0FBFC; /* Light Cyan for footer text */
-            --history-list-color: #A7D9F0; /* Lighter blue for history list */
+            --button-primary: #03DAC6; /* Teal for buttons */
+            --button-hover: #00C4B4; /* Brighter Teal */
+            --main-action-btn: #BB86FC; /* Light Purple for main action */
+            --main-action-btn-hover: #A070E0; /* Darker Light Purple */
+            --history-toggle-color: #E0E0E0; /* Light Grey for footer text */
+            --history-list-color: #D0B8F0; /* Lighter purple for history list */
             --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
         }
 
@@ -88,7 +82,7 @@
             letter-spacing: 4px;
             font-weight: 900;
         }
-        .fact-card {
+        .fact-card { /* This class is not currently used, but kept for potential future use */
             background-color: rgba(10, 0, 20, 0.7);
             padding: 45px;
             border-radius: 25px;
@@ -113,7 +107,7 @@
             text-shadow: var(--fact-text-shadow);
             font-weight: 600;
         }
-        #main-fact, #quiz-fact, #challenge-fact {
+        #main-fact, #quiz-fact, #challenge-fact { /* quiz/challenge not used, but kept for reference */
             animation: fadeInScale 1.5s ease-out forwards;
             min-height: 150px;
             display: flex;
@@ -214,20 +208,15 @@
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             text-align: left;
-            max-height: 0;
+            max-height: 150px; /* Always visible, adjust height */
             overflow: hidden;
-            opacity: 0;
-            transition: max-height 1s ease-out, opacity 1s ease-out, transform 1s ease-out;
-            transform: translateY(30px);
-        }
-        #did-you-know.show-did-you-know {
-            max-height: 350px;
             opacity: 1;
+            transition: max-height 1s ease-out, opacity 1s ease-out, transform 1s ease-out;
             transform: translateY(0);
         }
         #did-you-know h3 {
             font-size: 1.8rem;
-            color: hsl(190, 100%, 80%); /* Adjusted for deep sea theme */
+            color: var(--button-primary); /* Adjusted for space theme */
             margin-bottom: 12px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         }
@@ -236,92 +225,6 @@
             color: var(--history-list-color);
             line-height: 1.6;
             margin-bottom: 0;
-        }
-
-        /* Quiz Specific Styles */
-        #fact-challenge-area h2 {
-            font-size: 3.2rem;
-            margin-bottom: 2rem;
-            color: var(--title-color);
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
-        }
-        #quiz-fact, #challenge-fact {
-            font-size: 2rem;
-            margin-bottom: 3rem;
-            min-height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        #challenge-options {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        .challenge-option-btn {
-            background-color: var(--quiz-option-btn);
-            color: #FFFFFF;
-            padding: 18px 35px;
-            font-size: 1.3rem;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            min-width: 160px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-        }
-        .challenge-option-btn:hover {
-            background-color: var(--quiz-option-btn-hover);
-            transform: translateY(-4px);
-        }
-        .challenge-option-btn.correct {
-            background-color: var(--quiz-correct);
-            box-shadow: 0 0 20px var(--quiz-correct);
-        }
-        .challenge-option-btn.incorrect {
-            background-color: var(--quiz-incorrect);
-            box-shadow: 0 0 20px var(--quiz-incorrect);
-        }
-        .quiz-feedback {
-            font-size: 1.6rem;
-            margin-top: 25px;
-            font-weight: 800;
-            animation: fadeIn 0.6s ease-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        /* Challenge Specific Styles */
-        #challenge-timer-bar {
-            width: 100%;
-            height: 12px;
-            background-color: rgba(255,255,255,0.25);
-            border-radius: 6px;
-            margin-bottom: 25px;
-            overflow: hidden;
-        }
-        #challenge-timer-progress {
-            height: 100%;
-            width: 100%;
-            background-color: var(--challenge-timer-progress);
-            border-radius: 6px;
-            transition: width linear;
-        }
-        #challenge-score {
-            font-size: 2rem;
-            color: var(--challenge-streak-color);
-            margin-bottom: 20px;
-            font-weight: 800;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
-        }
-        #challenge-feedback {
-            font-size: 1.8rem;
-            margin-top: 25px;
-            font-weight: 800;
-            animation: fadeIn 0.6s ease-out;
         }
 
         /* History Section */
@@ -376,7 +279,7 @@
         /* New Reveal Button Style */
         #reveal-fact-btn {
             background-color: var(--main-action-btn);
-            color: var(--button-primary); /* Use a contrasting color for text */
+            color: var(--footer-bg); /* Use a contrasting color for text */
             padding: 18px 40px;
             font-size: 1.8rem;
             border-radius: 15px;
@@ -453,4 +356,86 @@
             }
             #reveal-fact-btn {
                 font-size: 1.2rem;
-                padding: 12px 25px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet). If Mount Everest were placed in the trench, its peak would still be over a mile underwater.</p>\n            <button id=\"reveal-fact-btn\">Reveal Fact</button>\n        </div>\n\n        <div id=\"did-you-know\">\n            <h3>Did You Know?</h3>\n            <p id=\"did-you-know-content\">Despite the extreme pressure and lack of sunlight, the Mariana Trench is home to a diverse array of unique organisms, including giant amphipods and snailfish, adapted to survive in these harsh conditions.</p>\n        </div>\n\n        <!-- Placeholder for other sections like quiz or challenge if they were to be implemented -->\n        <div id=\"fact-challenge-area\" style=\"display: none;\">\n            <h2>Test Your Knowledge!</h2>\n            <p id=\"quiz-fact\"></p>\n            <div id=\"challenge-options\"></div>\n            <p class=\"quiz-feedback\"></p>\n            <button id=\"next-fact-btn\" class=\"challenge-option-btn\">Next Fact</button>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show History</button>\n            <ul id=\"history-list\"></ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>&copy; 2025 Deep Sea Wonders. All rights reserved.</p>\n    </footer>\n\n    <script>\n        document.addEventListener(\'DOMContentLoaded\', () => {\n            const factText = document.getElementById(\'fact-of-the-day-text\');\n            const revealButton = document.getElementById(\'reveal-fact-btn\');\n            const didYouKnowSection = document.getElementById(\'did-you-know\');\n            const historySection = document.getElementById(\'history-section\');\n            const historyToggleButton = document.getElementById(\'history-toggle-btn\');\n            const historyList = document.getElementById(\'history-list\');\n\n            let factHistory = [];\n\n            const addFactToHistory = (fact) => {\n                factHistory.push(fact);\n                const listItem = document.createElement(\'li\');\n                listItem.textContent = fact;\n                historyList.prepend(listItem); // Add to the beginning of the list\n            };\n\n            revealButton.addEventListener(\'click\', () => {\n                factText.classList.add(\'revealed\');\n                revealButton.style.display = \'none\'; // Hide button after revealing\n                didYouKnowSection.classList.add(\'show-did-you-know\'); // Show Did You Know section\n                addFactToHistory(factText.textContent); // Add revealed fact to history\n            });\n\n            historyToggleButton.addEventListener(\'click\', () => {\n                historyList.classList.toggle(\'show-history\');\n                if (historyList.classList.contains(\'show-history\')) {\n                    historyToggleButton.textContent = \'Hide History\';\n                } else {\n                    historyToggleButton.textContent = \'Show History\';\n                }\n            });\n\n            // Initially add the first fact to history if it\'s meant to be there from the start\n            // addFactToHistory(factText.textContent); // Uncomment if you want the initial fact in history\n        });\n    </script>\n</body>\n</html>
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Chronicles</h1>
+
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text"></p>
+            <button id="reveal-fact-btn">Reveal Fact</button>
+        </div>
+
+        <div id="did-you-know">
+            <h3>Did You Know?</h3>
+            <p id="did-you-know-content">The International Space Station (ISS) orbits Earth at an average speed of 17,150 miles per hour (27,600 km/h), completing one orbit every 90 minutes.</p>
+        </div>
+
+        <div id="history-section">
+            <button id="history-toggle-btn">Show History</button>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        <p>&copy; 2025 Cosmic Chronicles. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const factTextElement = document.getElementById('fact-of-the-day-text');
+            const revealButton = document.getElementById('reveal-fact-btn');
+            const historyToggleButton = document.getElementById('history-toggle-btn');
+            const historyList = document.getElementById('history-list');
+
+            const spaceFact = "A full NASA space suit costs around $12 million. While the entire suit is expensive, 70% of the cost is for the backpack and the control module.";
+            let currentFactIndex = 0;
+            let typingInterval;
+
+            const typeWriterEffect = (text, element, speed) => {
+                element.textContent = ''; // Clear existing text
+                element.classList.remove('revealed'); // Ensure blur is active
+                let i = 0;
+                typingInterval = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                        element.classList.add('revealed'); // Remove blur after typing
+                    }
+                }, speed);
+            };
+
+            revealButton.addEventListener('click', () => {
+                clearInterval(typingInterval); // Clear any ongoing typing
+                typeWriterEffect(spaceFact, factTextElement, 50); // Adjust typing speed as needed
+                addToHistory(spaceFact);
+            });
+
+            historyToggleButton.addEventListener('click', () => {
+                historyList.classList.toggle('show-history');
+                if (historyList.classList.contains('show-history')) {
+                    historyToggleButton.textContent = 'Hide History';
+                } else {
+                    historyToggleButton.textContent = 'Show History';
+                }
+            });
+
+            const addToHistory = (fact) => {
+                const listItem = document.createElement('li');
+                listItem.textContent = fact;
+                historyList.prepend(listItem); // Add to the beginning of the list
+            };
+
+            // Initial state: fact is hidden and blurred
+            factTextElement.textContent = spaceFact; // Set the fact initially for the blur effect
+            factTextElement.classList.remove('revealed'); // Ensure it starts blurred
+        });
+    </script>
+</body>
+</html>
