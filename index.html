@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Wonders: Fascinating Facts</title>
+    <title>Cosmic Wonders: Space Exploration Facts</title>
     <style>
         :root {
-            /* Theme Colors for "Deep Sea: The Mariana Trench" */
-            --bg-gradient: linear-gradient(135deg, #0A1128, #001F54); /* Darker blues, deep ocean feel */
+            /* Theme Colors for "Space Exploration" */
+            --bg-gradient: linear-gradient(135deg, #0A0A28, #280A28); /* Dark blue to dark purple, deep space feel */
             --text-color: #E0FFFF; /* Light Cyan */
-            --footer-bg: #001133; /* Even darker blue for the footer */
-            --glass-bg: rgba(0, 31, 84, 0.6); /* Transparent deep blue */
+            --footer-bg: #00001A; /* Very dark blue for the footer */
+            --glass-bg: rgba(25, 0, 50, 0.6); /* Transparent deep purple */
             --glass-border: rgba(224, 255, 255, 0.4); /* Light border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
             --title-color: #E0FFFF; /* Light Cyan */
@@ -182,12 +182,16 @@
             text-align: center;
             position: relative;
             z-index: 1;
-        }
-        #fact-of-the-day-text.hidden-fact {
-            filter: blur(10px);
+            filter: blur(10px); /* Initially blurred */
             opacity: 0.2;
             color: transparent;
             text-shadow: none;
+        }
+        #fact-of-the-day-text.revealed {
+            filter: blur(0px);
+            opacity: 1;
+            color: var(--text-color);
+            text-shadow: var(--fact-text-shadow);
         }
         #fact-of-the-day-text::before {
             content: '';
@@ -198,12 +202,12 @@
             bottom: 0;
             background-color: var(--reveal-overlay-color);
             border-radius: 12px;
-            opacity: 0;
+            opacity: 1; /* Initially visible overlay */
             transition: opacity 1s ease;
             z-index: -1;
         }
-        #fact-of-the-day-text.hidden-fact::before {
-            opacity: 1;
+        #fact-of-the-day-text.revealed::before {
+            opacity: 0; /* Hidden overlay when revealed */
         }
         #did-you-know {
             margin-top: 30px;
@@ -294,4 +298,204 @@
         #challenge-timer-bar {
             width: 100%;
             height: 12px;
-            background-color: rgba(255,255,255,0.25);\n            border-radius: 6px;\n            margin-bottom: 25px;\n            overflow: hidden;\n        }\n        #challenge-timer-progress {\n            height: 100%;\n            width: 100%;\n            background-color: var(--challenge-timer-progress);\n            border-radius: 6px;\n            transition: width linear;\n        }\n        #challenge-score {\n            font-size: 2rem;\n            color: var(--challenge-streak-color);\n            margin-bottom: 20px;\n            font-weight: 800;\n            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);\n        }\n        #challenge-feedback {\n            font-size: 1.8rem;\n            margin-top: 25px;\n            font-weight: 800;\n            animation: fadeIn 0.6s ease-out;\n        }\n\n        /* History Section */\n        #history-section {\n            margin-top: 35px;\n            width: 100%;\n            max-width: 850px;\n            text-align: left;\n        }\n        #history-toggle-btn {\n            background-color: var(--button-primary);\n            color: var(--history-toggle-color);\n            padding: 15px 30px;\n            font-size: 1.2rem;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s;\n            margin-bottom: 25px;\n            box-shadow: 0 5px 12px rgba(0,0,0,0.3);\n        }\n        #history-toggle-btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-3px);\n        }\n        #history-list {\n            list-style: none;\n            padding: 0;\n            max-height: 0;\n            overflow: hidden;\n            opacity: 0;\n            transition: max-height 1s ease-out, opacity 1s ease-out;\n            background-color: rgba(255, 255, 255, 0.08);\n            border-radius: 18px;\n            padding: 0 25px;\n            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);\n        }\n        #history-list.show-history {\n            max-height: 600px;\n            opacity: 1;\n            padding: 25px;\n        }\n        #history-list li {\n            padding: 12px 0;\n            border-bottom: 1px solid rgba(255, 255, 255, 0.15);\n            color: var(--history-list-color);\n            font-size: 1.1rem;\n        }\n        #history-list li:last-child {\n            border-bottom: none;\n        }\n\n        /* Buttons */\n        .btn {\n            background-color: var(--button-primary);\n            color: #FFFFFF;\n            padding: 18px 35px;\n            font-size: 1.3rem;\n            border: none;\n            border-radius: 12px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s;\n            margin: 12px;\n            box-shadow: 0 5px 12px rgba(0,0,0,0.3);\n        }\n        .btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-4px);\n        }\n        .main-action-btn {\n            background-color: var(--main-action-btn);\n            font-size: 1.6rem;\n            padding: 20px 40px;\n            font-weight: 800;\n            letter-spacing: 1.5px;\n            color: var(--button-primary); /* Text color for main action button */\n        }\n        .main-action-btn:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-5px) scale(1.03);\n        }\n\n        /* Responsive adjustments */\n        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 4rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 25px;\n            }\n            .fact-card {\n                padding: 30px;\n                min-height: 250px;\n            }\n            p {\n                font-size: 2rem;\n                margin-bottom: 2rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 2rem;\n            }\n            #footer-info {\n                font-size: 1.1rem;\n                padding: 18px 30px;\n            }\n            .btn, .challenge-option-btn {\n                padding: 15px 25px;\n                font-size: 1.1rem;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Cosmic Wonders</h1>\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\" class=\"hidden-fact\">Loading a fascinating fact...</p>\n            <div id=\"did-you-know\">\n                <h3>Did You Know?</h3>\n                <p id=\"did-you-know-content\"></p>\n            </div>\n        </div>\n        <button id=\"show-details-btn\" class=\"btn\">Show Details</button>\n        <button id=\"generate-fact-btn\" class=\"btn main-action-btn\">Generate New Fact</button>\n\n        <div id=\"fact-challenge-area\" style=\"display: none;\">\n            <h2>Fact Challenge!</h2>\n            <p id=\"quiz-fact\"></p>\n            <div id=\"challenge-options\"></div>\n            <p class=\"quiz-feedback\" id=\"quiz-feedback\"></p>\n            <button id=\"next-fact-btn\" class=\"btn\" style=\"display: none;\">Next Challenge</button>\n        </div>\n\n        <button id=\"play-challenge-btn\" class=\"btn\">Play Fact Challenge</button>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show Fact History</button>\n            <ul id=\"history-list\"></ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>Last Updated: <span id=\"last-updated-time\"></span></p>\n    </footer>\n\n    <script>\n        const factOfTheDayText = document.getElementById('fact-of-the-day-text');\n        const didYouKnow = document.getElementById('did-you-know');\n        const didYouKnowContent = document.getElementById('did-you-know-content');\n        const showDetailsBtn = document.getElementById('show-details-btn');\n        const generateFactBtn = document.getElementById('generate-fact-btn');\n        const historyToggleBtn = document.getElementById('history-toggle-btn');\n        const historyList = document.getElementById('history-list');\n        const lastUpdatedTime = document.getElementById('last-updated-time');\n        const playChallengeBtn = document.getElementById('play-challenge-btn');\n        const factChallengeArea = document.getElementById('fact-challenge-area');\n        const factOfTheDayContainer = document.getElementById('fact-of-the-day-container');\n        const quizFactElement = document.getElementById('quiz-fact');\n        const challengeOptionsDiv = document.getElementById('challenge-options');\n        const quizFeedbackDiv = document.getElementById('quiz-feedback');\n        const nextFactBtn = document.getElementById('next-fact-btn');\n\n        const facts = [\n            {\n                fact: \"A day on Venus is longer than a year on Venus.\",\n                details: \"Venus rotates incredibly slowly, taking about 243 Earth days to complete one rotation. Its orbit around the Sun, however, only takes about 225 Earth days.\",\n                theme: {\n                    \"bg-gradient\": \"linear-gradient(135deg, #8B0000, #FF4500)\", /* Dark Red to Orange Red */\n                    \"text-color\": \"#FFD700\", /* Gold */\n                    \"footer-bg\": \"#660000\", /* Darker Red */\n                    \"glass-bg\": \"rgba(139, 0, 0, 0.6)\",\n                    \"glass-border\": \"rgba(255, 215, 0, 0.4)\",\n                    \"fact-text-shadow\": \"2px 2px 15px rgba(0,0,0,0.9)\",\n                    \"title-color\": \"#FFD700\",\n                    \"title-shadow\": \"4px 4px 25px rgba(0, 0, 0, 0.9)\",\n                    \"button-primary\": \"#8B0000\",\n                    \"button-hover\": \"#DC143C\",\n                    \"main-action-btn\": \"#FFD700\",\n                    \"main-action-btn-hover\": \"#FFFFE0\",\n                    \"quiz-option-btn\": \"#8B0000\",\n                    \"quiz-option-btn-hover\": \"#DC143C\",\n                    \"quiz-correct\": \"#32CD32\",\n                    \"quiz-incorrect\": \"#FF4500\",\n                    \"challenge-timer-progress\": \"#FFD700\",\n                    \"challenge-streak-color\": \"#ADFF2F\",\n                    \"history-toggle-color\": \"#FFD700\",\n                    \"history-list-color\": \"#FFA07A\",\n                    \"reveal-overlay-color\": \"rgba(0, 0, 0, 0.8)\"\n                }\n            },\n            {\n                fact: \"It rains diamonds on Jupiter and Saturn.\",\n                details: \"Scientists believe that in the atmospheres of Jupiter and Saturn, lightning storms turn methane into soot, which then hardens into chunks of graphite and then diamonds as it falls. These diamond 'hailstones' eventually melt into a liquid sea deep within the planets.\",\n                theme: {\n                    \"bg-gradient\": \"linear-gradient(135deg, #2F4F4F, #4682B4)\", /* Dark Slate Gray to Steel Blue */\n                    \"text-color\": \"#E0FFFF\", /* Light Cyan */\n                    \"footer-bg\": \"#223333\", /* Darker Slate Gray */\n                    \"glass-bg\": \"rgba(47, 79, 79, 0.6)\",\n                    \"glass-border\": \"rgba(224, 255, 255, 0.4)\",\n                    \"fact-text-shadow\": \"2px 2px 15px rgba(0,0,0,0.9)\",\n                    \"title-color\": \"#E0FFFF\",\n                    \"title-shadow\": \"4px 4px 25px rgba(0, 0, 0, 0.9)\",\n                    \"button-primary\": \"#4B0082\",\n                    \"button-hover\": \"#8A2BE2\",\n                    \"main-action-btn\": \"#E0FFFF\",\n                    \"main-action-btn-hover\": \"#AFEEEE\",\n                    \"quiz-option-btn\": \"#4B0082\",\n                    \"quiz-option-btn-hover\": \"#8A2BE2\",\n                    \"quiz-correct\": \"#32CD32\",\n                    \"quiz-incorrect\": \"#FF4500\",\n                    \"challenge-timer-progress\": \"#E0FFFF\",\n                    \"challenge-streak-color\": \"#ADFF2F\",\n                    \"history-toggle-color\": \"#E0FFFF\",\n                    \"history-list-color\": \"#B0E0E6\",\n                    \"reveal-overlay-color\": \"rgba(0, 0, 0, 0.8)\"\n                }\n            },\n            {\n                fact: \"Neutron stars are so dense that a sugar cube sized amount would weigh a billion tons.\",\n                details: \"Neutron stars are the collapsed cores of massive supergiant stars. They are incredibly dense, packing the mass of about 1.4 Suns into a sphere only about 20 kilometers (12 miles) in diameter.\",\n                theme: {\n                    \"bg-gradient\": \"linear-gradient(135deg, #1A1A2E, #0F3460)\", /* Dark Blue to Deeper Blue */\n                    \"text-color\": \"#E0FFFF\", /* Light Cyan */\n                    \"footer-bg\": \"#0A1128\", /* Even Darker Blue */\n                    \"glass-bg\": \"rgba(26, 26, 46, 0.6)\",\n                    \"glass-border\": \"rgba(224, 255, 255, 0.4)\",\n                    \"fact-text-shadow\": \"2px 2px 15px rgba(0,0,0,0.9)\",\n                    \"title-color\": \"#E0FFFF\",\n                    \"title-shadow\": \"4px 4px 25px rgba(0, 0, 0, 0.9)\",\n                    \"button-primary\": \"#4B0082\",\n                    \"button-hover\": \"#8A2BE2\",\n                    \"main-action-btn\": \"#E0FFFF\",\n                    \"main-action-btn-hover\": \"#AFEEEE\",\n                    \"quiz-option-btn\": \"#4B0082\",\n                    \"quiz-option-btn-hover\": \"#8A2BE2\",\n                    \"quiz-correct\": \"#32CD32\",\n                    \"quiz-incorrect\": \"#FF4500\",\n                    \"challenge-timer-progress\": \"#E0FFFF\",\n                    \"challenge-streak-color\": \"#ADFF2F\",\n                    \"history-toggle-color\": \"#E0FFFF\",\n                    \"history-list-color\": \"#B0E0E6\",\n                    \"reveal-overlay-color\": \"rgba(0, 0, 0, 0.8)\"\n                }\n            },\n            {\n                fact: \"The universe is expanding, and its expansion is accelerating.\",\n                details: \"Observations of distant supernovae have shown that the universe's expansion is not slowing down due to gravity, but is actually speeding up. This acceleration is attributed to a mysterious force called dark energy.\",\n                theme: {\n                    \"bg-gradient\": \"linear-gradient(135deg, #000000, #2C3E50)\", /* Black to Dark Gray */\n                    \"text-color\": \"#FFFFFF\", /* White */\n                    \"footer-bg\": \"#1C2833\", /* Very Dark Gray */\n                    \"glass-bg\": \"rgba(0, 0, 0, 0.6)\",\n                    \"glass-border\": \"rgba(255, 255, 255, 0.4)\",\n                    \"fact-text-shadow\": \"2px 2px 15px rgba(0,0,0,0.9)\",\n                    \"title-color\": \"#FFFFFF\",\n                    \"title-shadow\": \"4px 4px 25px rgba(0, 0, 0, 0.9)\",\n                    \"button-primary\": \"#4B0082\",\n                    \"button-hover\": \"#8A2BE2\",\n                    \"main-action-btn\": \"#FFFFFF\",\n                    \"main-action-btn-hover\": \"#E0E0E0\",\n                    \"quiz-option-btn\": \"#4B0082\",\n                    \"quiz-option-btn-hover\": \"#8A2BE2\",\n                    \"quiz-correct\": \"#32CD32\",\n                    \"quiz-incorrect\": \"#FF4500\",\n                    \"challenge-timer-progress\": \"#FFFFFF\",\n                    \"challenge-streak-color\": \"#ADFF2F\",\n                    \"history-toggle-color\": \"#FFFFFF\",\n                    \"history-list-color\": \"#B0C4DE\",\n                    \"reveal-overlay-color\": \"rgba(0, 0, 0, 0.8)\"\n                }\n            },\n            {\n                fact: \"The Mariana Trench is deeper than Mount Everest is tall.\",\n                details: \"At nearly 11,000 meters (36,000 feet), the Mariana Trench is the deepest oceanic trench on Earth. If Mount Everest were placed in the trench, its peak would still be over a mile underwater.\",\n                theme: {\n                    \"bg-gradient\": \"linear-gradient(135deg, #0A1128, #001F54)\",\n                    \"text-color\": \"#E0FFFF\",\n                    \"footer-bg\": \"#001133\",\n                    \"glass-bg\": \"rgba(0, 31, 84, 0.6)\",\n                    \"glass-border\": \"rgba(224, 255, 255, 0.4)\",\n                    \"fact-text-shadow\": \"2px 2px 15px rgba(0,0,0,0.9)\",\n                    \"title-color\": \"#E0FFFF\",\n                    \"title-shadow\": \"4px 4px 25px rgba(0, 0, 0, 0.9)\",\n                    \"button-primary\": \"#4B0082\",\n                    \"button-hover\": \"#8A2BE2\",\n                    \"main-action-btn\": \"#E0FFFF\",\n                    \"main-action-btn-hover\": \"#AFEEEE\",\n                    \"quiz-option-btn\": \"#4B0082\",\n                    \"quiz-option-btn-hover\": \"#8A2BE2\",\n                    \"quiz-correct\": \"#32CD32\",\n                    \"quiz-incorrect\": \"#FF4500\",\n                    \"challenge-timer-progress\": \"#E0FFFF\",\n                    \"challenge-streak-color\": \"#ADFF2F\",\n                    \"history-toggle-color\": \"#E0FFFF\",\n                    \"history-list-color\": \"#B0E0E6\",\n                    \"reveal-overlay-color\": \"rgba(0, 0, 0, 0.8)\"\n                }\n            }\n        ];\n\n        const challengeFacts = [\n            {\n                challenge: \"The Great Barrier Reef is the world's largest living structure and can be seen from ______.\",\n                missingWord: \"space\",\n                options: [\"space\", \"the moon\", \"high altitudes\", \"Australia\"],\n                theme: facts[0].theme // Using a generic theme for challenges\n            },\n            {\n                challenge: \"The human brain weighs about 3 pounds but uses 20% of the body's ______.\",\n                missingWord: \"oxygen\",\n                options: [\"energy\", \"oxygen\", \"blood\", \"nutrients\"],\n                theme: facts[1].theme\n            },\n            {\n                challenge: \"Honey never ______.\",\n                missingWord: \"spoils\",\n                options: [\"crystallizes\", \"spoils\", \"freezes\", \"dries\"],\n                theme: facts[2].theme\n            },\n            {\n                challenge: \"There are more stars in the universe than grains of ______ on all the beaches on Earth.\",\n                missingWord: \"sand\",\n                options: [\"dust\", \"salt\", \"sand\", \"pebbles\"],\n                theme: facts[3].theme\n            }\n        ];\n\n        let currentFactIndex = 0;\n        let currentChallengeFactIndex = 0;\n        let factHistory = [];\n\n        function applyTheme(theme) {\n            const root = document.documentElement;\n            for (const [key, value] of Object.entries(theme)) {\n                root.style.setProperty(`--${key}`, value);\n            }\n        }\n\n        function displayFact(factObj) {\n            factOfTheDayText.textContent = factObj.fact;\n            didYouKnowContent.textContent = factObj.details;\n            applyTheme(factObj.theme);\n\n            // Implement the reveal feature\n            factOfTheDayText.classList.add('hidden-fact'); // Initially hide the fact\n            factOfTheDayText.onclick = () => {\n                factOfTheDayText.classList.toggle('hidden-fact');\n            };\n\n            // Reset for show/hide details feature\n            didYouKnow.classList.remove('show-did-you-know');\n            showDetailsBtn.textContent = "Show Details";\n            showDetailsBtn.onclick = showDetails;\n\n            // Add to history\n            factHistory.unshift(factObj.fact); // Add to the beginning\n            updateHistoryList();\n        }\n\n        function showDetails() {\n            didYouKnow.classList.add('show-did-you-know');\n            showDetailsBtn.textContent = "Hide Details";\n            showDetailsBtn.onclick = hideDetails;\n        }\n\n        function hideDetails() {\n            didYouKnow.classList.remove('show-did-you-know');\n            showDetailsBtn.textContent = "Show Details";\n            showDetailsBtn.onclick = showDetails;\n        }\n\n        function generateNewFact() {\n            factChallengeArea.style.display = 'none';\n            factOfTheDayContainer.style.display = 'flex';\n\n            let newIndex;\n            do {\n                newIndex = Math.floor(Math.random() * facts.length);\n            } while (newIndex === currentFactIndex); // Ensure a different fact\n            currentFactIndex = newIndex;\n            displayFact(facts[currentFactIndex]);\n        }\n\n        function updateHistoryList() {\n            historyList.innerHTML = '';\n            factHistory.forEach(fact => {\n                const listItem = document.createElement('li');\n                listItem.textContent = fact;\n                historyList.appendChild(listItem);\n            });\n        }\n\n        function updateLastUpdatedTime() {\n            const now = new Date();\n            lastUpdatedTime.textContent = now.toLocaleString();\n        }\n\n        // Fact Challenge Logic\n        function startFactChallenge() {\n            factOfTheDayContainer.style.display = 'none';\n            factChallengeArea.style.display = 'flex';\n            currentChallengeFactIndex = Math.floor(Math.random() * challengeFacts.length);\n            displayChallengeFact(challengeFacts[currentChallengeFactIndex]);\n        }\n\n        function displayChallengeFact(challengeFactObj) {\n            quizFactElement.textContent = challengeFactObj.challenge;\n            challengeOptionsDiv.innerHTML = '';\n            quizFeedbackDiv.textContent = '';\n            nextFactBtn.style.display = 'none';\n            applyTheme(challengeFactObj.theme); // Apply theme for challenge\n\n            challengeFactObj.options.forEach(option => {\n                const button = document.createElement('button');\n                button.classList.add('challenge-option-btn');\n                button.textContent = option;\n                button.onclick = () => checkAnswer(button, option, challengeFactObj.missingWord);\n                challengeOptionsDiv.appendChild(button);\n            });\n        }\n\n        function checkAnswer(selectedButton, selectedOption, missingWord) {\n            Array.from(challengeOptionsDiv.children).forEach(button => {\n                button.disabled = true; // Disable all buttons after selection\n                if (button.textContent === missingWord) {\n                    button.classList.add('correct');\n                } else {\n                    button.classList.add('incorrect');\n                }\n            });\n\n            if (selectedOption === missingWord) {\n                quizFeedbackDiv.textContent = "Correct! Well done!";\n                quizFeedbackDiv.style.color = 'var(--quiz-correct)';\n            } else {\n                quizFeedbackDiv.textContent = `Incorrect. The answer was '${missingWord}'.`;\n                quizFeedbackDiv.style.color = 'var(--quiz-incorrect)';\n            }\n            nextFactBtn.style.display = 'block';\n        }\n\n        function nextChallengeFact() {\n            let newIndex;\n            do {\n                newIndex = Math.floor(Math.random() * challengeFacts.length);\n            } while (newIndex === currentChallengeFactIndex);\n            currentChallengeFactIndex = newIndex;\n            displayChallengeFact(challengeFacts[currentChallengeFactIndex]);\n        }\n\n        // Event Listeners\n        showDetailsBtn.addEventListener('click', showDetails);\n        generateFactBtn.addEventListener('click', generateNewFact);\n        playChallengeBtn.addEventListener('click', startFactChallenge);\n        nextFactBtn.addEventListener('click', nextChallengeFact);\n        historyToggleBtn.addEventListener('click', () => {\n            historyList.classList.toggle('show-history');\n            historyToggleBtn.textContent = historyList.classList.contains('show-history') ? 'Hide Fact History' : 'Show Fact History';\n        });\n\n        // Initial load\n        document.addEventListener('DOMContentLoaded', () => {\n            currentFactIndex = facts.length - 1; // Start with the new Deep Sea fact\n            displayFact(facts[currentFactIndex]);\n            updateLastUpdatedTime();\n            setInterval(updateLastUpdatedTime, 60000); // Update every minute\n        });\n    </script>\n</body>\n</html>
+            background-color: rgba(255,255,255,0.25);
+            border-radius: 6px;
+            margin-bottom: 25px;
+            overflow: hidden;
+        }
+        #challenge-timer-progress {
+            height: 100%;
+            width: 100%;
+            background-color: var(--challenge-timer-progress);
+            border-radius: 6px;
+            transition: width linear;
+        }
+        #challenge-score {
+            font-size: 2rem;
+            color: var(--challenge-streak-color);
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
+        }
+        #challenge-feedback {
+            font-size: 1.8rem;
+            margin-top: 25px;
+            font-weight: 800;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        /* History Section */
+        #history-section {
+            margin-top: 35px;
+            width: 100%;
+            max-width: 850px;
+            text-align: left;
+        }
+        #history-toggle-btn {
+            background-color: var(--button-primary);
+            color: var(--history-toggle-color);
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+        }
+        #history-toggle-btn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+        }
+        #history-list {
+            list-style: none;
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 1s ease-out, opacity 1s ease-out;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 0 25px;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+        }
+        #history-list.show-history {
+            max-height: 500px; /* Adjust based on expected content */
+            opacity: 1;
+            padding: 25px;
+        }
+        #history-list li {
+            font-size: 1.1rem;
+            color: var(--history-list-color);
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        #history-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* New Reveal Button Style */
+        #reveal-fact-btn {
+            background-color: var(--main-action-btn);
+            color: var(--button-primary); /* Use a contrasting color for text */
+            padding: 18px 40px;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            font-weight: 800;
+            border: none;
+            outline: none;
+        }
+        #reveal-fact-btn:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+        #reveal-fact-btn:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 3.5rem;
+                margin-bottom: 2rem;
+            }
+            .container {
+                padding: 30px;
+            }
+            .fact-card {
+                padding: 30px;
+                min-height: 250px;
+            }
+            p {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 1.6rem;
+                min-height: 80px;
+            }
+            #footer-info {
+                font-size: 1.2rem;
+                padding: 20px 30px;
+            }
+            #reveal-fact-btn {
+                font-size: 1.4rem;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1#main-title {
+                font-size: 2.5rem;
+            }
+            .container {
+                padding: 20px;
+            }
+            .fact-card {
+                padding: 20px;
+                min-height: 200px;
+            }
+            p {
+                font-size: 1.4rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 1.2rem;
+                min-height: 60px;
+            }
+            #footer-info {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+            #reveal-fact-btn {
+                font-size: 1.2rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Wonders: Space Facts</h1>
+
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text">The footprints left on the Moon by astronauts will likely stay there for millions of years because there is no wind to erode them.</p>
+            <button id="reveal-fact-btn">Reveal Fact</button>
+        </div>
+
+        <!-- Placeholder for other sections like quiz or challenge if they were to be implemented -->
+        <div id="fact-challenge-area" style="display: none;">
+            <h2>Test Your Knowledge!</h2>
+            <p id="quiz-fact"></p>
+            <div id="challenge-options"></div>
+            <p class="quiz-feedback"></p>
+            <button id="next-fact-btn" class="challenge-option-btn">Next Fact</button>
+        </div>
+
+        <div id="history-section" style="display: none;">
+            <button id="history-toggle-btn">Show History</button>
+            <ul id="history-list"></ul>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const factText = document.getElementById('fact-of-the-day-text');
+            const revealButton = document.getElementById('reveal-fact-btn');
+
+            revealButton.addEventListener('click', () => {
+                factText.classList.add('revealed');
+                revealButton.style.display = 'none'; // Hide button after revealing
+            });
+        });
+    </script>
+</body>
+</html>
