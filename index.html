@@ -3,30 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Wonders: Jupiter Facts</title>
+    <title>Deep Sea Wonders: Fascinating Facts</title>
     <style>
         :root {
-            /* Theme Colors for "Jupiter" */
-            --bg-gradient: linear-gradient(135deg, #4A3F2D, #7A6F5C); /* Earthy brown to warm grey, Jovian atmosphere feel */
-            --text-color: #F0E68C; /* Khaki */
-            --footer-bg: #2C251C; /* Dark brown for the footer */
-            --glass-bg: rgba(74, 63, 45, 0.6); /* Transparent earthy brown */
-            --glass-border: rgba(240, 230, 140, 0.4); /* Light border */
+            /* Theme Colors for "Deep Sea Wonders" */
+            --bg-gradient: linear-gradient(135deg, #0A1128, #001F54); /* Deep blue to dark blue */
+            --text-color: #E0FBFC; /* Light Cyan */
+            --footer-bg: #03071E; /* Very dark blue for the footer */
+            --glass-bg: rgba(0, 31, 84, 0.6); /* Transparent deep blue */
+            --glass-border: rgba(224, 251, 252, 0.4); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #F0E68C; /* Khaki */
+            --title-color: #98C1D9; /* Light Steel Blue */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #7A6F5C; /* Warm Grey */
-            --button-hover: #9B8F7C; /* Lighter Warm Grey */
-            --main-action-btn: #F0E68C; /* Khaki */
-            --main-action-btn-hover: #FAFAD2; /* Light Goldenrod Yellow */
-            --quiz-option-btn: #7A6F5C;
-            --quiz-option-btn-hover: #9B8F7C;
+            --button-primary: #0077B6; /* Cerulean Blue */
+            --button-hover: #0096C7; /* Brighter Cerulean */
+            --main-action-btn: #E0FBFC; /* Light Cyan */
+            --main-action-btn-hover: #C1F0F0; /* Lighter Cyan */
+            --quiz-option-btn: #0077B6;
+            --quiz-option-btn-hover: #0096C7;
             --quiz-correct: #32CD32;
             --quiz-incorrect: #FF4500;
-            --challenge-timer-progress: #F0E68C;
+            --challenge-timer-progress: #E0FBFC;
             --challenge-streak-color: #FFD700; /* Gold */
-            --history-toggle-color: #F0E68C; /* Khaki for footer text */
-            --history-list-color: #D2B48C; /* Tan */
+            --history-toggle-color: #E0FBFC; /* Light Cyan for footer text */
+            --history-list-color: #A7D9F0; /* Lighter blue for history list */
             --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
         }
 
@@ -148,7 +148,7 @@
             padding: 35px 45px;
             background-color: var(--glass-bg);
             border-radius: 25px;
-            box-shadow: 0 10px 35px rgba(0,0,0,0.5);\
+            box-shadow: 0 10px 35px rgba(0,0,0,0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
@@ -227,7 +227,7 @@
         }
         #did-you-know h3 {
             font-size: 1.8rem;
-            color: hsl(40, 100%, 80%);
+            color: hsl(190, 100%, 80%); /* Adjusted for deep sea theme */
             margin-bottom: 12px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         }
@@ -453,56 +453,4 @@
             }
             #reveal-fact-btn {
                 font-size: 1.2rem;
-                padding: 12px 25px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 id="main-title">Cosmic Wonders: Jupiter Facts</h1>
-
-        <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">Jupiter's Great Red Spot is a gigantic storm that has been raging for at least 350 years and is larger than Earth.</p>
-            <button id="reveal-fact-btn">Reveal Fact</button>
-        </div>
-
-        <div id="did-you-know">
-            <h3>Did You Know?</h3>
-            <p id="did-you-know-content">Jupiter's atmosphere is composed primarily of hydrogen and helium, with trace amounts of other gases like methane and ammonia, giving it its distinctive banded appearance.</p>
-        </div>
-
-        <!-- Placeholder for other sections like quiz or challenge if they were to be implemented -->
-        <div id="fact-challenge-area" style="display: none;">
-            <h2>Test Your Knowledge!</h2>
-            <p id="quiz-fact"></p>
-            <div id="challenge-options"></div>
-            <p class="quiz-feedback"></p>
-            <button id="next-fact-btn" class="challenge-option-btn">Next Fact</button>
-        </div>
-
-        <div id="history-section" style="display: none;">
-            <button id="history-toggle-btn">Show History</button>
-            <ul id="history-list"></ul>
-        </div>
-    </div>
-
-    <footer id="footer-info">
-        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const factText = document.getElementById('fact-of-the-day-text');
-            const revealButton = document.getElementById('reveal-fact-btn');
-            const didYouKnowSection = document.getElementById('did-you-know');
-
-            revealButton.addEventListener('click', () => {
-                factText.classList.add('revealed');
-                revealButton.style.display = 'none'; // Hide button after revealing
-                didYouKnowSection.classList.add('show-did-you-know'); // Show Did You Know section
-            });
-        });
-    </script>
-</body>
-</html>
+                padding: 12px 25px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet). If Mount Everest were placed in the trench, its peak would still be over a mile underwater.</p>\n            <button id=\"reveal-fact-btn\">Reveal Fact</button>\n        </div>\n\n        <div id=\"did-you-know\">\n            <h3>Did You Know?</h3>\n            <p id=\"did-you-know-content\">Despite the extreme pressure and lack of sunlight, the Mariana Trench is home to a diverse array of unique organisms, including giant amphipods and snailfish, adapted to survive in these harsh conditions.</p>\n        </div>\n\n        <!-- Placeholder for other sections like quiz or challenge if they were to be implemented -->\n        <div id=\"fact-challenge-area\" style=\"display: none;\">\n            <h2>Test Your Knowledge!</h2>\n            <p id=\"quiz-fact\"></p>\n            <div id=\"challenge-options\"></div>\n            <p class=\"quiz-feedback\"></p>\n            <button id=\"next-fact-btn\" class=\"challenge-option-btn\">Next Fact</button>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show History</button>\n            <ul id=\"history-list\"></ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>&copy; 2025 Deep Sea Wonders. All rights reserved.</p>\n    </footer>\n\n    <script>\n        document.addEventListener(\'DOMContentLoaded\', () => {\n            const factText = document.getElementById(\'fact-of-the-day-text\');\n            const revealButton = document.getElementById(\'reveal-fact-btn\');\n            const didYouKnowSection = document.getElementById(\'did-you-know\');\n            const historySection = document.getElementById(\'history-section\');\n            const historyToggleButton = document.getElementById(\'history-toggle-btn\');\n            const historyList = document.getElementById(\'history-list\');\n\n            let factHistory = [];\n\n            const addFactToHistory = (fact) => {\n                factHistory.push(fact);\n                const listItem = document.createElement(\'li\');\n                listItem.textContent = fact;\n                historyList.prepend(listItem); // Add to the beginning of the list\n            };\n\n            revealButton.addEventListener(\'click\', () => {\n                factText.classList.add(\'revealed\');\n                revealButton.style.display = \'none\'; // Hide button after revealing\n                didYouKnowSection.classList.add(\'show-did-you-know\'); // Show Did You Know section\n                addFactToHistory(factText.textContent); // Add revealed fact to history\n            });\n\n            historyToggleButton.addEventListener(\'click\', () => {\n                historyList.classList.toggle(\'show-history\');\n                if (historyList.classList.contains(\'show-history\')) {\n                    historyToggleButton.textContent = \'Hide History\';\n                } else {\n                    historyToggleButton.textContent = \'Show History\';\n                }\n            });\n\n            // Initially add the first fact to history if it\'s meant to be there from the start\n            // addFactToHistory(factText.textContent); // Uncomment if you want the initial fact in history\n        });\n    </script>\n</body>\n</html>
