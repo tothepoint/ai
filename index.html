@@ -6,19 +6,19 @@
     <title id="site-title">Cosmic Explorer</title>
     <style>
         :root {
-            /* Default/Initial Theme Colors (Planetary Peculiarities - Venus) */
-            --bg-color-primary: #2C003E;   /* Slightly different dark purple */
-            --text-color: #E0BBE4;         /* Light Lavender */
-            --footer-bg: #1A002B;          /* Darker for footer */
-            --glass-bg: rgba(44, 0, 62, 0.6); /* Transparent dark */
-            --glass-border: rgba(224, 187, 228, 0.8); /* Transparent Light Lavender */
+            /* Default/Initial Theme Colors (Extreme Astrophysics) */
+            --bg-color-primary: #000000;   /* Pure Black */
+            --text-color: #00FF00;         /* Bright Green */
+            --footer-bg: #000000;          /* Darker for footer */
+            --glass-bg: rgba(0, 0, 0, 0.7); /* Transparent dark */
+            --glass-border: rgba(0, 255, 255, 0.8); /* Transparent Aqua */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #957DAD;        /* Medium Purple */
+            --title-color: #00FFFF;        /* Aqua */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #6A5ACD;     /* Slate Blue */
-            --button-hover: #483D8B;       /* Darker Slate Blue */
-            --main-action-btn: #FF69B4;    /* Hot Pink for main actions */
-            --main-action-btn-hover: #C71585; /* Darker Hot Pink */
+            --button-primary: #008080;     /* Teal */
+            --button-hover: #005F5F;       /* Darker Teal */
+            --main-action-btn: #FF4500;    /* Orange Red for main actions */
+            --main-action-btn-hover: #CD3700; /* Darker Orange Red */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
             --generic-title-color: #ADD8E6; /* Light Blue for generic title */
         }
@@ -62,7 +62,7 @@
             font-size: 4.5rem;
             margin-bottom: 3rem;
             text-shadow: var(--title-shadow);
-            color: var(--generic-title-color);
+            color: var(--title-color); /* Changed to use theme's title color directly */
             letter-spacing: 3px;
             font-weight: 900;
             transition: color 1s ease;
@@ -149,6 +149,8 @@
         #main-fact-text.revealed::before {
             opacity: 0;
         }
+        /* Glitch effect for discovery */
+        #main-fact-text.glitch-effect {\n            animation: glitch 0.8s linear infinite;\n        }\n\n        @keyframes glitch {\n            0% { transform: translate(0); }\n            20% { transform: translate(-2px, 2px); }\n            40% { transform: translate(-2px, -2px); }\n            60% { transform: translate(2px, 2px); }\n            80% { transform: translate(2px, -2px); }\n            100% { transform: translate(0); }\n        }
         #did-you-know {
             margin-top: 30px;
             padding-top: 25px;
@@ -185,9 +187,7 @@
             display: flex;
             gap: 20px;
             margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+            flex-wrap: wrap;\n            justify-content: center;\n        }
         .action-button {
             background-color: var(--main-action-btn);
             color: var(--footer-bg);
@@ -229,17 +229,18 @@
     <div class="container">
         <h1 id="main-title">Cosmic Explorer</h1>
         <div id="main-fact-container">
-            <p id="main-fact-text">A day on Venus is longer than a year on Venus.</p>
+            <p id="main-fact-text">Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.</p>
         </div>
         <div class="button-group">
             <button id="reveal-more-btn" class="action-button">Reveal More</button>
             <button id="generate-fact-btn" class="action-button">Generate New Fact</button>
+            <button id="explore-themes-btn" class="action-button">Explore Themes</button>
             <button id="copy-fact-btn" class="action-button">Copy Fact</button>
         </div>
 
         <div id="did-you-know">
             <h3>Did You Know?</h3>
-            <p id="did-you-know-content">Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.</p>
+            <p id="did-you-know-content">They are formed from the collapsed cores of massive stars during a supernova explosion, packing the mass of our sun into a sphere only about 20 kilometers across.</p>
         </div>
     </div>
 
@@ -251,6 +252,7 @@
         const mainFactText = document.getElementById('main-fact-text');
         const revealMoreBtn = document.getElementById('reveal-more-btn');
         const generateFactBtn = document.getElementById('generate-fact-btn');
+        const exploreThemesBtn = document.getElementById('explore-themes-btn');
         const copyFactBtn = document.getElementById('copy-fact-btn');
         const didYouKnowSection = document.getElementById('did-you-know');
         const didYouKnowContent = document.getElementById('did-you-know-content');
@@ -321,7 +323,7 @@
             }
         ];
 
-        let currentFactIndex = 1; // Start with "Planetary Peculiarities" fact (Venus)
+        let currentFactIndex = 2; // Start with "Extreme Astrophysics" fact
         let typingTimeout;
         const genericTitle = "Cosmic Explorer";
 
@@ -338,8 +340,7 @@
             type();
         }
 
-        function updateFactDisplay(factObj, isRevealed = false) {
-            // Update CSS variables
+        function applyThemeColors(factObj) {
             document.documentElement.style.setProperty('--bg-color-primary', factObj.bgColor);
             document.documentElement.style.setProperty('--text-color', factObj.textColor);
             document.documentElement.style.setProperty('--footer-bg', factObj.footerBg);
@@ -350,22 +351,28 @@
             document.documentElement.style.setProperty('--main-action-btn-hover', factObj.mainActionBtnHover);
             document.documentElement.style.setProperty('--glass-bg', factObj.glassBg);
             document.documentElement.style.setProperty('--glass-border', factObj.glassBorder);
+        }
+
+        function updateFactDisplay(factObj, isRevealed = false) {
+            applyThemeColors(factObj); // Always apply theme colors
 
             clearTimeout(typingTimeout); // Clear any ongoing typing effect
 
             if (isRevealed) {
                 siteTitle.textContent = factObj.theme;
                 mainTitle.textContent = factObj.theme.split(':')[0];
-                mainTitle.style.color = factObj.titleColor; // Apply specific title color
                 mainFactText.classList.add('revealed');
+                mainFactText.classList.add('glitch-effect'); // Add glitch effect
                 typeWriterEffect(factObj.fact, mainFactText);
                 didYouKnowContent.textContent = factObj.didYouKnow;
                 didYouKnowSection.classList.add('show-did-you-know');
                 revealMoreBtn.textContent = "Hide Details";
+                setTimeout(() => {
+                    mainFactText.classList.remove('glitch-effect'); // Remove glitch after animation
+                }, 800); // Match glitch animation duration
             } else {
                 siteTitle.textContent = genericTitle;
                 mainTitle.textContent = genericTitle;
-                mainTitle.style.color = 'var(--generic-title-color)'; // Revert to generic title color
                 mainFactText.classList.remove('revealed');
                 mainFactText.textContent = factObj.fact; // Set full text for hidden state
                 didYouKnowSection.classList.remove('show-did-you-know');
@@ -376,35 +383,51 @@
         revealMoreBtn.addEventListener('click', () => {
             const currentFact = facts[currentFactIndex];
             if (mainFactText.classList.contains('revealed')) {
-                // If already revealed, hide it again
                 updateFactDisplay(currentFact, false);
             } else {
-                // Reveal the fact with typing effect
                 updateFactDisplay(currentFact, true);
             }
         });
 
         generateFactBtn.addEventListener('click', () => {
-            mainFactContainer.classList.add('animate-in'); // Start animation
+            mainFactContainer.classList.add('animate-in');
             setTimeout(() => {
                 let newIndex;
                 do {
                     newIndex = Math.floor(Math.random() * facts.length);
-                } while (newIndex === currentFactIndex); // Ensure a new fact is generated
+                } while (newIndex === currentFactIndex);
                 currentFactIndex = newIndex;
-                updateFactDisplay(facts[currentFactIndex], false); // Display new fact, initially hidden
+                updateFactDisplay(facts[currentFactIndex], false);
                 mainFactContainer.classList.remove('animate-in');
                 mainFactContainer.classList.add('animate-out');
                 setTimeout(() => {
                     mainFactContainer.classList.remove('animate-out');
-                }, 300); // Match animation duration
-            }, 300); // Match animation duration
+                }, 300);
+            }, 300);
+        });
+
+        exploreThemesBtn.addEventListener('click', () => {
+            mainFactContainer.classList.add('animate-in');
+            setTimeout(() => {
+                currentFactIndex = (currentFactIndex + 1) % facts.length; // Cycle through themes
+                updateFactDisplay(facts[currentFactIndex], false); // Display new theme's fact, initially hidden
+                mainFactContainer.classList.remove('animate-in');
+                mainFactContainer.classList.add('animate-out');
+                setTimeout(() => {
+                    mainFactContainer.classList.remove('animate-out');
+                }, 300);
+            }, 300);
         });
 
         copyFactBtn.addEventListener('click', async () => {
             try {
                 await navigator.clipboard.writeText(mainFactText.textContent);
-                alert('Fact copied to clipboard!');
+                // Visual feedback for copy
+                const originalText = copyFactBtn.textContent;
+                copyFactBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyFactBtn.textContent = originalText;
+                }, 1500);
             } catch (err) {
                 console.error('Failed to copy: ', err);
                 alert('Failed to copy fact.');
