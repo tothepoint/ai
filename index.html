@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Oceanic Wonders: Deep Sea Discoveries</title>
+    <title id="site-title">Cosmic Wonders: Exoplanet Discoveries</title>
     <style>
         :root {
-            /* Default Theme Colors (Deep Sea) */
-            --bg-color-shallow: #1A2B42; /* Very deep blue */
-            --bg-color-deep: #0A162A;   /* Almost black-blue */
-            --text-color: #E0F7FA;      /* Light cyan */
-            --footer-bg: #102038; /* Slightly lighter dark blue */
-            --glass-bg: rgba(26, 43, 66, 0.4); /* Transparent deep blue */
+            /* Theme Colors (Space Exploration) */
+            --bg-color-shallow: #0A0A1A; /* Almost black-blue for cosmic feel */
+            --bg-color-deep: #000000;   /* Pure black */
+            --text-color: #E0F7FA;      /* Light cyan for contrast */
+            --footer-bg: #102038; /* Slightly lighter dark blue for footer */
+            --glass-bg: rgba(10, 10, 26, 0.4); /* Transparent dark purple */
             --glass-border: rgba(224, 247, 250, 0.6); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
             --title-color: #87CEEB;     /* Sky blue for title */
@@ -235,4 +235,117 @@
         }
         #history-list {
             list-style: none;
-            padding: 0;\n            max-height: 0;\n            overflow: hidden;\n            opacity: 0;\n            transition: max-height 1s ease-out, opacity 1s ease-out;\n            background-color: rgba(255, 255, 255, 0.08);\n            border-radius: 18px;\n            padding: 0 25px;\n            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);\n        }\n        #history-list.show-history {\n            max-height: 500px;\n            opacity: 1;\n            padding: 25px;\n        }\n        #history-list li {\n            font-size: 1.1rem;\n            color: var(--history-list-color);\n            padding: 8px 0;\n            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);\n        }\n        #history-list li:last-child {\n            border-bottom: none;\n        }\n\n        /* New Reveal Button Style */\n        #reveal-fact-btn, #prev-fact-btn {\n            background-color: var(--main-action-btn);\n            color: var(--footer-bg); /* Use a contrasting color for text */\n            padding: 18px 40px;\n            font-size: 1.8rem;\n            border-radius: 15px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;\n            margin-top: 20px;\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n            font-weight: 800;\n            border: none;\n            outline: none;\n        }\n        #reveal-fact-btn:hover, #prev-fact-btn:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-5px) scale(1.02);\n            box-shadow: 0 12px 25px rgba(0,0,0,0.6);\n        }\n        #reveal-fact-btn:active, #prev-fact-btn:active {\n            transform: translateY(-2px) scale(0.98);\n            box-shadow: 0 5px 15px rgba(0,0,0,0.3);\n        }\n        #prev-fact-btn {\n            margin-right: 20px;\n            display: none; /* Hidden by default */\n            background-color: var(--button-primary);\n            color: var(--history-toggle-color);\n            font-size: 1.4rem;\n            padding: 15px 30px;\n        }\n        #prev-fact-btn:hover {\n            background-color: var(--button-hover);\n        }\n\n        #fact-buttons {\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            margin-top: 20px;\n        }\n\n        #fact-streak {\n            font-size: 1.8rem;\n            color: var(--streak-color);\n            margin-top: 20px;\n            font-weight: 700;\n            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);\n            animation: pulse 1.5s infinite alternate;\n        }\n\n        @keyframes pulse {\n            from { transform: scale(1); opacity: 0.8; }\n            to { transform: scale(1.05); opacity: 1; }\n        }\n\n        /* Responsive Design */\n        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 30px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.6rem;\n                min-height: 80px;\n            }\n            #footer-info {\n                font-size: 1.2rem;\n                padding: 20px 30px;\n            }\n            #reveal-fact-btn, #prev-fact-btn {\n                font-size: 1.4rem;\n                padding: 15px 30px;\n            }\n            #fact-streak {\n                font-size: 1.5rem;\n            }\n        }\n\n        @media (max-width: 480px) {\n            h1#main-title {\n                font-size: 2.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            p {\n                font-size: 1.4rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.2rem;\n                min-height: 60px;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 20px;\n            }\n            #reveal-fact-btn, #prev-fact-btn {\n                font-size: 1.2rem;\n                padding: 12px 25px;\n            }\n            #fact-streak {\n                font-size: 1.2rem;\n            }\n            #fact-buttons {\n                flex-direction: column;\n            }\n            #prev-fact-btn {\n                margin-right: 0;\n                margin-bottom: 15px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Oceanic Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\"></p>\n            <div id=\"fact-buttons\">\n                <button id=\"prev-fact-btn\">Previous Fact</button>\n                <button id=\"reveal-fact-btn\">Dive Deeper</button>\n            </div>\n        </div>\n\n        <p id=\"fact-streak\">Fact Streak: 0</p>\n\n        <div id=\"did-you-know\">\n            <h3>Previous Discovery:</h3>\n            <p id=\"did-you-know-content\">No previous discoveries yet. Click \"Dive Deeper\" to reveal your first!</p>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show History</button>\n            <ul id=\"history-list\">\n                <!-- History items will be added here by JavaScript -->\n            </ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>Last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        const factText = document.getElementById('fact-of-the-day-text');\n        const revealBtn = document.getElementById('reveal-fact-btn');\n        const prevFactBtn = document.getElementById('prev-fact-btn');\n        const didYouKnowContent = document.getElementById('did-you-know-content');\n        const historyToggleBtn = document.getElementById('history-toggle-btn');\n        const historyList = document.getElementById('history-list');\n        const updateTimeSpan = document.getElementById('update-time');\n        const body = document.body;\n        const siteTitle = document.getElementById('site-title');\n        const factStreakDisplay = document.getElementById('fact-streak');\n\n        let factRevealed = false;\n        let factHistory = [];\n        let currentFactIndexInHistory = -1; // Index for navigating history\n        let currentFactDataIndex = -1; // Index for the oceanicFacts array\n        let factStreak = 0;\n\n        const oceanicFacts = [\n            {\n                fact: \"The deepest part of the ocean, the Mariana Trench, is deeper than Mount Everest is tall.\",\n                theme: \"Deep Sea\",\n                colors: {\n                    bg_shallow: \"#1A2B42\",\n                    bg_deep: \"#0A162A\",\n                    text: \"#E0F7FA\",\n                    footer_bg: \"#102038\",\n                    glass_bg: \"rgba(26, 43, 66, 0.4)\",\n                    glass_border: \"rgba(224, 247, 250, 0.6)\",\n                    title: \"#87CEEB\",\n                    button_primary: \"#4682B4\",\n                    button_hover: \"#5F9EA0\",\n                    main_action_btn: \"#4682B4\",\n                    main_action_btn_hover: \"#5F9EA0\",\n                    reveal_overlay: \"rgba(0, 0, 0, 0.7)\"\n                }\n            },\n            {\n                fact: \"More than 80% of the ocean has never been mapped, explored, or even seen by humans.\",\n                theme: \"Uncharted Depths\",\n                colors: {\n                    bg_shallow: \"#2C3E50\",\n                    bg_deep: \"#1A252F\",\n                    text: \"#ECF0F1\",\n                    footer_bg: \"#212F3D\",\n                    glass_bg: \"rgba(44, 62, 80, 0.4)\",\n                    glass_border: \"rgba(236, 240, 241, 0.6)\",\n                    title: \"#BDC3C7\",\n                    button_primary: \"#3498DB\",\n                    button_hover: \"#2980B9\",\n                    main_action_btn: \"#3498DB\",\n                    main_action_btn_hover: \"#2980B9\",\n                    reveal_overlay: \"rgba(0, 0, 0, 0.7)\"\n                }\n            },\n            {\n                fact: \"The ocean produces over half of the world's oxygen and absorbs 50 times more carbon dioxide than our atmosphere.\",\n                theme: \"Ocean's Breath\",\n                colors: {\n                    bg_shallow: \"#006400\",\n                    bg_deep: \"#004d00\",\n                    text: \"#F0FFF0\",\n                    footer_bg: \"#003300\",\n                    glass_bg: \"rgba(0, 100, 0, 0.4)\",\n                    glass_border: \"rgba(240, 255, 240, 0.6)\",\n                    title: \"#90EE90\",\n                    button_primary: \"#3CB371\",\n                    button_hover: \"#2E8B57\",\n                    main_action_btn: \"#3CB371\",\n                    main_action_btn_hover: \"#2E8B57\",\n                    reveal_overlay: \"rgba(0, 0, 0, 0.7)\"\n                }\n            },\n            {\n                fact: \"A single blue whale can eat up to 4 tons of krill in a day.\",\n                theme: \"Gentle Giants\",\n                colors: {\n                    bg_shallow: \"#4682B4\",\n                    bg_deep: \"#2F4F4F\",\n                    text: \"#F5F5DC\",\n                    footer_bg: \"#1C313A\",\n                    glass_bg: \"rgba(70, 130, 180, 0.4)\",\n                    glass_border: \"rgba(245, 245, 220, 0.6)\",\n                    title: \"#ADD8E6\",\n                    button_primary: \"#6A5ACD\",\n                    button_hover: \"#483D8B\",\n                    main_action_btn: \"#6A5ACD\",\n                    main_action_btn_hover: \"#483D8B\",\n                    reveal_overlay: \"rgba(0, 0, 0, 0.7)\"\n                }\n            },\n            {\n                fact: \"The Great Barrier Reef is the largest living structure on Earth, visible from outer space.\",\n                theme: \"Coral Kingdoms\",\n                colors: {\n                    bg_shallow: \"#20B2AA\", /* Light Sea Green */\n                    bg_deep: \"#008080\",   /* Teal */\n                    text: \"#F0F8FF\",      /* Alice Blue */\n                    footer_bg: \"#005C5C\", /* Darker Teal */\n                    glass_bg: \"rgba(32, 178, 170, 0.4)\",\n                    glass_border: \"rgba(240, 248, 255, 0.6)\",\n                    title: \"#FF7F50\",     /* Coral */\n                    button_primary: \"#40E0D0\", /* Turquoise */\n                    button_hover: \"#20B2AA\",   /* Light Sea Green */\n                    main_action_btn: \"#40E0D0\",\n                    main_action_btn_hover: \"#20B2AA\",\n                    reveal_overlay: \"rgba(0, 0, 0, 0.7)\"\n                }\n            }\n        ];\n\n        function applyThemeColors(colors) {\n            const root = document.documentElement;\n            root.style.setProperty('--bg-color-shallow', colors.bg_shallow);\n            root.style.setProperty('--bg-color-deep', colors.bg_deep);\n            root.style.setProperty('--text-color', colors.text);\n            root.style.setProperty('--footer-bg', colors.footer_bg);\n            root.style.setProperty('--glass-bg', colors.glass_bg);\n            root.style.setProperty('--glass-border', colors.glass_border);\n            root.style.setProperty('--title-color', colors.title);\n            root.style.setProperty('--button-primary', colors.button_primary);\n            root.style.setProperty('--button-hover', colors.button_hover);\n            root.style.setProperty('--main-action-btn', colors.main_action_btn);\n            root.style.setProperty('--main-action-btn-hover', colors.main_action_btn_hover);\n            root.style.setProperty('--reveal-overlay-color', colors.reveal_overlay);\n        }\n\n        function updateFactStreak(increment) {\n            if (increment) {\n                factStreak++;\n            } else {\n                factStreak = 0; // Reset on page load or if needed\n            }\n            factStreakDisplay.textContent = `Fact Streak: ${factStreak}`;\n        }\n\n        function loadNewFact(fromHistory = false, historyDirection = 0) {\n            let factData;\n            if (fromHistory) {\n                currentFactIndexInHistory += historyDirection;\n                factData = factHistory[currentFactIndexInHistory];\n                // Find the original fact data to apply colors\n                const originalFact = oceanicFacts.find(f => f.fact === factData.fact);\n                applyThemeColors(originalFact.colors);\n                siteTitle.textContent = `Oceanic Wonders: ${originalFact.theme}`;\n            } else {\n                let newIndex;\n                do {\n                    newIndex = Math.floor(Math.random() * oceanicFacts.length);\n                } while (newIndex === currentFactDataIndex);\n\n                currentFactDataIndex = newIndex;\n                factData = oceanicFacts[currentFactDataIndex];\n                applyThemeColors(factData.colors);\n                siteTitle.textContent = `Oceanic Wonders: ${factData.theme}`;\n\n                // Add to history only if it's a new random fact\n                if (factHistory.length === 0 || factHistory[0].fact !== factData.fact) {\n                    factHistory.unshift(factData);\n                    currentFactIndexInHistory = 0; // Reset history index to the newest fact\n                }\n            }\n\n            factText.textContent = factData.fact;\n\n            // Reset fact display\n            factText.classList.remove('revealed');\n            revealBtn.textContent = 'Dive Deeper';\n            revealBtn.style.display = 'inline-block'; // Ensure reveal button is visible\n            prevFactBtn.style.display = 'none'; // Hide previous button initially\n            body.style.background = 'var(--bg-color-shallow)';\n            factRevealed = false;\n\n            updateHistoryDisplay();\n            updatePrevFactButtonVisibility();\n        }\n\n        function revealCurrentFact() {\n            if (!factRevealed) {\n                factText.classList.add('revealed');\n                revealBtn.textContent = 'Explore Another Wonder';\n                body.style.background = 'var(--bg-color-deep)';\n                factRevealed = true;\n                updateFactStreak(true); // Increment streak on reveal\n                updatePrevFactButtonVisibility();\n            }\n        }\n\n        function updateHistoryDisplay() {\n            historyList.innerHTML = '';\n            if (factHistory.length > 1) { // Only show previous discovery if there's more than one fact in history\n                didYouKnowContent.textContent = factHistory[1].fact;\n            } else {\n                didYouKnowContent.textContent = \"No previous discoveries yet. Click \\\"Dive Deeper\\\" to reveal your first!\";\n            }\n\n            factHistory.forEach((factData, index) => {\n                if (index > 0) { // Don't add the current fact to the history list\n                    const listItem = document.createElement('li');\n                    listItem.textContent = factData.fact;\n                    historyList.appendChild(listItem);\n                }\n            });\n        }\n\n        function updatePrevFactButtonVisibility() {\n            if (factRevealed && currentFactIndexInHistory < factHistory.length - 1) {\n                prevFactBtn.style.display = 'inline-block';\n            } else {\n                prevFactBtn.style.display = 'none';\n            }\n        }\n\n        // Function to update the time in the footer\n        function updateFooterTime() {\n            const now = new Date();\n            updateTimeSpan.textContent = now.toLocaleString();\n        }\n\n        // Initial call to set the time\n        updateFooterTime();\n        // Update time every minute\n        setInterval(updateFooterTime, 60000);\n\n        revealBtn.addEventListener('click', () => {\n            if (!factRevealed) {\n                revealCurrentFact();\n            } else {\n                loadNewFact();\n            }\n        });\n\n        prevFactBtn.addEventListener('click', () => {\n            if (currentFactIndexInHistory < factHistory.length - 1) {\n                loadNewFact(true, 1); // Load previous fact\n                revealCurrentFact(); // Reveal it immediately\n                revealBtn.textContent = 'Explore Another Wonder'; // Keep button text consistent\n            }\n        });\n\n        historyToggleBtn.addEventListener('click', () => {\n            historyList.classList.toggle('show-history');\n            if (historyList.classList.contains('show-history')) {\n                historyToggleBtn.textContent = 'Hide History';\n            } else {\n                historyToggleBtn.textContent = 'Show History';\n            }\n        });\n\n        // Load the first fact on page load\n        loadNewFact();\n        updateFactStreak(false); // Initialize streak to 0\n    </script>\n</body>\n</html>
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 1s ease-out, opacity 1s ease-out;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 0 25px;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+        }
+        #history-list.show-history {
+            max-height: 500px;
+            opacity: 1;
+            padding: 25px;
+        }
+        #history-list li {
+            font-size: 1.1rem;
+            color: var(--history-list-color);
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        #history-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* New Reveal Button Style */
+        #reveal-fact-btn, #prev-fact-btn {
+            background-color: var(--main-action-btn);
+            color: var(--footer-bg); /* Use a contrasting color for text */
+            padding: 18px 40px;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            font-weight: 800;
+            border: none;
+            outline: none;
+        }
+        #reveal-fact-btn:hover, #prev-fact-btn:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+        #reveal-fact-btn:active, #prev-fact-btn:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        #prev-fact-btn {
+            margin-right: 20px;
+            display: none; /* Hidden by default */
+            background-color: var(--button-primary);
+            color: var(--footer-bg);
+        }
+
+        /* Streak Counter */
+        #streak-counter {
+            font-size: 1.8rem;
+            color: var(--streak-color);
+            margin-top: 20px;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            display: none; /* Hidden by default */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Wonders</h1>
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text">Did you know that astronomers have discovered thousands of exoplanets, with some potentially habitable worlds orbiting distant stars? The search for life beyond Earth continues!</p>
+        </div>
+        <button id="reveal-fact-btn">Reveal Cosmic Fact!</button>
+        <p id="streak-counter">Streak: 0</p>
+    </div>
+
+    <footer id="footer-info">
+        <p>Site last updated: <span id="update-time"></span></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const updateTimeElement = document.getElementById('update-time');
+            const now = new Date();
+            updateTimeElement.textContent = now.toLocaleString();
+
+            const factTextElement = document.getElementById('fact-of-the-day-text');
+            const revealButton = document.getElementById('reveal-fact-btn');
+            const streakCounter = document.getElementById('streak-counter');
+            let streak = 0;
+
+            revealButton.addEventListener('click', () => {
+                if (!factTextElement.classList.contains('revealed')) {
+                    factTextElement.classList.add('revealed');
+                    revealButton.textContent = "Another Fact Soon!";
+                    streak++;
+                    streakCounter.textContent = `Streak: ${streak}`;
+                    streakCounter.style.display = 'block'; // Show streak counter
+                } else {
+                    // In a real scenario, this would fetch a new fact
+                    alert("Imagine a new cosmic fact appearing here! For now, enjoy this one.");
+                    // Reset for demonstration
+                    factTextElement.classList.remove('revealed');
+                    revealButton.textContent = "Reveal Cosmic Fact!";
+                    streak = 0;
+                    streakCounter.textContent = `Streak: ${streak}`;
+                    streakCounter.style.display = 'none'; // Hide streak counter
+                }
+            });
+        });
+    </script>
+</body>
+</html>
