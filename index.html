@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Mysteries: Unveiling the Abyss</title>
+    <title id="site-title">Cosmic Wonders: Journey Through the Stars</title>
     <style>
         :root {
-            /* Theme Colors (Deep Sea Exploration) */
-            --bg-color-shallow: #0A1F33; /* Deep Sea Blue */
+            /* Theme Colors (Space Exploration) */
+            --bg-color-shallow: #1A0F2D; /* Deep Indigo */
             --bg-color-deep: #000000;   /* Pure black */
-            --text-color: #E0F7FA;      /* Light cyan for contrast */
-            --footer-bg: #051520; /* Darker Deep Sea Blue for footer */
-            --glass-bg: rgba(10, 31, 51, 0.6); /* Transparent Deep Sea Blue */
-            --glass-border: rgba(224, 247, 250, 0.8); /* Light cyan border */
+            --text-color: #E0E0E0;      /* Light Gray/Silver for contrast */
+            --footer-bg: #0F081A; /* Darker Indigo for footer */
+            --glass-bg: rgba(26, 15, 45, 0.6); /* Transparent Deep Indigo */
+            --glass-border: rgba(187, 134, 252, 0.8); /* Transparent Light Violet */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #87CEEB;     /* Sky blue for title */
+            --title-color: #BB86FC;     /* Light Violet/Purple for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #4682B4; /* Steel blue for buttons */
-            --button-hover: #5F9EA0;   /* Cadet blue for button hover */
-            --main-action-btn: #4682B4; /* Steel blue for main action */
-            --main-action-btn-hover: #5F9EA0; /* Cadet blue for main action hover */
-            --history-toggle-color: #e0f2f7; /* Light blue for footer text */
-            --history-list-color: #a7d9ed; /* Lighter blue for history list */
+            --button-primary: #6200EE; /* Deep Purple for buttons */
+            --button-hover: #9C27B0;   /* Medium Purple for button hover */
+            --main-action-btn: #BB86FC; /* Light Violet for main action */
+            --main-action-btn-hover: #BB86FC; /* Light Violet, slightly darker on hover */
+            --history-toggle-color: #E0E0E0; /* Light Gray for footer text */
+            --history-list-color: #CFBFF7; /* Pale Lavender for history list */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
             --streak-color: #FFD700; /* Gold for streak */
         }
@@ -227,4 +227,183 @@
         }
         #history-list {
             list-style: none;
-            padding: 0;\n            max-height: 0;\n            overflow: hidden;\n            opacity: 0;\n            transition: max-height 1s ease-out, opacity 1s ease-out;\n            background-color: rgba(255, 255, 255, 0.08);\n            border-radius: 18px;\n            padding: 0 25px;\n            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);\n        }\n        #history-list.show-history {\n            max-height: 500px;\n            opacity: 1;\n            padding: 25px;\n        }\n        #history-list li {\n            font-size: 1.1rem;\n            color: var(--history-list-color);\n            padding: 8px 0;\n            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);\n        }\n        #history-list li:last-child {\n            border-bottom: none;\n        }\n\n        /* New Reveal Button Style */\n        #reveal-fact-btn, #prev-fact-btn {\n            background-color: var(--main-action-btn);\n            color: var(--footer-bg); /* Use a contrasting color for text */\n            padding: 18px 40px;\n            font-size: 1.8rem;\n            border-radius: 15px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;\n            margin-top: 20px;\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n            font-weight: 800;\n            border: none;\n            outline: none;\n        }\n        #reveal-fact-btn:hover, #prev-fact-btn:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-5px) scale(1.02);\n            box-shadow: 0 12px 25px rgba(0,0,0,0.6);\n        }\n        #reveal-fact-btn:active, #prev-fact-btn:active {\n            transform: translateY(-2px) scale(0.98);\n            box-shadow: 0 5px 15px rgba(0,0,0,0.3);\n        }\n        #prev-fact-btn {\n            margin-right: 20px;\n            display: none; /* Hidden by default */\n            background-color: var(--button-primary);\n            color: var(--footer-bg);\n        }\n\n        /* Streak Counter */\n        #streak-counter {\n            font-size: 1.8rem;\n            color: var(--streak-color);\n            margin-top: 20px;\n            font-weight: 800;\n            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);\n            display: none; /* Hidden by default */\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Mysteries</h1>\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet). If Mount Everest were placed in it, its peak would still be over a mile underwater!</p>\n        </div>\n        <div style=\"display: flex; align-items: center; justify-content: center; gap: 20px;\">\n            <button id=\"prev-fact-btn\">Previous Fact</button>\n            <button id=\"reveal-fact-btn\">Reveal Deep Sea Fact!</button>\n        </div>\n        <p id=\"streak-counter\">Streak: 0</p>\n\n        <div id=\"did-you-know\">\n            <h3>Did You Know?</h3>\n            <p id=\"did-you-know-content\">The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level, equivalent to having 50 jumbo jets piled on top of you!</p>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>Site last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const updateTimeElement = document.getElementById('update-time');\n            const now = new Date();\n            updateTimeElement.textContent = now.toLocaleString();\n\n            const factTextElement = document.getElementById('fact-of-the-day-text');\n            const revealButton = document.getElementById('reveal-fact-btn');\n            const prevFactButton = document.getElementById('prev-fact-btn');\n            const streakCounter = document.getElementById('streak-counter');\n            const didYouKnowSection = document.getElementById('did-you-know');\n            let streak = 0;\n            let factRevealed = false;\n\n            // Placeholder for fact history\n            const factHistory = [\n                \"The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet). If Mount Everest were placed in it, its peak would still be over a mile underwater!\"\n            ];\n            let currentFactIndex = 0;\n\n            const didYouKnowContent = \"The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level, equivalent to having 50 jumbo jets piled on top of you!\";\n\n            function updateFactDisplay() {\n                factTextElement.textContent = factHistory[currentFactIndex];\n                if (factRevealed) {\n                    factTextElement.classList.add('revealed');\n                    didYouKnowSection.classList.add('show-did-you-know');\n                } else {\n                    factTextElement.classList.remove('revealed');\n                    didYouKnowSection.classList.remove('show-did-you-know');\n                }\n                prevFactButton.style.display = currentFactIndex > 0 ? 'inline-block' : 'none';\n            }\n\n            revealButton.addEventListener('click', () => {\n                if (!factRevealed) {\n                    factRevealed = true;\n                    updateFactDisplay();\n                    revealButton.textContent = \"Next Deep Sea Fact!\";\n                    streak++;\n                    streakCounter.textContent = `Streak: ${streak}`;\n                    streakCounter.style.display = 'block';\n                } else {\n                    // In a real scenario, this would fetch a new fact and add to history\n                    alert(\"Imagine a new deep sea fact appearing here! For now, enjoy this one.\");\n                    // For demonstration, reset or cycle if more facts were available\n                    factRevealed = false;\n                    currentFactIndex = 0; // Reset to the first fact for demo\n                    updateFactDisplay();\n                    revealButton.textContent = \"Reveal Deep Sea Fact!\";\n                    streak = 0;\n                    streakCounter.textContent = `Streak: ${streak}`;\n                    streakCounter.style.display = 'none';\n                }\n            });\n\n            prevFactButton.addEventListener('click', () => {\n                if (currentFactIndex > 0) {\n                    currentFactIndex--;\n                    factRevealed = true; // Assume previous facts were revealed\n                    updateFactDisplay();\n                }\n            });\n\n            // Initial display update\n            updateFactDisplay();\n        });\n    </script>\n</body>\n</html>
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            transition: max-height 1s ease-out, opacity 1s ease-out;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 18px;
+            padding: 0 25px;
+            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
+        }
+        #history-list.show-history {
+            max-height: 500px;
+            opacity: 1;
+            padding: 25px;
+        }
+        #history-list li {
+            font-size: 1.1rem;
+            color: var(--history-list-color);
+            padding: 8px 0;
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+        #history-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* New Reveal Button Style */
+        #reveal-fact-btn, #prev-fact-btn {
+            background-color: var(--main-action-btn);
+            color: var(--footer-bg); /* Use a contrasting color for text */
+            padding: 18px 40px;
+            font-size: 1.8rem;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            font-weight: 800;
+            border: none;
+            outline: none;
+        }
+        #reveal-fact-btn:hover, #prev-fact-btn:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
+        }
+        #reveal-fact-btn:active, #prev-fact-btn:active {
+            transform: translateY(-2px) scale(0.98);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        #prev-fact-btn {
+            margin-right: 20px;
+            display: none; /* Hidden by default */
+            background-color: var(--button-primary);
+            color: var(--history-toggle-color);
+            font-size: 1.2rem;
+            padding: 15px 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
+        }
+        #prev-fact-btn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+        }
+
+        /* Fact Streak Feature */
+        #fact-streak-container {
+            margin-top: 20px;
+            padding: 15px 30px;
+            background-color: var(--glass-bg);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--glass-border);
+            font-size: 1.5rem;
+            color: var(--streak-color);
+            font-weight: 800;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: slideInFromBottom 0.8s ease-out forwards;
+        }
+        #fact-streak-container span {
+            font-size: 2rem;
+            color: var(--streak-color);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Wonders</h1>
+
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        </div>
+
+        <div id="fact-streak-container">
+            🔥 Fact Streak: <span id="streak-count">0</span>
+        </div>
+
+        <button id="reveal-fact-btn">Reveal Fact</button>
+
+        <div id="did-you-know">
+            <h3>Did You Know?</h3>
+            <p id="did-you-know-content">The universe is estimated to contain between 100 billion and 200 billion galaxies, each with billions of stars.</p>
+        </div>
+
+        <div id="history-section">
+            <button id="history-toggle-btn">Toggle Fact History</button>
+            <ul id="history-list">
+                <!-- History items will be added here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        Site last updated: <span id="update-time"></span>
+    </footer>
+
+    <script>
+        const factText = document.getElementById('fact-of-the-day-text');
+        const revealBtn = document.getElementById('reveal-fact-btn');
+        const updateTimeSpan = document.getElementById('update-time');
+        const historyToggleBtn = document.getElementById('history-toggle-btn');
+        const historyList = document.getElementById('history-list');
+        const didYouKnow = document.getElementById('did-you-know');
+        const streakCountSpan = document.getElementById('streak-count');
+
+        let factRevealed = false;
+        let factStreak = 0;
+
+        // Set initial update time
+        updateTimeSpan.textContent = new Date().toLocaleString();
+
+        revealBtn.addEventListener('click', () => {
+            if (!factRevealed) {
+                factText.classList.add('revealed');
+                revealBtn.textContent = "Next Fact";
+                factRevealed = true;
+                factStreak++;
+                streakCountSpan.textContent = factStreak;
+                didYouKnow.classList.add('show-did-you-know'); // Show "Did You Know" on first reveal
+            } else {
+                // In a real application, this would fetch a new fact
+                alert("Fetching a new cosmic wonder! (Feature not fully implemented yet)");
+                factText.classList.remove('revealed');
+                factRevealed = false;
+                revealBtn.textContent = "Reveal Fact";
+                didYouKnow.classList.remove('show-did-you-know'); // Hide "Did You Know" for new fact
+                // Reset streak if user doesn't reveal next fact immediately, or implement more complex logic
+                // For now, let's keep streak for demonstration.
+            }
+        });
+
+        historyToggleBtn.addEventListener('click', () => {
+            historyList.classList.toggle('show-history');
+            if (historyList.classList.contains('show-history')) {
+                historyToggleBtn.textContent = "Hide Fact History";
+            } else {
+                historyToggleBtn.textContent = "Toggle Fact History";
+            }
+        });
+
+        // Initial state for "Did You Know"
+        didYouKnow.classList.remove('show-did-you-know');
+
+        // Example of adding a history item (can be expanded)
+        function addFactToHistory(fact) {
+            const listItem = document.createElement('li');
+            listItem.textContent = fact;
+            historyList.prepend(listItem); // Add to the beginning
+        }
+
+        // Add the initial fact to history
+        addFactToHistory(factText.textContent);
+
+    </script>
+</body>
+</html>
