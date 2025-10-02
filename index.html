@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Extreme Astrophysics</title>
+    <title id="site-title">Cosmic Explorer</title>
     <style>
         :root {
-            /* Theme Colors (Extreme Astrophysics) */
-            --bg-color-primary: #000000;   /* Pure Black */
-            --text-color: #00FF00;         /* Bright Green */
-            --footer-bg: #000000;          /* Pure Black */
-            --glass-bg: rgba(0, 0, 0, 0.7); /* Transparent dark */
-            --glass-border: rgba(0, 255, 255, 0.8); /* Transparent Aqua */
+            /* Default/Initial Theme Colors (Planetary Peculiarities) */
+            --bg-color-primary: #2C003E;   /* Slightly different dark purple */
+            --text-color: #E0BBE4;         /* Light Lavender */
+            --footer-bg: #1A002B;          /* Darker purple for footer */
+            --glass-bg: rgba(44, 0, 62, 0.6); /* Transparent dark purple */
+            --glass-border: rgba(224, 187, 228, 0.8); /* Transparent Light Lavender */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #00FFFF;        /* Aqua */
+            --title-color: #957DAD;        /* Medium Purple */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #008080;     /* Teal */
-            --button-hover: #005F5F;       /* Darker Teal */
-            --main-action-btn: #FF4500;    /* Orange Red for main actions */
-            --main-action-btn-hover: #CD3700; /* Darker Orange Red */
+            --button-primary: #6A5ACD;     /* Slate Blue */
+            --button-hover: #483D8B;       /* Darker Slate Blue */
+            --main-action-btn: #FF69B4;    /* Hot Pink for main actions */
+            --main-action-btn-hover: #C71585; /* Darker Hot Pink */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
+            --generic-title-color: #ADD8E6; /* Light Blue for generic title */
         }
 
         body {
@@ -58,12 +59,13 @@
             overflow: hidden;
         }
         h1#main-title {
-            font-size: 5rem;
+            font-size: 4.5rem; /* Slightly reduced font size */
             margin-bottom: 3rem;
             text-shadow: var(--title-shadow);
-            color: var(--title-color);
+            color: var(--generic-title-color); /* Initially generic title color */
             letter-spacing: 3px;
             font-weight: 900;
+            transition: color 1s ease; /* Smooth transition for title color */
         }
         p {
             font-size: 2.2rem;
@@ -85,7 +87,7 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             cursor: default;
-            transition: all 0.5s ease;
+            transition: all 0.5s ease, transform 0.3s ease-out; /* Added transform for animation */
             position: relative;
             overflow: hidden;
             max-width: 900px;
@@ -95,6 +97,14 @@
             justify-content: center;
             align-items: center;
             min-height: 200px;
+        }
+        #main-fact-container.animate-in {
+            transform: scale(0.95);
+            opacity: 0;
+        }
+        #main-fact-container.animate-out {
+            transform: scale(1);
+            opacity: 1;
         }
         #main-fact-text {
             font-size: 2.0rem;
@@ -217,19 +227,19 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Extreme Astrophysics</h1>
+        <h1 id="main-title">Cosmic Explorer</h1>
         <div id="main-fact-container">
-            <p id="main-fact-text">Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.</p>
+            <p id="main-fact-text">A day on Venus is longer than a year on Venus.</p>
         </div>
         <div class="button-group">
-            <button id="reveal-fact-btn" class="action-button">Reveal Fact</button>
+            <button id="reveal-more-btn" class="action-button">Reveal More</button>
             <button id="generate-fact-btn" class="action-button">Generate New Fact</button>
             <button id="copy-fact-btn" class="action-button">Copy Fact</button>
         </div>
 
         <div id="did-you-know">
             <h3>Did You Know?</h3>
-            <p id="did-you-know-content">They are formed from the collapsed cores of massive stars during a supernova explosion, packing the mass of our sun into a sphere only about 20 kilometers across.</p>
+            <p id="did-you-know-content">Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.</p>
         </div>
     </div>
 
@@ -239,13 +249,14 @@
 
     <script>
         const mainFactText = document.getElementById('main-fact-text');
-        const revealFactBtn = document.getElementById('reveal-fact-btn');
+        const revealMoreBtn = document.getElementById('reveal-more-btn');
         const generateFactBtn = document.getElementById('generate-fact-btn');
         const copyFactBtn = document.getElementById('copy-fact-btn');
         const didYouKnowSection = document.getElementById('did-you-know');
         const didYouKnowContent = document.getElementById('did-you-know-content');
         const siteTitle = document.getElementById('site-title');
         const mainTitle = document.getElementById('main-title');
+        const mainFactContainer = document.getElementById('main-fact-container');
 
         const facts = [
             {
@@ -310,8 +321,9 @@
             }
         ];
 
-        let currentFactIndex = 2; // Start with "Extreme Astrophysics" fact
+        let currentFactIndex = 1; // Start with "Planetary Peculiarities" fact
         let typingTimeout;
+        const genericTitle = "Cosmic Explorer";
 
         function typeWriterEffect(text, element, delay = 50) {
             let i = 0;
@@ -326,12 +338,7 @@
             type();
         }
 
-        function updateFactDisplay(factObj) {
-            siteTitle.textContent = factObj.theme;
-            mainTitle.textContent = factObj.theme.split(':')[0]; // Just the main part of the theme
-            // Do not set mainFactText.textContent directly here, it will be typed
-            didYouKnowContent.textContent = factObj.didYouKnow;
-
+        function updateFactDisplay(factObj, isRevealed = false) {
             // Update CSS variables
             document.documentElement.style.setProperty('--bg-color-primary', factObj.bgColor);
             document.documentElement.style.setProperty('--text-color', factObj.textColor);
@@ -344,34 +351,54 @@
             document.documentElement.style.setProperty('--glass-bg', factObj.glassBg);
             document.documentElement.style.setProperty('--glass-border', factObj.glassBorder);
 
-            // Reset fact to hidden state
             clearTimeout(typingTimeout); // Clear any ongoing typing effect
-            mainFactText.classList.remove('revealed');
-            mainFactText.textContent = factObj.fact; // Set full text for hidden state
-            didYouKnowSection.classList.remove('show-did-you-know');
-            revealFactBtn.textContent = "Reveal Fact";
+
+            if (isRevealed) {
+                siteTitle.textContent = factObj.theme;
+                mainTitle.textContent = factObj.theme.split(':')[0];
+                mainTitle.style.color = factObj.titleColor; // Apply specific title color
+                mainFactText.classList.add('revealed');
+                typeWriterEffect(factObj.fact, mainFactText);
+                didYouKnowContent.textContent = factObj.didYouKnow;
+                didYouKnowSection.classList.add('show-did-you-know');
+                revealMoreBtn.textContent = "Hide Details";
+            } else {
+                siteTitle.textContent = genericTitle;
+                mainTitle.textContent = genericTitle;
+                mainTitle.style.color = 'var(--generic-title-color)'; // Revert to generic title color
+                mainFactText.classList.remove('revealed');
+                mainFactText.textContent = factObj.fact; // Set full text for hidden state
+                didYouKnowSection.classList.remove('show-did-you-know');
+                revealMoreBtn.textContent = "Reveal More";
+            }
         }
 
-        revealFactBtn.addEventListener('click', () => {
+        revealMoreBtn.addEventListener('click', () => {
+            const currentFact = facts[currentFactIndex];
             if (mainFactText.classList.contains('revealed')) {
                 // If already revealed, hide it again
-                clearTimeout(typingTimeout);
-                mainFactText.classList.remove('revealed');
-                mainFactText.textContent = facts[currentFactIndex].fact; // Restore full text for hidden state
-                didYouKnowSection.classList.remove('show-did-you-know');
-                revealFactBtn.textContent = "Reveal Fact";
+                updateFactDisplay(currentFact, false);
             } else {
                 // Reveal the fact with typing effect
-                mainFactText.classList.add('revealed');
-                typeWriterEffect(facts[currentFactIndex].fact, mainFactText);
-                didYouKnowSection.classList.add('show-did-you-know');
-                revealFactBtn.textContent = "Hide Fact";
+                updateFactDisplay(currentFact, true);
             }
         });
 
         generateFactBtn.addEventListener('click', () => {
-            currentFactIndex = Math.floor(Math.random() * facts.length); // Random fact
-            updateFactDisplay(facts[currentFactIndex]);
+            mainFactContainer.classList.add('animate-in'); // Start animation
+            setTimeout(() => {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * facts.length);
+                } while (newIndex === currentFactIndex); // Ensure a new fact is generated
+                currentFactIndex = newIndex;
+                updateFactDisplay(facts[currentFactIndex], false); // Display new fact, initially hidden
+                mainFactContainer.classList.remove('animate-in');
+                mainFactContainer.classList.add('animate-out');
+                setTimeout(() => {
+                    mainFactContainer.classList.remove('animate-out');
+                }, 300); // Match animation duration
+            }, 300); // Match animation duration
         });
 
         copyFactBtn.addEventListener('click', async () => {
@@ -385,7 +412,7 @@
         });
 
         // Initial load
-        updateFactDisplay(facts[currentFactIndex]);
+        updateFactDisplay(facts[currentFactIndex], false);
 
         // Update footer time
         function updateTime() {
