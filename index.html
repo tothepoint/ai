@@ -3,33 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Wonders: Unveiling the Abyss</title>
+    <title id="site-title">Cosmic Wonders: Facts from the Universe</title>
     <style>
         :root {
-            /* Theme Colors (Deep Sea Exploration) */
-            --bg-color-shallow: #0A192F; /* Very dark blue, almost black, like the deep ocean */
-            --bg-color-deep: #000000;   /* Pure black */
-            --text-color: #E0E0E0;      /* Light Gray for contrast */
-            --footer-bg: #06111F; /* Even darker blue for footer */
-            --glass-bg: rgba(10, 25, 47, 0.6); /* Transparent Deep Blue */
-            --glass-border: rgba(76, 175, 80, 0.8); /* Transparent Vibrant Green */
+            /* Theme Colors (Space Exploration) */
+            --bg-color-primary: #1A0033;   /* Very dark purple, cosmic feel */
+            --text-color: #FFD700;         /* Gold for contrast */
+            --footer-bg: #0D001A;          /* Even darker purple for footer */
+            --glass-bg: rgba(26, 0, 51, 0.6); /* Transparent dark purple */
+            --glass-border: rgba(0, 255, 255, 0.8); /* Transparent Aqua */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #4CAF50;     /* Vibrant Green for title */
+            --title-color: #00FFFF;        /* Vibrant Aqua for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #2196F3; /* Medium Blue for buttons */
-            --button-hover: #1976D2;   /* Darker Blue for button hover */
-            --main-action-btn: #4CAF50; /* Vibrant Green for main action */
-            --main-action-btn-hover: #388E3C; /* Darker Green for main action hover */
-            --history-toggle-color: #E0E0E0; /* Light Gray for footer text */
-            --history-list-color: #A5D6A7; /* Pale Green for history list */
+            --button-primary: #4682B4;     /* Steel Blue for general buttons */
+            --button-hover: #36648B;       /* Darker Steel Blue */
+            --main-action-btn: #FF8C00;    /* Dark Orange for main actions */
+            --main-action-btn-hover: #CC7000; /* Darker Orange */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --streak-color: #FFD700; /* Gold for streak */
-            --quiz-correct: #4CAF50; /* Green for correct answer */
-            --quiz-incorrect: #F44336; /* Red for incorrect answer */
         }
 
         body {
-            background: var(--bg-color-shallow);
+            background: var(--bg-color-primary);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -80,36 +74,7 @@
             text-shadow: var(--fact-text-shadow);
             font-weight: 600;
         }
-        #main-fact, #quiz-fact, #challenge-fact {
-            animation: fadeInScale 1.5s ease-out forwards;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-        }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        @keyframes slideInFromBottom {
-            from { transform: translateY(120%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        #footer-info {
-            font-size: 1.5rem;
-            color: var(--text-color);
-            background-color: var(--footer-bg);
-            padding: 25px 50px;
-            border-radius: 20px;
-            opacity: 0.98;
-            margin-top: 50px;
-            animation: slideInFromBottom 1s ease-out forwards;
-            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
-            font-weight: 700;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-        #fact-of-the-day-container {
+        #main-fact-container {
             margin-top: 30px;
             margin-bottom: 30px;
             padding: 35px 45px;
@@ -131,7 +96,7 @@
             align-items: center;
             min-height: 200px;
         }
-        #fact-of-the-day-text {
+        #main-fact-text {
             font-size: 2.0rem;
             color: transparent; /* Initially transparent */
             background-color: transparent;
@@ -152,7 +117,7 @@
             filter: blur(10px); /* Initially blurred */
             opacity: 0.2;
         }
-        #fact-of-the-day-text::before {
+        #main-fact-text::before {
             content: '';
             position: absolute;
             top: 0;
@@ -165,13 +130,13 @@
             transition: opacity 1s ease;
             z-index: -1;
         }
-        #fact-of-the-day-text.revealed {
+        #main-fact-text.revealed {
             filter: blur(0px); /* Unblur when revealed */
             opacity: 1; /* Fully opaque when revealed */
             color: var(--text-color); /* Restore text color */
             text-shadow: var(--fact-text-shadow); /* Restore text shadow */
         }
-        #fact-of-the-day-text.revealed::before {
+        #main-fact-text.revealed::before {
             opacity: 0; /* Hidden overlay when revealed */
         }
         #did-you-know {
@@ -200,62 +165,13 @@
         }
         #did-you-know-content {
             font-size: 1.3rem;
-            color: var(--history-list-color);
+            color: var(--text-color); /* Adjusted for better visibility */
             line-height: 1.6;
             margin-bottom: 0;
         }
 
-        /* History Section */
-        #history-section {
-            margin-top: 35px;
-            width: 100%;
-            max-width: 850px;
-            text-align: left;
-        }
-        #history-toggle-btn {
-            background-color: var(--button-primary);
-            color: var(--history-toggle-color);
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-            margin-bottom: 25px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-        }
-        #history-toggle-btn:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-3px);
-        }
-        #history-list {
-            list-style: none;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 1s ease-out, opacity 1s ease-out;
-            background-color: rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 0 25px;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
-        }
-        #history-list.show-history {
-            max-height: 500px;
-            opacity: 1;
-            padding: 25px;
-        }
-        #history-list li {
-            font-size: 1.1rem;
-            color: var(--history-list-color);
-            padding: 8px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-        #history-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* New Reveal Button Style */
-        #reveal-fact-btn, #prev-fact-btn {
+        /* Buttons */
+        .action-button {
             background-color: var(--main-action-btn);
             color: var(--footer-bg); /* Use a contrasting color for text */
             padding: 18px 40px;
@@ -269,65 +185,176 @@
             border: none;
             outline: none;
         }
-        #reveal-fact-btn:hover, #prev-fact-btn:hover {
+        .action-button:hover {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-5px) scale(1.02);
             box-shadow: 0 12px 25px rgba(0,0,0,0.6);
         }
-        #reveal-fact-btn:active, #prev-fact-btn:active {
+        .action-button:active {
             transform: translateY(-2px) scale(0.98);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        #prev-fact-btn {
-            margin-right: 20px;
-            display: none; /* Hidden by default */
-            background-color: var(--button-primary);
-            color: var(--history-toggle-color);
-            font-size: 1.2rem;
-            padding: 15px 30px;
-            border-radius: 10px;
-            box-shadow: 0 5px 12px rgba(0,0,0,0.3);
-        }
-        #prev-fact-btn:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-3px);
-        }
 
-        /* Fact Streak Feature */
-        #fact-streak-container {
-            margin-top: 20px;
-            padding: 15px 30px;
-            background-color: var(--glass-bg);
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-            border: 1px solid var(--glass-border);
+        #footer-info {
             font-size: 1.5rem;
-            color: var(--streak-color);
-            font-weight: 800;
-            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: slideInFromBottom 0.8s ease-out forwards;
+            color: var(--text-color);
+            background-color: var(--footer-bg);
+            padding: 25px 50px;
+            border-radius: 20px;
+            opacity: 0.98;
+            margin-top: 50px;
+            box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            transition: background-color 0.5s ease, color 0.5s ease;
         }
-        #fact-streak-container span {
-            font-size: 2rem;
-            color: var(--streak-color);
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Wonders</h1>
+        <div id="main-fact-container">
+            <p id="main-fact-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        </div>
+        <button id="reveal-fact-btn" class="action-button">Reveal Fact</button>
+        <button id="generate-fact-btn" class="action-button" style="margin-left: 20px;">Generate New Fact</button>
+
+        <div id="did-you-know">
+            <h3>Did You Know?</h3>
+            <p id="did-you-know-content">The observable universe is estimated to contain 100 billion to 200 billion galaxies, each with billions of stars.</p>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        <p>Site last updated: <span id="current-time"></span></p>
+    </footer>
+
+    <script>
+        const mainFactText = document.getElementById('main-fact-text');
+        const revealFactBtn = document.getElementById('reveal-fact-btn');
+        const generateFactBtn = document.getElementById('generate-fact-btn');
+        const didYouKnowSection = document.getElementById('did-you-know');
+        const didYouKnowContent = document.getElementById('did-you-know-content');
+        const siteTitle = document.getElementById('site-title');
+        const mainTitle = document.getElementById('main-title');
+
+        const facts = [
+            {
+                fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+                didYouKnow: "The observable universe is estimated to contain 100 billion to 200 billion galaxies, each with billions of stars.",
+                theme: "Cosmic Wonders: Facts from the Universe",
+                bgColor: "#1A0033", // Dark Purple
+                textColor: "#FFD700", // Gold
+                footerBg: "#0D001A",
+                titleColor: "#00FFFF", // Aqua
+                buttonPrimary: "#4682B4",
+                buttonHover: "#36648B",
+                mainActionBtn: "#FF8C00", // Dark Orange
+                mainActionBtnHover: "#CC7000",
+                glassBg: "rgba(26, 0, 51, 0.6)",
+                glassBorder: "rgba(0, 255, 255, 0.8)"
+            },
+            {
+                fact: "A day on Venus is longer than a year on Venus.",
+                didYouKnow: "Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.",
+                theme: "Planetary Peculiarities",
+                bgColor: "#2C003E", // Slightly different dark purple
+                textColor: "#E0BBE4", // Light Lavender
+                footerBg: "#1A002B",
+                titleColor: "#957DAD", // Medium Purple
+                buttonPrimary: "#6A5ACD", // Slate Blue
+                buttonHover: "#483D8B",
+                mainActionBtn: "#FF69B4", // Hot Pink
+                mainActionBtnHover: "#C71585",
+                glassBg: "rgba(44, 0, 62, 0.6)",
+                glassBorder: "rgba(224, 187, 228, 0.8)"
+            },
+            {
+                fact: "Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.",
+                didYouKnow: "They are formed from the collapsed cores of massive stars during a supernova explosion, packing the mass of our sun into a sphere only about 20 kilometers across.",
+                theme: "Extreme Astrophysics",
+                bgColor: "#000000", // Pure Black
+                textColor: "#00FF00", // Bright Green
+                footerBg: "#000000",
+                titleColor: "#00FFFF", // Aqua
+                buttonPrimary: "#008080", // Teal
+                buttonHover: "#005F5F",
+                mainActionBtn: "#FF4500", // Orange Red
+                mainActionBtnHover: "#CD3700",
+                glassBg: "rgba(0, 0, 0, 0.7)",
+                glassBorder: "rgba(0, 255, 255, 0.8)"
+            },
+            {
+                fact: "The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a filament of galaxies stretching over 10 billion light-years.",
+                didYouKnow: "It was discovered in 2013 and challenges current cosmological models due to its immense size, suggesting that the universe might be structured on scales larger than previously thought.",
+                theme: "Cosmic Structures",
+                bgColor: "#0A0A2A", // Very Dark Blue
+                textColor: "#ADD8E6", // Light Blue
+                footerBg: "#050515",
+                titleColor: "#87CEEB", // Sky Blue
+                buttonPrimary: "#4169E1", // Royal Blue
+                buttonHover: "#2A4B9B",
+                mainActionBtn: "#FFD700", // Gold
+                mainActionBtnHover: "#CCAD00",
+                glassBg: "rgba(10, 10, 42, 0.6)",
+                glassBorder: "rgba(135, 206, 235, 0.8)"
+            }
+        ];
+
+        let currentFactIndex = 0;
+
+        function updateFactDisplay(factObj) {
+            siteTitle.textContent = factObj.theme;
+            mainTitle.textContent = factObj.theme.split(':')[0]; // Just the main part of the theme
+            mainFactText.textContent = factObj.fact;
+            didYouKnowContent.textContent = factObj.didYouKnow;
+
+            // Update CSS variables
+            document.documentElement.style.setProperty('--bg-color-primary', factObj.bgColor);
+            document.documentElement.style.setProperty('--text-color', factObj.textColor);
+            document.documentElement.style.setProperty('--footer-bg', factObj.footerBg);
+            document.documentElement.style.setProperty('--title-color', factObj.titleColor);
+            document.documentElement.style.setProperty('--button-primary', factObj.buttonPrimary);
+            document.documentElement.style.setProperty('--button-hover', factObj.buttonHover);
+            document.documentElement.style.setProperty('--main-action-btn', factObj.mainActionBtn);
+            document.documentElement.style.setProperty('--main-action-btn-hover', factObj.mainActionBtnHover);
+            document.documentElement.style.setProperty('--glass-bg', factObj.glassBg);
+            document.documentElement.style.setProperty('--glass-border', factObj.glassBorder);
+
+            // Reset fact to hidden state
+            mainFactText.classList.remove('revealed');
+            didYouKnowSection.classList.remove('show-did-you-know');
+            revealFactBtn.textContent = "Reveal Fact";
         }
 
-        /* Quiz Feature Styles */
-        #quiz-container {
-            margin-top: 30px;
-            padding: 25px 35px;
-            background-color: var(--glass-bg);
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid var(--glass-border);
-            max-width: 800px;
-            width: 90%;
-            display: none; /* Hidden by default */
-            flex-direction: column;\n            align-items: center;\n            opacity: 0;\n            transform: translateY(20px);\n            transition: opacity 0.5s ease-out, transform 0.5s ease-out;\n        }\n        #quiz-container.show-quiz {\n            display: flex;\n            opacity: 1;\n            transform: translateY(0);\n        }\n        #quiz-question {\n            font-size: 1.8rem;\n            color: var(--text-color);\n            margin-bottom: 20px;\n            font-weight: 600;\n            text-shadow: var(--fact-text-shadow);\n        }\n        .quiz-options {\n            display: flex;\n            flex-wrap: wrap;\n            justify-content: center;\n            gap: 15px;\n            margin-bottom: 20px;\n        }\n        .quiz-option-btn {\n            background-color: var(--button-primary);\n            color: var(--text-color);\n            padding: 12px 25px;\n            font-size: 1.1rem;\n            border-radius: 8px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;\n            border: none;\n            outline: none;\n            flex-grow: 1;\n            min-width: 150px;\n            max-width: 45%;\n        }\n        .quiz-option-btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 5px 10px rgba(0,0,0,0.3);\n        }\n        .quiz-option-btn.correct {\n            background-color: var(--quiz-correct);\n            box-shadow: 0 0 15px var(--quiz-correct);\n        }\n        .quiz-option-btn.incorrect {\n            background-color: var(--quiz-incorrect);\n            box-shadow: 0 0 15px var(--quiz-incorrect);\n        }\n        #quiz-feedback {\n            font-size: 1.5rem;\n            font-weight: 700;\n            margin-top: 15px;\n            min-height: 30px; /* To prevent layout shift */\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).</p>\n        </div>\n\n        <div id=\"fact-streak-container\">\n            🔥 Fact Streak: <span id=\"streak-count\">0</span>\n        </div>\n\n        <button id=\"reveal-fact-btn\">Reveal Fact</button>\n\n        <div id=\"quiz-container\">\n            <p id=\"quiz-question\"></p>\n            <div class=\"quiz-options\" id=\"quiz-options\">\n                <!-- Quiz options will be inserted here -->\n            </div>\n            <p id=\"quiz-feedback\"></p>\n        </div>\n\n        <div id=\"did-you-know\">\n            <h3>Did You Know?</h3>\n            <p id=\"did-you-know-content\">If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.</p>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Toggle Fact History</button>\n            <ul id=\"history-list\">\n                <!-- History items will be added here by JavaScript -->\n            </ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        Site last updated: <span id=\"update-time\"></span>\n    </footer>\n\n    <script>\n        const factText = document.getElementById(\'fact-of-the-day-text\');\n        const revealBtn = document.getElementById(\'reveal-fact-btn\');\n        const updateTimeSpan = document.getElementById(\'update-time\');\n        const historyToggleBtn = document.getElementById(\'history-toggle-btn\');\n        const historyList = document.getElementById(\'history-list\');\n        const didYouKnow = document.getElementById(\'did-you-know\');\n        const streakCountSpan = document.getElementById(\'streak-count\');\n        const quizContainer = document.getElementById(\'quiz-container\');\n        const quizQuestion = document.getElementById(\'quiz-question\');\n        const quizOptions = document.getElementById(\'quiz-options\');\n        const quizFeedback = document.getElementById(\'quiz-feedback\');\n\n        let factRevealed = false;\n        let factStreak = 0;\n        let currentFact = \"\";\n        let currentQuiz = null;\n\n        const factsAndQuizzes = [\n            {\n                fact: \"The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).\",\n                didYouKnow: \"If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.\",\n                quiz: {\n                    question: \"What is the approximate maximum depth of the Mariana Trench?\",\n                    options: [\"8,000 meters\", \"11,000 meters\", \"15,000 meters\", \"20,000 meters\"],\n                    answer: \"11,000 meters\"\n                }\n            },\n            {\n                fact: \"Over 80% of the ocean remains unmapped, unobserved, and unexplored.\",\n                didYouKnow: \"The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level.\",\n                quiz: {\n                    question: \"Approximately how much of the ocean remains unexplored?\",\n                    options: [\"Less than 50%\", \"About 60%\", \"Over 80%\", \"Nearly 100%\"],\n                    answer: \"Over 80%\"\n                }\n            },\n            {\n                fact: \"The 'Challenger Deep' is the deepest known point in the Mariana Trench.\",\n                didYouKnow: \"Only a handful of people have ever descended to the Challenger Deep, fewer than have been to the moon.\",\n                quiz: {\n                    question: \"What is the deepest known point in the Mariana Trench called?\",\n                    options: [\"Pacific Abyss\", \"Neptune's Grotto\", \"Challenger Deep\", \"Oceanic Maw\"],\n                    answer: \"Challenger Deep\"\n                }\n            }\n        ];\n\n        let currentFactIndex = -1; // Start before the first fact\n\n        function displayFact(index) {\n            const data = factsAndQuizzes[index];\n            factText.textContent = data.fact;\n            document.getElementById(\'did-you-know-content\').textContent = data.didYouKnow;\n            currentFact = data.fact;\n            currentQuiz = data.quiz;\n\n            // Reset quiz\n            quizContainer.classList.remove(\'show-quiz\');\n            quizFeedback.textContent = \"\";\n            quizOptions.innerHTML = \"\";\n            factText.classList.remove(\'revealed\');\n            didYouKnow.classList.remove(\'show-did-you-know\');\n            factRevealed = false;\n            revealBtn.textContent = \"Reveal Fact\";\n        }\n\n        function setupQuiz(quizData) {\n            quizQuestion.textContent = quizData.question;\n            quizOptions.innerHTML = \"\";\n            quizData.options.forEach(option => {\n                const button = document.createElement(\'button\');\n                button.classList.add(\'quiz-option-btn\');\n                button.textContent = option;\n                button.addEventListener(\'click\', () => checkAnswer(option, quizData.answer, button));\n                quizOptions.appendChild(button);\n            });\n        }\n\n        function checkAnswer(selectedOption, correctAnswer, button) {\n            Array.from(quizOptions.children).forEach(btn => btn.disabled = true); // Disable all buttons\n            if (selectedOption === correctAnswer) {\n                button.classList.add(\'correct\');\n                quizFeedback.textContent = \"Correct! Well done!\";\n                quizFeedback.style.color = \"var(--quiz-correct)\";\n                factStreak++;\n                streakCountSpan.textContent = factStreak;\n            } else {\n                button.classList.add(\'incorrect\');\n                quizFeedback.textContent = `Incorrect. The answer was \"${correctAnswer}\".`;\n                quizFeedback.style.color = \"var(--quiz-incorrect)\";\n                factStreak = 0; // Reset streak on incorrect answer\n                streakCountSpan.textContent = factStreak;\n                // Highlight the correct answer\n                Array.from(quizOptions.children).forEach(btn => {\n                    if (btn.textContent === correctAnswer) {\n                        btn.classList.add(\'correct\');\n                    }\n                });\n            }\n        }\n\n        // Set initial update time\n        updateTimeSpan.textContent = new Date().toLocaleString();\n\n        revealBtn.addEventListener(\'click\', () => {\n            if (!factRevealed) {\n                factText.classList.add(\'revealed\');\n                revealBtn.textContent = \"Next Fact\";\n                factRevealed = true;\n                didYouKnow.classList.add(\'show-did-you-know\');\n\n                // Show quiz\n                if (currentQuiz) {\n                    setupQuiz(currentQuiz);\n                    quizContainer.classList.add(\'show-quiz\');\n                }\n\n            } else {\n                addFactToHistory(currentFact); // Add current fact to history before moving to next\n                currentFactIndex = (currentFactIndex + 1) % factsAndQuizzes.length;\n                displayFact(currentFactIndex);\n            }\n        });\n\n        historyToggleBtn.addEventListener(\'click\', () => {\n            historyList.classList.toggle(\'show-history\');\n            if (historyList.classList.contains(\'show-history\')) {\n                historyToggleBtn.textContent = \"Hide Fact History\";\n            } else {\n                historyToggleBtn.textContent = \"Toggle Fact History\";\n            }\n        });\n\n        function addFactToHistory(fact) {\n            const listItem = document.createElement(\'li\');\n            listItem.textContent = fact;\n            historyList.prepend(listItem); // Add to the beginning\n        }\n\n        // Initialize with the first fact\n        currentFactIndex = 0;\n        displayFact(currentFactIndex);\n        addFactToHistory(factsAndQuizzes[0].fact); // Add initial fact to history\n    </script>\n</body>\n</html>
+        revealFactBtn.addEventListener('click', () => {
+            if (mainFactText.classList.contains('revealed')) {
+                // If already revealed, hide it again
+                mainFactText.classList.remove('revealed');
+                didYouKnowSection.classList.remove('show-did-you-know');
+                revealFactBtn.textContent = "Reveal Fact";
+            } else {
+                // Reveal the fact
+                mainFactText.classList.add('revealed');
+                didYouKnowSection.classList.add('show-did-you-know');
+                revealFactBtn.textContent = "Hide Fact";
+            }
+        });
+
+        generateFactBtn.addEventListener('click', () => {
+            currentFactIndex = (currentFactIndex + 1) % facts.length;
+            updateFactDisplay(facts[currentFactIndex]);
+        });
+
+        // Initial load
+        updateFactDisplay(facts[currentFactIndex]);
+
+        // Update footer time
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('current-time').textContent = now.toLocaleString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
+    </script>
+</body>
+</html>
