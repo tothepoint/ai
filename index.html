@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders: Exoplanet Discoveries</title>
+    <title id="site-title">Deep Sea Mysteries: Unveiling the Abyss</title>
     <style>
         :root {
-            /* Theme Colors (Space Exploration) */
-            --bg-color-shallow: #0A0A1A; /* Almost black-blue for cosmic feel */
+            /* Theme Colors (Deep Sea Exploration) */
+            --bg-color-shallow: #0A1F33; /* Deep Sea Blue */
             --bg-color-deep: #000000;   /* Pure black */
             --text-color: #E0F7FA;      /* Light cyan for contrast */
-            --footer-bg: #102038; /* Slightly lighter dark blue for footer */
-            --glass-bg: rgba(10, 10, 26, 0.4); /* Transparent dark purple */
-            --glass-border: rgba(224, 247, 250, 0.6); /* Light cyan border */
+            --footer-bg: #051520; /* Darker Deep Sea Blue for footer */
+            --glass-bg: rgba(10, 31, 51, 0.6); /* Transparent Deep Sea Blue */
+            --glass-border: rgba(224, 247, 250, 0.8); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
             --title-color: #87CEEB;     /* Sky blue for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
@@ -60,21 +60,6 @@
             align-items: center;
             position: relative;
             overflow: hidden;
-        }
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at center, rgba(255,255,255,0.08) 10%, transparent 70%);
-            animation: rotateBackground 25s linear infinite;
-            opacity: 0.4;
-        }
-        @keyframes rotateBackground {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
         h1#main-title {
             font-size: 5rem;
@@ -192,10 +177,17 @@
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             text-align: left;
-            max-height: 150px;
+            max-height: 0; /* Initially hidden */
             overflow: hidden;
-            opacity: 1;
+            opacity: 0;
             transition: max-height 1s ease-out, opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(20px);
+            width: 90%;
+            max-width: 850px;
+        }
+        #did-you-know.show-did-you-know {
+            max-height: 150px; /* Adjust as needed */
+            opacity: 1;
             transform: translateY(0);
         }
         #did-you-know h3 {
@@ -235,117 +227,4 @@
         }
         #history-list {
             list-style: none;
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 1s ease-out, opacity 1s ease-out;
-            background-color: rgba(255, 255, 255, 0.08);
-            border-radius: 18px;
-            padding: 0 25px;
-            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
-        }
-        #history-list.show-history {
-            max-height: 500px;
-            opacity: 1;
-            padding: 25px;
-        }
-        #history-list li {
-            font-size: 1.1rem;
-            color: var(--history-list-color);
-            padding: 8px 0;
-            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
-        }
-        #history-list li:last-child {
-            border-bottom: none;
-        }
-
-        /* New Reveal Button Style */
-        #reveal-fact-btn, #prev-fact-btn {
-            background-color: var(--main-action-btn);
-            color: var(--footer-bg); /* Use a contrasting color for text */
-            padding: 18px 40px;
-            font-size: 1.8rem;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            margin-top: 20px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-            font-weight: 800;
-            border: none;
-            outline: none;
-        }
-        #reveal-fact-btn:hover, #prev-fact-btn:hover {
-            background-color: var(--main-action-btn-hover);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.6);
-        }
-        #reveal-fact-btn:active, #prev-fact-btn:active {
-            transform: translateY(-2px) scale(0.98);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        #prev-fact-btn {
-            margin-right: 20px;
-            display: none; /* Hidden by default */
-            background-color: var(--button-primary);
-            color: var(--footer-bg);
-        }
-
-        /* Streak Counter */
-        #streak-counter {
-            font-size: 1.8rem;
-            color: var(--streak-color);
-            margin-top: 20px;
-            font-weight: 800;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            display: none; /* Hidden by default */
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
-        <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">Did you know that astronomers have discovered thousands of exoplanets, with some potentially habitable worlds orbiting distant stars? The search for life beyond Earth continues!</p>
-        </div>
-        <button id="reveal-fact-btn">Reveal Cosmic Fact!</button>
-        <p id="streak-counter">Streak: 0</p>
-    </div>
-
-    <footer id="footer-info">
-        <p>Site last updated: <span id="update-time"></span></p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const updateTimeElement = document.getElementById('update-time');
-            const now = new Date();
-            updateTimeElement.textContent = now.toLocaleString();
-
-            const factTextElement = document.getElementById('fact-of-the-day-text');
-            const revealButton = document.getElementById('reveal-fact-btn');
-            const streakCounter = document.getElementById('streak-counter');
-            let streak = 0;
-
-            revealButton.addEventListener('click', () => {
-                if (!factTextElement.classList.contains('revealed')) {
-                    factTextElement.classList.add('revealed');
-                    revealButton.textContent = "Another Fact Soon!";
-                    streak++;
-                    streakCounter.textContent = `Streak: ${streak}`;
-                    streakCounter.style.display = 'block'; // Show streak counter
-                } else {
-                    // In a real scenario, this would fetch a new fact
-                    alert("Imagine a new cosmic fact appearing here! For now, enjoy this one.");
-                    // Reset for demonstration
-                    factTextElement.classList.remove('revealed');
-                    revealButton.textContent = "Reveal Cosmic Fact!";
-                    streak = 0;
-                    streakCounter.textContent = `Streak: ${streak}`;
-                    streakCounter.style.display = 'none'; // Hide streak counter
-                }
-            });
-        });
-    </script>
-</body>
-</html>
+            padding: 0;\n            max-height: 0;\n            overflow: hidden;\n            opacity: 0;\n            transition: max-height 1s ease-out, opacity 1s ease-out;\n            background-color: rgba(255, 255, 255, 0.08);\n            border-radius: 18px;\n            padding: 0 25px;\n            box-shadow: inset 0 0 12px rgba(0,0,0,0.3);\n        }\n        #history-list.show-history {\n            max-height: 500px;\n            opacity: 1;\n            padding: 25px;\n        }\n        #history-list li {\n            font-size: 1.1rem;\n            color: var(--history-list-color);\n            padding: 8px 0;\n            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);\n        }\n        #history-list li:last-child {\n            border-bottom: none;\n        }\n\n        /* New Reveal Button Style */\n        #reveal-fact-btn, #prev-fact-btn {\n            background-color: var(--main-action-btn);\n            color: var(--footer-bg); /* Use a contrasting color for text */\n            padding: 18px 40px;\n            font-size: 1.8rem;\n            border-radius: 15px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;\n            margin-top: 20px;\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n            font-weight: 800;\n            border: none;\n            outline: none;\n        }\n        #reveal-fact-btn:hover, #prev-fact-btn:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-5px) scale(1.02);\n            box-shadow: 0 12px 25px rgba(0,0,0,0.6);\n        }\n        #reveal-fact-btn:active, #prev-fact-btn:active {\n            transform: translateY(-2px) scale(0.98);\n            box-shadow: 0 5px 15px rgba(0,0,0,0.3);\n        }\n        #prev-fact-btn {\n            margin-right: 20px;\n            display: none; /* Hidden by default */\n            background-color: var(--button-primary);\n            color: var(--footer-bg);\n        }\n\n        /* Streak Counter */\n        #streak-counter {\n            font-size: 1.8rem;\n            color: var(--streak-color);\n            margin-top: 20px;\n            font-weight: 800;\n            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);\n            display: none; /* Hidden by default */\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Mysteries</h1>\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet). If Mount Everest were placed in it, its peak would still be over a mile underwater!</p>\n        </div>\n        <div style=\"display: flex; align-items: center; justify-content: center; gap: 20px;\">\n            <button id=\"prev-fact-btn\">Previous Fact</button>\n            <button id=\"reveal-fact-btn\">Reveal Deep Sea Fact!</button>\n        </div>\n        <p id=\"streak-counter\">Streak: 0</p>\n\n        <div id=\"did-you-know\">\n            <h3>Did You Know?</h3>\n            <p id=\"did-you-know-content\">The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level, equivalent to having 50 jumbo jets piled on top of you!</p>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>Site last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const updateTimeElement = document.getElementById('update-time');\n            const now = new Date();\n            updateTimeElement.textContent = now.toLocaleString();\n\n            const factTextElement = document.getElementById('fact-of-the-day-text');\n            const revealButton = document.getElementById('reveal-fact-btn');\n            const prevFactButton = document.getElementById('prev-fact-btn');\n            const streakCounter = document.getElementById('streak-counter');\n            const didYouKnowSection = document.getElementById('did-you-know');\n            let streak = 0;\n            let factRevealed = false;\n\n            // Placeholder for fact history\n            const factHistory = [\n                \"The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet). If Mount Everest were placed in it, its peak would still be over a mile underwater!\"\n            ];\n            let currentFactIndex = 0;\n\n            const didYouKnowContent = \"The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level, equivalent to having 50 jumbo jets piled on top of you!\";\n\n            function updateFactDisplay() {\n                factTextElement.textContent = factHistory[currentFactIndex];\n                if (factRevealed) {\n                    factTextElement.classList.add('revealed');\n                    didYouKnowSection.classList.add('show-did-you-know');\n                } else {\n                    factTextElement.classList.remove('revealed');\n                    didYouKnowSection.classList.remove('show-did-you-know');\n                }\n                prevFactButton.style.display = currentFactIndex > 0 ? 'inline-block' : 'none';\n            }\n\n            revealButton.addEventListener('click', () => {\n                if (!factRevealed) {\n                    factRevealed = true;\n                    updateFactDisplay();\n                    revealButton.textContent = \"Next Deep Sea Fact!\";\n                    streak++;\n                    streakCounter.textContent = `Streak: ${streak}`;\n                    streakCounter.style.display = 'block';\n                } else {\n                    // In a real scenario, this would fetch a new fact and add to history\n                    alert(\"Imagine a new deep sea fact appearing here! For now, enjoy this one.\");\n                    // For demonstration, reset or cycle if more facts were available\n                    factRevealed = false;\n                    currentFactIndex = 0; // Reset to the first fact for demo\n                    updateFactDisplay();\n                    revealButton.textContent = \"Reveal Deep Sea Fact!\";\n                    streak = 0;\n                    streakCounter.textContent = `Streak: ${streak}`;\n                    streakCounter.style.display = 'none';\n                }\n            });\n\n            prevFactButton.addEventListener('click', () => {\n                if (currentFactIndex > 0) {\n                    currentFactIndex--;\n                    factRevealed = true; // Assume previous facts were revealed\n                    updateFactDisplay();\n                }\n            });\n\n            // Initial display update\n            updateFactDisplay();\n        });\n    </script>\n</body>\n</html>
