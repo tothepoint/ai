@@ -6,19 +6,19 @@
     <title id="site-title">Cosmic Explorer</title>
     <style>
         :root {
-            /* Default/Initial Theme Colors (Extreme Astrophysics) */
-            --bg-color-primary: #000000;   /* Pure Black */
-            --text-color: #00FF00;         /* Bright Green */
-            --footer-bg: #000000;          /* Darker for footer */
-            --glass-bg: rgba(0, 0, 0, 0.7); /* Transparent dark */
-            --glass-border: rgba(0, 255, 255, 0.8); /* Transparent Aqua */
+            /* Default/Initial Theme Colors (Planetary Peculiarities - Venus) */
+            --bg-color-primary: #2C003E;   /* Slightly different dark purple */
+            --text-color: #E0BBE4;         /* Light Lavender */
+            --footer-bg: #1A002B;          /* Darker for footer */
+            --glass-bg: rgba(44, 0, 62, 0.6); /* Transparent dark */
+            --glass-border: rgba(224, 187, 228, 0.8); /* Transparent Light Lavender */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #00FFFF;        /* Aqua */
+            --title-color: #957DAD;        /* Medium Purple */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #008080;     /* Teal */
-            --button-hover: #005F5F;       /* Darker Teal */
-            --main-action-btn: #FF4500;    /* Orange Red for main actions */
-            --main-action-btn-hover: #CD3700; /* Darker Orange Red */
+            --button-primary: #6A5ACD;     /* Slate Blue */
+            --button-hover: #483D8B;       /* Darker Slate Blue */
+            --main-action-btn: #FF69B4;    /* Hot Pink for main actions */
+            --main-action-btn-hover: #C71585; /* Darker Hot Pink */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
             --generic-title-color: #ADD8E6; /* Light Blue for generic title */
         }
@@ -229,7 +229,7 @@
     <div class="container">
         <h1 id="main-title">Cosmic Explorer</h1>
         <div id="main-fact-container">
-            <p id="main-fact-text">Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.</p>
+            <p id="main-fact-text">A day on Venus is longer than a year on Venus.</p>
         </div>
         <div class="button-group">
             <button id="reveal-more-btn" class="action-button">Reveal More</button>
@@ -239,7 +239,7 @@
 
         <div id="did-you-know">
             <h3>Did You Know?</h3>
-            <p id="did-you-know-content">They are formed from the collapsed cores of massive stars during a supernova explosion, packing the mass of our sun into a sphere only about 20 kilometers across.</p>
+            <p id="did-you-know-content">Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.</p>
         </div>
     </div>
 
@@ -321,7 +321,7 @@
             }
         ];
 
-        let currentFactIndex = 2; // Start with "Extreme Astrophysics" fact
+        let currentFactIndex = 1; // Start with "Planetary Peculiarities" fact (Venus)
         let typingTimeout;
         const genericTitle = "Cosmic Explorer";
 
