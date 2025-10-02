@@ -3,29 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmic Chronicles: Fascinating Space Facts</title>
+    <title>Oceanic Wonders: Deep Sea Discoveries</title>
     <style>
         :root {
-            /* Theme Colors for "Cosmic Chronicles" */
-            --bg-gradient: linear-gradient(135deg, #0A0A2A, #2A0A4A); /* Deep space blue to dark purple */
-            --text-color: #E0E0E0; /* Light Grey */
-            --footer-bg: #1A0A3A; /* Darker purple for the footer */
-            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent deep purple */
-            --glass-border: rgba(224, 224, 224, 0.4); /* Light grey border */
+            /* Theme Colors for "Oceanic Wonders" */
+            --bg-color-shallow: #0077be; /* Vibrant ocean blue */
+            --bg-color-deep: #004d80; /* Deeper ocean blue */
+            --text-color: #e0f2f7; /* Very light blue/white for contrast */
+            --footer-bg: #003355; /* Even darker blue for the footer */
+            --glass-bg: rgba(0, 119, 190, 0.4); /* Transparent ocean blue */
+            --glass-border: rgba(224, 242, 247, 0.6); /* Light blue border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #BB86FC; /* Light Purple for title */
+            --title-color: #87ceeb; /* Sky blue for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #03DAC6; /* Teal for buttons */
-            --button-hover: #00C4B4; /* Brighter Teal */
-            --main-action-btn: #BB86FC; /* Light Purple for main action */
-            --main-action-btn-hover: #A070E0; /* Darker Light Purple */
-            --history-toggle-color: #E0E0E0; /* Light Grey for footer text */
-            --history-list-color: #D0B8F0; /* Lighter purple for history list */
-            --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
+            --button-primary: #4682b4; /* Steel blue for buttons */
+            --button-hover: #5f9ea0; /* Cadet blue for button hover */
+            --main-action-btn: #1e90ff; /* Dodger blue for main action */
+            --main-action-btn-hover: #4169e1; /* Royal blue for main action hover */
+            --history-toggle-color: #e0f2f7; /* Light blue for footer text */
+            --history-list-color: #a7d9ed; /* Lighter blue for history list */
+            --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
         }
 
         body {
-            background: var(--bg-gradient);
+            background: var(--bg-color-shallow);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
@@ -37,7 +38,7 @@
             text-align: center;
             padding: 20px;
             box-sizing: border-box;
-            transition: background 0.8s ease-in-out, color 0.5s ease;
+            transition: background 1.5s ease-in-out, color 0.8s ease;
             overflow-x: hidden;
         }
         .container {
@@ -75,31 +76,15 @@
             to { transform: rotate(360deg); }
         }
         h1#main-title {
-            font-size: 5rem; /* Slightly reduced for better balance */
+            font-size: 5rem;
             margin-bottom: 3rem;
             text-shadow: var(--title-shadow);
             color: var(--title-color);
-            letter-spacing: 3px; /* Slightly reduced letter spacing */
+            letter-spacing: 3px;
             font-weight: 900;
         }
-        .fact-card { /* This class is not currently used, but kept for potential future use */
-            background-color: rgba(10, 0, 20, 0.7);
-            padding: 45px;
-            border-radius: 25px;
-            margin-bottom: 35px;
-            width: 90%;
-            max-width: 850px;
-            box-shadow: 0 0 40px rgba(0,0,0,0.7), inset 0 0 20px rgba(0,0,0,0.7);
-            position: relative;
-            overflow: hidden;
-            min-height: 300px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
         p {
-            font-size: 2.2rem; /* Slightly reduced for better readability */
+            font-size: 2.2rem;
             line-height: 1.6;
             margin-bottom: 2.5rem;
             cursor: default;
@@ -107,7 +92,7 @@
             text-shadow: var(--fact-text-shadow);
             font-weight: 600;
         }
-        #main-fact, #quiz-fact, #challenge-fact { /* quiz/challenge not used, but kept for reference */
+        #main-fact, #quiz-fact, #challenge-fact {
             animation: fadeInScale 1.5s ease-out forwards;
             min-height: 150px;
             display: flex;
@@ -125,7 +110,7 @@
         }
         #footer-info {
             font-size: 1.5rem;
-            color: var(--text-color); /* Explicitly set footer text color */
+            color: var(--text-color);
             background-color: var(--footer-bg);
             padding: 25px 50px;
             border-radius: 20px;
@@ -159,7 +144,7 @@
             min-height: 200px;
         }
         #fact-of-the-day-text {
-            font-size: 2.0rem; /* Adjusted for better readability */
+            font-size: 2.0rem;
             color: var(--text-color);
             background-color: transparent;
             padding: 15px 25px;
@@ -208,7 +193,7 @@
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             text-align: left;
-            max-height: 150px; /* Always visible, adjust height */
+            max-height: 150px;
             overflow: hidden;
             opacity: 1;
             transition: max-height 1s ease-out, opacity 1s ease-out, transform 1s ease-out;
@@ -216,7 +201,7 @@
         }
         #did-you-know h3 {
             font-size: 1.8rem;
-            color: var(--button-primary); /* Adjusted for space theme */
+            color: var(--button-primary);
             margin-bottom: 12px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         }
@@ -262,7 +247,7 @@
             box-shadow: inset 0 0 12px rgba(0,0,0,0.3);
         }
         #history-list.show-history {
-            max-height: 500px; /* Adjust based on expected content */
+            max-height: 500px;
             opacity: 1;
             padding: 25px;
         }
@@ -302,4 +287,149 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3.5rem;\n                margin-bottom: 2rem;\n            }\n            .container {\n                padding: 30px;\n            }\n            .fact-card {\n                padding: 30px;\n                min-height: 250px;\n            }\n            p {\n                font-size: 1.8rem;\n                margin-bottom: 1.5rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.6rem;\n                min-height: 80px;\n            }\n            #footer-info {\n                font-size: 1.2rem;\n                padding: 20px 30px;\n            }\n            #reveal-fact-btn {\n                font-size: 1.4rem;\n                padding: 15px 30px;\n            }\n        }\n\n        @media (max-width: 480px) {\n            h1#main-title {\n                font-size: 2.5rem;\n            }\n            .container {\n                padding: 20px;\n            }\n            .fact-card {\n                padding: 20px;\n                min-height: 200px;\n            }\n            p {\n                font-size: 1.4rem;\n            }\n            #fact-of-the-day-text {\n                font-size: 1.2rem;\n                min-height: 60px;\n            }\n            #footer-info {\n                font-size: 1rem;\n                padding: 15px 20px;\n            }\n            #reveal-fact-btn {\n                font-size: 1.2rem;\n                padding: 12px 25px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Cosmic Chronicles</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\"></p>\n            <button id=\"reveal-fact-btn\">Discover Cosmic Anomaly</button>\n        </div>\n\n        <div id=\"did-you-know\">\n            <h3>Previous Anomaly:</h3>\n            <p id=\"did-you-know-content\">No anomaly discovered yet. Click 'Discover Cosmic Anomaly' to begin!</p>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Show History</button>\n            <ul id=\"history-list\"></ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        <p>&copy; 2025 Cosmic Chronicles. All rights reserved.</p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const factTextElement = document.getElementById('fact-of-the-day-text');\n            const revealButton = document.getElementById('reveal-fact-btn');\n            const historyToggleButton = document.getElementById('history-toggle-btn');\n            const historyList = document.getElementById('history-list');\n            const didYouKnowContent = document.getElementById('did-you-know-content');\n\n            const spaceFacts = [\n                \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\n                \"A day on Venus is longer than a year on Venus.\",\n                \"The largest known star, UY Scuti, is so big that if it were at the center of our solar system, its outer edge would extend beyond the orbit of Jupiter.\",\n                \"Neutron stars are so dense that a sugar cube-sized amount of material would weigh over a billion tons.\",\n                \"The universe is estimated to be around 13.8 billion years old.\",\n                \"There is a planet made almost entirely of diamond, named 55 Cancri e.\",\n                \"The Sun makes up 99.86% of the mass of our solar system.\",\n                \"Footprints left on the Moon by astronauts will stay there for 100 million years.\",\n                \"It takes 8 minutes and 20 seconds for light to travel from the Sun to Earth.\",\n                \"The highest mountain discovered is on Mars, named Olympus Mons, which is three times taller than Mount Everest.\"\n            ];\n            let currentFactIndex = -1; // Initialize to -1 to indicate no fact has been displayed yet\n            let previousFact = \"\";\n            let typingInterval;\n            let currentFactContent = \"\"; // Store the current fact's full content\n\n            const typeWriterEffect = (text, element, speed) => {\n                element.textContent = ''; // Clear existing text\n                element.classList.remove('revealed'); // Ensure blur is active\n                let i = 0;\n                typingInterval = setInterval(() => {\n                    if (i < text.length) {\n                        element.textContent += text.charAt(i);\n                        i++;\n                    } else {\n                        clearInterval(typingInterval);\n                        element.classList.add('revealed'); // Remove blur after typing\n                    }\n                }, speed);\n            };\n\n            const displayNewFact = () => {\n                clearInterval(typingInterval); // Clear any ongoing typing\n\n                if (currentFactIndex !== -1) {\n                    previousFact = spaceFacts[currentFactIndex];\n                    didYouKnowContent.textContent = previousFact;\n                }\n\n                let newFactIndex;\n                do {\n                    newFactIndex = Math.floor(Math.random() * spaceFacts.length);\n                } while (newFactIndex === currentFactIndex);\n                currentFactIndex = newFactIndex;\n                currentFactContent = spaceFacts[currentFactIndex]; // Store the full fact content\n\n                // Apply blur and transparency before typing\n                factTextElement.style.filter = 'blur(10px)';\n                factTextElement.style.opacity = '0.2';\n                factTextElement.style.color = 'transparent';\n                factTextElement.style.textShadow = 'none';\n                factTextElement.classList.remove('revealed'); // Ensure overlay is visible\n\n                typeWriterEffect(currentFactContent, factTextElement, 50); // Adjust typing speed as needed\n                addToHistory(currentFactContent);\n            };\n\n            revealButton.addEventListener('click', () => {\n                // When revealed, unblur and make opaque\n                factTextElement.style.filter = 'blur(0)';\n                factTextElement.style.opacity = '1';\n                factTextElement.style.color = 'var(--text-color)';\n                factTextElement.style.textShadow = 'var(--fact-text-shadow)';\n                factTextElement.classList.add('revealed'); // Hide overlay\n\n                // If it's the first reveal, display a new fact. Otherwise, just reveal the current one.\n                if (factTextElement.textContent === '') { // Check if no fact is currently displayed\n                    displayNewFact();\n                } else {\n                    // If a fact is already typed, just reveal it without re-typing\n                    clearInterval(typingInterval);\n                    factTextElement.textContent = currentFactContent;\n                    factTextElement.classList.add('revealed');\n                }\n            });\n\n            historyToggleButton.addEventListener('click', () => {\n                historyList.classList.toggle('show-history');\n                if (historyList.classList.contains('show-history')) {\n                    historyToggleButton.textContent = 'Hide History';\n                } else {\n                    historyToggleButton.textContent = 'Show History';\n                }\n            });\n\n            const addToHistory = (fact) => {\n                const listItem = document.createElement('li');\n                listItem.textContent = fact;\n                historyList.prepend(listItem); // Add to the beginning of the list\n            };\n\n            // Initial state: A fact is pre-selected but hidden and blurred\n            let initialFactIndex = Math.floor(Math.random() * spaceFacts.length);\n            currentFactIndex = initialFactIndex;\n            currentFactContent = spaceFacts[currentFactIndex]; // Store the initial fact\n\n            // Set the fact text content but keep it blurred and transparent\n            factTextElement.textContent = currentFactContent;\n            factTextElement.style.filter = 'blur(10px)';\n            factTextElement.style.opacity = '0.2';\n            factTextElement.style.color = 'transparent';\n            factTextElement.style.textShadow = 'none';\n            factTextElement.classList.remove('revealed'); // Ensure overlay is visible\n        });\n    </script>\n</body>\n</html>
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 3.5rem;
+                margin-bottom: 2rem;
+            }
+            .container {
+                padding: 30px;
+            }
+            p {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 1.6rem;
+                min-height: 80px;
+            }
+            #footer-info {
+                font-size: 1.2rem;
+                padding: 20px 30px;
+            }
+            #reveal-fact-btn {
+                font-size: 1.4rem;
+                padding: 15px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1#main-title {
+                font-size: 2.5rem;
+            }
+            .container {
+                padding: 20px;
+            }
+            p {
+                font-size: 1.4rem;
+            }
+            #fact-of-the-day-text {
+                font-size: 1.2rem;
+                min-height: 60px;
+            }
+            #footer-info {
+                font-size: 1rem;
+                padding: 15px 20px;
+            }
+            #reveal-fact-btn {
+                font-size: 1.2rem;
+                padding: 12px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Oceanic Wonders</h1>
+
+        <div id="fact-of-the-day-container">
+            <p id="fact-of-the-day-text">The ocean is home to the largest living structure on Earth, the Great Barrier Reef, which is visible from space.</p>
+            <button id="reveal-fact-btn">Dive Deeper</button>
+        </div>
+
+        <div id="did-you-know">
+            <h3>Previous Discoveries:</h3>
+            <p id="did-you-know-content">No previous discoveries yet. Click "Dive Deeper" to reveal your first!</p>
+        </div>
+
+        <div id="history-section">
+            <button id="history-toggle-btn">Show History</button>
+            <ul id="history-list">
+                <!-- History items will be added here by JavaScript -->
+            </ul>
+        </div>
+    </div>
+
+    <footer id="footer-info">
+        <p>Last updated: <span id="update-time"></span></p>
+    </footer>
+
+    <script>
+        const factText = document.getElementById('fact-of-the-day-text');
+        const revealBtn = document.getElementById('reveal-fact-btn');
+        const didYouKnowContent = document.getElementById('did-you-know-content');
+        const historyToggleBtn = document.getElementById('history-toggle-btn');
+        const historyList = document.getElementById('history-list');
+        const updateTimeSpan = document.getElementById('update-time');
+        const body = document.body;
+
+        let factRevealed = false;
+        let factHistory = [];
+
+        // Function to update the time in the footer
+        function updateFooterTime() {
+            const now = new Date();
+            updateTimeSpan.textContent = now.toLocaleString();
+        }
+
+        // Initial call to set the time
+        updateFooterTime();
+        // Update time every minute
+        setInterval(updateFooterTime, 60000);
+
+        revealBtn.addEventListener('click', () => {
+            if (!factRevealed) {
+                factText.classList.add('revealed');
+                revealBtn.textContent = 'Explore Another Wonder';
+                body.style.background = 'var(--bg-color-deep)'; // Change background to deeper blue
+                factRevealed = true;
+
+                // Add current fact to history
+                const currentFact = factText.textContent;
+                if (factHistory.length === 0) {
+                    didYouKnowContent.textContent = currentFact;
+                } else {
+                    // Prepend to history list
+                    const listItem = document.createElement('li');
+                    listItem.textContent = currentFact;
+                    historyList.prepend(listItem);
+                    didYouKnowContent.textContent = factHistory[0]; // Update "Previous Discovery" to the last revealed fact
+                }
+                factHistory.unshift(currentFact); // Add to the beginning of the array
+            } else {
+                // Reset for a new fact (for future implementation)
+                factText.classList.remove('revealed');
+                factText.textContent = "Loading a new oceanic wonder..."; // Placeholder for new fact
+                revealBtn.textContent = 'Dive Deeper';
+                body.style.background = 'var(--bg-color-shallow)'; // Revert background
+                factRevealed = false;
+
+                // In a real scenario, you'd fetch a new fact here.
+                // For now, we'll just reset the display.
+                setTimeout(() => {
+                    factText.textContent = "The ocean is home to the largest living structure on Earth, the Great Barrier Reef, which is visible from space."; // Keep the same fact for now
+                }, 1000);
+            }
+        });
+
+        historyToggleBtn.addEventListener('click', () => {
+            historyList.classList.toggle('show-history');
+            if (historyList.classList.contains('show-history')) {
+                historyToggleBtn.textContent = 'Hide History';
+            } else {
+                historyToggleBtn.textContent = 'Show History';
+            }
+        });
+    </script>
+</body>
+</html>
