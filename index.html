@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Planetary Peculiarities</title>
+    <title id="site-title">Extreme Astrophysics</title>
     <style>
         :root {
-            /* Theme Colors (Planetary Peculiarities - Venus) */
-            --bg-color-primary: #2C003E;   /* Slightly different dark purple */
-            --text-color: #E0BBE4;         /* Light Lavender */
-            --footer-bg: #1A002B;          /* Even darker purple for footer */
-            --glass-bg: rgba(44, 0, 62, 0.6); /* Transparent dark purple */
-            --glass-border: rgba(224, 187, 228, 0.8); /* Transparent Light Lavender */
+            /* Theme Colors (Extreme Astrophysics) */
+            --bg-color-primary: #000000;   /* Pure Black */
+            --text-color: #00FF00;         /* Bright Green */
+            --footer-bg: #000000;          /* Pure Black */
+            --glass-bg: rgba(0, 0, 0, 0.7); /* Transparent dark */
+            --glass-border: rgba(0, 255, 255, 0.8); /* Transparent Aqua */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #957DAD;        /* Medium Purple for title */
+            --title-color: #00FFFF;        /* Aqua */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #6A5ACD;     /* Slate Blue for general buttons */
-            --button-hover: #483D8B;       /* Darker Slate Blue */
-            --main-action-btn: #FF69B4;    /* Hot Pink for main actions */
-            --main-action-btn-hover: #C71585; /* Darker Hot Pink */
+            --button-primary: #008080;     /* Teal */
+            --button-hover: #005F5F;       /* Darker Teal */
+            --main-action-btn: #FF4500;    /* Orange Red for main actions */
+            --main-action-btn-hover: #CD3700; /* Darker Orange Red */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
         }
 
@@ -171,6 +171,13 @@
         }
 
         /* Buttons */
+        .button-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
         .action-button {
             background-color: var(--main-action-btn);
             color: var(--footer-bg); /* Use a contrasting color for text */
@@ -179,7 +186,6 @@
             border-radius: 15px;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            margin-top: 20px;
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
             font-weight: 800;
             border: none;
@@ -211,16 +217,19 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Planetary Peculiarities</h1>
+        <h1 id="main-title">Extreme Astrophysics</h1>
         <div id="main-fact-container">
-            <p id="main-fact-text">A day on Venus is longer than a year on Venus.</p>
+            <p id="main-fact-text">Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.</p>
         </div>
-        <button id="reveal-fact-btn" class="action-button">Reveal Fact</button>
-        <button id="generate-fact-btn" class="action-button" style="margin-left: 20px;">Generate New Fact</button>
+        <div class="button-group">
+            <button id="reveal-fact-btn" class="action-button">Reveal Fact</button>
+            <button id="generate-fact-btn" class="action-button">Generate New Fact</button>
+            <button id="copy-fact-btn" class="action-button">Copy Fact</button>
+        </div>
 
         <div id="did-you-know">
             <h3>Did You Know?</h3>
-            <p id="did-you-know-content">Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.</p>
+            <p id="did-you-know-content">They are formed from the collapsed cores of massive stars during a supernova explosion, packing the mass of our sun into a sphere only about 20 kilometers across.</p>
         </div>
     </div>
 
@@ -232,6 +241,7 @@
         const mainFactText = document.getElementById('main-fact-text');
         const revealFactBtn = document.getElementById('reveal-fact-btn');
         const generateFactBtn = document.getElementById('generate-fact-btn');
+        const copyFactBtn = document.getElementById('copy-fact-btn');
         const didYouKnowSection = document.getElementById('did-you-know');
         const didYouKnowContent = document.getElementById('did-you-know-content');
         const siteTitle = document.getElementById('site-title');
@@ -300,12 +310,26 @@
             }
         ];
 
-        let currentFactIndex = 1; // Set to index 1 for "A day on Venus..."
+        let currentFactIndex = 2; // Start with "Extreme Astrophysics" fact
+        let typingTimeout;
+
+        function typeWriterEffect(text, element, delay = 50) {
+            let i = 0;
+            element.textContent = ''; // Clear content before typing
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    typingTimeout = setTimeout(type, delay);
+                }
+            }
+            type();
+        }
 
         function updateFactDisplay(factObj) {
             siteTitle.textContent = factObj.theme;
             mainTitle.textContent = factObj.theme.split(':')[0]; // Just the main part of the theme
-            mainFactText.textContent = factObj.fact;
+            // Do not set mainFactText.textContent directly here, it will be typed
             didYouKnowContent.textContent = factObj.didYouKnow;
 
             // Update CSS variables
@@ -321,7 +345,9 @@
             document.documentElement.style.setProperty('--glass-border', factObj.glassBorder);
 
             // Reset fact to hidden state
+            clearTimeout(typingTimeout); // Clear any ongoing typing effect
             mainFactText.classList.remove('revealed');
+            mainFactText.textContent = factObj.fact; // Set full text for hidden state
             didYouKnowSection.classList.remove('show-did-you-know');
             revealFactBtn.textContent = "Reveal Fact";
         }
@@ -329,20 +355,33 @@
         revealFactBtn.addEventListener('click', () => {
             if (mainFactText.classList.contains('revealed')) {
                 // If already revealed, hide it again
+                clearTimeout(typingTimeout);
                 mainFactText.classList.remove('revealed');
+                mainFactText.textContent = facts[currentFactIndex].fact; // Restore full text for hidden state
                 didYouKnowSection.classList.remove('show-did-you-know');
                 revealFactBtn.textContent = "Reveal Fact";
             } else {
-                // Reveal the fact
+                // Reveal the fact with typing effect
                 mainFactText.classList.add('revealed');
+                typeWriterEffect(facts[currentFactIndex].fact, mainFactText);
                 didYouKnowSection.classList.add('show-did-you-know');
                 revealFactBtn.textContent = "Hide Fact";
             }
         });
 
         generateFactBtn.addEventListener('click', () => {
-            currentFactIndex = (currentFactIndex + 1) % facts.length;
+            currentFactIndex = Math.floor(Math.random() * facts.length); // Random fact
             updateFactDisplay(facts[currentFactIndex]);
+        });
+
+        copyFactBtn.addEventListener('click', async () => {
+            try {
+                await navigator.clipboard.writeText(mainFactText.textContent);
+                alert('Fact copied to clipboard!');
+            } catch (err) {
+                console.error('Failed to copy: ', err);
+                alert('Failed to copy fact.');
+            }
         });
 
         // Initial load
