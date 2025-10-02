@@ -49,7 +49,7 @@
             box-shadow: 0 15px 50px 0 rgba( 0, 0, 0, 0.5 );
             backdrop-filter: blur( 12px );
             -webkit-backdrop-filter: blur( 12px );
-            border: 1px solid var(--glass-border);\
+            border: 1px solid var(--glass-border);
             flex-grow: 1;
             display: flex;
             flex-direction: column;
@@ -127,7 +127,7 @@
             filter: blur(10px); /* Initially blurred */
             opacity: 0.2; /* Initially semi-transparent */
         }
-        #main-fact-text::before {\
+        #main-fact-text::before {
             content: '';
             position: absolute;
             top: 0;
@@ -197,267 +197,267 @@
             margin-top: 40px;
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;\
-            justify-content: center;\
-        }\
-        .action-button {\
-            padding: 15px 30px;\
-            font-size: 1.3rem;\
-            font-weight: bold;\
-            border: none;\
-            border-radius: 10px;\
-            cursor: pointer;\
-            transition: all 0.3s ease;\
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);\
-            text-transform: uppercase;\
-            letter-spacing: 1px;\
-        }\
-        #reveal-fact-btn {\
-            background-color: var(--main-action-btn);\
-            color: white;\
-        }\
-        #reveal-fact-btn:hover {\
-            background-color: var(--main-action-btn-hover);\
-            transform: translateY(-3px);\
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\
-        }\
-        #new-fact-btn {\
-            background-color: var(--button-primary);\
-            color: white;\
-        }\
-        #new-fact-btn:hover {\
-            background-color: var(--button-hover);\
-            transform: translateY(-3px);\
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\
-        }\
-        footer {\
-            margin-top: 30px;\
-            padding: 20px;\
-            background-color: var(--footer-bg); /* Updated footer background */\
-            color: var(--text-color); /* Ensure text is visible */\
-            width: 100%;\
-            font-size: 0.9rem;\
-            border-top: 1px solid rgba(255, 255, 255, 0.1);\
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);\
-            transition: background-color 1.5s ease-in-out, color 0.8s ease;\
-        }\
-\
-        /* Responsive adjustments */\
-        @media (max-width: 768px) {\
-            h1#main-title {\
-                font-size: 3rem;\
-            }\
-            #main-fact-text {\
-                font-size: 1.8rem;\
-            }\
-            .action-button {\
-                font-size: 1.1rem;\
-                padding: 12px 25px;\
-            }\
-            .container {\
-                padding: 30px;\
-            }\
-        }\
-        @media (max-width: 480px) {\
-            h1#main-title {\
-                font-size: 2.5rem;\
-            }\
-            #main-fact-text {\
-                font-size: 1.5rem;\
-            }\
-            .button-group {\
-                flex-direction: column;\
-                gap: 15px;\
-            }\
-        }\
-    </style>\
-</head>\
-<body>\
-    <div class=\"container\">\
-        <h1 id=\"main-title\">Cosmic Wonders</h1>\
-        <div id=\"main-fact-container\">\
-            <p id=\"main-fact-text\"></p>\
-            <div id=\"did-you-know\">\
-                <h3>Did You Know?</h3>\
-                <p></p>\
-            </div>\
-        </div>\
-        <div class=\"button-group\">\
-            <button id=\"reveal-fact-btn\" class=\"action-button\">Scan for Clues!</button>\
-            <button id=\"new-fact-btn\" class=\"action-button\">Discover Another Wonder</button>\
-        </div>\
-    </div>\
-\
-    <footer>\
-        <p>Site will update again at: <span id=\"update-time\">Loading...</span></p>\
-    </footer>\
-\
-    <script>\
-        const factText = document.getElementById(\'main-fact-text\');\
-        const revealBtn = document.getElementById(\'reveal-fact-btn\');\
-        const newFactBtn = document.getElementById(\'new-fact-btn\');\
-        const didYouKnow = document.getElementById(\'did-you-know\');\
-        const siteTitle = document.getElementById(\'site-title\');\
-        const mainTitle = document.getElementById(\'main-title\');\
-        const updateTimeSpan = document.getElementById(\'update-time\');\
-\
-        // Function to update the time in the footer\
-        function updateFooterTime() {\
-            const now = new Date();\
-            // Add 24 hours for the \"upcoming update\" time\
-            now.setHours(now.getHours() + 24);\
-            const options = { weekday: \'long\', year: \'numeric\', month: \'long\', day: \'numeric\', hour: \'numeric\', minute: \'numeric\', second: \'numeric\', hour12: true };\
-            updateTimeSpan.textContent = now.toLocaleString(\'en-US\', options);\
-        }\
-\
-        // Initial call to set the time\
-        updateFooterTime();\
-        // Update time every minute (optional, but good for \"upcoming update\" feel)\
-        setInterval(updateFooterTime, 60000);\
-\
-\
-        const facts = [\
-            {\
-                theme: \"Cosmic Wonders\",\
-                fact: \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\
-                didYouKnow: \"The observable universe is estimated to contain about 100 billion to 200 billion galaxies, each with billions of stars!\",\
-                bgColor: \"#0D0D2B\", // Deep Space Blue\
-                textColor: \"#E0FFFF\", // Light Cyan\
-                footerBg: \"#08081A\",\
-                titleColor: \"#FFD700\", // Gold\
-                buttonPrimary: \"#4A00B0\", // Deep Purple\
-                mainActionBtn: \"#FF4500\" // OrangeRed\
-            },\
-            {\
-                theme: \"Oceanic Depths\",\
-                fact: \"The Mariana Trench is deeper than Mount Everest is tall.\",\
-                didYouKnow: \"If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater!\",\
-                bgColor: \"#001F3F\", // Dark Midnight Blue\
-                textColor: \"#7FDBFF\", // Aqua\
-                footerBg: \"#001228\",\
-                titleColor: \"#FFDC00\", // Gold\
-                buttonPrimary: \"#0074D9\", // Blue\
-                mainActionBtn: \"#FF851B\" // Orange\
-            },\
-            {\
-                theme: \"Ancient Earth\",\
-                fact: \"Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.\",\
-                didYouKnow: \"The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus!\",\
-                bgColor: \"#2E2E00\", // Dark Olive Green\
-                textColor: \"#E6E6B8\", // Pale Yellow\
-                footerBg: \"#1A1A00\",\
-                titleColor: \"#A0522D\", // Sienna\
-                buttonPrimary: \"#8B4513\", // SaddleBrown\
-                mainActionBtn: \"#D2691E\" // Chocolate\
-            },\
-            {\
-                theme: \"Microscopic Marvels\",\
-                fact: \"A single human body contains more bacterial cells than human cells.\",\
-                didYouKnow: \"These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood!\",\
-                bgColor: \"#1A331A\", // Dark Forest Green\
-                textColor: \"#CCFFCC\", // Pale Green\
-                footerBg: \"#0F1F0F\",\
-                titleColor: \"#9ACD32\", // YellowGreen\
-                buttonPrimary: \"#3CB371\", // MediumSeaGreen\
-                mainActionBtn: \"#6B8E23\" // OliveDrab\
-            }\
-        ];\
-\
-        let currentFactIndex = 0;\
-        let scanCount = 0;\
-        const maxScans = 3; // Number of scans before \"Reveal Full Fact\" appears\
-\
-        function applyTheme(theme) {\
-            document.documentElement.style.setProperty(\'--bg-color-primary\', theme.bgColor);\
-            document.documentElement.style.setProperty(\'--text-color\', theme.textColor);\
-            document.documentElement.style.setProperty(\'--footer-bg\', theme.footerBg);\
-            document.documentElement.style.setProperty(\'--title-color\', theme.titleColor);\
-            document.documentElement.style.setProperty(\'--button-primary\', theme.buttonPrimary);\
-            document.documentElement.style.setProperty(\'--main-action-btn\', theme.mainActionBtn);\
-            document.documentElement.style.setProperty(\'--glass-bg\', theme.bgColor.replace(\')\', \', 0.6)\').replace(\'rgb\', \'rgba\'));\
-            document.documentElement.style.setProperty(\'--glass-border\', theme.textColor.replace(\')\', \', 0.3)\').replace(\'rgb\', \'rgba\'));\
-            document.documentElement.style.setProperty(\'--main-action-btn-hover\', darkenColor(theme.mainActionBtn, 20));\
-            document.documentElement.style.setProperty(\'--button-hover\', darkenColor(theme.buttonPrimary, 20));\
-            siteTitle.textContent = theme.theme;\
-            mainTitle.textContent = theme.theme;\
-        }\
-\
-        function darkenColor(hex, percent) {\
-            var f=parseInt(hex.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=(f>>8)&0x00FF,B=f&0x0000FF;\
-            return \"#\"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+Math.round((t-B)*p)+B).toString(16).slice(1);\
-        }\
-\
-        function typeWriterEffect(element, text, i = 0) {\
-            if (i < text.length) {\
-                element.textContent += text.charAt(i);\
-                setTimeout(() => typeWriterEffect(element, text, i + 1), 50); // Typing speed\
-            }\
-        }\
-\
-        function loadFact(index) {\
-            const factData = facts[index];\
-            applyTheme(factData);\
-\
-            factText.textContent = \'\'; // Clear text for typewriter effect\
-            factText.classList.remove(\'revealed\', \'glitch-effect\');\
-            didYouKnow.classList.remove(\'visible\');\
-\
-            // Reset scan count and button text\
-            scanCount = 0;\
-            revealBtn.textContent = \'Scan for Clues!\';\
-            revealBtn.style.display = \'inline-block\'; // Show scan button\
-            newFactBtn.style.display = \'none\'; // Hide new fact button initially\
-\
-            // Reset blur and opacity for the new fact\
-            factText.style.filter = `blur(10px)`; // Max blur\
-            factText.style.opacity = \'0.2\'; // Min opacity\
-            factText.style.color = \'transparent\';\
-            factText.style.textShadow = \'none\';\
-\
-            // Set the fact and didYouKnow text, but keep them hidden/blurred\
-            factText.dataset.fullText = factData.fact;\
-            didYouKnow.querySelector(\'p\').textContent = factData.didYouKnow;\
-        }\
-\
-        revealBtn.addEventListener(\'click\', () => {\
-            if (scanCount < maxScans) {\
-                scanCount++;\
-                const blurAmount = 10 - (scanCount * (10 / (maxScans + 1))); // Gradually reduce blur\
-                const opacityAmount = 0.2 + (scanCount * (0.8 / (maxScans + 1))); // Gradually increase opacity\
-\
-                factText.style.filter = `blur(${blurAmount}px)`;\
-                factText.style.opacity = `${opacityAmount}`;\
-\
-                // Optional: Add a subtle animation for scanning\
-                factText.classList.add(\'glitch-effect\');\
-                setTimeout(() => {\
-                    factText.classList.remove(\'glitch-effect\');\
-                }, 500); // Glitch for half a second\
-\
-                if (scanCount >= maxScans) {\
-                    revealBtn.textContent = \'Reveal Full Fact!\';\
-                }\
-            } else { // This is the \"Reveal Full Fact\" action\
-                revealBtn.style.display = \'none\'; // Hide reveal button\
-                newFactBtn.style.display = \'inline-block\'; // Show new fact button\
-\
-                factText.classList.add(\'revealed\'); // Fully unblur and show\
-                factText.textContent = \'\'; // Clear before typing\
-                typeWriterEffect(factText, factText.dataset.fullText);\
-                setTimeout(() => {\
-                    didYouKnow.classList.add(\'visible\');\
-                }, factText.dataset.fullText.length * 50 + 500); // Appear after typing\
-            }\
-        });\
-\
-        newFactBtn.addEventListener(\'click\', () => {\
-            currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact\
-            loadFact(currentFactIndex);\
-        });\
-\
-        // Initial load: pick a random fact\
-        currentFactIndex = Math.floor(Math.random() * facts.length);\
-        loadFact(currentFactIndex);\
-    </script>\
-</body>\
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .action-button {
+            padding: 15px 30px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        #reveal-fact-btn {
+            background-color: var(--main-action-btn);
+            color: white;
+        }
+        #reveal-fact-btn:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        #new-fact-btn {
+            background-color: var(--button-primary);
+            color: white;
+        }
+        #new-fact-btn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+        }
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: var(--footer-bg); /* Updated footer background */
+            color: var(--text-color); /* Ensure text is visible */
+            width: 100%;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+            transition: background-color 1.5s ease-in-out, color 0.8s ease;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            h1#main-title {
+                font-size: 3rem;
+            }
+            #main-fact-text {
+                font-size: 1.8rem;
+            }
+            .action-button {
+                font-size: 1.1rem;
+                padding: 12px 25px;
+            }
+            .container {
+                padding: 30px;
+            }
+        }
+        @media (max-width: 480px) {
+            h1#main-title {
+                font-size: 2.5rem;
+            }
+            #main-fact-text {
+                font-size: 1.5rem;
+            }
+            .button-group {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="main-title">Cosmic Wonders</h1>
+        <div id="main-fact-container">
+            <p id="main-fact-text"></p>
+            <div id="did-you-know">
+                <h3>Did You Know?</h3>
+                <p></p>
+            </div>
+        </div>
+        <div class="button-group">
+            <button id="reveal-fact-btn" class="action-button">Scan for Clues!</button>
+            <button id="new-fact-btn" class="action-button">Discover Another Wonder</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Site will update again at: <span id="update-time">Loading...</span></p>
+    </footer>
+
+    <script>
+        const factText = document.getElementById('main-fact-text');
+        const revealBtn = document.getElementById('reveal-fact-btn');
+        const newFactBtn = document.getElementById('new-fact-btn');
+        const didYouKnow = document.getElementById('did-you-know');
+        const siteTitle = document.getElementById('site-title');
+        const mainTitle = document.getElementById('main-title');
+        const updateTimeSpan = document.getElementById('update-time');
+
+        // Function to update the time in the footer
+        function updateFooterTime() {
+            const now = new Date();
+            // Add 24 hours for the "upcoming update" time
+            now.setHours(now.getHours() + 24);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            updateTimeSpan.textContent = now.toLocaleString('en-US', options);
+        }
+
+        // Initial call to set the time
+        updateFooterTime();
+        // Update time every minute (optional, but good for "upcoming update" feel)
+        setInterval(updateFooterTime, 60000);
+
+
+        const facts = [
+            {
+                theme: "Cosmic Wonders",
+                fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+                didYouKnow: "The observable universe is estimated to contain about 100 billion to 200 billion galaxies, each with billions of stars!",
+                bgColor: "#0D0D2B", // Deep Space Blue
+                textColor: "#E0FFFF", // Light Cyan
+                footerBg: "#08081A",
+                titleColor: "#FFD700", // Gold
+                buttonPrimary: "#4A00B0", // Deep Purple
+                mainActionBtn: "#FF4500" // OrangeRed
+            },
+            {
+                theme: "Oceanic Depths",
+                fact: "The Mariana Trench is deeper than Mount Everest is tall.",
+                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater!",
+                bgColor: "#001F3F", // Dark Midnight Blue
+                textColor: "#7FDBFF", // Aqua
+                footerBg: "#001228",
+                titleColor: "#FFDC00", // Gold
+                buttonPrimary: "#0074D9", // Blue
+                mainActionBtn: "#FF851B" // Orange
+            },
+            {
+                theme: "Ancient Earth",
+                fact: "Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.",
+                didYouKnow: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus!",
+                bgColor: "#2E2E00", // Dark Olive Green
+                textColor: "#E6E6B8", // Pale Yellow
+                footerBg: "#1A1A00",
+                titleColor: "#A0522D", // Sienna
+                buttonPrimary: "#8B4513", // SaddleBrown
+                mainActionBtn: "#D2691E" // Chocolate
+            },
+            {
+                theme: "Microscopic Marvels",
+                fact: "A single human body contains more bacterial cells than human cells.",
+                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood!",
+                bgColor: "#1A331A", // Dark Forest Green
+                textColor: "#CCFFCC", // Pale Green
+                footerBg: "#0F1F0F",
+                titleColor: "#9ACD32", // YellowGreen
+                buttonPrimary: "#3CB371", // MediumSeaGreen
+                mainActionBtn: "#6B8E23" // OliveDrab
+            }
+        ];
+
+        let currentFactIndex = 0;
+        let scanCount = 0;
+        const maxScans = 3; // Number of scans before "Reveal Full Fact" appears
+
+        function applyTheme(theme) {
+            document.documentElement.style.setProperty('--bg-color-primary', theme.bgColor);
+            document.documentElement.style.setProperty('--text-color', theme.textColor);
+            document.documentElement.style.setProperty('--footer-bg', theme.footerBg);
+            document.documentElement.style.setProperty('--title-color', theme.titleColor);
+            document.documentElement.style.setProperty('--button-primary', theme.buttonPrimary);
+            document.documentElement.style.setProperty('--main-action-btn', theme.mainActionBtn);
+            document.documentElement.style.setProperty('--glass-bg', theme.bgColor.replace(')', ', 0.6)').replace('rgb', 'rgba'));
+            document.documentElement.style.setProperty('--glass-border', theme.textColor.replace(')', ', 0.3)').replace('rgb', 'rgba'));
+            document.documentElement.style.setProperty('--main-action-btn-hover', darkenColor(theme.mainActionBtn, 20));
+            document.documentElement.style.setProperty('--button-hover', darkenColor(theme.buttonPrimary, 20));
+            siteTitle.textContent = theme.theme;
+            mainTitle.textContent = theme.theme;
+        }
+
+        function darkenColor(hex, percent) {
+            var f=parseInt(hex.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=(f>>8)&0x00FF,B=f&0x0000FF;
+            return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+Math.round((t-B)*p)+B).toString(16).slice(1);
+        }
+
+        function typeWriterEffect(element, text, i = 0) {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                setTimeout(() => typeWriterEffect(element, text, i + 1), 50); // Typing speed
+            }
+        }
+
+        function loadFact(index) {
+            const factData = facts[index];
+            applyTheme(factData);
+
+            factText.textContent = ''; // Clear text for typewriter effect
+            factText.classList.remove('revealed', 'glitch-effect');
+            didYouKnow.classList.remove('visible');
+
+            // Reset scan count and button text
+            scanCount = 0;
+            revealBtn.textContent = 'Scan for Clues!';
+            revealBtn.style.display = 'inline-block'; // Show scan button
+            newFactBtn.style.display = 'none'; // Hide new fact button initially
+
+            // Reset blur and opacity for the new fact
+            factText.style.filter = `blur(10px)`; // Max blur
+            factText.style.opacity = '0.2'; // Min opacity
+            factText.style.color = 'transparent';
+            factText.style.textShadow = 'none';
+
+            // Set the fact and didYouKnow text, but keep them hidden/blurred
+            factText.dataset.fullText = factData.fact;
+            didYouKnow.querySelector('p').textContent = factData.didYouKnow;
+        }
+
+        revealBtn.addEventListener('click', () => {
+            if (scanCount < maxScans) {
+                scanCount++;
+                const blurAmount = 10 - (scanCount * (10 / (maxScans + 1))); // Gradually reduce blur
+                const opacityAmount = 0.2 + (scanCount * (0.8 / (maxScans + 1))); // Gradually increase opacity
+
+                factText.style.filter = `blur(${blurAmount}px)`;
+                factText.style.opacity = `${opacityAmount}`;
+
+                // Optional: Add a subtle animation for scanning
+                factText.classList.add('glitch-effect');
+                setTimeout(() => {
+                    factText.classList.remove('glitch-effect');
+                }, 500); // Glitch for half a second
+
+                if (scanCount >= maxScans) {
+                    revealBtn.textContent = 'Reveal Full Fact!';
+                }
+            } else { // This is the "Reveal Full Fact" action
+                revealBtn.style.display = 'none'; // Hide reveal button
+                newFactBtn.style.display = 'inline-block'; // Show new fact button
+
+                factText.classList.add('revealed'); // Fully unblur and show
+                factText.textContent = ''; // Clear before typing
+                typeWriterEffect(factText, factText.dataset.fullText);
+                setTimeout(() => {
+                    didYouKnow.classList.add('visible');
+                }, factText.dataset.fullText.length * 50 + 500); // Appear after typing
+            }
+        });
+
+        newFactBtn.addEventListener('click', () => {
+            currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact
+            loadFact(currentFactIndex);
+        });
+
+        // Initial load: pick a random fact
+        currentFactIndex = Math.floor(Math.random() * facts.length);
+        loadFact(currentFactIndex);
+    </script>
+</body>
 </html>
