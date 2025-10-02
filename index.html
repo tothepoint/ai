@@ -6,19 +6,19 @@
     <title id="site-title">Cosmic Explorer</title>
     <style>
         :root {
-            /* Default/Initial Theme Colors (Planetary Peculiarities) */
-            --bg-color-primary: #2C003E;   /* Slightly different dark purple */
-            --text-color: #E0BBE4;         /* Light Lavender */
-            --footer-bg: #1A002B;          /* Darker purple for footer */
-            --glass-bg: rgba(44, 0, 62, 0.6); /* Transparent dark purple */
-            --glass-border: rgba(224, 187, 228, 0.8); /* Transparent Light Lavender */
+            /* Default/Initial Theme Colors (Extreme Astrophysics) */
+            --bg-color-primary: #000000;   /* Pure Black */
+            --text-color: #00FF00;         /* Bright Green */
+            --footer-bg: #000000;          /* Darker for footer */
+            --glass-bg: rgba(0, 0, 0, 0.7); /* Transparent dark */
+            --glass-border: rgba(0, 255, 255, 0.8); /* Transparent Aqua */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #957DAD;        /* Medium Purple */
+            --title-color: #00FFFF;        /* Aqua */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #6A5ACD;     /* Slate Blue */
-            --button-hover: #483D8B;       /* Darker Slate Blue */
-            --main-action-btn: #FF69B4;    /* Hot Pink for main actions */
-            --main-action-btn-hover: #C71585; /* Darker Hot Pink */
+            --button-primary: #008080;     /* Teal */
+            --button-hover: #005F5F;       /* Darker Teal */
+            --main-action-btn: #FF4500;    /* Orange Red for main actions */
+            --main-action-btn-hover: #CD3700; /* Darker Orange Red */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
             --generic-title-color: #ADD8E6; /* Light Blue for generic title */
         }
@@ -59,13 +59,13 @@
             overflow: hidden;
         }
         h1#main-title {
-            font-size: 4.5rem; /* Slightly reduced font size */
+            font-size: 4.5rem;
             margin-bottom: 3rem;
             text-shadow: var(--title-shadow);
-            color: var(--generic-title-color); /* Initially generic title color */
+            color: var(--generic-title-color);
             letter-spacing: 3px;
             font-weight: 900;
-            transition: color 1s ease; /* Smooth transition for title color */
+            transition: color 1s ease;
         }
         p {
             font-size: 2.2rem;
@@ -87,7 +87,7 @@
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
             cursor: default;
-            transition: all 0.5s ease, transform 0.3s ease-out; /* Added transform for animation */
+            transition: all 0.5s ease, transform 0.3s ease-out;
             position: relative;
             overflow: hidden;
             max-width: 900px;
@@ -108,13 +108,13 @@
         }
         #main-fact-text {
             font-size: 2.0rem;
-            color: transparent; /* Initially transparent */
+            color: transparent;
             background-color: transparent;
             padding: 15px 25px;
             border-radius: 12px;
             font-style: italic;
             font-weight: 700;
-            text-shadow: none; /* Initially no text shadow */
+            text-shadow: none;
             transition: color 1s ease, background-color 1s ease, filter 1s ease, opacity 1s ease, text-shadow 1s ease;
             line-height: 1.5;
             min-height: 100px;
@@ -124,7 +124,7 @@
             text-align: center;
             position: relative;
             z-index: 1;
-            filter: blur(10px); /* Initially blurred */
+            filter: blur(10px);
             opacity: 0.2;
         }
         #main-fact-text::before {
@@ -136,25 +136,25 @@
             bottom: 0;
             background-color: var(--reveal-overlay-color);
             border-radius: 12px;
-            opacity: 1; /* Initially visible overlay */
+            opacity: 1;
             transition: opacity 1s ease;
             z-index: -1;
         }
         #main-fact-text.revealed {
-            filter: blur(0px); /* Unblur when revealed */
-            opacity: 1; /* Fully opaque when revealed */
-            color: var(--text-color); /* Restore text color */
-            text-shadow: var(--fact-text-shadow); /* Restore text shadow */
+            filter: blur(0px);
+            opacity: 1;
+            color: var(--text-color);
+            text-shadow: var(--fact-text-shadow);
         }
         #main-fact-text.revealed::before {
-            opacity: 0; /* Hidden overlay when revealed */
+            opacity: 0;
         }
         #did-you-know {
             margin-top: 30px;
             padding-top: 25px;
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             text-align: left;
-            max-height: 0; /* Initially hidden */
+            max-height: 0;
             overflow: hidden;
             opacity: 0;
             transition: max-height 1s ease-out, opacity 1s ease-out, transform 1s ease-out;
@@ -163,19 +163,19 @@
             max-width: 850px;
         }
         #did-you-know.show-did-you-know {
-            max-height: 150px; /* Adjust as needed */
+            max-height: 150px;
             opacity: 1;
             transform: translateY(0);
         }
         #did-you-know h3 {
             font-size: 1.8rem;
-            color: var(--main-action-btn); /* Use accent color */
+            color: var(--main-action-btn);
             margin-bottom: 12px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         }
         #did-you-know-content {
             font-size: 1.3rem;
-            color: var(--text-color); /* Adjusted for better visibility */
+            color: var(--text-color);
             line-height: 1.6;
             margin-bottom: 0;
         }
@@ -190,7 +190,7 @@
         }
         .action-button {
             background-color: var(--main-action-btn);
-            color: var(--footer-bg); /* Use a contrasting color for text */
+            color: var(--footer-bg);
             padding: 18px 40px;
             font-size: 1.8rem;
             border-radius: 15px;
@@ -229,7 +229,7 @@
     <div class="container">
         <h1 id="main-title">Cosmic Explorer</h1>
         <div id="main-fact-container">
-            <p id="main-fact-text">A day on Venus is longer than a year on Venus.</p>
+            <p id="main-fact-text">Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.</p>
         </div>
         <div class="button-group">
             <button id="reveal-more-btn" class="action-button">Reveal More</button>
@@ -239,7 +239,7 @@
 
         <div id="did-you-know">
             <h3>Did You Know?</h3>
-            <p id="did-you-know-content">Venus rotates extremely slowly, taking about 243 Earth days to complete one rotation, while its orbit around the Sun takes about 225 Earth days.</p>
+            <p id="did-you-know-content">They are formed from the collapsed cores of massive stars during a supernova explosion, packing the mass of our sun into a sphere only about 20 kilometers across.</p>
         </div>
     </div>
 
@@ -321,7 +321,7 @@
             }
         ];
 
-        let currentFactIndex = 1; // Start with "Planetary Peculiarities" fact
+        let currentFactIndex = 2; // Start with "Extreme Astrophysics" fact
         let typingTimeout;
         const genericTitle = "Cosmic Explorer";
 
