@@ -3,27 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders: Journey Through the Stars</title>
+    <title id="site-title">Deep Sea Wonders: Unveiling the Abyss</title>
     <style>
         :root {
-            /* Theme Colors (Space Exploration) */
-            --bg-color-shallow: #1A0F2D; /* Deep Indigo */
+            /* Theme Colors (Deep Sea Exploration) */
+            --bg-color-shallow: #0A192F; /* Very dark blue, almost black, like the deep ocean */
             --bg-color-deep: #000000;   /* Pure black */
-            --text-color: #E0E0E0;      /* Light Gray/Silver for contrast */
-            --footer-bg: #0F081A; /* Darker Indigo for footer */
-            --glass-bg: rgba(26, 15, 45, 0.6); /* Transparent Deep Indigo */
-            --glass-border: rgba(187, 134, 252, 0.8); /* Transparent Light Violet */
+            --text-color: #E0E0E0;      /* Light Gray for contrast */
+            --footer-bg: #06111F; /* Even darker blue for footer */
+            --glass-bg: rgba(10, 25, 47, 0.6); /* Transparent Deep Blue */
+            --glass-border: rgba(76, 175, 80, 0.8); /* Transparent Vibrant Green */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #BB86FC;     /* Light Violet/Purple for title */
+            --title-color: #4CAF50;     /* Vibrant Green for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #6200EE; /* Deep Purple for buttons */
-            --button-hover: #9C27B0;   /* Medium Purple for button hover */
-            --main-action-btn: #BB86FC; /* Light Violet for main action */
-            --main-action-btn-hover: #BB86FC; /* Light Violet, slightly darker on hover */
+            --button-primary: #2196F3; /* Medium Blue for buttons */
+            --button-hover: #1976D2;   /* Darker Blue for button hover */
+            --main-action-btn: #4CAF50; /* Vibrant Green for main action */
+            --main-action-btn-hover: #388E3C; /* Darker Green for main action hover */
             --history-toggle-color: #E0E0E0; /* Light Gray for footer text */
-            --history-list-color: #CFBFF7; /* Pale Lavender for history list */
+            --history-list-color: #A5D6A7; /* Pale Green for history list */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
             --streak-color: #FFD700; /* Gold for streak */
+            --quiz-correct: #4CAF50; /* Green for correct answer */
+            --quiz-incorrect: #F44336; /* Red for incorrect answer */
         }
 
         body {
@@ -192,7 +194,7 @@
         }
         #did-you-know h3 {
             font-size: 1.8rem;
-            color: var(--button-primary);
+            color: var(--main-action-btn); /* Use accent color */
             margin-bottom: 12px;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
         }
@@ -314,96 +316,18 @@
             font-size: 2rem;
             color: var(--streak-color);
         }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
 
-        <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
-        </div>
-
-        <div id="fact-streak-container">
-            🔥 Fact Streak: <span id="streak-count">0</span>
-        </div>
-
-        <button id="reveal-fact-btn">Reveal Fact</button>
-
-        <div id="did-you-know">
-            <h3>Did You Know?</h3>
-            <p id="did-you-know-content">The universe is estimated to contain between 100 billion and 200 billion galaxies, each with billions of stars.</p>
-        </div>
-
-        <div id="history-section">
-            <button id="history-toggle-btn">Toggle Fact History</button>
-            <ul id="history-list">
-                <!-- History items will be added here by JavaScript -->
-            </ul>
-        </div>
-    </div>
-
-    <footer id="footer-info">
-        Site last updated: <span id="update-time"></span>
-    </footer>
-
-    <script>
-        const factText = document.getElementById('fact-of-the-day-text');
-        const revealBtn = document.getElementById('reveal-fact-btn');
-        const updateTimeSpan = document.getElementById('update-time');
-        const historyToggleBtn = document.getElementById('history-toggle-btn');
-        const historyList = document.getElementById('history-list');
-        const didYouKnow = document.getElementById('did-you-know');
-        const streakCountSpan = document.getElementById('streak-count');
-
-        let factRevealed = false;
-        let factStreak = 0;
-
-        // Set initial update time
-        updateTimeSpan.textContent = new Date().toLocaleString();
-
-        revealBtn.addEventListener('click', () => {
-            if (!factRevealed) {
-                factText.classList.add('revealed');
-                revealBtn.textContent = "Next Fact";
-                factRevealed = true;
-                factStreak++;
-                streakCountSpan.textContent = factStreak;
-                didYouKnow.classList.add('show-did-you-know'); // Show "Did You Know" on first reveal
-            } else {
-                // In a real application, this would fetch a new fact
-                alert("Fetching a new cosmic wonder! (Feature not fully implemented yet)");
-                factText.classList.remove('revealed');
-                factRevealed = false;
-                revealBtn.textContent = "Reveal Fact";
-                didYouKnow.classList.remove('show-did-you-know'); // Hide "Did You Know" for new fact
-                // Reset streak if user doesn't reveal next fact immediately, or implement more complex logic
-                // For now, let's keep streak for demonstration.
-            }
-        });
-
-        historyToggleBtn.addEventListener('click', () => {
-            historyList.classList.toggle('show-history');
-            if (historyList.classList.contains('show-history')) {
-                historyToggleBtn.textContent = "Hide Fact History";
-            } else {
-                historyToggleBtn.textContent = "Toggle Fact History";
-            }
-        });
-
-        // Initial state for "Did You Know"
-        didYouKnow.classList.remove('show-did-you-know');
-
-        // Example of adding a history item (can be expanded)
-        function addFactToHistory(fact) {
-            const listItem = document.createElement('li');
-            listItem.textContent = fact;
-            historyList.prepend(listItem); // Add to the beginning
-        }
-
-        // Add the initial fact to history
-        addFactToHistory(factText.textContent);
-
-    </script>
-</body>
-</html>
+        /* Quiz Feature Styles */
+        #quiz-container {
+            margin-top: 30px;
+            padding: 25px 35px;
+            background-color: var(--glass-bg);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            max-width: 800px;
+            width: 90%;
+            display: none; /* Hidden by default */
+            flex-direction: column;\n            align-items: center;\n            opacity: 0;\n            transform: translateY(20px);\n            transition: opacity 0.5s ease-out, transform 0.5s ease-out;\n        }\n        #quiz-container.show-quiz {\n            display: flex;\n            opacity: 1;\n            transform: translateY(0);\n        }\n        #quiz-question {\n            font-size: 1.8rem;\n            color: var(--text-color);\n            margin-bottom: 20px;\n            font-weight: 600;\n            text-shadow: var(--fact-text-shadow);\n        }\n        .quiz-options {\n            display: flex;\n            flex-wrap: wrap;\n            justify-content: center;\n            gap: 15px;\n            margin-bottom: 20px;\n        }\n        .quiz-option-btn {\n            background-color: var(--button-primary);\n            color: var(--text-color);\n            padding: 12px 25px;\n            font-size: 1.1rem;\n            border-radius: 8px;\n            cursor: pointer;\n            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;\n            border: none;\n            outline: none;\n            flex-grow: 1;\n            min-width: 150px;\n            max-width: 45%;\n        }\n        .quiz-option-btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 5px 10px rgba(0,0,0,0.3);\n        }\n        .quiz-option-btn.correct {\n            background-color: var(--quiz-correct);\n            box-shadow: 0 0 15px var(--quiz-correct);\n        }\n        .quiz-option-btn.incorrect {\n            background-color: var(--quiz-incorrect);\n            box-shadow: 0 0 15px var(--quiz-incorrect);\n        }\n        #quiz-feedback {\n            font-size: 1.5rem;\n            font-weight: 700;\n            margin-top: 15px;\n            min-height: 30px; /* To prevent layout shift */\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1 id=\"main-title\">Deep Sea Wonders</h1>\n\n        <div id=\"fact-of-the-day-container\">\n            <p id=\"fact-of-the-day-text\">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).</p>\n        </div>\n\n        <div id=\"fact-streak-container\">\n            🔥 Fact Streak: <span id=\"streak-count\">0</span>\n        </div>\n\n        <button id=\"reveal-fact-btn\">Reveal Fact</button>\n\n        <div id=\"quiz-container\">\n            <p id=\"quiz-question\"></p>\n            <div class=\"quiz-options\" id=\"quiz-options\">\n                <!-- Quiz options will be inserted here -->\n            </div>\n            <p id=\"quiz-feedback\"></p>\n        </div>\n\n        <div id=\"did-you-know\">\n            <h3>Did You Know?</h3>\n            <p id=\"did-you-know-content\">If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.</p>\n        </div>\n\n        <div id=\"history-section\">\n            <button id=\"history-toggle-btn\">Toggle Fact History</button>\n            <ul id=\"history-list\">\n                <!-- History items will be added here by JavaScript -->\n            </ul>\n        </div>\n    </div>\n\n    <footer id=\"footer-info\">\n        Site last updated: <span id=\"update-time\"></span>\n    </footer>\n\n    <script>\n        const factText = document.getElementById(\'fact-of-the-day-text\');\n        const revealBtn = document.getElementById(\'reveal-fact-btn\');\n        const updateTimeSpan = document.getElementById(\'update-time\');\n        const historyToggleBtn = document.getElementById(\'history-toggle-btn\');\n        const historyList = document.getElementById(\'history-list\');\n        const didYouKnow = document.getElementById(\'did-you-know\');\n        const streakCountSpan = document.getElementById(\'streak-count\');\n        const quizContainer = document.getElementById(\'quiz-container\');\n        const quizQuestion = document.getElementById(\'quiz-question\');\n        const quizOptions = document.getElementById(\'quiz-options\');\n        const quizFeedback = document.getElementById(\'quiz-feedback\');\n\n        let factRevealed = false;\n        let factStreak = 0;\n        let currentFact = \"\";\n        let currentQuiz = null;\n\n        const factsAndQuizzes = [\n            {\n                fact: \"The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).\",\n                didYouKnow: \"If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile underwater.\",\n                quiz: {\n                    question: \"What is the approximate maximum depth of the Mariana Trench?\",\n                    options: [\"8,000 meters\", \"11,000 meters\", \"15,000 meters\", \"20,000 meters\"],\n                    answer: \"11,000 meters\"\n                }\n            },\n            {\n                fact: \"Over 80% of the ocean remains unmapped, unobserved, and unexplored.\",\n                didYouKnow: \"The pressure at the bottom of the Mariana Trench is over 1,000 times the standard atmospheric pressure at sea level.\",\n                quiz: {\n                    question: \"Approximately how much of the ocean remains unexplored?\",\n                    options: [\"Less than 50%\", \"About 60%\", \"Over 80%\", \"Nearly 100%\"],\n                    answer: \"Over 80%\"\n                }\n            },\n            {\n                fact: \"The 'Challenger Deep' is the deepest known point in the Mariana Trench.\",\n                didYouKnow: \"Only a handful of people have ever descended to the Challenger Deep, fewer than have been to the moon.\",\n                quiz: {\n                    question: \"What is the deepest known point in the Mariana Trench called?\",\n                    options: [\"Pacific Abyss\", \"Neptune's Grotto\", \"Challenger Deep\", \"Oceanic Maw\"],\n                    answer: \"Challenger Deep\"\n                }\n            }\n        ];\n\n        let currentFactIndex = -1; // Start before the first fact\n\n        function displayFact(index) {\n            const data = factsAndQuizzes[index];\n            factText.textContent = data.fact;\n            document.getElementById(\'did-you-know-content\').textContent = data.didYouKnow;\n            currentFact = data.fact;\n            currentQuiz = data.quiz;\n\n            // Reset quiz\n            quizContainer.classList.remove(\'show-quiz\');\n            quizFeedback.textContent = \"\";\n            quizOptions.innerHTML = \"\";\n            factText.classList.remove(\'revealed\');\n            didYouKnow.classList.remove(\'show-did-you-know\');\n            factRevealed = false;\n            revealBtn.textContent = \"Reveal Fact\";\n        }\n\n        function setupQuiz(quizData) {\n            quizQuestion.textContent = quizData.question;\n            quizOptions.innerHTML = \"\";\n            quizData.options.forEach(option => {\n                const button = document.createElement(\'button\');\n                button.classList.add(\'quiz-option-btn\');\n                button.textContent = option;\n                button.addEventListener(\'click\', () => checkAnswer(option, quizData.answer, button));\n                quizOptions.appendChild(button);\n            });\n        }\n\n        function checkAnswer(selectedOption, correctAnswer, button) {\n            Array.from(quizOptions.children).forEach(btn => btn.disabled = true); // Disable all buttons\n            if (selectedOption === correctAnswer) {\n                button.classList.add(\'correct\');\n                quizFeedback.textContent = \"Correct! Well done!\";\n                quizFeedback.style.color = \"var(--quiz-correct)\";\n                factStreak++;\n                streakCountSpan.textContent = factStreak;\n            } else {\n                button.classList.add(\'incorrect\');\n                quizFeedback.textContent = `Incorrect. The answer was \"${correctAnswer}\".`;\n                quizFeedback.style.color = \"var(--quiz-incorrect)\";\n                factStreak = 0; // Reset streak on incorrect answer\n                streakCountSpan.textContent = factStreak;\n                // Highlight the correct answer\n                Array.from(quizOptions.children).forEach(btn => {\n                    if (btn.textContent === correctAnswer) {\n                        btn.classList.add(\'correct\');\n                    }\n                });\n            }\n        }\n\n        // Set initial update time\n        updateTimeSpan.textContent = new Date().toLocaleString();\n\n        revealBtn.addEventListener(\'click\', () => {\n            if (!factRevealed) {\n                factText.classList.add(\'revealed\');\n                revealBtn.textContent = \"Next Fact\";\n                factRevealed = true;\n                didYouKnow.classList.add(\'show-did-you-know\');\n\n                // Show quiz\n                if (currentQuiz) {\n                    setupQuiz(currentQuiz);\n                    quizContainer.classList.add(\'show-quiz\');\n                }\n\n            } else {\n                addFactToHistory(currentFact); // Add current fact to history before moving to next\n                currentFactIndex = (currentFactIndex + 1) % factsAndQuizzes.length;\n                displayFact(currentFactIndex);\n            }\n        });\n\n        historyToggleBtn.addEventListener(\'click\', () => {\n            historyList.classList.toggle(\'show-history\');\n            if (historyList.classList.contains(\'show-history\')) {\n                historyToggleBtn.textContent = \"Hide Fact History\";\n            } else {\n                historyToggleBtn.textContent = \"Toggle Fact History\";\n            }\n        });\n\n        function addFactToHistory(fact) {\n            const listItem = document.createElement(\'li\');\n            listItem.textContent = fact;\n            historyList.prepend(listItem); // Add to the beginning\n        }\n\n        // Initialize with the first fact\n        currentFactIndex = 0;\n        displayFact(currentFactIndex);\n        addFactToHistory(factsAndQuizzes[0].fact); // Add initial fact to history\n    </script>\n</body>\n</html>
