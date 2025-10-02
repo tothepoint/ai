@@ -343,7 +343,7 @@
             {
                 theme: "Oceanic Depths",
                 fact: "The Mariana Trench is deeper than Mount Everest is tall.",
-                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater!",
+                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.",
                 bgColor: "#001F3F", // Dark Midnight Blue
                 bgSecondaryColor: "#002B55",
                 textColor: "#7FDBFF", // Aqua
@@ -355,7 +355,7 @@
             {
                 theme: "Ancient Earth",
                 fact: "Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.",
-                didYouKnow: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus!",
+                didYouKnow: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.",
                 bgColor: "#2E2E00", // Dark Olive Green
                 bgSecondaryColor: "#3A3A00",
                 textColor: "#E6E6B8", // Pale Yellow
@@ -367,7 +367,7 @@
             {
                 theme: "Microscopic Marvels",
                 fact: "A single human body contains more bacterial cells than human cells.",
-                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood!",
+                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",
                 bgColor: "#1A331A", // Dark Forest Green
                 bgSecondaryColor: "#254725",
                 textColor: "#CCFFCC", // Pale Green
@@ -375,6 +375,30 @@
                 titleColor: "#9ACD32", // YellowGreen
                 buttonPrimary: "#3CB371", // MediumSeaGreen
                 mainActionBtn: "#6B8E23" // OliveDrab
+            },
+            {
+                theme: "Quantum Quirks",
+                fact: "Particles can be in two places at once, a phenomenon called superposition.",
+                didYouKnow: "This bizarre behavior is at the heart of quantum computing, where 'qubits' can represent both 0 and 1 simultaneously, vastly increasing processing power.",
+                bgColor: "#330033", // Dark Purple
+                bgSecondaryColor: "#470047",
+                textColor: "#FFCCFF", // Light Pink/Purple
+                footerBg: "#1F001F",
+                titleColor: "#CC00CC", // Magenta
+                buttonPrimary: "#990099", // Medium Purple
+                mainActionBtn: "#FF00FF" // Fuchsia
+            },
+            {
+                theme: "Ancient Civilizations",
+                fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",
+                didYouKnow: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.",
+                bgColor: "#4A3B2A", // Earthy Brown
+                bgSecondaryColor: "#5E4D3C",
+                textColor: "#F5DEB3", // Wheat
+                footerBg: "#33281D",
+                titleColor: "#DAA520", // Goldenrod
+                buttonPrimary: "#8B4513", // SaddleBrown
+                mainActionBtn: "#CD853F" // Peru
             }
         ];
 
@@ -414,6 +438,11 @@
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 setTimeout(() => typeWriterEffect(element, text, i + 1), 50); // Typing speed
+            } else {
+                // After typing is complete, reveal the "Did You Know?" section
+                setTimeout(() => {
+                    didYouKnow.classList.add('visible');
+                }, 500); // Small delay after typing
             }
         }
 
@@ -470,9 +499,6 @@
                 factText.classList.add('revealed'); // Fully unblur and show
                 factText.textContent = ''; // Clear before typing
                 typeWriterEffect(factText, factText.dataset.fullText);
-                setTimeout(() => {
-                    didYouKnow.classList.add('visible');
-                }, factText.dataset.fullText.length * 50 + 500); // Appear after typing
             }
         });
 
