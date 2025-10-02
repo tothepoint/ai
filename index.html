@@ -3,23 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oceanic Wonders: Deep Sea Discoveries</title>
+    <title id="site-title">Oceanic Wonders: Deep Sea Discoveries</title>
     <style>
         :root {
-            /* Theme Colors for "Oceanic Wonders" */
-            --bg-color-shallow: #0077be; /* Vibrant ocean blue */
-            --bg-color-deep: #004d80; /* Deeper ocean blue */
-            --text-color: #e0f2f7; /* Very light blue/white for contrast */
-            --footer-bg: #003355; /* Even darker blue for the footer */
-            --glass-bg: rgba(0, 119, 190, 0.4); /* Transparent ocean blue */
-            --glass-border: rgba(224, 242, 247, 0.6); /* Light blue border */
+            /* Default Theme Colors (Deep Sea) */
+            --bg-color-shallow: #1A2B42; /* Very deep blue */
+            --bg-color-deep: #0A162A;   /* Almost black-blue */
+            --text-color: #E0F7FA;      /* Light cyan */
+            --footer-bg: #102038; /* Slightly lighter dark blue */
+            --glass-bg: rgba(26, 43, 66, 0.4); /* Transparent deep blue */
+            --glass-border: rgba(224, 247, 250, 0.6); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #87ceeb; /* Sky blue for title */
+            --title-color: #87CEEB;     /* Sky blue for title */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #4682b4; /* Steel blue for buttons */
-            --button-hover: #5f9ea0; /* Cadet blue for button hover */
-            --main-action-btn: #1e90ff; /* Dodger blue for main action */
-            --main-action-btn-hover: #4169e1; /* Royal blue for main action hover */
+            --button-primary: #4682B4; /* Steel blue for buttons */
+            --button-hover: #5F9EA0;   /* Cadet blue for button hover */
+            --main-action-btn: #4682B4; /* Steel blue for main action */
+            --main-action-btn-hover: #5F9EA0; /* Cadet blue for main action hover */
             --history-toggle-color: #e0f2f7; /* Light blue for footer text */
             --history-list-color: #a7d9ed; /* Lighter blue for history list */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
@@ -100,10 +100,7 @@
             justify-content: center;
             font-weight: 700;
         }
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
+        @keyframes fadeInScale {\n            from { opacity: 0; transform: scale(0.95); }\n            to { opacity: 1; transform: scale(1); }\n        }
         @keyframes slideInFromBottom {
             from { transform: translateY(120%); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
@@ -145,13 +142,13 @@
         }
         #fact-of-the-day-text {
             font-size: 2.0rem;
-            color: var(--text-color);
+            color: transparent; /* Initially transparent */
             background-color: transparent;
             padding: 15px 25px;
             border-radius: 12px;
             font-style: italic;
             font-weight: 700;
-            text-shadow: var(--fact-text-shadow);
+            text-shadow: none; /* Initially no text shadow */
             transition: color 1s ease, background-color 1s ease, filter 1s ease, opacity 1s ease, text-shadow 1s ease;
             line-height: 1.5;
             min-height: 100px;
@@ -163,8 +160,6 @@
             z-index: 1;
             filter: blur(10px); /* Initially blurred */
             opacity: 0.2;
-            color: transparent;
-            text-shadow: none;
         }
         #fact-of-the-day-text::before {
             content: '';
@@ -343,12 +338,12 @@
         <h1 id="main-title">Oceanic Wonders</h1>
 
         <div id="fact-of-the-day-container">
-            <p id="fact-of-the-day-text">The ocean is home to the largest living structure on Earth, the Great Barrier Reef, which is visible from space.</p>
+            <p id="fact-of-the-day-text"></p>
             <button id="reveal-fact-btn">Dive Deeper</button>
         </div>
 
         <div id="did-you-know">
-            <h3>Previous Discoveries:</h3>
+            <h3>Previous Discovery:</h3>
             <p id="did-you-know-content">No previous discoveries yet. Click "Dive Deeper" to reveal your first!</p>
         </div>
 
@@ -372,9 +367,121 @@
         const historyList = document.getElementById('history-list');
         const updateTimeSpan = document.getElementById('update-time');
         const body = document.body;
+        const siteTitle = document.getElementById('site-title');
 
         let factRevealed = false;
         let factHistory = [];
+        let currentFactIndex = -1; // To keep track of the current fact displayed
+
+        const oceanicFacts = [
+            {
+                fact: "The deepest part of the ocean, the Mariana Trench, is deeper than Mount Everest is tall.",
+                theme: "Deep Sea",
+                colors: {
+                    bg_shallow: "#1A2B42",
+                    bg_deep: "#0A162A",
+                    text: "#E0F7FA",
+                    footer_bg: "#102038",
+                    glass_bg: "rgba(26, 43, 66, 0.4)",
+                    glass_border: "rgba(224, 247, 250, 0.6)",
+                    title: "#87CEEB",
+                    button_primary: "#4682B4",
+                    button_hover: "#5F9EA0",
+                    main_action_btn: "#4682B4",
+                    main_action_btn_hover: "#5F9EA0",
+                    reveal_overlay: "rgba(0, 0, 0, 0.7)"
+                }
+            },
+            {
+                fact: "More than 80% of the ocean has never been mapped, explored, or even seen by humans.",
+                theme: "Uncharted Depths",
+                colors: {
+                    bg_shallow: "#2C3E50",
+                    bg_deep: "#1A252F",
+                    text: "#ECF0F1",
+                    footer_bg: "#212F3D",
+                    glass_bg: "rgba(44, 62, 80, 0.4)",
+                    glass_border: "rgba(236, 240, 241, 0.6)",
+                    title: "#BDC3C7",
+                    button_primary: "#3498DB",
+                    button_hover: "#2980B9",
+                    main_action_btn: "#3498DB",
+                    main_action_btn_hover: "#2980B9",
+                    reveal_overlay: "rgba(0, 0, 0, 0.7)"
+                }
+            },
+            {
+                fact: "The ocean produces over half of the world's oxygen and absorbs 50 times more carbon dioxide than our atmosphere.",
+                theme: "Ocean's Breath",
+                colors: {
+                    bg_shallow: "#006400",
+                    bg_deep: "#004d00",
+                    text: "#F0FFF0",
+                    footer_bg: "#003300",
+                    glass_bg: "rgba(0, 100, 0, 0.4)",
+                    glass_border: "rgba(240, 255, 240, 0.6)",
+                    title: "#90EE90",
+                    button_primary: "#3CB371",
+                    button_hover: "#2E8B57",
+                    main_action_btn: "#3CB371",
+                    main_action_btn_hover: "#2E8B57",
+                    reveal_overlay: "rgba(0, 0, 0, 0.7)"
+                }
+            },
+            {
+                fact: "A single blue whale can eat up to 4 tons of krill in a day.",
+                theme: "Gentle Giants",
+                colors: {
+                    bg_shallow: "#4682B4",
+                    bg_deep: "#2F4F4F",
+                    text: "#F5F5DC",
+                    footer_bg: "#1C313A",
+                    glass_bg: "rgba(70, 130, 180, 0.4)",
+                    glass_border: "rgba(245, 245, 220, 0.6)",
+                    title: "#ADD8E6",
+                    button_primary: "#6A5ACD",
+                    button_hover: "#483D8B",
+                    main_action_btn: "#6A5ACD",
+                    main_action_btn_hover: "#483D8B",
+                    reveal_overlay: "rgba(0, 0, 0, 0.7)"
+                }
+            }
+        ];
+
+        function applyThemeColors(colors) {
+            const root = document.documentElement;
+            root.style.setProperty('--bg-color-shallow', colors.bg_shallow);
+            root.style.setProperty('--bg-color-deep', colors.bg_deep);
+            root.style.setProperty('--text-color', colors.text);
+            root.style.setProperty('--footer-bg', colors.footer_bg);
+            root.style.setProperty('--glass-bg', colors.glass_bg);
+            root.style.setProperty('--glass-border', colors.glass_border);
+            root.style.setProperty('--title-color', colors.title);
+            root.style.setProperty('--button-primary', colors.button_primary);
+            root.style.setProperty('--button-hover', colors.button_hover);
+            root.style.setProperty('--main-action-btn', colors.main_action_btn);
+            root.style.setProperty('--main-action-btn-hover', colors.main_action_btn_hover);
+            root.style.setProperty('--reveal-overlay-color', colors.reveal_overlay);
+        }
+
+        function loadNewFact() {
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * oceanicFacts.length);
+            } while (newIndex === currentFactIndex); // Ensure a different fact is loaded
+
+            currentFactIndex = newIndex;
+            const factData = oceanicFacts[currentFactIndex];
+
+            factText.textContent = factData.fact;
+            siteTitle.textContent = `Oceanic Wonders: ${factData.theme}`;
+            applyThemeColors(factData.colors);
+
+            // Reset fact display
+            factText.classList.remove('revealed');
+            revealBtn.textContent = 'Dive Deeper';
+            factRevealed = false;
+        }
 
         // Function to update the time in the footer
         function updateFooterTime() {
@@ -391,7 +498,7 @@
             if (!factRevealed) {
                 factText.classList.add('revealed');
                 revealBtn.textContent = 'Explore Another Wonder';
-                body.style.background = 'var(--bg-color-deep)'; // Change background to deeper blue
+                body.style.background = 'var(--bg-color-deep)';
                 factRevealed = true;
 
                 // Add current fact to history
@@ -399,26 +506,15 @@
                 if (factHistory.length === 0) {
                     didYouKnowContent.textContent = currentFact;
                 } else {
-                    // Prepend to history list
                     const listItem = document.createElement('li');
                     listItem.textContent = currentFact;
                     historyList.prepend(listItem);
-                    didYouKnowContent.textContent = factHistory[0]; // Update "Previous Discovery" to the last revealed fact
+                    didYouKnowContent.textContent = factHistory[0];
                 }
-                factHistory.unshift(currentFact); // Add to the beginning of the array
+                factHistory.unshift(currentFact);
             } else {
-                // Reset for a new fact (for future implementation)
-                factText.classList.remove('revealed');
-                factText.textContent = "Loading a new oceanic wonder..."; // Placeholder for new fact
-                revealBtn.textContent = 'Dive Deeper';
-                body.style.background = 'var(--bg-color-shallow)'; // Revert background
-                factRevealed = false;
-
-                // In a real scenario, you'd fetch a new fact here.
-                // For now, we'll just reset the display.
-                setTimeout(() => {
-                    factText.textContent = "The ocean is home to the largest living structure on Earth, the Great Barrier Reef, which is visible from space."; // Keep the same fact for now
-                }, 1000);
+                loadNewFact();
+                body.style.background = 'var(--bg-color-shallow)';
             }
         });
 
@@ -430,6 +526,9 @@
                 historyToggleBtn.textContent = 'Show History';
             }
         });
+
+        // Load the first fact on page load
+        loadNewFact();
     </script>
 </body>
 </html>
