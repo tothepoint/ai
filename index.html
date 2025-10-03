@@ -6,7 +6,7 @@
     <title id="site-title">Quantum Quirks</title>
     <style>
         :root {
-            /* Quantum Quirks Theme Colors */
+            /* Default Theme Colors (will be overridden by JS) */
             --bg-color-primary: #330033;   /* Dark Purple */
             --bg-color-secondary: #470047; /* Slightly lighter/darker for gradient */
             --text-color: #FFCCFF;         /* Light Pink/Purple */
@@ -170,7 +170,7 @@
             20% { transform: translate(-2px, 2px); }
             40% { transform: translate(-2px, -2px); }
             60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }\
+            80% { transform: translate(2px, -2px); }
             100% { transform: translate(0); }
         }
         #did-you-know {
@@ -208,7 +208,7 @@
             margin-top: 40px;
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;\
+            flex-wrap: wrap;
             justify-content: center;
         }
         .action-button {
@@ -248,7 +248,7 @@
             color: var(--text-color); /* Ensure text is visible */
             width: 100%;
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);\
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
             transition: background-color 1.5s ease-in-out, color 0.8s ease;
         }
@@ -391,7 +391,7 @@
             {
                 theme: "Ancient Civilizations",
                 fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",
-                didYouKnown: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.",
+                didYouKnow: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.",
                 bgColor: "#4A3B2A", // Earthy Brown
                 bgSecondaryColor: "#5E4D3C",
                 textColor: "#F5DEB3", // Wheat
@@ -402,7 +402,7 @@
             }
         ];
 
-        let currentFactIndex = 4; // Set to Quantum Quirks initially
+        let currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact initially
         let scanCount = 0;
         const maxScans = 3; // Number of scans before "Reveal Full Fact" appears
 
@@ -507,7 +507,7 @@
             loadFact(currentFactIndex);
         });
 
-        // Initial load: pick the Quantum Quirks fact
+        // Initial load: pick a random fact
         loadFact(currentFactIndex);
     </script>
 </body>
