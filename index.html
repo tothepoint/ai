@@ -3,31 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Quantum Quirks</title>
+    <title id="site-title">Ancient Civilizations</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #2A0A4A;   /* Deep Violet */
-            --bg-color-secondary: #3F156B; /* Lighter Deep Violet */
-            --text-color: #E0BBE4;         /* Pale Lavender */
-            --footer-bg: #1F0738;          /* Even darker violet */
-            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent deep violet */
-            --glass-border: rgba(224, 187, 228, 0.3); /* Transparent Pale Lavender */
+            /* Default Theme Colors (Ancient Civilizations) */
+            --bg-color-primary: #4A3B2A;   /* Dark Brown */
+            --bg-color-secondary: #6B5A4A; /* Lighter Dark Brown */
+            --text-color: #F5DEB3;         /* Wheat */
+            --footer-bg: #382C1F;          /* Even darker brown */
+            --glass-bg: rgba(74, 59, 42, 0.6); /* Transparent dark brown */
+            --glass-border: rgba(245, 222, 179, 0.3); /* Transparent Wheat */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #DAA520;        /* Goldenrod */
+            --title-color: #D4AF37;        /* Gold (metallic) */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #8A2BE2;     /* Blue Violet */
-            --button-hover: #6A1BA0;       /* Darker Blue Violet */
-            --main-action-btn: #FF6347;    /* Tomato */
-            --main-action-btn-hover: #CC4F39; /* Darker Tomato */
+            --button-primary: #A0522D;     /* Sienna */
+            --button-hover: #8B4513;       /* SaddleBrown */
+            --main-action-btn: #CD853F;    /* Peru */
+            --main-action-btn-hover: #B87333; /* Darker Peru */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #E0BBE4; /* Pale Lavender for generic title */
-            --theme-indicator-color: #DAA520; /* Goldenrod for theme indicator */
-            --favorite-btn-color: #DAA520; /* Goldenrod for favorite button */
+            --generic-title-color: #F5DEB3; /* Wheat for generic title */
+            --theme-indicator-color: #D4AF37; /* Gold for theme indicator */
+            --favorite-btn-color: #D4AF37; /* Gold for favorite button */
             --favorite-btn-hover: #B8860B; /* Darker Goldenrod */
             --star-color: #FFD700; /* Gold for stars */
             --notification-bg: rgba(0, 0, 0, 0.8);
-            --notification-text: #E0BBE4;
+            --notification-text: #F5DEB3;
+            --correct-answer-color: #3CB371; /* Medium Sea Green */
+            --incorrect-answer-color: #FF6347; /* Tomato */
         }
 
         #fact-streak-display {
@@ -182,7 +184,7 @@
             appearance: none; /* Remove default dropdown arrow */
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E0FFFF%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.8%204.9-4.9%2011.4-3.1%2017.4l130%20140c3.8%204.9%209.6%208.1%2016.1%208.1s12.3-3.2%2016.1-8.1l130-140c1.8-6-.1-12.5-3.9-17.4z%22%2F%3E%3C%2Fsvg%3E');
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F5DEB3%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.8%204.9-4.9%2011.4-3.1%2017.4l130%20140c3.8%204.9%209.6%208.1%2016.1%208.1s12.3-3.2%2016.1-8.1l130-140c1.8-6-.1-12.5-3.9-17.4z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 1em;
@@ -560,6 +562,74 @@
             visibility: visible;
         }
 
+        /* Quiz styles */
+        #fact-quiz-container {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 850px;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            display: none; /* Hidden by default */
+        }
+        #fact-quiz-container.visible {
+            display: flex;
+        }
+        #quiz-question {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 80%;
+            max-width: 400px;
+        }
+        .quiz-option-btn {
+            padding: 12px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 1px solid var(--glass-border);
+            background-color: var(--glass-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .quiz-option-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+        .quiz-option-btn.selected {
+            border-color: var(--button-primary);
+            box-shadow: 0 0 10px var(--button-primary);
+        }
+        .quiz-option-btn.correct {
+            background-color: var(--correct-answer-color);
+            color: white;
+            border-color: var(--correct-answer-color);
+        }
+        .quiz-option-btn.incorrect {
+            background-color: var(--incorrect-answer-color);
+            color: white;
+            border-color: var(--incorrect-answer-color);
+        }
+        #submit-quiz-btn {
+            background-color: var(--button-primary);
+            color: white;
+            margin-top: 15px;
+        }
+        #quiz-feedback {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
 
         footer {
             margin-top: 30px;
@@ -625,8 +695,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Quantum Quirks</h1>
-        <span id="theme-indicator">Theme: Quantum Quirks</span>
+        <h1 id="main-title">Ancient Civilizations</h1>
+        <span id="theme-indicator">Theme: Ancient Civilizations</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
@@ -636,8 +706,8 @@
                 <option value="Oceanic Depths">Oceanic Depths</option>
                 <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
-                <option value="Quantum Quirks" selected>Quantum Quirks</option>
-                <option value="Ancient Civilizations">Ancient Civilizations</option>
+                <option value="Quantum Quirks">Quantum Quirks</option>
+                <option value="Ancient Civilizations" selected>Ancient Civilizations</option>
             </select>
         </div>
 
@@ -655,13 +725,13 @@
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="Particles can be in two places at once, a phenomenon known as superposition.">Particles can be in two places at once, a phenomenon known as superposition.</p>
+            <p id="main-fact-text" data-full-text="The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.">The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.</p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>This bizarre quantum property is famously illustrated by Schrödinger's Cat thought experiment, where a cat in a sealed box is simultaneously dead and alive until observed.</p>
+                <p>Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its precision engineering continues to baffle modern scientists.</p>
             </div>
 
             <!-- New Feature: Fact Rating -->
@@ -681,12 +751,14 @@
                 <button id="new-fact-btn" class="action-button" disabled>Discover Another Wonder</button>
                 <button id="start-quiz-btn" class="action-button" disabled>Start Fact Quiz</button>
             </div>
-            <div id="fact-quiz-container" style="display: none; margin-top: 20px; padding: 20px; background-color: rgba(0,0,0,0.3); border-radius: 15px; width: 90%; max-width: 850px; flex-direction: column; gap: 15px; align-items: center;">
+            <div id="fact-quiz-container">
                 <h3>Fact Quiz!</h3>
-                <p id="quiz-question" style="font-size: 1.5rem; margin-bottom: 15px;"></p>
-                <input type="text" id="quiz-answer-input" placeholder="Your answer" style="padding: 10px; font-size: 1.1rem; border-radius: 8px; border: 1px solid var(--glass-border); background-color: var(--glass-bg); color: var(--text-color); width: 80%; max-width: 400px;">
-                <button id="submit-quiz-btn" class="action-button" style="background-color: var(--button-primary); color: white;">Submit Answer</button>
-                <p id="quiz-feedback" style="font-size: 1.2rem; margin-top: 10px;"></p>
+                <p id="quiz-question"></p>
+                <div class="quiz-options" id="quiz-options">
+                    <!-- Quiz options will be loaded here -->
+                </div>
+                <button id="submit-quiz-btn" class="action-button" disabled>Submit Answer</button>
+                <p id="quiz-feedback"></p>
             </div>
             <div class="button-group secondary-actions">
                 <button id="toggle-did-you-know-btn" class="action-button" disabled>Tell me more!</button>
@@ -734,7 +806,7 @@
         const mainFactContainer = document.getElementById('main-fact-container');
         const themeIndicator = document.getElementById('theme-indicator');
         const copyFactBtn = document.getElementById('copy-fact-btn');
-        const shareTwitterBtn = document.getElementById('share-twitter-btn');
+        const shareTwitterBtn = document = document.getElementById('share-twitter-btn');
         const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');
         const revealFactBtn = document.getElementById('reveal-fact-btn');
         const revealOverlay = document.getElementById('reveal-overlay');
@@ -759,7 +831,7 @@
         const startQuizBtn = document.getElementById('start-quiz-btn');
         const factQuizContainer = document.getElementById('fact-quiz-container');
         const quizQuestion = document.getElementById('quiz-question');
-        const quizAnswerInput = document.getElementById('quiz-answer-input');
+        const quizOptionsContainer = document.getElementById('quiz-options');
         const submitQuizBtn = document.getElementById('submit-quiz-btn');
         const quizFeedback = document.getElementById('quiz-feedback');
 
@@ -792,7 +864,8 @@
                 mainActionBtn: "#FF4500", // OrangeRed
                 quiz: {
                     question: "What is the estimated range of galaxies in the observable universe?",
-                    answer: "100 billion to 200 billion"
+                    options: ["10-20 billion", "50-100 billion", "100-200 billion", "500-1000 billion"],
+                    answer: "100-200 billion"
                 }
             },
             {
@@ -808,7 +881,8 @@
                 mainActionBtn: "#FF851B", // Orange
                 quiz: {
                     question: "How many times greater is the pressure at the bottom of the Mariana Trench compared to sea level?",
-                    answer: "over 1,000 times"
+                    options: ["100 times", "500 times", "1,000 times", "10,000 times"],
+                    answer: "1,000 times"
                 }
             },
             {
@@ -824,13 +898,14 @@
                 mainActionBtn: "#D2691E", // Chocolate
                 quiz: {
                     question: "For how many million years did dinosaurs roam the Earth?",
-                    answer: "over 160 million years"
+                    options: ["50 million", "100 million", "160 million", "200 million"],
+                    answer: "160 million"
                 }
             },
             {
                 theme: "Microscopic Marvels",
                 fact: "A single human body contains more bacterial cells than human cells.",
-                didYouKnown: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",
+                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",
                 bgColor: "#1A331A", // Dark Forest Green
                 bgSecondaryColor: "#254725",
                 textColor: "#CCFFCC", // Pale Green
@@ -840,7 +915,8 @@
                 mainActionBtn: "#FFD700", // Gold
                 quiz: {
                     question: "What is the collective name for the bacteria in a human body?",
-                    answer: "microbiome"
+                    options: ["Microflora", "Microbiome", "Probiotics", "Pathogens"],
+                    answer: "Microbiome"
                 }
             },
             {
@@ -856,7 +932,8 @@
                 mainActionBtn: "#FF6347", // Tomato
                 quiz: {
                     question: "What is the phenomenon called when particles can be in two places at once?",
-                    answer: "superposition"
+                    options: ["Entanglement", "Superposition", "Quantum Tunneling", "Wave-particle duality"],
+                    answer: "Superposition"
                 }
             },
             {
@@ -872,7 +949,8 @@
                 mainActionBtn: "#CD853F", // Peru
                 quiz: {
                     question: "For how many years was the Great Pyramid of Giza the tallest man-made structure?",
-                    answer: "over 3,800 years"
+                    options: ["1,000 years", "2,500 years", "3,800 years", "5,000 years"],
+                    answer: "3,800 years"
                 }
             }
         ];
@@ -881,6 +959,7 @@
         let factStreak = 0;
         let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];
         let factHistory = JSON.parse(localStorage.getItem('factHistory')) || [];
+        let selectedQuizOption = null;
 
         // Mastery levels
         const masteryLevels = [
@@ -922,6 +1001,32 @@
             }, duration);
         }
 
+        function hexToRgb(hex) {
+            const bigint = parseInt(hex.slice(1), 16);
+            const r = (bigint >> 16) & 255;
+            const g = (bigint >> 8) & 255;
+            const b = bigint & 255;
+            return { r, g, b };
+        }
+
+        function darkenColor(hex, percent) {
+            let f = parseInt(hex.slice(1), 16),
+                t = percent < 0 ? 0 : 255,
+                p = percent < 0 ? percent * -1 : percent,
+                R = f >> 16,
+                G = (f >> 8) & 0x00ff,
+                B = f & 0x0000ff;
+            return "#" +
+                (
+                    0x1000000 +
+                    (Math.round((t - R) * p) + R) * 0x10000 +
+                    (Math.round((t - G) * p) + G) * 0x100 +
+                    (Math.round((t - B) * p) + B)
+                )
+                .toString(16)
+                .slice(1);
+        }
+
         function applyTheme(theme) {
             const root = document.documentElement;
             root.style.setProperty('--bg-color-primary', theme.bgColor);
@@ -949,32 +1054,6 @@
             themeSelect.value = theme.theme;
         }
 
-        function hexToRgb(hex) {
-            const bigint = parseInt(hex.slice(1), 16);
-            const r = (bigint >> 16) & 255;
-            const g = (bigint >> 8) & 255;
-            const b = bigint & 255;
-            return { r, g, b };
-        }
-
-        function darkenColor(hex, percent) {
-            let f = parseInt(hex.slice(1), 16),
-                t = percent < 0 ? 0 : 255,
-                p = percent < 0 ? percent * -1 : percent,
-                R = f >> 16,
-                G = (f >> 8) & 0x00ff,
-                B = f & 0x0000ff;
-            return "#" +
-                (
-                    0x1000000 +
-                    (Math.round((t - R) * p) + R) * 0x10000 +
-                    (Math.round((t - G) * p) + G) * 0x100 +
-                    (Math.round((t - B) * p) + B)
-                )
-                .toString(16)
-                .slice(1);
-        }
-
         function loadFact(index) {
             const factData = facts[index];
             factText.textContent = factData.fact;
@@ -996,9 +1075,11 @@
             shareTwitterBtn.disabled = true;
             shareWhatsappBtn.disabled = true;
             startQuizBtn.disabled = true; // Disable quiz button
-            factQuizContainer.style.display = 'none'; // Hide quiz
+            factQuizContainer.classList.remove('visible'); // Hide quiz
             quizFeedback.textContent = ''; // Clear quiz feedback
-            quizAnswerInput.value = ''; // Clear quiz input
+            quizOptionsContainer.innerHTML = ''; // Clear quiz options
+            submitQuizBtn.disabled = true; // Disable submit button
+            selectedQuizOption = null; // Reset selected option
             favoriteFactBtn.classList.remove('favorited');
             favoriteFactBtn.textContent = 'Favorite Fact'; // Reset button text
             resetRating(); // Reset fact rating
@@ -1050,9 +1131,11 @@
             } while (newIndex === currentFactIndex); // Ensure a different fact
             currentFactIndex = newIndex;
             loadFact(currentFactIndex);
-            factQuizContainer.style.display = 'none'; // Hide quiz when new fact is loaded
+            factQuizContainer.classList.remove('visible'); // Hide quiz when new fact is loaded
             quizFeedback.textContent = '';
-            quizAnswerInput.value = '';
+            quizOptionsContainer.innerHTML = '';
+            submitQuizBtn.disabled = true;
+            selectedQuizOption = null;
         }
 
         function copyFact() {
@@ -1232,31 +1315,62 @@
         function startQuiz() {
             const currentFact = facts[currentFactIndex];
             if (currentFact && currentFact.quiz) {
-                factQuizContainer.style.display = 'flex';
+                factQuizContainer.classList.add('visible');
                 quizQuestion.textContent = currentFact.quiz.question;
-                quizAnswerInput.value = '';
+                quizOptionsContainer.innerHTML = ''; // Clear previous options
+                selectedQuizOption = null;
+                submitQuizBtn.disabled = true;
                 quizFeedback.textContent = '';
+
+                currentFact.quiz.options.forEach(option => {
+                    const optionBtn = document.createElement('button');
+                    optionBtn.classList.add('quiz-option-btn');
+                    optionBtn.textContent = option;
+                    optionBtn.addEventListener('click', () => {
+                        // Deselect all other options
+                        document.querySelectorAll('.quiz-option-btn').forEach(btn => {
+                            btn.classList.remove('selected', 'correct', 'incorrect');
+                        });
+                        // Select current option
+                        optionBtn.classList.add('selected');
+                        selectedQuizOption = option;
+                        submitQuizBtn.disabled = false;
+                    });
+                    quizOptionsContainer.appendChild(optionBtn);
+                });
             } else {
                 showNotification('No quiz available for this fact.', 3000);
             }
         }
 
         function submitQuizAnswer() {
+            if (!selectedQuizOption) {
+                showNotification('Please select an answer!', 2000);
+                return;
+            }
+
             const currentFact = facts[currentFactIndex];
-            const userAnswer = quizAnswerInput.value.trim();
             const correctAnswer = currentFact.quiz.answer.trim();
 
-            if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+            document.querySelectorAll('.quiz-option-btn').forEach(btn => {
+                btn.disabled = true; // Disable all options after submission
+                if (btn.textContent.trim() === correctAnswer) {
+                    btn.classList.add('correct');
+                } else if (btn.classList.contains('selected')) {
+                    btn.classList.add('incorrect');
+                }
+            });
+
+            if (selectedQuizOption.trim() === correctAnswer) {
                 quizFeedback.textContent = 'Correct! Well done!';
-                quizFeedback.style.color = '#3CB371'; // Green
+                quizFeedback.style.color = 'var(--correct-answer-color)';
                 showNotification('Quiz Answer: Correct!', 2000);
             } else {
-                quizFeedback.textContent = `Incorrect. The answer was: ${correctAnswer}`;
-                quizFeedback.style.color = '#FF6347'; // Red
+                quizFeedback.textContent = `Incorrect. The correct answer was: ${correctAnswer}`;
+                quizFeedback.style.color = 'var(--incorrect-answer-color)';
                 showNotification('Quiz Answer: Incorrect.', 2000);
             }
-            // Optionally hide quiz after answer or provide a "Try Again"
-            // setTimeout(() => { factQuizContainer.style.display = 'none'; }, 5000);
+            submitQuizBtn.disabled = true; // Disable submit after answering
         }
 
 
@@ -1276,11 +1390,8 @@
         submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener
 
         // Initial load
-        // Set initial fact to Quantum Quirks (index 4)
-        currentFactIndex = facts.findIndex(fact => fact.theme === "Quantum Quirks");
-        if (currentFactIndex === -1) { // Fallback if not found
-            currentFactIndex = 0;
-        }
+        // Set initial fact to a random one
+        currentFactIndex = Math.floor(Math.random() * facts.length);
         loadFact(currentFactIndex);
         renderFavoriteFacts();
         renderFactHistory();
