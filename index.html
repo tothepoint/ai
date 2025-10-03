@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Quantum Quirks</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Default Theme Colors (Quantum Quirks) */
-            --bg-color-primary: #330033;   /* Dark Purple */
-            --bg-color-secondary: #470047; /* Slightly lighter/darker for gradient */
-            --text-color: #FFCCFF;         /* Light Pink/Purple */
-            --footer-bg: #1F001F;          /* Even darker purple */
-            --glass-bg: rgba(51, 0, 51, 0.6); /* Transparent dark purple */
-            --glass-border: rgba(255, 204, 255, 0.3); /* Transparent Light Pink/Purple */
+            /* Cosmic Wonders Theme Colors */
+            --bg-color-primary: #0D0D2B;   /* Deep Space Blue */
+            --bg-color-secondary: #1A1A40; /* Slightly lighter/darker for gradient */
+            --text-color: #E0FFFF;         /* Light Cyan */
+            --footer-bg: #08081A;          /* Even darker blue */
+            --glass-bg: rgba(13, 13, 43, 0.6); /* Transparent deep space blue */
+            --glass-border: rgba(224, 255, 255, 0.3); /* Transparent Light Cyan */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #CC00CC;        /* Magenta */
+            --title-color: #FFD700;        /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #990099;     /* Medium Purple */
-            --button-hover: #7A007A;       /* Darker Purple */
-            --main-action-btn: #FF00FF;    /* Fuchsia */
-            --main-action-btn-hover: #CC00CC; /* Darker Fuchsia */
+            --button-primary: #4A00B0;     /* Deep Purple */
+            --button-hover: #3A008C;       /* Darker Deep Purple */
+            --main-action-btn: #FF4500;    /* OrangeRed */
+            --main-action-btn-hover: #CC3700; /* Darker OrangeRed */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #FFCCFF; /* Light Pink/Purple for generic title */
-            --theme-indicator-color: #CC00CC; /* Magenta for theme indicator */
-            --favorite-btn-color: #CC00CC; /* Magenta for favorite button */
-            --favorite-btn-hover: #990099; /* Darker Magenta */
+            --generic-title-color: #E0FFFF; /* Light Cyan for generic title */
+            --theme-indicator-color: #FFD700; /* Gold for theme indicator */
+            --favorite-btn-color: #FFD700; /* Gold for favorite button */
+            --favorite-btn-hover: #CCAA00; /* Darker Gold */
         }
 
         #fact-streak-display {
@@ -410,7 +410,7 @@
             box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
         }
 
-        #favorite-facts-display {
+        #favorite-facts-display, #fact-history-display {
             margin-top: 40px;
             padding: 25px;
             background-color: rgba(0,0,0,0.3);
@@ -423,17 +423,17 @@
             flex-direction: column;
             gap: 15px;
         }
-        #favorite-facts-display.visible {
+        #favorite-facts-display.visible, #fact-history-display.visible {
             display: flex;
         }
-        #favorite-facts-display h3 {
+        #favorite-facts-display h3, #fact-history-display h3 {
             color: var(--generic-title-color);
             font-size: 1.8rem;
             margin-bottom: 15px;
             text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
             text-align: center;
         }
-        .favorite-fact-item {
+        .favorite-fact-item, .history-fact-item {
             background-color: rgba(255,255,255,0.1);
             padding: 15px;
             border-radius: 10px;
@@ -444,7 +444,7 @@
             line-height: 1.4;
             border: 1px solid rgba(255,255,255,0.2);
         }
-        .favorite-fact-item .remove-fav-btn {
+        .favorite-fact-item .remove-fav-btn, .history-fact-item .remove-history-btn {
             background-color: #DC3545; /* Red for remove */
             color: white;
             border: none;
@@ -454,7 +454,7 @@
             font-size: 0.9rem;
             transition: background-color 0.3s ease;
         }
-        .favorite-fact-item .remove-fav-btn:hover {
+        .favorite-fact-item .remove-fav-btn:hover, .history-fact-item .remove-history-btn:hover {
             background-color: #C82333;
         }
 
@@ -516,18 +516,18 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Quantum Quirks</h1>
-        <span id="theme-indicator">Theme: Quantum Quirks</span>
+        <h1 id="main-title">Cosmic Wonders</h1>
+        <span id="theme-indicator">Theme: Cosmic Wonders</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
             <select id="theme-select" class="action-button">
                 <option value="random">Random Theme</option>
-                <option value="Cosmic Wonders">Cosmic Wonders</option>
+                <option value="Cosmic Wonders" selected>Cosmic Wonders</option>
                 <option value="Oceanic Depths">Oceanic Depths</option>
                 <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
-                <option value="Quantum Quirks" selected>Quantum Quirks</option>
+                <option value="Quantum Quirks">Quantum Quirks</option>
                 <option value="Ancient Civilizations">Ancient Civilizations</option>
             </select>
         </div>
@@ -538,13 +538,13 @@
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="Particles can be in two places at once, a phenomenon called superposition.">Particles can be in two places at once, a phenomenon called superposition.</p>
+            <p id="main-fact-text" data-full-text="There are more stars in the universe than grains of sand on all the beaches on Earth.">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>This bizarre behavior is at the heart of quantum computing, where 'qubits' can represent both 0 and 1 simultaneously, vastly increasing processing power.</p>
+                <p>The observable universe is estimated to contain about 100 billion to 200 billion galaxies, each with billions of stars!</p>
             </div>
             <div class="button-group primary-actions">
                 <button id="new-fact-btn" class="action-button" disabled>Discover Another Wonder</button>
@@ -557,6 +557,7 @@
             </div>
             <div class="button-group utility-actions">
                 <button id="toggle-favorite-facts-btn" class="action-button">View Favorite Facts</button>
+                <button id="toggle-fact-history-btn" class="action-button">View Fact History</button>
             </div>
         </div>
 
@@ -564,6 +565,13 @@
             <h3>Your Favorite Facts</h3>
             <div id="favorite-facts-list">
                 <!-- Favorite facts will be loaded here -->
+            </div>
+        </div>
+
+        <div id="fact-history-display">
+            <h3>Fact History</h3>
+            <div id="fact-history-list">
+                <!-- Fact history will be loaded here -->
             </div>
         </div>
     </div>
@@ -593,6 +601,10 @@
         const resetStreakBtn = document.getElementById('reset-streak-btn');
         const toggleFavoriteFactsBtn = document.getElementById('toggle-favorite-facts-btn');
         const themeSelect = document.getElementById('theme-select');
+        const toggleFactHistoryBtn = document.getElementById('toggle-fact-history-btn'); // New
+        const factHistoryDisplay = document.getElementById('fact-history-display');     // New
+        const factHistoryList = document.getElementById('fact-history-list');           // New
+
 
         // Function to update the time in the footer
         function updateFooterTime() {
@@ -621,300 +633,4 @@
                 buttonPrimary: "#4A00B0", // Deep Purple
                 mainActionBtn: "#FF4500" // OrangeRed
             },
-            {
-                theme: "Oceanic Depths",
-                fact: "The Mariana Trench is deeper than Mount Everest is tall.",
-                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.",
-                bgColor: "#001F3F", // Dark Midnight Blue
-                bgSecondaryColor: "#002B55",
-                textColor: "#7FDBFF", // Aqua
-                footerBg: "#001228",
-                titleColor: "#FFDC00", // Gold
-                buttonPrimary: "#0074D9", // Blue
-                mainActionBtn: "#FF851B" // Orange
-            },
-            {
-                theme: "Ancient Earth",
-                fact: "Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.",
-                didYouKnow: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.",
-                bgColor: "#2E2E00", // Dark Olive Green
-                bgSecondaryColor: "#3A3A00",
-                textColor: "#E6E6B8", // Pale Yellow
-                footerBg: "#1A1A00",
-                titleColor: "#A0522D", // Sienna
-                buttonPrimary: "#8B4513", // SaddleBrown
-                mainActionBtn: "#D2691E" // Chocolate
-            },
-            {
-                theme: "Microscopic Marvels",
-                fact: "A single human body contains more bacterial cells than human cells.",
-                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",
-                bgColor: "#1A331A", // Dark Forest Green
-                bgSecondaryColor: "#254725",
-                textColor: "#CCFFCC", // Pale Green
-                footerBg: "#0F1F0F",
-                titleColor: "#9ACD32", // YellowGreen
-                buttonPrimary: "#3CB371", // MediumSeaGreen
-                mainActionBtn: "#6B8E23" // OliveDrab
-            },
-            {
-                theme: "Quantum Quirks",
-                fact: "Particles can be in two places at once, a phenomenon called superposition.",
-                didYouKnow: "This bizarre behavior is at the heart of quantum computing, where 'qubits' can represent both 0 and 1 simultaneously, vastly increasing processing power.",
-                bgColor: "#330033", // Dark Purple
-                bgSecondaryColor: "#470047",
-                textColor: "#FFCCFF", // Light Pink/Purple
-                footerBg: "#1F001F",
-                titleColor: "#CC00CC", // Magenta
-                buttonPrimary: "#990099", // Medium Purple
-                mainActionBtn: "#FF00FF" // Fuchsia
-            },
-            {
-                theme: "Ancient Civilizations",
-                fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",
-                didYouKnow: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.",
-                bgColor: "#4A3B2A", // Earthy Brown
-                bgSecondaryColor: "#5E4D3C",
-                textColor: "#F5DEB3", // Wheat
-                footerBg: "#33281D",
-                titleColor: "#DAA520", // Goldenrod
-                buttonPrimary: "#8B4513", // SaddleBrown
-                mainActionBtn: "#CD853F" // Peru
-            }
-        ];
-
-        let currentThemeName = "Quantum Quirks"; // Initial theme
-        let factStreak = parseInt(localStorage.getItem('factStreak')) || 0;
-        let discoveredFacts = JSON.parse(localStorage.getItem('discoveredFacts')) || [];
-
-        function saveFactStreak() {
-            localStorage.setItem('factStreak', factStreak);
-            localStorage.setItem('discoveredFacts', JSON.stringify(discoveredFacts));
-            currentStreakSpan.textContent = factStreak;
-        }
-
-        function resetFactStreak() {
-            factStreak = 0;
-            discoveredFacts = [];
-            saveFactStreak();
-            currentStreakSpan.classList.remove('animate-pulse');
-        }
-
-        function applyTheme(theme) {
-            document.documentElement.style.setProperty('--bg-color-primary', theme.bgColor);
-            document.documentElement.style.setProperty('--bg-color-secondary', theme.bgSecondaryColor);
-            document.documentElement.style.setProperty('--text-color', theme.textColor);
-            document.documentElement.style.setProperty('--footer-bg', theme.footerBg);
-            document.documentElement.style.setProperty('--title-color', theme.titleColor);
-            document.documentElement.style.setProperty('--button-primary', theme.buttonPrimary);
-            document.documentElement.style.setProperty('--main-action-btn', theme.mainActionBtn);
-            document.documentElement.style.setProperty('--glass-bg', hexToRgba(theme.bgColor, 0.6));
-            document.documentElement.style.setProperty('--glass-border', hexToRgba(theme.textColor, 0.3));
-            document.documentElement.style.setProperty('--main-action-btn-hover', darkenColor(theme.mainActionBtn, 20));
-            document.documentElement.style.setProperty('--button-hover', darkenColor(theme.buttonPrimary, 20));
-            siteTitle.textContent = theme.theme;
-            mainTitle.textContent = theme.theme;
-            themeIndicator.textContent = `Theme: ${theme.theme}`;
-        }
-
-        function hexToRgba(hex, alpha) {
-            var r = parseInt(hex.slice(1, 3), 16),
-                g = parseInt(hex.slice(3, 5), 16),
-                b = parseInt(hex.slice(5, 7), 16);
-            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-        }
-
-        function darkenColor(hex, percent) {
-            var f=parseInt(hex.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=(f>>8)&0x00FF,B=f&0x0000FF;
-            return "#"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+Math.round((t-B)*p)+B).toString(16).slice(1);
-        }
-
-        function disableActionButtons(disabled) {
-            toggleDidYouKnowBtn.disabled = disabled;
-            newFactBtn.disabled = disabled;
-            copyFactBtn.disabled = disabled;
-            shareTwitterBtn.disabled = disabled;
-            favoriteFactBtn.disabled = disabled;
-        }
-
-        function loadFact(themeName = currentThemeName) {
-            let availableFacts = facts;
-            if (themeName !== "random") {
-                availableFacts = facts.filter(fact => fact.theme === themeName);
-            }
-
-            if (availableFacts.length === 0) {
-                console.error("No facts found for the selected theme.");
-                return;
-            }
-
-            const newIndex = Math.floor(Math.random() * availableFacts.length);
-            const factData = availableFacts[newIndex];
-            
-            mainFactContainer.classList.add('fade-out');
-            disableActionButtons(true); // Disable buttons while loading/revealing
-
-            setTimeout(() => {
-                applyTheme(factData);
-
-                factText.textContent = factData.fact;
-                factText.dataset.fullText = factData.fact;
-                didYouKnow.querySelector('p').textContent = factData.didYouKnow;
-                
-                didYouKnow.classList.remove('visible');
-                toggleDidYouKnowBtn.textContent = 'Tell me more!';
-
-                // Reset for reveal feature
-                mainFactContainer.classList.remove('revealed');
-                revealOverlay.style.opacity = '1';
-                revealOverlay.style.pointerEvents = 'auto';
-                revealFactBtn.style.animation = 'pulse 2s infinite'; // Restart pulse animation
-
-                mainFactContainer.classList.remove('fade-out');
-                mainFactContainer.classList.add('fade-in');
-                setTimeout(() => {
-                    mainFactContainer.classList.remove('fade-in');
-                    factText.classList.remove('animate-in'); // Remove animation class after transition
-                }, 500);
-
-                checkFavoriteStatus(factData.fact);
-            }, 500);
-        }
-
-        revealFactBtn.addEventListener('click', () => {
-            mainFactContainer.classList.add('revealed');
-            factText.classList.add('animate-in'); // Add animation class
-            revealOverlay.style.opacity = '0';
-            revealOverlay.style.pointerEvents = 'none';
-            revealFactBtn.style.animation = 'none'; // Stop pulse animation
-            disableActionButtons(false); // Enable buttons after revealing
-
-            // New: Update fact streak only for new facts
-            const currentFact = factText.dataset.fullText;
-            if (!discoveredFacts.includes(currentFact)) {
-                discoveredFacts.push(currentFact);
-                factStreak++;
-                currentStreakSpan.classList.add('animate-pulse'); // Animate streak update
-                setTimeout(() => currentStreakSpan.classList.remove('animate-pulse'), 500);
-            }
-            saveFactStreak();
-        });
-
-        toggleDidYouKnowBtn.addEventListener('click', () => {
-            if (didYouKnow.classList.contains('visible')) {
-                didYouKnow.classList.remove('visible');
-                toggleDidYouKnowBtn.textContent = 'Tell me more!';
-            } else {
-                didYouKnow.classList.add('visible');
-                toggleDidYouKnowBtn.textContent = 'Show less';
-            }
-        });
-
-        newFactBtn.addEventListener('click', () => {
-            loadFact(currentThemeName);
-        });
-
-        copyFactBtn.addEventListener('click', () => {
-            const factToCopy = factText.dataset.fullText;
-            navigator.clipboard.writeText(factToCopy).then(() => {
-                alert('Fact copied to clipboard!');
-            }).catch(err => {
-                console.error('Failed to copy fact: ', err);
-            });
-        });
-
-        shareTwitterBtn.addEventListener('click', () => {
-            const factToShare = factText.dataset.fullText;
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factToShare + " #InterestingFact #GeminiCLI")}`;
-            window.open(twitterUrl, '_blank');
-        });
-
-        // Favorite Fact Feature
-        let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];
-
-        function saveFavoriteFacts() {
-            localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));
-            renderFavoriteFacts();
-        }
-
-        function renderFavoriteFacts() {
-            favoriteFactsList.innerHTML = '';
-            if (favoriteFacts.length === 0) {
-                // favoriteFactsDisplay.classList.remove('visible'); // Keep it visible but show a message
-                const noFavsMessage = document.createElement('p');
-                noFavsMessage.textContent = "No favorite facts yet. Discover and favorite some!";
-                noFavsMessage.style.textAlign = 'center';
-                noFavsMessage.style.fontSize = '1.2rem';
-                noFavsMessage.style.color = 'rgba(255,255,255,0.7)';
-                favoriteFactsList.appendChild(noFavsMessage);
-                return;
-            }
-            favoriteFactsDisplay.classList.add('visible');
-            favoriteFacts.forEach((fact, index) => {
-                const factItem = document.createElement('div');
-                factItem.classList.add('favorite-fact-item');
-                factItem.innerHTML = `
-                    <span>${fact}</span>
-                    <button class="remove-fav-btn" data-index="${index}">Remove</button>
-                `;
-                favoriteFactsList.appendChild(factItem);
-            });
-
-            document.querySelectorAll('.remove-fav-btn').forEach(button => {
-                button.addEventListener('click', (event) => {
-                    const indexToRemove = parseInt(event.target.dataset.index);
-                    favoriteFacts.splice(indexToRemove, 1);
-                    saveFavoriteFacts();
-                    checkFavoriteStatus(factText.dataset.fullText); // Update button if current fact was unfavorited
-                });
-            });
-        }
-
-        function checkFavoriteStatus(fact) {
-            if (favoriteFacts.includes(fact)) {
-                favoriteFactBtn.classList.add('favorited');
-                favoriteFactBtn.textContent = 'Unfavorite Fact';
-            } else {
-                favoriteFactBtn.classList.remove('favorited');
-                favoriteFactBtn.textContent = 'Favorite Fact';
-            }
-        }
-
-        favoriteFactBtn.addEventListener('click', () => {
-            const currentFact = factText.dataset.fullText;
-            if (favoriteFacts.includes(currentFact)) {
-                favoriteFacts = favoriteFacts.filter(fact => fact !== currentFact);
-            } else {
-                favoriteFacts.push(currentFact);
-            }
-            saveFavoriteFacts();
-            checkFavoriteStatus(currentFact);
-        });
-
-        resetStreakBtn.addEventListener('click', resetFactStreak);
-
-        // New: Toggle Favorite Facts Display
-        toggleFavoriteFactsBtn.addEventListener('click', () => {
-            if (favoriteFactsDisplay.classList.contains('visible')) {
-                favoriteFactsDisplay.classList.remove('visible');
-                toggleFavoriteFactsBtn.textContent = 'View Favorite Facts';
-            } else {
-                favoriteFactsDisplay.classList.add('visible');
-                toggleFavoriteFactsBtn.textContent = 'Hide Favorite Facts';
-                renderFavoriteFacts(); // Re-render to ensure up-to-date list
-            }
-        });
-
-        // Theme Selector Event Listener
-        themeSelect.addEventListener('change', (event) => {
-            currentThemeName = event.target.value;
-            loadFact(currentThemeName);
-        });
-
-        // Initial load
-        loadFact(currentThemeName);
-        renderFavoriteFacts(); // Render favorite facts on initial load
-        currentStreakSpan.textContent = factStreak;
-    </script>
-</body>
-</html>
+            {\n                theme: \"Oceanic Depths\",\n                fact: \"The Mariana Trench is deeper than Mount Everest is tall.\",\n                didYouKnow: \"If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.\",\n                bgColor: \"#001F3F\", // Dark Midnight Blue\n                bgSecondaryColor: \"#002B55\",\n                textColor: \"#7FDBFF\", // Aqua\n                footerBg: \"#001228\",\n                titleColor: \"#FFDC00\", // Gold\n                buttonPrimary: \"#0074D9\", // Blue\n                mainActionBtn: \"#FF851B\" // Orange\n            },\n            {\n                theme: \"Ancient Earth\",\n                fact: \"Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.\",\n                didYouKnow: \"The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.\",\n                bgColor: \"#2E2E00\", // Dark Olive Green\n                bgSecondaryColor: \"#3A3A00\",\n                textColor: \"#E6E6B8\", // Pale Yellow\n                footerBg: \"#1A1A00\",\n                titleColor: \"#A0522D\", // Sienna\n                buttonPrimary: \"#8B4513\", // SaddleBrown\n                mainActionBtn: \"#D2691E\" // Chocolate\n            },\n            {\n                theme: \"Microscopic Marvels\",\n                fact: \"A single human body contains more bacterial cells than human cells.\",\n                didYouKnow: \"These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.\",\n                bgColor: \"#1A331A\", // Dark Forest Green\n                bgSecondaryColor: \"#254725\",\n                textColor: \"#CCFFCC\", // Pale Green\n                footerBg: \"#0F1F0F\",\n                titleColor: \"#9ACD32\", // YellowGreen\n                buttonPrimary: \"#3CB371\", // MediumSeaGreen\n                mainActionBtn: \"#6B8E23\" // OliveDrab\n            },\n            {\n                theme: \"Quantum Quirks\",\n                fact: \"Particles can be in two places at once, a phenomenon called superposition.\",\n                didYouKnow: \"This bizarre behavior is at the heart of quantum computing, where \'qubits\' can represent both 0 and 1 simultaneously, vastly increasing processing power.\",\n                bgColor: \"#330033\", // Dark Purple\n                bgSecondaryColor: \"#470047\",\n                textColor: \"#FFCCFF\", // Light Pink/Purple\n                footerBg: \"#1F001F\",\n                titleColor: \"#CC00CC\", // Magenta\n                buttonPrimary: \"#990099\", // Medium Purple\n                mainActionBtn: \"#FF00FF\" // Fuchsia\n            },\n            {\n                theme: \"Ancient Civilizations\",\n                fact: \"The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.\",\n                didYouKnow: \"Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.\",\n                bgColor: \"#4A3B2A\", // Earthy Brown\n                bgSecondaryColor: \"#5E4D3C\",\n                textColor: \"#F5DEB3\", // Wheat\n                footerBg: \"#33281D\",\n                titleColor: \"#DAA520\", // Goldenrod\n                buttonPrimary: \"#8B4513\", // SaddleBrown\n                mainActionBtn: \"#CD853F\" // Peru\n            }\n        ];\n\n        let currentThemeName = \"Cosmic Wonders\"; // Initial theme\n        let factStreak = parseInt(localStorage.getItem('factStreak')) || 0;\n        let discoveredFacts = JSON.parse(localStorage.getItem('discoveredFacts')) || [];\n        let factHistory = JSON.parse(sessionStorage.getItem('factHistory')) || []; // New: Session-based history\n\n        function saveFactStreak() {\n            localStorage.setItem('factStreak', factStreak);\n            localStorage.setItem('discoveredFacts', JSON.stringify(discoveredFacts));\n            currentStreakSpan.textContent = factStreak;\n        }\n\n        function saveFactHistory() { // New\n            sessionStorage.setItem('factHistory', JSON.stringify(factHistory));\n            renderFactHistory();\n        }\n\n        function resetFactStreak() {\n            factStreak = 0;\n            discoveredFacts = [];\n            saveFactStreak();\n            currentStreakSpan.classList.remove('animate-pulse');\n        }\n\n        function applyTheme(theme) {\n            document.documentElement.style.setProperty('--bg-color-primary', theme.bgColor);\n            document.documentElement.style.setProperty('--bg-color-secondary', theme.bgSecondaryColor);\n            document.documentElement.style.setProperty('--text-color', theme.textColor);\n            document.documentElement.style.setProperty('--footer-bg', theme.footerBg);\n            document.documentElement.style.setProperty('--title-color', theme.titleColor);\n            document.documentElement.style.setProperty('--button-primary', theme.buttonPrimary);\n            document.documentElement.style.setProperty('--main-action-btn', theme.mainActionBtn);\n            document.documentElement.style.setProperty('--glass-bg', hexToRgba(theme.bgColor, 0.6));\n            document.documentElement.style.setProperty('--glass-border', hexToRgba(theme.textColor, 0.3));\n            document.documentElement.style.setProperty('--main-action-btn-hover', darkenColor(theme.mainActionBtn, 20));\n            document.documentElement.style.setProperty('--button-hover', darkenColor(theme.buttonPrimary, 20));\n            siteTitle.textContent = theme.theme;\n            mainTitle.textContent = theme.theme;\n            themeIndicator.textContent = `Theme: ${theme.theme}`;\n        }\n\n        function hexToRgba(hex, alpha) {\n            var r = parseInt(hex.slice(1, 3), 16),\n                g = parseInt(hex.slice(3, 5), 16),\n                b = parseInt(hex.slice(5, 7), 16);\n            return `rgba(${r}, ${g}, ${b}, ${alpha})`;\n        }\n\n        function darkenColor(hex, percent) {\n            var f=parseInt(hex.slice(1),16),t=percent<0?0:255,p=percent<0?percent*-1:percent,R=f>>16,G=(f>>8)&0x00FF,B=f&0x0000FF;\n            return \"#\"+(0x1000000+(Math.round((t-R)*p)+R)*0x10000+(Math.round((t-G)*p)+G)*0x100+Math.round((t-B)*p)+B).toString(16).slice(1);\n        }\n\n        function disableActionButtons(disabled) {\n            toggleDidYouKnowBtn.disabled = disabled;\n            newFactBtn.disabled = disabled;\n            copyFactBtn.disabled = disabled;\n            shareTwitterBtn.disabled = disabled;\n            favoriteFactBtn.disabled = disabled;\n        }\n\n        function loadFact(themeName = currentThemeName) {\n            let availableFacts = facts;\n            if (themeName !== \"random\") {\n                availableFacts = facts.filter(fact => fact.theme === themeName);\n            }\n\n            if (availableFacts.length === 0) {\n                console.error(\"No facts found for the selected theme.\");\n                return;\n            }\n\n            const newIndex = Math.floor(Math.random() * availableFacts.length);\n            const factData = availableFacts[newIndex];\n            \n            mainFactContainer.classList.add('fade-out');\n            disableActionButtons(true); // Disable buttons while loading/revealing\n\n            setTimeout(() => {\n                applyTheme(factData);\n\n                factText.textContent = factData.fact;\n                factText.dataset.fullText = factData.fact;\n                didYouKnow.querySelector('p').textContent = factData.didYouKnow;\n                \n                didYouKnow.classList.remove('visible');\n                toggleDidYouKnowBtn.textContent = 'Tell me more!';\n\n                // Reset for reveal feature\n                mainFactContainer.classList.remove('revealed');\n                revealOverlay.style.opacity = '1';\n                revealOverlay.style.pointerEvents = 'auto';\n                revealFactBtn.style.animation = 'pulse 2s infinite'; // Restart pulse animation\n\n                mainFactContainer.classList.remove('fade-out');\n                mainFactContainer.classList.add('fade-in');\n                setTimeout(() => {\n                    mainFactContainer.classList.remove('fade-in');\n                    factText.classList.remove('animate-in'); // Remove animation class after transition\n                }, 500);\n\n                checkFavoriteStatus(factData.fact);\n            }, 500);\n        }\n\n        revealFactBtn.addEventListener('click', () => {\n            mainFactContainer.classList.add('revealed');\n            factText.classList.add('animate-in'); // Add animation class\n            revealOverlay.style.opacity = '0';\n            revealOverlay.style.pointerEvents = 'none';\n            revealFactBtn.style.animation = 'none'; // Stop pulse animation\n            disableActionButtons(false); // Enable buttons after revealing\n\n            // New: Update fact streak only for new facts\n            const currentFact = factText.dataset.fullText;\n            if (!discoveredFacts.includes(currentFact)) {\n                discoveredFacts.push(currentFact);\n                factStreak++;\n                currentStreakSpan.classList.add('animate-pulse'); // Animate streak update\n                setTimeout(() => currentStreakSpan.classList.remove('animate-pulse'), 500);\n            }\n            saveFactStreak();\n\n            // New: Add to fact history\n            if (!factHistory.includes(currentFact)) {\n                factHistory.unshift(currentFact); // Add to the beginning\n                if (factHistory.length > 10) { // Keep history to a reasonable size\n                    factHistory.pop();\n                }\n                saveFactHistory();\n            }\n        });\n\n        toggleDidYouKnowBtn.addEventListener('click', () => {\n            if (didYouKnow.classList.contains('visible')) {\n                didYouKnow.classList.remove('visible');\n                toggleDidYouKnowBtn.textContent = 'Tell me more!';\n            } else {\n                didYouKnow.classList.add('visible');\n                toggleDidYouKnowBtn.textContent = 'Show less';\n            }\n        });\n\n        newFactBtn.addEventListener('click', () => {\n            loadFact(currentThemeName);\n        });\n\n        copyFactBtn.addEventListener('click', () => {\n            const factToCopy = factText.dataset.fullText;\n            navigator.clipboard.writeText(factToCopy).then(() => {\n                alert('Fact copied to clipboard!');\n            }).catch(err => {\n                console.error('Failed to copy fact: ', err);\n            });\n        });\n\n        shareTwitterBtn.addEventListener('click', () => {\n            const factToShare = factText.dataset.fullText;\n            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(factToShare + \" #InterestingFact #GeminiCLI\")}`;\n            window.open(twitterUrl, '_blank');\n        });\n\n        // Favorite Fact Feature\n        let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];\n\n        function saveFavoriteFacts() {\n            localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));\n            renderFavoriteFacts();\n        }\n\n        function renderFavoriteFacts() {\n            favoriteFactsList.innerHTML = '';\n            if (favoriteFacts.length === 0) {\n                const noFavsMessage = document.createElement('p');\n                noFavsMessage.textContent = \"No favorite facts yet. Discover and favorite some!\";\n                noFavsMessage.style.textAlign = 'center';\n                noFavsMessage.style.fontSize = '1.2rem';\n                noFavsMessage.style.color = 'rgba(255,255,255,0.7)';\n                favoriteFactsList.appendChild(noFavsMessage);\n                return;\n            }\n            favoriteFactsDisplay.classList.add('visible');\n            favoriteFacts.forEach((fact, index) => {\n                const factItem = document.createElement('div');\n                factItem.classList.add('favorite-fact-item');\n                factItem.innerHTML = `\n                    <span>${fact}</span>\n                    <button class=\"remove-fav-btn\" data-index=\"${index}\">Remove</button>\n                `;\n                favoriteFactsList.appendChild(factItem);\n            });\n\n            document.querySelectorAll('.remove-fav-btn').forEach(button => {\n                button.addEventListener('click', (event) => {\n                    const indexToRemove = parseInt(event.target.dataset.index);\n                    favoriteFacts.splice(indexToRemove, 1);\n                    saveFavoriteFacts();\n                    checkFavoriteStatus(factText.dataset.fullText); // Update button if current fact was unfavorited\n                });\n            });\n        }\n\n        function checkFavoriteStatus(fact) {\n            if (favoriteFacts.includes(fact)) {\n                favoriteFactBtn.classList.add('favorited');\n                favoriteFactBtn.textContent = 'Unfavorite Fact';\n            } else {\n                favoriteFactBtn.classList.remove('favorited');\n                favoriteFactBtn.textContent = 'Favorite Fact';\n            }\n        }\n\n        favoriteFactBtn.addEventListener('click', () => {\n            const currentFact = factText.dataset.fullText;\n            if (favoriteFacts.includes(currentFact)) {\n                favoriteFacts = favoriteFacts.filter(fact => fact !== currentFact);\n            } else {\n                favoriteFacts.push(currentFact);\n            }\n            saveFavoriteFacts();\n            checkFavoriteStatus(currentFact);\n        });\n\n        resetStreakBtn.addEventListener('click', resetFactStreak);\n\n        // New: Toggle Favorite Facts Display\n        toggleFavoriteFactsBtn.addEventListener('click', () => {\n            if (favoriteFactsDisplay.classList.contains('visible')) {\n                favoriteFactsDisplay.classList.remove('visible');\n                toggleFavoriteFactsBtn.textContent = 'View Favorite Facts';\n            } else {\n                favoriteFactsDisplay.classList.add('visible');\n                toggleFavoriteFactsBtn.textContent = 'Hide Favorite Facts';\n                renderFavoriteFacts(); // Re-render to ensure up-to-date list\n            }\n        });\n\n        // New: Fact History Feature\n        function renderFactHistory() {\n            factHistoryList.innerHTML = '';\n            if (factHistory.length === 0) {\n                const noHistoryMessage = document.createElement('p');\n                noHistoryMessage.textContent = \"No facts in history yet. Discover some!\";\n                noHistoryMessage.style.textAlign = 'center';\n                noHistoryMessage.style.fontSize = '1.2rem';\n                noHistoryMessage.style.color = 'rgba(255,255,255,0.7)';\n                factHistoryList.appendChild(noHistoryMessage);\n                return;\n            }\n            factHistoryDisplay.classList.add('visible');\n            factHistory.forEach((fact, index) => {\n                const factItem = document.createElement('div');\n                factItem.classList.add('history-fact-item');\n                factItem.innerHTML = `\n                    <span>${fact}</span>\n                    <button class=\"remove-history-btn\" data-index=\"${index}\">Remove</button>\n                `;\n                factHistoryList.appendChild(factItem);\n            });\n\n            document.querySelectorAll('.remove-history-btn').forEach(button => {\n                button.addEventListener('click', (event) => {\n                    const indexToRemove = parseInt(event.target.dataset.index);\n                    factHistory.splice(indexToRemove, 1);\n                    saveFactHistory();\n                });\n            });\n        }\n\n        toggleFactHistoryBtn.addEventListener('click', () => {\n            if (factHistoryDisplay.classList.contains('visible')) {\n                factHistoryDisplay.classList.remove('visible');\n                toggleFactHistoryBtn.textContent = 'View Fact History';\n            } else {\n                factHistoryDisplay.classList.add('visible');\n                toggleFactHistoryBtn.textContent = 'Hide Fact History';\n                renderFactHistory(); // Re-render to ensure up-to-date list\n            }\n        });\n\n        // Theme Selector Event Listener\n        themeSelect.addEventListener('change', (event) => {\n            currentThemeName = event.target.value;\n            loadFact(currentThemeName);\n        });\n\n        // Initial load\n        loadFact(currentThemeName);\n        renderFavoriteFacts(); // Render favorite facts on initial load\n        renderFactHistory();   // New: Render fact history on initial load\n        currentStreakSpan.textContent = factStreak;\n    </script>\n</body>\n</html>
