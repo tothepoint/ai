@@ -3,25 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Quantum Quirks</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors - Default */
-            --bg-color-primary: #0D0D2B;   /* Deep Space Blue */
-            --bg-color-secondary: #1A1A40; /* Slightly lighter/darker for gradient */
-            --text-color: #E0FFFF;         /* Light Cyan */
-            --footer-bg: #08081A;          /* Even darker blue */
-            --glass-bg: rgba(13, 13, 43, 0.6); /* Transparent deep blue */
-            --glass-border: rgba(224, 255, 255, 0.3); /* Transparent Light Cyan */
+            /* Quantum Quirks Theme Colors */
+            --bg-color-primary: #330033;   /* Dark Purple */
+            --bg-color-secondary: #470047; /* Slightly lighter/darker for gradient */
+            --text-color: #FFCCFF;         /* Light Pink/Purple */
+            --footer-bg: #1F001F;          /* Even darker purple */
+            --glass-bg: rgba(51, 0, 51, 0.6); /* Transparent dark purple */
+            --glass-border: rgba(255, 204, 255, 0.3); /* Transparent Light Pink/Purple */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700;        /* Gold */
+            --title-color: #CC00CC;        /* Magenta */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #4A00B0;     /* Deep Purple */
-            --button-hover: #6A00E0;       /* Lighter Purple */
-            --main-action-btn: #FF4500;    /* OrangeRed for main actions */
-            --main-action-btn-hover: #CC3700; /* Darker OrangeRed */
+            --button-primary: #990099;     /* Medium Purple */
+            --button-hover: #B300B3;       /* Lighter Medium Purple */
+            --main-action-btn: #FF00FF;    /* Fuchsia for main actions */
+            --main-action-btn-hover: #CC00CC; /* Darker Fuchsia */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #E0FFFF; /* Light Cyan for generic title */
+            --generic-title-color: #FFCCFF; /* Light Pink/Purple for generic title */
         }
 
         body {
@@ -113,7 +113,7 @@
         }
 
         @keyframes pulseBorder {
-            from { border-color: var(--glass-border); box-shadow: 0 0 15px rgba(224, 255, 255, 0.3); }
+            from { border-color: var(--glass-border); box-shadow: 0 0 15px rgba(255, 204, 255, 0.3); }
             to { border-color: var(--main-action-btn); box-shadow: 0 0 25px var(--main-action-btn); }
         }
 
@@ -170,7 +170,7 @@
             20% { transform: translate(-2px, 2px); }
             40% { transform: translate(-2px, -2px); }
             60% { transform: translate(2px, 2px); }
-            80% { transform: translate(2px, -2px); }
+            80% { transform: translate(2px, -2px); }\
             100% { transform: translate(0); }
         }
         #did-you-know {
@@ -208,7 +208,7 @@
             margin-top: 40px;
             display: flex;
             gap: 20px;
-            flex-wrap: wrap;
+            flex-wrap: wrap;\
             justify-content: center;
         }
         .action-button {
@@ -248,7 +248,7 @@
             color: var(--text-color); /* Ensure text is visible */
             width: 100%;
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);\
             box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
             transition: background-color 1.5s ease-in-out, color 0.8s ease;
         }
@@ -285,9 +285,9 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
+        <h1 id="main-title">Quantum Quirks</h1>
         <div id="main-fact-container">
-            <p id="main-fact-text"></p>
+            <p id="main-fact-text">Initiating Quantum Scan...</p>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
                 <p></p>
@@ -391,7 +391,7 @@
             {
                 theme: "Ancient Civilizations",
                 fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",
-                didYouKnow: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.",
+                didYouKnown: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its construction remains a marvel of ancient engineering.",
                 bgColor: "#4A3B2A", // Earthy Brown
                 bgSecondaryColor: "#5E4D3C",
                 textColor: "#F5DEB3", // Wheat
@@ -402,7 +402,7 @@
             }
         ];
 
-        let currentFactIndex = 0;
+        let currentFactIndex = 4; // Set to Quantum Quirks initially
         let scanCount = 0;
         const maxScans = 3; // Number of scans before "Reveal Full Fact" appears
 
@@ -450,7 +450,7 @@
             const factData = facts[index];
             applyTheme(factData);
 
-            factText.textContent = ''; // Clear text for typewriter effect
+            factText.textContent = 'Initiating Quantum Scan...'; // Placeholder text
             factText.classList.remove('revealed', 'glitch-effect');
             mainFactContainer.classList.remove('scanning'); // Remove scanning class
             didYouKnow.classList.remove('visible');
@@ -507,8 +507,7 @@
             loadFact(currentFactIndex);
         });
 
-        // Initial load: pick a random fact
-        currentFactIndex = Math.floor(Math.random() * facts.length);
+        // Initial load: pick the Quantum Quirks fact
         loadFact(currentFactIndex);
     </script>
 </body>
