@@ -27,6 +27,61 @@
             --favorite-btn-hover: #E0B800; /* Darker Gold */
         }
 
+        #fact-streak-display {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        #fact-streak-display p {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+
+        #current-streak {
+            font-size: 2rem;
+            color: var(--title-color);
+            font-weight: 900;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.9);
+            transition: color 0.5s ease, transform 0.3s ease-out;
+        }
+
+        #current-streak.animate-pulse {
+            animation: pulse 0.5s ease-out;
+        }
+
+        #reset-streak-btn {
+            background-color: #6c757d; /* Grey for reset */
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+        }
+
+        #reset-streak-btn:hover {
+            background-color: #5a6268;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(0,0,0,0.4);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
         body {
             background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
             background-size: 400% 400%;
@@ -185,11 +240,7 @@
             cursor: pointer;
             background-color: var(--main-action-btn);
             color: white;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: pulse 2s infinite; /* Added pulse animation */
+            box-shadow: 0 8px 25px rgba(0,0,0,0.5);\n            transition: all 0.3s ease;\n            text-transform: uppercase;\n            letter-spacing: 2px;\n            animation: pulse 2s infinite; /* Added pulse animation */
         }
         #reveal-fact-btn:hover {
             background-color: var(--main-action-btn-hover);
@@ -329,25 +380,12 @@
             padding: 15px;
             border-radius: 10px;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+            justify-content: space-between;\n            align-items: center;\n            font-size: 1.1rem;\n            line-height: 1.4;\n            border: 1px solid rgba(255,255,255,0.2);\n        }
         .favorite-fact-item .remove-fav-btn {
             background-color: #DC3545; /* Red for remove */
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
+            color: white;\n            border: none;\n            padding: 8px 12px;\n            border-radius: 5px;\n            cursor: pointer;\n            font-size: 0.9rem;\n            transition: background-color 0.3s ease;\n        }
         .favorite-fact-item .remove-fav-btn:hover {
-            background-color: #C82333;
-        }
+            background-color: #C82333;\n        }
 
         footer {
             margin-top: 30px;
@@ -362,53 +400,16 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1#main-title {
-                font-size: 3rem;
-            }
-            #theme-indicator {
-                font-size: 1.2rem;
-            }
-            #main-fact-text {
-                font-size: 1.8rem;
-            }
-            .action-button {
-                font-size: 1.1rem;
-                padding: 12px 25px;
-            }
-            .container {
-                padding: 30px;
-            }
-            #reveal-fact-btn {
-                font-size: 1.4rem;
-                padding: 15px 30px;
-            }
-        }
-        @media (max-width: 480px) {
-            h1#main-title {
-                font-size: 2.5rem;
-            }
-            #theme-indicator {
-                font-size: 1rem;
-            }
-            #main-fact-text {
-                font-size: 1.5rem;
-            }
-            .button-group {
-                flex-direction: column;
-                gap: 15px;
-            }
-            #reveal-fact-btn {
-                font-size: 1.2rem;
-                padding: 12px 25px;
-            }
-        }
-    </style>
+        @media (max-width: 768px) {\n            h1#main-title {\n                font-size: 3rem;\n            }\n            #theme-indicator {\n                font-size: 1.2rem;\n            }\n            #main-fact-text {\n                font-size: 1.8rem;\n            }\n            .action-button {\n                font-size: 1.1rem;\n                padding: 12px 25px;\n            }\n            .container {\n                padding: 30px;\n            }\n            #reveal-fact-btn {\n                font-size: 1.4rem;\n                padding: 15px 30px;\n            }\n        }\n        @media (max-width: 480px) {\n            h1#main-title {\n                font-size: 2.5rem;\n            }\n            #theme-indicator {\n                font-size: 1rem;\n            }\n            #main-fact-text {\n                font-size: 1.5rem;\n            }\n            .button-group {\n                flex-direction: column;\n                gap: 15px;\n            }\n            #reveal-fact-btn {\n                font-size: 1.2rem;\n                padding: 12px 25px;\n            }\n        }\n    </style>
 </head>
 <body>
     <div class="container">
         <h1 id="main-title">Cosmic Wonders</h1>
         <span id="theme-indicator">Theme: Cosmic Wonders</span>
+        <div id="fact-streak-display">
+            <p>Discovery Streak: <span id="current-streak">0</span></p>
+            <button id="reset-streak-btn" class="action-button">Reset Streak</button>
+        </div>
         <div id="main-fact-container">
             <p id="main-fact-text" data-full-text="There are more stars in the universe than grains of sand on all the beaches on Earth.">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
             <div id="reveal-overlay">
@@ -456,6 +457,8 @@
         const favoriteFactBtn = document.getElementById('favorite-fact-btn');
         const favoriteFactsDisplay = document.getElementById('favorite-facts-display');
         const favoriteFactsList = document.getElementById('favorite-facts-list');
+        const currentStreakSpan = document.getElementById('current-streak'); // New
+        const resetStreakBtn = document.getElementById('reset-streak-btn'); // New
 
         // Function to update the time in the footer
         function updateFooterTime() {
@@ -547,6 +550,21 @@
         ];
 
         let currentFactIndex = 0; // Initial fact index (Cosmic Wonders)
+        let factStreak = parseInt(localStorage.getItem('factStreak')) || 0; // New: Initialize fact streak
+        let discoveredFacts = JSON.parse(localStorage.getItem('discoveredFacts')) || []; // New: Track discovered facts
+
+        function saveFactStreak() { // New: Save streak to local storage
+            localStorage.setItem('factStreak', factStreak);
+            localStorage.setItem('discoveredFacts', JSON.stringify(discoveredFacts));
+            currentStreakSpan.textContent = factStreak;
+        }
+
+        function resetFactStreak() { // New: Reset streak
+            factStreak = 0;
+            discoveredFacts = [];
+            saveFactStreak();
+            currentStreakSpan.classList.remove('animate-pulse');
+        }
 
         function applyTheme(theme) {
             document.documentElement.style.setProperty('--bg-color-primary', theme.bgColor);
@@ -625,6 +643,20 @@
             revealOverlay.style.pointerEvents = 'none';
             revealFactBtn.style.animation = 'none'; // Stop pulse animation
             disableActionButtons(false); // Enable buttons after revealing
+
+            // New: Update fact streak
+            const currentFact = factText.dataset.fullText;
+            if (!discoveredFacts.includes(currentFact)) {
+                discoveredFacts.push(currentFact);
+                factStreak++;
+                currentStreakSpan.classList.add('animate-pulse'); // Animate streak update
+                setTimeout(() => currentStreakSpan.classList.remove('animate-pulse'), 500);
+            } else {
+                // If fact is repeated, reset streak
+                factStreak = 0;
+                discoveredFacts = []; // Clear discovered facts for a new streak
+            }
+            saveFactStreak();
         });
 
         toggleDidYouKnowBtn.addEventListener('click', () => {
@@ -717,11 +749,14 @@
             checkFavoriteStatus(currentFact);
         });
 
+        resetStreakBtn.addEventListener('click', resetFactStreak); // New: Event listener for reset streak button
+
         // Initial load
         // Pick a random fact for the initial load
         currentFactIndex = Math.floor(Math.random() * facts.length);
         loadFact(currentFactIndex);
         renderFavoriteFacts(); // Render favorite facts on initial load
+        currentStreakSpan.textContent = factStreak; // New: Display initial streak
     </script>
 </body>
 </html>
