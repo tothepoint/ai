@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Oceanic Depths</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #0D0D2B;   /* Deep Space Blue */
-            --bg-color-secondary: #1A1A40; /* Lighter Deep Space Blue */
-            --text-color: #E0FFFF;         /* Light Cyan */
-            --footer-bg: #08081A;          /* Even darker blue */
-            --glass-bg: rgba(13, 13, 43, 0.6); /* Transparent deep space blue */
-            --glass-border: rgba(224, 255, 255, 0.3); /* Transparent Light Cyan */
+            /* Oceanic Depths Theme Colors */
+            --bg-color-primary: #001F3F;   /* Dark Midnight Blue */
+            --bg-color-secondary: #002B55; /* Lighter Dark Midnight Blue */
+            --text-color: #7FDBFF;         /* Aqua */
+            --footer-bg: #001228;          /* Even darker blue */
+            --glass-bg: rgba(0, 31, 63, 0.6); /* Transparent dark midnight blue */
+            --glass-border: rgba(127, 219, 255, 0.3); /* Transparent Aqua */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700;        /* Gold */
+            --title-color: #FFDC00;        /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #4A00B0;     /* Deep Purple */
-            --button-hover: #3A008F;       /* Darker Deep Purple */
-            --main-action-btn: #FF4500;    /* OrangeRed */
-            --main-action-btn-hover: #CC3700; /* Darker OrangeRed */
+            --button-primary: #0074D9;     /* Blue */
+            --button-hover: #0056b3;       /* Darker Blue */
+            --main-action-btn: #FF851B;    /* Orange */
+            --main-action-btn-hover: #cc6a15; /* Darker Orange */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #E0FFFF; /* Light Cyan for generic title */
-            --theme-indicator-color: #FFD700; /* Gold for theme indicator */
-            --favorite-btn-color: #FFD700; /* Gold for favorite button */
+            --generic-title-color: #7FDBFF; /* Aqua for generic title */
+            --theme-indicator-color: #FFDC00; /* Gold for theme indicator */
+            --favorite-btn-color: #FFDC00; /* Gold for favorite button */
             --favorite-btn-hover: #B8860B; /* Darker Goldenrod */
-            --star-color: #FFD700; /* Gold for stars */
+            --star-color: #FFDC00; /* Gold for stars */
             --notification-bg: rgba(0, 0, 0, 0.8);
-            --notification-text: #E0FFFF;
+            --notification-text: #7FDBFF;
         }
 
         #fact-streak-display {
@@ -387,14 +387,14 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-        #copy-fact-btn, #share-twitter-btn {
+        #copy-fact-btn, #share-twitter-btn, #share-whatsapp-btn {
             background-color: #555; /* A neutral grey */
             color: white;
             padding: 10px 20px;
             font-size: 1rem;
             margin-top: 15px;
         }
-        #copy-fact-btn:hover, #share-twitter-btn:hover {
+        #copy-fact-btn:hover, #share-twitter-btn:hover, #share-whatsapp-btn:hover {
             background-color: #777;
             transform: translateY(-2px);
         }
@@ -512,12 +512,31 @@
             color: var(--text-color);
             text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
             transition: all 0.5s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
         }
         #fact-mastery-level {
             font-weight: 700;
             color: var(--title-color);
             text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
         }
+        #mastery-progress-bar-container {
+            width: 80%;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 5px;
+            height: 10px;
+            overflow: hidden;
+        }
+        #mastery-progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--title-color);
+            border-radius: 5px;
+            transition: width 0.5s ease-out;
+        }
+
 
         /* Notification styles */
         #notification-toast {
@@ -606,15 +625,15 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
-        <span id="theme-indicator">Theme: Cosmic Wonders</span>
+        <h1 id="main-title">Oceanic Depths</h1>
+        <span id="theme-indicator">Theme: Oceanic Depths</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
             <select id="theme-select" class="action-button">
                 <option value="random">Random Theme</option>
-                <option value="Cosmic Wonders" selected>Cosmic Wonders</option>
-                <option value="Oceanic Depths">Oceanic Depths</option>
+                <option value="Cosmic Wonders">Cosmic Wonders</option>
+                <option value="Oceanic Depths" selected>Oceanic Depths</option>
                 <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
                 <option value="Quantum Quirks">Quantum Quirks</option>
@@ -630,16 +649,19 @@
         <!-- New Feature: Fact Mastery Level -->
         <div id="fact-mastery-display">
             Mastery Level: <span id="fact-mastery-level">Novice Explorer</span>
+            <div id="mastery-progress-bar-container">
+                <div id="mastery-progress-bar"></div>
+            </div>
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="There are more stars in the universe than grains of sand on all the beaches on Earth.">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+            <p id="main-fact-text" data-full-text="The Mariana Trench is deeper than Mount Everest is tall.">The Mariana Trench is deeper than Mount Everest is tall.</p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>The observable universe is estimated to contain about 100 billion to 200 billion galaxies, each with billions of stars!</p>
+                <p>If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.</p>
             </div>
 
             <!-- New Feature: Fact Rating -->
@@ -663,6 +685,7 @@
                 <button id="favorite-fact-btn" class="action-button" disabled>Favorite Fact</button>
                 <button id="copy-fact-btn" class="action-button" disabled>Copy Fact</button>
                 <button id="share-twitter-btn" class="action-button" disabled>Share on Twitter</button>
+                <button id="share-whatsapp-btn" class="action-button" disabled>Share on WhatsApp</button>
             </div>
             <div class="button-group utility-actions">
                 <button id="toggle-favorite-facts-btn" class="action-button">View Favorite Facts</button>
@@ -704,6 +727,7 @@
         const themeIndicator = document.getElementById('theme-indicator');
         const copyFactBtn = document.getElementById('copy-fact-btn');
         const shareTwitterBtn = document.getElementById('share-twitter-btn');
+        const shareWhatsappBtn = document.getElementById('share-whatsapp-btn'); // New
         const revealFactBtn = document.getElementById('reveal-fact-btn');
         const revealOverlay = document.getElementById('reveal-overlay');
         const favoriteFactBtn = document.getElementById('favorite-fact-btn');
@@ -719,8 +743,9 @@
         const factRatingContainer = document.getElementById('fact-rating-container');
         const starRating = document.getElementById('star-rating');
         const ratingMessage = document.getElementById('rating-message');
-        const factMasteryLevelSpan = document.getElementById('fact-mastery-level'); // New
-        const notificationToast = document.getElementById('notification-toast'); // New
+        const factMasteryLevelSpan = document.getElementById('fact-mastery-level');
+        const masteryProgressBar = document.getElementById('mastery-progress-bar'); // New
+        const notificationToast = document.getElementById('notification-toast');
 
 
         // Function to update the time in the footer
@@ -753,7 +778,7 @@
             {
                 theme: "Oceanic Depths",
                 fact: "The Mariana Trench is deeper than Mount Everest is tall.",
-                didYouKnown: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.",
+                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.",
                 bgColor: "#001F3F", // Dark Midnight Blue
                 bgSecondaryColor: "#002B55",
                 textColor: "#7FDBFF", // Aqua
@@ -819,21 +844,34 @@
 
         // Mastery levels
         const masteryLevels = [
-            { threshold: 0, level: "Novice Explorer" },
-            { threshold: 5, level: "Curious Mind" },
-            { threshold: 10, level: "Knowledge Seeker" },
-            { threshold: 20, level: "Master of Lore" }
+            { threshold: 0, level: "Novice Explorer", progress: 0 },
+            { threshold: 5, level: "Curious Mind", progress: 0 },
+            { threshold: 10, level: "Knowledge Seeker", progress: 0 },
+            { threshold: 20, level: "Master of Lore", progress: 0 }
         ];
 
         function updateMasteryLevel() {
-            let currentLevel = masteryLevels[0].level;
+            let currentLevelIndex = 0;
             for (let i = masteryLevels.length - 1; i >= 0; i--) {
                 if (factStreak >= masteryLevels[i].threshold) {
-                    currentLevel = masteryLevels[i].level;
+                    currentLevelIndex = i;
                     break;
                 }
             }
-            factMasteryLevelSpan.textContent = currentLevel;
+            const currentLevel = masteryLevels[currentLevelIndex];
+            factMasteryLevelSpan.textContent = currentLevel.level;
+
+            // Calculate progress for the current level
+            let progress = 0;
+            if (currentLevelIndex < masteryLevels.length - 1) {
+                const nextLevel = masteryLevels[currentLevelIndex + 1];
+                const factsNeededForNext = nextLevel.threshold - currentLevel.threshold;
+                const factsDiscoveredInLevel = factStreak - currentLevel.threshold;
+                progress = (factsDiscoveredInLevel / factsNeededForNext) * 100;
+            } else {
+                progress = 100; // Max level reached
+            }
+            masteryProgressBar.style.width = `${progress}%`;
         }
 
         function showNotification(message, duration = 3000) {
@@ -916,6 +954,7 @@
             favoriteFactBtn.disabled = true;
             copyFactBtn.disabled = true;
             shareTwitterBtn.disabled = true;
+            shareWhatsappBtn.disabled = true; // Disable new button
             favoriteFactBtn.classList.remove('favorited');
             favoriteFactBtn.textContent = 'Favorite Fact'; // Reset button text
             resetRating(); // Reset fact rating
@@ -933,6 +972,7 @@
             favoriteFactBtn.disabled = false;
             copyFactBtn.disabled = false;
             shareTwitterBtn.disabled = false;
+            shareWhatsappBtn.disabled = false; // Enable new button
             factStreak++;
             currentStreakSpan.textContent = factStreak;
             currentStreakSpan.classList.add('animate-pulse');
@@ -981,6 +1021,13 @@
             const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact + " #DailyFact #GeminiCLI")}`;
             window.open(tweetUrl, '_blank');
             showNotification('Sharing fact on Twitter!', 3000);
+        }
+
+        function shareOnWhatsApp() {
+            const fact = factText.dataset.fullText;
+            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fact + " #DailyFact #GeminiCLI")}`;
+            window.open(whatsappUrl, '_blank');
+            showNotification('Sharing fact on WhatsApp!', 3000);
         }
 
         function toggleFavoriteFact() {
@@ -1139,6 +1186,7 @@
         newFactBtn.addEventListener('click', getNewFact);
         copyFactBtn.addEventListener('click', copyFact);
         shareTwitterBtn.addEventListener('click', shareOnTwitter);
+        shareWhatsappBtn.addEventListener('click', shareOnWhatsApp); // New event listener
         favoriteFactBtn.addEventListener('click', toggleFavoriteFact);
         resetStreakBtn.addEventListener('click', resetStreak);
         toggleFavoriteFactsBtn.addEventListener('click', toggleFavoriteFactsDisplay);
