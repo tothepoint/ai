@@ -3,25 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Quantum Quirks</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
             /* Default Theme Colors (will be overridden by JS) */
-            --bg-color-primary: #330033;   /* Dark Purple */
-            --bg-color-secondary: #470047; /* Slightly lighter/darker for gradient */
-            --text-color: #FFCCFF;         /* Light Pink/Purple */
-            --footer-bg: #1F001F;          /* Even darker purple */
-            --glass-bg: rgba(51, 0, 51, 0.6); /* Transparent dark purple */
-            --glass-border: rgba(255, 204, 255, 0.3); /* Transparent Light Pink/Purple */
+            --bg-color-primary: #0D0D2B;   /* Deep Space Blue */
+            --bg-color-secondary: #1A1A40; /* Slightly lighter/darker for gradient */
+            --text-color: #E0FFFF;         /* Light Cyan */
+            --footer-bg: #08081A;          /* Even darker blue */
+            --glass-bg: rgba(13, 13, 43, 0.6); /* Transparent dark blue */
+            --glass-border: rgba(224, 255, 255, 0.3); /* Transparent Light Cyan */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #CC00CC;        /* Magenta */
+            --title-color: #FFD700;        /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #990099;     /* Medium Purple */
-            --button-hover: #B300B3;       /* Lighter Medium Purple */
-            --main-action-btn: #FF00FF;    /* Fuchsia for main actions */
-            --main-action-btn-hover: #CC00CC; /* Darker Fuchsia */
+            --button-primary: #4A00B0;     /* Deep Purple */
+            --button-hover: #5E00D9;       /* Lighter Deep Purple */
+            --main-action-btn: #FF4500;    /* OrangeRed for main actions */
+            --main-action-btn-hover: #CC3700; /* Darker OrangeRed */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #FFCCFF; /* Light Pink/Purple for generic title */
+            --generic-title-color: #E0FFFF; /* Light Cyan for generic title */
+            --theme-indicator-color: #FFD700; /* Gold for theme indicator */
         }
 
         body {
@@ -70,11 +71,19 @@
         }
         h1#main-title {
             font-size: 4.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1rem; /* Reduced margin */
             text-shadow: var(--title-shadow);
             color: var(--title-color);
             letter-spacing: 3px;
             font-weight: 900;
+            transition: color 1s ease;
+        }
+        #theme-indicator {
+            font-size: 1.5rem;
+            color: var(--theme-indicator-color);
+            margin-bottom: 3rem; /* Added margin */
+            font-style: italic;
+            opacity: 0.8;
             transition: color 1s ease;
         }
         p {
@@ -111,9 +120,19 @@
         #main-fact-container.scanning {
             animation: pulseBorder 1.5s infinite alternate;
         }
+        #main-fact-container.fade-out {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        #main-fact-container.fade-in {
+            opacity: 1;
+            transform: scale(1);
+            transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+        }
 
         @keyframes pulseBorder {
-            from { border-color: var(--glass-border); box-shadow: 0 0 15px rgba(255, 204, 255, 0.3); }
+            from { border-color: var(--glass-border); box-shadow: 0 0 15px rgba(224, 255, 255, 0.3); }
             to { border-color: var(--main-action-btn); box-shadow: 0 0 25px var(--main-action-btn); }
         }
 
@@ -241,6 +260,18 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
+        #copy-fact-btn {
+            background-color: #555; /* A neutral grey */
+            color: white;
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin-top: 15px;
+            display: none; /* Hidden until fact is revealed */
+        }
+        #copy-fact-btn:hover {
+            background-color: #777;
+            transform: translateY(-2px);
+        }
         footer {
             margin-top: 30px;
             padding: 20px;
@@ -248,15 +279,18 @@
             color: var(--text-color); /* Ensure text is visible */
             width: 100%;
             font-size: 0.9rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
-            transition: background-color 1.5s ease-in-out, color 0.8s ease;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);\
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);\
+            transition: background-color 1.5s ease-in-out, color 0.8s ease;\
         }
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1#main-title {
                 font-size: 3rem;
+            }
+            #theme-indicator {
+                font-size: 1.2rem;
             }
             #main-fact-text {
                 font-size: 1.8rem;
@@ -273,6 +307,9 @@
             h1#main-title {
                 font-size: 2.5rem;
             }
+            #theme-indicator {
+                font-size: 1rem;
+            }
             #main-fact-text {
                 font-size: 1.5rem;
             }
@@ -285,13 +322,15 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Quantum Quirks</h1>
+        <h1 id="main-title">Cosmic Wonders</h1>
+        <span id="theme-indicator">Theme: Unknown</span>
         <div id="main-fact-container">
-            <p id="main-fact-text">Initiating Quantum Scan...</p>
+            <p id="main-fact-text">Unveiling a Universal Truth...</p>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
                 <p></p>
             </div>
+            <button id="copy-fact-btn" class="action-button">Copy Fact</button>
         </div>
         <div class="button-group">
             <button id="reveal-fact-btn" class="action-button">Scan for Clues!</button>
@@ -312,6 +351,8 @@
         const mainTitle = document.getElementById('main-title');
         const updateTimeSpan = document.getElementById('update-time');
         const mainFactContainer = document.getElementById('main-fact-container');
+        const themeIndicator = document.getElementById('theme-indicator');
+        const copyFactBtn = document.getElementById('copy-fact-btn');
 
         // Function to update the time in the footer
         function updateFooterTime() {
@@ -367,7 +408,7 @@
             {
                 theme: "Microscopic Marvels",
                 fact: "A single human body contains more bacterial cells than human cells.",
-                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",
+                didYouKnown: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",
                 bgColor: "#1A331A", // Dark Forest Green
                 bgSecondaryColor: "#254725",
                 textColor: "#CCFFCC", // Pale Green
@@ -420,6 +461,7 @@
             document.documentElement.style.setProperty('--button-hover', darkenColor(theme.buttonPrimary, 20));
             siteTitle.textContent = theme.theme;
             mainTitle.textContent = theme.theme;
+            themeIndicator.textContent = `Theme: ${theme.theme}`;
         }
 
         function hexToRgba(hex, alpha) {
@@ -442,34 +484,47 @@
                 // After typing is complete, reveal the "Did You Know?" section
                 setTimeout(() => {
                     didYouKnow.classList.add('visible');
+                    copyFactBtn.style.display = 'inline-block'; // Show copy button
                 }, 500); // Small delay after typing
             }
         }
 
         function loadFact(index) {
             const factData = facts[index];
-            applyTheme(factData);
+            
+            mainFactContainer.classList.add('fade-out'); // Start fade-out animation
 
-            factText.textContent = 'Initiating Quantum Scan...'; // Placeholder text
-            factText.classList.remove('revealed', 'glitch-effect');
-            mainFactContainer.classList.remove('scanning'); // Remove scanning class
-            didYouKnow.classList.remove('visible');
+            setTimeout(() => {
+                applyTheme(factData);
 
-            // Reset scan count and button text
-            scanCount = 0;
-            revealBtn.textContent = 'Scan for Clues!';
-            revealBtn.style.display = 'inline-block'; // Show scan button
-            newFactBtn.style.display = 'none'; // Hide new fact button initially
+                factText.textContent = 'Unveiling a Universal Truth...'; // Placeholder text
+                factText.classList.remove('revealed', 'glitch-effect');
+                mainFactContainer.classList.remove('scanning'); // Remove scanning class
+                didYouKnow.classList.remove('visible');
+                copyFactBtn.style.display = 'none'; // Hide copy button
 
-            // Reset blur and opacity for the new fact
-            factText.style.filter = `blur(10px)`; // Max blur
-            factText.style.opacity = '0.2'; // Min opacity
-            factText.style.color = 'transparent';
-            factText.style.textShadow = 'none';
+                // Reset scan count and button text
+                scanCount = 0;
+                revealBtn.textContent = 'Scan for Clues!';
+                revealBtn.style.display = 'inline-block'; // Show scan button
+                newFactBtn.style.display = 'none'; // Hide new fact button initially
 
-            // Set the fact and didYouKnow text, but keep them hidden/blurred
-            factText.dataset.fullText = factData.fact;
-            didYouKnow.querySelector('p').textContent = factData.didYouKnow;
+                // Reset blur and opacity for the new fact
+                factText.style.filter = `blur(10px)`; // Max blur
+                factText.style.opacity = '0.2'; // Min opacity
+                factText.style.color = 'transparent';
+                factText.style.textShadow = 'none';
+
+                // Set the fact and didYouKnow text, but keep them hidden/blurred
+                factText.dataset.fullText = factData.fact;
+                didYouKnow.querySelector('p').textContent = factData.didYouKnow;
+
+                mainFactContainer.classList.remove('fade-out'); // Remove fade-out
+                mainFactContainer.classList.add('fade-in'); // Start fade-in animation
+                setTimeout(() => {
+                    mainFactContainer.classList.remove('fade-in');
+                }, 500); // Match fade-in duration
+            }, 500); // Match fade-out duration
         }
 
         revealBtn.addEventListener('click', () => {
@@ -505,6 +560,15 @@
         newFactBtn.addEventListener('click', () => {
             currentFactIndex = Math.floor(Math.random() * facts.length); // Pick a random fact
             loadFact(currentFactIndex);
+        });
+
+        copyFactBtn.addEventListener('click', () => {
+            const factToCopy = factText.dataset.fullText;
+            navigator.clipboard.writeText(factToCopy).then(() => {
+                alert('Fact copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy fact: ', err);
+            });
         });
 
         // Initial load: pick a random fact
