@@ -552,7 +552,7 @@
 
         @keyframes shake {
             0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
+            25% { transform: translateX(-5px); }\
             50% { transform: translateX(5px); }
             75% { transform: translateX(-5px); }
             100% { transform: translateX(0); }
@@ -879,7 +879,24 @@
                 }
             }
             const currentLevel = masteryLevels[currentLevelIndex];
-            factMasteryLevelSpan.textContent = currentLevel.level;
+            let icon = '';
+            switch (currentLevel.level) {
+                case "Novice Explorer":
+                    icon = '&#128064;'; // Eye emoji
+                    break;
+                case "Curious Mind":
+                    icon = '&#128161;'; // Lightbulb emoji
+                    break;
+                case "Knowledge Seeker":
+                    icon = '&#128218;'; // Open book emoji
+                    break;
+                case "Master of Lore":
+                    icon = '&#127891;'; // Graduation cap emoji
+                    break;
+                default:
+                    icon = '';
+            }
+            factMasteryLevelSpan.innerHTML = `${icon} ${currentLevel.level}`;
 
             // Calculate progress for the current level
             let progress = 0;
