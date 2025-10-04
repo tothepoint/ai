@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Ancient Civilizations</title>
+    <title id="site-title">Microscopic Marvels</title>
     <style>
         :root {
-            /* Theme Colors (Ancient Civilizations) */
-            --bg-color-primary: #4A3B2A;   /* Dark Brown */
-            --bg-color-secondary: #6B5A4A; /* Lighter Dark Brown */
-            --text-color: #F5DEB3;         /* Wheat */
-            --footer-bg: #382C1F;          /* Even darker brown */
-            --glass-bg: rgba(74, 59, 42, 0.6); /* Transparent dark brown */
-            --glass-border: rgba(245, 222, 179, 0.3); /* Transparent Wheat */
+            /* Theme Colors (Microscopic Marvels) */
+            --bg-color-primary: #1A331A;   /* Dark Forest Green */
+            --bg-color-secondary: #254725; /* Lighter Dark Forest Green */
+            --text-color: #CCFFCC;         /* Pale Green */
+            --footer-bg: #102010;          /* Even darker forest green */
+            --glass-bg: rgba(26, 51, 26, 0.6); /* Transparent dark forest green */
+            --glass-border: rgba(204, 255, 204, 0.3); /* Transparent Pale Green */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #D4AF37;        /* Gold (metallic) */
+            --title-color: #8FBC8F;        /* Dark Sea Green */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #A0522D;     /* Sienna */
-            --button-hover: #8B4513;       /* SaddleBrown */
-            --main-action-btn: #CD853F;    /* Peru */
-            --main-action-btn-hover: #B87333; /* Darker Peru */
+            --button-primary: #3CB371;     /* Medium Sea Green */
+            --button-hover: #2E8B57;       /* Sea Green */
+            --main-action-btn: #FFD700;    /* Gold */
+            --main-action-btn-hover: #DAA520; /* Goldenrod */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #F5DEB3; /* Wheat for generic title */
-            --theme-indicator-color: #D4AF37; /* Gold for theme indicator */
-            --favorite-btn-color: #D4AF37; /* Gold for favorite button */
-            --favorite-btn-hover: #B0841A; /* Darker Gold */
-            --star-color: #D4AF37; /* Gold for stars */
+            --generic-title-color: #CCFFCC; /* Pale Green for generic title */
+            --theme-indicator-color: #8FBC8F; /* Dark Sea Green for theme indicator */
+            --favorite-btn-color: #FFD700; /* Gold for favorite button */
+            --favorite-btn-hover: #DAA520; /* Goldenrod */
+            --star-color: #FFD700; /* Gold for stars */
             --notification-bg: rgba(0, 0, 0, 0.8);
-            --notification-text: #F5DEB3;
+            --notification-text: #CCFFCC;
             --correct-answer-color: #3CB371; /* Medium Sea Green */
             --incorrect-answer-color: #FF6347; /* Tomato */
         }
@@ -610,8 +610,8 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Ancient Civilizations</h1>
-        <span id="theme-indicator">Theme: Ancient Civilizations</span>
+        <h1 id="main-title">Microscopic Marvels</h1>
+        <span id="theme-indicator">Theme: Microscopic Marvels</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
@@ -622,7 +622,7 @@
                 <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
                 <option value="Quantum Quirks">Quantum Quirks</option>
-                <option value="Ancient Civilizations" selected>Ancient Civilizations</option>
+                <option value="Microscopic Marvels" selected>Microscopic Marvels</option>
             </select>
         </div>
 
@@ -640,13 +640,13 @@
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years."></p>
+            <p id="main-fact-text" data-full-text="A single human body contains more bacterial cells than human cells."></p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its precision engineering continues to baffle modern scientists.</p>
+                <p>These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.</p>
             </div>
 
             <!-- New Feature: Fact Rating -->
@@ -801,7 +801,7 @@
             {
                 theme: "Ancient Earth",
                 fact: "Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.",
-                didYouKnow: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.",
+                didYouKnown: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.",
                 bgColor: "#2E2E00", // Dark Olive Green
                 bgSecondaryColor: "#3A3A00",
                 textColor: "#E6E6B8", // Pale Yellow
