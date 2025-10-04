@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Ancient Earth</title>
+    <title id="site-title">Quantum Quirks</title>
     <style>
         :root {
-            /* Default Theme Colors (Ancient Earth) */
-            --bg-color-primary: #2E2E00;   /* Dark Olive Green */
-            --bg-color-secondary: #3A3A00; /* Lighter Dark Olive Green */
-            --text-color: #E6E6B8;         /* Pale Yellow */
-            --footer-bg: #1A1A00;          /* Even darker olive */
-            --glass-bg: rgba(46, 46, 0, 0.6); /* Transparent dark olive */
-            --glass-border: rgba(230, 230, 184, 0.3); /* Transparent Pale Yellow */
+            /* Theme Colors (Quantum Quirks) */
+            --bg-color-primary: #2A0A4A;   /* Deep Violet */
+            --bg-color-secondary: #3F156B; /* Lighter Deep Violet */
+            --text-color: #E0BBE4;         /* Pale Lavender */
+            --footer-bg: #1F0738;          /* Even darker violet */
+            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent deep violet */
+            --glass-border: rgba(224, 187, 228, 0.3); /* Transparent Pale Lavender */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #A0522D;        /* Sienna */
+            --title-color: #DAA520;        /* Goldenrod */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #8B4513;     /* SaddleBrown */
-            --button-hover: #6A350F;       /* Darker SaddleBrown */
-            --main-action-btn: #D2691E;    /* Chocolate */
-            --main-action-btn-hover: #A85218; /* Darker Chocolate */
+            --button-primary: #8A2BE2;     /* Blue Violet */
+            --button-hover: #6A1EC0;       /* Darker Blue Violet */
+            --main-action-btn: #FF6347;    /* Tomato */
+            --main-action-btn-hover: #CC4F39; /* Darker Tomato */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #E6E6B8; /* Pale Yellow for generic title */
-            --theme-indicator-color: #A0522D; /* Sienna for theme indicator */
-            --favorite-btn-color: #A0522D; /* Sienna for favorite button */
-            --favorite-btn-hover: #804024; /* Darker Sienna */
-            --star-color: #A0522D; /* Sienna for stars */
+            --generic-title-color: #E0BBE4; /* Pale Lavender for generic title */
+            --theme-indicator-color: #DAA520; /* Goldenrod for theme indicator */
+            --favorite-btn-color: #DAA520; /* Goldenrod for favorite button */
+            --favorite-btn-hover: #B0841A; /* Darker Goldenrod */
+            --star-color: #DAA520; /* Goldenrod for stars */
             --notification-bg: rgba(0, 0, 0, 0.8);
-            --notification-text: #E6E6B8;
+            --notification-text: #E0BBE4;
             --correct-answer-color: #3CB371; /* Medium Sea Green */
             --incorrect-answer-color: #FF6347; /* Tomato */
         }
@@ -487,6 +487,17 @@
             cursor: pointer;
             transition: color 0.2s ease, transform 0.2s ease;
         }
+        footer {
+            width: 100%;
+            padding: 15px 0;
+            background-color: var(--footer-bg); /* Use theme variable */
+            color: var(--text-color); /* Ensure footer text color matches theme */
+            font-size: 1rem;
+            margin-top: auto; /* Pushes footer to the bottom */
+            opacity: 0.9;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
+            transition: background-color 1s ease, color 1s ease;
+        }
         footer p {
             color: var(--text-color); /* Ensure footer text color matches theme */
             font-size: 1rem;
@@ -546,12 +557,49 @@
             75% { transform: translateX(-5px); }\
             100% { transform: translateX(0); }\
         }
+
+        /* Mastery Progress Bar Styling */
+        #fact-mastery-display {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 15px 30px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.5s ease;
+            color: var(--text-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+
+        #mastery-progress-bar-container {
+            width: 80%;
+            background-color: rgba(0,0,0,0.3);
+            border-radius: 10px;
+            height: 15px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        #mastery-progress-bar {
+            height: 100%;
+            width: 0%; /* Initial width */
+            background-color: var(--title-color); /* Use a theme color for progress */
+            border-radius: 10px;
+            transition: width 0.5s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Ancient Earth</h1>
-        <span id="theme-indicator">Theme: Ancient Earth</span>
+        <h1 id="main-title">Quantum Quirks</h1>
+        <span id="theme-indicator">Theme: Quantum Quirks</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
@@ -559,9 +607,9 @@
                 <option value="random">Random Theme</option>
                 <option value="Cosmic Wonders">Cosmic Wonders</option>
                 <option value="Oceanic Depths">Oceanic Depths</option>
-                <option value="Ancient Earth" selected>Ancient Earth</option>
+                <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
-                <option value="Quantum Quirks">Quantum Quirks</option>
+                <option value="Quantum Quirks" selected>Quantum Quirks</option>
                 <option value="Ancient Civilizations">Ancient Civilizations</option>
             </select>
         </div>
@@ -580,13 +628,13 @@
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed."></p>
+            <p id="main-fact-text" data-full-text="Particles can be in two places at once, a phenomenon known as superposition."></p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.</p>
+                <p>This bizarre quantum property is famously illustrated by Schrödinger's Cat thought experiment, where a cat in a sealed box is simultaneously dead and alive until observed.</p>
             </div>
 
             <!-- New Feature: Fact Rating -->
@@ -661,7 +709,7 @@
         const mainFactContainer = document.getElementById('main-fact-container');
         const themeIndicator = document.getElementById('theme-indicator');
         const copyFactBtn = document.getElementById('copy-fact-btn');
-        const shareTwitterBtn = document = document.getElementById('share-twitter-btn');
+        const shareTwitterBtn = document.getElementById('share-twitter-btn');
         const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');
         const revealFactBtn = document.getElementById('reveal-fact-btn');
         const revealOverlay = document.getElementById('reveal-overlay');
@@ -752,7 +800,7 @@
                 buttonPrimary: "#8B4513", // SaddleBrown
                 mainActionBtn: "#D2691E", // Chocolate
                 quiz: {
-                    question: "For how many million years did dinosaurs roam the Earth?",
+                    question: "For how many million years did dinosaurs roam the Earth?  ",
                     options: ["50 million", "100 million", "160 million", "200 million"],
                     answer: "160 million"
                 }
@@ -1248,8 +1296,8 @@
         submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener
 
         // Initial load
-        // Set initial fact to Ancient Earth
-        currentFactIndex = facts.findIndex(f => f.theme === "Ancient Earth");
+        // Set initial fact to Quantum Quirks
+        currentFactIndex = facts.findIndex(f => f.theme === "Quantum Quirks");
         if (currentFactIndex === -1) { // Fallback to random if not found
             currentFactIndex = Math.floor(Math.random() * facts.length);
         }
