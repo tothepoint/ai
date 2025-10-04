@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Quantum Quirks</title>
+    <title id="site-title">Deep Sea Wonders</title>
     <style>
         :root {
-            /* Theme Colors (Quantum Quirks) */
-            --bg-color-primary: #2A0A4A;   /* Deep Violet */
-            --bg-color-secondary: #3F156B; /* Lighter Deep Violet */
-            --text-color: #E0BBE4;         /* Pale Lavender */
-            --footer-bg: #1F0738;          /* Even darker violet */
-            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent deep violet */
-            --glass-border: rgba(224, 187, 228, 0.3); /* Transparent Pale Lavender */
+            /* Theme Colors (Deep Sea Wonders) */
+            --bg-color-primary: #0A1F33;   /* Very deep blue */
+            --bg-color-secondary: #0F304A; /* Slightly lighter deep blue */
+            --text-color: #ADD8E6;         /* Light blue, like bioluminescence */
+            --footer-bg: #05101A;          /* Even darker blue */
+            --glass-bg: rgba(10, 31, 51, 0.6); /* Transparent deep blue */
+            --glass-border: rgba(173, 216, 230, 0.3); /* Transparent Light Blue */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #DAA520;        /* Goldenrod */
+            --title-color: #FFD700;        /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #8A2BE2;     /* Blue Violet */
-            --button-hover: #6A0DAD;       /* Darker Blue Violet */
-            --main-action-btn: #FF6347;    /* Tomato */
-            --main-action-btn-hover: #E5533D; /* Darker Tomato */
-            --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #E0BBE4; /* Pale Lavender for generic title */
-            --theme-indicator-color: #DAA520; /* Goldenrod for theme indicator */
-            --favorite-btn-color: #DAA520; /* Goldenrod for favorite button */
+            --button-primary: #4682B4;     /* Steel Blue */
+            --button-hover: #36648B;       /* Darker Steel Blue */
+            --main-action-btn: #00CED1;    /* Dark Turquoise */
+            --main-action-btn-hover: #00B0B3; /* Darker Dark Turquoise */
+            --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
+            --generic-title-color: #ADD8E6; /* Light blue for generic title */
+            --theme-indicator-color: #FFD700; /* Gold for theme indicator */
+            --favorite-btn-color: #FFD700; /* Gold for favorite button */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
             --star-color: #FFD700; /* Gold for stars */
             --notification-bg: rgba(0, 0, 0, 0.8);
-            --notification-text: #E0BBE4;
+            --notification-text: #ADD8E6;
             --correct-answer-color: #3CB371; /* Medium Sea Green */
             --incorrect-answer-color: #FF6347; /* Tomato */
         }
@@ -104,6 +104,7 @@
             box-sizing: border-box;
             transition: background 1.5s ease-in-out, color 0.8s ease;
             overflow-x: hidden;
+            position: relative; /* For bubble animation */
         }
 
         @keyframes gradientShift {
@@ -184,7 +185,7 @@
             appearance: none; /* Remove default dropdown arrow */
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F5DEB3%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.8%204.9-4.9%2011.4-3.1%2017.4l130%20140c3.8%204.9%209.6%208.1%2016.1%208.1s12.3-3.2%2016.1-8.1l130-140c1.8-6-.1-12.5-3.9-17.4z%22%2F%3E%3C%2Fsvg%3E');
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23FFD700%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-6.5%200-12.3%203.2-16.1%208.1-3.8%204.9-4.9%2011.4-3.1%2017.4l130%20140c3.8%204.9%209.6%208.1%2016.1%208.1s12.3-3.2%2016.1-8.1l130-140c1.8-6-.1-12.5-3.9-17.4z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 15px center;
             background-size: 1em;
@@ -259,6 +260,7 @@
             filter: blur(0px); /* Not blurred when revealed */
             opacity: 1; /* Fully opaque when revealed */
             transform: scale(1.05); /* Slightly larger when revealed */
+            animation: bioluminescent-glow 1.5s infinite alternate; /* Bioluminescent glow */
         }
         #main-fact-container.revealed #main-fact-text.animate-in {
             animation: fadeInScale 0.8s ease-out forwards;
@@ -340,222 +342,745 @@
             margin-top: 20px;
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        .button-group.primary-actions {
-            margin-top: 40px;
-            margin-bottom: 20px;
-        }
-        .button-group.secondary-actions {
-            margin-bottom: 20px;
-        }
-        .button-group.utility-actions {
-            margin-bottom: 40px;
-        }
-        .action-button {
-            padding: 15px 30px;
-            font-size: 1.3rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .action-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
-        }
-        #toggle-did-you-know-btn {
-            background-color: var(--main-action-btn);
-            color: white;
-        }
-        #toggle-did-you-know-btn:hover {
-            background-color: var(--main-action-btn-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-        #new-fact-btn {
-            background-color: var(--button-primary);
-            color: white;
-        }
-        #new-fact-btn:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-        #copy-fact-btn, #share-twitter-btn, #share-whatsapp-btn {
-            background-color: #555; /* A neutral grey */
-            color: white;
-            padding: 10px 20px;
-            font-size: 1rem;
-            margin-top: 15px;
-        }
-        #copy-fact-btn:hover, #share-twitter-btn:hover, #share-whatsapp-btn:hover {
-            background-color: #777;
-            transform: translateY(-2px);
-        }
-        #favorite-fact-btn {
-            background-color: var(--favorite-btn-color);
-            color: black; /* Black text for gold button */
-        }
-        #favorite-fact-btn:hover {
-            background-color: var(--favorite-btn-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-        #favorite-fact-btn.favorited {
-            background-color: #FFEB3B; /* Lighter yellow when favorited */
-            color: #B71C1C; /* Red text for contrast */
-            box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);
+            flex-wrap: wrap;\n            justify-content: center;\n        }\n        .button-group.primary-actions {\n            margin-top: 40px;\n            margin-bottom: 20px;\n        }\n        .button-group.secondary-actions {\n            margin-bottom: 20px;\n        }\n        .button-group.utility-actions {\n            margin-bottom: 40px;\n        }\n        .action-button {\n            padding: 15px 30px;\n            font-size: 1.3rem;\n            font-weight: bold;\n            border: none;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: all 0.3s ease;\n            box-shadow: 0 5px 15px rgba(0,0,0,0.3);\n            text-transform: uppercase;\n            letter-spacing: 1px;\n        }\n        .action-button:disabled {\n            opacity: 0.5;\n            cursor: not-allowed;\n            box-shadow: none;\n            transform: none;\n        }\n        #toggle-did-you-know-btn {\n            background-color: var(--main-action-btn);\n            color: white;\n        }\n        #toggle-did-you-know-btn:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n        }\n        #new-fact-btn {\n            background-color: var(--button-primary);\n            color: white;\n        }\n        #new-fact-btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n        }\n        #copy-fact-btn, #share-twitter-btn, #share-whatsapp-btn {\n            background-color: #555; /* A neutral grey */\n            color: white;\n            padding: 10px 20px;\n            font-size: 1rem;\n            margin-top: 15px;\n        }\n        #copy-fact-btn:hover, #share-twitter-btn:hover, #share-whatsapp-btn:hover {\n            background-color: #777;\n            transform: translateY(-2px);\n        }\n        #favorite-fact-btn {\n            background-color: var(--favorite-btn-color);\n            color: black; /* Black text for gold button */\n        }\n        #favorite-fact-btn:hover {\n            background-color: var(--favorite-btn-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n        }\n        #favorite-fact-btn.favorited {\n            background-color: #FFEB3B; /* Lighter yellow when favorited */\n            color: #B71C1C; /* Red text for contrast */\n            box-shadow: 0 0 15px 5px rgba(255, 215, 0, 0.7);\n        }\n\n        #favorite-facts-display, #fact-history-display {\n            margin-top: 40px;\n            padding: 25px;\n            background-color: rgba(0,0,0,0.3);\n            border-radius: 15px;\n            width: 90%;\n            max-width: 850px;\n            text-align: left;\n            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);\n            display: none; /* Hidden by default */\n            flex-direction: column;\n            gap: 15px;\n        }\n        #favorite-facts-display.visible, #fact-history-display.visible {\n            display: flex;\n        }\n        #favorite-facts-display h3, #fact-history-display h3 {\n            color: var(--generic-title-color);\n            font-size: 1.8rem;\n            margin-bottom: 15px;\n            text-shadow: 1px 1px 8px rgba(0,0,0,0.7);\n            text-align: center;\n        }\n        .favorite-fact-item, .history-fact-item {\n            background-color: rgba(255,255,255,0.1);\n            padding: 15px;\n            border-radius: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            font-size: 1.1rem;\n            line-height: 1.4;\n            border: 1px solid rgba(255,255,255,0.2);\n        }\n        .favorite-fact-item .remove-fav-btn, .history-fact-item .remove-history-btn {\n            background-color: #DC3545; /* Red for remove */\n            color: white;\n            border: none;\n            padding: 8px 12px;\n            border-radius: 5px;\n            cursor: pointer;\n            font-size: 0.9rem;\n            transition: background-color 0.3s ease;\n        }\n        .favorite-fact-item .remove-fav-btn:hover, .history-fact-item .remove-history-btn:hover {\n            background-color: #C82333;\n        }\n\n        /* Fact Rating Feature Styles */\n        #fact-rating-container {\n            margin-top: 20px;\n            display: none; /* Hidden initially */\n            flex-direction: column;\n            align-items: center;\n            gap: 10px;\n            opacity: 0;\n            transition: opacity 0.5s ease-out;\n        }\n        #fact-rating-container.visible {\n            display: flex;\n            opacity: 1;\n        }\n        .star-rating {\n            display: flex;\n            gap: 5px;\n        }\n        .star-rating .star {\n            font-size: 2.5rem;\n            color: #555; /* Default grey for unselected stars */\n            cursor: pointer;\n            transition: color 0.2s ease, transform 0.2s ease;\n        }\n        .star-rating .star.selected {\n            color: var(--star-color); /* Use theme color for selected stars */\n            transform: scale(1.2);\n        }\n        footer {\n            width: 100%;\n            padding: 15px 0;\n            background-color: var(--footer-bg); /* Use theme variable */\n            color: var(--text-color); /* Ensure footer text color matches theme */\n            font-size: 1rem;\n            margin-top: auto; /* Pushes footer to the bottom */\n            opacity: 0.9;\n            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);\n            transition: background-color 1s ease, color 1s ease;\n        }\n        footer p {\n            color: var(--text-color); /* Ensure footer text color matches theme */\n            font-size: 1rem;\n            margin: 0;\n            opacity: 0.7;\n        }\n\n        .quiz-option-btn {\n            background-color: var(--button-primary);\n            color: white;\n            padding: 12px 25px;\n            font-size: 1.1rem;\n            border: none;\n            border-radius: 8px;\n            cursor: pointer;\n            transition: all 0.3s ease;\n            margin: 5px;\n            box-shadow: 0 4px 15px rgba(0,0,0,0.2);\n        }\n\n        .quiz-option-btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-2px);\n            box-shadow: 0 6px 20px rgba(0,0,0,0.3);\n        }\n\n        .quiz-option-btn.selected {\n            background-color: var(--main-action-btn);\n            transform: scale(1.05);\n            box-shadow: 0 6px 20px rgba(0,0,0,0.4);\n        }\n\n        .quiz-option-btn.correct {\n            background-color: var(--correct-answer-color);\n            color: white;\n            font-weight: bold;\n            animation: pulseCorrect 0.5s ease-out;\n        }\n\n        .quiz-option-btn.incorrect {\n            background-color: var(--incorrect-answer-color);\n            color: white;\n            font-weight: bold;\n            animation: shake 0.3s ease-out;\n        }\n\n        @keyframes pulseCorrect {\n            0% { transform: scale(1); }\n            50% { transform: scale(1.08); }\n            100% { transform: scale(1); }\n        }\n\n        @keyframes shake {\n            0% { transform: translateX(0); }\n            25% { transform: translateX(-5px); }\n            50% { transform: translateX(5px); }\n            75% { transform: translateX(-5px); }\n            100% { transform: translateX(0); }\n        }\n\n        /* Mastery Progress Bar Styling */\n        #fact-mastery-display {\n            margin-top: 20px;\n            margin-bottom: 20px;\n            padding: 15px 30px;\n            background-color: rgba(255, 255, 255, 0.1);\n            border-radius: 15px;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            gap: 10px;\n            box-shadow: 0 5px 20px rgba(0,0,0,0.3);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            transition: all 0.5s ease;\n            color: var(--text-color);\n            font-size: 1.3rem;\n            font-weight: 600;\n            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);\n        }\n\n        #mastery-progress-bar-container {\n            width: 80%;\n            background-color: rgba(0,0,0,0.3);\n            border-radius: 10px;\n            height: 15px;\n            overflow: hidden;\n            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);\n        }\n\n        #mastery-progress-bar {\n            height: 100%;\n            width: 0%; /* Initial width */\n            background-color: var(--title-color); /* Use a theme color for progress */\n            border-radius: 10px;\n            transition: width 0.5s ease-in-out;\n        }\n\n        #fact-quiz-container h3, #fact-challenge-container h3 {\n            color: var(--generic-title-color);\n            font-size: 2rem; /* Slightly larger */\n            margin-bottom: 20px;\n            text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Stronger shadow */\n            transition: text-shadow 0.5s ease;\n        }\n\n        #fact-challenge-container {\n            margin-top: 30px;\n            padding: 25px;\n            background-color: var(--glass-bg);\n            border-radius: 15px;\n            box-shadow: 0 10px 35px rgba(0,0,0,0.5);\n            backdrop-filter: blur(12px);\n            -webkit-backdrop-filter: blur(12px);\n            border: 1px solid var(--glass-border);\n            width: 90%;\n            max-width: 850px;\n            display: none; /* Hidden by default */\n            flex-direction: column;\n            align-items: center;\n            gap: 20px;\n            opacity: 0;\n            transition: opacity 0.5s ease-out;\n        }\n\n        #fact-challenge-container.visible {\n            display: flex;\n            opacity: 1;\n        }\n\n        #challenge-question {\n            font-size: 1.8rem;\n            color: var(--text-color);\n            margin-bottom: 20px;\n            text-shadow: 1px 1px 8px rgba(0,0,0,0.7);\n            text-align: center;\n        }\n\n        #challenge-options {\n            display: flex;\n            flex-wrap: wrap;\n            justify-content: center;\n            gap: 15px;\n        }\n\n        .challenge-option-btn {\n            background-color: var(--button-primary);\n            color: white;\n            padding: 15px 30px;\n            font-size: 1.2rem;\n            border: none;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: all 0.3s ease;\n            box-shadow: 0 4px 15px rgba(0,0,0,0.2);\n        }\n\n        .challenge-option-btn:hover {\n            background-color: var(--button-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 6px 20px rgba(0,0,0,0.3);\n        }\n\n        .challenge-option-btn.correct {\n            background-color: var(--correct-answer-color);\n            color: white;\n            font-weight: bold;\n            animation: pulseCorrect 0.5s ease-out;\n        }\n\n        .challenge-option-btn.incorrect {\n            background-color: var(--incorrect-answer-color);\n            color: white;\n            font-weight: bold;\n            animation: shake 0.3s ease-out;\n        }\n\n        #challenge-feedback {\n            font-size: 1.5rem;\n            font-weight: bold;\n            margin-top: 20px;\n            min-height: 30px;\n        }\n\n        #next-challenge-btn {\n            background-color: var(--main-action-btn);\n            color: white;\n            padding: 15px 30px;\n            font-size: 1.3rem;\n            border: none;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: all 0.3s ease;\n            box-shadow: 0 5px 15px rgba(0,0,0,0.3);\n            margin-top: 20px;\n        }\n\n        #next-challenge-btn:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 8px 20px rgba(0,0,0,0.4);\n        }\n\n        /* Bioluminescent Glow Animation */\n        @keyframes bioluminescent-glow {\n            0% { box-shadow: 0 0 15px var(--text-color), 0 0 30px var(--text-color); }\n            100% { box-shadow: 0 0 25px var(--text-color), 0 0 45px var(--text-color); }\n        }\n\n        /* Bubble Animation */\n        .bubble {\n            position: absolute;\n            bottom: -10px;\n            width: 10px;\n            height: 10px;\n            background-color: rgba(173, 216, 230, 0.5); /* Light blue, semi-transparent */\n            border-radius: 50%;\n            opacity: 0;\n            animation: bubble-rise 10s infinite ease-in-out;\n            pointer-events: none;\n            z-index: 0;\n        }\n\n        .bubble:nth-child(1) { left: 10%; animation-duration: 8s; animation-delay: 0s; transform: scale(0.8); }\n        .bubble:nth-child(2) { left: 20%; animation-duration: 12s; animation-delay: 2s; transform: scale(1.2); }\n        .bubble:nth-child(3) { left: 30%; animation-duration: 7s; animation-delay: 1s; transform: scale(0.7); }\n        .bubble:nth-child(4) { left: 40%; animation-duration: 11s; animation-delay: 3s; transform: scale(1.1); }\n        .bubble:nth-child(5) { left: 50%; animation-duration: 9s; animation-delay: 0.5s; transform: scale(0.9); }\n        .bubble:nth-child(6) { left: 60%; animation-duration: 13s; animation-delay: 4s; transform: scale(1.3); }\n        .bubble:nth-child(7) { left: 70%; animation-duration: 6s; animation-delay: 2.5s; transform: scale(0.6); }\n        .bubble:nth-child(8) { left: 80%; animation-duration: 10s; animation-delay: 1.5s; transform: scale(1.0); }\n        .bubble:nth-child(9) { left: 90%; animation-duration: 14s; animation-delay: 3.5s; transform: scale(1.4); }\n\n        @keyframes bubble-rise {\n            0% { bottom: -10px; opacity: 0; transform: translateX(0) scale(1); }\n            10% { opacity: 1; }\n            80% { opacity: 1; }\n            100% { bottom: 100%; opacity: 0; transform: translateX(20px) scale(1.2); }\n        }\n\n    </style>
+</head>
+<body>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+    <div class="bubble"></div>
+
+    <div class="container">
+        <h1 id="main-title">Deep Sea Wonders</h1>
+        <p id="theme-indicator">Exploring the Ocean's Depths</p>
+
+        <div id="theme-selector-container">
+            <label for="theme-select">Choose Your Journey:</label>
+            <select id="theme-select">
+                <option value="quantum-quirks">Quantum Quirks</option>
+                <option value="deep-sea-mysteries" selected>Deep Sea Mysteries</option>
+                <option value="ancient-civilizations">Ancient Civilizations</option>
+                <option value="incredible-animals">Incredible Animals</option>
+                <option value="human-body-wonders">Human Body Wonders</option>
+            </select>
+        </div>
+
+        <div id="main-fact-container">
+            <p id="main-fact-text">The Mariana Trench is deeper than Mount Everest is tall.</p>
+            <div id="reveal-overlay">
+                <button id="reveal-fact-btn">Reveal the Deep Secret!</button>
+            </div>
+        </div>
+
+        <div class="button-group primary-actions">
+            <button id="new-fact-btn" class="action-button">New Deep Dive Fact</button>
+            <button id="favorite-fact-btn" class="action-button">⭐ Favorite Fact</button>
+        </div>
+
+        <div id="fact-rating-container">
+            <p>Rate this fact:</p>
+            <div class="star-rating">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+        </div>
+
+        <div id="fact-streak-display">
+            <p>Current Streak: <span id="current-streak">0</span></p>
+            <button id="reset-streak-btn" class="action-button">Reset Streak</button>
+        </div>
+
+        <div id="fact-mastery-display">
+            <p>Fact Mastery Progress:</p>
+            <div id="mastery-progress-bar-container">
+                <div id="mastery-progress-bar"></div>
+            </div>
+            <p><span id="mastered-facts-count">0</span> / <span id="total-facts-count">0</span> Mastered</p>
+        </div>
+
+        <div class="button-group secondary-actions">
+            <button id="toggle-did-you-know-btn" class="action-button">Did You Know?</button>
+            <button id="toggle-quiz-btn" class="action-button">Fact Quiz</button>
+            <button id="toggle-challenge-btn" class="action-button">Fact Challenge</button>
+        </div>
+
+        <div id="did-you-know">
+            <h3>Did You Know?</h3>
+            <p id="did-you-know-text">The Mariana Trench is located in the western Pacific Ocean, near the Mariana Islands. It is the deepest oceanic trench on Earth and the deepest part of the Earth's hydrosphere.</p>
+        </div>
+
+        <div id="fact-quiz-container">
+            <h3>Test Your Knowledge!</h3>
+            <p id="quiz-question"></p>
+            <div id="quiz-options"></div>
+            <p id="quiz-feedback"></p>
+            <button id="next-quiz-btn" class="action-button">Next Question</button>
+        </div>
+
+        <div id="fact-challenge-container">
+            <h3>Challenge Yourself!</h3>
+            <p id="challenge-question"></p>
+            <div id="challenge-options"></div>
+            <p id="challenge-feedback"></p>
+            <button id="next-challenge-btn" class="action-button">Next Challenge</button>
+        </div>
+
+        <div class="button-group utility-actions">
+            <button id="copy-fact-btn" class="action-button">Copy Fact</button>
+            <button id="share-twitter-btn" class="action-button">Share on Twitter</button>
+            <button id="share-whatsapp-btn" class="action-button">Share on WhatsApp</button>
+            <button id="toggle-favorites-btn" class="action-button">My Favorite Facts</button>
+            <button id="toggle-history-btn" class="action-button">Fact History</button>
+        </div>
+
+        <div id="favorite-facts-display">
+            <h3>My Favorite Facts</h3>
+            <div id="favorite-facts-list"></div>
+        </div>
+
+        <div id="fact-history-display">
+            <h3>Fact History</h3>
+            <div id="fact-history-list"></div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p>Site will update at: <span id="update-time"></span></p>
+    </footer>
+
+    <script>
+        const themes = {
+            "quantum-quirks": {
+                title: "Quantum Quirks",
+                indicator: "Exploring the Subatomic Realm",
+                fact: "Quantum entanglement allows particles to be linked in such a way that they share the same existence, no matter how far apart they are.",
+                didYouKnow: "This phenomenon, famously dubbed 'spooky action at a distance' by Albert Einstein, is a cornerstone of quantum mechanics and has profound implications for future technologies like quantum computing and cryptography.",
+                colors: {
+                    "--bg-color-primary": "#2A0A4A",
+                    "--bg-color-secondary": "#3F156B",
+                    "--text-color": "#E0BBE4",
+                    "--footer-bg": "#1F0738",
+                    "--glass-bg": "rgba(42, 10, 74, 0.6)",
+                    "--glass-border": "rgba(224, 187, 228, 0.3)",
+                    "--title-color": "#DAA520",
+                    "--main-action-btn": "#FF6347",
+                    "--main-action-btn-hover": "#E5533D",
+                    "--button-primary": "#8A2BE2",
+                    "--button-hover": "#6A0DAD",
+                    "--favorite-btn-color": "#DAA520",
+                    "--favorite-btn-hover": "#B8860B",
+                    "--star-color": "#FFD700",
+                    "--generic-title-color": "#E0BBE4",
+                    "--theme-indicator-color": "#DAA520",
+                }
+            },
+            "deep-sea-mysteries": {
+                title: "Deep Sea Wonders",
+                indicator: "Exploring the Ocean's Depths",
+                fact: "The Mariana Trench is deeper than Mount Everest is tall.",
+                didYouKnow: "The Mariana Trench is located in the western Pacific Ocean, near the Mariana Islands. It is the deepest oceanic trench on Earth and the deepest part of the Earth's hydrosphere.",
+                colors: {
+                    "--bg-color-primary": "#0A1F33",
+                    "--bg-color-secondary": "#0F304A",
+                    "--text-color": "#ADD8E6",
+                    "--footer-bg": "#05101A",
+                    "--glass-bg": "rgba(10, 31, 51, 0.6)",
+                    "--glass-border": "rgba(173, 216, 230, 0.3)",
+                    "--title-color": "#FFD700",
+                    "--main-action-btn": "#00CED1",
+                    "--main-action-btn-hover": "#00B0B3",
+                    "--button-primary": "#4682B4",
+                    "--button-hover": "#36648B",
+                    "--favorite-btn-color": "#FFD700",
+                    "--favorite-btn-hover": "#B8860B",
+                    "--star-color": "#FFD700",
+                    "--generic-title-color": "#ADD8E6",
+                    "--theme-indicator-color": "#FFD700",
+                }
+            },
+            "ancient-civilizations": {
+                title: "Echoes of Ancients",
+                indicator: "Unearthing Forgotten Worlds",
+                fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",
+                didYouKnow: "Built for Pharaoh Khufu, its construction is estimated to have taken 20 years, using over 2.3 million stone blocks. It remained the tallest man-made structure until the Lincoln Cathedral was completed in 1311 AD.",
+                colors: {
+                    "--bg-color-primary": "#4A3C2A",
+                    "--bg-color-secondary": "#6B5B3F",
+                    "--text-color": "#F5DEB3",
+                    "--footer-bg": "#382E1F",
+                    "--glass-bg": "rgba(74, 60, 42, 0.6)",
+                    "--glass-border": "rgba(245, 222, 179, 0.3)",
+                    "--title-color": "#DAA520",
+                    "--main-action-btn": "#CD853F",
+                    "--main-action-btn-hover": "#B87333",
+                    "--button-primary": "#A0522D",
+                    "--button-hover": "#8B4513",
+                    "--favorite-btn-color": "#DAA520",
+                    "--favorite-btn-hover": "#B8860B",
+                    "--star-color": "#FFD700",
+                    "--generic-title-color": "#F5DEB3",
+                    "--theme-indicator-color": "#DAA520",
+                }
+            },
+            "incredible-animals": {
+                title: "Wild Wonders",
+                indicator: "The Animal Kingdom's Secrets",
+                fact: "A group of owls is called a parliament.",
+                didYouKnow: "This charming collective noun is thought to have originated from the perception of owls as wise and scholarly creatures, often depicted in folklore and literature as deliberating in solemn assembly.",
+                colors: {
+                    "--bg-color-primary": "#224229",
+                    "--bg-color-secondary": "#3A6040",
+                    "--text-color": "#C8E6C9",
+                    "--footer-bg": "#1A301F",
+                    "--glass-bg": "rgba(34, 66, 41, 0.6)",
+                    "--glass-border": "rgba(200, 230, 201, 0.3)",
+                    "--title-color": "#FFD700",
+                    "--main-action-btn": "#4CAF50",
+                    "--main-action-btn-hover": "#43A047",
+                    "--button-primary": "#66BB6A",
+                    "--button-hover": "#4CAF50",
+                    "--favorite-btn-color": "#FFD700",
+                    "--favorite-btn-hover": "#B8860B",
+                    "--star-color": "#FFD700",
+                    "--generic-title-color": "#C8E6C9",
+                    "--theme-indicator-color": "#FFD700",
+                }
+            },
+            "human-body-wonders": {
+                title: "Body's Blueprint",
+                indicator: "The Marvels Within Us",
+                fact: "Your brain uses about 20% of your body's oxygen and calories.",
+                didYouKnow: "Despite making up only about 2% of an adult's body weight, the brain is an incredibly energy-intensive organ, requiring a constant and significant supply of oxygen and nutrients to function optimally.",
+                colors: {
+                    "--bg-color-primary": "#4A0A0A",
+                    "--bg-color-secondary": "#6B1515",
+                    "--text-color": "#FFCCCC",
+                    "--footer-bg": "#380707",
+                    "--glass-bg": "rgba(74, 10, 10, 0.6)",
+                    "--glass-border": "rgba(255, 204, 204, 0.3)",
+                    "--title-color": "#FFD700",
+                    "--main-action-btn": "#DC143C",
+                    "--main-action-btn-hover": "#C41134",
+                    "--button-primary": "#B22222",
+                    "--button-hover": "#8B0000",
+                    "--favorite-btn-color": "#FFD700",
+                    "--favorite-btn-hover": "#B8860B",
+                    "--star-color": "#FFD700",
+                    "--generic-title-color": "#FFCCCC",
+                    "--theme-indicator-color": "#FFD700",
+                }
+            }
+        };
+
+        let currentTheme = "deep-sea-mysteries";
+        let currentFact = "";
+        let currentDidYouKnow = "";
+        let factHistory = [];
+        let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];
+        let factRatings = JSON.parse(localStorage.getItem('factRatings')) || {};
+        let factStreaks = JSON.parse(localStorage.getItem('factStreaks')) || {};
+        let masteredFacts = JSON.parse(localStorage.getItem('masteredFacts')) || {};
+
+        const siteTitle = document.getElementById('site-title');
+        const mainTitle = document.getElementById('main-title');
+        const themeIndicator = document.getElementById('theme-indicator');
+        const themeSelect = document.getElementById('theme-select');
+        const mainFactContainer = document.getElementById('main-fact-container');
+        const mainFactText = document.getElementById('main-fact-text');
+        const revealOverlay = document.getElementById('reveal-overlay');
+        const revealFactBtn = document.getElementById('reveal-fact-btn');
+        const newFactBtn = document.getElementById('new-fact-btn');
+        const favoriteFactBtn = document.getElementById('favorite-fact-btn');
+        const toggleDidYouKnowBtn = document.getElementById('toggle-did-you-know-btn');
+        const didYouKnowSection = document.getElementById('did-you-know');
+        const didYouKnowText = document.getElementById('did-you-know-text');
+        const copyFactBtn = document.getElementById('copy-fact-btn');
+        const shareTwitterBtn = document.getElementById('share-twitter-btn');
+        const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');
+        const toggleFavoritesBtn = document.getElementById('toggle-favorites-btn');
+        const favoriteFactsDisplay = document.getElementById('favorite-facts-display');
+        const favoriteFactsList = document.getElementById('favorite-facts-list');
+        const toggleHistoryBtn = document.getElementById('toggle-history-btn');
+        const factHistoryDisplay = document.getElementById('fact-history-display');
+        const factHistoryList = document.getElementById('fact-history-list');
+        const factRatingContainer = document.getElementById('fact-rating-container');
+        const stars = document.querySelectorAll('.star-rating .star');
+        const factStreakDisplay = document.getElementById('fact-streak-display');
+        const currentStreakSpan = document.getElementById('current-streak');
+        const resetStreakBtn = document.getElementById('reset-streak-btn');
+        const toggleQuizBtn = document.getElementById('toggle-quiz-btn');
+        const factQuizContainer = document.getElementById('fact-quiz-container');
+        const quizQuestion = document.getElementById('quiz-question');
+        const quizOptions = document.getElementById('quiz-options');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const nextQuizBtn = document.getElementById('next-quiz-btn');
+        const factMasteryDisplay = document.getElementById('fact-mastery-display');
+        const masteryProgressBar = document.getElementById('mastery-progress-bar');
+        const masteredFactsCountSpan = document.getElementById('mastered-facts-count');
+        const totalFactsCountSpan = document.getElementById('total-facts-count');
+        const toggleChallengeBtn = document.getElementById('toggle-challenge-btn');
+        const factChallengeContainer = document.getElementById('fact-challenge-container');
+        const challengeQuestion = document.getElementById('challenge-question');
+        const challengeOptions = document.getElementById('challenge-options');
+        const challengeFeedback = document.getElementById('challenge-feedback');
+        const nextChallengeBtn = document.getElementById('next-challenge-btn');
+
+        let quizMode = false;
+        let challengeMode = false;
+        let currentQuizFact = null;
+        let currentChallengeFact = null;
+        let currentChallengeCorrectOption = null;
+
+        function applyTheme(themeName) {
+            const theme = themes[themeName];
+            if (!theme) return;
+
+            siteTitle.textContent = theme.title;
+            mainTitle.textContent = theme.title;
+            themeIndicator.textContent = theme.indicator;
+            mainFactText.textContent = theme.fact;
+            didYouKnowText.textContent = theme.didYouKnow;
+            currentFact = theme.fact;
+            currentDidYouKnow = theme.didYouKnow;
+
+            for (const [prop, value] of Object.entries(theme.colors)) {
+                document.documentElement.style.setProperty(prop, value);
+            }
+
+            // Update the selected option in the dropdown
+            themeSelect.value = themeName;
+
+            // Reset UI elements
+            mainFactContainer.classList.remove('revealed');
+            mainFactText.classList.remove('animate-in');
+            didYouKnowSection.classList.remove('visible');
+            factRatingContainer.classList.remove('visible');
+            favoriteFactBtn.classList.remove('favorited');
+            resetStars();
+            updateFavoriteButtonState();
+            updateFactStreakDisplay();
+            updateMasteryDisplay();
+            hideQuiz();
+            hideChallenge();
         }
 
-        #favorite-facts-display, #fact-history-display {
-            margin-top: 40px;
-            padding: 25px;
-            background-color: rgba(0,0,0,0.3);
-            border-radius: 15px;
-            width: 90%;
-            max-width: 850px;
-            text-align: left;
-            box-shadow: inset 0 0 15px rgba(0,0,0,0.5);
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            gap: 15px;
-        }
-        #favorite-facts-display.visible, #fact-history-display.visible {
-            display: flex;
-        }
-        #favorite-facts-display h3, #fact-history-display h3 {
-            color: var(--generic-title-color);
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
-            text-align: center;
-        }
-        .favorite-fact-item, .history-fact-item {
-            background-color: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 1.1rem;
-            line-height: 1.4;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        .favorite-fact-item .remove-fav-btn, .history-fact-item .remove-history-btn {
-            background-color: #DC3545; /* Red for remove */
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            transition: background-color 0.3s ease;
-        }
-        .favorite-fact-item .remove-fav-btn:hover, .history-fact-item .remove-history-btn:hover {
-            background-color: #C82333;
+        function getRandomFact(excludeFact = null) {
+            const theme = themes[currentTheme];
+            let fact = theme.fact;
+            let didYouKnow = theme.didYouKnow;
+
+            // In a real application, you'd have an array of facts per theme
+            // For this example, we only have one fact per theme, so we'll just return it.
+            // If we had multiple, we'd pick a random one that isn't the excludeFact.
+            return { fact, didYouKnow };
         }
 
-        /* Fact Rating Feature Styles */
-        #fact-rating-container {
-            margin-top: 20px;
-            display: none; /* Hidden initially */
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            opacity: 0;
-            transition: opacity 0.5s ease-out;
-        }
-        #fact-rating-container.visible {
-            display: flex;
-            opacity: 1;
-        }
-        .star-rating {
-            display: flex;
-            gap: 5px;
-        }
-        .star-rating .star {
-            font-size: 2.5rem;
-            color: #555; /* Default grey for unselected stars */
-            cursor: pointer;
-            transition: color 0.2s ease, transform 0.2s ease;
-        }
-        .star-rating .star.selected {
-            color: var(--star-color); /* Use theme color for selected stars */
-            transform: scale(1.2);
-        }
-        footer {
-            width: 100%;
-            padding: 15px 0;
-            background-color: var(--footer-bg); /* Use theme variable */
-            color: var(--text-color); /* Ensure footer text color matches theme */
-            font-size: 1rem;
-            margin-top: auto; /* Pushes footer to the bottom */
-            opacity: 0.9;
-            box-shadow: 0 -5px 15px rgba(0,0,0,0.3);
-            transition: background-color 1s ease, color 1s ease;
-        }
-        footer p {
-            color: var(--text-color); /* Ensure footer text color matches theme */
-            font-size: 1rem;
-            margin: 0;
-            opacity: 0.7;
+        function showNewFact() {
+            const { fact, didYouKnow } = getRandomFact(currentFact);
+            currentFact = fact;
+            currentDidYouKnow = didYouKnow;
+            mainFactText.textContent = currentFact;
+            didYouKnowText.textContent = currentDidYouKnow;
+
+            mainFactContainer.classList.remove('revealed');
+            mainFactText.classList.remove('animate-in');
+            didYouKnowSection.classList.remove('visible');
+            factRatingContainer.classList.remove('visible');
+            favoriteFactBtn.classList.remove('favorited');
+            resetStars();
+            updateFavoriteButtonState();
+            addFactToHistory(currentFact);
+            updateFactStreakDisplay();
+            updateMasteryDisplay();
+            hideQuiz();
+            hideChallenge();
         }
 
-        .quiz-option-btn {
-            background-color: var(--button-primary);
-            color: white;
-            padding: 12px 25px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 5px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        function updateFavoriteButtonState() {
+            if (favoriteFacts.includes(currentFact)) {
+                favoriteFactBtn.classList.add('favorited');
+                favoriteFactBtn.textContent = '❤️ Favorited!';
+            } else {
+                favoriteFactBtn.classList.remove('favorited');
+                favoriteFactBtn.textContent = '⭐ Favorite Fact';
+            }
         }
 
-        .quiz-option-btn:hover {
-            background-color: var(--button-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        function toggleFavoriteFact() {
+            if (favoriteFacts.includes(currentFact)) {
+                favoriteFacts = favoriteFacts.filter(fact => fact !== currentFact);
+            } else {
+                favoriteFacts.push(currentFact);
+            }
+            localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));
+            updateFavoriteButtonState();
+            renderFavoriteFacts();
         }
 
-        .quiz-option-btn.selected {
-            background-color: var(--main-action-btn);
-            transform: scale(1.05);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        function renderFavoriteFacts() {
+            favoriteFactsList.innerHTML = '';
+            if (favoriteFacts.length === 0) {
+                favoriteFactsList.innerHTML = '<p>No favorite facts yet. Star some facts to save them!</p>';
+                return;
+            }
+            favoriteFacts.forEach(fact => {
+                const factItem = document.createElement('div');
+                factItem.classList.add('favorite-fact-item');
+                factItem.innerHTML = `
+                    <span>${fact}</span>
+                    <button class="remove-fav-btn" data-fact="${fact}">Remove</button>
+                `;
+                favoriteFactsList.appendChild(factItem);
+            });
+
+            document.querySelectorAll('.remove-fav-btn').forEach(button => {
+                button.addEventListener('click', (e) => {
+                    const factToRemove = e.target.dataset.fact;
+                    favoriteFacts = favoriteFacts.filter(fact => fact !== factToRemove);
+                    localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));
+                    renderFavoriteFacts();
+                    updateFavoriteButtonState();
+                });
+            });
         }
 
-        .quiz-option-btn.correct {
-            background-color: var(--correct-answer-color);
-            color: white;
-            font-weight: bold;
-            animation: pulseCorrect 0.5s ease-out;
+        function addFactToHistory(fact) {
+            if (!factHistory.includes(fact)) {
+                factHistory.unshift(fact); // Add to the beginning
+                if (factHistory.length > 10) { // Keep history to last 10 facts
+                    factHistory.pop();
+                }
+                localStorage.setItem('factHistory', JSON.stringify(factHistory));
+            }
+            renderFactHistory();
         }
 
-        .quiz-option-btn.incorrect {
-            background-color: var(--incorrect-answer-color);
-            color: white;
-            font-weight: bold;
-            animation: shake 0.3s ease-out;
+        function renderFactHistory() {
+            factHistoryList.innerHTML = '';
+            if (factHistory.length === 0) {
+                factHistoryList.innerHTML = '<p>No fact history yet. Start exploring!</p>';
+                return;
+            }
+            factHistory.forEach(fact => {
+                const factItem = document.createElement('div');
+                factItem.classList.add('history-fact-item');
+                factItem.innerHTML = `
+                    <span>${fact}</span>
+                `;
+                factHistoryList.appendChild(factItem);
+            });
         }
 
-        @keyframes pulseCorrect {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-            100% { transform: scale(1); }
+        function resetStars() {
+            stars.forEach(star => star.classList.remove('selected'));
         }
 
-        @keyframes shake {
-            0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }
-            75% { transform: translateX(-5px); }\n            100% { transform: translateX(0); }\n        }\n\n        /* Mastery Progress Bar Styling */\n        #fact-mastery-display {\n            margin-top: 20px;\n            margin-bottom: 20px;\n            padding: 15px 30px;\n            background-color: rgba(255, 255, 255, 0.1);\n            border-radius: 15px;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            gap: 10px;\n            box-shadow: 0 5px 20px rgba(0,0,0,0.3);\n            border: 1px solid rgba(255, 255, 255, 0.2);\n            transition: all 0.5s ease;\n            color: var(--text-color);\n            font-size: 1.3rem;\n            font-weight: 600;\n            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);\n        }\n\n        #mastery-progress-bar-container {\n            width: 80%;\n            background-color: rgba(0,0,0,0.3);\n            border-radius: 10px;\n            height: 15px;\n            overflow: hidden;\n            box-shadow: inset 0 2px 5px rgba(0,0,0,0.5);\n        }\n\n        #mastery-progress-bar {\n            height: 100%;\n            width: 0%; /* Initial width */\n            background-color: var(--title-color); /* Use a theme color for progress */\n            border-radius: 10px;\n            transition: width 0.5s ease-in-out;\n        }\n\n        #fact-quiz-container h3, #fact-challenge-container h3 {\n            color: var(--generic-title-color);\n            font-size: 2rem; /* Slightly larger */\n            margin-bottom: 20px;\n            text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Stronger shadow */\n            transition: text-shadow 0.5s ease;\n        }\n\n        #fact-challenge-container {\n            margin-top: 30px;\n            padding: 25px;\n            background-color: var(--glass-bg);\n            border-radius: 15px;\n            box-shadow: 0 10px 35px rgba(0,0,0,0.5);\n            backdrop-filter: blur(12px);\n            -webkit-backdrop-filter: blur(12px);\n            border: 1px solid var(--glass-border);\n            width: 90%;\n            max-width: 850px;\n            display: none; /* Hidden by default */\n            flex-direction: column;\n            align-items: center;\n            gap: 15px;\n        }\n\n        #fact-challenge-container.visible {\n            display: flex;\n        }\n\n        #challenge-options .quiz-option-btn {\n            min-width: 180px;\n        }\n    </style>\n</head>\n<body>\n    <div class="container">\n        <h1 id="main-title">Quantum Quirks</h1>\n        <span id="theme-indicator">Theme: Quantum Quirks</span>\n\n        <div id="theme-selector-container">\n            <label for="theme-select">Explore Themes:</label>\n            <select id="theme-select" class="action-button">\n                <option value="random">Random Theme</option>\n                <option value="Cosmic Wonders">Cosmic Wonders</option>\n                <option value="Oceanic Depths">Oceanic Depths</option>\n                <option value="Ancient Earth">Ancient Earth</option>\n                <option value="Microscopic Marvels">Microscopic Marvels</option>\n                <option value="Quantum Quirks">Quantum Quirks</option>\n                <option value="Ancient Civilizations">Ancient Civilizations</option>\n            </select>\n        </div>\n\n        <div id="fact-streak-display">\n            <p>Discovery Streak: <span id="current-streak">0</span></p>\n            <button id="reset-streak-btn" class="action-button">Reset Streak</button>\n        </div>\n\n        <!-- New Feature: Fact Mastery Level -->\n        <div id="fact-mastery-display">\n            Mastery Level: <span id="fact-mastery-level">Novice Explorer</span>\n            <div id="mastery-progress-bar-container">\n                <div id="mastery-progress-bar"></div>\n            </div>\n        </div>\n\n        <div id="main-fact-container">\n            <p id="main-fact-text" data-full-text="Particles can be in two places at once, a phenomenon known as superposition."></p>\n            <div id="reveal-overlay">\n                <button id="reveal-fact-btn">Reveal Fact</button>\n            </div>\n            <div id="did-you-know">\n                <h3>Did You Know?</h3>\n                <p>This bizarre quantum property is famously illustrated by Schrödinger's Cat thought experiment, where a cat in a sealed box is simultaneously dead and alive until observed.</p>\n            </div>\n\n            <!-- New Feature: Fact Rating -->\n            <div id="fact-rating-container">\n                <p>Rate this fact:</p>\n                <div class="star-rating" id="star-rating">\n                    <span class="star" data-value="1">&#9733;</span>\n                    <span class="star" data-value="2">&#9733;</span>\n                    <span class="star" data-value="3">&#9733;</span>\n                    <span class="star" data-value="4">&#9733;</span>\n                    <span class="star" data-value="5">&#9733;</span>\n                </div>\n                <p id="rating-message"></p>\n            </div>\n\n            <div class="button-group primary-actions">\n                <button id="new-fact-btn" class="action-button" disabled>Discover Another Wonder</button>\n            </div>\n            <div id="fact-quiz-container">\n                <h3>Fact Quiz!</h3>\n                <p id="quiz-question"></p>\n                <div class="quiz-options" id="quiz-options">\n                    <!-- Quiz options will be loaded here -->\n                </div>\n                <button id="submit-quiz-btn" class="action-button" disabled>Submit Answer</button>\n                <p id="quiz-feedback"></p>\n            </div>\n            <!-- New Feature: Fact Challenge -->\n            <div id="fact-challenge-container">\n                <h3>Fact Challenge: Guess the Theme!</h3>\n                <p id="challenge-question">Which theme does this fact belong to?</p>\n                <div class="quiz-options" id="challenge-options">\n                    <!-- Challenge options will be loaded here -->\n                </div>\n                <button id="submit-challenge-btn" class="action-button" disabled>Submit Theme Guess</button>\n                <p id="challenge-feedback"></p>\n            </div>\n            <div class="button-group secondary-actions">\n                <button id="toggle-did-you-know-btn" class="action-button" disabled>Hide Details</button>\n                <button id="favorite-fact-btn" class="action-button" disabled>Favorite Fact</button>\n                <button id="copy-fact-btn" class="action-button" disabled>Copy Fact</button>\n                <button id="share-twitter-btn" class="action-button" disabled>Share on Twitter</button>\n                <button id="share-whatsapp-btn" class="action-button" disabled>Share on WhatsApp</button>\n            </div>\n            <div class="button-group utility-actions">\n                <button id="toggle-favorite-facts-btn" class="action-button">View Favorite Facts</button>\n                <button id="toggle-fact-history-btn" class="action-button">View Fact History</button>\n            </div>\n        </div>\n\n        <div id="favorite-facts-display">\n            <h3>Your Favorite Facts</h3>\n            <div id="favorite-facts-list">\n                <!-- Favorite facts will be loaded here -->\n            </div>\n        </div>\n\n        <div id="fact-history-display">\n            <h3>Fact History</h3>\n            <div id="fact-history-list">\n                <!-- Fact history will be loaded here -->\n            </div>\n        </div>\n    </div>\n\n    <!-- Notification Toast -->\n    <div id="notification-toast"></div>\n\n    <footer>\n        <p>Site will update again at: <span id="update-time">Loading...</span></p>\n    </footer>\n\n    <script>\n        const factText = document.getElementById('main-fact-text');\n        const toggleDidYouKnowBtn = document.getElementById('toggle-did-you-know-btn');\n        const newFactBtn = document.getElementById('new-fact-btn');\n        const didYouKnow = document.getElementById('did-you-know');\n        const siteTitle = document.getElementById('site-title');\n        const mainTitle = document.getElementById('main-title');\n        const updateTimeSpan = document.getElementById('update-time');\n        const mainFactContainer = document.getElementById('main-fact-container');\n        const themeIndicator = document.getElementById('theme-indicator');\n        const copyFactBtn = document.getElementById('copy-fact-btn');\n        const shareTwitterBtn = document.getElementById('share-twitter-btn');\n        const shareWhatsappBtn = document.getElementById('share-whatsapp-btn');\n        const revealFactBtn = document.getElementById('reveal-fact-btn');\n        const revealOverlay = document.getElementById('reveal-overlay');\n        const favoriteFactBtn = document.getElementById('favorite-fact-btn');\n        const favoriteFactsDisplay = document.getElementById('favorite-facts-display');\n        const favoriteFactsList = document.getElementById('favorite-facts-list');\n        const currentStreakSpan = document.getElementById('current-streak');\n        const resetStreakBtn = document.getElementById('reset-streak-btn');\n        const toggleFavoriteFactsBtn = document.getElementById('toggle-favorite-facts-btn');\n        const themeSelect = document.getElementById('theme-select');\n        const toggleFactHistoryBtn = document.getElementById('toggle-fact-history-btn');\n        const factHistoryDisplay = document.getElementById('fact-history-display');\n        const factHistoryList = document.getElementById('fact-history-list');\n        const factRatingContainer = document.getElementById('fact-rating-container');\n        const starRating = document.getElementById('star-rating');\n        const ratingMessage = document.getElementById('rating-message');\n        const factMasteryLevelSpan = document.getElementById('fact-mastery-level');\n        const masteryProgressBar = document.getElementById('mastery-progress-bar');\n        const notificationToast = document.getElementById('notification-toast');\n\n        // Quiz elements\n        const factQuizContainer = document.getElementById('fact-quiz-container');\n        const quizQuestion = document.getElementById('quiz-question');\n        const quizOptionsContainer = document.getElementById('quiz-options');\n        const submitQuizBtn = document.getElementById('submit-quiz-btn');\n        const quizFeedback = document.getElementById('quiz-feedback');\n\n        // Fact Challenge elements\n        const factChallengeContainer = document.getElementById('fact-challenge-container');\n        const challengeQuestion = document.getElementById('challenge-question');\n        const challengeOptionsContainer = document.getElementById('challenge-options');\n        const submitChallengeBtn = document.getElementById('submit-challenge-btn');\n        const challengeFeedback = document.getElementById('challenge-feedback');\n\n\n        // Function to update the time in the footer\n        function updateFooterTime() {\n            const now = new Date();\n            // Add 24 hours for the "upcoming update" time\n            now.setHours(now.getHours() + 24);\n            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };\n            updateTimeSpan.textContent = now.toLocaleString('en-US', options);\n        }\n\n        // Initial call to set the time\n        updateFooterTime();\n        // Update time every minute (optional, but good for "upcoming update" feel)\n        setInterval(updateFooterTime, 60000);\n\n        const facts = [\n            {\n                theme: "Cosmic Wonders",\n                fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",\n                didYouKnow: "The observable universe is estimated to contain about 100 billion to 200 billion galaxies, each with billions of stars!",\n                bgColor: "#0D0D2B", // Deep Space Blue\n                bgSecondaryColor: "#1A1A40",\n                textColor: "#E0FFFF", // Light Cyan\n                footerBg: "#08081A",\n                titleColor: "#FFD700", // Gold\n                buttonPrimary: "#4A00B0", // Deep Purple\n                mainActionBtn: "#FF4500", // OrangeRed\n                quiz: {\n                    question: "What is the estimated range of galaxies in the observable universe?",\n                    options: ["10-20 billion", "50-100 billion", "100-200 billion", "500-1000 billion"],\n                    answer: "100-200 billion"\n                }\n            },\n            {\n                theme: "Oceanic Depths",\n                fact: "The Mariana Trench is deeper than Mount Everest is tall.",\n                didYouKnow: "If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.",\n                bgColor: "#001F3F", // Dark Midnight Blue\n                bgSecondaryColor: "#002B55",\n                textColor: "#7FDBFF", // Aqua\n                footerBg: "#001228",\n                titleColor: "#FFDC00", // Gold\n                buttonPrimary: "#0074D9", // Blue\n                mainActionBtn: "#FF851B", // Orange\n                quiz: {\n                    question: "How many times greater is the pressure at the bottom of the Mariana Trench compared to sea level?",\n                    options: ["100 times", "500 times", "1,000 times", "10,000 times"],\n                    answer: "1,000 times"\n                }\n            },\n            {\n                theme: "Ancient Earth",\n                fact: "Dinosaurs roamed the Earth for over 160 million years, a period far longer than humans have existed.",\n                didYouKnown: "The Tyrannosaurus Rex lived closer in time to humans than it did to the Stegosaurus! This highlights the immense span of the Mesozoic Era.",\n                bgColor: "#2E2E00", // Dark Olive Green\n                bgSecondaryColor: "#3A3A00",\n                textColor: "#E6E6B8", // Pale Yellow\n                footerBg: "#1A1A00",\n                titleColor: "#A0522D", // Sienna\n                buttonPrimary: "#8B4513", // SaddleBrown\n                mainActionBtn: "#D2691E", // Chocolate\n                quiz: {\n                    question: "For how many million years did dinosaurs roam the Earth?  ",\n                    options: ["50 million", "100 million", "160 million", "200 million"],\n                    answer: "160 million"\n                }\n            },\n            {\n                theme: "Microscopic Marvels",\n                fact: "A single human body contains more bacterial cells than human cells.",\n                didYouKnow: "These bacteria, collectively known as the microbiome, play crucial roles in digestion, immunity, and even mood! They are essential for our health.",\n                bgColor: "#1A331A", // Dark Forest Green\n                bgSecondaryColor: "#254725",\n                textColor: "#CCFFCC", // Pale Green\n                footerBg: "#1F0738",\n                titleColor: "#8FBC8F", // Dark Sea Green\n                buttonPrimary: "#3CB371", // Medium Sea Green\n                mainActionBtn: "#FFD700", // Gold\n                quiz: {\n                    question: "What is the collective name for the bacteria in a human body?",\n                    options: ["Microflora", "Microbiome", "Probiotics", "Pathogens"],\n                    answer: "Microbiome"\n                }\n            },\n            {\n                theme: "Quantum Quirks",\n                fact: "Particles can be in two places at once, a phenomenon known as superposition.",\n                didYouKnow: "This bizarre quantum property is famously illustrated by Schrödinger's Cat thought experiment, where a cat in a sealed box is simultaneously dead and alive until observed.",\n                bgColor: "#2A0A4A", // Deep Violet\n                bgSecondaryColor: "#3F156B",\n                textColor: "#E0BBE4", // Pale Lavender\n                footerBg: "#1F0738",\n                titleColor: "#DAA520", // Goldenrod\n                buttonPrimary: "#8A2BE2", // Blue Violet\n                mainActionBtn: "#FF6347", // Tomato\n                quiz: {\n                    question: "What is the phenomenon called when particles can be in two places at once?",\n                    options: ["Entanglement", "Superposition", "Quantum Tunneling", "Wave-particle duality"],\n                    answer: "Superposition"\n                }\n            },\n            {\n                theme: "Ancient Civilizations",\n                fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",\n                didYouKnow: "Built around 2580–2560 BC, it held this record until the Lincoln Cathedral was completed in 1311 AD. Its precision engineering continues to baffle modern scientists.",\n                bgColor: "#4A3B2A", // Dark Brown\n                bgSecondaryColor: "#6B5A4A",\n                textColor: "#F5DEB3", // Wheat\n                footerBg: "#382C1F",\n                titleColor: "#D4AF37", // Gold (metallic)\n                buttonPrimary: "#A0522D", // Sienna\n                mainActionBtn: "#CD853F", // Peru\n                quiz: {\n                    question: "For how many years was the Great Pyramid of Giza the tallest man-made structure?",\n                    options: ["1,000 years", "2,500 years", "3,800 years", "5,000 years"],\n                    answer: "3,800 years"\n                }\n            }\n        ];\n\n        let currentFactIndex; // Will be set randomly on initial load\n        let factStreak = 0;\n        let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];\n        let factHistory = JSON.parse(localStorage.getItem('factHistory')) || [];\n        let selectedQuizOption = null;\n        let selectedChallengeOption = null;\n\n        // Mastery levels\n        const masteryLevels = [\n            { threshold: 0, level: "Novice Explorer", progress: 0 },\n            { threshold: 5, level: "Curious Mind", progress: 0 },\n            { threshold: 10, level: "Knowledge Seeker", progress: 0 },\n            { threshold: 20, level: "Master of Lore", progress: 0 }\n        ];\n\n        function updateMasteryLevel() {\n            let currentLevelIndex = 0;\n            for (let i = masteryLevels.length - 1; i >= 0; i--) {\n                if (factStreak >= masteryLevels[i].threshold) {\n                    currentLevelIndex = i;\n                    break;\n                }\n            }\n            const currentLevel = masteryLevels[currentLevelIndex];\n            let icon = '';\n            switch (currentLevel.level) {\n                case "Novice Explorer":\n                    icon = '&#128064;'; // Eye emoji\n                    break;\n                case "Curious Mind":\n                    icon = '&#128161;'; // Lightbulb emoji\n                    break;\n                case "Knowledge Seeker":\n                    icon = '&#128218;'; // Open book emoji\n                    break;\n                case "Master of Lore":\n                    icon = '&#127891;'; // Graduation cap emoji\n                    break;\n                default:\n                    icon = '';\n            }\n            factMasteryLevelSpan.innerHTML = `${icon} ${currentLevel.level}`;\n\n            // Calculate progress for the current level\n            let progress = 0;\n            if (currentLevelIndex < masteryLevels.length - 1) {\n                const nextLevel = masteryLevels[currentLevelIndex + 1];\n                const factsNeededForNext = nextLevel.threshold - currentLevel.threshold;\n                const factsDiscoveredInLevel = factStreak - currentLevel.threshold;\n                progress = (factsDiscoveredInLevel / factsNeededForNext) * 100;\n            } else {\n                progress = 100; // Max level reached\n            }\n            masteryProgressBar.style.width = `${progress}%`;\n        }\n\n        function showNotification(message, duration = 3000) {\n            notificationToast.textContent = message;\n            notificationToast.classList.add('show');\n            setTimeout(() => {\n                notificationToast.classList.remove('show');\n            }, duration);\n        }\n\n        function hexToRgb(hex) {\n            const bigint = parseInt(hex.slice(1), 16);\n            const r = (bigint >> 16) & 255;\n            const g = (bigint >> 8) & 255;\n            const b = bigint & 255;\n            return { r, g, b };\n        }\n\n        function darkenColor(hex, percent) {\n            let f = parseInt(hex.slice(1), 16),\n                t = percent < 0 ? 0 : 255,\n                p = percent < 0 ? percent * -1 : percent,\n                R = f >> 16,\n                G = (f >> 8) & 0x00ff,\n                B = f & 0x0000ff;\n            return "#" +\n                (\n                    0x1000000 +\n                    (Math.round((t - R) * p) + R) * 0x10000 +\n                    (Math.round((t - G) * p) + G) * 0x100 +\n                    (Math.round((t - B) * p) + B)\n                )\n                .toString(16)\n                .slice(1);\n        }\n\n        function applyTheme(theme) {\n            const root = document.documentElement;\n            root.style.setProperty('--bg-color-primary', theme.bgColor);\n            root.style.setProperty('--bg-color-secondary', theme.bgSecondaryColor);\n            root.style.setProperty('--text-color', theme.textColor);\n            root.style.setProperty('--footer-bg', theme.footerBg);\n            root.style.setProperty('--glass-bg', `rgba(${hexToRgb(theme.bgColor).r}, ${hexToRgb(theme.bgColor).g}, ${hexToRgb(theme.bgColor).b}, 0.6)`);\n            root.style.setProperty('--glass-border', `rgba(${hexToRgb(theme.textColor).r}, ${hexToRgb(theme.textColor).g}, ${hexToRgb(theme.textColor).b}, 0.3)`);\n            root.style.setProperty('--title-color', theme.titleColor);\n            root.style.setProperty('--theme-indicator-color', theme.titleColor);\n            root.style.setProperty('--button-primary', theme.buttonPrimary);\n            root.style.setProperty('--button-hover', darkenColor(theme.buttonPrimary, 20));\n            root.style.setProperty('--main-action-btn', theme.mainActionBtn);\n            root.style.setProperty('--main-action-btn-hover', darkenColor(theme.mainActionBtn, 20));\n            root.style.setProperty('--favorite-btn-color', theme.titleColor);\n            root.style.setProperty('--favorite-btn-hover', darkenColor(theme.titleColor, 20));\n            root.style.setProperty('--generic-title-color', theme.textColor);\n            root.style.setProperty('--notification-text', theme.textColor);\n\n            siteTitle.textContent = theme.theme;\n            mainTitle.textContent = theme.theme;\n            themeIndicator.textContent = `Theme: ${theme.theme}`;\n\n            // Update theme selector\n            themeSelect.value = theme.theme;\n        }\n\n        function loadFact(index) {\n            const factData = facts[index];\n            factText.dataset.fullText = factData.fact;\n            factText.textContent = ''; // Keep text content empty until revealed\n            didYouKnow.querySelector('p').textContent = factData.didYouKnow;\n            applyTheme(factData);\n\n            // Reset UI state for new fact\n            mainFactContainer.classList.remove('revealed');\n            factText.classList.remove('animate-in');\n            didYouKnow.classList.remove('visible');\n            revealOverlay.style.opacity = '1';\n            revealOverlay.style.pointerEvents = 'auto';\n            revealFactBtn.style.display = 'block';\n            newFactBtn.disabled = true; // This is good, keep it disabled\n            toggleDidYouKnowBtn.disabled = true;\n            favoriteFactBtn.disabled = true;\n            copyFactBtn.disabled = true;\n            shareTwitterBtn.disabled = true;\n            shareWhatsappBtn.disabled = true;\n            factQuizContainer.classList.remove('visible'); // Hide quiz\n            quizFeedback.textContent = ''; // Clear quiz feedback\n            quizOptionsContainer.innerHTML = ''; // Clear quiz options\n            submitQuizBtn.disabled = true; // Disable submit button\n            selectedQuizOption = null; // Reset selected option\n            favoriteFactBtn.classList.remove('favorited');\n            favoriteFactBtn.textContent = 'Favorite Fact'; // Reset button text\n            resetRating(); // Reset fact rating\n            factRatingContainer.classList.remove('visible'); // Hide rating until revealed\n            factChallengeContainer.classList.remove('visible'); // Hide challenge\n            challengeFeedback.textContent = '';\n            challengeOptionsContainer.innerHTML = '';\n            submitChallengeBtn.disabled = true;\n            selectedChallengeOption = null;\n        }\n\n        function revealFact() {\n            mainFactContainer.classList.add('revealed');\n            factText.textContent = factText.dataset.fullText; // Populate text content\n            factText.classList.add('animate-in');\n            revealOverlay.style.opacity = '0';\n            revealOverlay.style.pointerEvents = 'none';\n            revealFactBtn.style.display = 'none';\n            toggleDidYouKnowBtn.disabled = false;\n            didYouKnow.classList.add('visible'); // Automatically show Did You Know\n            toggleDidYouKnowBtn.textContent = 'Hide Details'; // Update button text\n            favoriteFactBtn.disabled = false;\n            copyFactBtn.disabled = false;\n            shareTwitterBtn.disabled = false;\n            shareWhatsappBtn.disabled = false;\n            factStreak++;\n            currentStreakSpan.textContent = factStreak;\n            currentStreakSpan.classList.add('animate-pulse');\n            setTimeout(() => currentStreakSpan.classList.remove('animate-pulse'), 500);\n            updateMasteryLevel(); // Update mastery level on streak increase\n            addToFactHistory(facts[currentFactIndex]); // Add to history when revealed\n            factRatingContainer.classList.add('visible'); // Show rating after reveal\n            startQuiz(); // Automatically start quiz after fact is revealed\n            startFactChallenge(); // Start fact challenge after quiz\n\n            // Check if current fact is favorited and update button\n            const currentFact = facts[currentFactIndex];\n            const isFavorited = favoriteFacts.some(f => f.fact === currentFact.fact);\n            if (isFavorited) {\n                favoriteFactBtn.classList.add('favorited');\n                favoriteFactBtn.textContent = 'Unfavorite Fact';\n            } else {\n                favoriteFactBtn.classList.remove('favorited');\n                favoriteFactBtn.textContent = 'Favorite Fact';\n            }\n        }\n\n        function toggleDidYouKnow() {\n            didYouKnow.classList.toggle('visible');\n            toggleDidYouKnowBtn.textContent = didYouKnow.classList.contains('visible') ? 'Hide Details' : 'Tell me more!';\n        }\n\n        function getNewFact() {\n            let newIndex;\n            do {\n                newIndex = Math.floor(Math.random() * facts.length);\n            } while (newIndex === currentFactIndex); // Ensure a different fact\n            currentFactIndex = newIndex;\n            loadFact(currentFactIndex);\n            factQuizContainer.classList.remove('visible'); // Hide quiz when new fact is loaded\n            quizFeedback.textContent = '';\n            quizOptionsContainer.innerHTML = '';\n            submitQuizBtn.disabled = true;\n            selectedQuizOption = null;\n            factChallengeContainer.classList.remove('visible'); // Hide challenge when new fact is loaded\n            challengeFeedback.textContent = '';\n            challengeOptionsContainer.innerHTML = '';\n            submitChallengeBtn.disabled = true;\n            selectedChallengeOption = null;\n        }\n\n        function copyFact() {\n            navigator.clipboard.writeText(factText.dataset.fullText).then(() => {\n                showNotification('Fact copied to clipboard!');\n            }).catch(err => {\n                console.error('Failed to copy fact: ', err);\n                showNotification('Failed to copy fact.', 4000);\n            });\n        }\n\n        function shareOnTwitter() {\n            const fact = factText.dataset.fullText;\n            const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact + " #DailyFact #GeminiCLI")}`;\n            window.open(tweetUrl, '_blank');\n            showNotification('Sharing fact on Twitter!', 3000);\n        }\n\n        function shareOnWhatsApp() {\n            const fact = factText.dataset.fullText;\n            const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(fact + " #DailyFact #GeminiCLI")}`;\n            window.open(whatsappUrl, '_blank');\n            showNotification('Sharing fact on WhatsApp!', 3000);\n        }\n\n        function toggleFavoriteFact() {\n            const currentFact = facts[currentFactIndex];\n            const isFavorited = favoriteFacts.some(f => f.fact === currentFact.fact);\n\n            if (isFavorited) {\n                favoriteFacts = favoriteFacts.filter(f => f.fact !== currentFact.fact);\n                favoriteFactBtn.classList.remove('favorited');\n                favoriteFactBtn.textContent = 'Favorite Fact';\n                showNotification('Fact removed from favorites.', 2000);\n            } else {\n                favoriteFacts.push(currentFact);\n                favoriteFactBtn.classList.add('favorited');\n                favoriteFactBtn.textContent = 'Unfavorite Fact';\n                showNotification('Fact added to favorites!', 2000);\n            }\n            localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));\n            renderFavoriteFacts();\n        }\n\n        function renderFavoriteFacts() {\n            favoriteFactsList.innerHTML = '';\n            if (favoriteFacts.length === 0) {\n                favoriteFactsList.innerHTML = '<p>No favorite facts yet. Click the "Favorite Fact" button to add one!</p>';\n                return;\n            }\n            favoriteFacts.forEach((favFact, index) => {\n                const factItem = document.createElement('div');\n                factItem.classList.add('favorite-fact-item');\n                factItem.innerHTML = `\n                    <span>${favFact.fact}</span>\n                    <button class="remove-fav-btn" data-fact="${favFact.fact}">Remove</button>\n                `;\n                favoriteFactsList.appendChild(factItem);\n            });\n\n            document.querySelectorAll('.remove-fav-btn').forEach(button => {\n                button.addEventListener('click', (e) => {\n                    const factToRemove = e.target.dataset.fact;\n                    favoriteFacts = favoriteFacts.filter(f => f.fact !== factToRemove);\n                    localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));\n                    renderFavoriteFacts();\n                    // If the currently displayed fact was unfavorited, update its button state\n                    if (facts[currentFactIndex] && facts[currentFactIndex].fact === factToRemove) {\n                        favoriteFactBtn.classList.remove('favorited');\n                        favoriteFactBtn.textContent = 'Favorite Fact';\n                    }\n                    showNotification('Fact removed from favorites.', 2000);\n                });\n            });\n        }\n\n        function toggleFavoriteFactsDisplay() {\n            favoriteFactsDisplay.classList.toggle('visible');\n            if (favoriteFactsDisplay.classList.contains('visible')) {\n                renderFavoriteFacts();\n                factHistoryDisplay.classList.remove('visible'); // Hide history if favorites are shown\n            }\n        }\n\n        function addToFactHistory(factData) {\n            // Add only if it's a new fact or not the immediate repeat\n            if (factHistory.length === 0 || factHistory[factHistory.length - 1].fact !== factData.fact) {\n                factHistory.push(factData);\n                localStorage.setItem('factHistory', JSON.stringify(factHistory));\n                renderFactHistory();\n            }\n        }\n\n        function renderFactHistory() {\n            factHistoryList.innerHTML = '';\n            if (factHistory.length === 0) {\n                factHistoryList.innerHTML = '<p>No fact history yet. Discover some wonders!</p>';\n                return;\n            }\n            factHistory.slice().reverse().forEach((histFact, index) => { // Display newest first\n                const factItem = document.createElement('div');\n                factItem.classList.add('history-fact-item');\n                factItem.innerHTML = `\n                    <span>${histFact.fact}</span>\n                    <button class="remove-history-btn" data-fact="${histFact.fact}">Remove</button>\n                `;\n                factHistoryList.appendChild(factItem);\n            });\n\n            document.querySelectorAll('.remove-history-btn').forEach(button => {\n                button.addEventListener('click', (e) => {\n                    const factToRemove = e.target.dataset.fact;\n                    factHistory = factHistory.filter(f => f.fact !== factToRemove);\n                    localStorage.setItem('factHistory', JSON.stringify(factHistory));\n                    renderFactHistory();\n                    showNotification('Fact removed from history.', 2000);\n                });\n            });\n        }\n\n        function toggleFactHistoryDisplay() {\n            factHistoryDisplay.classList.toggle('visible');\n            if (factHistoryDisplay.classList.contains('visible')) {\n                renderFactHistory();\n                favoriteFactsDisplay.classList.remove('visible'); // Hide favorites if history is shown\n            }\n        }\n\n        function resetStreak() {\n            factStreak = 0;\n            currentStreakSpan.textContent = factStreak;\n            updateMasteryLevel(); // Update mastery level on streak reset\n            showNotification('Discovery streak reset!', 2000);\n        }\n\n        function handleThemeChange() {\n            const selectedThemeName = themeSelect.value;\n            if (selectedThemeName === 'random') {\n                getNewFact(); // This will also apply a random theme\n            } else {\n                const selectedTheme = facts.find(f => f.theme === selectedThemeName);\n                if (selectedTheme) {\n                    currentFactIndex = facts.indexOf(selectedTheme);\n                    loadFact(currentFactIndex);\n                }\n            }\n        }\n\n        // Fact Rating Logic\n        let currentRating = 0;\n\n        function resetRating() {\n            currentRating = 0;\n            ratingMessage.textContent = '';\n            document.querySelectorAll('.star').forEach(star => {\n                star.classList.remove('selected');\n            });\n        }\n\n        starRating.addEventListener('click', (e) => {\n            if (e.target.classList.contains('star')) {\n                const value = parseInt(e.target.dataset.value);\n                currentRating = value;\n                document.querySelectorAll('.star').forEach(star => {\n                    if (parseInt(star.dataset.value) <= value) {\n                        star.classList.add('selected');\n                    } else {\n                        star.classList.remove('selected');\n                    }\n                });\n                ratingMessage.textContent = `You rated this fact ${currentRating} out of 5 stars!`;\n                showNotification(`Fact rated ${currentRating} stars!`, 2000);\n            }\n        });\n\n        // Quiz Logic\n        function startQuiz() {\n            const currentFact = facts[currentFactIndex];\n            if (currentFact && currentFact.quiz) {\n                factQuizContainer.classList.add('visible');\n                quizQuestion.textContent = currentFact.quiz.question;\n                quizOptionsContainer.innerHTML = ''; // Clear previous options\n                selectedQuizOption = null;\n                submitQuizBtn.disabled = true;\n                quizFeedback.textContent = '';\n\n                currentFact.quiz.options.forEach(option => {\n                    const optionBtn = document.createElement('button');\n                    optionBtn.classList.add('quiz-option-btn');\n                    optionBtn.textContent = option;\n                    optionBtn.addEventListener('click', () => {\n                        // Deselect all other options\n                        document.querySelectorAll('#quiz-options .quiz-option-btn').forEach(btn => {\n                            btn.classList.remove('selected', 'correct', 'incorrect');\n                        });\n                        // Select current option\n                        optionBtn.classList.add('selected');\n                        selectedQuizOption = option;\n                        submitQuizBtn.disabled = false;\n                    });\n                    quizOptionsContainer.appendChild(optionBtn);\n                });\n            } else {\n                showNotification('No quiz available for this fact.', 3000);\n            }\n        }\n\n        function submitQuizAnswer() {\n            if (!selectedQuizOption) {\n                showNotification('Please select an answer!', 2000);\n                return;\n            }\n\n            const currentFact = facts[currentFactIndex];\n            const correctAnswer = currentFact.quiz.answer.trim();\n\n            document.querySelectorAll('#quiz-options .quiz-option-btn').forEach(btn => {\n                btn.disabled = true; // Disable all options after submission\n                if (btn.textContent.trim() === correctAnswer) {\n                    btn.classList.add('correct');\n                } else if (btn.classList.contains('selected')) {\n                    btn.classList.add('incorrect');\n                }\n            });\n\n            if (selectedQuizOption.trim() === correctAnswer) {\n                quizFeedback.textContent = 'Correct! Well done!';\n                quizFeedback.style.color = 'var(--correct-answer-color)';\n                showNotification('Quiz Answer: Correct!', 2000);\n            } else {\n                quizFeedback.textContent = `Incorrect. The correct answer was: ${correctAnswer}`;\n                quizFeedback.style.color = 'var(--incorrect-answer-color)';\n                showNotification('Quiz Answer: Incorrect.', 2000);\n            }\n            submitQuizBtn.disabled = true; // Disable submit after answering\n            // newFactBtn.disabled = false; // Enable "Discover Another Wonder" after quiz submission - moved to challenge\n        }\n\n        // Fact Challenge Logic\n        function startFactChallenge() {\n            const currentFact = facts[currentFactIndex];\n            factChallengeContainer.classList.add('visible');\n            challengeOptionsContainer.innerHTML = '';\n            selectedChallengeOption = null;\n            submitChallengeBtn.disabled = true;\n            challengeFeedback.textContent = '';\n\n            const correctTheme = currentFact.theme;\n            let themeOptions = [correctTheme];\n\n            // Get 2-3 other random themes\n            const otherThemes = facts.filter(f => f.theme !== correctTheme).map(f => f.theme);\n            while (themeOptions.length < 4 && otherThemes.length > 0) {\n                const randomIndex = Math.floor(Math.random() * otherThemes.length);\n                themeOptions.push(otherThemes.splice(randomIndex, 1)[0]);\n            }\n\n            // Shuffle options\n            themeOptions.sort(() => Math.random() - 0.5);\n\n            themeOptions.forEach(option => {\n                const optionBtn = document.createElement('button');\n                optionBtn.classList.add('quiz-option-btn');\n                optionBtn.textContent = option;\n                optionBtn.addEventListener('click', () => {\n                    document.querySelectorAll('#challenge-options .quiz-option-btn').forEach(btn => {\n                        btn.classList.remove('selected', 'correct', 'incorrect');\n                    });\n                    optionBtn.classList.add('selected');\n                    selectedChallengeOption = option;\n                    submitChallengeBtn.disabled = false;\n                });\n                challengeOptionsContainer.appendChild(optionBtn);\n            });\n        }\n\n        function submitFactChallengeAnswer() {\n            if (!selectedChallengeOption) {\n                showNotification('Please select a theme!', 2000);\n                return;\n            }\n\n            const currentFact = facts[currentFactIndex];\n            const correctTheme = currentFact.theme;\n\n            document.querySelectorAll('#challenge-options .quiz-option-btn').forEach(btn => {\n                btn.disabled = true; // Disable all options after submission\n                if (btn.textContent.trim() === correctTheme) {\n                    btn.classList.add('correct');\n                } else if (btn.classList.contains('selected')) {\n                    btn.classList.add('incorrect');\n                }\n            });\n\n            if (selectedChallengeOption.trim() === correctTheme) {\n                challengeFeedback.textContent = 'Correct! You guessed the theme!';\n                challengeFeedback.style.color = 'var(--correct-answer-color)';\n                showNotification('Challenge: Correct!', 2000);\n            } else {\n                challengeFeedback.textContent = `Incorrect. The correct theme was: ${correctTheme}`;\n                challengeFeedback.style.color = 'var(--incorrect-answer-color)';\n                showNotification('Challenge: Incorrect.', 2000);\n            }\n            submitChallengeBtn.disabled = true; // Disable submit after answering\n            newFactBtn.disabled = false; // Enable "Discover Another Wonder" after challenge submission\n        }\n\n\n        // Event Listeners\n        revealFactBtn.addEventListener('click', revealFact);\n        toggleDidYouKnowBtn.addEventListener('click', toggleDidYouKnow);\n        newFactBtn.addEventListener('click', getNewFact);\n        copyFactBtn.addEventListener('click', copyFact);\n        shareTwitterBtn.addEventListener('click', shareOnTwitter);\n        shareWhatsappBtn.addEventListener('click', shareOnWhatsApp);\n        favoriteFactBtn.addEventListener('click', toggleFavoriteFact);\n        resetStreakBtn.addEventListener('click', resetStreak);\n        toggleFavoriteFactsBtn.addEventListener('click', toggleFavoriteFactsDisplay);\n        themeSelect.addEventListener('change', handleThemeChange);\n        toggleFactHistoryBtn.addEventListener('click', toggleFactHistoryDisplay);\n        submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener\n        submitChallengeBtn.addEventListener('click', submitFactChallengeAnswer); // New challenge event listener\n\n        // Initial load: Pick a random fact and theme\n        currentFactIndex = Math.floor(Math.random() * facts.length);\n        loadFact(currentFactIndex);\n        renderFavoriteFacts();\n        renderFactHistory();\n        updateMasteryLevel(); // Set initial mastery level\n    </script>\n</body>\n</html>
+        function setRating(rating) {
+            resetStars();
+            for (let i = 0; i < rating; i++) {
+                stars[i].classList.add('selected');
+            }
+            factRatings[currentFact] = rating;
+            localStorage.setItem('factRatings', JSON.stringify(factRatings));
+            updateMasteryDisplay();
+        }
+
+        function updateFactStreakDisplay() {
+            const streak = factStreaks[currentTheme] || 0;
+            currentStreakSpan.textContent = streak;
+            if (streak > 0) {
+                currentStreakSpan.classList.add('animate-pulse');
+                setTimeout(() => currentStreakSpan.classList.remove('animate-pulse'), 500);
+            }
+        }
+
+        function incrementStreak() {
+            factStreaks[currentTheme] = (factStreaks[currentTheme] || 0) + 1;
+            localStorage.setItem('factStreaks', JSON.stringify(factStreaks));
+            updateFactStreakDisplay();
+        }
+
+        function resetStreak() {
+            factStreaks[currentTheme] = 0;
+            localStorage.setItem('factStreaks', JSON.stringify(factStreaks));
+            updateFactStreakDisplay();
+        }
+
+        function updateMasteryDisplay() {
+            const allFactsInTheme = Object.values(themes).map(t => t.fact); // Simplified for this example
+            totalFactsCountSpan.textContent = allFactsInTheme.length;
+
+            const masteredCount = Object.keys(masteredFacts).filter(fact => allFactsInTheme.includes(fact)).length;
+            masteredFactsCountSpan.textContent = masteredCount;
+
+            const progress = allFactsInTheme.length > 0 ? (masteredCount / allFactsInTheme.length) * 100 : 0;
+            masteryProgressBar.style.width = `${progress}%`;
+        }
+
+        function markFactAsMastered(fact) {
+            masteredFacts[fact] = true;
+            localStorage.setItem('masteredFacts', JSON.stringify(masteredFacts));
+            updateMasteryDisplay();
+        }
+
+        function generateQuiz() {
+            quizFeedback.textContent = '';
+            quizOptions.innerHTML = '';
+            nextQuizBtn.style.display = 'none';
+
+            const allFacts = Object.values(themes).map(t => t.fact);
+            const correctFact = currentFact; // Quiz about the currently displayed fact
+            currentQuizFact = correctFact;
+
+            let options = [correctFact];
+            while (options.length < 4) {
+                const randomThemeKey = Object.keys(themes)[Math.floor(Math.random() * Object.keys(themes).length)];
+                const randomFact = themes[randomThemeKey].fact;
+                if (!options.includes(randomFact)) {
+                    options.push(randomFact);
+                }
+            }
+            options.sort(() => Math.random() - 0.5); // Shuffle options
+
+            quizQuestion.textContent = `Which of these is the fact currently displayed: "${correctFact.substring(0, 50)}..."?`;
+
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.classList.add('quiz-option-btn');
+                button.textContent = option;
+                button.dataset.fact = option;
+                button.addEventListener('click', handleQuizAnswer);
+                quizOptions.appendChild(button);
+            });
+        }
+
+        function handleQuizAnswer(event) {
+            const selectedButton = event.target;
+            const selectedFact = selectedButton.dataset.fact;
+
+            // Disable all buttons after selection
+            document.querySelectorAll('.quiz-option-btn').forEach(btn => btn.disabled = true);
+
+            if (selectedFact === currentQuizFact) {
+                selectedButton.classList.add('correct');
+                quizFeedback.textContent = 'Correct! Well done!';
+                quizFeedback.style.color = 'var(--correct-answer-color)';
+                incrementStreak();
+                markFactAsMastered(currentQuizFact);
+            } else {
+                selectedButton.classList.add('incorrect');
+                quizFeedback.textContent = 'Incorrect. Try again next time!';
+                quizFeedback.style.color = 'var(--incorrect-answer-color)';
+                // Highlight the correct answer
+                document.querySelectorAll('.quiz-option-btn').forEach(btn => {
+                    if (btn.dataset.fact === currentQuizFact) {
+                        btn.classList.add('correct');
+                    }
+                });
+                resetStreak();
+            }
+            nextQuizBtn.style.display = 'block';
+        }
+
+        function showQuiz() {
+            factQuizContainer.classList.add('visible');
+            quizMode = true;
+            generateQuiz();
+        }
+
+        function hideQuiz() {
+            factQuizContainer.classList.remove('visible');
+            quizMode = false;
+        }
+
+        function generateChallenge() {
+            challengeFeedback.textContent = '';
+            challengeOptions.innerHTML = '';
+            nextChallengeBtn.style.display = 'none';
+
+            const allThemesKeys = Object.keys(themes);
+            const correctThemeKey = allThemesKeys[Math.floor(Math.random() * allThemesKeys.length)];
+            const correctTheme = themes[correctThemeKey];
+            currentChallengeFact = correctTheme.fact;
+            currentChallengeCorrectOption = correctTheme.title;
+
+            let options = [correctTheme.title];
+            while (options.length < 4) {
+                const randomThemeKey = allThemesKeys[Math.floor(Math.random() * allThemesKeys.length)];
+                const randomThemeTitle = themes[randomThemeKey].title;
+                if (!options.includes(randomThemeTitle)) {
+                    options.push(randomThemeTitle);
+                }
+            }
+            options.sort(() => Math.random() - 0.5); // Shuffle options
+
+            challengeQuestion.textContent = `Which theme does this fact belong to: "${currentChallengeFact}"?`;
+
+            options.forEach(option => {
+                const button = document.createElement('button');
+                button.classList.add('challenge-option-btn');
+                button.textContent = option;
+                button.dataset.theme = option;
+                button.addEventListener('click', handleChallengeAnswer);
+                challengeOptions.appendChild(button);
+            });
+        }
+
+        function handleChallengeAnswer(event) {
+            const selectedButton = event.target;
+            const selectedTheme = selectedButton.dataset.theme;
+
+            // Disable all buttons after selection
+            document.querySelectorAll('.challenge-option-btn').forEach(btn => btn.disabled = true);
+
+            if (selectedTheme === currentChallengeCorrectOption) {
+                selectedButton.classList.add('correct');
+                challengeFeedback.textContent = 'Excellent! You nailed it!';
+                challengeFeedback.style.color = 'var(--correct-answer-color)';
+                incrementStreak();
+                markFactAsMastered(currentChallengeFact);
+            } else {
+                selectedButton.classList.add('incorrect');
+                challengeFeedback.textContent = `Oops! The correct theme was "${currentChallengeCorrectOption}".`;
+                challengeFeedback.style.color = 'var(--incorrect-answer-color)';
+                // Highlight the correct answer
+                document.querySelectorAll('.challenge-option-btn').forEach(btn => {
+                    if (btn.dataset.theme === currentChallengeCorrectOption) {
+                        btn.classList.add('correct');
+                    }
+                });
+                resetStreak();
+            }
+            nextChallengeBtn.style.display = 'block';
+        }
+
+        function showChallenge() {
+            factChallengeContainer.classList.add('visible');
+            challengeMode = true;
+            generateChallenge();
+        }
+
+        function hideChallenge() {
+            factChallengeContainer.classList.remove('visible');
+            challengeMode = false;
+        }
+
+        // Event Listeners
+        themeSelect.addEventListener('change', (e) => {
+            currentTheme = e.target.value;
+            applyTheme(currentTheme);
+            showNewFact(); // Load a new fact for the selected theme
+        });
+
+        revealFactBtn.addEventListener('click', () => {
+            mainFactContainer.classList.add('revealed');
+            mainFactText.classList.add('animate-in');
+            factRatingContainer.classList.add('visible');
+        });
+
+        newFactBtn.addEventListener('click', showNewFact);
+
+        favoriteFactBtn.addEventListener('click', toggleFavoriteFact);
+
+        toggleDidYouKnowBtn.addEventListener('click', () => {
+            didYouKnowSection.classList.toggle('visible');
+        });
+
+        copyFactBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(currentFact).then(() => {
+                alert('Fact copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy fact: ', err);
+            });
+        });
+
+        shareTwitterBtn.addEventListener('click', () => {
+            const tweetText = encodeURIComponent(`"${currentFact}" #DeepSeaWonders #FactOfTheDay`);
+            window.open(`https://twitter.com/intent/tweet?text=${tweetText}`, '_blank');
+        });
+
+        shareWhatsappBtn.addEventListener('click', () => {
+            const whatsappText = encodeURIComponent(`Check out this amazing fact: "${currentFact}"`);
+            window.open(`https://api.whatsapp.com/send?text=${whatsappText}`, '_blank');
+        });
+
+        toggleFavoritesBtn.addEventListener('click', () => {
+            favoriteFactsDisplay.classList.toggle('visible');
+            if (favoriteFactsDisplay.classList.contains('visible')) {
+                renderFavoriteFacts();
+            }
+            factHistoryDisplay.classList.remove('visible'); // Hide history if favorites shown
+            hideQuiz();
+            hideChallenge();
+        });
+
+        toggleHistoryBtn.addEventListener('click', () => {
+            factHistoryDisplay.classList.toggle('visible');
+            if (factHistoryDisplay.classList.contains('visible')) {
+                renderFactHistory();
+            }
+            favoriteFactsDisplay.classList.remove('visible'); // Hide favorites if history shown
+            hideQuiz();
+            hideChallenge();
+        });
+
+        stars.forEach(star => {
+            star.addEventListener('click', (e) => {
+                const rating = parseInt(e.target.dataset.value);
+                setRating(rating);
+            });
+        });
+
+        resetStreakBtn.addEventListener('click', resetStreak);
+
+        toggleQuizBtn.addEventListener('click', () => {
+            if (quizMode) {
+                hideQuiz();
+            } else {
+                showQuiz();
+                favoriteFactsDisplay.classList.remove('visible');
+                factHistoryDisplay.classList.remove('visible');
+                hideChallenge();
+            }
+        });
+
+        nextQuizBtn.addEventListener('click', generateQuiz);
+
+        toggleChallengeBtn.addEventListener('click', () => {
+            if (challengeMode) {
+                hideChallenge();
+            } else {
+                showChallenge();
+                favoriteFactsDisplay.classList.remove('visible');
+                factHistoryDisplay.classList.remove('visible');
+                hideQuiz();
+            }
+        });
+
+        nextChallengeBtn.addEventListener('click', generateChallenge);
+
+        // Initial load
+        document.addEventListener('DOMContentLoaded', () => {
+            applyTheme(currentTheme);
+            addFactToHistory(currentFact);
+            updateFavoriteButtonState();
+            updateFactStreakDisplay();
+            updateMasteryDisplay();
+
+            // Set initial update time for the footer
+            const updateTimeElement = document.getElementById('update-time');
+            const now = new Date();
+            updateTimeElement.textContent = now.toLocaleString();
+        });
+    </script>
+</body>
+</html>
