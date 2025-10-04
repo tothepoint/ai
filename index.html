@@ -487,6 +487,10 @@
             cursor: pointer;
             transition: color 0.2s ease, transform 0.2s ease;
         }
+        .star-rating .star.selected {
+            color: var(--star-color); /* Use theme color for selected stars */
+            transform: scale(1.2);
+        }
         footer {
             width: 100%;
             padding: 15px 0;
@@ -552,7 +556,7 @@
 
         @keyframes shake {
             0% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }\
+            25% { transform: translateX(-5px); }
             50% { transform: translateX(5px); }
             75% { transform: translateX(-5px); }
             100% { transform: translateX(0); }
@@ -593,6 +597,14 @@
             background-color: var(--title-color); /* Use a theme color for progress */
             border-radius: 10px;
             transition: width 0.5s ease-in-out;
+        }
+
+        #fact-quiz-container h3 {
+            color: var(--generic-title-color);
+            font-size: 2rem; /* Slightly larger */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8); /* Stronger shadow */
+            transition: text-shadow 0.5s ease;
         }
     </style>
 </head>
@@ -986,7 +998,7 @@
             revealOverlay.style.opacity = '1';
             revealOverlay.style.pointerEvents = 'auto';
             revealFactBtn.style.display = 'block';
-            newFactBtn.disabled = true;
+            newFactBtn.disabled = true; // This is good, keep it disabled
             toggleDidYouKnowBtn.disabled = true;
             favoriteFactBtn.disabled = true;
             copyFactBtn.disabled = true;
