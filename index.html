@@ -340,7 +340,7 @@
             margin-top: 20px;
             display: flex;
             gap: 15px;
-            flex-wrap: wrap;\
+            flex-wrap: wrap;
             justify-content: center;
         }
         .button-group.primary-actions {
@@ -553,9 +553,9 @@
         @keyframes shake {
             0% { transform: translateX(0); }
             25% { transform: translateX(-5px); }
-            50% { transform: translateX(5px); }\
-            75% { transform: translateX(-5px); }\
-            100% { transform: translateX(0); }\
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
         }
 
         /* Mastery Progress Bar Styling */
@@ -652,7 +652,6 @@
 
             <div class="button-group primary-actions">
                 <button id="new-fact-btn" class="action-button" disabled>Discover Another Wonder</button>
-                <button id="start-quiz-btn" class="action-button" disabled>Start Fact Quiz</button>
             </div>
             <div id="fact-quiz-container">
                 <h3>Fact Quiz!</h3>
@@ -731,7 +730,6 @@
         const notificationToast = document.getElementById('notification-toast');
 
         // Quiz elements
-        const startQuizBtn = document.getElementById('start-quiz-btn');
         const factQuizContainer = document.getElementById('fact-quiz-container');
         const quizQuestion = document.getElementById('quiz-question');
         const quizOptionsContainer = document.getElementById('quiz-options');
@@ -977,7 +975,6 @@
             copyFactBtn.disabled = true;
             shareTwitterBtn.disabled = true;
             shareWhatsappBtn.disabled = true;
-            startQuizBtn.disabled = true; // Disable quiz button
             factQuizContainer.classList.remove('visible'); // Hide quiz
             quizFeedback.textContent = ''; // Clear quiz feedback
             quizOptionsContainer.innerHTML = ''; // Clear quiz options
@@ -996,7 +993,6 @@
             revealOverlay.style.opacity = '0';
             revealOverlay.style.pointerEvents = 'none';
             revealFactBtn.style.display = 'none';
-            newFactBtn.disabled = false;
             toggleDidYouKnowBtn.disabled = false;
             didYouKnow.classList.add('visible'); // Automatically show Did You Know
             toggleDidYouKnowBtn.textContent = 'Hide Details'; // Update button text
@@ -1004,7 +1000,6 @@
             copyFactBtn.disabled = false;
             shareTwitterBtn.disabled = false;
             shareWhatsappBtn.disabled = false;
-            startQuizBtn.disabled = false; // Enable quiz button
             factStreak++;
             currentStreakSpan.textContent = factStreak;
             currentStreakSpan.classList.add('animate-pulse');
@@ -1012,6 +1007,7 @@
             updateMasteryLevel(); // Update mastery level on streak increase
             addToFactHistory(facts[currentFactIndex]); // Add to history when revealed
             factRatingContainer.classList.add('visible'); // Show rating after reveal
+            startQuiz(); // Automatically start quiz after fact is revealed
 
             // Check if current fact is favorited and update button
             const currentFact = facts[currentFactIndex];
@@ -1277,6 +1273,7 @@
                 showNotification('Quiz Answer: Incorrect.', 2000);
             }
             submitQuizBtn.disabled = true; // Disable submit after answering
+            newFactBtn.disabled = false; // Enable "Discover Another Wonder" after quiz submission
         }
 
 
@@ -1292,7 +1289,6 @@
         toggleFavoriteFactsBtn.addEventListener('click', toggleFavoriteFactsDisplay);
         themeSelect.addEventListener('change', handleThemeChange);
         toggleFactHistoryBtn.addEventListener('click', toggleFactHistoryDisplay);
-        startQuizBtn.addEventListener('click', startQuiz); // New quiz event listener
         submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener
 
         // Initial load: Pick a random fact and theme
