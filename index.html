@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Oceanic Depths</title>
     <style>
         :root {
             /* Default Theme Colors (Cosmic Wonders) */
@@ -26,7 +26,10 @@
             --favorite-btn-color: #FFD700; /* Gold for favorite button */
             --favorite-btn-hover: #B8860B; /* Darker Goldenrod */
             --star-color: #FFD700; /* Gold for stars */
-            --notification-bg: rgba(0, 0, 0, 0.8);\n            --notification-text: #E0FFFF;\n            --correct-answer-color: #3CB371; /* Medium Sea Green */\n            --incorrect-answer-color: #FF6347; /* Tomato */
+            --notification-bg: rgba(0, 0, 0, 0.8);
+            --notification-text: #E0FFFF;
+            --correct-answer-color: #3CB371; /* Medium Sea Green */
+            --incorrect-answer-color: #FF6347; /* Tomato */
         }
 
         #fact-streak-display {
@@ -428,7 +431,59 @@
         #favorite-facts-display.visible, #fact-history-display.visible {
             display: flex;
         }
-        #favorite-facts-display h3, #fact-history-display h3 {\n            color: var(--generic-title-color);\n            font-size: 1.8rem;\n            margin-bottom: 15px;\n            text-shadow: 1px 1px 8px rgba(0,0,0,0.7);\n            text-align: center;\n        }\n        .favorite-fact-item, .history-fact-item {\n            background-color: rgba(255,255,255,0.1);\n            padding: 15px;\n            border-radius: 10px;\n            display: flex;\n            justify-content: space-between;\n            align-items: center;\n            font-size: 1.1rem;\n            line-height: 1.4;\n            border: 1px solid rgba(255,255,255,0.2);\n        }\n        .favorite-fact-item .remove-fav-btn, .history-fact-item .remove-history-btn {\n            background-color: #DC3545; /* Red for remove */\n            color: white;\n            border: none;\n            padding: 8px 12px;\n            border-radius: 5px;\n            cursor: pointer;\n            font-size: 0.9rem;\n            transition: background-color 0.3s ease;\n        }\n        .favorite-fact-item .remove-fav-btn:hover, .history-fact-item .remove-history-btn:hover {\n            background-color: #C82333;\n        }\n\n        /* Fact Rating Feature Styles */\n        #fact-rating-container {\n            margin-top: 20px;\n            display: none; /* Hidden initially */\n            flex-direction: column;\n            align-items: center;\n            gap: 10px;\n            opacity: 0;\n            transition: opacity 0.5s ease-out;\n        }\n        #fact-rating-container.visible {\n            display: flex;\n            opacity: 1;\n        }\n        .star-rating {\n            display: flex;\n            gap: 5px;\n        }\n        .star-rating .star {\n            font-size: 2.5rem;\n            color: #555; /* Default grey for unselected stars */
+        #favorite-facts-display h3, #fact-history-display h3 {
+            color: var(--generic-title-color);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 8px rgba(0,0,0,0.7);
+            text-align: center;
+        }
+        .favorite-fact-item, .history-fact-item {
+            background-color: rgba(255,255,255,0.1);
+            padding: 15px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.1rem;
+            line-height: 1.4;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .favorite-fact-item .remove-fav-btn, .history-fact-item .remove-history-btn {
+            background-color: #DC3545; /* Red for remove */
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background-color 0.3s ease;
+        }
+        .favorite-fact-item .remove-fav-btn:hover, .history-fact-item .remove-history-btn:hover {
+            background-color: #C82333;
+        }
+
+        /* Fact Rating Feature Styles */
+        #fact-rating-container {
+            margin-top: 20px;
+            display: none; /* Hidden initially */
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 0.5s ease-out;
+        }
+        #fact-rating-container.visible {
+            display: flex;
+            opacity: 1;
+        }
+        .star-rating {
+            display: flex;
+            gap: 5px;
+        }
+        .star-rating .star {
+            font-size: 2.5rem;
+            color: #555; /* Default grey for unselected stars */
             cursor: pointer;
             transition: color 0.2s ease, transform 0.2s ease;
         }
@@ -495,18 +550,18 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Cosmic Wonders</h1>
-        <span id="theme-indicator">Theme: Cosmic Wonders</span>
+        <h1 id="main-title">Oceanic Depths</h1>
+        <span id="theme-indicator">Theme: Oceanic Depths</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
             <select id="theme-select" class="action-button">
                 <option value="random">Random Theme</option>
                 <option value="Cosmic Wonders">Cosmic Wonders</option>
-                <option value="Oceanic Depths">Oceanic Depths</option>
+                <option value="Oceanic Depths" selected>Oceanic Depths</option>
                 <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
-                <option value="Quantum Quirks" selected>Quantum Quirks</option>
+                <option value="Quantum Quirks">Quantum Quirks</option>
                 <option value="Ancient Civilizations">Ancient Civilizations</option>
             </select>
         </div>
@@ -525,13 +580,13 @@
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="There are more stars in the universe than grains of sand on all the beaches on Earth."></p>
+            <p id="main-fact-text" data-full-text="The Mariana Trench is deeper than Mount Everest is tall."></p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>The observable universe is estimated to contain about 100 billion to 200 billion galaxies, each with billions of stars!</p>
+                <p>If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.</p>
             </div>
 
             <!-- New Feature: Fact Rating -->
@@ -1193,8 +1248,8 @@
         submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener
 
         // Initial load
-        // Set initial fact to Quantum Quirks
-        currentFactIndex = facts.findIndex(f => f.theme === "Quantum Quirks");
+        // Set initial fact to Oceanic Depths
+        currentFactIndex = facts.findIndex(f => f.theme === "Oceanic Depths");
         if (currentFactIndex === -1) { // Fallback to random if not found
             currentFactIndex = Math.floor(Math.random() * facts.length);
         }
