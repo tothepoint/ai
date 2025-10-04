@@ -3,31 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Oceanic Depths</title>
+    <title id="site-title">Quantum Quirks</title>
     <style>
         :root {
             /* Default Theme Colors (Cosmic Wonders) */
-            --bg-color-primary: #0D0D2B;   /* Deep Space Blue */
-            --bg-color-secondary: #1A1A40; /* Lighter Deep Space Blue */
-            --text-color: #E0FFFF;         /* Light Cyan */
-            --footer-bg: #08081A;          /* Even darker blue */
-            --glass-bg: rgba(13, 13, 43, 0.6); /* Transparent dark blue */
-            --glass-border: rgba(224, 255, 255, 0.3); /* Transparent Light Cyan */
+            --bg-color-primary: #2A0A4A;   /* Deep Violet */
+            --bg-color-secondary: #3F156B; /* Lighter Deep Violet */
+            --text-color: #E0BBE4;         /* Pale Lavender */
+            --footer-bg: #1F0738;          /* Even darker violet */
+            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent dark violet */
+            --glass-border: rgba(224, 187, 228, 0.3); /* Transparent Pale Lavender */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700;        /* Gold */
+            --title-color: #DAA520;        /* Goldenrod */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #4A00B0;     /* Deep Purple */
-            --button-hover: #3A008F;       /* Darker Deep Purple */
-            --main-action-btn: #FF4500;    /* OrangeRed */
-            --main-action-btn-hover: #CC3700; /* Darker OrangeRed */
+            --button-primary: #8A2BE2;     /* Blue Violet */
+            --button-hover: #6A1BB2;       /* Darker Blue Violet */
+            --main-action-btn: #FF6347;    /* Tomato */
+            --main-action-btn-hover: #CC4F39; /* Darker Tomato */
             --reveal-overlay-color: rgba(0, 0, 0, 0.7); /* Dark overlay for hidden fact */
-            --generic-title-color: #E0FFFF; /* Light Cyan for generic title */
-            --theme-indicator-color: #FFD700; /* Gold for theme indicator */
-            --favorite-btn-color: #FFD700; /* Gold for favorite button */
+            --generic-title-color: #E0BBE4; /* Pale Lavender for generic title */
+            --theme-indicator-color: #DAA520; /* Goldenrod for theme indicator */
+            --favorite-btn-color: #DAA520; /* Goldenrod for favorite button */
             --favorite-btn-hover: #B8860B; /* Darker Goldenrod */
-            --star-color: #FFD700; /* Gold for stars */
+            --star-color: #DAA520; /* Goldenrod for stars */
             --notification-bg: rgba(0, 0, 0, 0.8);
-            --notification-text: #E0FFFF;
+            --notification-text: #E0BBE4;
             --correct-answer-color: #3CB371; /* Medium Sea Green */
             --incorrect-answer-color: #FF6347; /* Tomato */
         }
@@ -550,18 +550,18 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="main-title">Oceanic Depths</h1>
-        <span id="theme-indicator">Theme: Oceanic Depths</span>
+        <h1 id="main-title">Quantum Quirks</h1>
+        <span id="theme-indicator">Theme: Quantum Quirks</span>
 
         <div id="theme-selector-container">
             <label for="theme-select">Explore Themes:</label>
             <select id="theme-select" class="action-button">
                 <option value="random">Random Theme</option>
                 <option value="Cosmic Wonders">Cosmic Wonders</option>
-                <option value="Oceanic Depths" selected>Oceanic Depths</option>
+                <option value="Oceanic Depths">Oceanic Depths</option>
                 <option value="Ancient Earth">Ancient Earth</option>
                 <option value="Microscopic Marvels">Microscopic Marvels</option>
-                <option value="Quantum Quirks">Quantum Quirks</option>
+                <option value="Quantum Quirks" selected>Quantum Quirks</option>
                 <option value="Ancient Civilizations">Ancient Civilizations</option>
             </select>
         </div>
@@ -580,13 +580,13 @@
         </div>
 
         <div id="main-fact-container">
-            <p id="main-fact-text" data-full-text="The Mariana Trench is deeper than Mount Everest is tall."></p>
+            <p id="main-fact-text" data-full-text="Particles can be in two places at once, a phenomenon known as superposition."></p>
             <div id="reveal-overlay">
                 <button id="reveal-fact-btn">Reveal Fact</button>
             </div>
             <div id="did-you-know">
                 <h3>Did You Know?</h3>
-                <p>If Mount Everest were placed in the Mariana Trench, its peak would still be over a mile (1.6 km) underwater! The pressure at the bottom is over 1,000 times that at sea level.</p>
+                <p>This bizarre quantum property is famously illustrated by Schrödinger's Cat thought experiment, where a cat in a sealed box is simultaneously dead and alive until observed.</p>
             </div>
 
             <!-- New Feature: Fact Rating -->
@@ -1248,8 +1248,8 @@
         submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener
 
         // Initial load
-        // Set initial fact to Oceanic Depths
-        currentFactIndex = facts.findIndex(f => f.theme === "Oceanic Depths");
+        // Set initial fact to Quantum Quirks
+        currentFactIndex = facts.findIndex(f => f.theme === "Quantum Quirks");
         if (currentFactIndex === -1) { // Fallback to random if not found
             currentFactIndex = Math.floor(Math.random() * facts.length);
         }
