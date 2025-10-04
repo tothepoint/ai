@@ -3,33 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Quantum Quirks</title>
+    <title id="site-title">Wild Wonders</title>
     <style>
         :root {
-            /* Theme Colors (Quantum Quirks) */
-            --bg-color-primary: #2A0A4A;   /* Very deep purple */
-            --bg-color-secondary: #3F156B; /* Slightly lighter deep purple */
-            --text-color: #E0BBE4;         /* Light lavender, like quantum glow */
-            --footer-bg: #1F0738;          /* Even darker purple */
-            --glass-bg: rgba(42, 10, 74, 0.6); /* Transparent deep purple */
-            --glass-border: rgba(224, 187, 228, 0.3); /* Transparent Light Lavender */
+            /* Theme Colors (Incredible Animals) */
+            --bg-color-primary: #224229;
+            --bg-color-secondary: #3A6040;
+            --text-color: #C8E6C9;
+            --footer-bg: #1A301F;
+            --glass-bg: rgba(34, 66, 41, 0.6);
+            --glass-border: rgba(200, 230, 201, 0.3);
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #DAA520;        /* Gold */
+            --title-color: #FFD700;
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --button-primary: #8A2BE2;     /* Blue Violet */
-            --button-hover: #6A0DAD;       /* Dark Violet */
-            --main-action-btn: #FF6347;    /* Tomato */
-            --main-action-btn-hover: #E5533D; /* Darker Tomato */
-            --reveal-overlay-color: rgba(0, 0, 0, 0.8); /* Dark overlay for hidden fact */
-            --generic-title-color: #E0BBE4; /* Light lavender for generic title */
-            --theme-indicator-color: #DAA520; /* Gold for theme indicator */
-            --favorite-btn-color: #DAA520; /* Gold for favorite button */
-            --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --star-color: #FFD700; /* Gold for stars */
+            --button-primary: #66BB6A;
+            --button-hover: #4CAF50;
+            --main-action-btn: #4CAF50;
+            --main-action-btn-hover: #43A047;
+            --reveal-overlay-color: rgba(0, 0, 0, 0.8);
+            --generic-title-color: #C8E6C9;
+            --theme-indicator-color: #FFD700;
+            --favorite-btn-color: #FFD700;
+            --favorite-btn-hover: #B8860B;
+            --star-color: #FFD700;
             --notification-bg: rgba(0, 0, 0, 0.8);
             --notification-text: #E0BBE4;
-            --correct-answer-color: #3CB371; /* Medium Sea Green */
-            --incorrect-answer-color: #FF6347; /* Tomato */
+            --correct-answer-color: #3CB371;
+            --incorrect-answer-color: #FF6347;
         }
 
         #fact-streak-display {
@@ -721,16 +721,16 @@
     <div class="bubble"></div>
 
     <div class="container">
-        <h1 id="main-title">Quantum Quirks</h1>
-        <p id="theme-indicator">Exploring the Subatomic Realm</p>
+        <h1 id="main-title">Wild Wonders</h1>
+        <p id="theme-indicator">The Animal Kingdom's Secrets</p>
 
         <div id="theme-selector-container">
             <label for="theme-select">Choose Your Journey:</label>
             <select id="theme-select">
-                <option value="quantum-quirks" selected>Quantum Quirks</option>
+                <option value="quantum-quirks">Quantum Quirks</option>
                 <option value="deep-sea-mysteries">Deep Sea Mysteries</option>
                 <option value="ancient-civilizations">Ancient Civilizations</option>
-                <option value="incredible-animals">Incredible Animals</option>
+                <option value="incredible-animals" selected>Incredible Animals</option>
                 <option value="human-body-wonders">Human Body Wonders</option>
             </select>
         </div>
@@ -747,7 +747,7 @@
         </div>
 
         <div class="button-group primary-actions">
-            <button id="new-fact-btn" class="action-button">New Quantum Fact</button>
+            <button id="new-fact-btn" class="action-button">New Animal Fact</button>
             <button id="favorite-fact-btn" class="action-button">⭐ Favorite Fact</button>
         </div>
 
@@ -950,7 +950,7 @@
             }
         };
 
-        let currentTheme = "quantum-quirks";
+        let currentTheme = "incredible-animals"; // Set initial theme to a random one
         let currentFact = "";
         let currentDidYouKnow = "";
         let factHistory = [];
@@ -1442,7 +1442,7 @@
         });
 
         shareTwitterBtn.addEventListener('click', () => {
-            const tweetText = encodeURIComponent(`"${currentFact}" #QuantumQuirks #FactOfTheDay`);
+            const tweetText = encodeURIComponent(`"${currentFact}" #WildWonders #FactOfTheDay`);
             window.open(`https://twitter.com/intent/tweet?text=${tweetText}`, '_blank');
         });
 
@@ -1508,6 +1508,9 @@
 
         // Initial load
         document.addEventListener('DOMContentLoaded', () => {
+            const themeKeys = Object.keys(themes);
+            const randomThemeKey = themeKeys[Math.floor(Math.random() * themeKeys.length)];
+            currentTheme = randomThemeKey; // Set currentTheme to the randomly selected theme
             applyTheme(currentTheme);
             addFactToHistory(currentFact);
             updateFavoriteButtonState();
