@@ -1295,12 +1295,8 @@
         startQuizBtn.addEventListener('click', startQuiz); // New quiz event listener
         submitQuizBtn.addEventListener('click', submitQuizAnswer); // New quiz event listener
 
-        // Initial load
-        // Set initial fact to Quantum Quirks
-        currentFactIndex = facts.findIndex(f => f.theme === "Quantum Quirks");
-        if (currentFactIndex === -1) { // Fallback to random if not found
-            currentFactIndex = Math.floor(Math.random() * facts.length);
-        }
+        // Initial load: Pick a random fact and theme
+        currentFactIndex = Math.floor(Math.random() * facts.length);
         loadFact(currentFactIndex);
         renderFavoriteFacts();
         renderFactHistory();
