@@ -742,7 +742,7 @@
                 <div id="unscramble-progress-bar"></div>
             </div>
             <div id="reveal-overlay">
-                <button id="reveal-fact-btn">Unscramble Fact!</button>
+                <button id="reveal-fact-btn">Reveal Letter!</button>
             </div>
         </div>
 
@@ -1025,7 +1025,7 @@
             unscrambleIndex = 0;
             scrambledFactDisplay.textContent = scrambledFact;
             unscrambleProgressBar.style.width = '0%';
-            revealFactBtn.textContent = 'Unscramble Fact!';
+            revealFactBtn.textContent = 'Reveal Letter!';
             revealFactBtn.disabled = false;
             mainFactContainer.classList.add('scrambled');
             mainFactContainer.classList.remove('revealed'); // Ensure it's not revealed
@@ -1419,10 +1419,24 @@
             showNewFact(); // Load a new fact for the selected theme
         });
 
-        revealFactBtn.addEventListener('click', () => {
+        revealFactBtn.addEventListener('mousedown', () => {
             if (unscrambleIndex < currentFact.length) {
-                unscrambleInterval = setInterval(unscrambleStep, 50); // Adjust speed as needed
+                unscrambleStep(); // Reveal one letter immediately on click
+                // Start continuous unscrambling after a short delay if held
+                unscrambleInterval = setTimeout(() => {
+                    unscrambleInterval = setInterval(unscrambleStep, 50); // Faster reveal on hold
+                }, 200); // Delay before continuous reveal
             }
+        });
+
+        revealFactBtn.addEventListener('mouseup', () => {
+            clearInterval(unscrambleInterval);
+            clearTimeout(unscrambleInterval); // Clear any pending setTimeout
+        });
+
+        revealFactBtn.addEventListener('mouseleave', () => {
+            clearInterval(unscrambleInterval);
+            clearTimeout(unscrambleInterval); // Clear any pending setTimeout
         });
 
         newFactBtn.addEventListener('click', showNewFact);
