@@ -111,6 +111,37 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
+        .rating-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .rating-button {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-color);
+            padding: 10px 15px;
+            font-size: 1.5rem;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            transition: all 0.2s ease;
+        }
+
+        .rating-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .rating-button.active {
+            background-color: var(--main-action-btn);
+            color: white;
+            border-color: var(--main-action-btn);
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
         .theme-indicator {
             position: absolute;
             top: 20px;
@@ -183,6 +214,10 @@
         <h1 id="site-title">Cosmic Chronicles</h1>
         <p id="fact-display">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
         <button class="action-button" id="next-fact-btn">Next Fact</button>
+        <div class="rating-buttons">
+            <button class="rating-button" id="thumbs-up-btn" title="Like this fact">👍</button>
+            <button class="rating-button" id="thumbs-down-btn" title="Dislike this fact">👎</button>
+        </div>
         <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
     </div>
 
@@ -270,6 +305,23 @@
                         '--main-action-btn-hover': '#556B2F', /* Dark Olive Green */
                         '--theme-indicator-color': '#8FBC8F'
                     }
+                },
+                {
+                    name: "Historical Echoes",
+                    title: "Historical Echoes",
+                    fact: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted between 38 and 45 minutes.",
+                    colors: {
+                        '--bg-color-primary': '#5C4033', /* Darker Sepia Brown */
+                        '--bg-color-secondary': '#8B4513', /* Saddle Brown */
+                        '--text-color': '#F5DEB3', /* Wheat */
+                        '--footer-bg': '#4A2C20', /* Even Darker Brown */
+                        '--glass-bg': 'rgba(92, 64, 51, 0.7)',
+                        '--glass-border': 'rgba(245, 222, 179, 0.3)',
+                        '--title-color': '#CD853F', /* Peru - a warm, historical gold */
+                        '--main-action-btn': '#A0522D', /* Sienna */
+                        '--main-action-btn-hover': '#8B4513', /* Saddle Brown */
+                        '--theme-indicator-color': '#CD853F'
+                    }
                 }
             ];
 
@@ -299,6 +351,7 @@
                 currentThemeIndex = (currentThemeIndex + 1) % themes.length;
                 applyTheme(themes[currentThemeIndex]);
                 updateFavoriteButton(); // Update favorite button state for new fact
+                clearRatingButtons(); // Clear rating when new fact is loaded
             });
 
             const favoriteBtn = document.getElementById('favorite-btn');
@@ -312,6 +365,24 @@
                     favoriteBtn.classList.remove('favorited');
                 }
             }
+
+            const thumbsUpBtn = document.getElementById('thumbs-up-btn');
+            const thumbsDownBtn = document.getElementById('thumbs-down-btn');
+
+            function clearRatingButtons() {
+                thumbsUpBtn.classList.remove('active');
+                thumbsDownBtn.classList.remove('active');
+            }
+
+            thumbsUpBtn.addEventListener('click', () => {
+                thumbsUpBtn.classList.toggle('active');
+                thumbsDownBtn.classList.remove('active');
+            });
+
+            thumbsDownBtn.addEventListener('click', () => {
+                thumbsDownBtn.classList.toggle('active');
+                thumbsUpBtn.classList.remove('active');
+            });
 
             favoriteBtn.addEventListener('click', () => {
                 const currentFact = factDisplay.textContent;
@@ -329,6 +400,7 @@
             setTimeout(() => {
                 factDisplay.classList.add('revealed');
                 updateFavoriteButton();
+                clearRatingButtons(); // Clear rating on initial load
             }, 500);
         });
     </script>
