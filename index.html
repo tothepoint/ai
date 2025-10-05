@@ -142,6 +142,12 @@
             color: var(--favorite-btn-hover);
         }
 
+        .favorite-button.favorited {
+            color: var(--favorite-btn-hover); /* Or a distinct color for favorited */
+            text-shadow: 0 0 15px var(--favorite-btn-color);
+            transform: scale(1.1);
+        }
+
         footer {
             margin-top: 40px;
             padding: 15px 30px;
@@ -285,17 +291,44 @@
                 }, 100);
             }
 
-            // Initial theme application
+            // Random initial theme application
+            currentThemeIndex = Math.floor(Math.random() * themes.length);
             applyTheme(themes[currentThemeIndex]);
 
             nextFactBtn.addEventListener('click', () => {
                 currentThemeIndex = (currentThemeIndex + 1) % themes.length;
                 applyTheme(themes[currentThemeIndex]);
+                updateFavoriteButton(); // Update favorite button state for new fact
             });
 
-            // Initial reveal of the fact
+            const favoriteBtn = document.getElementById('favorite-btn');
+            let favoritedFacts = JSON.parse(localStorage.getItem('favoritedFacts')) || [];
+
+            function updateFavoriteButton() {
+                const currentFact = factDisplay.textContent;
+                if (favoritedFacts.includes(currentFact)) {
+                    favoriteBtn.classList.add('favorited');
+                } else {
+                    favoriteBtn.classList.remove('favorited');
+                }
+            }
+
+            favoriteBtn.addEventListener('click', () => {
+                const currentFact = factDisplay.textContent;
+                if (favoritedFacts.includes(currentFact)) {
+                    favoritedFacts = favoritedFacts.filter(fact => fact !== currentFact);
+                    favoriteBtn.classList.remove('favorited');
+                } else {
+                    favoritedFacts.push(currentFact);
+                    favoriteBtn.classList.add('favorited');
+                }
+                localStorage.setItem('favoritedFacts', JSON.stringify(favoritedFacts));
+            });
+
+            // Initial reveal of the fact and favorite button state
             setTimeout(() => {
                 factDisplay.classList.add('revealed');
+                updateFavoriteButton();
             }, 500);
         });
     </script>
