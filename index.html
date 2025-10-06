@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Mysteries of the Deep Sea</title>
     <style>
         :root {
-            /* Space Theme Colors */
-            --bg-color-primary: #1A0033; /* Dark Purple */
-            --bg-color-secondary: #330066; /* Medium Purple */
-            --text-color: #E0E0FF; /* Light Lavender */
-            --footer-bg: #0D001A; /* Even Darker Purple */
-            --glass-bg: rgba(51, 0, 102, 0.7); /* Semi-transparent medium purple */
-            --glass-border: rgba(224, 224, 255, 0.3); /* Light lavender border */
+            /* Deep Sea Theme Colors */
+            --bg-color-primary: #0A1931; /* Dark Blue */
+            --bg-color-secondary: #152A46; /* Medium Blue */
+            --text-color: #E0F2F7; /* Light Cyan */
+            --footer-bg: #050F1A; /* Even Darker Blue */
+            --glass-bg: rgba(10, 25, 49, 0.7); /* Semi-transparent dark blue */
+            --glass-border: rgba(224, 242, 247, 0.3); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700; /* Gold */
+            --title-color: #00BCD4; /* Cyan */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet */
-            --main-action-btn-hover: #6A1B9A; /* Darker Blue Violet */
-            --theme-indicator-color: #FFD700; /* Gold */
+            --main-action-btn: #00BCD4; /* Cyan */
+            --main-action-btn-hover: #00838F; /* Darker Cyan */
+            --theme-indicator-color: #00BCD4; /* Cyan */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #4CAF50; /* Green */
-            --share-btn-hover: #388E3C; /* Darker Green */
-            --rating-active-color: #8A2BE2; /* Blue Violet */
-            --rating-text-color: #E0E0FF; /* Light Lavender */
-            --category-select-bg: #330066; /* Medium Purple for select */
-            --category-select-border: #8A2BE2; /* Blue Violet border */
+            --share-btn-color: #20B2AA; /* Light Sea Green */
+            --share-btn-hover: #1A8B84; /* Darker Light Sea Green */
+            --rating-active-color: #00BCD4; /* Cyan */
+            --rating-text-color: #E0F2F7; /* Light Cyan */
+            --category-select-bg: #152A46; /* Medium Blue for select */
+            --category-select-border: #00BCD4; /* Cyan border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
             --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 224, 255, 0.5);
-            --search-input-text: #E0E0FF;
-            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
-            --carousel-control-color: #FFD700; /* Gold for carousel controls */
-            --carousel-control-hover: #FFFF00; /* Brighter Gold */
+            --search-input-border: rgba(224, 242, 247, 0.5);
+            --search-input-text: #E0F2F7;
+            --fact-card-bg: rgba(10, 25, 49, 0.8); /* Slightly darker glass for fact card */
+            --fact-card-border: rgba(0, 188, 212, 0.5); /* Cyan border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(0, 188, 212, 0.7); /* Cyan glow */
+            --carousel-control-color: #00BCD4; /* Cyan for carousel controls */
+            --carousel-control-hover: #00E5FF; /* Brighter Cyan */
             --trivia-correct-color: #4CAF50; /* Green */
             --trivia-incorrect-color: #F44336; /* Red */
         }
@@ -99,9 +99,22 @@
             transition: color 0.5s ease;
         }
 
-        #fact-display, #challenge-fact-display, #trivia-fact-display {\n            font-size: 2.2rem;\n            font-weight: 500;\n            margin: 30px 0 15px 0;\n            line-height: 1.4;\n            text-shadow: var(--fact-text-shadow);\n            color: var(--text-color);\n            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;\n            opacity: 0;\n            transform: translateY(20px);\n        }
+        #fact-display, #challenge-fact-display, #trivia-fact-display {
+            font-size: 2.2rem;
+            font-weight: 500;
+            margin: 30px 0 15px 0;
+            line-height: 1.4;
+            text-shadow: var(--fact-text-shadow);
+            color: var(--text-color);
+            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
 
-        #fact-display.revealed, #challenge-fact-display.revealed, #trivia-fact-display.revealed {\n            opacity: 1;\n            transform: translateY(0);\n        }
+        #fact-display.revealed, #challenge-fact-display.revealed, #trivia-fact-display.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .fact-card {
             background-color: var(--fact-card-bg);
@@ -277,7 +290,7 @@
             appearance: none; /* Remove default dropdown arrow */
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E0E0FF%22%20d%3D%22M287%2C197.9L159.3%2C69.2c-3.7-3.7-9.7-3.7-13.4%2C0L5.4%2C197.9c-3.7%2C3.7-3.7%2C9.7%2C0%2C13.4l13.4%2C13.4c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l110.7-110.7l110.7%2C110.7c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l13.4-13.4C290.7%2C207.6%2C290.7%2C201.6%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E');
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E0F2F7%22%20d%3D%22M287%2C197.9L159.3%2C69.2c-3.7-3.7-9.7-3.7-13.4%2C0L5.4%2C197.9c-3.7%2C3.7-3.7%2C9.7%2C0%2C13.4l13.4%2C13.4c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l110.7-110.7l110.7%2C110.7c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l13.4-13.4C290.7%2C207.6%2C290.7%2C201.6%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 10px top 50%;
             background-size: 12px;
@@ -287,7 +300,7 @@
         .category-selector select:focus {
             outline: none;
             border-color: var(--main-action-btn-hover);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.3);
         }
 
         /* Search Bar */
@@ -311,13 +324,13 @@
         }
 
         .search-bar input::placeholder {
-            color: rgba(224, 224, 255, 0.7);
+            color: rgba(224, 242, 247, 0.7);
         }
 
         .search-bar input:focus {
             outline: none;
             border-color: var(--main-action-btn-hover);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.3);
         }
 
         .search-bar .action-button {
@@ -573,21 +586,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Wonders</span></div>
-        <h1 id="site-title">Cosmic Wonders</h1>
+        <div class="theme-indicator">Theme: <span id="current-theme">Mysteries of the Deep Sea</span></div>
+        <h1 id="site-title">Mysteries of the Deep Sea</h1>
 
         <div class="category-selector">
             <label for="fact-category">Category:</label>
             <select id="fact-category">
-                <option value="deep-sea">Deep Sea</option>
-                <option value="space" selected>Space</option>
+                <option value="deep-sea" selected>Deep Sea</option>
+                <option value="space">Space</option>
                 <option value="history">History</option>
                 <option value="science">Science</option>
             </select>
         </div>
 
         <div class="fact-card">
-            <p id="fact-display" class="revealed">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+            <p id="fact-display">The Mariana Trench is deeper than Mount Everest is tall, reaching approximately 11,000 meters (36,000 feet) below the surface.</p>
             <div class="carousel-controls">
                 <button class="carousel-control-btn" id="prev-fact-btn" title="Previous Fact">◀</button>
                 <button class="carousel-control-btn" id="next-fact-btn" title="Next Fact">▶</button>
@@ -947,7 +960,7 @@
                 ],
                 "space": [
                     {
-                        question: "Which planet has a day longer than its year?",
+                        question: "Which planet has a day longer than its year?  ",
                         options: ["Mars", "Venus", "Jupiter", "Mercury"],
                         answer: "Venus"
                     },
@@ -1093,7 +1106,7 @@
                 return categoryFacts[randomIndex];
             };
 
-            const displayFact = (factText, category) => {
+            const displayFact = (factText, category, reveal = false) => {
                 factDisplay.classList.remove('revealed');
                 // Hide fact of the day section if it's visible
                 factOfTheDaySection.style.display = 'none';
@@ -1110,7 +1123,13 @@
                     } else {
                         favoriteBtn.classList.remove('favorited');
                     }
-                    factDisplay.classList.add('revealed');
+
+                    if (reveal) {
+                        factDisplay.classList.add('revealed');
+                        nextFactBtn.textContent = "Next Fact";
+                    } else {
+                        nextFactBtn.textContent = "Reveal Fact";
+                    }
                 }, 500); // Delay to allow fade-out animation
             };
 
@@ -1127,25 +1146,27 @@
             const showNextFact = () => {
                 addFactToHistory(currentFact);
                 const selectedCategory = factCategorySelect.value;
-                displayFact(getRandomFact(selectedCategory), selectedCategory);
+                displayFact(getRandomFact(selectedCategory), selectedCategory, false); // New facts are hidden by default
             };
 
             const showPreviousFact = () => {
                 if (factHistory.length > 1) {
-                    // The current fact is the first in history, so we need to go to the next one
-                    // and then pop the current one to get the actual previous.
-                    // This logic needs to be careful to not lose the current fact if it's not yet in history.
-                    // For simplicity, let's assume currentFact is always the last displayed.
-                    // If we want to go back, we take the first item from history, make it current, and remove it.
-                    const previousFact = factHistory.shift();
-                    if (previousFact) {
-                        displayFact(previousFact.text, previousFact.category);
+                    const previousFact = factHistory.shift(); // Remove current fact from history
+                    const actualPreviousFact = factHistory.shift(); // Get the fact before that
+                    if (actualPreviousFact) {
+                        displayFact(actualPreviousFact.text, actualPreviousFact.category, true); // Reveal previous fact
+                        // Re-add the "current" fact (which was the first item in history) back to the beginning
+                        // so that if they go forward again, it's there.
+                        factHistory.unshift(previousFact);
+                    } else {
+                        // If there's no actual previous fact, just display the one we shifted off
+                        displayFact(previousFact.text, previousFact.category, true);
                     }
                 } else if (factHistory.length === 1) {
                     // If only one item in history, it's the previous fact. Display it and clear history.
                     const previousFact = factHistory.shift();
                     if (previousFact) {
-                        displayFact(previousFact.text, previousFact.category);
+                        displayFact(previousFact.text, previousFact.category, true);
                     }
                 } else {
                     // No history, just get a new random fact
@@ -1153,12 +1174,28 @@
                 }
             };
 
-            nextFactBtn.addEventListener('click', showNextFact);
+            nextFactBtn.addEventListener('click', () => {
+                if (factDisplay.classList.contains('revealed')) {
+                    showNextFact();
+                    startCarousel(); // Restart carousel if it was playing
+                } else {
+                    factDisplay.classList.add('revealed');
+                    nextFactBtn.textContent = "Next Fact";
+                    pauseCarousel(); // Pause carousel when fact is revealed manually
+                }
+            });
             prevFactBtn.addEventListener('click', showPreviousFact);
 
             const startCarousel = () => {
                 if (carouselInterval) clearInterval(carouselInterval);
-                carouselInterval = setInterval(showNextFact, CAROUSEL_SPEED);
+                carouselInterval = setInterval(() => {
+                    showNextFact();
+                    // Ensure the fact is revealed when carousel advances
+                    setTimeout(() => {
+                        factDisplay.classList.add('revealed');
+                        nextFactBtn.textContent = "Next Fact";
+                    }, 600); // A bit longer than fact fade-out
+                }, CAROUSEL_SPEED);
                 playPauseCarouselBtn.textContent = "Pause Carousel";
                 isCarouselPlaying = true;
             };
@@ -1601,19 +1638,19 @@
             });
 
             // Initial fact display and theme application on load
-            const initialCategory = "space";
-            const initialFactText = "There are more stars in the universe than grains of sand on all the beaches on Earth.";
+            const initialCategory = "deep-sea";
+            const initialFactText = "The Mariana Trench is deeper than Mount Everest is tall, reaching approximately 11,000 meters (36,000 feet) below the surface.";
 
             factCategorySelect.value = initialCategory; // Set the select to the chosen category
             applyTheme(initialCategory);
-            displayFact(initialFactText, initialCategory);
+            displayFact(initialFactText, initialCategory, false); // Initial fact is hidden by default
             startCarousel(); // Start the carousel automatically on load
 
             // Event listener for category change
             factCategorySelect.addEventListener('change', () => {
                 const selectedCategory = factCategorySelect.value;
                 applyTheme(selectedCategory);
-                displayFact(getRandomFact(selectedCategory), selectedCategory);
+                displayFact(getRandomFact(selectedCategory), selectedCategory, false); // New facts are hidden by default
                 pauseCarousel(); // Pause carousel on category change
             });
         });
