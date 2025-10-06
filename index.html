@@ -29,9 +29,9 @@
             --category-select-border: #8A2BE2; /* Blue Violet border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
-            --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 224, 255, 0.5);
-            --search-input-text: #E0E0FF;
+            --search-input-bg: rgba(255, 255, 255, 0.1);\n            --search-input-border: rgba(224, 224, 255, 0.5);\n            --search-input-text: #E0E0FF;\n            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
+            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
         }
 
         body {
@@ -107,6 +107,18 @@
         #fact-display.revealed, #challenge-fact-display.revealed {
             opacity: 1;
             transform: translateY(0);
+        }
+
+        .fact-card {
+            background-color: var(--fact-card-bg);
+            border: 2px solid var(--fact-card-border);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 600px;
+            transition: all 0.5s ease;
         }
 
         .action-button {
@@ -434,13 +446,53 @@
             font-weight: bold;
         }
 
+        /* Fact of the Day Section */
+        #fact-of-the-day-section {
+            display: none; /* Hidden by default */
+            background-color: var(--fact-card-bg);
+            border: 3px solid var(--fact-card-border);
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: var(--fact-of-day-glow);
+            width: 90%;
+            max-width: 700px;
+            animation: fadeInScale 0.8s ease-out forwards;
+            position: relative;
+        }
+
+        #fact-of-the-day-section h2 {
+            color: var(--title-color);
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            text-shadow: var(--title-shadow);
+        }
+
+        #fact-of-the-day-content {
+            font-size: 2.5rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: var(--text-color);
+            text-shadow: var(--fact-text-shadow);
+            margin-bottom: 20px;
+        }
+
+        #next-fact-of-day-countdown {
+            font-size: 1.2rem;
+            color: var(--theme-indicator-color);
+            font-weight: bold;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
-            #fact-display, #challenge-fact-display {
+            #fact-display, #challenge-fact-display, #fact-of-the-day-content {
                 font-size: 1.5rem;
+            }
+            #fact-of-the-day-section h2 {
+                font-size: 2rem;
             }
             .container {
                 padding: 30px;
@@ -478,7 +530,9 @@
             </select>
         </div>
 
-        <p id="fact-display" class="revealed">A day on Venus is longer than a year on Venus.</p>
+        <div class="fact-card">
+            <p id="fact-display" class="revealed">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        </div>
         <div class="rating-section">
             <div id="popularity-score">Rating: 0</div>
             <div class="rating-buttons">
@@ -502,6 +556,12 @@
             <button class="action-button" id="quiz-me-btn">Quiz Me!</button>
             <button class="action-button" id="fact-challenge-btn">Fact Challenge!</button>
         </div>
+    </div>
+
+    <div id="fact-of-the-day-section">
+        <h2>Fact of the Day!</h2>
+        <p id="fact-of-the-day-content"></p>
+        <p id="next-fact-of-day-countdown">Next fact in: --:--:--</p>
     </div>
 
     <div id="history-modal" class="modal">
@@ -579,19 +639,19 @@
             const quizMeBtn = document.getElementById('quiz-me-btn');
             const searchInput = document.getElementById('search-input');
             const searchFactBtn = document.getElementById('search-fact-btn');
-            const factChallengeBtn = document.getElementById('fact-challenge-btn'); // New button
+            const factChallengeBtn = document.getElementById('fact-challenge-btn');
 
             const historyModal = document.getElementById('history-modal');
             const favoritesModal = document.getElementById('favorites-modal');
             const quizModal = document.getElementById('quiz-modal');
             const searchResultsModal = document.getElementById('search-results-modal');
-            const factChallengeModal = document.getElementById('fact-challenge-modal'); // New modal
+            const factChallengeModal = document.getElementById('fact-challenge-modal');
 
             const closeHistoryModal = document.getElementById('close-history-modal');
             const closeFavoritesModal = document.getElementById('close-favorites-modal');
             const closeQuizModal = document.getElementById('close-quiz-modal');
             const closeSearchResultsModal = document.getElementById('close-search-results-modal');
-            const closeFactChallengeModal = document.getElementById('close-fact-challenge-modal'); // New close button
+            const closeFactChallengeModal = document.getElementById('close-fact-challenge-modal');
 
             const historyList = document.getElementById('history-list');
             const favoritesList = document.getElementById('favorites-list');
@@ -601,19 +661,23 @@
             const nextQuizBtn = document.getElementById('next-quiz-btn');
             const searchResultsList = document.getElementById('search-results-list');
 
-            const challengeFactDisplay = document.getElementById('challenge-fact-display'); // New element
-            const challengeOptions = document.getElementById('challenge-options'); // New element
-            const challengeFeedback = document.getElementById('challenge-feedback'); // New element
-            const nextChallengeBtn = document.getElementById('next-challenge-btn'); // New element
+            const challengeFactDisplay = document.getElementById('challenge-fact-display');
+            const challengeOptions = document.getElementById('challenge-options');
+            const challengeFeedback = document.getElementById('challenge-feedback');
+            const nextChallengeBtn = document.getElementById('next-challenge-btn');
 
             const lastUpdateTime = document.getElementById('last-update-time');
             const factCategorySelect = document.getElementById('fact-category');
             const siteTitle = document.getElementById('site-title');
             const currentThemeIndicator = document.getElementById('current-theme');
 
+            const factOfTheDaySection = document.getElementById('fact-of-the-day-section');
+            const factOfTheDayContent = document.getElementById('fact-of-the-day-content');
+            const nextFactOfDayCountdown = document.getElementById('next-fact-of-day-countdown');
+
             let currentFact = {
-                text: "", // Will be set dynamically
-                category: "", // Will be set dynamically
+                text: "",
+                category: "",
                 rating: 0
             };
             let factHistory = [];
@@ -643,6 +707,9 @@
                     searchInputBg: "rgba(255, 255, 255, 0.1)",
                     searchInputBorder: "rgba(224, 242, 247, 0.5)",
                     searchInputText: "#E0F2F7",
+                    factCardBg: "rgba(10, 25, 49, 0.8)",
+                    factCardBorder: "rgba(0, 188, 212, 0.5)",
+                    factOfDayGlow: "0 0 20px rgba(0, 188, 212, 0.7)",
                 },
                 "space": {
                     title: "Cosmic Wonders",
@@ -667,6 +734,9 @@
                     searchInputBg: "rgba(255, 255, 255, 0.1)",
                     searchInputBorder: "rgba(224, 224, 255, 0.5)",
                     searchInputText: "#E0E0FF",
+                    factCardBg: "rgba(51, 0, 102, 0.8)",
+                    factCardBorder: "rgba(255, 215, 0, 0.5)",
+                    factOfDayGlow: "0 0 20px rgba(255, 215, 0, 0.7)",
                 },
                 "history": {
                     title: "Echoes of the Past",
@@ -691,6 +761,9 @@
                     searchInputBg: "rgba(255, 255, 255, 0.1)",
                     searchInputBorder: "rgba(245, 230, 211, 0.5)",
                     searchInputText: "#F5E6D3",
+                    factCardBg: "rgba(74, 55, 40, 0.8)",
+                    factCardBorder: "rgba(212, 175, 55, 0.5)",
+                    factOfDayGlow: "0 0 20px rgba(212, 175, 55, 0.7)",
                 },
                 "science": {
                     title: "Scientific Wonders",
@@ -715,6 +788,9 @@
                     searchInputBg: "rgba(255, 255, 255, 0.1)",
                     searchInputBorder: "rgba(236, 240, 241, 0.5)",
                     searchInputText: "#ECF0F1",
+                    factCardBg: "rgba(44, 62, 80, 0.8)",
+                    factCardBorder: "rgba(46, 204, 113, 0.5)",
+                    factOfDayGlow: "0 0 20px rgba(46, 204, 113, 0.7)",
                 }
             };
 
@@ -837,6 +913,9 @@
                 root.style.setProperty('--search-input-bg', theme.searchInputBg);
                 root.style.setProperty('--search-input-border', theme.searchInputBorder);
                 root.style.setProperty('--search-input-text', theme.searchInputText);
+                root.style.setProperty('--fact-card-bg', theme.factCardBg);
+                root.style.setProperty('--fact-card-border', theme.factCardBorder);
+                root.style.setProperty('--fact-of-day-glow', theme.factOfDayGlow);
 
 
                 siteTitle.textContent = theme.title;
@@ -854,6 +933,8 @@
 
             const displayFact = (factText, category) => {
                 factDisplay.classList.remove('revealed');
+                // Hide fact of the day section if it's visible
+                factOfTheDaySection.style.display = 'none';
                 setTimeout(() => {
                     factDisplay.textContent = factText;
                     currentFact = { text: factText, category: category, rating: 0 };
@@ -958,7 +1039,7 @@
                 searchResultsModal.style.display = 'none';
             });
 
-            closeFactChallengeModal.addEventListener('click', () => { // New close handler
+            closeFactChallengeModal.addEventListener('click', () => {
                 factChallengeModal.style.display = 'none';
             });
 
@@ -975,23 +1056,73 @@
                 if (event.target == searchResultsModal) {
                     searchResultsModal.style.display = 'none';
                 }
-                if (event.target == factChallengeModal) { // New modal close on outside click
+                if (event.target == factChallengeModal) {
                     factChallengeModal.style.display = 'none';
                 }
             });
 
-            factOfTheDayBtn.addEventListener('click', () => {
-                addFactToHistory(currentFact);
-                const selectedCategory = factCategorySelect.value;
-                displayFact(getRandomFact(selectedCategory), selectedCategory);
-                alert("Here's your Fact of the Day!");
-            });
+            // Fact of the Day Feature
+            let factOfTheDayInterval = null;
+            const FACT_OF_THE_DAY_DURATION = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
-            factCategorySelect.addEventListener('change', (event) => {
-                addFactToHistory(currentFact);
-                const selectedCategory = event.target.value;
-                applyTheme(selectedCategory); // Apply theme based on selected category
-                displayFact(getRandomFact(selectedCategory), selectedCategory);
+            const setFactOfTheDay = () => {
+                const selectedCategory = factCategorySelect.value;
+                const fact = getRandomFact(selectedCategory);
+                factOfTheDayContent.textContent = fact;
+                localStorage.setItem('factOfTheDay', JSON.stringify({
+                    text: fact,
+                    timestamp: Date.now(),
+                    category: selectedCategory
+                }));
+            };
+
+            const getFactOfTheDay = () => {
+                const storedFact = localStorage.getItem('factOfTheDay');
+                if (storedFact) {
+                    return JSON.parse(storedFact);
+                }
+                return null;
+            };
+
+            const updateCountdown = () => {
+                const storedFact = getFactOfTheDay();
+                if (!storedFact) {
+                    nextFactOfDayCountdown.textContent = "Loading next fact...";
+                    return;
+                }
+
+                const now = Date.now();
+                const timeElapsed = now - storedFact.timestamp;
+                const timeLeft = FACT_OF_THE_DAY_DURATION - timeElapsed;
+
+                if (timeLeft <= 0) {
+                    setFactOfTheDay();
+                    updateCountdown(); // Recalculate for the new fact
+                    return;
+                }
+
+                const hours = Math.floor(timeLeft / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                nextFactOfDayCountdown.textContent = `Next fact in: ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+            };
+
+            factOfTheDayBtn.addEventListener('click', () => {
+                // Hide the regular fact display
+                factDisplay.classList.remove('revealed');
+                factOfTheDaySection.style.display = 'block';
+
+                const storedFact = getFactOfTheDay();
+                if (!storedFact || (Date.now() - storedFact.timestamp) >= FACT_OF_THE_DAY_DURATION) {
+                    setFactOfTheDay();
+                }
+                factOfTheDayContent.textContent = getFactOfTheDay().text;
+                updateCountdown();
+                if (factOfTheDayInterval) {
+                    clearInterval(factOfTheDayInterval);
+                }
+                factOfTheDayInterval = setInterval(updateCountdown, 1000);
             });
 
             // Quiz Feature Logic
@@ -1074,7 +1205,7 @@
                 searchResultsModal.style.display = 'block';
             });
 
-            // Fact Challenge Feature Logic (New Feature)
+            // Fact Challenge Feature Logic
             let currentChallenge = null;
 
             const startFactChallenge = () => {
