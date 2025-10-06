@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Historical Echoes</title>
+    <title id="site-title">Tech Tidbits</title>
     <style>
         :root {
-            /* Historical Echoes Theme Colors */
-            --bg-color-primary: #5C4033; /* Darker Sepia Brown */
-            --bg-color-secondary: #8B4513; /* Saddle Brown */
-            --text-color: #F5DEB3; /* Wheat for good contrast */
-            --footer-bg: #4A3228; /* Even Darker Sepia Brown */
-            --glass-bg: rgba(92, 64, 51, 0.7); /* Semi-transparent darker sepia */
-            --glass-border: rgba(245, 222, 179, 0.3); /* Light border */
+            /* Tech Tidbits Theme Colors */
+            --bg-color-primary: #000046; /* Dark Blue */
+            --bg-color-secondary: #1CB5E0; /* Bright Blue */
+            --text-color: #E0FFFF; /* Light Cyan */
+            --footer-bg: #000030; /* Even Darker Blue */
+            --glass-bg: rgba(0, 0, 70, 0.7); /* Semi-transparent dark blue */
+            --glass-border: rgba(224, 255, 255, 0.3); /* Light border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #D2B48C; /* Tan */
+            --title-color: #00FFFF; /* Cyan */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #A0522D; /* Sienna */
-            --main-action-btn-hover: #8B4513; /* Saddle Brown */
-            --theme-indicator-color: #D2B48C;
+            --main-action-btn: #8A2BE2; /* Blue Violet */
+            --main-action-btn-hover: #6A0DAD; /* Dark Violet */
+            --theme-indicator-color: #00FFFF;
             --favorite-btn-color: #FFD700; /* Gold for favorite */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
+            --share-btn-color: #20B2AA; /* Light Sea Green */
+            --share-btn-hover: #1A8B84; /* Darker Light Sea Green */
         }
 
         body {
@@ -82,7 +84,7 @@
             line-height: 1.4;
             text-shadow: var(--fact-text-shadow);
             color: var(--text-color);
-            transition: color 0.5s ease, transform 0.5s ease;
+            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
             opacity: 0; /* Initially hidden */
             transform: translateY(20px);
         }
@@ -177,6 +179,23 @@
             color: var(--favorite-btn-hover); /* Or a distinct color for favorited */
             text-shadow: 0 0 15px var(--favorite-btn-color);
             transform: scale(1.1);
+        }
+
+        .utility-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .utility-buttons .action-button {
+            margin-top: 0; /* Override default margin-top */
+            background-color: var(--share-btn-color);
+        }
+
+        .utility-buttons .action-button:hover {
+            background-color: var(--share-btn-hover);
         }
 
         footer {
@@ -282,24 +301,31 @@
                 padding: 12px 25px;
                 font-size: 1.1rem;
             }
+            .utility-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Historical Echoes</span></div>
-        <h1 id="site-title">Historical Echoes</h1>
-        <p id="fact-display" class="revealed">The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted between 38 and 45 minutes.</p>
+        <div class="theme-indicator">Theme: <span id="current-theme">Tech Tidbits</span></div>
+        <h1 id="site-title">Tech Tidbits</h1>
+        <p id="fact-display" class="revealed">The internet weighs about the same as a single strawberry.</p>
         <button class="action-button" id="next-fact-btn">Next Fact</button>
         <div class="rating-buttons">
             <button class="rating-button" id="thumbs-up-btn" title="Like this fact">👍</button>
             <button class="rating-button" id="thumbs-down-btn" title="Dislike this fact">👎</button>
         </div>
         <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
-    </div>
 
-    <button class="action-button" id="view-history-btn">View History</button>
-    <button class="action-button" id="view-favorites-btn">View Favorites</button>
+        <div class="utility-buttons">
+            <button class="action-button" id="share-fact-btn">Share Fact</button>
+            <button class="action-button" id="view-history-btn">View History</button>
+            <button class="action-button" id="view-favorites-btn">View Favorites</button>
+        </div>
+    </div>
 
     <div id="history-modal" class="modal">
         <div class="modal-content">
@@ -332,6 +358,7 @@
             const factDisplay = document.getElementById('fact-display');
             const nextFactBtn = document.getElementById('next-fact-btn');
             const favoriteBtn = document.getElementById('favorite-btn');
+            const shareFactBtn = document.getElementById('share-fact-btn'); // New button
             const viewHistoryBtn = document.getElementById('view-history-btn');
             const viewFavoritesBtn = document.getElementById('view-favorites-btn');
             const historyModal = document.getElementById('history-modal');
@@ -447,7 +474,7 @@
                 }
             ];
 
-            let currentThemeIndex = themes.findIndex(theme => theme.name === "Historical Echoes");
+            let currentThemeIndex = themes.findIndex(theme => theme.name === "Tech Tidbits");
 
             let factHistory = [];
             let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];
@@ -532,6 +559,16 @@
 
             favoriteBtn.addEventListener('click', () => {
                 saveFavoriteFact(factDisplay.textContent);
+            });
+
+            shareFactBtn.addEventListener('click', async () => {
+                try {
+                    await navigator.clipboard.writeText(factDisplay.textContent);
+                    alert('Fact copied to clipboard!');
+                } catch (err) {
+                    console.error('Failed to copy fact: ', err);
+                    alert('Failed to copy fact.');
+                }
             });
 
             viewHistoryBtn.addEventListener('click', showHistory);
