@@ -29,14 +29,7 @@
             --category-select-border: #00BCD4; /* Cyan border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
-            --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 242, 247, 0.5);
-            --search-input-text: #E0F2F7;
-            --fact-card-bg: rgba(10, 25, 49, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(0, 188, 212, 0.5); /* Cyan border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(0, 188, 212, 0.7); /* Cyan glow */
-            --carousel-control-color: #00BCD4; /* Cyan for carousel controls */
-            --carousel-control-hover: #00E5FF; /* Brighter Cyan */
+            --search-input-bg: rgba(255, 255, 255, 0.1);\n            --search-input-border: rgba(224, 242, 247, 0.5);\n            --search-input-text: #E0F2F7;\n            --fact-card-bg: rgba(10, 25, 49, 0.8); /* Slightly darker glass for fact card */\n            --fact-card-border: rgba(0, 188, 212, 0.5); /* Cyan border for emphasis */\n            --fact-of-day-glow: 0 0 20px rgba(0, 188, 212, 0.7); /* Cyan glow */\n            --carousel-control-color: #00BCD4; /* Cyan for carousel controls */\n            --carousel-control-hover: #00E5FF; /* Brighter Cyan */
             --trivia-correct-color: #4CAF50; /* Green */
             --trivia-incorrect-color: #F44336; /* Red */
             --streak-color: #FFD700; /* Gold for streak */
@@ -1745,8 +1738,9 @@
 
             // Initial fact display and theme application on load
             const allCategories = Object.keys(facts);
-            const randomCategory = "deep-sea"; // Fixed to deep-sea as per plan
-            const randomFact = facts[randomCategory][0]; // First fact from deep-sea as per plan
+            const randomCategoryIndex = Math.floor(Math.random() * allCategories.length);
+            const randomCategory = allCategories[randomCategoryIndex];
+            const randomFact = getRandomFact(randomCategory);
 
             factCategorySelect.value = randomCategory; // Set the select to the chosen category
             applyTheme(randomCategory);
