@@ -3,42 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Mysteries of the Deep Sea</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Deep Sea Theme Colors */
-            --bg-color-primary: #0A1931; /* Dark Blue */
-            --bg-color-secondary: #152A46; /* Medium Blue */
-            --text-color: #E0F2F7; /* Light Cyan */
-            --footer-bg: #050F1A; /* Even Darker Blue */
-            --glass-bg: rgba(10, 25, 49, 0.7); /* Semi-transparent dark blue */
-            --glass-border: rgba(224, 242, 247, 0.3); /* Light cyan border */
+            /* Space Theme Colors (default for this update) */
+            --bg-color-primary: #1A0033; /* Dark Purple */
+            --bg-color-secondary: #330066; /* Medium Purple */
+            --text-color: #E0E0FF; /* Light Lavender */
+            --footer-bg: #0D001A; /* Even Darker Purple */
+            --glass-bg: rgba(51, 0, 102, 0.7); /* Semi-transparent dark purple */
+            --glass-border: rgba(224, 224, 255, 0.3); /* Light lavender border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #00BCD4; /* Cyan */
+            --title-color: #FFD700; /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #00BCD4; /* Cyan */
-            --main-action-btn-hover: #00838F; /* Darker Cyan */
-            --theme-indicator-color: #00BCD4; /* Cyan */
+            --main-action-btn: #8A2BE2; /* Blue Violet */
+            --main-action-btn-hover: #6A1B9A; /* Darker Blue Violet */
+            --theme-indicator-color: #FFD700; /* Gold */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #20B2AA; /* Light Sea Green */
-            --share-btn-hover: #1A8B84; /* Darker Light Sea Green */
-            --rating-active-color: #00BCD4; /* Cyan */
-            --rating-text-color: #E0F2F7; /* Light Cyan */
-            --category-select-bg: #152A46; /* Medium Blue for select */
-            --category-select-border: #00BCD4; /* Cyan border */
+            --share-btn-color: #4CAF50; /* Green */
+            --share-btn-hover: #388E3C; /* Darker Green */
+            --rating-active-color: #8A2BE2; /* Blue Violet */
+            --rating-text-color: #E0E0FF; /* Light Lavender */
+            --category-select-bg: #330066; /* Medium Purple for select */
+            --category-select-border: #8A2BE2; /* Blue Violet border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
             --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 242, 247, 0.5);
-            --search-input-text: #E0F2F7;
-            --fact-card-bg: rgba(10, 25, 49, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(0, 188, 212, 0.5); /* Cyan border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(0, 188, 212, 0.7); /* Cyan glow */
-            --carousel-control-color: #00BCD4; /* Cyan for carousel controls */
-            --carousel-control-hover: #00E5FF; /* Brighter Cyan */
+            --search-input-border: rgba(224, 224, 255, 0.5);
+            --search-input-text: #E0E0FF;
+            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
+            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
+            --carousel-control-color: #FFD700; /* Gold for carousel controls */
+            --carousel-control-hover: #FFFF00; /* Brighter Gold */
             --trivia-correct-color: #4CAF50; /* Green */
             --trivia-incorrect-color: #F44336; /* Red */
+            --streak-color: #00BCD4; /* Cyan for streak */
+            --streak-glow: 0 0 15px rgba(0, 188, 212, 0.5);
         }
 
         body {
@@ -107,13 +109,8 @@
             text-shadow: var(--fact-text-shadow);
             color: var(--text-color);
             transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        #fact-display.revealed, #challenge-fact-display.revealed, #trivia-fact-display.revealed {
-            opacity: 1;
-            transform: translateY(0);
+            opacity: 1; /* Fact is visible by default */
+            transform: translateY(0); /* Fact is visible by default */
         }
 
         .fact-card {
@@ -549,6 +546,45 @@
             color: white;
         }
 
+        /* Fact Streak Feature */
+        .fact-streak-section {
+            margin-top: 20px;
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px;
+            padding: 15px 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--streak-color);
+            text-shadow: var(--streak-glow);
+            font-weight: bold;
+        }
+
+        #current-streak {
+            font-size: 1.8rem;
+            color: var(--streak-color);
+        }
+
+        #claim-streak-btn {
+            background-color: var(--streak-color);
+            color: var(--bg-color-primary);
+            font-weight: bold;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #claim-streak-btn:hover {
+            background-color: var(--carousel-control-hover);
+            transform: translateY(-2px);
+        }
+
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1 {
@@ -586,21 +622,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Mysteries of the Deep Sea</span></div>
-        <h1 id="site-title">Mysteries of the Deep Sea</h1>
+        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Wonders</span></div>
+        <h1 id="site-title">Cosmic Wonders</h1>
 
         <div class="category-selector">
             <label for="fact-category">Category:</label>
             <select id="fact-category">
-                <option value="deep-sea" selected>Deep Sea</option>
-                <option value="space">Space</option>
+                <option value="deep-sea">Deep Sea</option>
+                <option value="space" selected>Space</option>
                 <option value="history">History</option>
                 <option value="science">Science</option>
             </select>
         </div>
 
         <div class="fact-card">
-            <p id="fact-display">The Mariana Trench is deeper than Mount Everest is tall, reaching approximately 11,000 meters (36,000 feet) below the surface.</p>
+            <p id="fact-display">A day on Venus is longer than a year on Venus.</p>
             <div class="carousel-controls">
                 <button class="carousel-control-btn" id="prev-fact-btn" title="Previous Fact">◀</button>
                 <button class="carousel-control-btn" id="next-fact-btn" title="Next Fact">▶</button>
@@ -616,6 +652,11 @@
             </div>
         </div>
         <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
+
+        <div class="fact-streak-section">
+            <div id="current-streak">Fact Streak: 0</div>
+            <button class="action-button" id="claim-streak-btn">Claim Streak Bonus!</button>
+        </div>
 
         <button class="action-button" id="more-options-btn">More Options</button>
 
@@ -776,6 +817,9 @@
             const factOfTheDayContent = document.getElementById('fact-of-the-day-content');
             const nextFactOfDayCountdown = document.getElementById('next-fact-of-day-countdown');
 
+            const currentStreakDisplay = document.getElementById('current-streak');
+            const claimStreakBtn = document.getElementById('claim-streak-btn');
+
             let currentFact = {
                 text: "",
                 category: "",
@@ -786,6 +830,7 @@
             let carouselInterval;
             let isCarouselPlaying = true;
             const CAROUSEL_SPEED = 5000; // 5 seconds
+            let factStreak = 0;
 
             const themes = {
                 "deep-sea": {
@@ -818,6 +863,8 @@
                     carouselControlHover: "#00E5FF",
                     triviaCorrectColor: "#4CAF50",
                     triviaIncorrectColor: "#F44336",
+                    streakColor: "#00BCD4",
+                    streakGlow: "0 0 15px rgba(0, 188, 212, 0.5)",
                 },
                 "space": {
                     title: "Cosmic Wonders",
@@ -849,6 +896,8 @@
                     carouselControlHover: "#FFFF00",
                     triviaCorrectColor: "#4CAF50",
                     triviaIncorrectColor: "#F44336",
+                    streakColor: "#00BCD4", /* Using a contrasting color for streak */
+                    streakGlow: "0 0 15px rgba(0, 188, 212, 0.5)",
                 },
                 "history": {
                     title: "Echoes of the Past",
@@ -880,6 +929,8 @@
                     carouselControlHover: "#FFD700",
                     triviaCorrectColor: "#4CAF50",
                     triviaIncorrectColor: "#F44336",
+                    streakColor: "#D4AF37",
+                    streakGlow: "0 0 15px rgba(212, 175, 55, 0.5)",
                 },
                 "science": {
                     title: "Scientific Wonders",
@@ -911,6 +962,8 @@
                     carouselControlHover: "#66FF99",
                     triviaCorrectColor: "#4CAF50",
                     triviaIncorrectColor: "#F44336",
+                    streakColor: "#2ECC71",
+                    streakGlow: "0 0 15px rgba(46, 204, 113, 0.5)",
                 }
             };
 
@@ -1091,6 +1144,8 @@
                 root.style.setProperty('--carousel-control-hover', theme.carouselControlHover);
                 root.style.setProperty('--trivia-correct-color', theme.triviaCorrectColor);
                 root.style.setProperty('--trivia-incorrect-color', theme.triviaIncorrectColor);
+                root.style.setProperty('--streak-color', theme.streakColor);
+                root.style.setProperty('--streak-glow', theme.streakGlow);
 
 
                 siteTitle.textContent = theme.title;
@@ -1106,31 +1161,19 @@
                 return categoryFacts[randomIndex];
             };
 
-            const displayFact = (factText, category, reveal = false) => {
-                factDisplay.classList.remove('revealed');
-                // Hide fact of the day section if it's visible
-                factOfTheDaySection.style.display = 'none';
-                setTimeout(() => {
-                    factDisplay.textContent = factText;
-                    currentFact = { text: factText, category: category, rating: 0 };
-                    popularityScore.textContent = `Rating: ${currentFact.rating}`;
-                    thumbsUpBtn.classList.remove('active');
-                    thumbsDownBtn.classList.remove('active');
-                    // Check if the current fact is in favorites and update the button
-                    const isFavorited = favoriteFacts.some(f => f.text === currentFact.text);
-                    if (isFavorited) {
-                        favoriteBtn.classList.add('favorited');
-                    } else {
-                        favoriteBtn.classList.remove('favorited');
-                    }
-
-                    if (reveal) {
-                        factDisplay.classList.add('revealed');
-                        nextFactBtn.textContent = "Next Fact";
-                    } else {
-                        nextFactBtn.textContent = "Reveal Fact";
-                    }
-                }, 500); // Delay to allow fade-out animation
+            const displayFact = (factText, category) => {
+                factDisplay.textContent = factText;
+                currentFact = { text: factText, category: category, rating: 0 };
+                popularityScore.textContent = `Rating: ${currentFact.rating}`;
+                thumbsUpBtn.classList.remove('active');
+                thumbsDownBtn.classList.remove('active');
+                // Check if the current fact is in favorites and update the button
+                const isFavorited = favoriteFacts.some(f => f.text === currentFact.text);
+                if (isFavorited) {
+                    favoriteBtn.classList.add('favorited');
+                } else {
+                    favoriteBtn.classList.remove('favorited');
+                }
             };
 
             const addFactToHistory = (fact) => {
@@ -1146,7 +1189,9 @@
             const showNextFact = () => {
                 addFactToHistory(currentFact);
                 const selectedCategory = factCategorySelect.value;
-                displayFact(getRandomFact(selectedCategory), selectedCategory, false); // New facts are hidden by default
+                displayFact(getRandomFact(selectedCategory), selectedCategory);
+                factStreak++;
+                updateStreakDisplay();
             };
 
             const showPreviousFact = () => {
@@ -1154,35 +1199,30 @@
                     const previousFact = factHistory.shift(); // Remove current fact from history
                     const actualPreviousFact = factHistory.shift(); // Get the fact before that
                     if (actualPreviousFact) {
-                        displayFact(actualPreviousFact.text, actualPreviousFact.category, true); // Reveal previous fact
+                        displayFact(actualPreviousFact.text, actualPreviousFact.category); // Display previous fact
                         // Re-add the "current" fact (which was the first item in history) back to the beginning
                         // so that if they go forward again, it's there.
                         factHistory.unshift(previousFact);
                     } else {
                         // If there's no actual previous fact, just display the one we shifted off
-                        displayFact(previousFact.text, previousFact.category, true);
+                        displayFact(previousFact.text, previousFact.category);
                     }
                 } else if (factHistory.length === 1) {
                     // If only one item in history, it's the previous fact. Display it and clear history.
                     const previousFact = factHistory.shift();
                     if (previousFact) {
-                        displayFact(previousFact.text, previousFact.category, true);
+                        displayFact(previousFact.text, previousFact.category);
                     }
                 } else {
                     // No history, just get a new random fact
                     showNextFact();
                 }
+                resetStreak(); // Reset streak if navigating history
             };
 
             nextFactBtn.addEventListener('click', () => {
-                if (factDisplay.classList.contains('revealed')) {
-                    showNextFact();
-                    startCarousel(); // Restart carousel if it was playing
-                } else {
-                    factDisplay.classList.add('revealed');
-                    nextFactBtn.textContent = "Next Fact";
-                    pauseCarousel(); // Pause carousel when fact is revealed manually
-                }
+                showNextFact();
+                startCarousel(); // Restart carousel if it was playing
             });
             prevFactBtn.addEventListener('click', showPreviousFact);
 
@@ -1190,11 +1230,6 @@
                 if (carouselInterval) clearInterval(carouselInterval);
                 carouselInterval = setInterval(() => {
                     showNextFact();
-                    // Ensure the fact is revealed when carousel advances
-                    setTimeout(() => {
-                        factDisplay.classList.add('revealed');
-                        nextFactBtn.textContent = "Next Fact";
-                    }, 600); // A bit longer than fact fade-out
                 }, CAROUSEL_SPEED);
                 playPauseCarouselBtn.textContent = "Pause Carousel";
                 isCarouselPlaying = true;
@@ -1241,6 +1276,7 @@
                     favoriteFacts.splice(index, 1);
                     favoriteBtn.classList.remove('favorited');
                 }
+                resetStreak(); // Reset streak if favoriting/unfavoriting
             });
 
             shareFactBtn.addEventListener('click', () => {
@@ -1253,6 +1289,7 @@
                 } else {
                     alert('Sharing not supported on this browser. You can manually copy the fact: ' + currentFact.text);
                 }
+                resetStreak(); // Reset streak if sharing
             });
 
             const populateModal = (listElement, factsArray) => {
@@ -1271,11 +1308,13 @@
             viewHistoryBtn.addEventListener('click', () => {
                 populateModal(historyList, factHistory);
                 historyModal.style.display = 'block';
+                resetStreak(); // Reset streak if viewing history
             });
 
             viewFavoritesBtn.addEventListener('click', () => {
                 populateModal(favoritesList, favoriteFacts);
                 favoritesModal.style.display = 'block';
+                resetStreak(); // Reset streak if viewing favorites
             });
 
             closeHistoryModal.addEventListener('click', () => {
@@ -1372,7 +1411,7 @@
 
             factOfTheDayBtn.addEventListener('click', () => {
                 // Hide the regular fact display
-                factDisplay.classList.remove('revealed');
+                factDisplay.textContent = ''; // Clear current fact display
                 factOfTheDaySection.style.display = 'block';
                 utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when FOTD is active
 
@@ -1386,6 +1425,7 @@
                     clearInterval(factOfTheDayInterval);
                 }
                 factOfTheDayInterval = setInterval(updateCountdown, 1000);
+                resetStreak(); // Reset streak if viewing Fact of the Day
             });
 
             // Quiz Feature Logic
@@ -1423,6 +1463,7 @@
 
                 quizModal.style.display = 'block';
                 utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when quiz is active
+                resetStreak(); // Reset streak if starting quiz
             };
 
             const checkAnswer = (selectedButton, selectedOption) => {
@@ -1468,6 +1509,7 @@
                 }
                 searchResultsModal.style.display = 'block';
                 utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when search results are active
+                resetStreak(); // Reset streak if searching
             });
 
             // Fact Challenge Feature Logic
@@ -1492,11 +1534,7 @@
                     correctCategory: correctCategory
                 };
 
-                challengeFactDisplay.classList.remove('revealed');
-                setTimeout(() => {
-                    challengeFactDisplay.textContent = currentChallenge.fact;
-                    challengeFactDisplay.classList.add('revealed');
-                }, 500);
+                challengeFactDisplay.textContent = currentChallenge.fact;
 
                 challengeOptions.innerHTML = '';
                 challengeFeedback.textContent = '';
@@ -1528,6 +1566,7 @@
 
                 factChallengeModal.style.display = 'block';
                 utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when challenge is active
+                resetStreak(); // Reset streak if starting challenge
             };
 
             const checkChallengeAnswer = (selectedButton, selectedOption) => {
@@ -1574,11 +1613,7 @@
                     return;
                 }
 
-                triviaFactDisplay.classList.remove('revealed');
-                setTimeout(() => {
-                    triviaFactDisplay.textContent = currentTrivia.fact;
-                    triviaFactDisplay.classList.add('revealed');
-                }, 500);
+                triviaFactDisplay.textContent = currentTrivia.fact;
 
                 triviaOptions.innerHTML = '';
                 triviaFeedback.textContent = '';
@@ -1600,6 +1635,7 @@
 
                 factTriviaModal.style.display = 'block';
                 utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when trivia is active
+                resetStreak(); // Reset streak if starting trivia
             };
 
             const checkTriviaAnswer = (selectedButton, selectedOption) => {
@@ -1637,21 +1673,46 @@
                 }
             });
 
-            // Initial fact display and theme application on load
-            const initialCategory = "deep-sea";
-            const initialFactText = "The Mariana Trench is deeper than Mount Everest is tall, reaching approximately 11,000 meters (36,000 feet) below the surface.";
+            // Fact Streak Logic
+            const updateStreakDisplay = () => {
+                currentStreakDisplay.textContent = `Fact Streak: ${factStreak}`;
+                if (factStreak > 0) {
+                    claimStreakBtn.disabled = false;
+                } else {
+                    claimStreakBtn.disabled = true;
+                }
+            };
 
-            factCategorySelect.value = initialCategory; // Set the select to the chosen category
-            applyTheme(initialCategory);
-            displayFact(initialFactText, initialCategory, false); // Initial fact is hidden by default
+            const resetStreak = () => {
+                factStreak = 0;
+                updateStreakDisplay();
+            };
+
+            claimStreakBtn.addEventListener('click', () => {
+                if (factStreak > 0) {
+                    alert(`You claimed a bonus for a ${factStreak} fact streak! (Feature under development)`);
+                    resetStreak();
+                }
+            });
+
+            // Initial fact display and theme application on load
+            const allCategories = Object.keys(facts);
+            const randomCategory = allCategories[Math.floor(Math.random() * allCategories.length)];
+            const randomFact = getRandomFact(randomCategory);
+
+            factCategorySelect.value = randomCategory; // Set the select to the chosen category
+            applyTheme(randomCategory);
+            displayFact(randomFact, randomCategory); // Initial fact is immediately visible
             startCarousel(); // Start the carousel automatically on load
+            updateStreakDisplay(); // Initialize streak display
 
             // Event listener for category change
             factCategorySelect.addEventListener('change', () => {
                 const selectedCategory = factCategorySelect.value;
                 applyTheme(selectedCategory);
-                displayFact(getRandomFact(selectedCategory), selectedCategory, false); // New facts are hidden by default
+                displayFact(getRandomFact(selectedCategory), selectedCategory); // New facts are immediately visible
                 pauseCarousel(); // Pause carousel on category change
+                resetStreak(); // Reset streak on category change
             });
         });
     </script>
