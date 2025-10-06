@@ -3,39 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Echoes of the Past</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #1A0033; /* Very Dark Purple */
-            --bg-color-secondary: #330066; /* Darker Purple */
-            --text-color: #E0E0FF; /* Light Lavender/White */
-            --footer-bg: #0D001A; /* Even Darker Purple */
-            --glass-bg: rgba(51, 0, 102, 0.7); /* Semi-transparent dark purple */
-            --glass-border: rgba(224, 224, 255, 0.3); /* Light lavender border */
+            /* History Theme Colors */
+            --bg-color-primary: #4A3728; /* Dark Brown */
+            --bg-color-secondary: #6F543E; /* Medium Brown */
+            --text-color: #F5E6D3; /* Light Beige */
+            --footer-bg: #33261E; /* Even Darker Brown */
+            --glass-bg: rgba(74, 55, 40, 0.7); /* Semi-transparent dark brown */
+            --glass-border: rgba(245, 230, 211, 0.3); /* Light beige border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700; /* Gold */
+            --title-color: #D4AF37; /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet */
-            --main-action-btn-hover: #6A1B9A; /* Darker Blue Violet */
-            --theme-indicator-color: #FFD700; /* Gold */
+            --main-action-btn: #A0522D; /* Sienna */
+            --main-action-btn-hover: #8B4513; /* SaddleBrown */
+            --theme-indicator-color: #D4AF37; /* Gold */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #4CAF50; /* Green for share */
-            --share-btn-hover: #388E3C; /* Darker Green */
-            --rating-active-color: #8A2BE2; /* Blue Violet */
-            --rating-text-color: #E0E0FF; /* Light Lavender */
-            --category-select-bg: #330066; /* Darker Purple for select */
-            --category-select-border: #8A2BE2; /* Blue Violet border */
+            --share-btn-color: #6B8E23; /* OliveDrab */
+            --share-btn-hover: #556B2F; /* DarkOliveGreen */
+            --rating-active-color: #A0522D; /* Sienna */
+            --rating-text-color: #F5E6D3; /* Light Beige */
+            --category-select-bg: #6F543E; /* Medium Brown for select */
+            --category-select-border: #A0522D; /* Sienna border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
+            --search-input-bg: rgba(255, 255, 255, 0.1);
+            --search-input-border: rgba(245, 230, 211, 0.5);
+            --search-input-text: #F5E6D3;
         }
 
         body {
             background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
-            color: var(--text-color);\
+            color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -280,6 +283,42 @@
             box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
         }
 
+        /* Search Bar */
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            padding: 10px 15px;
+            border-radius: 8px;
+            border: 1px solid var(--search-input-border);
+            background-color: var(--search-input-bg);
+            color: var(--search-input-text);
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-bar input::placeholder {
+            color: rgba(245, 230, 211, 0.7);
+        }
+
+        .search-bar input:focus {
+            outline: none;
+            border-color: var(--main-action-btn-hover);
+            box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.3);
+        }
+
+        .search-bar .action-button {
+            margin-top: 0;
+            padding: 10px 20px;
+            font-size: 1rem;
+        }
+
         /* Modal Styles */
         .modal {
             display: none;
@@ -414,25 +453,32 @@
                 flex-direction: column;
                 align-items: center;
             }
+            .search-bar {
+                flex-direction: column;
+                align-items: center;
+            }
+            .search-bar input {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Wonders</span></div>
-        <h1 id="site-title">Cosmic Wonders</h1>
+        <div class="theme-indicator">Theme: <span id="current-theme">Echoes of the Past</span></div>
+        <h1 id="site-title">Echoes of the Past</h1>
 
         <div class="category-selector">
             <label for="fact-category">Category:</label>
             <select id="fact-category">
                 <option value="deep-sea">Deep Sea</option>
-                <option value="space" selected>Space</option>
-                <option value="history">History</option>
+                <option value="space">Space</option>
+                <option value="history" selected>History</option>
                 <option value="science">Science</option>
             </select>
         </div>
 
-        <p id="fact-display" class="revealed">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        <p id="fact-display" class="revealed">Cleopatra lived closer in time to the invention of the iPhone than to the building of the Great Pyramid of Giza.</p>
         <div class="rating-section">
             <div id="popularity-score">Rating: 0</div>
             <div class="rating-buttons">
@@ -442,6 +488,11 @@
         </div>
         <button class="action-button" id="next-fact-btn">Next Fact</button>
         <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
+
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="Search for facts...">
+            <button class="action-button" id="search-fact-btn">Search</button>
+        </div>
 
         <div class="utility-buttons">
             <button class="action-button" id="share-fact-btn">Share Fact</button>
@@ -485,6 +536,16 @@
         </div>
     </div>
 
+    <div id="search-results-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-search-results-modal">&times;</span>
+            <h2>Search Results</h2>
+            <ul id="search-results-list">
+                <!-- Search results will be loaded here -->
+            </ul>
+        </div>
+    </div>
+
     <footer>
         <p>Site will update automatically. Last update: <span id="last-update-time"></span></p>
     </footer>
@@ -502,14 +563,18 @@
             const viewFavoritesBtn = document.getElementById('view-favorites-btn');
             const factOfTheDayBtn = document.getElementById('fact-of-the-day-btn');
             const quizMeBtn = document.getElementById('quiz-me-btn');
+            const searchInput = document.getElementById('search-input');
+            const searchFactBtn = document.getElementById('search-fact-btn');
 
             const historyModal = document.getElementById('history-modal');
             const favoritesModal = document.getElementById('favorites-modal');
             const quizModal = document.getElementById('quiz-modal');
+            const searchResultsModal = document.getElementById('search-results-modal');
 
             const closeHistoryModal = document.getElementById('close-history-modal');
             const closeFavoritesModal = document.getElementById('close-favorites-modal');
             const closeQuizModal = document.getElementById('close-quiz-modal');
+            const closeSearchResultsModal = document.getElementById('close-search-results-modal');
 
             const historyList = document.getElementById('history-list');
             const favoritesList = document.getElementById('favorites-list');
@@ -517,6 +582,7 @@
             const quizOptions = document.getElementById('quiz-options');
             const quizFeedback = document.getElementById('quiz-feedback');
             const nextQuizBtn = document.getElementById('next-quiz-btn');
+            const searchResultsList = document.getElementById('search-results-list');
 
             const lastUpdateTime = document.getElementById('last-update-time');
             const factCategorySelect = document.getElementById('fact-category');
@@ -524,8 +590,8 @@
             const currentThemeIndicator = document.getElementById('current-theme');
 
             let currentFact = {
-                text: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-                category: "space",
+                text: "Cleopatra lived closer in time to the invention of the iPhone than to the building of the Great Pyramid of Giza.",
+                category: "history",
                 rating: 0
             };
             let factHistory = [];
@@ -552,6 +618,9 @@
                     ratingTextColor: "#E0F2F7",
                     categorySelectBg: "#152A46",
                     categorySelectBorder: "#00BCD4",
+                    searchInputBg: "rgba(255, 255, 255, 0.1)",
+                    searchInputBorder: "rgba(224, 242, 247, 0.5)",
+                    searchInputText: "#E0F2F7",
                 },
                 "space": {
                     title: "Cosmic Wonders",
@@ -573,6 +642,9 @@
                     ratingTextColor: "#E0E0FF",
                     categorySelectBg: "#330066",
                     categorySelectBorder: "#8A2BE2",
+                    searchInputBg: "rgba(255, 255, 255, 0.1)",
+                    searchInputBorder: "rgba(224, 224, 255, 0.5)",
+                    searchInputText: "#E0E0FF",
                 },
                 "history": {
                     title: "Echoes of the Past",
@@ -594,6 +666,9 @@
                     ratingTextColor: "#F5E6D3",
                     categorySelectBg: "#6F543E",
                     categorySelectBorder: "#A0522D",
+                    searchInputBg: "rgba(255, 255, 255, 0.1)",
+                    searchInputBorder: "rgba(245, 230, 211, 0.5)",
+                    searchInputText: "#F5E6D3",
                 },
                 "science": {
                     title: "Scientific Wonders",
@@ -615,6 +690,9 @@
                     ratingTextColor: "#ECF0F1",
                     categorySelectBg: "#34495E",
                     categorySelectBorder: "#3498DB",
+                    searchInputBg: "rgba(255, 255, 255, 0.1)",
+                    searchInputBorder: "rgba(236, 240, 241, 0.5)",
+                    searchInputText: "#ECF0F1",
                 }
             };
 
@@ -734,6 +812,10 @@
                 root.style.setProperty('--rating-text-color', theme.ratingTextColor);
                 root.style.setProperty('--category-select-bg', theme.categorySelectBg);
                 root.style.setProperty('--category-select-border', theme.categorySelectBorder);
+                root.style.setProperty('--search-input-bg', theme.searchInputBg);
+                root.style.setProperty('--search-input-border', theme.searchInputBorder);
+                root.style.setProperty('--search-input-text', theme.searchInputText);
+
 
                 siteTitle.textContent = theme.title;
                 currentThemeIndicator.textContent = theme.title;
@@ -850,6 +932,10 @@
                 quizModal.style.display = 'none';
             });
 
+            closeSearchResultsModal.addEventListener('click', () => {
+                searchResultsModal.style.display = 'none';
+            });
+
             window.addEventListener('click', (event) => {
                 if (event.target == historyModal) {
                     historyModal.style.display = 'none';
@@ -859,6 +945,9 @@
                 }
                 if (event.target == quizModal) {
                     quizModal.style.display = 'none';
+                }
+                if (event.target == searchResultsModal) {
+                    searchResultsModal.style.display = 'none';
                 }
             });
 
@@ -934,6 +1023,28 @@
 
             quizMeBtn.addEventListener('click', startQuiz);
             nextQuizBtn.addEventListener('click', startQuiz); // Allow user to get another quiz question
+
+            // Fact Search Feature Logic
+            searchFactBtn.addEventListener('click', () => {
+                const query = searchInput.value.toLowerCase();
+                const allFacts = Object.values(facts).flat(); // Get all facts from all categories
+                const results = allFacts.filter(fact => fact.toLowerCase().includes(query));
+
+                searchResultsList.innerHTML = '';
+                if (results.length === 0) {
+                    const li = document.createElement('li');
+                    li.textContent = 'No facts found matching your search.';
+                    searchResultsList.appendChild(li);
+                } else {
+                    results.forEach(factText => {
+                        const li = document.createElement('li');
+                        li.textContent = factText;
+                        searchResultsList.appendChild(li);
+                    });
+                }
+                searchResultsModal.style.display = 'block';
+            });
+
 
             // Initial fact display and theme application on load
             applyTheme(currentFact.category);
