@@ -29,9 +29,9 @@
             --category-select-border: #8A2BE2; /* Blue Violet border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
-            --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 224, 255, 0.5);
-            --search-input-text: #E0E0FF;
+            --search-input-bg: rgba(255, 255, 255, 0.1);\
+            --search-input-border: rgba(224, 242, 247, 0.5);\
+            --search-input-text: #E0F2F7;\
             --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
             --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
             --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
@@ -40,7 +40,7 @@
             --trivia-correct-color: #4CAF50; /* Green */
             --trivia-incorrect-color: #F44336; /* Red */
             --streak-color: #00BCD4; /* Cyan for streak */
-            --streak-glow: 0 0 15px rgba(0, 188, 212, 0.5);
+            --streak-glow: 0 0 15px rgba(0, 188, 212, 0.5);\
         }
 
         body {
@@ -629,7 +629,7 @@
             <label for="fact-category">Category:</label>
             <select id="fact-category">
                 <option value="deep-sea">Deep Sea</option>
-                <option value="space" selected>Space</option>
+                <option value="space">Space</option>
                 <option value="history">History</option>
                 <option value="science">Science</option>
             </select>
@@ -1010,7 +1010,7 @@
                         options: ["Less than 10%", "About 25%", "Around 50%", "Over 80%"],
                         answer: "Over 80%"
                     }
-                ],
+                ],\
                 "space": [
                     {
                         question: "Which planet has a day longer than its year?  ",
@@ -1022,7 +1022,7 @@
                         options: ["Vesta", "Pallas", "Hygiea", "Ceres"],
                         answer: "Ceres"
                     }
-                ],
+                ],\
                 "history": [
                     {
                         question: "What was the shortest war in recorded history?",
@@ -1034,7 +1034,7 @@
                         options: ["Building of the Great Pyramid", "Founding of Rome", "Invention of the iPhone", "Life of Julius Caesar"],
                         answer: "Invention of the iPhone"
                     }
-                ],
+                ],\
                 "science": [
                     {
                         question: "Which food item never spoils?",
@@ -1046,7 +1046,7 @@
                         options: ["About 5 watts", "About 20 watts", "About 50 watts", "About 100 watts"],
                         answer: "About 20 watts"
                     }
-                ]
+                ]\
             };
 
             const triviaFacts = {
@@ -1061,7 +1061,7 @@
                         blank: "unexplored",
                         options: ["unexplored", "uncharted", "unknown", "unseen"]
                     }
-                ],
+                ],\
                 "space": [
                     {
                         fact: "A day on Venus is longer than a ______ on Venus.",
@@ -1073,7 +1073,7 @@
                         blank: "sand",
                         options: ["dust", "sand", "salt", "rock"]
                     }
-                ],
+                ],\
                 "history": [
                     {
                         fact: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after ______ minutes.",
@@ -1085,7 +1085,7 @@
                         blank: "goat's",
                         options: ["cow's", "sheep's", "goat's", "camel's"]
                     }
-                ],
+                ],\
                 "science": [
                     {
                         fact: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still ______.",
@@ -1097,7 +1097,7 @@
                         blank: "lightbulb",
                         options: ["candle", "lightbulb", "torch", "fire"]
                     }
-                ]
+                ]\
             };
 
             // Function to update the last update time in the footer
@@ -1190,7 +1190,7 @@
                 addFactToHistory(currentFact);
                 const selectedCategory = factCategorySelect.value;
                 displayFact(getRandomFact(selectedCategory), selectedCategory);
-                factStreak++;
+                factStreak++; // Increment streak
                 updateStreakDisplay();
             };
 
@@ -1224,7 +1224,10 @@
                 showNextFact();
                 startCarousel(); // Restart carousel if it was playing
             });
-            prevFactBtn.addEventListener('click', showPreviousFact);
+            prevFactBtn.addEventListener('click', () => {
+                showPreviousFact();
+                resetStreak(); // Reset streak if navigating history
+            });
 
             const startCarousel = () => {
                 if (carouselInterval) clearInterval(carouselInterval);
@@ -1256,6 +1259,7 @@
                     thumbsUpBtn.classList.add('active');
                     thumbsDownBtn.classList.remove('active');
                 }
+                resetStreak(); // Reset streak if rating
             });
 
             thumbsDownBtn.addEventListener('click', () => {
@@ -1265,6 +1269,7 @@
                     thumbsDownBtn.classList.add('active');
                     thumbsUpBtn.classList.remove('active');
                 }
+                resetStreak(); // Reset streak if rating
             });
 
             favoriteBtn.addEventListener('click', () => {
