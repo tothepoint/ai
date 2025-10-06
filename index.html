@@ -3,35 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Echoes of the Past</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* History Theme Colors */
-            --bg-color-primary: #4A3728; /* Dark Brown */
-            --bg-color-secondary: #6F543E; /* Medium Brown */
-            --text-color: #F5E6D3; /* Light Beige */
-            --footer-bg: #33261E; /* Even Darker Brown */
-            --glass-bg: rgba(74, 55, 40, 0.7); /* Semi-transparent dark brown */
-            --glass-border: rgba(245, 230, 211, 0.3); /* Light beige border */
+            /* Space Theme Colors */
+            --bg-color-primary: #1A0033; /* Dark Purple */
+            --bg-color-secondary: #330066; /* Medium Purple */
+            --text-color: #E0E0FF; /* Light Lavender */
+            --footer-bg: #0D001A; /* Even Darker Purple */
+            --glass-bg: rgba(51, 0, 102, 0.7); /* Semi-transparent medium purple */
+            --glass-border: rgba(224, 224, 255, 0.3); /* Light lavender border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #D4AF37; /* Gold */
+            --title-color: #FFD700; /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #A0522D; /* Sienna */
-            --main-action-btn-hover: #8B4513; /* SaddleBrown */
-            --theme-indicator-color: #D4AF37; /* Gold */
+            --main-action-btn: #8A2BE2; /* Blue Violet */
+            --main-action-btn-hover: #6A1B9A; /* Dark Violet */
+            --theme-indicator-color: #FFD700; /* Gold */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #6B8E23; /* OliveDrab */
-            --share-btn-hover: #556B2F; /* DarkOliveGreen */
-            --rating-active-color: #A0522D; /* Sienna */
-            --rating-text-color: #F5E6D3; /* Light Beige */
-            --category-select-bg: #6F543E; /* Medium Brown for select */
-            --category-select-border: #A0522D; /* Sienna border */
+            --share-btn-color: #4CAF50; /* Green */
+            --share-btn-hover: #388E3C; /* Dark Green */
+            --rating-active-color: #8A2BE2; /* Blue Violet */
+            --rating-text-color: #E0E0FF; /* Light Lavender */
+            --category-select-bg: #330066; /* Medium Purple for select */
+            --category-select-border: #8A2BE2; /* Blue Violet border */
             --quiz-correct-color: #4CAF50; /* Green */
             --quiz-incorrect-color: #F44336; /* Red */
             --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(245, 230, 211, 0.5);
-            --search-input-text: #F5E6D3;
+            --search-input-border: rgba(224, 224, 255, 0.5);
+            --search-input-text: #E0E0FF;
         }
 
         body {
@@ -92,7 +92,7 @@
             transition: color 0.5s ease;
         }
 
-        #fact-display {
+        #fact-display, #challenge-fact-display {
             font-size: 2.2rem;
             font-weight: 500;
             margin: 30px 0 15px 0;
@@ -104,7 +104,7 @@
             transform: translateY(20px);
         }
 
-        #fact-display.revealed {
+        #fact-display.revealed, #challenge-fact-display.revealed {
             opacity: 1;
             transform: translateY(0);
         }
@@ -304,13 +304,13 @@
         }
 
         .search-bar input::placeholder {
-            color: rgba(245, 230, 211, 0.7);
+            color: rgba(224, 224, 255, 0.7);
         }
 
         .search-bar input:focus {
             outline: none;
             border-color: var(--main-action-btn-hover);
-            box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.3);
+            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
         }
 
         .search-bar .action-button {
@@ -397,7 +397,7 @@
         }
 
         /* Quiz Specific Styles */
-        .quiz-options button {
+        .quiz-options button, .challenge-options button {
             display: block;
             width: 100%;
             padding: 12px;
@@ -411,24 +411,24 @@
             transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
-        .quiz-options button:hover {
+        .quiz-options button:hover, .challenge-options button:hover {
             background-color: rgba(255,255,255,0.1);
             border-color: var(--main-action-btn);
         }
 
-        .quiz-options button.correct {
+        .quiz-options button.correct, .challenge-options button.correct {
             background-color: var(--quiz-correct-color);
             border-color: var(--quiz-correct-color);
             color: white;
         }
 
-        .quiz-options button.incorrect {
+        .quiz-options button.incorrect, .challenge-options button.incorrect {
             background-color: var(--quiz-incorrect-color);
             border-color: var(--quiz-incorrect-color);
             color: white;
         }
 
-        #quiz-feedback {
+        #quiz-feedback, #challenge-feedback {
             margin-top: 15px;
             font-size: 1.2rem;
             font-weight: bold;
@@ -439,7 +439,7 @@
             h1 {
                 font-size: 2.5rem;
             }
-            #fact-display {
+            #fact-display, #challenge-fact-display {
                 font-size: 1.5rem;
             }
             .container {
@@ -465,20 +465,20 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Echoes of the Past</span></div>
-        <h1 id="site-title">Echoes of the Past</h1>
+        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Wonders</span></div>
+        <h1 id="site-title">Cosmic Wonders</h1>
 
         <div class="category-selector">
             <label for="fact-category">Category:</label>
             <select id="fact-category">
                 <option value="deep-sea">Deep Sea</option>
-                <option value="space">Space</option>
-                <option value="history" selected>History</option>
+                <option value="space" selected>Space</option>
+                <option value="history">History</option>
                 <option value="science">Science</option>
             </select>
         </div>
 
-        <p id="fact-display" class="revealed">Cleopatra lived closer in time to the invention of the iPhone than to the building of the Great Pyramid of Giza.</p>
+        <p id="fact-display" class="revealed">A day on Venus is longer than a year on Venus.</p>
         <div class="rating-section">
             <div id="popularity-score">Rating: 0</div>
             <div class="rating-buttons">
@@ -500,6 +500,7 @@
             <button class="action-button" id="view-favorites-btn">View Favorites</button>
             <button class="action-button" id="fact-of-the-day-btn">Fact of the Day</button>
             <button class="action-button" id="quiz-me-btn">Quiz Me!</button>
+            <button class="action-button" id="fact-challenge-btn">Fact Challenge!</button>
         </div>
     </div>
 
@@ -546,6 +547,19 @@
         </div>
     </div>
 
+    <div id="fact-challenge-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-fact-challenge-modal">&times;</span>
+            <h2>Fact Category Challenge</h2>
+            <p id="challenge-fact-display"></p>
+            <div class="challenge-options" id="challenge-options">
+                <!-- Category options will be loaded here -->
+            </div>
+            <p id="challenge-feedback"></p>
+            <button class="action-button" id="next-challenge-btn" style="display: none; margin-top: 20px;">Next Challenge</button>
+        </div>
+    </div>
+
     <footer>
         <p>Site will update automatically. Last update: <span id="last-update-time"></span></p>
     </footer>
@@ -565,16 +579,19 @@
             const quizMeBtn = document.getElementById('quiz-me-btn');
             const searchInput = document.getElementById('search-input');
             const searchFactBtn = document.getElementById('search-fact-btn');
+            const factChallengeBtn = document.getElementById('fact-challenge-btn'); // New button
 
             const historyModal = document.getElementById('history-modal');
             const favoritesModal = document.getElementById('favorites-modal');
             const quizModal = document.getElementById('quiz-modal');
             const searchResultsModal = document.getElementById('search-results-modal');
+            const factChallengeModal = document.getElementById('fact-challenge-modal'); // New modal
 
             const closeHistoryModal = document.getElementById('close-history-modal');
             const closeFavoritesModal = document.getElementById('close-favorites-modal');
             const closeQuizModal = document.getElementById('close-quiz-modal');
             const closeSearchResultsModal = document.getElementById('close-search-results-modal');
+            const closeFactChallengeModal = document.getElementById('close-fact-challenge-modal'); // New close button
 
             const historyList = document.getElementById('history-list');
             const favoritesList = document.getElementById('favorites-list');
@@ -584,14 +601,19 @@
             const nextQuizBtn = document.getElementById('next-quiz-btn');
             const searchResultsList = document.getElementById('search-results-list');
 
+            const challengeFactDisplay = document.getElementById('challenge-fact-display'); // New element
+            const challengeOptions = document.getElementById('challenge-options'); // New element
+            const challengeFeedback = document.getElementById('challenge-feedback'); // New element
+            const nextChallengeBtn = document.getElementById('next-challenge-btn'); // New element
+
             const lastUpdateTime = document.getElementById('last-update-time');
             const factCategorySelect = document.getElementById('fact-category');
             const siteTitle = document.getElementById('site-title');
             const currentThemeIndicator = document.getElementById('current-theme');
 
             let currentFact = {
-                text: "Cleopatra lived closer in time to the invention of the iPhone than to the building of the Great Pyramid of Giza.",
-                category: "history",
+                text: "", // Will be set dynamically
+                category: "", // Will be set dynamically
                 rating: 0
             };
             let factHistory = [];
@@ -936,6 +958,10 @@
                 searchResultsModal.style.display = 'none';
             });
 
+            closeFactChallengeModal.addEventListener('click', () => { // New close handler
+                factChallengeModal.style.display = 'none';
+            });
+
             window.addEventListener('click', (event) => {
                 if (event.target == historyModal) {
                     historyModal.style.display = 'none';
@@ -948,6 +974,9 @@
                 }
                 if (event.target == searchResultsModal) {
                     searchResultsModal.style.display = 'none';
+                }
+                if (event.target == factChallengeModal) { // New modal close on outside click
+                    factChallengeModal.style.display = 'none';
                 }
             });
 
@@ -1045,10 +1074,98 @@
                 searchResultsModal.style.display = 'block';
             });
 
+            // Fact Challenge Feature Logic (New Feature)
+            let currentChallenge = null;
+
+            const startFactChallenge = () => {
+                const allCategories = Object.keys(facts);
+                if (allCategories.length < 2) {
+                    alert("Not enough categories for a fact challenge!");
+                    return;
+                }
+
+                // Pick a random category for the correct answer
+                const correctCategoryIndex = Math.floor(Math.random() * allCategories.length);
+                const correctCategory = allCategories[correctCategoryIndex];
+
+                // Pick a random fact from the correct category
+                const challengeFactText = getRandomFact(correctCategory);
+
+                currentChallenge = {
+                    fact: challengeFactText,
+                    correctCategory: correctCategory
+                };
+
+                challengeFactDisplay.classList.remove('revealed');
+                setTimeout(() => {
+                    challengeFactDisplay.textContent = currentChallenge.fact;
+                    challengeFactDisplay.classList.add('revealed');
+                }, 500);
+
+                challengeOptions.innerHTML = '';
+                challengeFeedback.textContent = '';
+                nextChallengeBtn.style.display = 'none';
+
+                // Generate options: correct category + 2-3 incorrect categories
+                let options = [correctCategory];
+                let incorrectCategories = allCategories.filter(cat => cat !== correctCategory);
+                // Shuffle incorrect categories and pick a few
+                for (let i = incorrectCategories.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [incorrectCategories[i], incorrectCategories[j]] = [incorrectCategories[j], incorrectCategories[i]];
+                }
+                options = options.concat(incorrectCategories.slice(0, Math.min(incorrectCategories.length, 2))); // Add up to 2 incorrect options
+
+                // Shuffle all options
+                for (let i = options.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [options[i], options[j]] = [options[j], options[i]];
+                }
+
+                options.forEach(option => {
+                    const button = document.createElement('button');
+                    button.textContent = option.charAt(0).toUpperCase() + option.slice(1).replace('-', ' '); // Capitalize and format
+                    button.dataset.category = option; // Store original category name
+                    button.addEventListener('click', () => checkChallengeAnswer(button, option));
+                    challengeOptions.appendChild(button);
+                });
+
+                factChallengeModal.style.display = 'block';
+            };
+
+            const checkChallengeAnswer = (selectedButton, selectedOption) => {
+                Array.from(challengeOptions.children).forEach(button => {
+                    button.disabled = true;
+                    if (button.dataset.category === currentChallenge.correctCategory) {
+                        button.classList.add('correct');
+                    } else if (button === selectedButton) {
+                        button.classList.add('incorrect');
+                    }
+                });
+
+                if (selectedOption === currentChallenge.correctCategory) {
+                    challengeFeedback.textContent = "Correct! You nailed the category! 🎉";
+                    challengeFeedback.style.color = 'var(--quiz-correct-color)';
+                } else {
+                    challengeFeedback.textContent = `Incorrect. The fact was from the ${currentChallenge.correctCategory.charAt(0).toUpperCase() + currentChallenge.correctCategory.slice(1).replace('-', ' ')} category.`;
+                    challengeFeedback.style.color = 'var(--quiz-incorrect-color)';
+                }
+                nextChallengeBtn.style.display = 'block';
+            };
+
+            factChallengeBtn.addEventListener('click', startFactChallenge);
+            nextChallengeBtn.addEventListener('click', startFactChallenge);
+
 
             // Initial fact display and theme application on load
-            applyTheme(currentFact.category);
-            displayFact(currentFact.text, currentFact.category);
+            const initialCategories = Object.keys(facts);
+            const randomCategoryIndex = Math.floor(Math.random() * initialCategories.length);
+            const initialCategory = initialCategories[randomCategoryIndex];
+            const initialFactText = getRandomFact(initialCategory);
+
+            factCategorySelect.value = initialCategory; // Set the select to the chosen category
+            applyTheme(initialCategory);
+            displayFact(initialFactText, initialCategory);
         });
     </script>
 </body>
