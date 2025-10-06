@@ -3,42 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Scientific Wonders</title>
     <style>
         :root {
-            /* Space Theme Colors */
-            --bg-color-primary: #1A0033; /* Dark Purple */
-            --bg-color-secondary: #330066; /* Medium Purple */
-            --text-color: #E0E0FF; /* Light Lavender */
-            --footer-bg: #0D001A; /* Even Darker Purple */
-            --glass-bg: rgba(51, 0, 102, 0.7); /* Semi-transparent dark purple */
-            --glass-border: rgba(224, 224, 255, 0.3); /* Light lavender border */
+            /* Science Theme Colors */
+            --bg-color-primary: #2C3E50; /* Dark Blue-Grey */
+            --bg-color-secondary: #34495E; /* Medium Blue-Grey */
+            --text-color: #ECF0F1; /* Light Grey */
+            --footer-bg: #212F3D; /* Even Darker Blue-Grey */
+            --glass-bg: rgba(44, 62, 80, 0.7); /* Semi-transparent dark blue-grey */
+            --glass-border: rgba(236, 240, 241, 0.3); /* Light grey border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700; /* Gold */
+            --title-color: #2ECC71; /* Emerald Green */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet */
-            --main-action-btn-hover: #6A1B9A; /* Darker Blue Violet */
-            --theme-indicator-color: #FFD700; /* Gold */
+            --main-action-btn: #3498DB; /* Peter River Blue */
+            --main-action-btn-hover: #2980B9; /* Belize Hole Blue */
+            --theme-indicator-color: #2ECC71; /* Emerald Green */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #4CAF50; /* Green */
-            --share-btn-hover: #388E3C; /* Darker Green */
-            --rating-active-color: #8A2BE2; /* Blue Violet */
-            --rating-text-color: #E0E0FF; /* Light Lavender */
-            --category-select-bg: #330066; /* Medium Purple for select */
-            --category-select-border: #8A2BE2; /* Blue Violet border */
+            --share-btn-color: #9B59B6; /* Amethyst Purple */
+            --share-btn-hover: #8E44AD; /* Wisteria Purple */
+            --rating-active-color: #3498DB; /* Peter River Blue */
+            --rating-text-color: #ECF0F1; /* Light Grey */
+            --category-select-bg: #34495E; /* Medium Blue-Grey for select */
+            --category-select-border: #3498DB; /* Peter River Blue border */
             --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 224, 255, 0.5);
-            --search-input-text: #E0E0FF;
-            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
-            --carousel-control-color: #FFD700; /* Gold for carousel controls */
-            --carousel-control-hover: #FFFF00; /* Brighter Gold */
+            --search-input-border: rgba(236, 240, 241, 0.5);
+            --search-input-text: #ECF0F1;
+            --fact-card-bg: rgba(44, 62, 80, 0.8); /* Slightly darker glass for fact card */
+            --fact-card-border: rgba(46, 204, 113, 0.5); /* Emerald Green border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(46, 204, 113, 0.7); /* Emerald Green glow */
+            --carousel-control-color: #2ECC71; /* Emerald Green for carousel controls */
+            --carousel-control-hover: #66FF99; /* Brighter Green */
             --trivia-correct-color: #4CAF50; /* Green */
             --trivia-incorrect-color: #F44336; /* Red */
             --streak-color: #FFD700; /* Gold for streak */
             --streak-glow: 0 0 15px rgba(255, 215, 0, 0.5);
+            --quiz-correct-color: #4CAF50; /* Green */
+            --quiz-incorrect-color: #F44336; /* Red */
         }
 
         body {
@@ -99,7 +101,7 @@
             transition: color 0.5s ease;
         }
 
-        #fact-display, #challenge-fact-display, #trivia-fact-display {
+        #fact-display, #challenge-fact-display, #trivia-fact-display, #scramble-fact-display {
             font-size: 2.2rem;
             font-weight: 500;
             margin: 30px 0 15px 0;
@@ -443,7 +445,7 @@
             color: white;
         }
 
-        #quiz-feedback, #challenge-feedback, #trivia-feedback {
+        #quiz-feedback, #challenge-feedback, #trivia-feedback, #scramble-feedback {
             margin-top: 15px;
             font-size: 1.2rem;
             font-weight: bold;
@@ -602,13 +604,32 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        /* Fact Scramble Specific Styles */
+        .scramble-input {
+            width: 90%;
+            padding: 10px 15px;
+            margin-top: 20px;
+            border-radius: 8px;
+            border: 1px solid var(--search-input-border);
+            background-color: var(--search-input-bg);
+            color: var(--search-input-text);
+            font-size: 1.1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .scramble-input:focus {
+            outline: none;
+            border-color: var(--main-action-btn-hover);
+            box-shadow: 0 0 0 3px rgba(0, 188, 212, 0.3);
+        }
+
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
             }
-            #fact-display, #challenge-fact-display, #fact-of-the-day-content, #trivia-fact-display {
+            #fact-display, #challenge-fact-display, #fact-of-the-day-content, #trivia-fact-display, #scramble-fact-display {
                 font-size: 1.5rem;
             }
             #fact-of-the-day-section h2 {
@@ -640,21 +661,21 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Wonders</span></div>
-        <h1 id="site-title">Cosmic Wonders</h1>
+        <div class="theme-indicator">Theme: <span id="current-theme">Scientific Wonders</span></div>
+        <h1 id="site-title">Scientific Wonders</h1>
 
         <div class="category-selector">
             <label for="fact-category">Category:</label>
             <select id="fact-category">
                 <option value="deep-sea">Deep Sea</option>
-                <option value="space" selected>Space</option>
+                <option value="space">Space</option>
                 <option value="history">History</option>
-                <option value="science">Science</option>
+                <option value="science" selected>Science</option>
             </select>
         </div>
 
         <div class="fact-card">
-            <p id="fact-display" class="fact-display-animation">A day on Venus is longer than a year on Venus.</p>
+            <p id="fact-display" class="fact-display-animation">Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible.</p>
             <div class="carousel-controls">
                 <button class="carousel-control-btn" id="prev-fact-btn" title="Previous Fact">◀</button>
                 <button class="carousel-control-btn" id="next-fact-btn" title="Next Fact">▶</button>
@@ -691,6 +712,7 @@
             <button class="action-button" id="quiz-me-btn">Quiz Me!</button>
             <button class="action-button" id="fact-challenge-btn">Fact Challenge!</button>
             <button class="action-button" id="fact-trivia-btn">Fact Trivia!</button>
+            <button class="action-button" id="fact-scramble-btn">Fact Scramble!</button> <!-- New Feature Button -->
         </div>
     </div>
 
@@ -769,6 +791,19 @@
         </div>
     </div>
 
+    <!-- New Fact Scramble Modal -->
+    <div id="fact-scramble-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="close-fact-scramble-modal">&times;</span>
+            <h2>Fact Scramble!</h2>
+            <p id="scramble-fact-display" style="font-size: 1.8rem; font-weight: bold; margin-bottom: 20px;"></p>
+            <input type="text" id="scramble-input" class="scramble-input" placeholder="Type the correct fact here...">
+            <p id="scramble-feedback"></p>
+            <button class="action-button" id="check-scramble-btn">Check Answer</button>
+            <button class="action-button" id="next-scramble-btn" style="display: none; margin-top: 10px;">Next Scramble</button>
+        </div>
+    </div>
+
     <footer>
         <p>Site will update automatically. Last update: <span id="last-update-time"></span></p>
     </footer>
@@ -792,6 +827,7 @@
             const searchFactBtn = document.getElementById('search-fact-btn');
             const factChallengeBtn = document.getElementById('fact-challenge-btn');
             const factTriviaBtn = document.getElementById('fact-trivia-btn');
+            const factScrambleBtn = document.getElementById('fact-scramble-btn'); // New button
             const moreOptionsBtn = document.getElementById('more-options-btn');
             const utilityButtonsContainer = document.querySelector('.utility-buttons');
             const discoverNewFactBtn = document.getElementById('discover-new-fact-btn'); // New button
@@ -802,6 +838,7 @@
             const searchResultsModal = document.getElementById('search-results-modal');
             const factChallengeModal = document.getElementById('fact-challenge-modal');
             const factTriviaModal = document.getElementById('fact-trivia-modal');
+            const factScrambleModal = document.getElementById('fact-scramble-modal'); // New modal
 
             const closeHistoryModal = document.getElementById('close-history-modal');
             const closeFavoritesModal = document.getElementById('close-favorites-modal');
@@ -809,6 +846,7 @@
             const closeSearchResultsModal = document.getElementById('close-search-results-modal');
             const closeFactChallengeModal = document.getElementById('close-fact-challenge-modal');
             const closeFactTriviaModal = document.getElementById('close-fact-trivia-modal');
+            const closeFactScrambleModal = document.getElementById('close-fact-scramble-modal'); // New close button
 
             const historyList = document.getElementById('history-list');
             const favoritesList = document.getElementById('favorites-list');
@@ -827,6 +865,13 @@
             const triviaOptions = document.getElementById('trivia-options');
             const triviaFeedback = document.getElementById('trivia-feedback');
             const nextTriviaBtn = document.getElementById('next-trivia-btn');
+
+            const scrambleFactDisplay = document.getElementById('scramble-fact-display'); // New element
+            const scrambleInput = document.getElementById('scramble-input'); // New element
+            const scrambleFeedback = document.getElementById('scramble-feedback'); // New element
+            const checkScrambleBtn = document.getElementById('check-scramble-btn'); // New element
+            const nextScrambleBtn = document.getElementById('next-scramble-btn'); // New element
+
 
             const lastUpdateTime = document.getElementById('last-update-time');
             const factCategorySelect = document.getElementById('fact-category');
@@ -876,7 +921,7 @@
                     categorySelectBorder: "#00BCD4",
                     searchInputBg: "rgba(255, 255, 255, 0.1)",
                     searchInputBorder: "rgba(224, 242, 247, 0.5)",
-                    searchInputText: "E0F2F7",
+                    searchInputText: "#E0F2F7",
                     factCardBg: "rgba(10, 25, 49, 0.8)",
                     factCardBorder: "rgba(0, 188, 212, 0.5)",
                     factOfDayGlow: "0 0 20px rgba(0, 188, 212, 0.7)",
@@ -1031,7 +1076,8 @@
                         options: ["Less than 10%", "About 25%", "Around 50%", "Over 80%"],
                         answer: "Over 80%"
                     }
-                ],\n                "space": [
+                ],
+                "space": [
                     {
                         question: "Which planet has a day longer than its year?  ",
                         options: ["Mars", "Venus", "Jupiter", "Mercury"],
@@ -1042,7 +1088,8 @@
                         options: ["Vesta", "Pallas", "Hygiea", "Ceres"],
                         answer: "Ceres"
                     }
-                ],\n                "history": [
+                ],
+                "history": [
                     {
                         question: "What was the shortest war in recorded history?",
                         options: ["The Six-Day War", "Anglo-Zanzibar War", "Falklands War", "Ten-Day War"],
@@ -1053,7 +1100,8 @@
                         options: ["Building of the Great Pyramid", "Founding of Rome", "Invention of the iPhone", "Life of Julius Caesar"],
                         answer: "Invention of the iPhone"
                     }
-                ],\n                "science": [
+                ],
+                "science": [
                     {
                         question: "Which food item never spoils?",
                         options: ["Milk", "Bread", "Honey", "Cheese"],
@@ -1079,7 +1127,8 @@
                         blank: "unexplored",
                         options: ["unexplored", "uncharted", "unknown", "unseen"]
                     }
-                ],\n                "space": [
+                ],
+                "space": [
                     {
                         fact: "A day on Venus is longer than a ______ on Venus.",
                         blank: "year",
@@ -1090,7 +1139,8 @@
                         blank: "sand",
                         options: ["dust", "sand", "salt", "rock"]
                     }
-                ],\n                "history": [
+                ],
+                "history": [
                     {
                         fact: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after ______ minutes.",
                         blank: "38",
@@ -1101,7 +1151,8 @@
                         blank: "goat's",
                         options: ["cow's", "sheep's", "goat's", "camel's"]
                     }
-                ],\n                "science": [
+                ],
+                "science": [
                     {
                         fact: "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still ______.",
                         blank: "edible",
@@ -1161,6 +1212,8 @@
                 root.style.setProperty('--trivia-incorrect-color', theme.triviaIncorrectColor);
                 root.style.setProperty('--streak-color', theme.streakColor);
                 root.style.setProperty('--streak-glow', theme.streakGlow);
+                root.style.setProperty('--quiz-correct-color', theme.triviaCorrectColor); /* Reusing for quiz */
+                root.style.setProperty('--quiz-incorrect-color', theme.triviaIncorrectColor); /* Reusing for quiz */
 
 
                 siteTitle.textContent = theme.title;
@@ -1369,6 +1422,10 @@
                 factTriviaModal.style.display = 'none';
             });
 
+            closeFactScrambleModal.addEventListener('click', () => { // New close button
+                factScrambleModal.style.display = 'none';
+            });
+
             window.addEventListener('click', (event) => {
                 if (event.target == historyModal) {
                     historyModal.style.display = 'none';
@@ -1387,6 +1444,9 @@
                 }
                 if (event.target == factTriviaModal) {
                     factTriviaModal.style.display = 'none';
+                }
+                if (event.target == factScrambleModal) { // New modal close
+                    factScrambleModal.style.display = 'none';
                 }
             });
 
@@ -1699,6 +1759,58 @@
             factTriviaBtn.addEventListener('click', startFactTrivia);
             nextTriviaBtn.addEventListener('click', startFactTrivia);
 
+            // Fact Scramble Feature Logic
+            let currentScrambleFact = "";
+
+            const shuffleWords = (text) => {
+                const words = text.split(' ');
+                for (let i = words.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [words[i], words[j]] = [words[j], words[i]];
+                }
+                return words.join(' ');
+            };
+
+            const startFactScramble = () => {
+                const selectedCategory = factCategorySelect.value;
+                currentScrambleFact = getRandomFact(selectedCategory);
+                const scrambledText = shuffleWords(currentScrambleFact);
+
+                scrambleFactDisplay.textContent = scrambledText;
+                scrambleInput.value = '';
+                scrambleFeedback.textContent = '';
+                checkScrambleBtn.style.display = 'block';
+                nextScrambleBtn.style.display = 'none';
+                scrambleInput.disabled = false;
+
+                factScrambleModal.style.display = 'block';
+                utilityButtonsContainer.style.display = 'none';
+                discoverNewFactBtn.style.display = 'none';
+                moreOptionsBtn.style.display = 'none';
+                resetStreak();
+            };
+
+            const checkScrambleAnswer = () => {
+                const userAnswer = scrambleInput.value.trim();
+                const originalFact = currentScrambleFact.trim();
+
+                scrambleInput.disabled = true;
+                checkScrambleBtn.style.display = 'none';
+                nextScrambleBtn.style.display = 'block';
+
+                if (userAnswer.toLowerCase() === originalFact.toLowerCase()) {
+                    scrambleFeedback.textContent = "Amazing! You unscrambled it! 🎉";
+                    scrambleFeedback.style.color = 'var(--quiz-correct-color)';
+                } else {
+                    scrambleFeedback.textContent = `Not quite. The correct fact was: "${originalFact}"`;
+                    scrambleFeedback.style.color = 'var(--quiz-incorrect-color)';
+                }
+            };
+
+            factScrambleBtn.addEventListener('click', startFactScramble);
+            checkScrambleBtn.addEventListener('click', checkScrambleAnswer);
+            nextScrambleBtn.addEventListener('click', startFactScramble);
+
 
             // More Options button toggle
             moreOptionsBtn.addEventListener('click', () => {
@@ -1736,14 +1848,13 @@
             });
 
             // Initial fact display and theme application on load
-            const allCategories = Object.keys(facts);
-            const randomCategoryIndex = Math.floor(Math.random() * allCategories.length);
-            const randomCategory = allCategories[randomCategoryIndex];
-            const randomFact = getRandomFact(randomCategory);
+            // Hardcoding initial theme and fact as per instructions
+            const initialCategory = "science";
+            const initialFact = "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still edible.";
 
-            factCategorySelect.value = randomCategory; // Set the select to the chosen category
-            applyTheme(randomCategory);
-            displayFact(randomFact, randomCategory); // Initial fact is immediately visible
+            factCategorySelect.value = initialCategory; // Set the select to the chosen category
+            applyTheme(initialCategory);
+            displayFact(initialFact, initialCategory); // Initial fact is immediately visible
             startCarousel(); // Start the carousel automatically on load
             updateStreakDisplay(); // Initialize streak display
 
