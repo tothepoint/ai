@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Echoes of the Past</title>
     <style>
         :root {
-            /* Space Theme Colors */
-            --bg-color-primary: #1A0033; /* Dark Purple */
-            --bg-color-secondary: #330066; /* Medium Purple */
-            --text-color: #E0E0FF; /* Light Lavender */
-            --footer-bg: #0D001A; /* Even Darker Purple */
-            --glass-bg: rgba(51, 0, 102, 0.7); /* Semi-transparent medium purple */
-            --glass-border: rgba(224, 224, 255, 0.3); /* Light lavender border */
+            /* History Theme Colors */
+            --bg-color-primary: #4A3728; /* Dark Brown */
+            --bg-color-secondary: #6F543E; /* Medium Brown */
+            --text-color: #F5E6D3; /* Light Beige */
+            --footer-bg: #33261E; /* Even Darker Brown */
+            --glass-bg: rgba(74, 55, 40, 0.7); /* Semi-transparent medium brown */
+            --glass-border: rgba(245, 230, 211, 0.3); /* Light beige border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700; /* Gold */
+            --title-color: #D4AF37; /* Gold */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet */
-            --main-action-btn-hover: #6A1B9A; /* Dark Violet */
-            --theme-indicator-color: #FFD700; /* Gold */
+            --main-action-btn: #A0522D; /* Sienna */
+            --main-action-btn-hover: #8B4513; /* SaddleBrown */
+            --theme-indicator-color: #D4AF37; /* Gold */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #4CAF50; /* Green */
-            --share-btn-hover: #388E3C; /* Dark Green */
-            --rating-active-color: #8A2BE2; /* Blue Violet */
-            --rating-text-color: #E0E0FF; /* Light Lavender */
-            --category-select-bg: #330066; /* Medium Purple for select */
-            --category-select-border: #8A2BE2; /* Blue Violet border */
-            --quiz-correct-color: #4CAF50; /* Green */
+            --share-btn-color: #6B8E23; /* OliveDrab */
+            --share-btn-hover: #556B2F; /* DarkOliveGreen */
+            --rating-active-color: #A0522D; /* Sienna */
+            --rating-text-color: #F5E6D3; /* Light Beige */
+            --category-select-bg: #6F543E; /* Medium Brown for select */
+            --category-select-border: #A0522D; /* Sienna border */
+            --quiz-correct-color: #6B8E23; /* OliveDrab */
             --quiz-incorrect-color: #F44336; /* Red */
-            --search-input-bg: rgba(255, 255, 255, 0.1);\n            --search-input-border: rgba(224, 224, 255, 0.5);\n            --search-input-text: #E0E0FF;\n            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
+            --search-input-bg: rgba(255, 255, 255, 0.1);
+            --search-input-border: rgba(245, 230, 211, 0.5);
+            --search-input-text: #F5E6D3;
+            --fact-card-bg: rgba(74, 55, 40, 0.8); /* Slightly darker glass for fact card */
+            --fact-card-border: rgba(212, 175, 55, 0.5); /* Gold border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(212, 175, 55, 0.7); /* Gold glow */
+            --carousel-control-color: #D4AF37; /* Gold for carousel controls */
+            --carousel-control-hover: #FFD700; /* Brighter Gold */
         }
 
         body {
@@ -119,6 +124,7 @@
             width: 90%;
             max-width: 600px;
             transition: all 0.5s ease;
+            position: relative; /* For carousel controls */
         }
 
         .action-button {
@@ -282,7 +288,7 @@
             appearance: none; /* Remove default dropdown arrow */
             -webkit-appearance: none;
             -moz-appearance: none;
-            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23E0E0FF%22%20d%3D%22M287%2C197.9L159.3%2C69.2c-3.7-3.7-9.7-3.7-13.4%2C0L5.4%2C197.9c-3.7%2C3.7-3.7%2C9.7%2C0%2C13.4l13.4%2C13.4c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l110.7-110.7l110.7%2C110.7c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l13.4-13.4C290.7%2C207.6%2C290.7%2C201.6%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E');
+            background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23F5E6D3%22%20d%3D%22M287%2C197.9L159.3%2C69.2c-3.7-3.7-9.7-3.7-13.4%2C0L5.4%2C197.9c-3.7%2C3.7-3.7%2C9.7%2C0%2C13.4l13.4%2C13.4c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l110.7-110.7l110.7%2C110.7c3.9%2C3.9%2C10.1%2C3.9%2C14%2C0l13.4-13.4C290.7%2C207.6%2C290.7%2C201.6%2C287%2C197.9z%22%2F%3E%3C%2Fsvg%3E');
             background-repeat: no-repeat;
             background-position: right 10px top 50%;
             background-size: 12px;
@@ -292,7 +298,7 @@
         .category-selector select:focus {
             outline: none;
             border-color: var(--main-action-btn-hover);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.3);
         }
 
         /* Search Bar */
@@ -316,13 +322,13 @@
         }
 
         .search-bar input::placeholder {
-            color: rgba(224, 224, 255, 0.7);
+            color: rgba(245, 230, 211, 0.7);
         }
 
         .search-bar input:focus {
             outline: none;
             border-color: var(--main-action-btn-hover);
-            box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
+            box-shadow: 0 0 0 3px rgba(160, 82, 45, 0.3);
         }
 
         .search-bar .action-button {
@@ -483,6 +489,64 @@
             font-weight: bold;
         }
 
+        /* Carousel Controls */
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        .carousel-control-btn {
+            background: none;
+            border: none;
+            font-size: 3rem;
+            color: var(--carousel-control-color);
+            cursor: pointer;
+            transition: color 0.2s ease, transform 0.2s ease;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .carousel-control-btn:hover {
+            color: var(--carousel-control-hover);
+            transform: scale(1.1);
+        }
+
+        .carousel-play-pause-btn {
+            background-color: var(--main-action-btn);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .carousel-play-pause-btn:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-2px);
+        }
+
+        /* More Options Button */
+        #more-options-btn {
+            margin-top: 30px;
+            background-color: var(--theme-indicator-color);
+            color: var(--bg-color-primary);
+            font-weight: bold;
+        }
+
+        #more-options-btn:hover {
+            background-color: var(--favorite-btn-hover);
+            color: white;
+        }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             h1 {
@@ -512,27 +576,36 @@
             .search-bar input {
                 width: 100%;
             }
+            .carousel-control-btn {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Wonders</span></div>
-        <h1 id="site-title">Cosmic Wonders</h1>
+        <div class="theme-indicator">Theme: <span id="current-theme">Echoes of the Past</span></div>
+        <h1 id="site-title">Echoes of the Past</h1>
 
         <div class="category-selector">
             <label for="fact-category">Category:</label>
             <select id="fact-category">
                 <option value="deep-sea">Deep Sea</option>
-                <option value="space" selected>Space</option>
-                <option value="history">History</option>
+                <option value="space">Space</option>
+                <option value="history" selected>History</option>
                 <option value="science">Science</option>
             </select>
         </div>
 
         <div class="fact-card">
-            <p id="fact-display" class="revealed">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+            <p id="fact-display" class="revealed">Cleopatra lived closer in time to the invention of the iPhone than to the building of the Great Pyramid of Giza.</p>
+            <div class="carousel-controls">
+                <button class="carousel-control-btn" id="prev-fact-btn" title="Previous Fact">◀</button>
+                <button class="carousel-control-btn" id="next-fact-btn" title="Next Fact">▶</button>
+            </div>
         </div>
+        <button class="carousel-play-pause-btn" id="play-pause-carousel-btn">Pause Carousel</button>
+
         <div class="rating-section">
             <div id="popularity-score">Rating: 0</div>
             <div class="rating-buttons">
@@ -540,15 +613,15 @@
                 <button class="rating-button" id="thumbs-down-btn" title="Dislike this fact">👎</button>
             </div>
         </div>
-        <button class="action-button" id="next-fact-btn">Next Fact</button>
         <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
 
-        <div class="search-bar">
-            <input type="text" id="search-input" placeholder="Search for facts...">
-            <button class="action-button" id="search-fact-btn">Search</button>
-        </div>
+        <button class="action-button" id="more-options-btn">More Options</button>
 
-        <div class="utility-buttons">
+        <div class="utility-buttons" style="display: none;">
+            <div class="search-bar">
+                <input type="text" id="search-input" placeholder="Search for facts...">
+                <button class="action-button" id="search-fact-btn">Search</button>
+            </div>
             <button class="action-button" id="share-fact-btn">Share Fact</button>
             <button class="action-button" id="view-history-btn">View History</button>
             <button class="action-button" id="view-favorites-btn">View Favorites</button>
@@ -627,7 +700,9 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const factDisplay = document.getElementById('fact-display');
+            const prevFactBtn = document.getElementById('prev-fact-btn');
             const nextFactBtn = document.getElementById('next-fact-btn');
+            const playPauseCarouselBtn = document.getElementById('play-pause-carousel-btn');
             const thumbsUpBtn = document.getElementById('thumbs-up-btn');
             const thumbsDownBtn = document.getElementById('thumbs-down-btn');
             const popularityScore = document.getElementById('popularity-score');
@@ -640,6 +715,8 @@
             const searchInput = document.getElementById('search-input');
             const searchFactBtn = document.getElementById('search-fact-btn');
             const factChallengeBtn = document.getElementById('fact-challenge-btn');
+            const moreOptionsBtn = document.getElementById('more-options-btn');
+            const utilityButtonsContainer = document.querySelector('.utility-buttons');
 
             const historyModal = document.getElementById('history-modal');
             const favoritesModal = document.getElementById('favorites-modal');
@@ -682,6 +759,9 @@
             };
             let factHistory = [];
             let favoriteFacts = [];
+            let carouselInterval;
+            let isCarouselPlaying = true;
+            const CAROUSEL_SPEED = 5000; // 5 seconds
 
             const themes = {
                 "deep-sea": {
@@ -710,6 +790,8 @@
                     factCardBg: "rgba(10, 25, 49, 0.8)",
                     factCardBorder: "rgba(0, 188, 212, 0.5)",
                     factOfDayGlow: "0 0 20px rgba(0, 188, 212, 0.7)",
+                    carouselControlColor: "#00BCD4",
+                    carouselControlHover: "#00E5FF",
                 },
                 "space": {
                     title: "Cosmic Wonders",
@@ -737,6 +819,8 @@
                     factCardBg: "rgba(51, 0, 102, 0.8)",
                     factCardBorder: "rgba(255, 215, 0, 0.5)",
                     factOfDayGlow: "0 0 20px rgba(255, 215, 0, 0.7)",
+                    carouselControlColor: "#FFD700",
+                    carouselControlHover: "#FFFF00",
                 },
                 "history": {
                     title: "Echoes of the Past",
@@ -764,6 +848,8 @@
                     factCardBg: "rgba(74, 55, 40, 0.8)",
                     factCardBorder: "rgba(212, 175, 55, 0.5)",
                     factOfDayGlow: "0 0 20px rgba(212, 175, 55, 0.7)",
+                    carouselControlColor: "#D4AF37",
+                    carouselControlHover: "#FFD700",
                 },
                 "science": {
                     title: "Scientific Wonders",
@@ -791,6 +877,8 @@
                     factCardBg: "rgba(44, 62, 80, 0.8)",
                     factCardBorder: "rgba(46, 204, 113, 0.5)",
                     factOfDayGlow: "0 0 20px rgba(46, 204, 113, 0.7)",
+                    carouselControlColor: "#2ECC71",
+                    carouselControlHover: "#66FF99",
                 }
             };
 
@@ -916,6 +1004,8 @@
                 root.style.setProperty('--fact-card-bg', theme.factCardBg);
                 root.style.setProperty('--fact-card-border', theme.factCardBorder);
                 root.style.setProperty('--fact-of-day-glow', theme.factOfDayGlow);
+                root.style.setProperty('--carousel-control-color', theme.carouselControlColor);
+                root.style.setProperty('--carousel-control-hover', theme.carouselControlHover);
 
 
                 siteTitle.textContent = theme.title;
@@ -941,22 +1031,78 @@
                     popularityScore.textContent = `Rating: ${currentFact.rating}`;
                     thumbsUpBtn.classList.remove('active');
                     thumbsDownBtn.classList.remove('active');
-                    favoriteBtn.classList.remove('favorited');
+                    // Check if the current fact is in favorites and update the button
+                    const isFavorited = favoriteFacts.some(f => f.text === currentFact.text);
+                    if (isFavorited) {
+                        favoriteBtn.classList.add('favorited');
+                    } else {
+                        favoriteBtn.classList.remove('favorited');
+                    }
                     factDisplay.classList.add('revealed');
                 }, 500); // Delay to allow fade-out animation
             };
 
             const addFactToHistory = (fact) => {
-                factHistory.unshift(fact); // Add to the beginning
-                if (factHistory.length > 10) { // Keep history to a reasonable size
-                    factHistory.pop();
+                // Only add if it's a new fact or different from the last one
+                if (factHistory.length === 0 || factHistory[0].text !== fact.text) {
+                    factHistory.unshift(fact); // Add to the beginning
+                    if (factHistory.length > 10) { // Keep history to a reasonable size
+                        factHistory.pop();
+                    }
                 }
             };
 
-            nextFactBtn.addEventListener('click', () => {
+            const showNextFact = () => {
                 addFactToHistory(currentFact);
                 const selectedCategory = factCategorySelect.value;
                 displayFact(getRandomFact(selectedCategory), selectedCategory);
+            };
+
+            const showPreviousFact = () => {
+                if (factHistory.length > 1) {
+                    // The current fact is the first in history, so we need to go to the next one
+                    // and then pop the current one to get the actual previous.
+                    // This logic needs to be careful to not lose the current fact if it's not yet in history.
+                    // For simplicity, let's assume currentFact is always the last displayed.
+                    // If we want to go back, we take the first item from history, make it current, and remove it.
+                    const previousFact = factHistory.shift();
+                    if (previousFact) {
+                        displayFact(previousFact.text, previousFact.category);
+                    }
+                } else if (factHistory.length === 1) {
+                    // If only one item in history, it's the previous fact. Display it and clear history.
+                    const previousFact = factHistory.shift();
+                    if (previousFact) {
+                        displayFact(previousFact.text, previousFact.category);
+                    }
+                } else {
+                    // No history, just get a new random fact
+                    showNextFact();
+                }
+            };
+
+            nextFactBtn.addEventListener('click', showNextFact);
+            prevFactBtn.addEventListener('click', showPreviousFact);
+
+            const startCarousel = () => {
+                if (carouselInterval) clearInterval(carouselInterval);
+                carouselInterval = setInterval(showNextFact, CAROUSEL_SPEED);
+                playPauseCarouselBtn.textContent = "Pause Carousel";
+                isCarouselPlaying = true;
+            };
+
+            const pauseCarousel = () => {
+                clearInterval(carouselInterval);
+                playPauseCarouselBtn.textContent = "Play Carousel";
+                isCarouselPlaying = false;
+            };
+
+            playPauseCarouselBtn.addEventListener('click', () => {
+                if (isCarouselPlaying) {
+                    pauseCarousel();
+                } else {
+                    startCarousel();
+                }
             });
 
             thumbsUpBtn.addEventListener('click', () => {
@@ -1112,6 +1258,7 @@
                 // Hide the regular fact display
                 factDisplay.classList.remove('revealed');
                 factOfTheDaySection.style.display = 'block';
+                utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when FOTD is active
 
                 const storedFact = getFactOfTheDay();
                 if (!storedFact || (Date.now() - storedFact.timestamp) >= FACT_OF_THE_DAY_DURATION) {
@@ -1159,6 +1306,7 @@
                 });
 
                 quizModal.style.display = 'block';
+                utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when quiz is active
             };
 
             const checkAnswer = (selectedButton, selectedOption) => {
@@ -1203,6 +1351,7 @@
                     });
                 }
                 searchResultsModal.style.display = 'block';
+                utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when search results are active
             });
 
             // Fact Challenge Feature Logic
@@ -1262,6 +1411,7 @@
                 });
 
                 factChallengeModal.style.display = 'block';
+                utilityButtonsContainer.style.display = 'none'; // Hide utility buttons when challenge is active
             };
 
             const checkChallengeAnswer = (selectedButton, selectedOption) => {
@@ -1287,16 +1437,33 @@
             factChallengeBtn.addEventListener('click', startFactChallenge);
             nextChallengeBtn.addEventListener('click', startFactChallenge);
 
+            // More Options button toggle
+            moreOptionsBtn.addEventListener('click', () => {
+                if (utilityButtonsContainer.style.display === 'none' || utilityButtonsContainer.style.display === '') {
+                    utilityButtonsContainer.style.display = 'flex';
+                    moreOptionsBtn.textContent = 'Hide Options';
+                } else {
+                    utilityButtonsContainer.style.display = 'none';
+                    moreOptionsBtn.textContent = 'More Options';
+                }
+            });
 
             // Initial fact display and theme application on load
-            const initialCategories = Object.keys(facts);
-            const randomCategoryIndex = Math.floor(Math.random() * initialCategories.length);
-            const initialCategory = initialCategories[randomCategoryIndex];
-            const initialFactText = getRandomFact(initialCategory);
+            const initialCategory = "history";
+            const initialFactText = "Cleopatra lived closer in time to the invention of the iPhone than to the building of the Great Pyramid of Giza.";
 
             factCategorySelect.value = initialCategory; // Set the select to the chosen category
             applyTheme(initialCategory);
             displayFact(initialFactText, initialCategory);
+            startCarousel(); // Start the carousel automatically on load
+
+            // Event listener for category change
+            factCategorySelect.addEventListener('change', () => {
+                const selectedCategory = factCategorySelect.value;
+                applyTheme(selectedCategory);
+                displayFact(getRandomFact(selectedCategory), selectedCategory);
+                pauseCarousel(); // Pause carousel on category change
+            });
         });
     </script>
 </body>
