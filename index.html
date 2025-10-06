@@ -3,26 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Tech Tidbits</title>
+    <title id="site-title">Cosmic Chronicles</title>
     <style>
         :root {
-            /* Tech Tidbits Theme Colors */
-            --bg-color-primary: #000046; /* Dark Blue */
-            --bg-color-secondary: #1CB5E0; /* Bright Blue */
-            --text-color: #E0FFFF; /* Light Cyan */
-            --footer-bg: #000030; /* Even Darker Blue */
-            --glass-bg: rgba(0, 0, 70, 0.7); /* Semi-transparent dark blue */
-            --glass-border: rgba(224, 255, 255, 0.3); /* Light border */
+            /* Cosmic Chronicles Theme Colors */
+            --bg-color-primary: #0D0D2B; /* Dark Blue-Purple */
+            --bg-color-secondary: #1A0033; /* Darker Purple */
+            --text-color: #F0F8FF; /* Alice Blue */
+            --footer-bg: #08081A; /* Even Darker Blue-Purple */
+            --glass-bg: rgba(13, 13, 43, 0.7); /* Semi-transparent dark blue-purple */
+            --glass-border: rgba(240, 248, 255, 0.3); /* Light border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #00FFFF; /* Cyan */
+            --title-color: #8A2BE2; /* Blue Violet */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet */
-            --main-action-btn-hover: #6A0DAD; /* Dark Violet */
-            --theme-indicator-color: #00FFFF;
+            --main-action-btn: #4B0082; /* Indigo */
+            --main-action-btn-hover: #2F004F; /* Darker Indigo */
+            --theme-indicator-color: #8A2BE2; /* Blue Violet */
             --favorite-btn-color: #FFD700; /* Gold for favorite */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
             --share-btn-color: #20B2AA; /* Light Sea Green */
             --share-btn-hover: #1A8B84; /* Darker Light Sea Green */
+            --rating-active-color: #4B0082; /* Indigo */
+            --rating-text-color: #F0F8FF; /* Alice Blue */
         }
 
         body {
@@ -80,7 +82,7 @@
         #fact-display {
             font-size: 2.2rem;
             font-weight: 500;
-            margin: 30px 0;
+            margin: 30px 0 15px 0; /* Adjusted margin */
             line-height: 1.4;
             text-shadow: var(--fact-text-shadow);
             color: var(--text-color);
@@ -113,10 +115,17 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
+        .rating-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
         .rating-buttons {
             display: flex;
             gap: 15px;
-            margin-top: 20px;
+            margin-top: 10px;
         }
 
         .rating-button {
@@ -137,11 +146,18 @@
         }
 
         .rating-button.active {
-            background-color: var(--main-action-btn);
+            background-color: var(--rating-active-color);
             color: white;
-            border-color: var(--main-action-btn);
+            border-color: var(--rating-active-color);
             transform: scale(1.1);
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        #popularity-score {
+            font-size: 1.1rem;
+            color: var(--rating-text-color);
+            margin-top: 10px;
+            font-weight: bold;
         }
 
         .theme-indicator {
@@ -310,14 +326,17 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Tech Tidbits</span></div>
-        <h1 id="site-title">Tech Tidbits</h1>
-        <p id="fact-display" class="revealed">The internet weighs about the same as a single strawberry.</p>
-        <button class="action-button" id="next-fact-btn">Next Fact</button>
-        <div class="rating-buttons">
-            <button class="rating-button" id="thumbs-up-btn" title="Like this fact">👍</button>
-            <button class="rating-button" id="thumbs-down-btn" title="Dislike this fact">👎</button>
+        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Chronicles</span></div>
+        <h1 id="site-title">Cosmic Chronicles</h1>
+        <p id="fact-display" class="revealed">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+        <div class="rating-section">
+            <div id="popularity-score">Rating: 0</div>
+            <div class="rating-buttons">
+                <button class="rating-button" id="thumbs-up-btn" title="Like this fact">👍</button>
+                <button class="rating-button" id="thumbs-down-btn" title="Dislike this fact">👎</button>
+            </div>
         </div>
+        <button class="action-button" id="next-fact-btn">Next Fact</button>
         <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
 
         <div class="utility-buttons">
@@ -358,7 +377,7 @@
             const factDisplay = document.getElementById('fact-display');
             const nextFactBtn = document.getElementById('next-fact-btn');
             const favoriteBtn = document.getElementById('favorite-btn');
-            const shareFactBtn = document.getElementById('share-fact-btn'); // New button
+            const shareFactBtn = document.getElementById('share-fact-btn');
             const viewHistoryBtn = document.getElementById('view-history-btn');
             const viewFavoritesBtn = document.getElementById('view-favorites-btn');
             const historyModal = document.getElementById('history-modal');
@@ -367,6 +386,9 @@
             const closeFavoritesModal = document.getElementById('close-favorites-modal');
             const historyList = document.getElementById('history-list');
             const favoritesList = document.getElementById('favorites-list');
+            const thumbsUpBtn = document.getElementById('thumbs-up-btn');
+            const thumbsDownBtn = document.getElementById('thumbs-down-btn');
+            const popularityScoreElement = document.getElementById('popularity-score');
             const root = document.documentElement;
 
             const themes = [
@@ -384,7 +406,9 @@
                         '--title-color': '#8A2BE2',
                         '--main-action-btn': '#4B0082',
                         '--main-action-btn-hover': '#2F004F',
-                        '--theme-indicator-color': '#8A2BE2'
+                        '--theme-indicator-color': '#8A2BE2',
+                        '--rating-active-color': '#4B0082',
+                        '--rating-text-color': '#F0F8FF'
                     }
                 },
                 {
@@ -401,7 +425,9 @@
                         '--title-color': '#87CEEB',
                         '--main-action-btn': '#1E90FF',
                         '--main-action-btn-hover': '#0000CD',
-                        '--theme-indicator-color': '#87CEEB'
+                        '--theme-indicator-color': '#87CEEB',
+                        '--rating-active-color': '#1E90FF',
+                        '--rating-text-color': '#E0FFFF'
                     }
                 },
                 {
@@ -418,7 +444,9 @@
                         '--title-color': '#DAA520',
                         '--main-action-btn': '#B8860B',
                         '--main-action-btn-hover': '#8B6914',
-                        '--theme-indicator-color': '#DAA520'
+                        '--theme-indicator-color': '#DAA520',
+                        '--rating-active-color': '#B8860B',
+                        '--rating-text-color': '#FFF8DC'
                     }
                 },
                 {
@@ -435,7 +463,9 @@
                         '--title-color': '#8FBC8F',
                         '--main-action-btn': '#6B8E23',
                         '--main-action-btn-hover': '#556B2F',
-                        '--theme-indicator-color': '#8FBC8F'
+                        '--theme-indicator-color': '#8FBC8F',
+                        '--rating-active-color': '#6B8E23',
+                        '--rating-text-color': '#F0FFF0'
                     }
                 },
                 {
@@ -452,7 +482,9 @@
                         '--title-color': '#D2B48C',
                         '--main-action-btn': '#A0522D',
                         '--main-action-btn-hover': '#8B4513',
-                        '--theme-indicator-color': '#D2B48C'
+                        '--theme-indicator-color': '#D2B48C',
+                        '--rating-active-color': '#A0522D',
+                        '--rating-text-color': '#F5DEB3'
                     }
                 },
                 {
@@ -469,15 +501,17 @@
                         '--title-color': '#00FFFF',
                         '--main-action-btn': '#8A2BE2',
                         '--main-action-btn-hover': '#6A0DAD',
-                        '--theme-indicator-color': '#00FFFF'
+                        '--theme-indicator-color': '#00FFFF',
+                        '--rating-active-color': '#8A2BE2',
+                        '--rating-text-color': '#E0FFFF'
                     }
                 }
             ];
 
-            let currentThemeIndex = themes.findIndex(theme => theme.name === "Tech Tidbits");
-
+            let currentThemeIndex = 0; // Start with Cosmic Chronicles
             let factHistory = [];
             let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];
+            let factRatings = JSON.parse(localStorage.getItem('factRatings')) || {}; // Stores {fact: score}
 
             function addFactToHistory(fact) {
                 if (!factHistory.includes(fact)) {
@@ -500,6 +534,55 @@
                 }
             }
 
+            function updateFactRating(fact, type) {
+                if (!factRatings[fact]) {
+                    factRatings[fact] = { upvotes: 0, downvotes: 0, userVote: null };
+                }
+
+                const currentRating = factRatings[fact];
+
+                if (type === 'upvote') {
+                    if (currentRating.userVote === 'up') {
+                        currentRating.upvotes--;
+                        currentRating.userVote = null;
+                    } else {
+                        if (currentRating.userVote === 'down') {
+                            currentRating.downvotes--;
+                        }
+                        currentRating.upvotes++;
+                        currentRating.userVote = 'up';
+                    }
+                } else if (type === 'downvote') {
+                    if (currentRating.userVote === 'down') {
+                        currentRating.downvotes--;
+                        currentRating.userVote = null;
+                    } else {
+                        if (currentRating.userVote === 'up') {
+                            currentRating.upvotes--;
+                        }
+                        currentRating.downvotes++;
+                        currentRating.userVote = 'down';
+                    }
+                }
+                localStorage.setItem('factRatings', JSON.stringify(factRatings));
+                displayFactRating(fact);
+            }
+
+            function displayFactRating(fact) {
+                const rating = factRatings[fact] || { upvotes: 0, downvotes: 0, userVote: null };
+                const score = rating.upvotes - rating.downvotes;
+                popularityScoreElement.textContent = `Rating: ${score}`;
+
+                thumbsUpBtn.classList.remove('active');
+                thumbsDownBtn.classList.remove('active');
+
+                if (rating.userVote === 'up') {
+                    thumbsUpBtn.classList.add('active');
+                } else if (rating.userVote === 'down') {
+                    thumbsDownBtn.classList.add('active');
+                }
+            }
+
             function displayFact(theme) {
                 siteTitle.textContent = theme.title;
                 currentThemeIndicator.textContent = theme.name;
@@ -516,6 +599,9 @@
                 } else {
                     favoriteBtn.classList.remove('favorited');
                 }
+
+                // Display fact rating
+                displayFactRating(theme.fact);
 
                 // Animate fact display
                 factDisplay.classList.remove('revealed');
@@ -569,6 +655,14 @@
                     console.error('Failed to copy fact: ', err);
                     alert('Failed to copy fact.');
                 }
+            });
+
+            thumbsUpBtn.addEventListener('click', () => {
+                updateFactRating(factDisplay.textContent, 'upvote');
+            });
+
+            thumbsDownBtn.addEventListener('click', () => {
+                updateFactRating(factDisplay.textContent, 'downvote');
             });
 
             viewHistoryBtn.addEventListener('click', showHistory);
