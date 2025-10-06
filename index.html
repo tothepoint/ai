@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Chronicles</title>
+    <title id="site-title">Tech Tidbits</title>
     <style>
         :root {
-            /* Cosmic Chronicles Theme Colors */
-            --bg-color-primary: #0D0D2B; /* Dark Blue-Purple */
-            --bg-color-secondary: #1A0033; /* Darker Purple */
-            --text-color: #F0F8FF; /* Alice Blue */
-            --footer-bg: #08081A; /* Even Darker Blue-Purple */
-            --glass-bg: rgba(13, 13, 43, 0.7); /* Semi-transparent dark blue-purple */
-            --glass-border: rgba(240, 248, 255, 0.3); /* Light border */
+            /* Tech Tidbits Theme Colors */
+            --bg-color-primary: #000046; /* Dark Blue */
+            --bg-color-secondary: #1CB5E0; /* Bright Blue */
+            --text-color: #E0FFFF; /* Light Cyan */
+            --footer-bg: #000030; /* Even Darker Blue */
+            --glass-bg: rgba(0, 0, 70, 0.7); /* Semi-transparent dark blue */
+            --glass-border: rgba(224, 255, 255, 0.3); /* Light border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #8A2BE2; /* Blue Violet */
+            --title-color: #00FFFF; /* Cyan */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #4B0082; /* Indigo */
-            --main-action-btn-hover: #2F004F; /* Darker Indigo */
-            --theme-indicator-color: #8A2BE2; /* Blue Violet */
+            --main-action-btn: #8A2BE2; /* Blue Violet */
+            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
+            --theme-indicator-color: #00FFFF; /* Cyan */
             --favorite-btn-color: #FFD700; /* Gold for favorite */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
             --share-btn-color: #20B2AA; /* Light Sea Green */
             --share-btn-hover: #1A8B84; /* Darker Light Sea Green */
-            --rating-active-color: #4B0082; /* Indigo */
-            --rating-text-color: #F0F8FF; /* Alice Blue */
+            --rating-active-color: #8A2BE2; /* Blue Violet */
+            --rating-text-color: #E0FFFF; /* Light Cyan */
         }
 
         body {
@@ -69,6 +69,12 @@
             justify-content: center;
             min-height: 300px;
             transition: all 0.5s ease;
+            animation: fadeInScale 0.8s ease-out forwards; /* Added animation */
+        }
+
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         h1 {
@@ -113,6 +119,13 @@
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+
+        .action-button:disabled {
+            background-color: #555;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
 
         .rating-section {
@@ -303,391 +316,4 @@
         }
 
         /* Responsive adjustments */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            #fact-display {
-                font-size: 1.5rem;
-            }
-            .container {
-                padding: 30px;
-            }
-            .action-button {
-                padding: 12px 25px;
-                font-size: 1.1rem;
-            }
-            .utility-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <div class="theme-indicator">Theme: <span id="current-theme">Cosmic Chronicles</span></div>
-        <h1 id="site-title">Cosmic Chronicles</h1>
-        <p id="fact-display" class="revealed">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
-        <div class="rating-section">
-            <div id="popularity-score">Rating: 0</div>
-            <div class="rating-buttons">
-                <button class="rating-button" id="thumbs-up-btn" title="Like this fact">👍</button>
-                <button class="rating-button" id="thumbs-down-btn" title="Dislike this fact">👎</button>
-            </div>
-        </div>
-        <button class="action-button" id="next-fact-btn">Next Fact</button>
-        <button class="favorite-button" id="favorite-btn" title="Add to favorites">⭐</button>
-
-        <div class="utility-buttons">
-            <button class="action-button" id="share-fact-btn">Share Fact</button>
-            <button class="action-button" id="view-history-btn">View History</button>
-            <button class="action-button" id="view-favorites-btn">View Favorites</button>
-        </div>
-    </div>
-
-    <div id="history-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="close-history-modal">&times;</span>
-            <h2>Fact History</h2>
-            <ul id="history-list"></ul>
-        </div>
-    </div>
-
-    <div id="favorites-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="close-favorites-modal">&times;</span>
-            <h2>Favorite Facts</h2>
-            <ul id="favorites-list"></ul>
-        </div>
-    </div>
-
-    <footer>
-        <p>Last updated: <span id="update-time"></span></p>
-    </footer>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const updateTimeElement = document.getElementById('update-time');
-            const now = new Date();
-            updateTimeElement.textContent = now.toLocaleString();
-
-            const siteTitle = document.getElementById('site-title');
-            const currentThemeIndicator = document.getElementById('current-theme');
-            const factDisplay = document.getElementById('fact-display');
-            const nextFactBtn = document.getElementById('next-fact-btn');
-            const favoriteBtn = document.getElementById('favorite-btn');
-            const shareFactBtn = document.getElementById('share-fact-btn');
-            const viewHistoryBtn = document.getElementById('view-history-btn');
-            const viewFavoritesBtn = document.getElementById('view-favorites-btn');
-            const historyModal = document.getElementById('history-modal');
-            const favoritesModal = document.getElementById('favorites-modal');
-            const closeHistoryModal = document.getElementById('close-history-modal');
-            const closeFavoritesModal = document.getElementById('close-favorites-modal');
-            const historyList = document.getElementById('history-list');
-            const favoritesList = document.getElementById('favorites-list');
-            const thumbsUpBtn = document.getElementById('thumbs-up-btn');
-            const thumbsDownBtn = document.getElementById('thumbs-down-btn');
-            const popularityScoreElement = document.getElementById('popularity-score');
-            const root = document.documentElement;
-
-            const themes = [
-                {
-                    name: "Cosmic Chronicles",
-                    title: "Cosmic Chronicles",
-                    fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-                    colors: {
-                        '--bg-color-primary': '#0D0D2B',
-                        '--bg-color-secondary': '#1A0033',
-                        '--text-color': '#F0F8FF',
-                        '--footer-bg': '#08081A',
-                        '--glass-bg': 'rgba(13, 13, 43, 0.7)',
-                        '--glass-border': 'rgba(240, 248, 255, 0.3)',
-                        '--title-color': '#8A2BE2',
-                        '--main-action-btn': '#4B0082',
-                        '--main-action-btn-hover': '#2F004F',
-                        '--theme-indicator-color': '#8A2BE2',
-                        '--rating-active-color': '#4B0082',
-                        '--rating-text-color': '#F0F8FF'
-                    }
-                },
-                {
-                    name: "Oceanic Depths",
-                    title: "Oceanic Depths",
-                    fact: "The deepest part of the ocean is about 7 miles deep, deeper than Mount Everest is tall.",
-                    colors: {
-                        '--bg-color-primary': '#000080',
-                        '--bg-color-secondary': '#4169E1',
-                        '--text-color': '#E0FFFF',
-                        '--footer-bg': '#000066',
-                        '--glass-bg': 'rgba(0, 0, 128, 0.7)',
-                        '--glass-border': 'rgba(224, 255, 255, 0.3)',
-                        '--title-color': '#87CEEB',
-                        '--main-action-btn': '#1E90FF',
-                        '--main-action-btn-hover': '#0000CD',
-                        '--theme-indicator-color': '#87CEEB',
-                        '--rating-active-color': '#1E90FF',
-                        '--rating-text-color': '#E0FFFF'
-                    }
-                },
-                {
-                    name: "Ancient Wonders",
-                    title: "Ancient Wonders",
-                    fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",
-                    colors: {
-                        '--bg-color-primary': '#8B4513',
-                        '--bg-color-secondary': '#D2B48C',
-                        '--text-color': '#FFF8DC',
-                        '--footer-bg': '#654321',
-                        '--glass-bg': 'rgba(139, 69, 19, 0.7)',
-                        '--glass-border': 'rgba(255, 248, 220, 0.3)',
-                        '--title-color': '#DAA520',
-                        '--main-action-btn': '#B8860B',
-                        '--main-action-btn-hover': '#8B6914',
-                        '--theme-indicator-color': '#DAA520',
-                        '--rating-active-color': '#B8860B',
-                        '--rating-text-color': '#FFF8DC'
-                    }
-                },
-                {
-                    name: "Nature's Marvels",
-                    title: "Nature's Marvels",
-                    fact: "A single cloud can weigh more than a million pounds.",
-                    colors: {
-                        '--bg-color-primary': '#228B22',
-                        '--bg-color-secondary': '#3CB371',
-                        '--text-color': '#F0FFF0',
-                        '--footer-bg': '#1A6B1A',
-                        '--glass-bg': 'rgba(34, 139, 34, 0.7)',
-                        '--glass-border': 'rgba(240, 255, 240, 0.3)',
-                        '--title-color': '#8FBC8F',
-                        '--main-action-btn': '#6B8E23',
-                        '--main-action-btn-hover': '#556B2F',
-                        '--theme-indicator-color': '#8FBC8F',
-                        '--rating-active-color': '#6B8E23',
-                        '--rating-text-color': '#F0FFF0'
-                    }
-                },
-                {
-                    name: "Historical Echoes",
-                    title: "Historical Echoes",
-                    fact: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted between 38 and 45 minutes.",
-                    colors: {
-                        '--bg-color-primary': '#5C4033',
-                        '--bg-color-secondary': '#8B4513',
-                        '--text-color': '#F5DEB3',
-                        '--footer-bg': '#4A3228',
-                        '--glass-bg': 'rgba(92, 64, 51, 0.7)',
-                        '--glass-border': 'rgba(245, 222, 179, 0.3)',
-                        '--title-color': '#D2B48C',
-                        '--main-action-btn': '#A0522D',
-                        '--main-action-btn-hover': '#8B4513',
-                        '--theme-indicator-color': '#D2B48C',
-                        '--rating-active-color': '#A0522D',
-                        '--rating-text-color': '#F5DEB3'
-                    }
-                },
-                {
-                    name: "Tech Tidbits",
-                    title: "Tech Tidbits",
-                    fact: "The internet weighs about the same as a single strawberry.",
-                    colors: {
-                        '--bg-color-primary': '#000046',
-                        '--bg-color-secondary': '#1CB5E0',
-                        '--text-color': '#E0FFFF',
-                        '--footer-bg': '#000030',
-                        '--glass-bg': 'rgba(0, 0, 70, 0.7)',
-                        '--glass-border': 'rgba(224, 255, 255, 0.3)',
-                        '--title-color': '#00FFFF',
-                        '--main-action-btn': '#8A2BE2',
-                        '--main-action-btn-hover': '#6A0DAD',
-                        '--theme-indicator-color': '#00FFFF',
-                        '--rating-active-color': '#8A2BE2',
-                        '--rating-text-color': '#E0FFFF'
-                    }
-                }
-            ];
-
-            let currentThemeIndex = 0; // Start with Cosmic Chronicles
-            let factHistory = [];
-            let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];
-            let factRatings = JSON.parse(localStorage.getItem('factRatings')) || {}; // Stores {fact: score}
-
-            function addFactToHistory(fact) {
-                if (!factHistory.includes(fact)) {
-                    factHistory.unshift(fact); // Add to the beginning
-                    if (factHistory.length > 10) { // Keep history to a reasonable size
-                        factHistory.pop();
-                    }
-                }
-            }
-
-            function saveFavoriteFact(fact) {
-                if (!favoriteFacts.includes(fact)) {
-                    favoriteFacts.push(fact);
-                    localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));
-                    favoriteBtn.classList.add('favorited');
-                } else {
-                    favoriteFacts = favoriteFacts.filter(f => f !== fact);
-                    localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));
-                    favoriteBtn.classList.remove('favorited');
-                }
-            }
-
-            function updateFactRating(fact, type) {
-                if (!factRatings[fact]) {
-                    factRatings[fact] = { upvotes: 0, downvotes: 0, userVote: null };
-                }
-
-                const currentRating = factRatings[fact];
-
-                if (type === 'upvote') {
-                    if (currentRating.userVote === 'up') {
-                        currentRating.upvotes--;
-                        currentRating.userVote = null;
-                    } else {
-                        if (currentRating.userVote === 'down') {
-                            currentRating.downvotes--;
-                        }
-                        currentRating.upvotes++;
-                        currentRating.userVote = 'up';
-                    }
-                } else if (type === 'downvote') {
-                    if (currentRating.userVote === 'down') {
-                        currentRating.downvotes--;
-                        currentRating.userVote = null;
-                    } else {
-                        if (currentRating.userVote === 'up') {
-                            currentRating.upvotes--;
-                        }
-                        currentRating.downvotes++;
-                        currentRating.userVote = 'down';
-                    }
-                }
-                localStorage.setItem('factRatings', JSON.stringify(factRatings));
-                displayFactRating(fact);
-            }
-
-            function displayFactRating(fact) {
-                const rating = factRatings[fact] || { upvotes: 0, downvotes: 0, userVote: null };
-                const score = rating.upvotes - rating.downvotes;
-                popularityScoreElement.textContent = `Rating: ${score}`;
-
-                thumbsUpBtn.classList.remove('active');
-                thumbsDownBtn.classList.remove('active');
-
-                if (rating.userVote === 'up') {
-                    thumbsUpBtn.classList.add('active');
-                } else if (rating.userVote === 'down') {
-                    thumbsDownBtn.classList.add('active');
-                }
-            }
-
-            function displayFact(theme) {
-                siteTitle.textContent = theme.title;
-                currentThemeIndicator.textContent = theme.name;
-                factDisplay.textContent = theme.fact;
-                addFactToHistory(theme.fact);
-
-                for (const [prop, value] of Object.entries(theme.colors)) {
-                    root.style.setProperty(prop, value);
-                }
-
-                // Check if current fact is favorited
-                if (favoriteFacts.includes(theme.fact)) {
-                    favoriteBtn.classList.add('favorited');
-                } else {
-                    favoriteBtn.classList.remove('favorited');
-                }
-
-                // Display fact rating
-                displayFactRating(theme.fact);
-
-                // Animate fact display
-                factDisplay.classList.remove('revealed');
-                setTimeout(() => {
-                    factDisplay.classList.add('revealed');
-                }, 100);
-            }
-
-            function showHistory() {
-                historyList.innerHTML = '';
-                if (factHistory.length === 0) {
-                    historyList.innerHTML = '<li>No facts in history yet.</li>';
-                } else {
-                    factHistory.forEach(fact => {
-                        const li = document.createElement('li');
-                        li.textContent = fact;
-                        historyList.appendChild(li);
-                    });
-                }
-                historyModal.style.display = 'block';
-            }
-
-            function showFavorites() {
-                favoritesList.innerHTML = '';
-                if (favoriteFacts.length === 0) {
-                    favoritesList.innerHTML = '<li>No favorite facts yet.</li>';
-                } else {
-                    favoriteFacts.forEach(fact => {
-                        const li = document.createElement('li');
-                        li.textContent = fact;
-                        favoritesList.appendChild(li);
-                    });
-                }
-                favoritesModal.style.display = 'block';
-            }
-
-            nextFactBtn.addEventListener('click', () => {
-                currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-                displayFact(themes[currentThemeIndex]);
-            });
-
-            favoriteBtn.addEventListener('click', () => {
-                saveFavoriteFact(factDisplay.textContent);
-            });
-
-            shareFactBtn.addEventListener('click', async () => {
-                try {
-                    await navigator.clipboard.writeText(factDisplay.textContent);
-                    alert('Fact copied to clipboard!');
-                } catch (err) {
-                    console.error('Failed to copy fact: ', err);
-                    alert('Failed to copy fact.');
-                }
-            });
-
-            thumbsUpBtn.addEventListener('click', () => {
-                updateFactRating(factDisplay.textContent, 'upvote');
-            });
-
-            thumbsDownBtn.addEventListener('click', () => {
-                updateFactRating(factDisplay.textContent, 'downvote');
-            });
-
-            viewHistoryBtn.addEventListener('click', showHistory);
-            viewFavoritesBtn.addEventListener('click', showFavorites);
-
-            closeHistoryModal.addEventListener('click', () => {
-                historyModal.style.display = 'none';
-            });
-
-            closeFavoritesModal.addEventListener('click', () => {
-                favoritesModal.style.display = 'none';
-            });
-
-            window.addEventListener('click', (event) => {
-                if (event.target == historyModal) {
-                    historyModal.style.display = 'none';
-                }
-                if (event.target == favoritesModal) {
-                    favoritesModal.style.display = 'none';
-                }
-            });
-
-            // Initial display
-            displayFact(themes[currentThemeIndex]);
-        });
-    </script>
-</body>
-</html>
+        @media (max-width: 768px) {\n            h1 {\n                font-size: 2.5rem;\n            }\n            #fact-display {\n                font-size: 1.5rem;\n            }\n            .container {\n                padding: 30px;\n            }\n            .action-button {\n                padding: 12px 25px;\n                font-size: 1.1rem;\n            }\n            .utility-buttons {\n                flex-direction: column;\n                align-items: center;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"theme-indicator\">Theme: <span id=\"current-theme\">Tech Tidbits</span></div>\n        <h1 id=\"site-title\">Tech Tidbits</h1>\n        <p id=\"fact-display\" class=\"revealed\">The internet weighs about the same as a single strawberry.</p>\n        <div class=\"rating-section\">\n            <div id=\"popularity-score\">Rating: 0</div>\n            <div class=\"rating-buttons\">\n                <button class=\"rating-button\" id=\"thumbs-up-btn\" title=\"Like this fact\">👍</button>\n                <button class=\"rating-button\" id=\"thumbs-down-btn\" title=\"Dislike this fact\">👎</button>\n            </div>\n        </div>\n        <button class=\"action-button\" id=\"next-fact-btn\">Next Fact</button>\n        <button class=\"favorite-button\" id=\"favorite-btn\" title=\"Add to favorites\">⭐</button>\n\n        <div class=\"utility-buttons\">\n            <button class=\"action-button\" id=\"share-fact-btn\">Share Fact</button>\n            <button class=\"action-button\" id=\"view-history-btn\">View History</button>\n            <button class=\"action-button\" id=\"view-favorites-btn\">View Favorites</button>\n            <button class=\"action-button\" id=\"fact-of-the-day-btn\">Fact of the Day</button>\n        </div>\n    </div>\n\n    <div id=\"history-modal\" class=\"modal\">\n        <div class=\"modal-content\">\n            <span class=\"close-button\" id=\"close-history-modal\">&times;</span>\n            <h2>Fact History</h2>\n            <ul id=\"history-list\"></ul>\n        </div>\n    </div>\n\n    <div id=\"favorites-modal\" class=\"modal\">\n        <div class=\"modal-content\">\n            <span class=\"close-button\" id=\"close-favorites-modal\">&times;</span>\n            <h2>Favorite Facts</h2>\n            <ul id=\"favorites-list\"></ul>\n        </div>\n    </div>\n\n    <footer>\n        <p>Last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const updateTimeElement = document.getElementById('update-time');\n            const now = new Date();\n            updateTimeElement.textContent = now.toLocaleString();\n\n            const siteTitle = document.getElementById('site-title');\n            const currentThemeIndicator = document.getElementById('current-theme');\n            const factDisplay = document.getElementById('fact-display');\n            const nextFactBtn = document.getElementById('next-fact-btn');\n            const favoriteBtn = document.getElementById('favorite-btn');\n            const shareFactBtn = document.getElementById('share-fact-btn');\n            const viewHistoryBtn = document.getElementById('view-history-btn');\n            const viewFavoritesBtn = document.getElementById('view-favorites-btn');\n            const factOfTheDayBtn = document.getElementById('fact-of-the-day-btn');\n            const historyModal = document.getElementById('history-modal');\n            const favoritesModal = document.getElementById('favorites-modal');\n            const closeHistoryModal = document.getElementById('close-history-modal');\n            const closeFavoritesModal = document.getElementById('close-favorites-modal');\n            const historyList = document.getElementById('history-list');\n            const favoritesList = document.getElementById('favorites-list');\n            const thumbsUpBtn = document.getElementById('thumbs-up-btn');\n            const thumbsDownBtn = document.getElementById('thumbs-down-btn');\n            const popularityScoreElement = document.getElementById('popularity-score');\n            const root = document.documentElement;\n\n            const themes = [\n                {\n                    name: "Cosmic Chronicles",\n                    title: "Cosmic Chronicles",\n                    fact: "There are more stars in the universe than grains of sand on all the beaches on Earth.",\n                    colors: {\n                        '--bg-color-primary': '#0D0D2B',\n                        '--bg-color-secondary': '#1A0033',\n                        '--text-color': '#F0F8FF',\n                        '--footer-bg': '#08081A',\n                        '--glass-bg': 'rgba(13, 13, 43, 0.7)',\n                        '--glass-border': 'rgba(240, 248, 255, 0.3)',\n                        '--title-color': '#8A2BE2',\n                        '--main-action-btn': '#4B0082',\n                        '--main-action-btn-hover': '#2F004F',\n                        '--theme-indicator-color': '#8A2BE2',\n                        '--rating-active-color': '#4B0082',\n                        '--rating-text-color': '#F0F8FF'\n                    }\n                },\n                {\n                    name: "Oceanic Depths",\n                    title: "Oceanic Depths",\n                    fact: "The deepest part of the ocean is about 7 miles deep, deeper than Mount Everest is tall.",\n                    colors: {\n                        '--bg-color-primary': '#000080',\n                        '--bg-color-secondary': '#4169E1',\n                        '--text-color': '#E0FFFF',\n                        '--footer-bg': '#000066',\n                        '--glass-bg': 'rgba(0, 0, 128, 0.7)',\n                        '--glass-border': 'rgba(224, 255, 255, 0.3)',\n                        '--title-color': '#87CEEB',\n                        '--main-action-btn': '#1E90FF',\n                        '--main-action-btn-hover': '#0000CD',\n                        '--theme-indicator-color': '#87CEEB',\n                        '--rating-active-color': '#1E90FF',\n                        '--rating-text-color': '#E0FFFF'\n                    }\n                },\n                {\n                    name: "Ancient Wonders",\n                    title: "Ancient Wonders",\n                    fact: "The Great Pyramid of Giza was the tallest man-made structure for over 3,800 years.",\n                    colors: {\n                        '--bg-color-primary': '#8B4513',\n                        '--bg-color-secondary': '#D2B48C',\n                        '--text-color': '#FFF8DC',\n                        '--footer-bg': '#654321',\n                        '--glass-bg': 'rgba(139, 69, 19, 0.7)',\n                        '--glass-border': 'rgba(255, 248, 220, 0.3)',\n                        '--title-color': '#DAA520',\n                        '--main-action-btn': '#B8860B',\n                        '--main-action-btn-hover': '#8B6914',\n                        '--theme-indicator-color': '#DAA520',\n                        '--rating-active-color': '#B8860B',\n                        '--rating-text-color': '#FFF8DC'\n                    }\n                },\n                {\n                    name: "Nature's Marvels",\n                    title: "Nature's Marvels",\n                    fact: "A single cloud can weigh more than a million pounds.",\n                    colors: {\n                        '--bg-color-primary': '#228B22',\n                        '--bg-color-secondary': '#3CB371',\n                        '--text-color': '#F0FFF0',\n                        '--footer-bg': '#1A6B1A',\n                        '--glass-bg': 'rgba(34, 139, 34, 0.7)',\n                        '--glass-border': 'rgba(240, 255, 240, 0.3)',\n                        '--title-color': '#8FBC8F',\n                        '--main-action-btn': '#6B8E23',\n                        '--main-action-btn-hover': '#556B2F',\n                        '--theme-indicator-color': '#8FBC8F',\n                        '--rating-active-color': '#6B8E23',\n                        '--rating-text-color': '#F0FFF0'\n                    }\n                },\n                {\n                    name: "Historical Echoes",\n                    title: "Historical Echoes",\n                    fact: "The shortest war in history was between Britain and Zanzibar on August 27, 1896. It lasted between 38 and 45 minutes.",\n                    colors: {\n                        '--bg-color-primary': '#5C4033',\n                        '--bg-color-secondary': '#8B4513',\n                        '--text-color': '#F5DEB3',\n                        '--footer-bg': '#4A3228',\n                        '--glass-bg': 'rgba(92, 64, 51, 0.7)',\n                        '--glass-border': 'rgba(245, 222, 179, 0.3)',\n                        '--title-color': '#D2B48C',\n                        '--main-action-btn': '#A0522D',\n                        '--main-action-btn-hover': '#8B4513',\n                        '--theme-indicator-color': '#D2B48C',\n                        '--rating-active-color': '#A0522D',\n                        '--rating-text-color': '#F5DEB3'\n                    }\n                },\n                {\n                    name: "Tech Tidbits",\n                    title: "Tech Tidbits",\n                    fact: "The internet weighs about the same as a single strawberry.",\n                    colors: {\n                        '--bg-color-primary': '#000046',\n                        '--bg-color-secondary': '#1CB5E0',\n                        '--text-color': '#E0FFFF',\n                        '--footer-bg': '#000030',\n                        '--glass-bg': 'rgba(0, 0, 70, 0.7)',\n                        '--glass-border': 'rgba(224, 255, 255, 0.3)',\n                        '--title-color': '#00FFFF',\n                        '--main-action-btn': '#8A2BE2',\n                        '--main-action-btn-hover': '#6A0DAD',\n                        '--theme-indicator-color': '#00FFFF',\n                        '--rating-active-color': '#8A2BE2',\n                        '--rating-text-color': '#E0FFFF'\n                    }\n                }\n            ];\n\n            let currentThemeIndex = 5; // Start with Tech Tidbits\n            let factHistory = [];\n            let favoriteFacts = JSON.parse(localStorage.getItem('favoriteFacts')) || [];\n            let factRatings = JSON.parse(localStorage.getItem('factRatings')) || {}; // Stores {fact: score}\n            let factOfTheDayUsed = false; // New flag for Fact of the Day\n\n            // Extract all unique facts for "Fact of the Day" feature\n            const allFacts = themes.map(theme => theme.fact);\n\n            function addFactToHistory(fact) {\n                if (!factHistory.includes(fact)) {\n                    factHistory.unshift(fact); // Add to the beginning\n                    if (factHistory.length > 10) { // Keep history to a reasonable size\n                        factHistory.pop();\n                    }\n                }\n            }\n\n            function saveFavoriteFact(fact) {\n                if (!favoriteFacts.includes(fact)) {\n                    favoriteFacts.push(fact);\n                    localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));\n                    favoriteBtn.classList.add('favorited');\n                } else {\n                    favoriteFacts = favoriteFacts.filter(f => f !== fact);\n                    localStorage.setItem('favoriteFacts', JSON.stringify(favoriteFacts));\n                    favoriteBtn.classList.remove('favorited');\n                }\n            }\n\n            function updateFactRating(fact, type) {\n                if (!factRatings[fact]) {\n                    factRatings[fact] = { upvotes: 0, downvotes: 0, userVote: null };\n                }\n\n                const currentRating = factRatings[fact];\n\n                if (type === 'upvote') {\n                    if (currentRating.userVote === 'up') {\n                        currentRating.upvotes--;\n                        currentRating.userVote = null;\n                    } else {\n                        if (currentRating.userVote === 'down') {\n                            currentRating.downvotes--;\n                        }\n                        currentRating.upvotes++;\n                        currentRating.userVote = 'up';\n                    }\n                } else if (type === 'downvote') {\n                    if (currentRating.userVote === 'down') {\n                        currentRating.downvotes--;\n                        currentRating.userVote = null;\n                    } else {\n                        if (currentRating.userVote === 'up') {\n                            currentRating.upvotes--;\n                        }\n                        currentRating.downvotes++;\n                        currentRating.userVote = 'down';\n                    }\n                }\n                localStorage.setItem('factRatings', JSON.stringify(factRatings));\n                displayFactRating(fact);\n            }\n\n            function displayFactRating(fact) {\n                const rating = factRatings[fact] || { upvotes: 0, downvotes: 0, userVote: null };\n                const score = rating.upvotes - rating.downvotes;\n                popularityScoreElement.textContent = `Rating: ${score}`;\n\n                thumbsUpBtn.classList.remove('active');\n                thumbsDownBtn.classList.remove('active');\n\n                if (rating.userVote === 'up') {\n                    thumbsUpBtn.classList.add('active');\n                } else if (rating.userVote === 'down') {\n                    thumbsDownBtn.classList.add('active');\n                }\n            }\n\n            function displayFact(theme) {\n                siteTitle.textContent = theme.title;\n                currentThemeIndicator.textContent = theme.name;\n                factDisplay.textContent = theme.fact;\n                addFactToHistory(theme.fact);\n\n                for (const [prop, value] of Object.entries(theme.colors)) {\n                    root.style.setProperty(prop, value);\n                }\n\n                // Check if current fact is favorited\n                if (favoriteFacts.includes(theme.fact)) {\n                    favoriteBtn.classList.add('favorited');\n                } else {\n                    favoriteBtn.classList.remove('favorited');\n                }\n\n                // Display fact rating\n                displayFactRating(theme.fact);\n\n                // Animate fact display\n                factDisplay.classList.remove('revealed');\n                setTimeout(() => {\n                    factDisplay.classList.add('revealed');\n                }, 100);\n            }\n\n            function showHistory() {\n                historyList.innerHTML = '';\n                if (factHistory.length === 0) {\n                    historyList.innerHTML = '<li>No facts in history yet.</li>';\n                } else {\n                    factHistory.forEach(fact => {\n                        const li = document.createElement('li');\n                        li.textContent = fact;\n                        historyList.appendChild(li);\n                    });\n                }\n                historyModal.style.display = 'block';\n            }\n\n            function showFavorites() {\n                favoritesList.innerHTML = '';\n                if (favoriteFacts.length === 0) {\n                    favoritesList.innerHTML = '<li>No favorite facts yet.</li>';\n                } else {\n                    favoriteFacts.forEach(fact => {\n                        const li = document.createElement('li');\n                        li.textContent = fact;\n                        favoritesList.appendChild(li);\n                    });\n                }\n                favoritesModal.style.display = 'block';\n            }\n\n            nextFactBtn.addEventListener('click', () => {\n                currentThemeIndex = (currentThemeIndex + 1) % themes.length;\n                displayFact(themes[currentThemeIndex]);\n            });\n\n            favoriteBtn.addEventListener('click', () => {\n                saveFavoriteFact(factDisplay.textContent);\n            });\n\n            shareFactBtn.addEventListener('click', async () => {\n                try {\n                    await navigator.clipboard.writeText(factDisplay.textContent);\n                    alert('Fact copied to clipboard!');\n                } catch (err) {\n                    console.error('Failed to copy fact: ', err);\n                    alert('Failed to copy fact.');\n                }\n            });\n\n            thumbsUpBtn.addEventListener('click', () => {\n                updateFactRating(factDisplay.textContent, 'upvote');\n            });\n\n            thumbsDownBtn.addEventListener('click', () => {\n                updateFactRating(factDisplay.textContent, 'downvote');\n            });\n\n            viewHistoryBtn.addEventListener('click', showHistory);\n            viewFavoritesBtn.addEventListener('click', showFavorites);\n\n            factOfTheDayBtn.addEventListener('click', () => {\n                if (!factOfTheDayUsed) {\n                    const randomIndex = Math.floor(Math.random() * allFacts.length);\n                    const randomFact = allFacts[randomIndex];\n                    const correspondingTheme = themes.find(theme => theme.fact === randomFact);\n                    if (correspondingTheme) {\n                        displayFact(correspondingTheme);\n                        factOfTheDayUsed = true;\n                        factOfTheDayBtn.disabled = true;\n                    }\n                } else {\n                    alert('You\'ve already revealed the Fact of the Day! Refresh the page for a new one.');\n                }\n            });\n\n            closeHistoryModal.addEventListener('click', () => {\n                historyModal.style.display = 'none';\n            });\n\n            closeFavoritesModal.addEventListener('click', () => {\n                favoritesModal.style.display = 'none';\n            });\n\n            window.addEventListener('click', (event) => {\n                if (event.target == historyModal) {\n                    historyModal.style.display = 'none';\n                }\n                if (event.target == favoritesModal) {\n                    favoritesModal.style.display = 'none';\n                }\n            });\n\n            // Initial display\n            displayFact(themes[currentThemeIndex]);\n        });\n    </script>\n</body>\n</html>
