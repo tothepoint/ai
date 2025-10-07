@@ -3,44 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Oceanic Mysteries</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Ocean Depths Theme Colors */
-            --bg-color-primary: #00072D; /* Very Dark Blue */
-            --bg-color-secondary: #001F54; /* Darker Blue */
-            --text-color: #E0FFFF; /* Light Cyan */
-            --footer-bg: #00031A; /* Even Darker Blue */
-            --glass-bg: rgba(0, 31, 84, 0.7); /* Semi-transparent dark blue */
+            /* Cosmic Wonders Theme Colors */
+            --bg-color-primary: #0A0A2A; /* Very Dark Blue/Purple, like deep space */
+            --bg-color-secondary: #1A1A4A; /* Slightly lighter dark blue/purple */
+            --text-color: #E0FFFF; /* Light Cyan, for stars/nebulae */
+            --footer-bg: #05051A; /* Even darker blue/purple */
+            --glass-bg: rgba(26, 26, 74, 0.7); /* Semi-transparent dark blue/purple */
             --glass-border: rgba(224, 255, 255, 0.3); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #4CAF50; /* Sea Green */
+            --title-color: #FFD700; /* Gold, for stars/celestial bodies */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #007BFF; /* Bright Blue */
-            --main-action-btn-hover: #0056b3; /* Darker Bright Blue */
-            --theme-indicator-color: #4CAF50; /* Sea Green */
+            --main-action-btn: #8A2BE2; /* Blue Violet, cosmic feel */
+            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
+            --theme-indicator-color: #FFD700; /* Gold */
             --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #28A745; /* Green */
-            --share-btn-hover: #218838; /* Dark Green */
-            --rating-active-color: #007BFF; /* Bright Blue */
+            --share-btn-color: #00CED1; /* Dark Turquoise, for nebulae */
+            --share-btn-hover: #008B8B; /* Dark Cyan */
+            --rating-active-color: #8A2BE2; /* Blue Violet */
             --rating-text-color: #E0FFFF; /* Light Cyan */
-            --category-select-bg: #001F54; /* Darker Blue for select */
-            --category-select-border: #007BFF; /* Bright Blue border */
+            --category-select-bg: #1A1A4A;
+            --category-select-border: #8A2BE2;
             --search-input-bg: rgba(255, 255, 255, 0.1);
             --search-input-border: rgba(224, 255, 255, 0.5);
             --search-input-text: #E0FFFF;
-            --fact-card-bg: rgba(0, 31, 84, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(76, 175, 80, 0.5); /* Sea Green border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(76, 175, 80, 0.7); /* Sea Green glow */
-            --carousel-control-color: #4CAF50; /* Sea Green for carousel controls */
-            --carousel-control-hover: #367C39; /* Darker Sea Green */
-            --trivia-correct-color: #28A745; /* Green */
-            --trivia-incorrect-color: #DC3545; /* Red */
-            --streak-color: #4CAF50; /* Sea Green for streak */
-            --streak-glow: 0 0 15px rgba(76, 175, 80, 0.5);
-            --quiz-correct-color: #28A745; /* Green */
-            --quiz-incorrect-color: #DC3545; /* Red */
+            --fact-card-bg: rgba(26, 26, 74, 0.8);
+            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
+            --carousel-control-color: #FFD700;
+            --carousel-control-hover: #B8860B;
+            --trivia-correct-color: #00CED1;
+            --trivia-incorrect-color: #DC3545;
+            --streak-color: #FFD700;
+            --streak-glow: 0 0 15px rgba(255, 215, 0, 0.5);
+            --quiz-correct-color: #00CED1;
+            --quiz-incorrect-color: #DC3545;
+            --scramble-input-bg: rgba(255, 255, 255, 0.1);
+            --scramble-input-border: #8A2BE2;
+            --scramble-input-text: #E0FFFF;
+            --scramble-button-bg: #00CED1;
+            --scramble-button-hover: #008B8B;
+            --scramble-message-correct: #00CED1;
+            --scramble-message-incorrect: #DC3545;
         }
 
         body {
@@ -101,21 +108,21 @@
             transition: color 0.5s ease;
         }
 
-        #fact-display, #challenge-fact-display, #trivia-fact-display, #scramble-fact-display {
+        #fact-display, #scramble-fact-display {
             font-size: 2.2rem;
             font-weight: 500;
             margin: 30px 0 15px 0;
             line-height: 1.4;
             text-shadow: var(--fact-text-shadow);
             color: var(--text-color);
-            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease; /* Added filter */
-            opacity: 1; /* Fact is visible by default */
-            transform: translateY(0); /* Fact is visible by default */
+            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease;
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .blurred-fact {
-            filter: blur(8px); /* Blur effect */
-            cursor: pointer; /* Indicate it's clickable */
+            filter: blur(8px);
+            cursor: pointer;
         }
 
         .fact-card {
@@ -128,7 +135,7 @@
             width: 90%;
             max-width: 600px;
             transition: all 0.5s ease;
-            position: relative; /* For carousel controls */
+            position: relative;
         }
 
         .action-button {
@@ -254,23 +261,23 @@
         footer {
             margin-top: 40px;
             padding: 20px;
-            background-color: var(--footer-bg); /* Updated footer background */
+            background-color: var(--footer-bg);
             color: var(--text-color);
             width: 100%;
             box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
             transition: background-color 0.5s ease, color 0.5s ease;
-            animation: footerPulse 5s infinite alternate; /* Added animation */
+            animation: footerPulse 5s infinite alternate;
         }
 
         @keyframes footerPulse {
             0% { box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); }
-            100% { box-shadow: 0 -2px 20px rgba(0, 123, 255, 0.5); } /* Blue glow for ocean theme */
+            100% { box-shadow: 0 -2px 20px rgba(138, 43, 226, 0.5); } /* Blue Violet glow for cosmic theme */
         }
 
         /* New styles for the interactive fact reveal */
         .fact-reveal-wrapper {
             position: relative;
-            display: inline-block; /* To make the blur effect apply correctly */
+            display: inline-block;
         }
 
         .fact-reveal-overlay {
@@ -279,7 +286,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3); /* Dark overlay */
+            background: rgba(0, 0, 0, 0.3);
             border-radius: 15px;
             display: flex;
             justify-content: center;
@@ -288,20 +295,20 @@
             font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            opacity: 0; /* Hidden by default */
+            opacity: 0;
             transition: opacity 0.3s ease;
         }
 
         .fact-reveal-wrapper:hover .fact-reveal-overlay {
-            opacity: 1; /* Show overlay on hover */
+            opacity: 1;
         }
 
         .fact-reveal-overlay.active {
-            opacity: 0; /* Hide overlay when fact is revealed */
+            opacity: 0;
         }
 
         .fact-revealed {
-            filter: blur(0px) !important; /* Remove blur when revealed */
+            filter: blur(0px) !important;
         }
 
         /* Styles for the "Dive Deeper" button */
@@ -324,19 +331,98 @@
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
         }
 
+        /* Styles for Fact Scramble Game */
+        .scramble-section {
+            margin-top: 40px;
+            background-color: var(--fact-card-bg);
+            border: 2px solid var(--fact-card-border);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.6);
+            width: 90%;
+            max-width: 600px;
+        }
+
+        .scramble-section h2 {
+            color: var(--title-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            text-shadow: var(--title-shadow);
+        }
+
+        #scrambled-fact-display {
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin: 20px 0;
+            line-height: 1.4;
+            color: var(--text-color);
+        }
+
+        #scramble-input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            border: 2px solid var(--scramble-input-border);
+            background-color: var(--scramble-input-bg);
+            color: var(--scramble-input-text);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scramble-input::placeholder {
+            color: rgba(224, 255, 255, 0.7);
+        }
+
+        .scramble-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .scramble-button {
+            background-color: var(--scramble-button-bg);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .scramble-button:hover {
+            background-color: var(--scramble-button-hover);
+            transform: translateY(-2px);
+        }
+
+        #scramble-message {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .correct-message {
+            color: var(--scramble-message-correct);
+        }
+
+        .incorrect-message {
+            color: var(--scramble-message-incorrect);
+        }
+
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: Ocean Depths</div>
+        <div class="theme-indicator">Theme: Cosmic Wonders</div>
         <button class="favorite-button" aria-label="Add to favorites">⭐</button>
-        <h1>Oceanic Mysteries</h1>
+        <h1>Cosmic Wonders</h1>
         <div class="fact-card">
             <div class="fact-reveal-wrapper">
-                <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet). If Mount Everest were placed in the trench, its peak would still be over a mile underwater!</p>
+                <p id="fact-display" class="blurred-fact">A teaspoon of neutron star material would weigh about 6 billion tons, roughly the same as all of humanity.</p>
                 <div class="fact-reveal-overlay">Click to Reveal</div>
             </div>
-            <button class="dive-deeper-button" id="dive-deeper-btn">Dive Deeper</button>
+            <button class="dive-deeper-button" id="dive-deeper-btn">Next Cosmic Fact</button>
             <button class="share-button">Share</button>
         </div>
 
@@ -349,10 +435,22 @@
             </div>
             <p id="popularity-score">Current Score: 0</p>
         </div>
+
+        <div class="scramble-section">
+            <h2>Fact Scramble Challenge!</h2>
+            <p>Unscramble the words to reveal the hidden cosmic fact.</p>
+            <p id="scrambled-fact-display"></p>
+            <input type="text" id="scramble-input" placeholder="Type the unscrambled fact here...">
+            <div class="scramble-buttons">
+                <button class="scramble-button" id="check-scramble-btn">Check Answer</button>
+                <button class="scramble-button" id="new-scramble-btn">New Scramble</button>
+            </div>
+            <p id="scramble-message"></p>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Oceanic Mysteries. All rights reserved.</p>
+        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>
     </footer>
 
     <script>
@@ -363,15 +461,22 @@
         const mainTitle = document.querySelector('h1');
         const themeIndicator = document.querySelector('.theme-indicator');
 
+        const scrambledFactDisplay = document.getElementById('scrambled-fact-display');
+        const scrambleInput = document.getElementById('scramble-input');
+        const checkScrambleBtn = document.getElementById('check-scramble-btn');
+        const newScrambleBtn = document.getElementById('new-scramble-btn');
+        const scrambleMessage = document.getElementById('scramble-message');
+
         const facts = [
-            "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet). If Mount Everest were placed in the trench, its peak would still be over a mile underwater!",
-            "The ocean contains nearly 20 million tons of gold, but it's so diluted that each liter of seawater contains only about 13 billionths of a gram.",
-            "More than 80% of the ocean has never been mapped, explored, or even seen by humans.",
-            "The Great Barrier Reef is the largest living structure on Earth, visible from outer space.",
-            "There are more historic artifacts and wrecks in the ocean than in all the world's museums combined."
+            "A teaspoon of neutron star material would weigh about 6 billion tons, roughly the same as all of humanity.",
+            "The observable universe is estimated to contain 2 trillion galaxies.",
+            "One million Earths could fit inside the Sun.",
+            "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+            "The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a supercluster of galaxies 10 billion light-years across."
         ];
 
         let currentFactIndex = 0;
+        let currentScrambleFact = "";
 
         function displayFact(fact) {
             factDisplay.textContent = fact;
@@ -379,6 +484,24 @@
             factDisplay.classList.remove('fact-revealed');
             factRevealOverlay.classList.remove('active');
             factRevealOverlay.textContent = 'Click to Reveal';
+        }
+
+        function shuffleWords(text) {
+            const words = text.split(' ');
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]];
+            }
+            return words.join(' ');
+        }
+
+        function startScrambleGame() {
+            const factToScramble = facts[Math.floor(Math.random() * facts.length)];
+            currentScrambleFact = factToScramble;
+            scrambledFactDisplay.textContent = shuffleWords(factToScramble);
+            scrambleInput.value = '';
+            scrambleMessage.textContent = '';
+            scrambleInput.style.borderColor = 'var(--scramble-input-border)';
         }
 
         factRevealOverlay.addEventListener('click', () => {
@@ -392,8 +515,24 @@
             displayFact(facts[currentFactIndex]);
         });
 
+        checkScrambleBtn.addEventListener('click', () => {
+            const userAnswer = scrambleInput.value.trim();
+            if (userAnswer.toLowerCase() === currentScrambleFact.toLowerCase()) {
+                scrambleMessage.textContent = 'Correct! You\'re a cosmic genius! ✨';
+                scrambleMessage.className = 'correct-message';
+                scrambleInput.style.borderColor = 'var(--scramble-message-correct)';
+            } else {
+                scrambleMessage.textContent = 'Not quite. Keep trying, space explorer!';
+                scrambleMessage.className = 'incorrect-message';
+                scrambleInput.style.borderColor = 'var(--scramble-message-incorrect)';
+            }
+        });
+
+        newScrambleBtn.addEventListener('click', startScrambleGame);
+
         // Initial fact display
         displayFact(facts[currentFactIndex]);
+        startScrambleGame(); // Start the scramble game on load
 
         // Rating functionality (existing, kept for completeness)
         const ratingButtons = document.querySelectorAll('.rating-button');
