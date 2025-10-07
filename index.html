@@ -27,15 +27,7 @@
             --rating-text-color: #E0E0FF; /* Light Lavender/Blue */
             --category-select-bg: #330066; /* Dark Purple for select */
             --category-select-border: #8A2BE2; /* Blue Violet border */
-            --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 224, 255, 0.5);
-            --search-input-text: #E0E0FF;
-            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */
-            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
-            --carousel-control-color: #FFD700; /* Gold for carousel controls */
-            --carousel-control-hover: #FFFF00; /* Yellow */
-            --trivia-correct-color: #4CAF50; /* Green */
+            --search-input-bg: rgba(255, 255, 255, 0.1);\n            --search-input-border: rgba(224, 224, 255, 0.5);\n            --search-input-text: #E0E0FF;\n            --fact-card-bg: rgba(51, 0, 102, 0.8); /* Slightly darker glass for fact card */\n            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */\n            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */\n            --carousel-control-color: #FFD700; /* Gold for carousel controls */\n            --carousel-control-hover: #FFFF00; /* Yellow */\n            --trivia-correct-color: #4CAF50; /* Green */
             --trivia-incorrect-color: #F44336; /* Red */
             --streak-color: #FFD700; /* Gold for streak */
             --streak-glow: 0 0 15px rgba(255, 215, 0, 0.5);
@@ -1261,6 +1253,13 @@
                 revealFactBtn.style.display = 'none';
             });
 
+            factDisplay.addEventListener('click', () => {
+                if (factDisplay.classList.contains('blurred-fact')) {
+                    factDisplay.classList.remove('blurred-fact');
+                    revealFactBtn.style.display = 'none';
+                }
+            });
+
             const addFactToHistory = (fact) => {
                 // Only add if it's a new fact or different from the last one
                 if (factHistory.length === 0 || factHistory[0].text !== fact.text) {
@@ -1871,8 +1870,8 @@
 
             // Initial fact display and theme application on load
             // Hardcoding initial theme and fact as per instructions
-            const initialCategory = "history";
-            const initialFact = "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes.";
+            const initialCategory = "deep-sea";
+            const initialFact = "Over 80% of our oceans remain unmapped, unobserved, and unexplored.";
 
             factCategorySelect.value = initialCategory; // Set the select to the chosen category
             applyTheme(initialCategory);
