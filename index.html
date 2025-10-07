@@ -108,9 +108,14 @@
             line-height: 1.4;
             text-shadow: var(--fact-text-shadow);
             color: var(--text-color);
-            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease;
+            transition: color 0.5s ease, transform 0.5s ease, opacity 0.5s ease, filter 0.5s ease; /* Added filter */
             opacity: 1; /* Fact is visible by default */
             transform: translateY(0); /* Fact is visible by default */
+        }
+
+        .blurred-fact {
+            filter: blur(8px); /* Blur effect */
+            cursor: pointer; /* Indicate it's clickable */
         }
 
         .fact-card {
@@ -682,6 +687,7 @@
             </div>
         </div>
         <button class="carousel-play-pause-btn" id="play-pause-carousel-btn">Pause Carousel</button>
+        <button class="action-button" id="reveal-fact-btn" style="margin-top: 10px;">Reveal Fact</button>
 
         <div class="rating-section">
             <div id="popularity-score">Rating: 0</div>
@@ -831,6 +837,7 @@
             const moreOptionsBtn = document.getElementById('more-options-btn');
             const utilityButtonsContainer = document.querySelector('.utility-buttons');
             const discoverNewFactBtn = document.getElementById('discover-new-fact-btn'); // New button
+            const revealFactBtn = document.getElementById('reveal-fact-btn'); // New button
 
             const historyModal = document.getElementById('history-modal');
             const favoritesModal = document.getElementById('favorites-modal');
@@ -1234,6 +1241,8 @@
                 factDisplay.classList.remove('fact-display-animation'); // Reset animation
                 void factDisplay.offsetWidth; // Trigger reflow
                 factDisplay.classList.add('fact-display-animation'); // Re-add animation
+                factDisplay.classList.add('blurred-fact'); // Initially blur the fact
+                revealFactBtn.style.display = 'block'; // Show reveal button
                 currentFact = { text: factText, category: category, rating: 0 };
                 popularityScore.textContent = `Rating: ${currentFact.rating}`;
                 thumbsUpBtn.classList.remove('active');
@@ -1246,6 +1255,11 @@
                     favoriteBtn.classList.remove('favorited');
                 }
             };
+
+            revealFactBtn.addEventListener('click', () => {
+                factDisplay.classList.remove('blurred-fact');
+                revealFactBtn.style.display = 'none';
+            });
 
             const addFactToHistory = (fact) => {
                 // Only add if it's a new fact or different from the last one
@@ -1261,6 +1275,8 @@
                 addFactToHistory(currentFact);
                 const selectedCategory = factCategorySelect.value;
                 displayFact(getRandomFact(selectedCategory), selectedCategory);
+                factDisplay.classList.add('blurred-fact'); // Re-apply blur for new fact
+                revealFactBtn.style.display = 'block'; // Show reveal button for new fact
                 factStreak++; // Increment streak
                 updateStreakDisplay();
             };
@@ -1271,18 +1287,24 @@
                     const actualPreviousFact = factHistory.shift(); // Get the fact before that
                     if (actualPreviousFact) {
                         displayFact(actualPreviousFact.text, actualPreviousFact.category); // Display previous fact
+                        factDisplay.classList.add('blurred-fact'); // Re-apply blur for previous fact
+                        revealFactBtn.style.display = 'block'; // Show reveal button for previous fact
                         // Re-add the "current" fact (which was the first item in history) back to the beginning
                         // so that if they go forward again, it's there.
                         factHistory.unshift(previousFact);
                     } else {
                         // If there's no actual previous fact, just display the one we shifted off
                         displayFact(previousFact.text, previousFact.category);
+                        factDisplay.classList.add('blurred-fact'); // Re-apply blur
+                        revealFactBtn.style.display = 'block'; // Show reveal button
                     }
                 } else if (factHistory.length === 1) {
                     // If only one item in history, it's the previous fact. Display it and clear history.
                     const previousFact = factHistory.shift();
                     if (previousFact) {
                         displayFact(previousFact.text, previousFact.category);
+                        factDisplay.classList.add('blurred-fact'); // Re-apply blur
+                        revealFactBtn.style.display = 'block'; // Show reveal button
                     }
                 } else {
                     // No history, just get a new random fact
@@ -1849,12 +1871,14 @@
 
             // Initial fact display and theme application on load
             // Hardcoding initial theme and fact as per instructions
-            const initialCategory = "space";
-            const initialFact = "A day on Venus is longer than a year on Venus.";
+            const initialCategory = "history";
+            const initialFact = "The shortest war in history was between Britain and Zanzibar on August 27, 1896. Zanzibar surrendered after 38 minutes.";
 
             factCategorySelect.value = initialCategory; // Set the select to the chosen category
             applyTheme(initialCategory);
             displayFact(initialFact, initialCategory); // Initial fact is immediately visible
+            factDisplay.classList.add('blurred-fact'); // Apply blur to initial fact
+            revealFactBtn.style.display = 'block'; // Show reveal button for initial fact
             startCarousel(); // Start the carousel automatically on load
             updateStreakDisplay(); // Initialize streak display
 
