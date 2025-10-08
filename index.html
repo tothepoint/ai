@@ -3,50 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Oceanic Depths</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #000033; /* Very deep, dark blue */
-            --bg-color-secondary: #1A004D; /* Dark purple, almost black */
-            --text-color: #E0FFFF; /* Light Cyan, for stars/nebulae */
-            --footer-bg: #0A0A33; /* Darker blue, distinct from the main background but still harmonious */
-            --glass-bg: rgba(26, 26, 74, 0.7); /* Semi-transparent dark blue/purple */
+            /* Oceanic Depths Theme Colors */
+            --bg-color-primary: #0A1F33; /* Very deep ocean blue */
+            --bg-color-secondary: #05101A; /* Even darker, abyss-like blue */
+            --text-color: #E0FFFF; /* Light Cyan, for clear visibility */
+            --footer-bg: #05101A; /* Darker blue, distinct from the main background but still harmonious */
+            --glass-bg: rgba(10, 31, 51, 0.7); /* Semi-transparent deep blue */
             --glass-border: rgba(224, 255, 255, 0.3); /* Light cyan border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #FFD700; /* Gold, for stars/celestial bodies */
+            --title-color: #4ECDC4; /* Teal, for shimmering water effects */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet, cosmic feel */
-            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
-            --theme-indicator-color: #FFD700; /* Gold */
-            --favorite-btn-color: #FFD700; /* Gold */
+            --main-action-btn: #1A5276; /* Muted blue, like deep sea */
+            --main-action-btn-hover: #154360; /* Darker muted blue */
+            --theme-indicator-color: #4ECDC4; /* Teal */
+            --favorite-btn-color: #FFD700; /* Gold, for contrast */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #00CED1; /* Dark Turquoise, for nebulae */
-            --share-btn-hover: #008B8B; /* Dark Cyan */
-            --rating-active-color: #8A2BE2; /* Blue Violet */
+            --share-btn-color: #4ECDC4; /* Teal */
+            --share-btn-hover: #36A7A0; /* Darker Teal */
+            --rating-active-color: #1A5276; /* Muted blue */
             --rating-text-color: #E0FFFF; /* Light Cyan */
-            --category-select-bg: #1A1A4A;
-            --category-select-border: #8A2BE2;
+            --category-select-bg: #0A1F33;
+            --category-select-border: #1A5276;
             --search-input-bg: rgba(255, 255, 255, 0.1);
             --search-input-border: rgba(224, 255, 255, 0.5);
             --search-input-text: #E0FFFF;
-            --fact-card-bg: rgba(26, 26, 74, 0.8);
-            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
-            --carousel-control-color: #FFD700;
-            --carousel-control-hover: #B8860B;
-            --trivia-correct-color: #00CED1;
+            --fact-card-bg: rgba(10, 31, 51, 0.8);
+            --fact-card-border: rgba(78, 205, 196, 0.5); /* Teal border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(78, 205, 196, 0.7); /* Teal glow */
+            --carousel-control-color: #4ECDC4;
+            --carousel-control-hover: #36A7A0;
+            --trivia-correct-color: #4ECDC4;
             --trivia-incorrect-color: #DC3545;
             --streak-color: #FFD700;
             --streak-glow: 0 0 15px rgba(255, 215, 0, 0.5);
-            --quiz-correct-color: #00CED1;
+            --quiz-correct-color: #4ECDC4;
             --quiz-incorrect-color: #DC3545;
             --scramble-input-bg: rgba(255, 255, 255, 0.1);
-            --scramble-input-border: #8A2BE2;
+            --scramble-input-border: #1A5276;
             --scramble-input-text: #E0FFFF;
-            --scramble-button-bg: #00CED1;
-            --scramble-button-hover: #008B8B;
-            --scramble-message-correct: #00CED1;
+            --scramble-button-bg: #4ECDC4;
+            --scramble-button-hover: #36A7A0;
+            --scramble-message-correct: #4ECDC4;
             --scramble-message-incorrect: #DC3545;
         }
 
@@ -271,13 +271,15 @@
 
         @keyframes footerPulse {
             0% { box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); }
-            100% { box-shadow: 0 -2px 20px rgba(74, 0, 128, 0.5); } /* Darker Blue Violet glow for cosmic theme */
+            100% { box-shadow: 0 -2px 20px rgba(78, 205, 196, 0.5); } /* Teal glow for oceanic theme */
         }
 
-        /* New styles for the interactive fact reveal */
+        /* New styles for the interactive fact reveal (Sonar Ping) */
         .fact-reveal-wrapper {
             position: relative;
             display: inline-block;
+            overflow: hidden; /* Ensures the ping effect stays within bounds */
+            border-radius: 15px;
         }
 
         .fact-reveal-overlay {
@@ -286,7 +288,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             display: flex;
             justify-content: center;
@@ -295,20 +297,40 @@
             font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .fact-reveal-wrapper:hover .fact-reveal-overlay {
             opacity: 1;
+            transition: opacity 0.5s ease;
+            z-index: 1;
         }
 
-        .fact-reveal-overlay.active {
+        .fact-reveal-overlay.revealed {
             opacity: 0;
+            pointer-events: none; /* Disable clicks after revealed */
         }
 
         .fact-revealed {
             filter: blur(0px) !important;
+        }
+
+        /* Sonar Ping Effect */
+        .sonar-ping {
+            position: absolute;
+            border: 2px solid rgba(78, 205, 196, 0.7); /* Teal ping */
+            border-radius: 50%;
+            animation: sonarEffect 1.5s ease-out forwards;
+            opacity: 0;
+            transform: scale(0);
+            z-index: 2; /* Above the overlay */
+        }
+
+        @keyframes sonarEffect {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
         }
 
         /* Styles for the "Dive Deeper" button */
@@ -363,4 +385,190 @@
             padding: 10px;
             font-size: 1.1rem;
             border-radius: 8px;
-            border: 2px solid var(--scramble-input-border);\n            background-color: var(--scramble-input-bg);\n            color: var(--scramble-input-text);\n            margin-bottom: 15px;\n            text-align: center;\n        }\n\n        #scramble-input::placeholder {\n            color: rgba(224, 255, 255, 0.7);\n        }\n\n        .scramble-buttons {\n            display: flex;\n            gap: 15px;\n            justify-content: center;\n        }\n\n        .scramble-button {\n            background-color: var(--scramble-button-bg);\n            color: white;\n            border: none;\n            padding: 10px 20px;\n            font-size: 1.1rem;\n            border-radius: 8px;\n            cursor: pointer;\n            transition: background-color 0.3s ease, transform 0.2s ease;\n        }\n\n        .scramble-button:hover {\n            background-color: var(--scramble-button-hover);\n            transform: translateY(-2px);\n        }\n\n        #scramble-message {\n            margin-top: 15px;\n            font-size: 1.2rem;\n            font-weight: bold;\n        }\n\n        .correct-message {\n            color: var(--scramble-message-correct);\n        }\n\n        .incorrect-message {\n            color: var(--scramble-message-incorrect);\n        }\n\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"theme-indicator\">Theme: Cosmic Wonders</div>\n        <button class=\"favorite-button\" aria-label=\"Add to favorites\">⭐</button>\n        <h1>Cosmic Wonders</h1>\n        <div class=\"fact-card\">\n            <div class=\"fact-reveal-wrapper\">\n                <p id=\"fact-display\" class=\"blurred-fact\">The observable universe is estimated to contain 2 trillion galaxies.</p>\n                <div class=\"fact-reveal-overlay\">Click to Reveal</div>\n            </div>\n            <button class=\"dive-deeper-button\" id=\"dive-deeper-btn\">Dive Deeper</button>\n            <button class=\"share-button\">Share</button>\n        </div>\n\n        <div class=\"rating-section\">\n            <p>How mind-blowing is this fact?</p>\n            <div class=\"rating-buttons\">\n                <button class=\"rating-button\" data-rating=\"1\">🤯</button>\n                <button class=\"rating-button\" data-rating=\"2\">🤩</button>\n                <button class=\"rating-button\" data-rating=\"3\">✨</button>\n            </div>\n            <p id=\"popularity-score\">Current Score: 0</p>\n        </div>\n\n        <div class=\"scramble-section\">\n            <h2>Fact Scramble Challenge!</h2>\n            <p>Unscramble the words to reveal the hidden cosmic fact.</p>\n            <p id=\"scrambled-fact-display\"></p>\n            <input type=\"text\" id=\"scramble-input\" placeholder=\"Type the unscrambled fact here...\">\n            <div class=\"scramble-buttons\">\n                <button class=\"scramble-button\" id=\"check-scramble-btn\">Check Answer</button>\n                <button class=\"scramble-button\" id=\"new-scramble-btn\">New Scramble</button>\n            </div>\n            <p id=\"scramble-message\"></p>\n        </div>\n    </div>\n\n    <footer>\n        <p>&copy; 2025 Cosmic Wonders. All rights reserved.</p>\n    </footer>\n\n    <script>\n        const factDisplay = document.getElementById('fact-display');\n        const factRevealOverlay = document.querySelector('.fact-reveal-overlay');\n        const diveDeeperBtn = document.getElementById('dive-deeper-btn');\n        const siteTitle = document.getElementById('site-title');\n        const mainTitle = document.querySelector('h1');\n        const themeIndicator = document.querySelector('.theme-indicator');\n\n        const scrambledFactDisplay = document.getElementById('scrambled-fact-display');\n        const scrambleInput = document.getElementById('scramble-input');\n        const checkScrambleBtn = document.getElementById('check-scramble-btn');\n        const newScrambleBtn = document.getElementById('new-scramble-btn');\n        const scrambleMessage = document.getElementById('scramble-message');\n\n        const facts = [\n            \"A teaspoon of neutron star material would weigh about 6 billion tons, roughly the same as all of humanity.\",\n            \"The observable universe is estimated to contain 2 trillion galaxies.\",\n            \"There are more individual atoms in a single grain of sand than there are grains of sand on all the beaches on Earth.\",\n            \"One million Earths could fit inside the Sun.\",\n            \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\n            \"The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a supercluster of galaxies 10 billion light-years across.\"\n        ];\n\n        let currentFactIndex = 0;\n        let currentScrambleFact = \"\";\n\n        function displayFact(fact) {\n            factDisplay.textContent = fact;\n            factDisplay.classList.add('blurred-fact');\n            factDisplay.classList.remove('fact-revealed');\n            factRevealOverlay.classList.remove('active');\n            factRevealOverlay.textContent = 'Click to Reveal';\n        }\n\n        function shuffleWords(text) {\n            const words = text.split(' ');\n            for (let i = words.length - 1; i > 0; i--) {\n                const j = Math.floor(Math.random() * (i + 1));\n                [words[i], words[j]] = [words[j], words[i]];\n            }\n            return words.join(' ');\n        }\n\n        function startScrambleGame() {\n            const factToScramble = facts[Math.floor(Math.random() * facts.length)];\n            currentScrambleFact = factToScramble;\n            scrambledFactDisplay.textContent = shuffleWords(factToScramble);\n            scrambleInput.value = '';\n            scrambleMessage.textContent = '';\n            scrambleInput.style.borderColor = 'var(--scramble-input-border)';\n        }\n\n        factRevealOverlay.addEventListener('click', () => {\n            factDisplay.classList.remove('blurred-fact');\n            factDisplay.classList.add('fact-revealed');\n            factRevealOverlay.classList.add('active');\n        });\n\n        diveDeeperBtn.addEventListener('click', () => {\n            currentFactIndex = (currentFactIndex + 1) % facts.length;\n            displayFact(facts[currentFactIndex]);\n        });\n\n        checkScrambleBtn.addEventListener('click', () => {\n            const userAnswer = scrambleInput.value.trim();\n            if (userAnswer.toLowerCase() === currentScrambleFact.toLowerCase()) {\n                scrambleMessage.textContent = 'Correct! You\\'re a cosmic genius! ✨';\n                scrambleMessage.className = 'correct-message';\n                scrambleInput.style.borderColor = 'var(--scramble-message-correct)';\n            } else {\n                scrambleMessage.textContent = 'Not quite. Keep trying, space explorer!';\n                scrambleMessage.className = 'incorrect-message';\n                scrambleInput.style.borderColor = 'var(--scramble-message-incorrect)';\n            }\n        });\n\n        newScrambleBtn.addEventListener('click', startScrambleGame);\n\n        // Initial fact display\n        displayFact(facts[currentFactIndex]);\n        startScrambleGame(); // Start the scramble game on load\n\n        // Rating functionality (existing, kept for completeness)\n        const ratingButtons = document.querySelectorAll('.rating-button');\n        const popularityScore = document.getElementById('popularity-score');\n        let score = 0;\n\n        ratingButtons.forEach(button => {\n            button.addEventListener('click', () => {\n                ratingButtons.forEach(btn => btn.classList.remove('active'));\n                button.classList.add('active');\n                score += parseInt(button.dataset.rating);\n                popularityScore.textContent = `Current Score: ${score}`;\n            });\n        });\n\n        // Share button functionality (basic example)\n        document.querySelector('.share-button').addEventListener('click', () => {\n            if (navigator.share) {\n                navigator.share({\n                    title: document.title,\n                    text: factDisplay.textContent,\n                    url: window.location.href\n                }).then(() => {\n                    console.log('Fact shared successfully!');\n                }).catch((error) => {\n                    console.error('Error sharing fact:', error);\n                });\n            } else {\n                alert('Web Share API is not supported in this browser. You can manually copy the fact: ' + factDisplay.textContent);\n            }\n        });\n\n        // Favorite button functionality (basic example)\n        document.querySelector('.favorite-button').addEventListener('click', () => {\n            alert('Fact added to favorites! (Feature under development)');\n        });\n\n    </script>\n</body>\n</html>
+            border: 2px solid var(--scramble-input-border);
+            background-color: var(--scramble-input-bg);
+            color: var(--scramble-input-text);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        #scramble-input::placeholder {
+            color: rgba(224, 255, 255, 0.7);
+        }
+
+        .scramble-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .scramble-button {
+            background-color: var(--scramble-button-bg);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .scramble-button:hover {
+            background-color: var(--scramble-button-hover);
+            transform: translateY(-2px);
+        }
+
+        #scramble-message {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .correct-message {
+            color: var(--scramble-message-correct);
+        }
+
+        .incorrect-message {
+            color: var(--scramble-message-incorrect);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="theme-indicator">Theme: Oceanic Depths</div>
+        <button class="favorite-button" aria-label="Add to favorites">⭐</button>
+        <h1>Oceanic Depths</h1>
+        <div class="fact-card">
+            <div class="fact-reveal-wrapper" id="fact-reveal-wrapper">
+                <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,070 feet).</p>
+                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Click to Reveal</div>
+            </div>
+            <button class="dive-deeper-button" id="dive-deeper-btn">Dive Deeper</button>
+            <button class="share-button">Share</button>
+        </div>
+
+        <div class="rating-section">
+            <p>Rate this fact:</p>
+            <div class="rating-buttons">
+                <button class="rating-button" data-rating="1">👍</button>
+                <button class="rating-button" data-rating="-1">👎</button>
+            </div>
+            <p id="popularity-score">Popularity Score: 0</p>
+        </div>
+
+        <!-- Fact Scramble Game Section -->
+        <div class="scramble-section">
+            <h2>Fact Scramble Game</h2>
+            <p id="scrambled-fact-display"></p>
+            <input type="text" id="scramble-input" placeholder="Unscramble the fact!">
+            <div class="scramble-buttons">
+                <button class="scramble-button" id="check-scramble-btn">Check</button>
+                <button class="scramble-button" id="new-scramble-btn">New Fact</button>
+            </div>
+            <p id="scramble-message"></p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Site last updated: <span id="update-time"></span></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const updateTimeElement = document.getElementById('update-time');
+            const now = new Date();
+            updateTimeElement.textContent = now.toLocaleString();
+
+            const factDisplay = document.getElementById('fact-display');
+            const factRevealOverlay = document.getElementById('fact-reveal-overlay');
+            const factRevealWrapper = document.getElementById('fact-reveal-wrapper');
+            const diveDeeperBtn = document.getElementById('dive-deeper-btn');
+
+            factRevealOverlay.addEventListener('click', () => {
+                if (!factRevealOverlay.classList.contains('revealed')) {
+                    factDisplay.classList.remove('blurred-fact');
+                    factRevealOverlay.classList.add('revealed');
+                    factRevealOverlay.textContent = 'Fact Revealed!';
+
+                    // Sonar Ping Effect
+                    const ping = document.createElement('div');
+                    ping.classList.add('sonar-ping');
+                    factRevealWrapper.appendChild(ping);
+
+                    const factRect = factDisplay.getBoundingClientRect();
+                    const wrapperRect = factRevealWrapper.getBoundingClientRect();
+
+                    ping.style.width = `${Math.max(factRect.width, factRect.height) * 1.2}px`;
+                    ping.style.height = `${Math.max(factRect.width, factRect.height) * 1.2}px`;
+                    ping.style.top = `${(factRect.height / 2) - (ping.offsetHeight / 2)}px`;
+                    ping.style.left = `${(factRect.width / 2) - (ping.offsetWidth / 2)}px`;
+                    ping.style.transform = 'translate(-50%, -50%)'; // Center the ping
+
+                    ping.addEventListener('animationend', () => {
+                        ping.remove();
+                    });
+                }
+            });
+
+            diveDeeperBtn.addEventListener('click', () => {
+                alert('Diving deeper into the Mariana Trench! (This would link to more info in a real app)');
+            });
+
+            // Rating functionality (existing)
+            let popularityScore = 0;
+            const popularityScoreElement = document.getElementById('popularity-score');
+            const ratingButtons = document.querySelectorAll('.rating-button');
+
+            ratingButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const rating = parseInt(button.dataset.rating);
+                    popularityScore += rating;
+                    popularityScoreElement.textContent = `Popularity Score: ${popularityScore}`;
+
+                    ratingButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                });
+            });
+
+            // Fact Scramble Game (existing, adapted for new fact)
+            const originalFact = "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,070 feet).";
+            let scrambledFact = "";
+
+            const scrambleFact = (fact) => {
+                const words = fact.split(' ');
+                for (let i = words.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [words[i], words[j]] = [words[j], words[i]];
+                }
+                return words.join(' ');
+            };
+
+            const displayScrambledFact = () => {
+                scrambledFact = scrambleFact(originalFact);
+                document.getElementById('scrambled-fact-display').textContent = scrambledFact;
+                document.getElementById('scramble-input').value = '';
+                document.getElementById('scramble-message').textContent = '';
+            };
+
+            document.getElementById('check-scramble-btn').addEventListener('click', () => {
+                const userInput = document.getElementById('scramble-input').value.trim();
+                const messageElement = document.getElementById('scramble-message');
+                if (userInput.toLowerCase() === originalFact.toLowerCase()) {
+                    messageElement.textContent = 'Correct! You unscrambled it!';
+                    messageElement.classList.remove('incorrect-message');
+                    messageElement.classList.add('correct-message');
+                } else {
+                    messageElement.textContent = 'Incorrect, try again!';
+                    messageElement.classList.remove('correct-message');
+                    messageElement.classList.add('incorrect-message');
+                }
+            });
+
+            document.getElementById('new-scramble-btn').addEventListener('click', displayScrambledFact);
+
+            displayScrambledFact(); // Initialize the scramble game on load
+        });
+    </script>
+</body>
+</html>
