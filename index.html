@@ -495,7 +495,7 @@
 
         <div class="fact-card">
             <div class="cosmic-scan-line"></div>
-            <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
+            <p id="fact-display" class="blurred-fact">The ocean contains nearly 20 million tons of gold, but it's so diluted that each liter of seawater contains only about 13 billionths of a gram.</p>
         </div>
 
         <button id="new-fact-btn" class="action-button">Explore Deeper</button>
@@ -551,6 +551,15 @@
         const scrambleSubmitBtn = document.getElementById('scramble-submit-btn');
         const scrambleMessage = document.getElementById('scramble-message');
 
+        function scrambleWords(text) {
+            const words = text.split(' ');
+            for (let i = words.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [words[i], words[j]] = [words[j], words[i]]; // ES6 swap
+            }
+            return words.join(' ');
+        }
+
         function getRandomFact() {
             const randomIndex = Math.floor(Math.random() * facts.length);
             return facts[randomIndex];
@@ -560,7 +569,8 @@
             currentFact = getRandomFact();
             factDisplay.textContent = currentFact;
             factDisplay.classList.add('blurred-fact');
-            scrambleFactDisplay.textContent = "Can you type the fact above?";
+            const scrambled = scrambleWords(currentFact); // Scramble the fact
+            scrambleFactDisplay.textContent = scrambled; // Display scrambled fact
             scrambleFactDisplay.classList.add('blurred-fact');
             scrambleInput.value = '';
             scrambleMessage.textContent = '';
@@ -620,7 +630,7 @@
             if (factDisplay.classList.contains('blurred-fact')) {
                 factDisplay.classList.remove('blurred-fact');
                 factRevealed = true;
-                scrambleFactDisplay.textContent = currentFact;
+                scrambleFactDisplay.textContent = currentFact; // Reveal original fact
                 scrambleFactDisplay.classList.remove('blurred-fact');
             }
         });
