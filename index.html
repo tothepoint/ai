@@ -38,10 +38,179 @@
             --scramble-message-incorrect: #EF5350; /* Red for incorrect */
             --star-particle-color: rgba(173, 216, 230, 0.7); /* Light Cyan for particles */
             --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Aqua for sonar */
+
+            /* Bioluminescence Feature Colors */
+            --bioluminescent-glow-color: #00FFFF; /* Aqua for the glow */
+            --bioluminescent-text-initial: rgba(173, 216, 230, 0.3); /* Dimmed text */
+            --bioluminescent-text-active: #ADD8E6; /* Bright text */
         }
 
         body {
             background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
-            color: var(--text-color);\n            font-family: \'Segoe UI\', Tahoma, Geneva, Verdana, sans-serif;\n            display: flex;\n            flex-direction: column;\n            justify-content: space-between;\n            align-items: center;\n            min-height: 100vh;\n            margin: 0;\n            text-align: center;\n            padding: 20px;\n            box-sizing: border-box;\n            transition: background 1.5s ease-in-out, color 0.8s ease;\n            overflow-x: hidden;\n            position: relative;\n            cursor: crosshair; /* Indicate interactivity */\n        }\n\n        @keyframes gradientShift {\n            0% { background-position: 0% 50%; }\n            50% { background-position: 100% 50%; }\n            100% { background-position: 0% 50%; }\n        }\n\n        .deep-sea-dive-mode {\n            background: #000000; /* Black for deep sea */\n            background-image: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 30%),\n                              radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 25%),\n                              radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 20%);\n            background-size: 120% 120%, 100% 100%, 80% 80%;\n            animation: deepSeaCurrent 30s linear infinite alternate;\n        }\n\n        @keyframes deepSeaCurrent {\n            0% { background-position: 0% 0%, 50% 50%, 100% 100%; }\n            100% { background-position: 100% 100%, 0% 0%, 50% 50%; }\n        }\n\n        .container {\n            background: var(--glass-bg);\n            border-radius: 25px; /* Slightly more rounded */\n            padding: 40px 60px;\n            margin: auto;\n            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Stronger shadow */\n            backdrop-filter: blur(12px); /* More blur */\n            border: 1px solid var(--glass-border);\n            max-width: 900px; /* Wider container */\n            width: 90%;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            justify-content: center;\n            min-height: 350px; /* Taller container */\n            transition: all 0.6s ease;\n            animation: fadeInScale 1s ease-out forwards;\n            position: relative; /* For absolute positioning of theme indicator */\n        }\n\n        @keyframes fadeInScale {\n            from { opacity: 0; transform: scale(0.95); }\n            to { opacity: 1; transform: scale(1); }\n        }\n\n        h1 {\n            color: var(--title-color);\n            font-size: 4rem; /* Larger title */\n            margin-bottom: 25px;\n            text-shadow: var(--title-shadow);\n            transition: color 0.6s ease;\n            letter-spacing: 2px; /* More spaced out */\n        }\n\n        #fact-display, #scramble-fact-display {\n            font-size: 2.5rem; /* Larger fact text */\n            font-weight: 600; /* Bolder */\n            margin: 35px 0 20px 0;\n            line-height: 1.5;\n            text-shadow: var(--fact-text-shadow);\n            color: var(--text-color);\n            transition: color 0.6s ease, transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;\n            opacity: 1;\n            transform: translateY(0);\n            padding: 0 15px; /* Add some padding */\n        }\n\n        .blurred-fact {\n            filter: blur(10px); /* More blur for mystery */\n            cursor: pointer;\n        }\n\n        .fact-card {\n            background-color: var(--fact-card-bg);\n            border: 2px solid var(--fact-card-border);\n            border-radius: 20px; /* More rounded */\n            padding: 30px;\n            margin: 25px 0;\n            box-shadow: var(--fact-of-day-glow); /* Emphasize fact of the day */\n            width: 95%;\n            max-width: 700px;\n            transition: all 0.6s ease;\n            position: relative;\n            overflow: hidden; /* For cosmic scan */\n        }\n\n        .action-button {\n            background-color: var(--main-action-btn);\n            color: var(--bg-color-primary); /* Text color contrasting with button */\n            border: none;\n            padding: 18px 35px; /* Larger buttons */\n            font-size: 1.4rem;\n            border-radius: 12px;\n            cursor: pointer;\n            box-shadow: 0 6px 18px rgba(0,0,0,0.5);\n            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;\n            margin-top: 25px;\n            font-weight: bold;\n            letter-spacing: 1px;\n        }\n\n        .action-button:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-4px); /* More pronounced lift */\n            box-shadow: 0 10px 25px rgba(0,0,0,0.6);\n        }\n\n        .action-button:disabled {\n            background-color: #333;\n            cursor: not-allowed;\n            transform: none;\n            box-shadow: none;\n        }\n\n        .rating-section {\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            margin-top: 30px;\n        }\n\n        .rating-section p {\n            font-size: 1.2rem;\n            margin-bottom: 10px;\n            color: var(--text-color);\n        }\n\n        .rating-buttons {\n            display: flex;\n            gap: 20px;\n            margin-top: 10px;\n        }\n\n        .rating-button {\n            background-color: var(--glass-bg);\n            border: 1px solid var(--glass-border);\n            color: var(--text-color);\n            padding: 12px 18px;\n            font-size: 1.8rem; /* Larger icons */\n            border-radius: 12px;\n            cursor: pointer;\n            box-shadow: 0 3px 12px rgba(0,0,0,0.4);\n            transition: all 0.2s ease;\n        }\n\n        .rating-button:hover {\n            transform: translateY(-3px) scale(1.1);\n            box-shadow: 0 5px 15px rgba(0,0,0,0.5);\n        }\n\n        .rating-button.active {\n            background-color: var(--rating-active-color);\n            color: var(--bg-color-primary);\n            border-color: var(--rating-active-color);\n            transform: scale(1.15);\n            box-shadow: 0 6px 18px rgba(0,0,0,0.6);\n        }\n\n        #popularity-score {\n            font-size: 1.2rem;\n            color: var(--rating-text-color);\n            margin-top: 15px;\n            font-weight: bold;\n            letter-spacing: 0.5px;\n        }\n\n        .theme-indicator {\n            position: absolute;\n            top: 25px;\n            right: 25px;\n            background-color: var(--theme-indicator-color);\n            color: var(--bg-color-primary); /* Text color contrasting with indicator */\n            padding: 8px 15px;\n            border-radius: 50px;\n            font-size: 0.9rem;\n            font-weight: bold;\n            box-shadow: 0 4px 15px rgba(0,0,0,0.3);\n            letter-spacing: 0.5px;\n        }\n\n        .footer {\n            margin-top: 40px;\n            padding: 20px;\n            background-color: var(--footer-bg);\n            color: var(--text-color);\n            width: 100%;\n            font-size: 0.9rem;\n            border-top: 1px solid var(--glass-border);\n            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);\n            transition: background-color 0.8s ease, color 0.8s ease;\n        }\n\n        .footer a {\n            color: var(--text-color);\n            text-decoration: none;\n            margin: 0 5px;\n            transition: color 0.3s ease;\n        }\n\n        .footer a:hover {\n            color: var(--main-action-btn);\n        }\n\n        /* Sonar Ping Effect */\n        .sonar-ping {\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            width: 0;\n            height: 0;\n            border-radius: 50%;\n            background-color: var(--sonar-wave-color);\n            opacity: 0;\n            transform: translate(-50%, -50%);\n            animation: sonarPulse 1.5s ease-out forwards;\n            z-index: 10;\n        }\n\n        @keyframes sonarPulse {\n            0% { width: 0; height: 0; opacity: 0.6; }\n            100% { width: 300px; height: 300px; opacity: 0; }\n        }\n\n        /* Fact Scramble Challenge / Deep Sea Fact Scramble */\n        #scramble-section {\n            margin-top: 30px;\n            padding: 25px;\n            background: var(--glass-bg);\n            border-radius: 15px;\n            border: 1px solid var(--glass-border);\n            box-shadow: 0 8px 20px rgba(0,0,0,0.5);\n            width: 90%;\n            max-width: 600px;\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            gap: 20px;\n            transition: all 0.6s ease;\n        }\n\n        #scramble-section h2 {\n            color: var(--title-color);\n            font-size: 2rem;\n            text-shadow: var(--title-shadow);\n            margin-bottom: 10px;\n        }\n\n        #scramble-input {\n            padding: 12px 20px;\n            font-size: 1.2rem;\n            border-radius: 8px;\n            border: 2px solid var(--scramble-input-border);\n            background-color: var(--scramble-input-bg);\n            color: var(--scramble-input-text);\n            width: 80%;\n            max-width: 400px;\n            text-align: center;\n            transition: border-color 0.3s ease, background-color 0.3s ease;\n        }\n\n        #scramble-input:focus {\n            outline: none;\n            border-color: var(--main-action-btn);\n            box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);\n        }\n\n        #scramble-submit-btn {\n            background-color: var(--scramble-button-bg);\n            color: var(--bg-color-primary);\n            border: none;\n            padding: 12px 25px;\n            font-size: 1.2rem;\n            border-radius: 8px;\n            cursor: pointer;\n            transition: background-color 0.3s ease, transform 0.2s ease;\n            font-weight: bold;\n        }\n\n        #scramble-submit-btn:hover {\n            background-color: var(--scramble-button-hover);\n            transform: translateY(-2px);\n        }\n\n        #scramble-message {\n            font-size: 1.1rem;\n            font-weight: bold;\n            margin-top: 10px;\n            min-height: 20px; /* Reserve space */\n        }\n\n        .correct-message {\n            color: var(--scramble-message-correct);\n            text-shadow: 0 0 8px rgba(173, 216, 230, 0.7);\n        }\n\n        .incorrect-message {\n            color: var(--scramble-message-incorrect);\n            text-shadow: 0 0 8px rgba(239, 83, 80, 0.7);\n        }\n\n        /* Water Particle Effect (repurposed star-particle) */\n        .water-particle {\n            position: absolute;\n            background-color: var(--star-particle-color);\n            border-radius: 50%;\n            animation: bubbleRise 3s infinite ease-in-out alternate;\n            pointer-events: none;\n            z-index: -1;\n        }\n\n        @keyframes bubbleRise {\n            0% { opacity: 0.5; transform: translateY(0) scale(0.5); }\n            100% { opacity: 0; transform: translateY(-100px) scale(1.2); }\n        }\n\n        /* Toggle Switch for Deep Sea Dive Mode */\n        .toggle-switch {\n            position: absolute;\n            top: 25px;\n            left: 25px;\n            display: flex;\n            align-items: center;\n            gap: 10px;\n            z-index: 100;\n        }\n\n        .toggle-switch input[type=\"checkbox\"] {\n            height: 0;\n            width: 0;\n            visibility: hidden;\n        }\n\n        .toggle-switch label {\n            cursor: pointer;\n            text-indent: -9999px;\n            width: 60px;\n            height: 30px;\n            background: grey;\n            display: block;\n            border-radius: 100px;\n            position: relative;\n            transition: background-color 0.3s;\n        }\n\n        .toggle-switch label:after {\n            content: \'\';\n            position: absolute;\n            top: 3px;\n            left: 3px;\n            width: 24px;\n            height: 24px;\n            background: #fff;\n            border-radius: 90px;\n            transition: 0.3s;\n        }\n\n        .toggle-switch input:checked + label {\n            background: var(--main-action-btn);\n        }\n\n        .toggle-switch input:checked + label:after {\n            left: calc(100% - 3px);\n            transform: translateX(-100%);\n        }\n\n        .toggle-switch span {\n            color: var(--text-color);\n            font-size: 1rem;\n            font-weight: bold;\n        }\n\n        /* Responsive adjustments */\n        @media (max-width: 768px) {\n            .container {\n                padding: 30px;\n                width: 95%;\n            }\n\n            h1 {\n                font-size: 3rem;\n            }\n\n            #fact-display, #scramble-fact-display {\n                font-size: 1.8rem;\n            }\n\n            .action-button {\n                padding: 15px 25px;\n                font-size: 1.2rem;\n            }\n\n            .theme-indicator, .toggle-switch {\n                top: 15px;\n                right: 15px;\n                left: 15px;\n            }\n        }\n\n        @media (max-width: 480px) {\n            h1 {\n                font-size: 2.5rem;\n            }\n\n            #fact-display, #scramble-fact-display {\n                font-size: 1.5rem;\n            }\n\n            .action-button {\n                width: 100%;\n                padding: 12px 20px;\n            }\n\n            .rating-buttons {\n                flex-direction: column;\n                gap: 10px;\n            }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"toggle-switch\">\n        <input type=\"checkbox\" id=\"deep-sea-toggle\">\n        <label for=\"deep-sea-toggle\">Toggle</label>\n        <span>Deep Sea Dive Mode</span>\n    </div>\n\n    <div class=\"container\">\n        <div class=\"theme-indicator\">Deep Sea Mysteries</div>\n        <h1 id=\"site-main-title\">Deep Sea Mysteries</h1>\n\n        <div class=\"fact-card\">\n            <div id=\"sonar-ping-effect\"></div>\n            <p id=\"fact-display\" class=\"blurred-fact\">The Mariana Trench is deeper than Mount Everest is tall, reaching depths of about 11,000 meters.</p>\n        </div>\n\n        <button id=\"new-fact-btn\" class=\"action-button\">Dive Deeper</button>\n\n        <div class=\"rating-section\">\n            <p>How mind-bending is this deep-sea wonder?</p>\n            <div class=\"rating-buttons\">\n                <button class=\"rating-button\" data-rating=\"1\">⭐</button>\n                <button class=\"rating-button\" data-rating=\"2\">⭐⭐</button>\n                <button class=\"rating-button\" data-rating=\"3\">⭐⭐⭐</button>\n                <button class=\"rating-button\" data-rating=\"4\">⭐⭐⭐⭐</button>\n                <button class=\"rating-button\" data-rating=\"5\">⭐⭐⭐⭐⭐</button>\n            </div>\n            <p id=\"popularity-score\">Popularity Score: 0</p>\n        </div>\n\n        <div id=\"scramble-section\">\n            <h2>Deep Sea Fact Scramble</h2>\n            <p id=\"scramble-fact-display\" class=\"blurred-fact\">The Mariana Trench is deeper than Mount Everest is tall, reaching depths of about 11,000 meters.</p>\n            <input type=\"text\" id=\"scramble-input\" placeholder=\"Type the fact here...\">\n            <button id=\"scramble-submit-btn\">Reveal Deep Sea Truth</button>\n            <p id=\"scramble-message\"></p>\n        </div>\n    </div>\n\n    <footer class=\"footer\">\n        <p>&copy; 2025 Deep Sea Mysteries. All rights reserved. | Last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        const facts = [\n            \"The Mariana Trench is deeper than Mount Everest is tall, reaching depths of about 11,000 meters.\",\n            \"Over 80% of the ocean remains unmapped, unobserved, and unexplored.\",\n            \"The deepest living fish, the Mariana snailfish, can withstand pressures 8,000 times greater than at sea level.\",\n            \"There are underwater waterfalls, where denser, saltier water flows down slopes.\",\n            \"Some deep-sea creatures produce their own light, a phenomenon called bioluminescence.\"\n        ];\n\n        let currentFact = \"\";\n        let popularityScore = 0;\n        let factRevealed = false;\n\n        const factDisplay = document.getElementById(\'fact-display\');\n        const newFactBtn = document.getElementById(\'new-fact-btn\');\n        const ratingButtons = document.querySelectorAll(\'.rating-button\');\n        const popularityScoreDisplay = document.getElementById(\'popularity-score\');\n        const updateTimeSpan = document.getElementById(\'update-time\');\n        const deepSeaToggle = document.getElementById(\'deep-sea-toggle\');\n        const body = document.body;\n        const scrambleSection = document.getElementById(\'scramble-section\');\n        const scrambleFactDisplay = document.getElementById(\'scramble-fact-display\');\n        const scrambleInput = document.getElementById(\'scramble-input\');\n        const scrambleSubmitBtn = document.getElementById(\'scramble-submit-btn\');\n        const scrambleMessage = document.getElementById(\'scramble-message\');\n        const sonarPingEffect = document.getElementById(\'sonar-ping-effect\');\n\n        function getRandomFact() {\n            const randomIndex = Math.floor(Math.random() * facts.length);\n            return facts[randomIndex];\n        }\n\n        function displayFact() {\n            currentFact = getRandomFact();\n            factDisplay.textContent = currentFact;\n            factDisplay.classList.add(\'blurred-fact\');\n            scrambleFactDisplay.textContent = currentFact; // Display actual fact, but blurred\n            scrambleFactDisplay.classList.add(\'blurred-fact\');\n            scrambleInput.value = \'\';\n            scrambleMessage.textContent = \'\';\n            factRevealed = false;\n            resetRating();\n            triggerSonarPing();\n        }\n\n        function revealFact() {\n            factDisplay.classList.remove(\'blurred-fact\');\n            scrambleFactDisplay.classList.remove(\'blurred-fact\');\n            factRevealed = true;\n        }\n\n        function resetRating() {\n            ratingButtons.forEach(button => button.classList.remove(\'active\'));\n            popularityScore = 0;\n            popularityScoreDisplay.textContent = `Popularity Score: ${popularityScore}`;\n        }\n\n        function updateTime() {\n            const now = new Date();\n            updateTimeSpan.textContent = now.toLocaleString();\n        }\n\n        function createWaterParticle(x, y) {\n            const particle = document.createElement(\'div\');\n            particle.classList.add(\'water-particle\');\n            particle.style.left = `${x}px`;\n            particle.style.top = `${y}px`;\n            const size = Math.random() * 3 + 1; // 1 to 4px\n            particle.style.width = `${size}px`;\n            particle.style.height = `${size}px`;\n            body.appendChild(particle);\n\n            setTimeout(() => {\n                particle.remove();\n            }, 3000); // Remove after animation\n        }\n\n        function triggerSonarPing() {\n            sonarPingEffect.classList.remove(\'sonar-ping\'); // Reset animation\n            void sonarPingEffect.offsetWidth; // Trigger reflow\n            sonarPingEffect.classList.add(\'sonar-ping\');\n        }\n\n        // Event Listeners\n        newFactBtn.addEventListener(\'click\', displayFact);\n\n        ratingButtons.forEach(button => {\n            button.addEventListener(\'click\', () => {\n                ratingButtons.forEach(btn => btn.classList.remove(\'active\'));\n                button.classList.add(\'active\');\n                popularityScore = parseInt(button.dataset.rating);\n                popularityScoreDisplay.textContent = `Popularity Score: ${popularityScore}`;\n            });\n        });\n\n        deepSeaToggle.addEventListener(\'change\', () => {\n            body.classList.toggle(\'deep-sea-dive-mode\', deepSeaToggle.checked);\n        });\n\n        document.addEventListener(\'mousemove\', (e) => {\n            if (deepSeaToggle.checked) {\n                createWaterParticle(e.clientX, e.clientY);\n            }\n        });\n\n        factDisplay.addEventListener(\'click\', () => {\n            if (factDisplay.classList.contains(\'blurred-fact\')) {\n                revealFact();\n            }\n        });\n\n        scrambleFactDisplay.addEventListener(\'click\', () => {\n            if (scrambleFactDisplay.classList.contains(\'blurred-fact\')) {\n                revealFact();\n            }\n        });\n\n        scrambleSubmitBtn.addEventListener(\'click\', () => {\n            const userAnswer = scrambleInput.value.trim();\n            if (userAnswer.toLowerCase() === currentFact.toLowerCase()) {\n                scrambleMessage.textContent = \"Discovery Confirmed! Well done!\";\n                scrambleMessage.classList.remove(\'incorrect-message\');\n                scrambleMessage.classList.add(\'correct-message\');\n                revealFact();\n            } else {\n                scrambleMessage.textContent = \"Incorrect. Keep exploring!\";\n                scrambleMessage.classList.remove(\'correct-message\');\n                scrambleMessage.classList.add(\'incorrect-message\');\n            }\n        });\n\n        // Initial load\n        displayFact();\n        updateTime();\n        setInterval(updateTime, 60000); // Update time every minute\n    </script>\n</body>\n</html>
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: background 1.5s ease-in-out, color 0.8s ease;
+            overflow-x: hidden;
+            position: relative;
+            cursor: crosshair; /* Indicate interactivity */
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .deep-sea-dive-mode {
+            background: #000000; /* Black for deep sea */
+            background-image: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 30%),
+                              radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 25%),
+                              radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 20%);
+            background-size: 120% 120%, 100% 100%, 80% 80%;
+            animation: deepSeaCurrent 30s linear infinite alternate;
+        }
+
+        @keyframes deepSeaCurrent {
+            0% { background-position: 0% 0%, 50% 50%, 100% 100%; }
+            100% { background-position: 100% 100%, 0% 0%, 50% 50%; }
+        }
+
+        .container {
+            background: var(--glass-bg);
+            border-radius: 25px; /* Slightly more rounded */
+            padding: 40px 60px;
+            margin: auto;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Stronger shadow */
+            backdrop-filter: blur(12px); /* More blur */
+            border: 1px solid var(--glass-border);
+            max-width: 900px; /* Wider container for better readability */
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px; /* Space between elements */
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease-in-out;
+        }
+
+        h1 {
+            color: var(--title-color);
+            text-shadow: var(--title-shadow);
+            font-size: 3em;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+
+        .fact-card {
+            background: var(--fact-card-bg);
+            border: 1px solid var(--fact-card-border);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--fact-of-day-glow);
+            max-width: 700px;
+            margin: 20px 0;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .fact-card h2 {
+            color: var(--bioluminescent-glow-color);
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        }
+
+        .fact-text {
+            font-size: 1.6em;
+            line-height: 1.6;
+            color: var(--bioluminescent-text-initial); /* Initially dim */
+            text-shadow: none;
+            transition: color 1s ease, text-shadow 1s ease;
+        }
+
+        .fact-text.revealed {
+            color: var(--bioluminescent-text-active); /* Bright when revealed */
+            text-shadow: var(--fact-text-shadow);
+        }
+
+        .reveal-button {
+            background-color: var(--main-action-btn);
+            color: var(--bg-color-primary); /* Dark text on bright button */
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+            margin-top: 20px;
+            font-weight: bold;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+        }
+
+        .reveal-button:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            background-color: var(--footer-bg);
+            color: var(--text-color); /* Ensure text is clearly visible */
+            width: 100%;
+            box-sizing: border-box;
+            border-top: 1px solid var(--glass-border);
+            font-size: 0.9em;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Deep Sea Mysteries</h1>
+        <div class="fact-card">
+            <h2>Did you know?</h2>
+            <p id="deep-sea-fact" class="fact-text">Around three-quarters of all deep-sea creatures are bioluminescent, meaning they produce their own light through a chemical reaction.</p>
+            <button class="reveal-button" onclick="revealFact()">Reveal Bioluminescence</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>Site last updated: <span id="update-time"></span></p>
+    </footer>
+
+    <script>
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('update-time').textContent = now.toLocaleString();
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call
+
+        function revealFact() {
+            const factText = document.getElementById('deep-sea-fact');
+            factText.classList.add('revealed');
+            const revealButton = document.querySelector('.reveal-button');
+            revealButton.textContent = "Fact Revealed!";
+            revealButton.disabled = true;
+            revealButton.style.cursor = 'default';
+            revealButton.style.boxShadow = 'none';
+            revealButton.style.backgroundColor = 'var(--main-action-btn-hover)';
+        }
+    </script>
+</body>
+</html>
