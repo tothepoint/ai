@@ -30,6 +30,12 @@
             --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Aqua for sonar wave */
             --sonar-glow-text-color: #E0FFFF; /* Bright text for sonar glow */
             --sonar-glow-text-shadow: 0 0 20px rgba(0, 255, 255, 1); /* Stronger glow for sonar */
+
+            /* Abyssal Descent Feature Colors */
+            --abyssal-bg-start: #0A192F;
+            --abyssal-bg-end: #01050A; /* Even darker for descent */
+            --abyssal-text-color: #E0FFFF;
+            --abyssal-text-shadow: 0 0 20px rgba(173, 216, 230, 1);
         }
 
         body {
@@ -51,6 +57,12 @@
             overflow-x: hidden;
             position: relative;
             cursor: crosshair; /* Indicate interactivity */
+        }
+
+        body.descending {
+            background: linear-gradient(135deg, var(--abyssal-bg-start) 0%, var(--abyssal-bg-end) 100%);
+            animation: none; /* Stop gradient shift during descent */
+            transition: background 3s ease-in-out;
         }
 
         @keyframes gradientShift {
@@ -123,6 +135,11 @@
         .fact-text.sonar-active {
             color: var(--sonar-glow-text-color);
             text-shadow: var(--sonar-glow-text-shadow);
+        }
+
+        .fact-text.abyssal-revealed {
+            color: var(--abyssal-text-color);
+            text-shadow: var(--abyssal-text-shadow);
         }
 
         .button-group {
@@ -204,9 +221,9 @@
         <h1>Deep Sea Mysteries</h1>
         <div class="fact-card" id="factCard">
             <h2>Did you know?</h2>
-            <p id="deep-sea-fact" class="fact-text">Around three-quarters of all deep-sea creatures are bioluminescent, meaning they produce their own light through a chemical reaction.</p>
+            <p id="deep-sea-fact" class="fact-text">The Earth's largest waterfall is actually underwater in the Denmark Strait, where cold water plunges 11,500 feet over a drop in the ocean floor.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="revealFact()">Reveal Bioluminescence</button>
+                <button class="action-button" id="descendButton" onclick="descendToFact()">Descend to Fact</button>
                 <button class="action-button" id="sonarButton" onclick="activateSonar()">Sonar Pulse</button>
             </div>
         </div>
@@ -224,12 +241,20 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function revealFact() {
+        function descendToFact() {
+            const body = document.body;
             const factText = document.getElementById('deep-sea-fact');
-            factText.classList.add('revealed');
-            const revealButton = document.getElementById('revealButton');
-            revealButton.textContent = "Fact Revealed!";
-            revealButton.disabled = true;
+            const descendButton = document.getElementById('descendButton');
+
+            body.classList.add('descending');
+            factText.classList.add('abyssal-revealed');
+            descendButton.textContent = "Fact Explored!";
+            descendButton.disabled = true;
+
+            // Revert background after a delay to simulate returning from the depths
+            setTimeout(() => {
+                body.classList.remove('descending');
+            }, 3000); // Matches background transition duration
         }
 
         function activateSonar() {
