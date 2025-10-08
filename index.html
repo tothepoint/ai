@@ -6,11 +6,12 @@
     <title id="site-title">Deep Sea Mysteries</title>
     <style>
         :root {
-            /* Deep Sea Mysteries Theme Colors */
+            /* Deep Sea Mysteries Theme Colors - Refined for better contrast and visibility */
             --bg-color-primary: #0A192F; /* Deep Ocean Blue */
             --bg-color-secondary: #050F1A; /* Even Deeper Ocean */
-            --text-color: #ADD8E6; /* Light Cyan */
+            --text-color: #E0FFFF; /* Bright Aqua for main text - improved visibility */
             --footer-bg: #1A2B40; /* Slightly Lighter Ocean Blue for Footer */
+            --footer-text-color: #ADD8E6; /* Light Cyan for footer text - improved visibility */
             --glass-bg: rgba(10, 25, 47, 0.7); /* Semi-transparent Deep Ocean Blue */
             --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Cyan border */
             --fact-text-shadow: 0 0 15px rgba(173, 216, 230, 0.8); /* Light Cyan glow */
@@ -18,31 +19,17 @@
             --title-shadow: 0 0 20px rgba(0, 255, 255, 0.7); /* Aqua glow */
             --main-action-btn: #00FFFF; /* Aqua - for action buttons */
             --main-action-btn-hover: #00CED1; /* Dark Turquoise */
-            --theme-indicator-color: #00FFFF; /* Aqua */
-            --favorite-btn-color: #00FFFF; /* Aqua */
-            --favorite-btn-hover: #00CED1; /* Dark Turquoise */
-            --share-btn-color: #00FFFF; /* Aqua */
-            --share-btn-hover: #00CED1; /* Dark Turquoise */
-            --rating-active-color: #00FFFF; /* Aqua */
-            --rating-text-color: #ADD8E6; /* Light Cyan */
+            --bioluminescent-glow-color: #00FFFF; /* Aqua for the glow */
+            --bioluminescent-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, based on new text-color */
+            --bioluminescent-text-active: #E0FFFF; /* Bright text, based on new text-color */
             --fact-card-bg: rgba(5, 15, 26, 0.8); /* Very dark, almost black with a hint of blue */
             --fact-card-border: rgba(0, 255, 255, 0.5); /* Aqua border for emphasis */
             --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9); /* Strong Aqua glow */
-            --cosmic-scan-color: rgba(0, 255, 255, 0.9); /* Aqua scan for deep sea theme */
-            --scramble-input-bg: rgba(173, 216, 230, 0.1);
-            --scramble-input-border: #00FFFF;
-            --scramble-input-text: #ADD8E6;
-            --scramble-button-bg: #00FFFF;
-            --scramble-button-hover: #00CED1;
-            --scramble-message-correct: #ADD8E6;
-            --scramble-message-incorrect: #EF5350; /* Red for incorrect */
-            --star-particle-color: rgba(173, 216, 230, 0.7); /* Light Cyan for particles */
-            --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Aqua for sonar */
 
-            /* Bioluminescence Feature Colors */
-            --bioluminescent-glow-color: #00FFFF; /* Aqua for the glow */
-            --bioluminescent-text-initial: rgba(173, 216, 230, 0.3); /* Dimmed text */
-            --bioluminescent-text-active: #ADD8E6; /* Bright text */
+            /* Sonar Feature Colors */
+            --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Aqua for sonar wave */
+            --sonar-glow-text-color: #E0FFFF; /* Bright text for sonar glow */
+            --sonar-glow-text-shadow: 0 0 20px rgba(0, 255, 255, 1); /* Stronger glow for sonar */
         }
 
         body {
@@ -72,20 +59,6 @@
             100% { background-position: 0% 50%; }
         }
 
-        .deep-sea-dive-mode {
-            background: #000000; /* Black for deep sea */
-            background-image: radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 30%),
-                              radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.08) 0%, transparent 25%),
-                              radial-gradient(circle at 50% 50%, rgba(0, 255, 255, 0.05) 0%, transparent 20%);
-            background-size: 120% 120%, 100% 100%, 80% 80%;
-            animation: deepSeaCurrent 30s linear infinite alternate;
-        }
-
-        @keyframes deepSeaCurrent {
-            0% { background-position: 0% 0%, 50% 50%, 100% 100%; }
-            100% { background-position: 100% 100%, 0% 0%, 50% 50%; }
-        }
-
         .container {
             background: var(--glass-bg);
             border-radius: 25px; /* Slightly more rounded */
@@ -108,7 +81,7 @@
         h1 {
             color: var(--title-color);
             text-shadow: var(--title-shadow);
-            font-size: 3em;
+            font-size: 3.5em; /* Slightly larger title */
             margin-bottom: 20px;
             letter-spacing: 2px;
             transition: color 0.5s ease, text-shadow 0.5s ease;
@@ -123,6 +96,8 @@
             max-width: 700px;
             margin: 20px 0;
             transition: all 0.5s ease-in-out;
+            position: relative; /* For sonar effect */
+            overflow: hidden; /* For sonar effect */
         }
 
         .fact-card h2 {
@@ -145,7 +120,18 @@
             text-shadow: var(--fact-text-shadow);
         }
 
-        .reveal-button {
+        .fact-text.sonar-active {
+            color: var(--sonar-glow-text-color);
+            text-shadow: var(--sonar-glow-text-shadow);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .action-button {
             background-color: var(--main-action-btn);
             color: var(--bg-color-primary); /* Dark text on bright button */
             border: none;
@@ -154,22 +140,28 @@
             font-size: 1.2em;
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            margin-top: 20px;
             font-weight: bold;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
 
-        .reveal-button:hover {
+        .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+        }
+
+        .action-button:disabled {
+            background-color: var(--main-action-btn-hover);
+            cursor: default;
+            opacity: 0.7;
+            box-shadow: none;
         }
 
         footer {
             margin-top: 50px;
             padding: 20px;
             background-color: var(--footer-bg);
-            color: var(--text-color); /* Ensure text is clearly visible */
+            color: var(--footer-text-color); /* Ensure text is clearly visible */
             width: 100%;
             box-sizing: border-box;
             border-top: 1px solid var(--glass-border);
@@ -177,15 +169,46 @@
             position: relative;
             z-index: 10;
         }
+
+        /* Sonar Pulse Effect */
+        .sonar-wave {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: var(--sonar-wave-color);
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            animation: sonarPulse 1.5s ease-out forwards;
+            z-index: -1; /* Behind the fact text */
+        }
+
+        @keyframes sonarPulse {
+            0% {
+                width: 0;
+                height: 0;
+                opacity: 0.6;
+            }
+            100% {
+                width: 200%; /* Expand beyond card */
+                height: 200%;
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Deep Sea Mysteries</h1>
-        <div class="fact-card">
+        <div class="fact-card" id="factCard">
             <h2>Did you know?</h2>
             <p id="deep-sea-fact" class="fact-text">Around three-quarters of all deep-sea creatures are bioluminescent, meaning they produce their own light through a chemical reaction.</p>
-            <button class="reveal-button" onclick="revealFact()">Reveal Bioluminescence</button>
+            <div class="button-group">
+                <button class="action-button" id="revealButton" onclick="revealFact()">Reveal Bioluminescence</button>
+                <button class="action-button" id="sonarButton" onclick="activateSonar()">Sonar Pulse</button>
+            </div>
         </div>
     </div>
 
@@ -204,12 +227,31 @@
         function revealFact() {
             const factText = document.getElementById('deep-sea-fact');
             factText.classList.add('revealed');
-            const revealButton = document.querySelector('.reveal-button');
+            const revealButton = document.getElementById('revealButton');
             revealButton.textContent = "Fact Revealed!";
             revealButton.disabled = true;
-            revealButton.style.cursor = 'default';
-            revealButton.style.boxShadow = 'none';
-            revealButton.style.backgroundColor = 'var(--main-action-btn-hover)';
+        }
+
+        function activateSonar() {
+            const factCard = document.getElementById('factCard');
+            const factText = document.getElementById('deep-sea-fact');
+            const sonarButton = document.getElementById('sonarButton');
+
+            // Create sonar wave element
+            const sonarWave = document.createElement('div');
+            sonarWave.classList.add('sonar-wave');
+            factCard.appendChild(sonarWave);
+
+            // Temporarily activate sonar glow on text
+            factText.classList.add('sonar-active');
+            sonarButton.disabled = true; // Disable button during animation
+
+            // Remove sonar wave and glow after animation
+            setTimeout(() => {
+                sonarWave.remove();
+                factText.classList.remove('sonar-active');
+                sonarButton.disabled = false; // Re-enable button
+            }, 1500); // Matches sonarPulse animation duration
         }
     </script>
 </body>
