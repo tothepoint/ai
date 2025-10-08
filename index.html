@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Oceanic Depths</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Oceanic Depths Theme Colors */
-            --bg-color-primary: #0A1F33; /* Deep Ocean Blue */
-            --bg-color-secondary: #05101A; /* Even Deeper Ocean */
-            --text-color: #E0F2F7; /* Seafoam White */
-            --footer-bg: #071524; /* Darker Ocean for Footer */
-            --glass-bg: rgba(10, 31, 51, 0.7); /* Semi-transparent Deep Ocean */
-            --glass-border: rgba(224, 242, 247, 0.3); /* Soft Seafoam White border */
-            --fact-text-shadow: 0 0 15px rgba(224, 242, 247, 0.8); /* Seafoam White glow */
-            --title-color: #87CEEB; /* Sky Blue - for a vibrant oceanic title */
-            --title-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
-            --main-action-btn: #87CEEB; /* Sky Blue - for action buttons */
-            --main-action-btn-hover: #6495ED; /* Slightly darker Sky Blue */
-            --theme-indicator-color: #87CEEB; /* Sky Blue */
-            --favorite-btn-color: #87CEEB; /* Sky Blue */
-            --favorite-btn-hover: #6495ED; /* Lighter Sky Blue */
-            --share-btn-color: #87CEEB; /* Sky Blue */
-            --share-btn-hover: #6495ED; /* Lighter Sky Blue */
-            --rating-active-color: #87CEEB; /* Sky Blue */
-            --rating-text-color: #E0F2F7; /* Seafoam White */
-            --fact-card-bg: rgba(5, 16, 26, 0.8); /* Very dark, almost black with a hint of blue */
-            --fact-card-border: rgba(135, 206, 235, 0.5); /* Sky Blue border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(135, 206, 235, 0.9); /* Strong Sky Blue glow */
-            --cosmic-scan-color: rgba(0, 255, 255, 0.9); /* Cyan scan for oceanic theme */
-            --scramble-input-bg: rgba(224, 242, 247, 0.1);
-            --scramble-input-border: #87CEEB;
-            --scramble-input-text: #E0F2F7;
-            --scramble-button-bg: #87CEEB;
-            --scramble-button-hover: #6495ED;
-            --scramble-message-correct: #E0F2F7;
+            /* Cosmic Wonders Theme Colors */
+            --bg-color-primary: #1A0033; /* Deep Space Purple */
+            --bg-color-secondary: #0D001A; /* Even Deeper Space */
+            --text-color: #E0BBE4; /* Pale Lavender */
+            --footer-bg: #120026; /* Darker Space Purple for Footer */
+            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent Deep Space Purple */
+            --glass-border: rgba(224, 187, 228, 0.3); /* Soft Pale Lavender border */
+            --fact-text-shadow: 0 0 15px rgba(224, 187, 228, 0.8); /* Pale Lavender glow */
+            --title-color: #FFD700; /* Gold - for a vibrant cosmic title */
+            --title-shadow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
+            --main-action-btn: #FFD700; /* Gold - for action buttons */
+            --main-action-btn-hover: #DAA520; /* Goldenrod */
+            --theme-indicator-color: #FFD700; /* Gold */
+            --favorite-btn-color: #FFD700; /* Gold */
+            --favorite-btn-hover: #DAA520; /* Goldenrod */
+            --share-btn-color: #FFD700; /* Gold */
+            --share-btn-hover: #DAA520; /* Goldenrod */
+            --rating-active-color: #FFD700; /* Gold */
+            --rating-text-color: #E0BBE4; /* Pale Lavender */
+            --fact-card-bg: rgba(13, 0, 26, 0.8); /* Very dark, almost black with a hint of purple */
+            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9); /* Strong Gold glow */
+            --cosmic-scan-color: rgba(255, 255, 0, 0.9); /* Yellow scan for cosmic theme */
+            --scramble-input-bg: rgba(224, 187, 228, 0.1);
+            --scramble-input-border: #FFD700;
+            --scramble-input-text: #E0BBE4;
+            --scramble-button-bg: #FFD700;
+            --scramble-button-hover: #DAA520;
+            --scramble-message-correct: #E0BBE4;
             --scramble-message-incorrect: #EF5350; /* Red for incorrect */
-            --star-particle-color: rgba(224, 242, 247, 0.7); /* Seafoam White for particles */
+            --star-particle-color: rgba(224, 187, 228, 0.7); /* Pale Lavender for particles */
         }
 
         body {
@@ -141,7 +141,7 @@
             border-radius: 20px; /* More rounded */
             padding: 30px;
             margin: 25px 0;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7); /* Stronger shadow */
+            box-shadow: var(--fact-of-day-glow); /* Emphasize fact of the day */
             width: 95%;
             max-width: 700px;
             transition: all 0.6s ease;
@@ -286,7 +286,7 @@
             100% { top: 100%; opacity: 0; }
         }
 
-        /* Fact Scramble Challenge / Deep Sea Discovery */
+        /* Fact Scramble Challenge / Cosmic Fact Scramble */
         #scramble-section {
             margin-top: 30px;
             padding: 25px;
@@ -326,7 +326,7 @@
         #scramble-input:focus {
             outline: none;
             border-color: var(--main-action-btn);
-            box-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
         #scramble-submit-btn {
@@ -355,7 +355,7 @@
 
         .correct-message {
             color: var(--scramble-message-correct);
-            text-shadow: 0 0 8px rgba(224, 242, 247, 0.7);
+            text-shadow: 0 0 8px rgba(224, 187, 228, 0.7);
         }
 
         .incorrect-message {
@@ -490,18 +490,18 @@
     </div>
 
     <div class="container">
-        <div class="theme-indicator">Oceanic Depths</div>
-        <h1 id="site-main-title">Deep Sea Discoveries</h1>
+        <div class="theme-indicator">Cosmic Wonders</div>
+        <h1 id="site-main-title">Cosmic Wonders</h1>
 
         <div class="fact-card">
             <div class="cosmic-scan-line"></div>
-            <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
+            <p id="fact-display" class="blurred-fact">A teaspoon of neutron star material would weigh about 6 billion tons.</p>
         </div>
 
-        <button id="new-fact-btn" class="action-button">Explore Deeper</button>
+        <button id="new-fact-btn" class="action-button">Explore Cosmos</button>
 
         <div class="rating-section">
-            <p>How fascinating is this discovery?</p>
+            <p>How mind-bending is this cosmic wonder?</p>
             <div class="rating-buttons">
                 <button class="rating-button" data-rating="1">⭐</button>
                 <button class="rating-button" data-rating="2">⭐⭐</button>
@@ -513,25 +513,25 @@
         </div>
 
         <div id="scramble-section">
-            <h2>Deep Sea Discovery Challenge</h2>
-            <p id="scramble-fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
+            <h2>Cosmic Fact Scramble</h2>
+            <p id="scramble-fact-display" class="blurred-fact">A teaspoon of neutron star material would weigh about 6 billion tons.</p>
             <input type="text" id="scramble-input" placeholder="Type the fact here...">
-            <button id="scramble-submit-btn">Reveal Discovery</button>
+            <button id="scramble-submit-btn">Reveal Cosmic Truth</button>
             <p id="scramble-message"></p>
         </div>
     </div>
 
     <footer class="footer">
-        <p>&copy; 2025 Deep Sea Discoveries. All rights reserved. | Last updated: <span id="update-time"></span></p>
+        <p>&copy; 2025 Cosmic Wonders. All rights reserved. | Last updated: <span id="update-time"></span></p>
     </footer>
 
     <script>
         const facts = [
-            "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).",
-            "The ocean contains nearly 20 million tons of gold, but it's so diluted that each liter of seawater contains only about 13 billionths of a gram.",
-            "More than 80% of the ocean is unmapped, unobserved, and unexplored.",
-            "The Great Barrier Reef is the largest living structure on Earth, visible from outer space.",
-            "There are more historic artifacts and wrecks in the ocean than in all the world's museums combined."
+            "A teaspoon of neutron star material would weigh about 6 billion tons.",
+            "The universe is estimated to be 13.8 billion years old.",
+            "There are more stars in the universe than grains of sand on all the beaches on Earth.",
+            "The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a supercluster of galaxies.",
+            "Black holes are regions in spacetime where gravity is so strong that nothing, not even light, can escape."
         ];
 
         let currentFact = "";
@@ -624,6 +624,12 @@
 
         factDisplay.addEventListener('click', () => {
             if (factDisplay.classList.contains('blurred-fact')) {
+                revealFact();
+            }
+        });
+
+        scrambleFactDisplay.addEventListener('click', () => {
+            if (scrambleFactDisplay.classList.contains('blurred-fact')) {
                 revealFact();
             }
         });
