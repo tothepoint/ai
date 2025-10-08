@@ -3,58 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Oceanic Depths</title>
+    <title id="site-title">Cosmic Mysteries</title>
     <style>
         :root {
-            /* Oceanic Depths Theme Colors */
-            --bg-color-primary: #0A1F33; /* Very deep ocean blue */
-            --bg-color-secondary: #05101A; /* Even darker, abyss-like blue */
-            --text-color: #E0FFFF; /* Light Cyan, for clear visibility */
-            --footer-bg: #05101A; /* Darker blue, distinct from the main background but still harmonious */
-            --glass-bg: rgba(10, 31, 51, 0.7); /* Semi-transparent deep blue */
-            --glass-border: rgba(224, 255, 255, 0.3); /* Light cyan border */
+            /* Cosmic Mysteries Theme Colors */
+            --bg-color-primary: #1A0A2E; /* Deep Violet */
+            --bg-color-secondary: #0A0510; /* Near Black */
+            --text-color: #E0BBE4; /* Soft Lavender */
+            --footer-bg: #2A1A3E; /* Darker Violet */
+            --glass-bg: rgba(26, 10, 46, 0.7); /* Semi-transparent Deep Violet */
+            --glass-border: rgba(224, 187, 228, 0.3); /* Soft Lavender border */
             --fact-text-shadow: 2px 2px 15px rgba(0,0,0,0.9);
-            --title-color: #4ECDC4; /* Teal, for shimmering water effects */
+            --title-color: #FFD700; /* Gold, for celestial shimmer */
             --title-shadow: 4px 4px 25px rgba(0, 0, 0, 0.9);
-            --main-action-btn: #1A5276; /* Muted blue, like deep sea */
-            --main-action-btn-hover: #154360; /* Darker muted blue */
-            --theme-indicator-color: #4ECDC4; /* Teal */
-            --favorite-btn-color: #FFD700; /* Gold, for contrast */
+            --main-action-btn: #4A2C6B; /* Muted Purple */
+            --main-action-btn-hover: #3A1C5B; /* Darker Muted Purple */
+            --theme-indicator-color: #FFD700; /* Gold */
+            --favorite-btn-color: #FFD700; /* Gold */
             --favorite-btn-hover: #B8860B; /* Dark Goldenrod */
-            --share-btn-color: #4ECDC4; /* Teal */
-            --share-btn-hover: #36A7A0; /* Darker Teal */
-            --rating-active-color: #1A5276; /* Muted blue */
-            --rating-text-color: #E0FFFF; /* Light Cyan */
-            --category-select-bg: #0A1F33;
-            --category-select-border: #1A5276;
+            --share-btn-color: #FFD700; /* Gold */
+            --share-btn-hover: #CCA300; /* Darker Gold */
+            --rating-active-color: #4A2C6B; /* Muted Purple */
+            --rating-text-color: #E0BBE4; /* Soft Lavender */
+            --category-select-bg: #1A0A2E;
+            --category-select-border: #4A2C6B;
             --search-input-bg: rgba(255, 255, 255, 0.1);
-            --search-input-border: rgba(224, 255, 255, 0.5);
-            --search-input-text: #E0FFFF;
-            --fact-card-bg: rgba(10, 31, 51, 0.8);
-            --fact-card-border: rgba(78, 205, 196, 0.5); /* Teal border for emphasis */
-            --fact-of-day-glow: 0 0 20px rgba(78, 205, 196, 0.7); /* Teal glow */
-            --carousel-control-color: #4ECDC4;
-            --carousel-control-hover: #36A7A0;
-            --trivia-correct-color: #4ECDC4;
+            --search-input-border: rgba(224, 187, 228, 0.5);
+            --search-input-text: #E0BBE4;
+            --fact-card-bg: rgba(26, 10, 46, 0.8);
+            --fact-card-border: rgba(255, 215, 0, 0.5); /* Gold border for emphasis */
+            --fact-of-day-glow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
+            --carousel-control-color: #FFD700;
+            --carousel-control-hover: #CCA300;
+            --trivia-correct-color: #FFD700;
             --trivia-incorrect-color: #DC3545;
             --streak-color: #FFD700;
             --streak-glow: 0 0 15px rgba(255, 215, 0, 0.5);
-            --quiz-correct-color: #4ECDC4;
+            --quiz-correct-color: #FFD700;
             --quiz-incorrect-color: #DC3545;
             --scramble-input-bg: rgba(255, 255, 255, 0.1);
-            --scramble-input-border: #1A5276;
-            --scramble-input-text: #E0FFFF;
-            --scramble-button-bg: #4ECDC4;
-            --scramble-button-hover: #36A7A0;
-            --scramble-message-correct: #4ECDC4;
+            --scramble-input-border: #4A2C6B;
+            --scramble-input-text: #E0BBE4;
+            --scramble-button-bg: #FFD700;
+            --scramble-button-hover: #CCA300;
+            --scramble-message-correct: #FFD700;
             --scramble-message-incorrect: #DC3545;
+            --sonar-ping-color: rgba(255, 215, 0, 0.7); /* Gold ping */
         }
 
         body {
             background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
-            color: var(--text-color);
+            color: var(--text-color);\
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
@@ -271,7 +272,7 @@
 
         @keyframes footerPulse {
             0% { box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); }
-            100% { box-shadow: 0 -2px 20px rgba(78, 205, 196, 0.5); } /* Teal glow for oceanic theme */
+            100% { box-shadow: 0 -2px 20px rgba(255, 215, 0, 0.5); } /* Gold glow for cosmic theme */
         }
 
         /* New styles for the interactive fact reveal (Sonar Ping) */
@@ -309,12 +310,18 @@
 
         .fact-revealed {
             filter: blur(0px) !important;
+            animation: factSettle 1s ease-out forwards;
+        }
+
+        @keyframes factSettle {
+            from { transform: translateY(-10px); opacity: 0.5; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         /* Sonar Ping Effect */
         .sonar-ping {
             position: absolute;
-            border: 2px solid rgba(78, 205, 196, 0.7); /* Teal ping */
+            border: 2px solid var(--sonar-ping-color); /* Gold ping */
             border-radius: 50%;
             animation: sonarEffect 1.5s ease-out forwards;
             opacity: 0;
@@ -393,7 +400,7 @@
         }
 
         #scramble-input::placeholder {
-            color: rgba(224, 255, 255, 0.7);
+            color: rgba(224, 187, 228, 0.7);
         }
 
         .scramble-buttons {
@@ -436,15 +443,15 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: Oceanic Depths</div>
+        <div class="theme-indicator">Theme: Cosmic Mysteries</div>
         <button class="favorite-button" aria-label="Add to favorites">⭐</button>
-        <h1>Oceanic Depths</h1>
+        <h1>Cosmic Mysteries</h1>
         <div class="fact-card">
             <div class="fact-reveal-wrapper" id="fact-reveal-wrapper">
-                <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,070 feet).</p>
+                <p id="fact-display" class="blurred-fact">All the stars, galaxies, and planets that we can observe make up less than 5% of the universe. The remaining 96% consists of dark matter and dark energy, which cannot be directly observed or fully understood.</p>
                 <div class="fact-reveal-overlay" id="fact-reveal-overlay">Click to Reveal</div>
             </div>
-            <button class="dive-deeper-button" id="dive-deeper-btn">Dive Deeper</button>
+            <button class="dive-deeper-button" id="dive-deeper-btn">Explore the Unknown</button>
             <button class="share-button">Share</button>
         </div>
 
@@ -485,9 +492,10 @@
             const factRevealWrapper = document.getElementById('fact-reveal-wrapper');
             const diveDeeperBtn = document.getElementById('dive-deeper-btn');
 
-            factRevealOverlay.addEventListener('click', () => {
+            factRevealOverlay.addEventListener('click', (event) => {
                 if (!factRevealOverlay.classList.contains('revealed')) {
                     factDisplay.classList.remove('blurred-fact');
+                    factDisplay.classList.add('fact-revealed'); // Add class for settle animation
                     factRevealOverlay.classList.add('revealed');
                     factRevealOverlay.textContent = 'Fact Revealed!';
 
@@ -496,14 +504,13 @@
                     ping.classList.add('sonar-ping');
                     factRevealWrapper.appendChild(ping);
 
-                    const factRect = factDisplay.getBoundingClientRect();
+                    // Position ping at click location relative to wrapper
                     const wrapperRect = factRevealWrapper.getBoundingClientRect();
+                    const clickX = event.clientX - wrapperRect.left;
+                    const clickY = event.clientY - wrapperRect.top;
 
-                    ping.style.width = `${Math.max(factRect.width, factRect.height) * 1.2}px`;
-                    ping.style.height = `${Math.max(factRect.width, factRect.height) * 1.2}px`;
-                    ping.style.top = `${(factRect.height / 2) - (ping.offsetHeight / 2)}px`;
-                    ping.style.left = `${(factRect.width / 2) - (ping.offsetWidth / 2)}px`;
-                    ping.style.transform = 'translate(-50%, -50%)'; // Center the ping
+                    ping.style.left = `${clickX}px`;
+                    ping.style.top = `${clickY}px`;
 
                     ping.addEventListener('animationend', () => {
                         ping.remove();
@@ -512,7 +519,7 @@
             });
 
             diveDeeperBtn.addEventListener('click', () => {
-                alert('Diving deeper into the Mariana Trench! (This would link to more info in a real app)');
+                alert('Exploring the vastness of dark matter and dark energy! (This would link to more info in a real app)');
             });
 
             // Rating functionality (existing)
@@ -532,7 +539,7 @@
             });
 
             // Fact Scramble Game (existing, adapted for new fact)
-            const originalFact = "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,070 feet).";
+            const originalFact = "All the stars, galaxies, and planets that we can observe make up less than 5% of the universe. The remaining 96% consists of dark matter and dark energy, which cannot be directly observed or fully understood.";
             let scrambledFact = "";
 
             const scrambleFact = (fact) => {
