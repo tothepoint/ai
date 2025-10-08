@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Oceanic Depths</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #1A0F2D; /* Deep Space Purple */
-            --bg-color-secondary: #0D071A; /* Even Deeper Space */
-            --text-color: #E0E0E0; /* Ethereal White */
-            --footer-bg: #120A20; /* Darker Space for Footer */
-            --glass-bg: rgba(26, 15, 45, 0.7); /* Semi-transparent Deep Space */
-            --glass-border: rgba(224, 224, 224, 0.3); /* Soft White border */
-            --fact-text-shadow: 0 0 15px rgba(224, 224, 224, 0.8); /* White glow */
-            --title-color: #ADD8E6; /* Light Blue - for a vibrant cosmic title */
-            --title-shadow: 0 0 20px rgba(173, 216, 230, 0.7); /* Light Blue glow */
-            --main-action-btn: #ADD8E6; /* Light Blue - for action buttons */
-            --main-action-btn-hover: #87CEEB; /* Slightly darker Light Blue */
-            --theme-indicator-color: #ADD8E6; /* Light Blue */
-            --favorite-btn-color: #ADD8E6; /* Light Blue */
-            --favorite-btn-hover: #87CEEB; /* Lighter Light Blue */
-            --share-btn-color: #ADD8E6; /* Light Blue */
-            --share-btn-hover: #87CEEB; /* Lighter Light Blue */
-            --rating-active-color: #ADD8E6; /* Light Blue */
-            --rating-text-color: #E0E0E0; /* Ethereal White */
-            --fact-card-bg: rgba(13, 7, 26, 0.8); /* Very dark, almost black with a hint of purple */
-            --fact-card-border: rgba(173, 216, 230, 0.5); /* Light Blue border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(173, 216, 230, 0.9); /* Strong Light Blue glow */
-            --cosmic-scan-color: rgba(255, 255, 0, 0.9); /* Yellow scan */
-            --scramble-input-bg: rgba(224, 224, 224, 0.1);
-            --scramble-input-border: #ADD8E6;
-            --scramble-input-text: #E0E0E0;
-            --scramble-button-bg: #ADD8E6;
-            --scramble-button-hover: #87CEEB;
-            --scramble-message-correct: #E0E0E0;
+            /* Oceanic Depths Theme Colors */
+            --bg-color-primary: #0A1F33; /* Deep Ocean Blue */
+            --bg-color-secondary: #05101A; /* Even Deeper Ocean */
+            --text-color: #E0F2F7; /* Seafoam White */
+            --footer-bg: #071524; /* Darker Ocean for Footer */
+            --glass-bg: rgba(10, 31, 51, 0.7); /* Semi-transparent Deep Ocean */
+            --glass-border: rgba(224, 242, 247, 0.3); /* Soft Seafoam White border */
+            --fact-text-shadow: 0 0 15px rgba(224, 242, 247, 0.8); /* Seafoam White glow */
+            --title-color: #87CEEB; /* Sky Blue - for a vibrant oceanic title */
+            --title-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
+            --main-action-btn: #87CEEB; /* Sky Blue - for action buttons */
+            --main-action-btn-hover: #6495ED; /* Slightly darker Sky Blue */
+            --theme-indicator-color: #87CEEB; /* Sky Blue */
+            --favorite-btn-color: #87CEEB; /* Sky Blue */
+            --favorite-btn-hover: #6495ED; /* Lighter Sky Blue */
+            --share-btn-color: #87CEEB; /* Sky Blue */
+            --share-btn-hover: #6495ED; /* Lighter Sky Blue */
+            --rating-active-color: #87CEEB; /* Sky Blue */
+            --rating-text-color: #E0F2F7; /* Seafoam White */
+            --fact-card-bg: rgba(5, 16, 26, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(135, 206, 235, 0.5); /* Sky Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(135, 206, 235, 0.9); /* Strong Sky Blue glow */
+            --cosmic-scan-color: rgba(0, 255, 255, 0.9); /* Cyan scan for oceanic theme */
+            --scramble-input-bg: rgba(224, 242, 247, 0.1);
+            --scramble-input-border: #87CEEB;
+            --scramble-input-text: #E0F2F7;
+            --scramble-button-bg: #87CEEB;
+            --scramble-button-hover: #6495ED;
+            --scramble-message-correct: #E0F2F7;
             --scramble-message-incorrect: #EF5350; /* Red for incorrect */
-            --star-particle-color: rgba(255, 255, 255, 0.7); /* White for star particles */
+            --star-particle-color: rgba(224, 242, 247, 0.7); /* Seafoam White for particles */
         }
 
         body {
@@ -164,4 +164,488 @@
             letter-spacing: 1px;
         }
 
-        .action-button:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-4px); /* More pronounced lift */\n            box-shadow: 0 10px 25px rgba(0,0,0,0.6);\n        }\n\n        .action-button:disabled {\n            background-color: #333;\n            cursor: not-allowed;\n            transform: none;\n            box-shadow: none;\n        }\n\n        .rating-section {\n            display: flex;\n            flex-direction: column;\n            align-items: center;\n            margin-top: 30px;\n        }\n\n        .rating-section p {\n            font-size: 1.2rem;\n            margin-bottom: 10px;\n            color: var(--text-color);\n        }\n\n        .rating-buttons {\n            display: flex;\n            gap: 20px;\n            margin-top: 10px;\n        }\n\n        .rating-button {\n            background-color: var(--glass-bg);\n            border: 1px solid var(--glass-border);\n            color: var(--text-color);\n            padding: 12px 18px;\n            font-size: 1.8rem; /* Larger icons */\n            border-radius: 12px;\n            cursor: pointer;\n            box-shadow: 0 3px 12px rgba(0,0,0,0.4);\n            transition: all 0.2s ease;\n        }\n\n        .rating-button:hover {\n            transform: translateY(-3px) scale(1.1);\n            box-shadow: 0 5px 15px rgba(0,0,0,0.5);\n        }\n\n        .rating-button.active {\n            background-color: var(--rating-active-color);\n            color: white;\n            border-color: var(--rating-active-color);\n            transform: scale(1.15);\n            box-shadow: 0 6px 18px rgba(0,0,0,0.6);\n        }\n\n        #popularity-score {\n            font-size: 1.2rem;\n            color: var(--rating-text-color);\n            margin-top: 15px;\n            font-weight: bold;\n            letter-spacing: 0.5px;\n        }\n\n        .theme-indicator {\n            position: absolute;\n            top: 25px;\n            left: 25px;\n            background-color: var(--glass-bg);\n            padding: 12px 18px;\n            border-radius: 12px;\n            font-size: 1rem;\n            color: var(--theme-indicator-color);\n            border: 1px solid var(--glass-border);\n            box-shadow: 0 3px 12px rgba(0,0,0,0.4);\n            font-weight: 500;\n        }\n\n        .favorite-button {\n            position: absolute;\n            top: 25px;\n            right: 25px;\n            background: none;\n            border: none;\n            font-size: 3rem; /* Larger star */\n            cursor: pointer;\n            color: var(--favorite-btn-color);\n            transition: transform 0.2s ease, color 0.2s ease;\n            text-shadow: 0 0 10px rgba(173, 216, 230, 0.5); /* Subtle glow */\n        }\n\n        .favorite-button:hover {\n            transform: scale(1.25);\n            color: var(--favorite-btn-hover);\n        }\n\n        .share-button {\n            position: absolute;\n            bottom: 25px;\n            right: 25px;\n            background-color: var(--share-btn-color);\n            color: white;\n            border: none;\n            padding: 10px 20px;\n            font-size: 1rem;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: background-color 0.3s ease, transform 0.2s ease;\n            box-shadow: 0 3px 10px rgba(0,0,0,0.3);\n        }\n\n        .share-button:hover {\n            background-color: var(--share-btn-hover);\n            transform: translateY(-3px);\n        }\n\n        footer {\n            margin-top: 50px;\n            padding: 25px;\n            background-color: var(--footer-bg);\n            color: var(--text-color);\n            width: 100%;\n            box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.4);\n            transition: background-color 0.6s ease, color 0.6s ease;\n            animation: footerPulse 6s infinite alternate;\n            font-size: 1.1rem;\n            font-weight: 500;\n        }\n\n        @keyframes footerPulse {\n            0% { box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.4); }\n            100% { box-shadow: 0 -3px 25px rgba(173, 216, 230, 0.6); } /* Light Blue glow */\n        }\n\n        /* New styles for the interactive fact reveal (Cosmic Scan) */\n        .fact-reveal-wrapper {\n            position: relative;\n            display: inline-block;\n            overflow: hidden;\n            border-radius: 20px;\n            box-shadow: var(--fact-of-day-glow); /* Add glow to wrapper */\n        }\n\n        .fact-reveal-overlay {\n            position: absolute;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n            background: rgba(0, 0, 0, 0.6); /* Darker overlay */\n            border-radius: 20px;\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            color: white;\n            font-size: 1.8rem; /* Larger text */\n            font-weight: bold;\n            cursor: pointer;\n            opacity: 1;\n            transition: opacity 0.6s ease;\n            z-index: 1;\n            letter-spacing: 1px;\n        }\n\n        .fact-reveal-overlay.revealed {\n            opacity: 0;\n            pointer-events: none;\n        }\n\n        .fact-revealed {\n            filter: blur(0px) !important;\n            animation: factSettle 1.2s ease-out forwards;\n            text-shadow: var(--fact-text-shadow); /* Ensure glow on revealed fact */\n        }\n\n        @keyframes factSettle {\n            from { transform: translateY(-15px); opacity: 0.3; filter: blur(5px); }\n            to { transform: translateY(0); opacity: 1; filter: blur(0px); }\n        }\n\n        /* Cosmic Scan Effect */\n        .cosmic-scan {\n            position: absolute;\n            border: 3px solid var(--cosmic-scan-color); /* Thicker border */\n            border-radius: 50%;\n            animation: cosmicEffect 1.8s ease-out forwards; /* Slower, more pronounced */\n            opacity: 0;\n            transform: scale(0);\n            z-index: 2;\n            pointer-events: none; /* Do not interfere with clicks */\n        }\n\n        @keyframes cosmicEffect {\n            0% {\n                transform: scale(0);\n                opacity: 1;\n                box-shadow: 0 0 15px var(--cosmic-scan-color);\n            }\n            100% {\n                transform: scale(2); /* Larger scan */\n                opacity: 0;\n                box-shadow: 0 0 30px var(--cosmic-scan-color);\n            }\n        }\n\n        /* Styles for the \"Explore Further\" button */\n        .explore-further-button {\n            background-color: var(--main-action-btn);\n            color: white;\n            border: none;\n            padding: 15px 30px;\n            font-size: 1.2rem;\n            border-radius: 10px;\n            cursor: pointer;\n            box-shadow: 0 5px 15px rgba(0,0,0,0.4);\n            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;\n            margin-top: 20px;\n            font-weight: 600;\n        }\n\n        .explore-further-button:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-3px);\n            box-shadow: 0 8px 20px rgba(0,0,0,0.5);\n        }\n\n        /* Styles for Cosmic Anagrams Game */\n        .scramble-section {\n            margin-top: 40px;\n            background-color: var(--fact-card-bg);\n            border: 2px solid var(--fact-card-border);\n            border-radius: 20px;\n            padding: 30px;\n            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);\n            width: 95%;\n            max-width: 700px;\n            transition: all 0.6s ease;\n        }\n\n        .scramble-section h2 {\n            color: var(--title-color);\n            font-size: 2.5rem;\n            margin-bottom: 25px;\n            text-shadow: var(--title-shadow);\n            letter-spacing: 1px;\n        }\n\n        #scrambled-fact-display {\n            font-size: 2rem;\n            font-weight: 500;\n            margin: 25px 0;\n            line-height: 1.4;\n            color: var(--text-color);\n            padding: 0 10px;\n        }\n\n        #scramble-input {\n            width: 85%;\n            padding: 12px;\n            font-size: 1.2rem;\n            border-radius: 10px;\n            border: 2px solid var(--scramble-input-border);\n            background-color: var(--scramble-input-bg);\n            color: var(--scramble-input-text);\n            margin-bottom: 20px;\n            text-align: center;\n            box-shadow: inset 0 1px 5px rgba(0,0,0,0.3);\n        }\n\n        #scramble-input::placeholder {\n            color: rgba(224, 224, 224, 0.6);\n        }\n\n        .scramble-buttons {\n            display: flex;\n            gap: 20px;\n            justify-content: center;\n        }\n\n        .scramble-button {\n            background-color: var(--scramble-button-bg);\n            color: white;\n            border: none;\n            padding: 12px 25px;\n            font-size: 1.2rem;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: background-color 0.3s ease, transform 0.2s ease;\n            box-shadow: 0 3px 10px rgba(0,0,0,0.3);\n            font-weight: 600;\n        }\n\n        .scramble-button:hover {\n            background-color: var(--scramble-button-hover);\n            transform: translateY(-3px);\n        }\n\n        #scramble-message {\n            margin-top: 20px;\n            font-size: 1.3rem;\n            font-weight: bold;\n            letter-spacing: 0.5px;\n        }\n\n        .correct-message {\n            color: var(--scramble-message-correct);\n            text-shadow: 0 0 10px rgba(224, 224, 224, 0.7);\n        }\n\n        .incorrect-message {\n            color: var(--scramble-message-incorrect);\n            text-shadow: 0 0 8px rgba(239, 83, 80, 0.7);\n        }\n\n        /* Star Particle Effect */\n        .star-particle {\n            position: absolute;\n            background-color: var(--star-particle-color); /* Using existing color variable */\n            border-radius: 50%;\n            animation: starFall 4s ease-out forwards;\n            pointer-events: none;\n            z-index: -1;\n            filter: blur(1px);\n            opacity: 0;\n        }\n\n        @keyframes starFall {\n            0% {\n                transform: translateY(-20px) scale(0.2) rotate(0deg);\n                opacity: 0.8;\n                box-shadow: 0 0 8px var(--star-particle-color);\n            }\n            100% {\n                transform: translateY(200px) scale(1.5) rotate(180deg);\n                opacity: 0;\n                box-shadow: 0 0 20px var(--star-particle-color);\n            }\n        }\n\n        /* Fact History Feature */\n        .fact-history-container {\n            margin-top: 30px;\n            background-color: var(--fact-card-bg);\n            border: 2px solid var(--fact-card-border);\n            border-radius: 20px;\n            padding: 20px;\n            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);\n            width: 95%;\n            max-width: 700px;\n        }\n\n        .fact-history-container h3 {\n            color: var(--title-color);\n            font-size: 1.8rem;\n            margin-bottom: 15px;\n            text-shadow: var(--title-shadow);\n        }\n\n        #fact-history-display {\n            font-size: 1.1rem;\n            color: var(--text-color);\n            margin-bottom: 15px;\n            min-height: 50px; /* Ensure space even if no history */\n        }\n\n        .history-navigation-buttons {\n            display: flex;\n            justify-content: center;\n            gap: 15px;\n        }\n\n        .history-navigation-buttons button {\n            background-color: var(--main-action-btn);\n            color: white;\n            border: none;\n            padding: 10px 20px;\n            font-size: 1rem;\n            border-radius: 8px;\n            cursor: pointer;\n            transition: background-color 0.3s ease, transform 0.2s ease;\n        }\n\n        .history-navigation-buttons button:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-2px);\n        }\n\n        /* Stargazing Mode Toggle Button */\n        #stargazing-toggle {\n            position: absolute;\n            top: 25px;\n            right: 120px; /* Adjusted position */\n            background-color: var(--main-action-btn);\n            color: white;\n            border: none;\n            padding: 12px 20px;\n            font-size: 1rem;\n            border-radius: 10px;\n            cursor: pointer;\n            transition: background-color 0.3s ease, transform 0.2s ease;\n            box-shadow: 0 3px 10px rgba(0,0,0,0.3);\n            font-weight: 600;\n        }\n\n        #stargazing-toggle:hover {\n            background-color: var(--main-action-btn-hover);\n            transform: translateY(-3px);\n        }\n\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <div class=\"theme-indicator\">Theme: Cosmic Wonders</div>\n        <button class=\"favorite-button\" aria-label=\"Add to favorites\">⭐</button>\n        <button id=\"stargazing-toggle\">Stargazing Mode: Off</button>\n        <h1>Cosmic Wonders</h1>\n        <div class=\"fact-card\">\n            <div class=\"fact-reveal-wrapper\" id=\"fact-reveal-wrapper\">\n                <p id=\"fact-display\" class=\"blurred-fact\">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>\n                <div class=\"fact-reveal-overlay\" id=\"fact-reveal-overlay\">Initiate Cosmic Scan</div>\n            </div>\n            <button class=\"explore-further-button\" id=\"explore-further-btn\">Explore Further</button>\n            <button class=\"share-button\">Share</button>\n        </div>\n\n        <div class=\"rating-section\">\n            <p>Rate this fact:</p>\n            <div class=\"rating-buttons\">\n                <button class=\"rating-button\" data-rating=\"1\">👍</button>\n                <button class=\"rating-button\" data-rating=\"-1\">👎</button>\n            </div>\n            <p id=\"popularity-score\">Popularity Score: 0</p>\n        </div>\n\n        <!-- Cosmic Anagrams Game Section -->\n        <div class=\"scramble-section\">\n            <h2>Cosmic Anagrams</h2>\n            <p id=\"scrambled-fact-display\"></p>\n            <input type=\"text\" id=\"scramble-input\" placeholder=\"Unscramble the cosmic fact!\"></input>\n            <div class=\"scramble-buttons\">\n                <button class=\"scramble-button\" id=\"check-scramble-btn\">Check</button>\n                <button class=\"scramble-button\" id=\"new-scramble-btn\">New Fact</button>\n            </div>\n            <p id=\"scramble-message\"></p>\n        </div>\n\n        <!-- Fact History Section -->\n        <div class=\"fact-history-container\">\n            <h3>Fact History</h3>\n            <p id=\"fact-history-display\">No previous facts.</p>\n            <div class=\"history-navigation-buttons\">\n                <button id=\"prev-fact-btn\">Previous</button>\n                <button id=\"next-fact-btn\">Next</button>\n            </div>\n        </div>\n    </div>\n\n    <footer>\n        <p>Site last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        document.addEventListener('DOMContentLoaded', () => {\n            const updateTimeElement = document.getElementById('update-time');\n            const now = new Date();\n            updateTimeElement.textContent = now.toLocaleString();\n\n            const factDisplay = document.getElementById('fact-display');\n            const factRevealOverlay = document.getElementById('fact-reveal-overlay');\n            const factRevealWrapper = document.getElementById('fact-reveal-wrapper');\n            const exploreFurtherBtn = document.getElementById('explore-further-btn');\n            const stargazingToggle = document.getElementById('stargazing-toggle');\n\n            const facts = [\n                \"There are more stars in the universe than grains of sand on all the beaches on Earth.\",\n                \"A day on Venus is longer than its year.\",\n                \"The largest known structure in the universe is the Hercules-Corona Borealis Great Wall.\",\n                \"Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.\",\n                \"The universe is estimated to be around 13.8 billion years old.\"\n            ];\n            let currentFactIndex = 0;\n            let factHistory = [];\n\n            const displayFact = (index) => {\n                factDisplay.textContent = facts[index];\n                factDisplay.classList.add('blurred-fact');\n                factDisplay.classList.remove('fact-revealed');\n                factRevealOverlay.classList.remove('revealed');\n                factRevealOverlay.textContent = 'Initiate Cosmic Scan';\n                // Reset popularity score for new fact\n                popularityScore = 0;\n                popularityScoreElement.textContent = `Popularity Score: ${popularityScore}`;\n                ratingButtons.forEach(btn => btn.classList.remove('active'));\n                updateFactHistory();\n                displayScrambledFact(); // Update anagram game with new fact\n            };\n\n            factRevealOverlay.addEventListener('click', (event) => {\n                if (!factRevealOverlay.classList.contains('revealed')) {\n                    factDisplay.classList.remove('blurred-fact');\n                    factDisplay.classList.add('fact-revealed');\n                    factRevealOverlay.classList.add('revealed');\n                    factRevealOverlay.textContent = 'Cosmic Transmission Received!';\n\n                    // Cosmic Scan Effect\n                    const scan = document.createElement('div');\n                    scan.classList.add('cosmic-scan');\n                    factRevealWrapper.appendChild(scan);\n\n                    const wrapperRect = factRevealWrapper.getBoundingClientRect();\n                    const clickX = event.clientX - wrapperRect.left;\n                    const clickY = event.clientY - wrapperRect.top;\n\n                    scan.style.left = `${clickX}px`;\n                    scan.style.top = `${clickY}px`;\n\n                    scan.addEventListener('animationend', () => {\n                        scan.remove();\n                    });\n                }\n            });\n\n            exploreFurtherBtn.addEventListener('click', () => {\n                alert('Journeying deeper into the Cosmic Wonders! (This would link to more info in a real app)');\n            });\n\n            // Rating functionality\n            let popularityScore = 0;\n            const popularityScoreElement = document.getElementById('popularity-score');\n            const ratingButtons = document.querySelectorAll('.rating-button');\n\n            ratingButtons.forEach(button => {\n                button.addEventListener('click', () => {\n                    const rating = parseInt(button.dataset.rating);\n                    popularityScore += rating;\n                    popularityScoreElement.textContent = `Popularity Score: ${popularityScore}`;\n\n                    ratingButtons.forEach(btn => btn.classList.remove('active'));\n                    button.classList.add('active');\n                });\n            });\n\n            // Cosmic Anagrams Game\n            let currentOriginalFact = facts[currentFactIndex];\n            let scrambledFact = \"\";\n\n            const scrambleFact = (fact) => {\n                const words = fact.split(' ');\n                for (let i = words.length - 1; i > 0; i--) {\n                    const j = Math.floor(Math.random() * (i + 1));\n                    [words[i], words[j]] = [words[j], words[i]];\n                }\n                return words.join(' ');\n            };\n\n            const displayScrambledFact = () => {\n                currentOriginalFact = facts[currentFactIndex];\n                scrambledFact = scrambleFact(currentOriginalFact);\n                document.getElementById('scrambled-fact-display').textContent = scrambledFact;\n                document.getElementById('scramble-input').value = '';\n                document.getElementById('scramble-message').textContent = '';\n            };\n\n            document.getElementById('check-scramble-btn').addEventListener('click', () => {\n                const userInput = document.getElementById('scramble-input').value.trim();\n                const messageElement = document.getElementById('scramble-message');\n                if (userInput.toLowerCase() === currentOriginalFact.toLowerCase()) {\n                    messageElement.textContent = 'Correct! You unscrambled the cosmic fact!';\n                    messageElement.classList.remove('incorrect-message');\n                    messageElement.classList.add('correct-message');\n                } else {\n                    messageElement.textContent = 'Incorrect, try again, cosmic explorer!';\n                    messageElement.classList.remove('correct-message');\n                    messageElement.classList.add('incorrect-message');\n                }\n            });\n\n            document.getElementById('new-scramble-btn').addEventListener('click', displayScrambledFact);\n\n            // Fact History Feature\n            const factHistoryDisplay = document.getElementById('fact-history-display');\n            const prevFactBtn = document.getElementById('prev-fact-btn');\n            const nextFactBtn = document.getElementById('next-fact-btn');\n            let historyPointer = -1; // -1 means current fact is not in history view\n\n            const updateFactHistory = () => {\n                if (!factHistory.includes(facts[currentFactIndex])) {\n                    factHistory.push(facts[currentFactIndex]);\n                }\n                historyPointer = factHistory.length - 1; // Point to the latest fact\n                renderFactHistory();\n            };\n\n            const renderFactHistory = () => {\n                if (factHistory.length === 0) {\n                    factHistoryDisplay.textContent = \"No previous facts.\";\n                    prevFactBtn.disabled = true;\n                    nextFactBtn.disabled = true;\n                } else {\n                    factHistoryDisplay.textContent = factHistory[historyPointer];\n                    prevFactBtn.disabled = historyPointer === 0;\n                    nextFactBtn.disabled = historyPointer === factHistory.length - 1;\n                }\n            };\n\n            prevFactBtn.addEventListener('click', () => {\n                if (historyPointer > 0) {\n                    historyPointer--;\n                    renderFactHistory();\n                }\n            });\n\n            nextFactBtn.addEventListener('click', () => {\n                if (historyPointer < factHistory.length - 1) {\n                    historyPointer++;\n                    renderFactHistory();\n                }\n            });\n\n            // Star Particle Effect\n            document.body.addEventListener('click', (event) => {\n                if (event.target === document.body || event.target.tagName === 'HTML') {\n                    const particle = document.createElement('div');\n                    particle.classList.add('star-particle');\n                    const size = Math.random() * 8 + 3; // Random size between 3 and 11px\n                    particle.style.width = `${size}px`;\n                    particle.style.height = `${size}px`;\n                    particle.style.left = `${event.clientX - size / 2}px`;\n                    particle.style.top = `${event.clientY - size / 2}px`;\n                    document.body.appendChild(particle);\n\n                    particle.addEventListener('animationend', () => {\n                        particle.remove();\n                    });\n                }\n            });\n\n            // Stargazing Mode Toggle\n            let isStargazingMode = false;\n            stargazingToggle.addEventListener('click', () => {\n                isStargazingMode = !isStargazingMode;\n                if (isStargazingMode) {\n                    document.body.classList.add('stargazing-mode');\n                    stargazingToggle.textContent = 'Stargazing Mode: On';\n                } else {\n                    document.body.classList.remove('stargazing-mode');\n                    stargazingToggle.textContent = 'Stargazing Mode: Off';\n                }\n            });\n\n            // Initialize with the first fact\n            displayFact(currentFactIndex);\n        });\n    </script>\n</body>\n</html>
+        .action-button:hover {
+            background-color: var(--main-action-btn-hover);
+            transform: translateY(-4px); /* More pronounced lift */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.6);
+        }
+
+        .action-button:disabled {
+            background-color: #333;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .rating-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 30px;
+        }
+
+        .rating-section p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .rating-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .rating-button {
+            background-color: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            color: var(--text-color);
+            padding: 12px 18px;
+            font-size: 1.8rem; /* Larger icons */
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.4);
+            transition: all 0.2s ease;
+        }
+
+        .rating-button:hover {
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .rating-button.active {
+            background-color: var(--rating-active-color);
+            color: white;
+            border-color: var(--rating-active-color);
+            transform: scale(1.15);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+        }
+
+        #popularity-score {
+            font-size: 1.2rem;
+            color: var(--rating-text-color);
+            margin-top: 15px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .theme-indicator {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background-color: var(--theme-indicator-color);
+            color: var(--bg-color-primary); /* Text color contrasting with indicator */
+            padding: 8px 15px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            letter-spacing: 0.5px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: var(--footer-bg);
+            color: var(--text-color);
+            width: 100%;
+            font-size: 0.9rem;
+            border-top: 1px solid var(--glass-border);
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+            transition: background-color 0.8s ease, color 0.8s ease;
+        }
+
+        .footer a {
+            color: var(--text-color);
+            text-decoration: none;
+            margin: 0 5px;
+            transition: color 0.3s ease;
+        }
+
+        .footer a:hover {
+            color: var(--main-action-btn);
+        }
+
+        /* Cosmic Scan Effect */
+        .cosmic-scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--cosmic-scan-color), transparent);
+            animation: scanLine 3s infinite linear;
+            opacity: 0;
+            z-index: 10;
+        }
+
+        @keyframes scanLine {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        /* Fact Scramble Challenge / Deep Sea Discovery */
+        #scramble-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: var(--glass-bg);
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+            width: 90%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.6s ease;
+        }
+
+        #scramble-section h2 {
+            color: var(--title-color);
+            font-size: 2rem;
+            text-shadow: var(--title-shadow);
+            margin-bottom: 10px;
+        }
+
+        #scramble-input {
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            border: 2px solid var(--scramble-input-border);
+            background-color: var(--scramble-input-bg);
+            color: var(--scramble-input-text);
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+
+        #scramble-input:focus {
+            outline: none;
+            border-color: var(--main-action-btn);
+            box-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+        }
+
+        #scramble-submit-btn {
+            background-color: var(--scramble-button-bg);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            font-weight: bold;
+        }
+
+        #scramble-submit-btn:hover {
+            background-color: var(--scramble-button-hover);
+            transform: translateY(-2px);
+        }
+
+        #scramble-message {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-top: 10px;
+            min-height: 20px; /* Reserve space */
+        }
+
+        .correct-message {
+            color: var(--scramble-message-correct);
+            text-shadow: 0 0 8px rgba(224, 242, 247, 0.7);
+        }
+
+        .incorrect-message {
+            color: var(--scramble-message-incorrect);
+            text-shadow: 0 0 8px rgba(239, 83, 80, 0.7);
+        }
+
+        /* Star Particle Effect */
+        .star-particle {
+            position: absolute;
+            background-color: var(--star-particle-color);
+            border-radius: 50%;
+            animation: twinkle 1.5s infinite ease-in-out alternate;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; transform: scale(0.5); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        /* Toggle Switch for Stargazing Mode */
+        .toggle-switch {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 100;
+        }
+
+        .toggle-switch input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .toggle-switch label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 60px;
+            height: 30px;
+            background: grey;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-switch label:after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        .toggle-switch input:checked + label {
+            background: var(--main-action-btn);
+        }
+
+        .toggle-switch input:checked + label:after {
+            left: calc(100% - 3px);
+            transform: translateX(-100%);
+        }
+
+        .toggle-switch span {
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                width: 95%;
+            }
+
+            h1 {
+                font-size: 3rem;
+            }
+
+            #fact-display, #scramble-fact-display {
+                font-size: 1.8rem;
+            }
+
+            .action-button {
+                padding: 15px 25px;
+                font-size: 1.2rem;
+            }
+
+            .theme-indicator, .toggle-switch {
+                top: 15px;
+                right: 15px;
+                left: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            #fact-display, #scramble-fact-display {
+                font-size: 1.5rem;
+            }
+
+            .action-button {
+                width: 100%;
+                padding: 12px 20px;
+            }
+
+            .rating-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="toggle-switch">
+        <input type="checkbox" id="stargazing-toggle">
+        <label for="stargazing-toggle">Toggle</label>
+        <span>Stargazing Mode</span>
+    </div>
+
+    <div class="container">
+        <div class="theme-indicator">Oceanic Depths</div>
+        <h1 id="site-main-title">Deep Sea Discoveries</h1>
+
+        <div class="fact-card">
+            <div class="cosmic-scan-line"></div>
+            <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
+        </div>
+
+        <button id="new-fact-btn" class="action-button">Explore Deeper</button>
+
+        <div class="rating-section">
+            <p>How fascinating is this discovery?</p>
+            <div class="rating-buttons">
+                <button class="rating-button" data-rating="1">⭐</button>
+                <button class="rating-button" data-rating="2">⭐⭐</button>
+                <button class="rating-button" data-rating="3">⭐⭐⭐</button>
+                <button class="rating-button" data-rating="4">⭐⭐⭐⭐</button>
+                <button class="rating-button" data-rating="5">⭐⭐⭐⭐⭐</button>
+            </div>
+            <p id="popularity-score">Popularity Score: 0</p>
+        </div>
+
+        <div id="scramble-section">
+            <h2>Deep Sea Discovery Challenge</h2>
+            <p id="scramble-fact-display" class="blurred-fact">Can you type the fact above?</p>
+            <input type="text" id="scramble-input" placeholder="Type the fact here...">
+            <button id="scramble-submit-btn">Reveal Discovery</button>
+            <p id="scramble-message"></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Deep Sea Discoveries. All rights reserved. | Last updated: <span id="update-time"></span></p>
+    </footer>
+
+    <script>
+        const facts = [
+            "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).",
+            "The ocean contains nearly 20 million tons of gold, but it's so diluted that each liter of seawater contains only about 13 billionths of a gram.",
+            "More than 80% of the ocean is unmapped, unobserved, and unexplored.",
+            "The Great Barrier Reef is the largest living structure on Earth, visible from outer space.",
+            "There are more historic artifacts and wrecks in the ocean than in all the world's museums combined."
+        ];
+
+        let currentFact = "";
+        let popularityScore = 0;
+        let factRevealed = false;
+
+        const factDisplay = document.getElementById('fact-display');
+        const newFactBtn = document.getElementById('new-fact-btn');
+        const ratingButtons = document.querySelectorAll('.rating-button');
+        const popularityScoreDisplay = document.getElementById('popularity-score');
+        const updateTimeSpan = document.getElementById('update-time');
+        const stargazingToggle = document.getElementById('stargazing-toggle');
+        const body = document.body;
+        const scrambleSection = document.getElementById('scramble-section');
+        const scrambleFactDisplay = document.getElementById('scramble-fact-display');
+        const scrambleInput = document.getElementById('scramble-input');
+        const scrambleSubmitBtn = document.getElementById('scramble-submit-btn');
+        const scrambleMessage = document.getElementById('scramble-message');
+
+        function getRandomFact() {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            return facts[randomIndex];
+        }
+
+        function displayFact() {
+            currentFact = getRandomFact();
+            factDisplay.textContent = currentFact;
+            factDisplay.classList.add('blurred-fact');
+            scrambleFactDisplay.textContent = "Can you type the fact above?";
+            scrambleFactDisplay.classList.add('blurred-fact');
+            scrambleInput.value = '';
+            scrambleMessage.textContent = '';
+            factRevealed = false;
+            resetRating();
+        }
+
+        function resetRating() {
+            ratingButtons.forEach(button => button.classList.remove('active'));
+            popularityScore = 0;
+            popularityScoreDisplay.textContent = `Popularity Score: ${popularityScore}`;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            updateTimeSpan.textContent = now.toLocaleString();
+        }
+
+        function createStarParticle(x, y) {
+            const star = document.createElement('div');
+            star.classList.add('star-particle');
+            star.style.left = `${x}px`;
+            star.style.top = `${y}px`;
+            const size = Math.random() * 3 + 1; // 1 to 4px
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 3000); // Remove after animation
+        }
+
+        // Event Listeners
+        newFactBtn.addEventListener('click', displayFact);
+
+        ratingButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                ratingButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                popularityScore = parseInt(button.dataset.rating);
+                popularityScoreDisplay.textContent = `Popularity Score: ${popularityScore}`;
+            });
+        });
+
+        stargazingToggle.addEventListener('change', () => {
+            body.classList.toggle('stargazing-mode', stargazingToggle.checked);
+        });
+
+        document.addEventListener('mousemove', (e) => {
+            if (stargazingToggle.checked) {
+                createStarParticle(e.clientX, e.clientY);
+            }
+        });
+
+        factDisplay.addEventListener('click', () => {
+            if (factDisplay.classList.contains('blurred-fact')) {
+                factDisplay.classList.remove('blurred-fact');
+                factRevealed = true;
+                scrambleFactDisplay.textContent = currentFact;
+                scrambleFactDisplay.classList.remove('blurred-fact');
+            }
+        });
+
+        scrambleSubmitBtn.addEventListener('click', () => {
+            const userAnswer = scrambleInput.value.trim();
+            if (userAnswer.toLowerCase() === currentFact.toLowerCase()) {
+                scrambleMessage.textContent = "Discovery Confirmed! Well done!";
+                scrambleMessage.classList.remove('incorrect-message');
+                scrambleMessage.classList.add('correct-message');
+                factDisplay.classList.remove('blurred-fact');
+                scrambleFactDisplay.classList.remove('blurred-fact');
+                scrambleFactDisplay.textContent = currentFact;
+                factRevealed = true;
+            } else {
+                scrambleMessage.textContent = "Incorrect. Keep exploring!";
+                scrambleMessage.classList.remove('correct-message');
+                scrambleMessage.classList.add('incorrect-message');
+            }
+        });
+
+        // Initial load
+        displayFact();
+        updateTime();
+        setInterval(updateTime, 60000); // Update time every minute
+    </script>
+</body>
+</html>
