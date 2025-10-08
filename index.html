@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Deep Sea Wonders</title>
     <style>
         :root {
-            /* Space Exploration Theme Colors */
-            --bg-color-primary: #0D1B2A; /* Deep Space Blue */
-            --bg-color-secondary: #0A111C; /* Even Deeper Space */
-            --text-color: #BBDEFB; /* Light Blue - Star Glow */
-            --footer-bg: #0A1520; /* Darker Blue for Footer */
-            --glass-bg: rgba(13, 27, 42, 0.7); /* Semi-transparent Deep Space Blue */
-            --glass-border: rgba(187, 222, 251, 0.3); /* Soft Light Blue border */
-            --fact-text-shadow: 0 0 15px rgba(187, 222, 251, 0.8); /* Light Blue glow */
-            --title-color: #81D4FA; /* Sky Blue - for a vibrant title */
-            --title-shadow: 0 0 20px rgba(129, 212, 250, 0.7); /* Sky Blue glow */
-            --main-action-btn: #42A5F5; /* Blue - for action buttons */
-            --main-action-btn-hover: #2196F3; /* Slightly darker Blue */
-            --theme-indicator-color: #81D4FA; /* Sky Blue */
-            --favorite-btn-color: #81D4FA; /* Sky Blue */
-            --favorite-btn-hover: #64B5F6; /* Lighter Blue */
-            --share-btn-color: #81D4FA; /* Sky Blue */
-            --share-btn-hover: #64B5F6; /* Lighter Blue */
-            --rating-active-color: #42A5F5; /* Blue */
-            --rating-text-color: #BBDEFB; /* Light Blue */
-            --fact-card-bg: rgba(10, 17, 28, 0.8); /* Very dark, almost black with a hint of blue */
-            --fact-card-border: rgba(129, 212, 250, 0.5); /* Sky Blue border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(129, 212, 250, 0.9); /* Strong Sky Blue glow */
-            --stellar-scan-color: rgba(129, 212, 250, 0.9); /* Sky Blue scan */
-            --scramble-input-bg: rgba(187, 222, 251, 0.1);
-            --scramble-input-border: #42A5F5;
-            --scramble-input-text: #BBDEFB;
-            --scramble-button-bg: #42A5F5;
-            --scramble-button-hover: #2196F3;
-            --scramble-message-correct: #BBDEFB;
+            /* Deep Sea Exploration Theme Colors */
+            --bg-color-primary: #0A1F2F; /* Deep Ocean Blue */
+            --bg-color-secondary: #05101A; /* Abyss Dark */
+            --text-color: #E0FFFF; /* Pale Aqua - Bioluminescence */
+            --footer-bg: #03080F; /* Even Darker for Footer */
+            --glass-bg: rgba(10, 31, 47, 0.7); /* Semi-transparent Deep Ocean Blue */
+            --glass-border: rgba(224, 255, 255, 0.3); /* Soft Pale Aqua border */
+            --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Pale Aqua glow */
+            --title-color: #4DD0E1; /* Cyan - for a vibrant title */
+            --title-shadow: 0 0 20px rgba(77, 208, 225, 0.7); /* Cyan glow */
+            --main-action-btn: #00BCD4; /* Teal - for action buttons */
+            --main-action-btn-hover: #00ACC1; /* Slightly darker Teal */
+            --theme-indicator-color: #4DD0E1; /* Cyan */
+            --favorite-btn-color: #4DD0E1; /* Cyan */
+            --favorite-btn-hover: #26C6DA; /* Lighter Cyan */
+            --share-btn-color: #4DD0E1; /* Cyan */
+            --share-btn-hover: #26C6DA; /* Lighter Cyan */
+            --rating-active-color: #00BCD4; /* Teal */
+            --rating-text-color: #E0FFFF; /* Pale Aqua */
+            --fact-card-bg: rgba(5, 16, 26, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(77, 208, 225, 0.5); /* Cyan border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(77, 208, 225, 0.9); /* Strong Cyan glow */
+            --stellar-scan-color: rgba(77, 208, 225, 0.9); /* Cyan scan (now Sonar Scan) */
+            --scramble-input-bg: rgba(224, 255, 255, 0.1);
+            --scramble-input-border: #00BCD4;
+            --scramble-input-text: #E0FFFF;
+            --scramble-button-bg: #00BCD4;
+            --scramble-button-hover: #00ACC1;
+            --scramble-message-correct: #E0FFFF;
             --scramble-message-incorrect: #EF5350; /* Red for incorrect */
-            --cosmic-dust-particle-color: rgba(187, 222, 251, 0.7); /* Light Blue for particles */
+            --cosmic-dust-particle-color: rgba(224, 255, 255, 0.7); /* Pale Aqua for particles (now bubbles) */
         }
 
         body {
@@ -129,7 +129,7 @@
             max-width: 700px;
             transition: all 0.6s ease;
             position: relative;
-            overflow: hidden; /* For stellar scan */
+            overflow: hidden; /* For sonar scan */
         }
 
         .action-button {
@@ -140,7 +140,7 @@
             font-size: 1.4rem;
             border-radius: 12px;
             cursor: pointer;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.5);\
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             margin-top: 25px;
             font-weight: bold;
@@ -236,7 +236,7 @@
             cursor: pointer;
             color: var(--favorite-btn-color);
             transition: transform 0.2s ease, color 0.2s ease;
-            text-shadow: 0 0 10px rgba(129, 212, 250, 0.5); /* Subtle glow */
+            text-shadow: 0 0 10px rgba(77, 208, 225, 0.5); /* Subtle glow */
         }
 
         .favorite-button:hover {
@@ -279,10 +279,10 @@
 
         @keyframes footerPulse {
             0% { box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.4); }
-            100% { box-shadow: 0 -3px 25px rgba(129, 212, 250, 0.6); } /* Sky Blue glow */
+            100% { box-shadow: 0 -3px 25px rgba(77, 208, 225, 0.6); } /* Cyan glow */
         }
 
-        /* New styles for the interactive fact reveal (Stellar Scan) */
+        /* New styles for the interactive fact reveal (Sonar Scan) */
         .fact-reveal-wrapper {
             position: relative;
             display: inline-block;
@@ -328,19 +328,19 @@
             to { transform: translateY(0); opacity: 1; filter: blur(0px); }
         }
 
-        /* Stellar Scan Effect */
-        .stellar-scan {
+        /* Sonar Scan Effect */
+        .stellar-scan { /* Renamed to sonar-scan in JS, but keeping class name for CSS */
             position: absolute;
             border: 3px solid var(--stellar-scan-color); /* Thicker border */
             border-radius: 50%;
-            animation: stellarEffect 1.8s ease-out forwards; /* Slower, more pronounced */
+            animation: sonarEffect 1.8s ease-out forwards; /* Slower, more pronounced */
             opacity: 0;
             transform: scale(0);
             z-index: 2;
             pointer-events: none; /* Do not interfere with clicks */
         }
 
-        @keyframes stellarEffect {
+        @keyframes sonarEffect {
             0% {
                 transform: scale(0);
                 opacity: 1;
@@ -374,7 +374,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        /* Styles for Cosmic Anagrams Game */
+        /* Styles for Deep Sea Anagrams Game */
         .scramble-section {
             margin-top: 40px;
             background-color: var(--fact-card-bg);
@@ -418,7 +418,7 @@
         }
 
         #scramble-input::placeholder {
-            color: rgba(187, 222, 251, 0.6);
+            color: rgba(224, 255, 255, 0.6);
         }
 
         .scramble-buttons {
@@ -454,7 +454,7 @@
 
         .correct-message {
             color: var(--scramble-message-correct);
-            text-shadow: 0 0 10px rgba(187, 222, 251, 0.7);
+            text-shadow: 0 0 10px rgba(224, 255, 255, 0.7);
         }
 
         .incorrect-message {
@@ -462,31 +462,32 @@
             text-shadow: 0 0 8px rgba(239, 83, 80, 0.7);
         }
 
-        /* Cosmic Dust Particle Effect */
-        .cosmic-dust-particle {
+        /* Deep Sea Bubbles Particle Effect */
+        .cosmic-dust-particle { /* Renamed to deep-sea-bubble in JS, but keeping class name for CSS */
             position: absolute;
             background-color: var(--cosmic-dust-particle-color);
             border-radius: 50%;
-            animation: particleFade 2s ease-out forwards;
+            animation: bubbleRise 4s ease-out forwards; /* Slower rise */
             pointer-events: none;
             z-index: -1; /* Behind everything */
             filter: blur(2px);
+            opacity: 0; /* Start invisible */
         }
 
-        @keyframes particleFade {
+        @keyframes bubbleRise {
             0% {
-                transform: scale(0.2);
-                opacity: 1;
-                box-shadow: 0 0 10px var(--cosmic-dust-particle-color);
+                transform: translateY(0) scale(0.2);
+                opacity: 0.5;
+                box-shadow: 0 0 5px var(--cosmic-dust-particle-color);
             }
             50% {
-                transform: scale(1);
-                opacity: 0.7;
+                opacity: 0.8;
+                transform: translateY(-50px) scale(1);
             }
             100% {
-                transform: scale(1.5);
+                transform: translateY(-200px) scale(1.5); /* Rise further */
                 opacity: 0;
-                box-shadow: 0 0 20px var(--cosmic-dust-particle-color);
+                box-shadow: 0 0 15px var(--cosmic-dust-particle-color);
             }
         }
 
@@ -494,13 +495,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: Space Exploration</div>
+        <div class="theme-indicator">Theme: Deep Sea Exploration</div>
         <button class="favorite-button" aria-label="Add to favorites">⭐</button>
-        <h1>Cosmic Wonders</h1>
+        <h1>Deep Sea Wonders</h1>
         <div class="fact-card">
             <div class="fact-reveal-wrapper" id="fact-reveal-wrapper">
-                <p id="fact-display" class="blurred-fact">The International Space Station (ISS) is the largest modular space station currently in low Earth orbit. It has been continuously occupied by humans since November 2, 2000, making it the longest continuous human presence in space.</p>
-                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Initiate Transmission</div>
+                <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth. Its deepest point, Challenger Deep, is about 11,000 meters (36,000 feet) below sea level, which is deeper than Mount Everest is tall.</p>
+                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Initiate Sonar Scan</div>
             </div>
             <button class="explore-further-button" id="explore-further-btn">Explore Further</button>
             <button class="share-button">Share</button>
@@ -515,11 +516,11 @@
             <p id="popularity-score">Popularity Score: 0</p>
         </div>
 
-        <!-- Cosmic Anagrams Game Section -->
+        <!-- Deep Sea Anagrams Game Section -->
         <div class="scramble-section">
-            <h2>Cosmic Anagrams</h2>
+            <h2>Deep Sea Anagrams</h2>
             <p id="scrambled-fact-display"></p>
-            <input type="text" id="scramble-input" placeholder="Unscramble the cosmic fact!"></input>
+            <input type="text" id="scramble-input" placeholder="Unscramble the deep sea fact!"></input>
             <div class="scramble-buttons">
                 <button class="scramble-button" id="check-scramble-btn">Check</button>
                 <button class="scramble-button" id="new-scramble-btn">New Fact</button>
@@ -548,11 +549,11 @@
                     factDisplay.classList.remove('blurred-fact');
                     factDisplay.classList.add('fact-revealed');
                     factRevealOverlay.classList.add('revealed');
-                    factRevealOverlay.textContent = 'Transmission Received!';
+                    factRevealOverlay.textContent = 'Sonar Transmission Received!';
 
-                    // Stellar Scan Effect
+                    // Sonar Scan Effect
                     const scan = document.createElement('div');
-                    scan.classList.add('stellar-scan');
+                    scan.classList.add('stellar-scan'); // Reusing class for animation
                     factRevealWrapper.appendChild(scan);
 
                     const wrapperRect = factRevealWrapper.getBoundingClientRect();
@@ -569,7 +570,7 @@
             });
 
             exploreFurtherBtn.addEventListener('click', () => {
-                alert('Exploring the vastness of space! (This would link to more info in a real app)');
+                alert('Diving deeper into the ocean\'s mysteries! (This would link to more info in a real app)');
             });
 
             // Rating functionality
@@ -588,8 +589,8 @@
                 });
             });
 
-            // Cosmic Anagrams Game
-            const originalFact = "The International Space Station (ISS) is the largest modular space station currently in low Earth orbit. It has been continuously occupied by humans since November 2, 2000, making it the longest continuous human presence in space.";
+            // Deep Sea Anagrams Game
+            const originalFact = "The Mariana Trench is the deepest oceanic trench on Earth. Its deepest point, Challenger Deep, is about 11,000 meters (36,000 feet) below sea level, which is deeper than Mount Everest is tall.";
             let scrambledFact = "";
 
             const scrambleFact = (fact) => {
@@ -612,11 +613,11 @@
                 const userInput = document.getElementById('scramble-input').value.trim();
                 const messageElement = document.getElementById('scramble-message');
                 if (userInput.toLowerCase() === originalFact.toLowerCase()) {
-                    messageElement.textContent = 'Correct! You unscrambled the cosmic fact!';
+                    messageElement.textContent = 'Correct! You unscrambled the deep sea fact!';
                     messageElement.classList.remove('incorrect-message');
                     messageElement.classList.add('correct-message');
                 } else {
-                    messageElement.textContent = 'Incorrect, try again, space explorer!';
+                    messageElement.textContent = 'Incorrect, try again, deep sea explorer!';
                     messageElement.classList.remove('correct-message');
                     messageElement.classList.add('incorrect-message');
                 }
@@ -626,11 +627,11 @@
 
             displayScrambledFact(); // Initialize the scramble game on load
 
-            // Cosmic Dust Particle Feature
+            // Deep Sea Bubbles Particle Feature
             document.body.addEventListener('click', (event) => {
                 if (event.target === document.body || event.target.tagName === 'HTML') { // Only trigger on body clicks
                     const particle = document.createElement('div');
-                    particle.classList.add('cosmic-dust-particle');
+                    particle.classList.add('cosmic-dust-particle'); // Reusing class for animation
                     const size = Math.random() * 10 + 5; // Random size between 5 and 15px
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
