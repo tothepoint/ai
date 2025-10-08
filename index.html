@@ -3,40 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Bioluminescence</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Deep Sea Bioluminescence Theme Colors */
-            --bg-color-primary: #0A1F2F; /* Deep Teal */
-            --bg-color-secondary: #000A10; /* Near Black */
-            --text-color: #7FFFD4; /* Aquamarine - Bioluminescent Glow */
-            --footer-bg: #052A3F; /* Darker Teal for Footer */
-            --glass-bg: rgba(10, 31, 47, 0.7); /* Semi-transparent Deep Teal */
-            --glass-border: rgba(127, 255, 212, 0.3); /* Soft Aquamarine border */
-            --fact-text-shadow: 0 0 15px rgba(127, 255, 212, 0.8); /* Aquamarine glow */
-            --title-color: #40E0D0; /* Turquoise - for a vibrant title */
-            --title-shadow: 0 0 20px rgba(64, 224, 208, 0.7); /* Turquoise glow */
-            --main-action-btn: #00CED1; /* Dark Cyan - for action buttons */
-            --main-action-btn-hover: #00B0B3; /* Slightly darker Dark Cyan */
-            --theme-indicator-color: #40E0D0; /* Turquoise */
-            --favorite-btn-color: #40E0D0; /* Turquoise */
-            --favorite-btn-hover: #20B2AA; /* Light Sea Green */
-            --share-btn-color: #40E0D0; /* Turquoise */
-            --share-btn-hover: #20B2AA; /* Light Sea Green */
-            --rating-active-color: #00CED1; /* Dark Cyan */
-            --rating-text-color: #7FFFD4; /* Aquamarine */
-            --fact-card-bg: rgba(0, 10, 16, 0.8); /* Very dark, almost black with a hint of blue */
-            --fact-card-border: rgba(64, 224, 208, 0.5); /* Turquoise border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(64, 224, 208, 0.9); /* Strong Turquoise glow */
-            --sonar-ping-color: rgba(64, 224, 208, 0.9); /* Turquoise ping */
-            --scramble-input-bg: rgba(127, 255, 212, 0.1);
-            --scramble-input-border: #00CED1;
-            --scramble-input-text: #7FFFD4;
-            --scramble-button-bg: #00CED1;
-            --scramble-button-hover: #00B0B3;
-            --scramble-message-correct: #7FFFD4;
-            --scramble-message-incorrect: #FF6347; /* Tomato for incorrect */
-            --bioluminescent-particle-color: rgba(127, 255, 212, 0.7); /* Aquamarine for particles */
+            /* Space Exploration Theme Colors */
+            --bg-color-primary: #0D1B2A; /* Deep Space Blue */
+            --bg-color-secondary: #0A111C; /* Even Deeper Space */
+            --text-color: #BBDEFB; /* Light Blue - Star Glow */
+            --footer-bg: #0A1520; /* Darker Blue for Footer */
+            --glass-bg: rgba(13, 27, 42, 0.7); /* Semi-transparent Deep Space Blue */
+            --glass-border: rgba(187, 222, 251, 0.3); /* Soft Light Blue border */
+            --fact-text-shadow: 0 0 15px rgba(187, 222, 251, 0.8); /* Light Blue glow */
+            --title-color: #81D4FA; /* Sky Blue - for a vibrant title */
+            --title-shadow: 0 0 20px rgba(129, 212, 250, 0.7); /* Sky Blue glow */
+            --main-action-btn: #42A5F5; /* Blue - for action buttons */
+            --main-action-btn-hover: #2196F3; /* Slightly darker Blue */
+            --theme-indicator-color: #81D4FA; /* Sky Blue */
+            --favorite-btn-color: #81D4FA; /* Sky Blue */
+            --favorite-btn-hover: #64B5F6; /* Lighter Blue */
+            --share-btn-color: #81D4FA; /* Sky Blue */
+            --share-btn-hover: #64B5F6; /* Lighter Blue */
+            --rating-active-color: #42A5F5; /* Blue */
+            --rating-text-color: #BBDEFB; /* Light Blue */
+            --fact-card-bg: rgba(10, 17, 28, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(129, 212, 250, 0.5); /* Sky Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(129, 212, 250, 0.9); /* Strong Sky Blue glow */
+            --stellar-scan-color: rgba(129, 212, 250, 0.9); /* Sky Blue scan */
+            --scramble-input-bg: rgba(187, 222, 251, 0.1);
+            --scramble-input-border: #42A5F5;
+            --scramble-input-text: #BBDEFB;
+            --scramble-button-bg: #42A5F5;
+            --scramble-button-hover: #2196F3;
+            --scramble-message-correct: #BBDEFB;
+            --scramble-message-incorrect: #EF5350; /* Red for incorrect */
+            --cosmic-dust-particle-color: rgba(187, 222, 251, 0.7); /* Light Blue for particles */
         }
 
         body {
@@ -129,7 +129,7 @@
             max-width: 700px;
             transition: all 0.6s ease;
             position: relative;
-            overflow: hidden; /* For sonar ping */
+            overflow: hidden; /* For stellar scan */
         }
 
         .action-button {
@@ -236,7 +236,7 @@
             cursor: pointer;
             color: var(--favorite-btn-color);
             transition: transform 0.2s ease, color 0.2s ease;
-            text-shadow: 0 0 10px rgba(64, 224, 208, 0.5); /* Subtle glow */
+            text-shadow: 0 0 10px rgba(129, 212, 250, 0.5); /* Subtle glow */
         }
 
         .favorite-button:hover {
@@ -279,10 +279,10 @@
 
         @keyframes footerPulse {
             0% { box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.4); }
-            100% { box-shadow: 0 -3px 25px rgba(64, 224, 208, 0.6); } /* Turquoise glow */
+            100% { box-shadow: 0 -3px 25px rgba(129, 212, 250, 0.6); } /* Sky Blue glow */
         }
 
-        /* New styles for the interactive fact reveal (Sonar Ping) */
+        /* New styles for the interactive fact reveal (Stellar Scan) */
         .fact-reveal-wrapper {
             position: relative;
             display: inline-block;
@@ -328,33 +328,33 @@
             to { transform: translateY(0); opacity: 1; filter: blur(0px); }
         }
 
-        /* Sonar Ping Effect */
-        .sonar-ping {
+        /* Stellar Scan Effect */
+        .stellar-scan {
             position: absolute;
-            border: 3px solid var(--sonar-ping-color); /* Thicker border */
+            border: 3px solid var(--stellar-scan-color); /* Thicker border */
             border-radius: 50%;
-            animation: sonarEffect 1.8s ease-out forwards; /* Slower, more pronounced */
+            animation: stellarEffect 1.8s ease-out forwards; /* Slower, more pronounced */
             opacity: 0;
             transform: scale(0);
             z-index: 2;
             pointer-events: none; /* Do not interfere with clicks */
         }
 
-        @keyframes sonarEffect {
+        @keyframes stellarEffect {
             0% {
                 transform: scale(0);
                 opacity: 1;
-                box-shadow: 0 0 15px var(--sonar-ping-color);
+                box-shadow: 0 0 15px var(--stellar-scan-color);
             }
             100% {
-                transform: scale(2); /* Larger ping */
+                transform: scale(2); /* Larger scan */
                 opacity: 0;
-                box-shadow: 0 0 30px var(--sonar-ping-color);
+                box-shadow: 0 0 30px var(--stellar-scan-color);
             }
         }
 
-        /* Styles for the "Dive Deeper" button */
-        .dive-deeper-button {
+        /* Styles for the "Explore Further" button */
+        .explore-further-button {
             background-color: var(--main-action-btn);
             color: white;
             border: none;
@@ -368,13 +368,13 @@
             font-weight: 600;
         }
 
-        .dive-deeper-button:hover {
+        .explore-further-button:hover {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        /* Styles for Fact Scramble Game */
+        /* Styles for Cosmic Anagrams Game */
         .scramble-section {
             margin-top: 40px;
             background-color: var(--fact-card-bg);
@@ -418,7 +418,7 @@
         }
 
         #scramble-input::placeholder {
-            color: rgba(127, 255, 212, 0.6);
+            color: rgba(187, 222, 251, 0.6);
         }
 
         .scramble-buttons {
@@ -454,18 +454,18 @@
 
         .correct-message {
             color: var(--scramble-message-correct);
-            text-shadow: 0 0 10px rgba(127, 255, 212, 0.7);
+            text-shadow: 0 0 10px rgba(187, 222, 251, 0.7);
         }
 
         .incorrect-message {
             color: var(--scramble-message-incorrect);
-            text-shadow: 0 0 8px rgba(255, 99, 71, 0.7);
+            text-shadow: 0 0 8px rgba(239, 83, 80, 0.7);
         }
 
-        /* Bioluminescent Particle Effect */
-        .bioluminescent-particle {
+        /* Cosmic Dust Particle Effect */
+        .cosmic-dust-particle {
             position: absolute;
-            background-color: var(--bioluminescent-particle-color);
+            background-color: var(--cosmic-dust-particle-color);
             border-radius: 50%;
             animation: particleFade 2s ease-out forwards;
             pointer-events: none;
@@ -477,7 +477,7 @@
             0% {
                 transform: scale(0.2);
                 opacity: 1;
-                box-shadow: 0 0 10px var(--bioluminescent-particle-color);
+                box-shadow: 0 0 10px var(--cosmic-dust-particle-color);
             }
             50% {
                 transform: scale(1);
@@ -486,7 +486,7 @@
             100% {
                 transform: scale(1.5);
                 opacity: 0;
-                box-shadow: 0 0 20px var(--bioluminescent-particle-color);
+                box-shadow: 0 0 20px var(--cosmic-dust-particle-color);
             }
         }
 
@@ -494,15 +494,15 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: Deep Sea Bioluminescence</div>
+        <div class="theme-indicator">Theme: Space Exploration</div>
         <button class="favorite-button" aria-label="Add to favorites">⭐</button>
-        <h1>Ocean's Glowing Secrets</h1>
+        <h1>Cosmic Wonders</h1>
         <div class="fact-card">
             <div class="fact-reveal-wrapper" id="fact-reveal-wrapper">
-                <p id="fact-display" class="blurred-fact">Many deep-sea organisms produce their own light through a chemical reaction, a phenomenon called bioluminescence. This ability is used for various purposes, including attracting prey, deterring predators, and finding mates.</p>
-                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Click to Reveal</div>
+                <p id="fact-display" class="blurred-fact">The International Space Station (ISS) is the largest modular space station currently in low Earth orbit. It has been continuously occupied by humans since November 2, 2000, making it the longest continuous human presence in space.</p>
+                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Initiate Transmission</div>
             </div>
-            <button class="dive-deeper-button" id="dive-deeper-btn">Uncover More Mysteries</button>
+            <button class="explore-further-button" id="explore-further-btn">Explore Further</button>
             <button class="share-button">Share</button>
         </div>
 
@@ -515,11 +515,11 @@
             <p id="popularity-score">Popularity Score: 0</p>
         </div>
 
-        <!-- Fact Scramble Game Section -->
+        <!-- Cosmic Anagrams Game Section -->
         <div class="scramble-section">
-            <h2>Fact Scramble Game</h2>
+            <h2>Cosmic Anagrams</h2>
             <p id="scrambled-fact-display"></p>
-            <input type="text" id="scramble-input" placeholder="Unscramble the fact!">
+            <input type="text" id="scramble-input" placeholder="Unscramble the cosmic fact!"></input>
             <div class="scramble-buttons">
                 <button class="scramble-button" id="check-scramble-btn">Check</button>
                 <button class="scramble-button" id="new-scramble-btn">New Fact</button>
@@ -541,35 +541,35 @@
             const factDisplay = document.getElementById('fact-display');
             const factRevealOverlay = document.getElementById('fact-reveal-overlay');
             const factRevealWrapper = document.getElementById('fact-reveal-wrapper');
-            const diveDeeperBtn = document.getElementById('dive-deeper-btn');
+            const exploreFurtherBtn = document.getElementById('explore-further-btn');
 
             factRevealOverlay.addEventListener('click', (event) => {
                 if (!factRevealOverlay.classList.contains('revealed')) {
                     factDisplay.classList.remove('blurred-fact');
                     factDisplay.classList.add('fact-revealed');
                     factRevealOverlay.classList.add('revealed');
-                    factRevealOverlay.textContent = 'Fact Revealed!';
+                    factRevealOverlay.textContent = 'Transmission Received!';
 
-                    // Sonar Ping Effect
-                    const ping = document.createElement('div');
-                    ping.classList.add('sonar-ping');
-                    factRevealWrapper.appendChild(ping);
+                    // Stellar Scan Effect
+                    const scan = document.createElement('div');
+                    scan.classList.add('stellar-scan');
+                    factRevealWrapper.appendChild(scan);
 
                     const wrapperRect = factRevealWrapper.getBoundingClientRect();
                     const clickX = event.clientX - wrapperRect.left;
                     const clickY = event.clientY - wrapperRect.top;
 
-                    ping.style.left = `${clickX}px`;
-                    ping.style.top = `${clickY}px`;
+                    scan.style.left = `${clickX}px`;
+                    scan.style.top = `${clickY}px`;
 
-                    ping.addEventListener('animationend', () => {
-                        ping.remove();
+                    scan.addEventListener('animationend', () => {
+                        scan.remove();
                     });
                 }
             });
 
-            diveDeeperBtn.addEventListener('click', () => {
-                alert('Diving deeper into the wonders of bioluminescence! (This would link to more info in a real app)');
+            exploreFurtherBtn.addEventListener('click', () => {
+                alert('Exploring the vastness of space! (This would link to more info in a real app)');
             });
 
             // Rating functionality
@@ -588,8 +588,8 @@
                 });
             });
 
-            // Fact Scramble Game
-            const originalFact = "Many deep-sea organisms produce their own light through a chemical reaction, a phenomenon called bioluminescence. This ability is used for various purposes, including attracting prey, deterring predators, and finding mates.";
+            // Cosmic Anagrams Game
+            const originalFact = "The International Space Station (ISS) is the largest modular space station currently in low Earth orbit. It has been continuously occupied by humans since November 2, 2000, making it the longest continuous human presence in space.";
             let scrambledFact = "";
 
             const scrambleFact = (fact) => {
@@ -612,11 +612,11 @@
                 const userInput = document.getElementById('scramble-input').value.trim();
                 const messageElement = document.getElementById('scramble-message');
                 if (userInput.toLowerCase() === originalFact.toLowerCase()) {
-                    messageElement.textContent = 'Correct! You unscrambled it!';
+                    messageElement.textContent = 'Correct! You unscrambled the cosmic fact!';
                     messageElement.classList.remove('incorrect-message');
                     messageElement.classList.add('correct-message');
                 } else {
-                    messageElement.textContent = 'Incorrect, try again!';
+                    messageElement.textContent = 'Incorrect, try again, space explorer!';
                     messageElement.classList.remove('correct-message');
                     messageElement.classList.add('incorrect-message');
                 }
@@ -626,11 +626,11 @@
 
             displayScrambledFact(); // Initialize the scramble game on load
 
-            // Bioluminescent Particle Feature
+            // Cosmic Dust Particle Feature
             document.body.addEventListener('click', (event) => {
                 if (event.target === document.body || event.target.tagName === 'HTML') { // Only trigger on body clicks
                     const particle = document.createElement('div');
-                    particle.classList.add('bioluminescent-particle');
+                    particle.classList.add('cosmic-dust-particle');
                     const size = Math.random() * 10 + 5; // Random size between 5 and 15px
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
