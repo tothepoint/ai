@@ -495,7 +495,7 @@
 
         <div class="fact-card">
             <div class="cosmic-scan-line"></div>
-            <p id="fact-display" class="blurred-fact">The ocean contains nearly 20 million tons of gold, but it's so diluted that each liter of seawater contains only about 13 billionths of a gram.</p>
+            <p id="fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
         </div>
 
         <button id="new-fact-btn" class="action-button">Explore Deeper</button>
@@ -514,7 +514,7 @@
 
         <div id="scramble-section">
             <h2>Deep Sea Discovery Challenge</h2>
-            <p id="scramble-fact-display" class="blurred-fact">Can you type the fact above?</p>
+            <p id="scramble-fact-display" class="blurred-fact">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
             <input type="text" id="scramble-input" placeholder="Type the fact here...">
             <button id="scramble-submit-btn">Reveal Discovery</button>
             <p id="scramble-message"></p>
@@ -551,15 +551,6 @@
         const scrambleSubmitBtn = document.getElementById('scramble-submit-btn');
         const scrambleMessage = document.getElementById('scramble-message');
 
-        function scrambleWords(text) {
-            const words = text.split(' ');
-            for (let i = words.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [words[i], words[j]] = [words[j], words[i]]; // ES6 swap
-            }
-            return words.join(' ');
-        }
-
         function getRandomFact() {
             const randomIndex = Math.floor(Math.random() * facts.length);
             return facts[randomIndex];
@@ -569,13 +560,18 @@
             currentFact = getRandomFact();
             factDisplay.textContent = currentFact;
             factDisplay.classList.add('blurred-fact');
-            const scrambled = scrambleWords(currentFact); // Scramble the fact
-            scrambleFactDisplay.textContent = scrambled; // Display scrambled fact
+            scrambleFactDisplay.textContent = currentFact; // Display actual fact, but blurred
             scrambleFactDisplay.classList.add('blurred-fact');
             scrambleInput.value = '';
             scrambleMessage.textContent = '';
             factRevealed = false;
             resetRating();
+        }
+
+        function revealFact() {
+            factDisplay.classList.remove('blurred-fact');
+            scrambleFactDisplay.classList.remove('blurred-fact');
+            factRevealed = true;
         }
 
         function resetRating() {
@@ -628,10 +624,7 @@
 
         factDisplay.addEventListener('click', () => {
             if (factDisplay.classList.contains('blurred-fact')) {
-                factDisplay.classList.remove('blurred-fact');
-                factRevealed = true;
-                scrambleFactDisplay.textContent = currentFact; // Reveal original fact
-                scrambleFactDisplay.classList.remove('blurred-fact');
+                revealFact();
             }
         });
 
@@ -641,10 +634,7 @@
                 scrambleMessage.textContent = "Discovery Confirmed! Well done!";
                 scrambleMessage.classList.remove('incorrect-message');
                 scrambleMessage.classList.add('correct-message');
-                factDisplay.classList.remove('blurred-fact');
-                scrambleFactDisplay.classList.remove('blurred-fact');
-                scrambleFactDisplay.textContent = currentFact;
-                factRevealed = true;
+                revealFact();
             } else {
                 scrambleMessage.textContent = "Incorrect. Keep exploring!";
                 scrambleMessage.classList.remove('correct-message');
