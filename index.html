@@ -3,37 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Nebula's Embrace Facts</title>
+    <title id="site-title">Deep Sea Mysteries</title>
     <style>
         :root {
-            /* Nebula's Embrace Theme Colors */
-            --bg-color-primary: #1A0A2F; /* Deep Space Purple */
-            --bg-color-secondary: #0A0515; /* Even Deeper Space Purple */
-            --text-color: #E0FFFF; /* Pale Aqua - Nebula Sparkle */
-            --footer-bg: #05020A; /* Almost Black, hint of purple for Footer */
-            --glass-bg: rgba(26, 10, 47, 0.7); /* Semi-transparent Deep Space Purple */
+            /* Deep Sea Mysteries Theme Colors */
+            --bg-color-primary: #0A1F33; /* Deep Ocean Blue */
+            --bg-color-secondary: #05101A; /* Even Deeper Ocean Blue */
+            --text-color: #E0FFFF; /* Pale Aqua */
+            --footer-bg: #030A12; /* Darker Ocean Blue for Footer */
+            --glass-bg: rgba(10, 31, 51, 0.7); /* Semi-transparent Deep Ocean Blue */
             --glass-border: rgba(224, 255, 255, 0.3); /* Soft Pale Aqua border */
             --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Pale Aqua glow */
-            --title-color: #8A2BE2; /* Blue Violet - for a vibrant cosmic title */
-            --title-shadow: 0 0 20px rgba(138, 43, 226, 0.7); /* Blue Violet glow */
-            --main-action-btn: #8A2BE2; /* Blue Violet - for action buttons */
-            --main-action-btn-hover: #7B1FA2; /* Slightly darker Blue Violet */
-            --theme-indicator-color: #8A2BE2; /* Blue Violet */
-            --favorite-btn-color: #8A2BE2; /* Blue Violet */
-            --favorite-btn-hover: #7B1FA2; /* Lighter Blue Violet */
-            --share-btn-color: #8A2BE2; /* Blue Violet */
-            --share-btn-hover: #7B1FA2; /* Lighter Blue Violet */
-            --rating-active-color: #8A2BE2; /* Blue Violet */
+            --title-color: #00CED1; /* Dark Turquoise - for a vibrant deep sea title */
+            --title-shadow: 0 0 20px rgba(0, 206, 209, 0.7); /* Dark Turquoise glow */
+            --main-action-btn: #00CED1; /* Dark Turquoise - for action buttons */
+            --main-action-btn-hover: #00A8A8; /* Slightly darker Dark Turquoise */
+            --theme-indicator-color: #00CED1; /* Dark Turquoise */
+            --favorite-btn-color: #00CED1; /* Dark Turquoise */
+            --favorite-btn-hover: #00A8A8; /* Lighter Dark Turquoise */
+            --share-btn-color: #00CED1; /* Dark Turquoise */
+            --share-btn-hover: #00A8A8; /* Lighter Dark Turquoise */
+            --rating-active-color: #00CED1; /* Dark Turquoise */
             --rating-text-color: #E0FFFF; /* Pale Aqua */
-            --fact-card-bg: rgba(10, 5, 21, 0.8); /* Very dark, almost black with a hint of purple */
-            --fact-card-border: rgba(138, 43, 226, 0.5); /* Blue Violet border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(138, 43, 226, 0.9); /* Strong Blue Violet glow */
-            --cosmic-scan-color: rgba(138, 43, 226, 0.9); /* Blue Violet scan */
+            --fact-card-bg: rgba(5, 16, 26, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(0, 206, 209, 0.5); /* Dark Turquoise border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(0, 206, 209, 0.9); /* Strong Dark Turquoise glow */
+            --cosmic-scan-color: rgba(0, 206, 209, 0.9); /* Dark Turquoise scan */
             --scramble-input-bg: rgba(224, 255, 255, 0.1);
-            --scramble-input-border: #8A2BE2;
+            --scramble-input-border: #00CED1;
             --scramble-input-text: #E0FFFF;
-            --scramble-button-bg: #8A2BE2;
-            --scramble-button-hover: #7B1FA2;
+            --scramble-button-bg: #00CED1;
+            --scramble-button-hover: #00A8A8;
             --scramble-message-correct: #E0FFFF;
             --scramble-message-incorrect: #EF5350; /* Red for incorrect */
             --diamond-particle-color: rgba(224, 255, 255, 0.7); /* Pale Aqua for diamond particles */
@@ -236,7 +236,7 @@
             cursor: pointer;
             color: var(--favorite-btn-color);
             transition: transform 0.2s ease, color 0.2s ease;
-            text-shadow: 0 0 10px rgba(138, 43, 226, 0.5); /* Subtle glow */
+            text-shadow: 0 0 10px rgba(0, 206, 209, 0.5); /* Subtle glow */
         }
 
         .favorite-button:hover {
@@ -279,10 +279,10 @@
 
         @keyframes footerPulse {
             0% { box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.4); }
-            100% { box-shadow: 0 -3px 25px rgba(138, 43, 226, 0.6); } /* Blue Violet glow */
+            100% { box-shadow: 0 -3px 25px rgba(0, 206, 209, 0.6); } /* Dark Turquoise glow */
         }
 
-        /* New styles for the interactive fact reveal (Cosmic Scan) */
+        /* New styles for the interactive fact reveal (Sonar Pulse) */
         .fact-reveal-wrapper {
             position: relative;
             display: inline-block;
@@ -328,19 +328,19 @@
             to { transform: translateY(0); opacity: 1; filter: blur(0px); }
         }
 
-        /* Cosmic Scan Effect */
-        .cosmic-scan { 
+        /* Sonar Pulse Effect */
+        .sonar-pulse {
             position: absolute;
             border: 3px solid var(--cosmic-scan-color); /* Thicker border */
             border-radius: 50%;
-            animation: cosmicEffect 1.8s ease-out forwards; /* Slower, more pronounced */
+            animation: sonarEffect 1.8s ease-out forwards; /* Slower, more pronounced */
             opacity: 0;
             transform: scale(0);
             z-index: 2;
             pointer-events: none; /* Do not interfere with clicks */
         }
 
-        @keyframes cosmicEffect {
+        @keyframes sonarEffect {
             0% {
                 transform: scale(0);
                 opacity: 1;
@@ -374,7 +374,7 @@
             box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
-        /* Styles for Cosmic Anagrams Game */
+        /* Styles for Deep Sea Anagrams Game */
         .scramble-section {
             margin-top: 40px;
             background-color: var(--fact-card-bg);
@@ -462,26 +462,26 @@
             text-shadow: 0 0 8px rgba(239, 83, 80, 0.7);
         }
 
-        /* Diamond Particle Effect */
-        .diamond-particle { 
+        /* Diamond Particle Effect (renamed to Water Droplet for theme) */
+        .water-droplet-particle {
             position: absolute;
-            background-color: var(--diamond-particle-color);
+            background-color: var(--diamond-particle-color); /* Using existing color variable */
             border-radius: 50%;
-            animation: diamondFall 4s ease-out forwards; 
+            animation: waterDropletFall 4s ease-out forwards;
             pointer-events: none;
-            z-index: -1; 
+            z-index: -1;
             filter: blur(2px);
-            opacity: 0; 
+            opacity: 0;
         }
 
-        @keyframes diamondFall {
+        @keyframes waterDropletFall {
             0% {
                 transform: translateY(-20px) scale(0.2) rotate(0deg);
                 opacity: 0.8;
                 box-shadow: 0 0 8px var(--diamond-particle-color);
             }
             100% {
-                transform: translateY(200px) scale(1.5) rotate(180deg); 
+                transform: translateY(200px) scale(1.5) rotate(180deg);
                 opacity: 0;
                 box-shadow: 0 0 20px var(--diamond-particle-color);
             }
@@ -538,13 +538,13 @@
 </head>
 <body>
     <div class="container">
-        <div class="theme-indicator">Theme: Nebula's Embrace</div>
+        <div class="theme-indicator">Theme: Deep Sea Mysteries</div>
         <button class="favorite-button" aria-label="Add to favorites">⭐</button>
-        <h1>Nebula's Embrace Facts</h1>
+        <h1>Deep Sea Mysteries</h1>
         <div class="fact-card">
             <div class="fact-reveal-wrapper" id="fact-reveal-wrapper">
-                <p id="fact-display" class="blurred-fact">The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a filament of galaxies stretching over 10 billion light-years.</p>
-                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Initiate Cosmic Scan</div>
+                <p id="fact-display" class="blurred-fact">The Mariana Trench is deeper than Mount Everest is tall, reaching depths of about 11,000 meters (36,000 feet).</p>
+                <div class="fact-reveal-overlay" id="fact-reveal-overlay">Initiate Sonar Scan</div>
             </div>
             <button class="explore-further-button" id="explore-further-btn">Explore Further</button>
             <button class="share-button">Share</button>
@@ -559,11 +559,11 @@
             <p id="popularity-score">Popularity Score: 0</p>
         </div>
 
-        <!-- Cosmic Anagrams Game Section -->
+        <!-- Deep Sea Anagrams Game Section -->
         <div class="scramble-section">
-            <h2>Cosmic Anagrams</h2>
+            <h2>Deep Sea Anagrams</h2>
             <p id="scrambled-fact-display"></p>
-            <input type="text" id="scramble-input" placeholder="Unscramble the cosmic fact!"></input>
+            <input type="text" id="scramble-input" placeholder="Unscramble the deep sea fact!"></input>
             <div class="scramble-buttons">
                 <button class="scramble-button" id="check-scramble-btn">Check</button>
                 <button class="scramble-button" id="new-scramble-btn">New Fact</button>
@@ -598,11 +598,11 @@
             const exploreFurtherBtn = document.getElementById('explore-further-btn');
 
             const facts = [
-                "The largest known structure in the universe is the Hercules-Corona Borealis Great Wall, a filament of galaxies stretching over 10 billion light-years.",
-                "A day on Venus is longer than a year on Venus.",
-                "There are more stars in the universe than grains of sand on all the beaches on Earth.",
-                "Neutron stars are so dense that a teaspoon of their material would weigh about 6 billion tons.",
-                "The Sun makes up 99.86% of the mass of our solar system."
+                "The Mariana Trench is deeper than Mount Everest is tall, reaching depths of about 11,000 meters (36,000 feet).",
+                "The colossal squid has the largest eyes of any animal on Earth, up to 27 cm (11 inches) in diameter.",
+                "Hydrothermal vents on the ocean floor can reach temperatures of over 400°C (750°F) and support unique ecosystems.",
+                "The ocean contains about 20 million tons of gold, but it's so diluted that extracting it is not economically viable.",
+                "Only about 5% of the Earth's oceans have been explored, leaving vast areas undiscovered."
             ];
             let currentFactIndex = 0;
             let factHistory = [];
@@ -612,7 +612,7 @@
                 factDisplay.classList.add('blurred-fact');
                 factDisplay.classList.remove('fact-revealed');
                 factRevealOverlay.classList.remove('revealed');
-                factRevealOverlay.textContent = 'Initiate Cosmic Scan';
+                factRevealOverlay.textContent = 'Initiate Sonar Scan';
                 // Reset popularity score for new fact
                 popularityScore = 0;
                 popularityScoreElement.textContent = `Popularity Score: ${popularityScore}`;
@@ -626,11 +626,11 @@
                     factDisplay.classList.remove('blurred-fact');
                     factDisplay.classList.add('fact-revealed');
                     factRevealOverlay.classList.add('revealed');
-                    factRevealOverlay.textContent = 'Cosmic Transmission Received!';
+                    factRevealOverlay.textContent = 'Sonar Transmission Received!';
 
-                    // Cosmic Scan Effect
+                    // Sonar Pulse Effect
                     const scan = document.createElement('div');
-                    scan.classList.add('cosmic-scan'); 
+                    scan.classList.add('sonar-pulse');
                     factRevealWrapper.appendChild(scan);
 
                     const wrapperRect = factRevealWrapper.getBoundingClientRect();
@@ -647,7 +647,7 @@
             });
 
             exploreFurtherBtn.addEventListener('click', () => {
-                alert('Exploring the cosmos for more facts! (This would link to more info in a real app)');
+                alert('Diving deeper into the mysteries of the ocean! (This would link to more info in a real app)');
             });
 
             // Rating functionality
@@ -666,7 +666,7 @@
                 });
             });
 
-            // Cosmic Anagrams Game
+            // Deep Sea Anagrams Game
             let currentOriginalFact = facts[currentFactIndex];
             let scrambledFact = "";
 
@@ -691,11 +691,11 @@
                 const userInput = document.getElementById('scramble-input').value.trim();
                 const messageElement = document.getElementById('scramble-message');
                 if (userInput.toLowerCase() === currentOriginalFact.toLowerCase()) {
-                    messageElement.textContent = 'Correct! You unscrambled the cosmic fact!';
+                    messageElement.textContent = 'Correct! You unscrambled the deep sea fact!';
                     messageElement.classList.remove('incorrect-message');
                     messageElement.classList.add('correct-message');
                 } else {
-                    messageElement.textContent = 'Incorrect, try again, cosmic explorer!';
+                    messageElement.textContent = 'Incorrect, try again, deep sea explorer!';
                     messageElement.classList.remove('correct-message');
                     messageElement.classList.add('incorrect-message');
                 }
@@ -743,11 +743,11 @@
                 }
             });
 
-            // Diamond Particle Feature
+            // Water Droplet Particle Feature (formerly Diamond Particle)
             document.body.addEventListener('click', (event) => {
-                if (event.target === document.body || event.target.tagName === 'HTML') { 
+                if (event.target === document.body || event.target.tagName === 'HTML') {
                     const particle = document.createElement('div');
-                    particle.classList.add('diamond-particle'); 
+                    particle.classList.add('water-droplet-particle');
                     const size = Math.random() * 8 + 3; // Random size between 3 and 11px
                     particle.style.width = `${size}px`;
                     particle.style.height = `${size}px`;
