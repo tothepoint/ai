@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Bioluminescent Wonders</title>
+    <title id="site-title">Interstellar Odyssey</title>
     <style>
         :root {
-            /* Bioluminescent Wonders Theme Colors */
-            --bg-color-primary: #001A2B; /* Deep Ocean Blue */
-            --bg-color-secondary: #000D1A; /* Even Deeper Ocean Blue */
-            --text-color: #00FFFF; /* Bright Cyan - for general text */
-            --footer-bg: #00334D; /* Darker Blue for footer */
-            --footer-text-color: #80FFFF; /* Lighter Cyan */
-            --glass-bg: rgba(0, 26, 43, 0.7); /* Semi-transparent deep blue */
-            --glass-border: rgba(0, 255, 255, 0.3); /* Soft Cyan border */
-            --fact-text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Cyan glow */
-            --title-color: #00FFFF; /* Bright Cyan - for a glowing title */
-            --title-shadow: 0 0 20px rgba(0, 255, 255, 0.7); /* Cyan glow */
-            --main-action-btn: #00BFFF; /* Deep Sky Blue - for action buttons */
-            --main-action-btn-hover: #008B8B; /* Dark Cyan */
-            --explore-glow-color: #00FFFF; /* Bright Cyan for the glow */
-            --explore-text-initial: rgba(0, 255, 255, 0.4); /* Dimmed text, very subtle */
-            --explore-text-active: #00FFFF; /* Bright text */
-            --fact-card-bg: rgba(0, 10, 20, 0.8); /* Very dark, almost black with a hint of blue */
-            --fact-card-border: rgba(0, 191, 255, 0.5); /* Deep Sky Blue border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(0, 191, 255, 0.9); /* Strong Deep Sky Blue glow */
+            /* Interstellar Odyssey Theme Colors */
+            --bg-color-primary: #0A001A; /* Deep Violet */
+            --bg-color-secondary: #000005; /* Almost Black */
+            --text-color: #B0E0E6; /* Powder Blue - for general text */
+            --footer-bg: #1A0033; /* Darker Violet for footer */
+            --footer-text-color: #D8BFD8; /* Thistle - lighter for contrast */
+            --glass-bg: rgba(10, 0, 26, 0.7); /* Semi-transparent deep violet */
+            --glass-border: rgba(176, 224, 230, 0.3); /* Soft Powder Blue border */
+            --fact-text-shadow: 0 0 15px rgba(176, 224, 230, 0.8); /* Powder Blue glow */
+            --title-color: #E0BBE4; /* Lavender - for a glowing title */
+            --title-shadow: 0 0 20px rgba(224, 187, 228, 0.7); /* Lavender glow */
+            --main-action-btn: #957DAD; /* Medium Purple - for action buttons */
+            --main-action-btn-hover: #6A5ACD; /* Slate Blue */
+            --explore-glow-color: #E0BBE4; /* Lavender for the glow */
+            --explore-text-initial: rgba(176, 224, 230, 0.4); /* Dimmed text, very subtle */
+            --explore-text-active: #B0E0E6; /* Bright text */
+            --fact-card-bg: rgba(5, 0, 10, 0.8); /* Very dark, almost black with a hint of violet */
+            --fact-card-border: rgba(149, 125, 173, 0.5); /* Medium Purple border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(149, 125, 173, 0.9); /* Strong Medium Purple glow */
 
             /* Deep Dive Mode for Overview Effect */
             --deep-dive-bg-primary: #000000;
-            --deep-dive-bg-secondary: #00050A;
+            --deep-dive-bg-secondary: #000000;
         }
 
         body {
@@ -191,34 +191,34 @@
             }
         }
 
-        /* Bioluminescent Sparkle Effect */
-        .bioluminescent-sparkle {
+        /* Stellar Anomaly Effect */
+        .stellar-anomaly {
             position: absolute;
-            background-color: rgba(0, 255, 255, 0.8); /* Cyan sparkle */
+            background: radial-gradient(circle at center, rgba(224, 187, 228, 0.8) 0%, rgba(149, 125, 173, 0.5) 50%, rgba(10, 0, 26, 0) 100%); /* Lavender to Purple gradient */
             border-radius: 50%;
             opacity: 0;
-            animation: floatAndGlow 20s infinite linear;
+            animation: stellarFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.9); /* Intense glow */
+            box-shadow: 0 0 15px rgba(224, 187, 228, 0.7); /* Lavender glow */
         }
 
-        @keyframes floatAndGlow {
-            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
-            100% { opacity: 0; transform: translate(100vw, -100vh) scale(1.2); }
-        }
+        @keyframes stellarFloatAndGlow {
+            0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
+            15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }\n            30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }\n            45% { opacity: 0.7; transform: translate(50vw, 25vh) scale(1.0); }\n            60% { opacity: 0.5; transform: translate(70vw, 10vh) scale(0.7); }\n            75% { opacity: 0.8; transform: translate(90vw, 30vh) scale(1.1); }\n            100% { opacity: 0; transform: translate(100vw, 0) scale(0.3); }\n        }
+
+        @keyframes shimmer {\n            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }\n        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Bioluminescent Wonders</h1>
+        <h1>Interstellar Odyssey</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Ocean's Inner Light</h2>
-            <p id="main-fact" class="fact-text">In the ocean, blue-green is the most common color of bioluminescence because these wavelengths travel best through water.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Organisms use bioluminescence for various purposes: attracting prey, avoiding predators, attracting mates, and communication. For example, anglerfish use a bioluminescent lure, and some squid release glowing mucus to confuse threats.</p>
+            <h2>Voyager's Grand Tour</h2>
+            <p id="main-fact" class="fact-text">Voyager 1, launched in 1977, crossed into interstellar space in 2012, becoming the first human-made probe to do so.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Voyager 1 continues to operate, sending back data from beyond our solar system. It carries a Golden Record, a phonograph record containing sounds and images selected to portray the diversity of life and culture on Earth, intended for any intelligent extraterrestrial life form who may find it.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Illuminate the Depths</button>
+                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Initiate Interstellar Scan</button>
+                <button class="action-button" id="anomalyButton" onclick="createStellarAnomaly()">Detect Stellar Anomaly</button>
             </div>
         </div>
     </div>
@@ -235,21 +235,21 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createBioluminescentSparkle() {
-            const sparkle = document.createElement('div');
-            sparkle.classList.add('bioluminescent-sparkle');
-            document.body.appendChild(sparkle);
+        function createStellarAnomalyEffect() {
+            const anomaly = document.createElement('div');
+            anomaly.classList.add('stellar-anomaly');
+            document.body.appendChild(anomaly);
 
-            const size = Math.random() * 4 + 2; // 2 to 6px
-            sparkle.style.width = `${size}px`;
-            sparkle.style.height = `${size}px`;
-            sparkle.style.left = `${Math.random() * 100}vw`;
-            sparkle.style.top = `${Math.random() * 100}vh`; // Start anywhere on screen
-            sparkle.style.animationDelay = `${Math.random() * 15}s`;
-            sparkle.style.animationDuration = `${Math.random() * 15 + 15}s`; // 15 to 30s
+            const size = Math.random() * 10 + 5; // 5 to 15px
+            anomaly.style.width = `${size}px`;
+            anomaly.style.height = `${size}px`;
+            anomaly.style.left = `${Math.random() * 100}vw`;
+            anomaly.style.top = `${Math.random() * 100}vh`;
+            anomaly.style.animationDelay = `${Math.random() * 20}s`;
+            anomaly.style.animationDuration = `${Math.random() * 20 + 20}s`; // 20 to 40s
         }
 
-        let sparklesCreated = false;
+        let anomaliesCreated = false;
         function toggleDeepDive() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
@@ -261,21 +261,39 @@
             body.classList.toggle('deep-dived-cosmic');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Surface";
-                if (!sparklesCreated) {
-                    for (let i = 0; i < 100; i++) { // Create 100 bioluminescent sparkles
-                        createBioluminescentSparkle();
+                revealButton.textContent = "Return to Orbit";
+                if (!anomaliesCreated) {
+                    for (let i = 0; i < 50; i++) { // Create 50 stellar anomalies
+                        createStellarAnomalyEffect();
                     }
-                    sparklesCreated = true;
+                    anomaliesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Illuminate the Depths";
-                document.querySelectorAll('.bioluminescent-sparkle').forEach(sparkle => sparkle.remove());
-                sparklesCreated = false;
+                revealButton.textContent = "Initiate Interstellar Scan";
+                document.querySelectorAll('.stellar-anomaly').forEach(anomaly => anomaly.remove());
+                anomaliesCreated = false;
             }
         }
 
-        // Water ripple effect on fact card hover
+        function createStellarAnomaly() {
+            const anomaly = document.createElement('div');
+            anomaly.classList.add('stellar-anomaly');
+            document.body.appendChild(anomaly);
+
+            const size = Math.random() * 20 + 10; // 10 to 30px for a more prominent anomaly
+            anomaly.style.width = `${size}px`;
+            anomaly.style.height = `${size}px`;
+            anomaly.style.left = `${Math.random() * 100}vw`;
+            anomaly.style.top = `${Math.random() * 100}vh`;
+            anomaly.style.animation = `stellarFloatAndGlow ${Math.random() * 5 + 5}s forwards, shimmer 3s infinite alternate`; // Shorter, more immediate animation
+
+            // Remove after a short duration
+            setTimeout(() => {
+                anomaly.remove();
+            }, 10000); // Anomaly disappears after 10 seconds
+        }
+
+        // Water ripple effect on fact card hover (renamed to cosmic ripple)
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
             const ripple = document.createElement('span');
