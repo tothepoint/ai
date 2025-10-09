@@ -20,7 +20,7 @@
             --main-action-btn: #00FFFF; /* Aqua - for action buttons */
             --main-action-btn-hover: #00CED1; /* Dark Turquoise */
             --bioluminescent-glow-color: #00FFFF; /* Aqua for the glow */
-            --bioluminescent-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, based on new text-color */
+            --bioluminescent-text-initial: rgba(224, 255, 255, 0.2); /* Dimmed text, based on new text-color, very subtle */
             --bioluminescent-text-active: #E0FFFF; /* Bright text, based on new text-color */
             --fact-card-bg: rgba(5, 15, 26, 0.8); /* Very dark, almost black with a hint of blue */
             --fact-card-border: rgba(0, 255, 255, 0.5); /* Aqua border for emphasis */
@@ -30,12 +30,6 @@
             --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Aqua for sonar wave */
             --sonar-glow-text-color: #E0FFFF; /* Bright text for sonar glow */
             --sonar-glow-text-shadow: 0 0 20px rgba(0, 255, 255, 1); /* Stronger glow for sonar */
-
-            /* Abyssal Descent Feature Colors */
-            --abyssal-bg-start: #0A192F;
-            --abyssal-bg-end: #01050A; /* Even darker for descent */
-            --abyssal-text-color: #E0FFFF;
-            --abyssal-text-shadow: 0 0 20px rgba(173, 216, 230, 1);
         }
 
         body {
@@ -57,12 +51,6 @@
             overflow-x: hidden;
             position: relative;
             cursor: crosshair; /* Indicate interactivity */
-        }
-
-        body.descending {
-            background: linear-gradient(135deg, var(--abyssal-bg-start) 0%, var(--abyssal-bg-end) 100%);
-            animation: none; /* Stop gradient shift during descent */
-            transition: background 3s ease-in-out;
         }
 
         @keyframes gradientShift {
@@ -135,11 +123,6 @@
         .fact-text.sonar-active {
             color: var(--sonar-glow-text-color);
             text-shadow: var(--sonar-glow-text-shadow);
-        }
-
-        .fact-text.abyssal-revealed {
-            color: var(--abyssal-text-color);
-            text-shadow: var(--abyssal-text-shadow);
         }
 
         .button-group {
@@ -221,9 +204,9 @@
         <h1>Deep Sea Mysteries</h1>
         <div class="fact-card" id="factCard">
             <h2>Did you know?</h2>
-            <p id="deep-sea-fact" class="fact-text">The Earth's largest waterfall is actually underwater in the Denmark Strait, where cold water plunges 11,500 feet over a drop in the ocean floor.</p>
+            <p id="deep-sea-fact" class="fact-text">Around three-quarters of all deep-sea creatures produce their own light through a chemical reaction, a phenomenon called bioluminescence.</p>
             <div class="button-group">
-                <button class="action-button" id="descendButton" onclick="descendToFact()">Descend to Fact</button>
+                <button class="action-button" id="bioluminescenceButton" onclick="revealBioluminescence()">Reveal Bioluminescence</button>
                 <button class="action-button" id="sonarButton" onclick="activateSonar()">Sonar Pulse</button>
             </div>
         </div>
@@ -241,20 +224,17 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function descendToFact() {
-            const body = document.body;
+        function revealBioluminescence() {
             const factText = document.getElementById('deep-sea-fact');
-            const descendButton = document.getElementById('descendButton');
+            const bioluminescenceButton = document.getElementById('bioluminescenceButton');
 
-            body.classList.add('descending');
-            factText.classList.add('abyssal-revealed');
-            descendButton.textContent = "Fact Explored!";
-            descendButton.disabled = true;
+            factText.classList.toggle('revealed'); // Toggle the revealed class
 
-            // Revert background after a delay to simulate returning from the depths
-            setTimeout(() => {
-                body.classList.remove('descending');
-            }, 3000); // Matches background transition duration
+            if (factText.classList.contains('revealed')) {
+                bioluminescenceButton.textContent = "Hide Bioluminescence";
+            } else {
+                bioluminescenceButton.textContent = "Reveal Bioluminescence";
+            }
         }
 
         function activateSonar() {
