@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Wonders</title>
+    <title id="site-title">Exoplanet Explorer</title>
     <style>
         :root {
-            /* Deep Sea Wonders Theme Colors (Mariana Trench) */
-            --bg-color-primary: #00071A; /* Very dark, deep ocean blue */
-            --bg-color-secondary: #001A33; /* Slightly lighter, dark teal */
-            --text-color: #A0E6FF; /* Pale Aqua - light, almost glowing */
-            --footer-bg: #00030A; /* Even darker blue, almost black */
-            --footer-text-color: #66B2FF; /* Muted, light blue */
-            --glass-bg: rgba(0, 26, 51, 0.7); /* Semi-transparent deep teal */
-            --glass-border: rgba(102, 178, 255, 0.3); /* Soft, light blue */
-            --fact-text-shadow: 0 0 15px rgba(160, 230, 255, 0.8); /* Subtle aqua glow */
+            /* Exoplanet Explorer Theme Colors */
+            --bg-color-primary: #0A001A; /* Very dark purple */
+            --bg-color-secondary: #1A0033; /* Slightly lighter, dark violet */
+            --text-color: #E0BBE4; /* Light lavender */
+            --footer-bg: #05000D; /* Even darker purple */
+            --footer-text-color: #9A7BBF; /* Muted lavender */
+            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent dark violet */
+            --glass-border: rgba(154, 123, 191, 0.3); /* Soft, muted lavender */
+            --fact-text-shadow: 0 0 15px rgba(224, 187, 228, 0.8); /* Subtle lavender glow */
             --title-color: #FFFFFF; /* Bright white */
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white glow */
-            --main-action-btn: #FF8C00; /* Dark Orange - vibrant, contrasting */
-            --main-action-btn-hover: #E67300; /* Darker Orange */
-            --explore-glow-color: #00FFFF; /* Cyan - for emphasis */
-            --explore-text-initial: rgba(160, 230, 255, 0.4); /* Dimmed pale aqua */
-            --explore-text-active: #A0E6FF; /* Bright pale aqua */
+            --main-action-btn: #FFD700; /* Gold - vibrant, contrasting */
+            --main-action-btn-hover: #E6C200; /* Darker Gold */
+            --explore-glow-color: #8D4FFB; /* Vibrant purple - for emphasis */
+            --explore-text-initial: rgba(224, 187, 228, 0.4); /* Dimmed light lavender */
+            --explore-text-active: #E0BBE4; /* Bright light lavender */
             --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(0, 255, 255, 0.7); /* Vibrant cyan */
-            --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9); /* Strong cyan glow */
+            --fact-card-border: rgba(141, 79, 251, 0.7); /* Vibrant purple */
+            --fact-of-day-glow: 0 0 25px rgba(141, 79, 251, 0.9); /* Strong purple glow */
 
-            /* Sonar Scan Mode */
-            --sonar-scan-bg-primary: #000000; /* Black */
-            --sonar-scan-bg-secondary: #000005; /* Even darker */
-            --sonar-scan-indicator: #00FF00; /* Green for sonar */
-            --sonar-scan-text: #00FF00; /* Green for sonar text */
+            /* Cosmic Gaze Mode */
+            --gaze-scan-bg-primary: #000000; /* Black */
+            --gaze-scan-bg-secondary: #000005; /* Even darker */
+            --gaze-scan-indicator: #00FFFF; /* Cyan for scan */
+            --gaze-scan-text: #00FFFF; /* Cyan for scan text */
         }
 
         body {
@@ -53,8 +53,8 @@
             position: relative;
         }
 
-        body.sonar-scanned {
-            background: linear-gradient(135deg, var(--sonar-scan-bg-primary) 0%, var(--sonar-scan-bg-secondary) 100%);
+        body.gaze-scanned {
+            background: linear-gradient(135deg, var(--gaze-scan-bg-primary) 0%, var(--gaze-scan-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -108,14 +108,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(0, 255, 255, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(141, 79, 251, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(141, 79, 251, 0.5);
         }
 
         .fact-text {
@@ -149,13 +149,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(230, 115, 0, 0.8);
+            box-shadow: 0 0 25px rgba(230, 194, 0, 0.8);
         }
 
         .action-button:disabled {
@@ -178,18 +178,18 @@
             z-index: 10;
         }
 
-        /* Bioluminescent Particles Effect */
-        .bioluminescent-particle {
+        /* Cosmic Dust Particles Effect */
+        .cosmic-dust-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.8) 0%, rgba(0, 255, 255, 0.5) 50%, rgba(0, 255, 255, 0) 100%);
+            background: radial-gradient(circle at center, rgba(141, 79, 251, 0.8) 0%, rgba(141, 79, 251, 0.5) 50%, rgba(141, 79, 251, 0) 100%);
             border-radius: 50%;
             opacity: 0;
-            animation: bioluminescentFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: cosmicFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+            box-shadow: 0 0 15px rgba(141, 79, 251, 0.7);
         }
 
-        @keyframes bioluminescentFloatAndGlow {
+        @keyframes cosmicFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
             15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }
@@ -204,55 +204,56 @@
             100% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        /* Sonar Scan Feature */
-        .sonar-container {
+        /* Cosmic Gaze Feature */
+        .gaze-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: none; /* Hidden by default */
-            flex-direction: column;\n            align-items: center;
+            flex-direction: column;
+            align-items: center;
             gap: 10px;
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7); /* Cyan shadow */
+            box-shadow: 0 0 30px rgba(141, 79, 251, 0.7); /* Purple shadow */
             z-index: 100;
             width: 200px;
             border: 1px solid var(--main-action-btn);
         }
 
-        .sonar-container.active {
+        .gaze-container.active {
             display: flex;
         }
 
-        .sonar-bar {
+        .gaze-scanner-bar {
             width: 10px;
             height: 150px;
-            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Orange to Deep Teal */
+            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Gold to Dark Violet */
             border-radius: 5px;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--glass-border);
         }
 
-        .sonar-indicator {
+        .gaze-indicator {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: var(--sonar-scan-indicator); /* Green */
+            background-color: var(--gaze-scan-indicator); /* Cyan */
             height: 0%;
             transition: height 5s ease-out; /* Animation for scan */
         }
 
-        .sonar-text {
+        .gaze-text {
             font-size: 1.5em;
-            color: var(--sonar-scan-text); /* Green */
+            color: var(--gaze-scan-text); /* Cyan */
             text-shadow: var(--title-shadow);
         }
 
-        .deep-sea-discovery-fact {
+        .cosmic-discovery-fact {
             position: absolute;
             font-size: 1.1em;
             color: rgba(255, 255, 255, 0.8);
@@ -266,171 +267,4 @@
         @keyframes fact-fade-in-out {
             0% { opacity: 0; transform: translateY(20px); }
             20% { opacity: 1; transform: translateY(0); }
-            80% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Deep Sea Wonders</h1>
-        <div class="fact-card" id="factCard">
-            <h2>The Mariana Trench: Earth's Deepest Abyss</h2>
-            <p id="main-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the trench, its peak would still be over a mile underwater. This extreme environment hosts unique life forms adapted to immense pressure and perpetual darkness.</p>
-            <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="activateSonarScan()">Sonar Scan</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="sonar-container" id="gazeContainer">
-        <div class="sonar-bar">
-            <div class="sonar-indicator" id="gazeIndicator"></div>
-        </div>
-        <p class="sonar-text" id="gazeProgress">0 Meters Scanned</p>
-    </div>
-
-    <footer>
-        <p>Site last updated: <span id="update-time"></span></p>
-    </footer>
-
-    <script>
-        function updateTime() {
-            const now = new Date();
-            document.getElementById('update-time').textContent = now.toLocaleString();
-        }
-        setInterval(updateTime, 1000);
-        updateTime(); // Initial call
-
-        function createBioluminescentParticle() {
-            const particle = document.createElement('div');
-            particle.classList.add('bioluminescent-particle');
-            document.body.appendChild(particle);
-
-            const size = Math.random() * 8 + 3; // 3 to 11px, slightly smaller
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}vw`;
-            particle.style.top = `${Math.random() * 100}vh`;
-            particle.style.animationDelay = `${Math.random() * 20}s`;
-            particle.style.animationDuration = `${Math.random() * 20 + 20}s`; // 20 to 40s
-        }
-
-        let particlesCreated = false;
-        let sonarInterval;
-        let deepSeaEventInterval;
-
-        const deepSeaFacts = [
-            "The pressure at the bottom of the Mariana Trench is over 1,000 times that at sea level.",
-            "Many organisms in the trench use chemosynthesis, not photosynthesis, for energy.",
-            "The Challenger Deep is the deepest known point, explored by only a few.",
-            "Some fish in the trench have antifreeze proteins to survive near-freezing temperatures.",
-            "Despite the extreme conditions, diverse microbial life thrives in the trench."
-        ];
-
-        function createDeepSeaDiscoveryFact(fact) {
-            const factElement = document.createElement('div');
-            factElement.classList.add('deep-sea-discovery-fact');
-            factElement.textContent = fact;
-            document.body.appendChild(factElement);
-
-            const containerRect = document.querySelector('.container').getBoundingClientRect();
-            const factCardRect = document.getElementById('factCard').getBoundingClientRect();
-
-            const randomX = Math.random() * (containerRect.width * 0.6) + (containerRect.left + containerRect.width * 0.2);
-            const randomY = Math.random() < 0.5 ?
-                            factCardRect.top - 50 - Math.random() * 50 :
-                            factCardRect.bottom + 20 + Math.random() * 50;
-
-            factElement.style.left = `${randomX}px`;
-            factElement.style.top = `${randomY}px`;
-
-            factElement.onanimationend = () => {
-                factElement.remove();
-            };
-        }
-
-        function activateSonarScan() {
-            const mainFact = document.getElementById('main-fact');
-            const factDetail = document.getElementById('fact-detail');
-            const revealButton = document.getElementById('revealButton');
-            const body = document.body;
-            const sonarContainer = document.getElementById('gazeContainer'); // Renamed ID in HTML
-            const sonarIndicator = document.getElementById('gazeIndicator'); // Renamed ID in HTML
-            const sonarProgressText = document.getElementById('gazeProgress'); // Renamed ID in HTML
-
-            mainFact.classList.toggle('revealed');
-            factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('sonar-scanned');
-
-            if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Surface";
-                sonarContainer.classList.add('active');
-                sonarIndicator.style.height = '100%'; // Animate to full scan
-
-                let currentMeters = 0;
-                const maxDepth = 11000; // Approximate depth of Mariana Trench
-                const duration = 5000; // 5 seconds for animation
-                const steps = 100;
-                let step = 0;
-
-                sonarInterval = setInterval(() => {
-                    step++;
-                    currentMeters = Math.round((step / steps) * maxDepth);
-                    sonarProgressText.textContent = `${currentMeters} Meters Scanned`;
-                    if (step >= steps) {
-                        clearInterval(sonarInterval);
-                        sonarProgressText.textContent = `${maxDepth} Meters Scanned (Life Detected!)`;
-                    }
-                }, duration / steps);
-
-                // Start deep sea event fact display
-                let factIndex = 0;
-                deepSeaEventInterval = setInterval(() => {
-                    if (factIndex < deepSeaFacts.length) {
-                        createDeepSeaDiscoveryFact(deepSeaFacts[factIndex]);
-                        factIndex++;
-                    } else {
-                        clearInterval(deepSeaEventInterval);
-                    }
-                }, 1000); // Display a new fact every 1 second
-
-                if (!particlesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 bioluminescent particles
-                        createBioluminescentParticle();
-                    }
-                    particlesCreated = true;
-                }
-            } else {
-                revealButton.textContent = "Sonar Scan";
-                document.querySelectorAll('.bioluminescent-particle').forEach(particle => particle.remove());
-                document.querySelectorAll('.deep-sea-discovery-fact').forEach(fact => fact.remove());
-                particlesCreated = false;
-                sonarContainer.classList.remove('active');
-                sonarIndicator.style.height = '0%'; // Reset sonar indicator
-                sonarProgressText.textContent = '0 Meters Scanned';
-                clearInterval(sonarInterval);
-                clearInterval(deepSeaEventInterval);
-            }
-        }
-
-        // Bioluminescent Sparkle Particles effect on fact card hover
-        const factCard = document.getElementById('factCard');
-        factCard.addEventListener('mousemove', function(e) {
-            const particle = document.createElement('span');
-            particle.classList.add('sparkle-particle'); // Reusing sparkle-particle class, but it will be styled by the new theme
-            this.appendChild(particle);
-
-            const size = Math.random() * 10 + 5; // 5 to 15px
-            particle.style.width = particle.style.height = `${size}px`;
-            particle.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;
-            particle.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;
-
-            particle.onanimationend = () => {
-                particle.remove();
-            };
-        });
-    </script>
-</body>
-</html>
+            80% { opacity: 1; transform: translateY(0); }\n            100% { opacity: 0; transform: translateY(-20px); }\n        }\n\n        /* Sparkle Particle for fact card hover */\n        .sparkle-particle {\n            position: absolute;\n            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);\n            border-radius: 50%;\n            animation: sparkle-fade-out 0.8s forwards;\n            pointer-events: none;\n            box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);\n        }\n\n        @keyframes sparkle-fade-out {\n            0% { transform: scale(0); opacity: 1; }\n            100% { transform: scale(1.5); opacity: 0; }\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Exoplanet Explorer</h1>\n        <div class=\"fact-card\" id=\"factCard\">\n            <h2>WASP-12b: The Egg-Shaped Exoplanet</h2>\n            <p id=\"main-fact\" class=\"fact-text\">WASP-12b is an exoplanet so close to its star that it\'s being ripped apart, resembling a \'hot Jupiter\' with an egg-like shape.</p>\n            <p id=\"fact-detail\" class=\"fact-text\" style=\"display: none; font-size: 1.2em; margin-top: 15px;\">This gas giant orbits its star in just over a day, experiencing extreme tidal forces that distort its shape and cause its atmosphere to be stripped away. It\'s one of the darkest known exoplanets, absorbing almost 94% of the light that hits it.</p>\n            <div class=\"button-group\">\n                <button class=\"action-button\" id=\"revealButton\" onclick=\"activateCosmicGaze()\">Cosmic Gaze</button>\n                <button class=\"action-button\" id=\"newFactButton\" onclick=\"displayRandomFact()\">New Fact</button>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"gaze-container\" id=\"gazeContainer\">\n        <div class=\"gaze-scanner-bar\">\n            <div class=\"gaze-indicator\" id=\"gazeIndicator\"></div>\n        </div>\n        <p class=\"gaze-text\" id=\"gazeProgress\">0 Light-Years Scanned</p>\n    </div>\n\n    <footer>\n        <p>Site last updated: <span id=\"update-time\"></span></p>\n    </footer>\n\n    <script>\n        function updateTime() {\n            const now = new Date();\n            document.getElementById(\'update-time\').textContent = now.toLocaleString();\n        }\n        setInterval(updateTime, 1000);\n        updateTime(); // Initial call\n\n        function createCosmicDustParticle() {\n            const particle = document.createElement(\'div\');\n            particle.classList.add(\'cosmic-dust-particle\');\n            document.body.appendChild(particle);\n\n            const size = Math.random() * 8 + 3; // 3 to 11px\n            particle.style.width = `${size}px`;\n            particle.style.height = `${size}px`;\n            particle.style.left = `${Math.random() * 100}vw`;\n            particle.style.top = `${Math.random() * 100}vh`;\n            particle.style.animationDelay = `${Math.random() * 20}s`;\n            particle.style.animationDuration = `${Math.random() * 20 + 20}s`; // 20 to 40s\n        }\n\n        let particlesCreated = false;\n        let gazeInterval;\n        let cosmicEventInterval;\n\n        const exoplanetFacts = [\n            {\n                title: \"55 Cancri e: The Diamond Planet\",\n                mainFact: \"55 Cancri e is an exoplanet that might be largely composed of carbon, leading scientists to speculate it could be a \'diamond planet\'.\",\n                detailFact: \"This super-Earth orbits its star so closely that its surface temperature is extremely high, and its atmosphere is likely molten. The immense pressure and carbon-rich composition could mean a significant portion of its interior is crystallized diamond.\"\n            },\n            {\n                title: \"Kepler-186f: The First Earth-Sized Exoplanet in Habitable Zone\",\n                mainFact: \"Kepler-186f was the first Earth-sized exoplanet discovered in the habitable zone of another star.\",\n                detailFact: \"Located about 500 light-years from Earth, it orbits a red dwarf star. While its exact composition is unknown, its size and location within the habitable zone make it a prime candidate for potentially supporting liquid water and, thus, life.\"\n            },\n            {\n                title: \"HD 189733b: Raining Glass Sideways\",\n                mainFact: \"HD 189733b is a \'hot Jupiter\' exoplanet with a deep blue color, but its atmosphere likely rains molten glass sideways at extreme speeds.\",\n                detailFact: \"The planet\'s vivid blue hue comes from silicate particles in its atmosphere scattering blue light. With winds reaching up to 7,000 km/h (4,300 mph) and temperatures over 1,000°C (1,832°F), any glass formed would be blown horizontally.\"\n            },\n            {\n                title: \"TRAPPIST-1 System: Seven Earth-Sized Worlds\",\n                mainFact: \"The TRAPPIST-1 system hosts seven Earth-sized exoplanets, all orbiting a single ultracool dwarf star.\",\n                detailFact: \"Three of these planets are located within the star\'s habitable zone, increasing the possibility of liquid water. Due to their close proximity, an observer on one planet might see the other planets appear larger than our Moon in the night sky.\"\n            },\n            {\n                title: \"Gliese 436 b: Burning Ice Planet\",\n                mainFact: \"Gliese 436 b is an exoplanet where water exists as \'burning ice\' due to immense gravitational pressure and high temperatures.\",\n                detailFact: \"Despite its surface temperature of around 439°C (822°F), the planet\'s strong gravity prevents water vapor from escaping, compressing it into a solid form known as \'ice-VII\' or \'hot ice\'.\"\n            }\n        ];\n\n        function displayRandomFact() {\n            const randomIndex = Math.floor(Math.random() * exoplanetFacts.length);\n            const fact = exoplanetFacts[randomIndex];\n            document.querySelector(\'.fact-card h2\').textContent = fact.title;\n            document.getElementById(\'main-fact\').textContent = fact.mainFact;\n            document.getElementById(\'fact-detail\').textContent = fact.detailFact;\n\n            // Reset gaze mode if active\n            const mainFact = document.getElementById(\'main-fact\');\n            const factDetail = document.getElementById(\'fact-detail\');\n            const revealButton = document.getElementById(\'revealButton\');\n            const body = document.body;\n            const gazeContainer = document.getElementById(\'gazeContainer\');\n            const gazeIndicator = document.getElementById(\'gazeIndicator\');\n            const gazeProgressText = document.getElementById(\'gazeProgress\');\n\n            if (mainFact.classList.contains(\'revealed\')) {\n                mainFact.classList.remove(\'revealed\');\n                factDetail.style.display = \'none\';\n                revealButton.textContent = \"Cosmic Gaze\";\n                body.classList.remove(\'gaze-scanned\');\n                document.querySelectorAll(\'.cosmic-dust-particle\').forEach(particle => particle.remove());\n                document.querySelectorAll(\'.cosmic-discovery-fact\').forEach(fact => fact.remove());\n                particlesCreated = false;\n                gazeContainer.classList.remove(\'active\');\n                gazeIndicator.style.height = \'0%\';\n                gazeProgressText.textContent = \'0 Light-Years Scanned\';\n                clearInterval(gazeInterval);\n                clearInterval(cosmicEventInterval);\n            }\n        }\n\n        function activateCosmicGaze() {\n            const mainFact = document.getElementById(\'main-fact\');\n            const factDetail = document.getElementById(\'fact-detail\');\n            const revealButton = document.getElementById(\'revealButton\');\n            const body = document.body;\n            const gazeContainer = document.getElementById(\'gazeContainer\');\n            const gazeIndicator = document.getElementById(\'gazeIndicator\');\n            const gazeProgressText = document.getElementById(\'gazeProgress\');\n\n            mainFact.classList.toggle(\'revealed\');\n            factDetail.style.display = factDetail.style.display === \'none\' ? \'block\' : \'none\';\n            body.classList.toggle(\'gaze-scanned\');\n\n            if (mainFact.classList.contains(\'revealed\')) {\n                revealButton.textContent = \"Return to Surface\";\n                gazeContainer.classList.add(\'active\');\n                gazeIndicator.style.height = \'100%\'; // Animate to full scan\n\n                let currentLightYears = 0;\n                const maxDistance = 1000; // Approximate light-years for exoplanets\n                const duration = 5000; // 5 seconds for animation\n                const steps = 100;\n                let step = 0;\n\n                gazeInterval = setInterval(() => {\n                    step++;\n                    currentLightYears = Math.round((step / steps) * maxDistance);\n                    gazeProgressText.textContent = `${currentLightYears} Light-Years Scanned`;\n                    if (step >= steps) {\n                        clearInterval(gazeInterval);\n                        gazeProgressText.textContent = `${maxDistance} Light-Years Scanned (Exoplanet Detected!)`;\n                    }\n                }, duration / steps);\n\n                // Start cosmic event fact display\n                let factIndex = 0;\n                const cosmicDiscoveryFacts = [\n                    \"Exoplanets are planets outside our solar system.\",\n                    \"Thousands of exoplanets have been discovered.\",\n                    \"Some exoplanets are \'super-Earths\' or \'hot Jupiters\'.\",\n                    \"The search for exoplanets helps us understand planetary formation.\",\n                    \"Future telescopes will provide more detailed exoplanet observations.\"\n                ];\n\n                cosmicEventInterval = setInterval(() => {\n                    if (factIndex < cosmicDiscoveryFacts.length) {\n                        createCosmicDiscoveryFact(cosmicDiscoveryFacts[factIndex]);\n                        factIndex++;\n                    } else {\n                        clearInterval(cosmicEventInterval);\n                    }\n                }, 1000); // Display a new fact every 1 second\n\n                if (!particlesCreated) {\n                    for (let i = 0; i < 50; i++) { // Create 50 cosmic dust particles\n                        createCosmicDustParticle();\n                    }\n                    particlesCreated = true;\n                }\n            } else {\n                revealButton.textContent = \"Cosmic Gaze\";\n                document.querySelectorAll(\'.cosmic-dust-particle\').forEach(particle => particle.remove());\n                document.querySelectorAll(\'.cosmic-discovery-fact\').forEach(fact => fact.remove());\n                particlesCreated = false;\n                gazeContainer.classList.remove(\'active\');\n                gazeIndicator.style.height = \'0%\'; // Reset gaze indicator\n                gazeProgressText.textContent = \'0 Light-Years Scanned\';\n                clearInterval(gazeInterval);\n                clearInterval(cosmicEventInterval);\n            }\n        }\n\n        // Sparkle Particles effect on fact card hover\n        const factCard = document.getElementById(\'factCard\');\n        factCard.addEventListener(\'mousemove\', function(e) {\n            const particle = document.createElement(\'span\');\n            particle.classList.add(\'sparkle-particle\');\n            this.appendChild(particle);\n\n            const size = Math.random() * 10 + 5; // 5 to 15px\n            particle.style.width = particle.style.height = `${size}px`;\n            particle.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;\n            particle.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;\n\n            particle.onanimationend = () => {\n                particle.remove();\n            };\n        });\n    </script>\n</body>\n</html>
