@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Deep Sea Mysteries</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #0D0D2B; /* Deep Space Indigo */
-            --bg-color-secondary: #1A1A3B; /* Slightly Lighter Indigo */
-            --text-color: #E0E0FF; /* Cosmic Dust White */
-            --footer-bg: #1A1A3B; /* Consistent with secondary background */
-            --footer-text-color: #ADD8E6; /* Light Muted Blue */
-            --glass-bg: rgba(13, 13, 43, 0.7); /* Semi-transparent Deep Space Indigo */
-            --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Blue border */
-            --fact-text-shadow: 0 0 15px rgba(173, 216, 230, 0.8); /* Light Blue glow */
-            --title-color: #00FFFF; /* Vibrant Aqua - for a cosmic title */
-            --title-shadow: 0 0 20px rgba(0, 255, 255, 0.7); /* Aqua glow */
-            --main-action-btn: #00FFFF; /* Aqua - for action buttons */
-            --main-action-btn-hover: #00CED1; /* Dark Turquoise */
-            --stargaze-glow-color: #00FFFF; /* Aqua for the glow */
-            --stargaze-text-initial: rgba(224, 224, 255, 0.4); /* Dimmed text, very subtle */
-            --stargaze-text-active: #E0E0FF; /* Bright text */
-            --fact-card-bg: rgba(13, 13, 43, 0.8); /* Very dark, almost black with a hint of blue */
-            --fact-card-border: rgba(0, 255, 255, 0.5); /* Aqua border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9); /* Strong Aqua glow */
+            /* Deep Sea Mysteries Theme Colors */
+            --bg-color-primary: #0A192F; /* Dark Midnight Blue */
+            --bg-color-secondary: #003366; /* Deep Ocean Blue */
+            --text-color: #E0FFFF; /* Pale Cyan - for general text */
+            --footer-bg: #002244; /* Even darker blue for footer */
+            --footer-text-color: #B0C4DE; /* Light Steel Blue */
+            --glass-bg: rgba(0, 25, 50, 0.7); /* Semi-transparent deep blue */
+            --glass-border: rgba(176, 196, 222, 0.3); /* Soft Light Steel Blue border */
+            --fact-text-shadow: 0 0 15px rgba(176, 196, 222, 0.8); /* Light Steel Blue glow */
+            --title-color: #87CEEB; /* Sky Blue - for a deep sea title */
+            --title-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
+            --main-action-btn: #4682B4; /* Steel Blue - for action buttons */
+            --main-action-btn-hover: #5F9EA0; /* Cadet Blue */
+            --explore-glow-color: #87CEEB; /* Sky Blue for the glow */
+            --explore-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, very subtle */
+            --explore-text-active: #E0FFFF; /* Bright text */
+            --fact-card-bg: rgba(0, 15, 30, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(135, 206, 235, 0.5); /* Sky Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(135, 206, 235, 0.9); /* Strong Sky Blue glow */
         }
 
         body {
@@ -95,24 +95,21 @@
         }
 
         .fact-card h2 {
-            color: var(--stargaze-glow-color);
+            color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
         }
 
         .fact-text {
             font-size: 1.6em;
             line-height: 1.6;
-            color: var(--stargaze-text-initial); /* Initially dim */
+            color: var(--explore-text-initial); /* Initially dim */
             text-shadow: none;
             transition: color 1s ease, text-shadow 1s ease;
         }
 
-        .fact-text.stargazed {
-            color: var(--stargaze-text-active); /* Bright when stargazed */
-            text-shadow: var(--fact-text-shadow);
-        }
+        .fact-text.explored {\n            color: var(--explore-text-active); /* Bright when explored */\n            text-shadow: var(--fact-text-shadow);\n        }
 
         .button-group {
             display: flex;
@@ -130,13 +127,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(70, 130, 180, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.8);
+            box-shadow: 0 0 25px rgba(70, 130, 180, 0.8);
         }
 
         .action-button:disabled {
@@ -159,30 +156,33 @@
             z-index: 10;
         }
 
-        /* Starfield Effect */
-        .star {
+        /* Deep Sea Bubbles Effect */
+        .bubble {
             position: absolute;
-            background-color: white;
+            background-color: rgba(176, 196, 222, 0.5); /* Light Steel Blue */
             border-radius: 50%;
             opacity: 0;
-            animation: twinkle 3s infinite ease-in-out;
+            animation: riseAndFade 10s infinite ease-in-out;
             z-index: -1;
         }
 
-        @keyframes twinkle {
-            0%, 100% { opacity: 0; transform: scale(0.5); }
-            50% { opacity: 1; transform: scale(1); }
+        @keyframes riseAndFade {
+            0% { opacity: 0; transform: translateY(0) scale(0.2); }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; transform: translateY(-100vh) scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cosmic Wonders</h1>
+        <h1>Deep Sea Mysteries</h1>
         <div class="fact-card" id="factCard">
-            <h2>A Universe of Facts</h2>
-            <p id="cosmic-fact" class="fact-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+            <h2>Unveiling the Deep</h2>
+            <p id="deep-sea-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet).</p>
+            <p id="deep-sea-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">To put that into perspective, if Mount Everest were placed in the Mariana Trench, its peak would still be over a mile below the surface!</p>
             <div class="button-group">
-                <button class="action-button" id="stargazeButton" onclick="toggleStargaze()">Stargaze</button>
+                <button class="action-button" id="exploreButton" onclick="toggleDepths()">Explore Depths</button>
             </div>
         </div>
     </div>
@@ -199,40 +199,41 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createStar() {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            document.body.appendChild(star);
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            document.body.appendChild(bubble);
 
-            const size = Math.random() * 3 + 1; // 1 to 4px
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.top = `${Math.random() * 100}vh`;
-            star.style.animationDelay = `${Math.random() * 2}s`;
-            star.style.animationDuration = `${Math.random() * 2 + 2}s`; // 2 to 4s
+            const size = Math.random() * 10 + 5; // 5 to 15px
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.bottom = `-${size}px`; /* Start from below the viewport */
+            bubble.style.animationDelay = `${Math.random() * 5}s`;
+            bubble.style.animationDuration = `${Math.random() * 8 + 7}s`; // 7 to 15s
         }
 
-        let starsCreated = false;
-        function toggleStargaze() {
-            const factText = document.getElementById('cosmic-fact');
-            const stargazeButton = document.getElementById('stargazeButton');
+        let bubblesCreated = false;
+        function toggleDepths() {
+            const factText = document.getElementById('deep-sea-fact');
+            const detailText = document.getElementById('deep-sea-detail');
+            const exploreButton = document.getElementById('exploreButton');
 
-            factText.classList.toggle('stargazed');
+            factText.classList.toggle('explored');
+            detailText.style.display = detailText.style.display === 'none' ? 'block' : 'none';
 
-            if (factText.classList.contains('stargazed')) {
-                stargazeButton.textContent = "Dim the Stars";
-                if (!starsCreated) {
-                    for (let i = 0; i < 100; i++) { // Create 100 stars
-                        createStar();
+            if (factText.classList.contains('explored')) {
+                exploreButton.textContent = "Surface";
+                if (!bubblesCreated) {
+                    for (let i = 0; i < 50; i++) { // Create 50 bubbles
+                        createBubble();
                     }
-                    starsCreated = true;
+                    bubblesCreated = true;
                 }
             } else {
-                stargazeButton.textContent = "Stargaze";
-                // Optionally remove stars or dim them further
-                document.querySelectorAll('.star').forEach(star => star.remove());
-                starsCreated = false;
+                exploreButton.textContent = "Explore Depths";
+                document.querySelectorAll('.bubble').forEach(bubble => bubble.remove());
+                bubblesCreated = false;
             }
         }
     </script>
