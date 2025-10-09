@@ -3,40 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Insights</title>
+    <title id="site-title">Bioluminescent Wonders</title>
     <style>
         :root {
-            /* Cosmic Insights Theme Colors */
-            --bg-color-primary: #1A0033; /* Very Dark Purple/Indigo */
-            --bg-color-secondary: #0D001A; /* Even Darker Purple */
-            --text-color: #E0E0FF; /* Light Lavender/Silver - for general text */
-            --footer-bg: #330066; /* Darker Purple for footer */
-            --footer-text-color: #C0C0D0; /* Light Grayish Blue */
-            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent dark purple */
-            --glass-border: rgba(192, 192, 208, 0.3); /* Soft Light Grayish Blue border */
-            --fact-text-shadow: 0 0 15px rgba(224, 224, 255, 0.8); /* Light Lavender glow */
-            --title-color: #9370DB; /* Medium Purple - for a cosmic title */
-            --title-shadow: 0 0 20px rgba(147, 112, 219, 0.7); /* Medium Purple glow */
-            --main-action-btn: #8A2BE2; /* Blue Violet - for action buttons */
-            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
-            --explore-glow-color: #E0E0FF; /* Light Lavender for the glow */
-            --explore-text-initial: rgba(224, 224, 255, 0.4); /* Dimmed text, very subtle */
-            --explore-text-active: #E0E0FF; /* Bright text */
-            --fact-card-bg: rgba(10, 0, 20, 0.8); /* Very dark, almost black with a hint of purple */
-            --fact-card-border: rgba(147, 112, 219, 0.5); /* Medium Purple border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(147, 112, 219, 0.9); /* Strong Medium Purple glow */
+            /* Bioluminescent Wonders Theme Colors */
+            --bg-color-primary: #001A2B; /* Deep Ocean Blue */
+            --bg-color-secondary: #000D1A; /* Even Deeper Ocean Blue */
+            --text-color: #00FFFF; /* Bright Cyan - for general text */
+            --footer-bg: #00334D; /* Darker Blue for footer */
+            --footer-text-color: #80FFFF; /* Lighter Cyan */
+            --glass-bg: rgba(0, 26, 43, 0.7); /* Semi-transparent deep blue */
+            --glass-border: rgba(0, 255, 255, 0.3); /* Soft Cyan border */
+            --fact-text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Cyan glow */
+            --title-color: #00FFFF; /* Bright Cyan - for a glowing title */
+            --title-shadow: 0 0 20px rgba(0, 255, 255, 0.7); /* Cyan glow */
+            --main-action-btn: #00BFFF; /* Deep Sky Blue - for action buttons */
+            --main-action-btn-hover: #008B8B; /* Dark Cyan */
+            --explore-glow-color: #00FFFF; /* Bright Cyan for the glow */
+            --explore-text-initial: rgba(0, 255, 255, 0.4); /* Dimmed text, very subtle */
+            --explore-text-active: #00FFFF; /* Bright text */
+            --fact-card-bg: rgba(0, 10, 20, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(0, 191, 255, 0.5); /* Deep Sky Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(0, 191, 255, 0.9); /* Strong Deep Sky Blue glow */
 
             /* Deep Dive Mode for Overview Effect */
             --deep-dive-bg-primary: #000000;
-            --deep-dive-bg-secondary: #0A001A;
+            --deep-dive-bg-secondary: #00050A;
         }
 
         body {
             background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);\n            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -106,14 +105,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(70, 130, 180, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(0, 191, 255, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(224, 255, 255, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .fact-text {
@@ -145,13 +144,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(30, 144, 255, 0.8);
+            box-shadow: 0 0 25px rgba(0, 191, 255, 0.8);
         }
 
         .action-button:disabled {
@@ -185,32 +184,41 @@
             z-index: 1;
         }
 
-        @keyframes ripple-effect {\n            to {\n                transform: scale(2.5);\n                opacity: 0;\n            }\n        }
-
-        /* Cosmic Dust Effect */
-        .cosmic-dust {
-            position: absolute;
-            background-color: rgba(255, 255, 255, 0.6); /* White dust */
-            border-radius: 50%;
-            opacity: 0;
-            animation: floatAcross 20s infinite linear;
-            z-index: -1;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Subtle glow */
+        @keyframes ripple-effect {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
         }
 
-        @keyframes floatAcross {
-            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }\n            10% { opacity: 0.8; }\n            90% { opacity: 0.8; }\n            100% { opacity: 0; transform: translate(100vw, -100vh) scale(1.2); }\n        }
+        /* Bioluminescent Sparkle Effect */
+        .bioluminescent-sparkle {
+            position: absolute;
+            background-color: rgba(0, 255, 255, 0.8); /* Cyan sparkle */
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatAndGlow 20s infinite linear;
+            z-index: -1;
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.9); /* Intense glow */
+        }
+
+        @keyframes floatAndGlow {
+            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            100% { opacity: 0; transform: translate(100vw, -100vh) scale(1.2); }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cosmic Insights</h1>
+        <h1>Bioluminescent Wonders</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Overview Effect</h2>
-            <p id="main-fact" class="fact-text">The Overview Effect is a cognitive shift reported by astronauts when viewing Earth from space, characterized by a profound understanding of the interconnectedness of life and the fragility of our planet.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">This experience often leads to a sense of awe, a desire to protect Earth, and a shift in perspective on humanity's place in the universe.</p>
+            <h2>The Ocean's Inner Light</h2>
+            <p id="main-fact" class="fact-text">In the ocean, blue-green is the most common color of bioluminescence because these wavelengths travel best through water.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Organisms use bioluminescence for various purposes: attracting prey, avoiding predators, attracting mates, and communication. For example, anglerfish use a bioluminescent lure, and some squid release glowing mucus to confuse threats.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Experience Overview</button>
+                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Illuminate the Depths</button>
             </div>
         </div>
     </div>
@@ -227,21 +235,21 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createCosmicDust() {
-            const dust = document.createElement('div');
-            dust.classList.add('cosmic-dust');
-            document.body.appendChild(dust);
+        function createBioluminescentSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('bioluminescent-sparkle');
+            document.body.appendChild(sparkle);
 
-            const size = Math.random() * 3 + 1; // 1 to 4px
-            dust.style.width = `${size}px`;
-            dust.style.height = `${size}px`;
-            dust.style.left = `${Math.random() * 100}vw`;
-            dust.style.top = `${Math.random() * 100}vh`; // Start anywhere on screen
-            dust.style.animationDelay = `${Math.random() * 15}s`;
-            dust.style.animationDuration = `${Math.random() * 15 + 15}s`; // 15 to 30s
+            const size = Math.random() * 4 + 2; // 2 to 6px
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+            sparkle.style.left = `${Math.random() * 100}vw`;
+            sparkle.style.top = `${Math.random() * 100}vh`; // Start anywhere on screen
+            sparkle.style.animationDelay = `${Math.random() * 15}s`;
+            sparkle.style.animationDuration = `${Math.random() * 15 + 15}s`; // 15 to 30s
         }
 
-        let dustCreated = false;
+        let sparklesCreated = false;
         function toggleDeepDive() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
@@ -253,16 +261,17 @@
             body.classList.toggle('deep-dived-cosmic');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Earth";
-                if (!dustCreated) {
-                    for (let i = 0; i < 100; i++) { // Create 100 cosmic dust particles
-                        createCosmicDust();
-                    }\n                    dustCreated = true;
+                revealButton.textContent = "Return to Surface";
+                if (!sparklesCreated) {
+                    for (let i = 0; i < 100; i++) { // Create 100 bioluminescent sparkles
+                        createBioluminescentSparkle();
+                    }
+                    sparklesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Experience Overview";
-                document.querySelectorAll('.cosmic-dust').forEach(dust => dust.remove());
-                dustCreated = false;
+                revealButton.textContent = "Illuminate the Depths";
+                document.querySelectorAll('.bioluminescent-sparkle').forEach(sparkle => sparkle.remove());
+                sparklesCreated = false;
             }
         }
 
