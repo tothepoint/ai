@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Mysteries</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Deep Sea Mysteries Theme Colors - Refined for better contrast and visibility */
-            --bg-color-primary: #0A192F; /* Deep Ocean Blue */
-            --bg-color-secondary: #050F1A; /* Even Deeper Ocean */
-            --text-color: #E0FFFF; /* Bright Aqua for main text - improved visibility */
-            --footer-bg: #1A2B40; /* Slightly Lighter Ocean Blue for Footer */
-            --footer-text-color: #ADD8E6; /* Light Cyan for footer text - improved visibility */
-            --glass-bg: rgba(10, 25, 47, 0.7); /* Semi-transparent Deep Ocean Blue */
-            --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Cyan border */
-            --fact-text-shadow: 0 0 15px rgba(173, 216, 230, 0.8); /* Light Cyan glow */
-            --title-color: #00FFFF; /* Vibrant Aqua - for a mysterious deep-sea title */
+            /* Cosmic Wonders Theme Colors */
+            --bg-color-primary: #0D0D2B; /* Deep Space Indigo */
+            --bg-color-secondary: #1A1A3B; /* Slightly Lighter Indigo */
+            --text-color: #E0E0FF; /* Cosmic Dust White */
+            --footer-bg: #1A1A3B; /* Consistent with secondary background */
+            --footer-text-color: #ADD8E6; /* Light Muted Blue */
+            --glass-bg: rgba(13, 13, 43, 0.7); /* Semi-transparent Deep Space Indigo */
+            --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Blue border */
+            --fact-text-shadow: 0 0 15px rgba(173, 216, 230, 0.8); /* Light Blue glow */
+            --title-color: #00FFFF; /* Vibrant Aqua - for a cosmic title */
             --title-shadow: 0 0 20px rgba(0, 255, 255, 0.7); /* Aqua glow */
             --main-action-btn: #00FFFF; /* Aqua - for action buttons */
             --main-action-btn-hover: #00CED1; /* Dark Turquoise */
-            --bioluminescent-glow-color: #00FFFF; /* Aqua for the glow */
-            --bioluminescent-text-initial: rgba(224, 255, 255, 0.2); /* Dimmed text, based on new text-color, very subtle */
-            --bioluminescent-text-active: #E0FFFF; /* Bright text, based on new text-color */
-            --fact-card-bg: rgba(5, 15, 26, 0.8); /* Very dark, almost black with a hint of blue */
+            --stargaze-glow-color: #00FFFF; /* Aqua for the glow */
+            --stargaze-text-initial: rgba(224, 224, 255, 0.4); /* Dimmed text, very subtle */
+            --stargaze-text-active: #E0E0FF; /* Bright text */
+            --fact-card-bg: rgba(13, 13, 43, 0.8); /* Very dark, almost black with a hint of blue */
             --fact-card-border: rgba(0, 255, 255, 0.5); /* Aqua border for emphasis */
             --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9); /* Strong Aqua glow */
-
-            /* Sonar Feature Colors */
-            --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Aqua for sonar wave */
-            --sonar-glow-text-color: #E0FFFF; /* Bright text for sonar glow */
-            --sonar-glow-text-shadow: 0 0 20px rgba(0, 255, 255, 1); /* Stronger glow for sonar */
         }
 
         body {
@@ -50,7 +45,6 @@
             transition: background 1.5s ease-in-out, color 0.8s ease;
             overflow-x: hidden;
             position: relative;
-            cursor: crosshair; /* Indicate interactivity */
         }
 
         @keyframes gradientShift {
@@ -61,18 +55,18 @@
 
         .container {
             background: var(--glass-bg);
-            border-radius: 25px; /* Slightly more rounded */
+            border-radius: 25px;
             padding: 40px 60px;
             margin: auto;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Stronger shadow */
-            backdrop-filter: blur(12px); /* More blur */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--glass-border);
-            max-width: 900px; /* Wider container for better readability */
+            max-width: 900px;
             width: 90%;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px; /* Space between elements */
+            gap: 30px;
             position: relative;
             overflow: hidden;
             transition: all 0.5s ease-in-out;
@@ -81,7 +75,7 @@
         h1 {
             color: var(--title-color);
             text-shadow: var(--title-shadow);
-            font-size: 3.5em; /* Slightly larger title */
+            font-size: 3.5em;
             margin-bottom: 20px;
             letter-spacing: 2px;
             transition: color 0.5s ease, text-shadow 0.5s ease;
@@ -96,12 +90,12 @@
             max-width: 700px;
             margin: 20px 0;
             transition: all 0.5s ease-in-out;
-            position: relative; /* For sonar effect */
-            overflow: hidden; /* For sonar effect */
+            position: relative;
+            overflow: hidden;
         }
 
         .fact-card h2 {
-            color: var(--bioluminescent-glow-color);
+            color: var(--stargaze-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
             text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
@@ -110,19 +104,14 @@
         .fact-text {
             font-size: 1.6em;
             line-height: 1.6;
-            color: var(--bioluminescent-text-initial); /* Initially dim */
+            color: var(--stargaze-text-initial); /* Initially dim */
             text-shadow: none;
             transition: color 1s ease, text-shadow 1s ease;
         }
 
-        .fact-text.revealed {
-            color: var(--bioluminescent-text-active); /* Bright when revealed */
+        .fact-text.stargazed {
+            color: var(--stargaze-text-active); /* Bright when stargazed */
             text-shadow: var(--fact-text-shadow);
-        }
-
-        .fact-text.sonar-active {
-            color: var(--sonar-glow-text-color);
-            text-shadow: var(--sonar-glow-text-shadow);
         }
 
         .button-group {
@@ -161,7 +150,7 @@
             margin-top: 50px;
             padding: 20px;
             background-color: var(--footer-bg);
-            color: var(--footer-text-color); /* Ensure text is clearly visible */
+            color: var(--footer-text-color);
             width: 100%;
             box-sizing: border-box;
             border-top: 1px solid var(--glass-border);
@@ -170,44 +159,30 @@
             z-index: 10;
         }
 
-        /* Sonar Pulse Effect */
-        .sonar-wave {
+        /* Starfield Effect */
+        .star {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
+            background-color: white;
             border-radius: 50%;
-            background-color: var(--sonar-wave-color);
             opacity: 0;
-            transform: translate(-50%, -50%);
-            animation: sonarPulse 1.5s ease-out forwards;
-            z-index: -1; /* Behind the fact text */
+            animation: twinkle 3s infinite ease-in-out;
+            z-index: -1;
         }
 
-        @keyframes sonarPulse {
-            0% {
-                width: 0;
-                height: 0;
-                opacity: 0.6;
-            }
-            100% {
-                width: 200%; /* Expand beyond card */
-                height: 200%;
-                opacity: 0;
-            }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; transform: scale(0.5); }
+            50% { opacity: 1; transform: scale(1); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Deep Sea Mysteries</h1>
+        <h1>Cosmic Wonders</h1>
         <div class="fact-card" id="factCard">
-            <h2>Did you know?</h2>
-            <p id="deep-sea-fact" class="fact-text">Around three-quarters of all deep-sea creatures produce their own light through a chemical reaction, a phenomenon called bioluminescence.</p>
+            <h2>A Universe of Facts</h2>
+            <p id="cosmic-fact" class="fact-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
             <div class="button-group">
-                <button class="action-button" id="bioluminescenceButton" onclick="revealBioluminescence()">Reveal Bioluminescence</button>
-                <button class="action-button" id="sonarButton" onclick="activateSonar()">Sonar Pulse</button>
+                <button class="action-button" id="stargazeButton" onclick="toggleStargaze()">Stargaze</button>
             </div>
         </div>
     </div>
@@ -224,39 +199,41 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function revealBioluminescence() {
-            const factText = document.getElementById('deep-sea-fact');
-            const bioluminescenceButton = document.getElementById('bioluminescenceButton');
+        function createStar() {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            document.body.appendChild(star);
 
-            factText.classList.toggle('revealed'); // Toggle the revealed class
-
-            if (factText.classList.contains('revealed')) {
-                bioluminescenceButton.textContent = "Hide Bioluminescence";
-            } else {
-                bioluminescenceButton.textContent = "Reveal Bioluminescence";
-            }
+            const size = Math.random() * 3 + 1; // 1 to 4px
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}vw`;
+            star.style.top = `${Math.random() * 100}vh`;
+            star.style.animationDelay = `${Math.random() * 2}s`;
+            star.style.animationDuration = `${Math.random() * 2 + 2}s`; // 2 to 4s
         }
 
-        function activateSonar() {
-            const factCard = document.getElementById('factCard');
-            const factText = document.getElementById('deep-sea-fact');
-            const sonarButton = document.getElementById('sonarButton');
+        let starsCreated = false;
+        function toggleStargaze() {
+            const factText = document.getElementById('cosmic-fact');
+            const stargazeButton = document.getElementById('stargazeButton');
 
-            // Create sonar wave element
-            const sonarWave = document.createElement('div');
-            sonarWave.classList.add('sonar-wave');
-            factCard.appendChild(sonarWave);
+            factText.classList.toggle('stargazed');
 
-            // Temporarily activate sonar glow on text
-            factText.classList.add('sonar-active');
-            sonarButton.disabled = true; // Disable button during animation
-
-            // Remove sonar wave and glow after animation
-            setTimeout(() => {
-                sonarWave.remove();
-                factText.classList.remove('sonar-active');
-                sonarButton.disabled = false; // Re-enable button
-            }, 1500); // Matches sonarPulse animation duration
+            if (factText.classList.contains('stargazed')) {
+                stargazeButton.textContent = "Dim the Stars";
+                if (!starsCreated) {
+                    for (let i = 0; i < 100; i++) { // Create 100 stars
+                        createStar();
+                    }
+                    starsCreated = true;
+                }
+            } else {
+                stargazeButton.textContent = "Stargaze";
+                // Optionally remove stars or dim them further
+                document.querySelectorAll('.star').forEach(star => star.remove());
+                starsCreated = false;
+            }
         }
     </script>
 </body>
