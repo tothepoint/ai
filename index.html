@@ -3,39 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Interstellar Odyssey</title>
+    <title id="site-title">Oceanic Depths</title>
     <style>
         :root {
-            /* Interstellar Odyssey Theme Colors */
-            --bg-color-primary: #0A001A; /* Deep Violet */
-            --bg-color-secondary: #000005; /* Almost Black */
-            --text-color: #B0E0E6; /* Powder Blue - for general text */
-            --footer-bg: #1A0033; /* Darker Violet for footer */
-            --footer-text-color: #D8BFD8; /* Thistle - lighter for contrast */
-            --glass-bg: rgba(10, 0, 26, 0.7); /* Semi-transparent deep violet */
-            --glass-border: rgba(176, 224, 230, 0.3); /* Soft Powder Blue border */
-            --fact-text-shadow: 0 0 15px rgba(176, 224, 230, 0.8); /* Powder Blue glow */
-            --title-color: #E0BBE4; /* Lavender - for a glowing title */
-            --title-shadow: 0 0 20px rgba(224, 187, 228, 0.7); /* Lavender glow */
-            --main-action-btn: #957DAD; /* Medium Purple - for action buttons */
-            --main-action-btn-hover: #6A5ACD; /* Slate Blue */
-            --explore-glow-color: #E0BBE4; /* Lavender for the glow */
-            --explore-text-initial: rgba(176, 224, 230, 0.4); /* Dimmed text, very subtle */
-            --explore-text-active: #B0E0E6; /* Bright text */
-            --fact-card-bg: rgba(5, 0, 10, 0.8); /* Very dark, almost black with a hint of violet */
-            --fact-card-border: rgba(149, 125, 173, 0.5); /* Medium Purple border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(149, 125, 173, 0.9); /* Strong Medium Purple glow */
+            /* Oceanic Depths Theme Colors */
+            --bg-color-primary: #0A1128; /* Deep Ocean Blue */
+            --bg-color-secondary: #00071A; /* Even Deeper Blue */
+            --text-color: #E0FFFF; /* Light Cyan - for general text */
+            --footer-bg: #001F3F; /* Darker Blue for footer */
+            --footer-text-color: #ADD8E6; /* Light Blue - lighter for contrast */
+            --glass-bg: rgba(10, 17, 40, 0.7); /* Semi-transparent deep blue */
+            --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Blue border */
+            --fact-text-shadow: 0 0 15px rgba(173, 216, 230, 0.8); /* Light Blue glow */
+            --title-color: #87CEEB; /* Sky Blue - for a glowing title */
+            --title-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
+            --main-action-btn: #4682B4; /* Steel Blue - for action buttons */
+            --main-action-btn-hover: #5F9EA0; /* Cadet Blue */
+            --explore-glow-color: #87CEEB; /* Sky Blue for the glow */
+            --explore-text-initial: rgba(173, 216, 230, 0.4); /* Dimmed text, very subtle */
+            --explore-text-active: #E0FFFF; /* Bright text */
+            --fact-card-bg: rgba(0, 7, 26, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(70, 130, 180, 0.5); /* Steel Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(70, 130, 180, 0.9); /* Strong Steel Blue glow */
 
-            /* Deep Dive Mode for Overview Effect */
-            --deep-dive-bg-primary: #000000;
-            --deep-dive-bg-secondary: #000000;
+            /* Sonar Pulse Mode for Overview Effect */
+            --sonar-pulse-bg-primary: #00CED1; /* Dark Cyan */
+            --sonar-pulse-bg-secondary: #20B2AA; /* Light Sea Green */
         }
 
         body {
             background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
-            color: var(--text-color);\n            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -50,11 +51,7 @@
             position: relative;
         }
 
-        body.deep-dived-cosmic {
-            background: linear-gradient(135deg, var(--deep-dive-bg-primary) 0%, var(--deep-dive-bg-secondary) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-        }
+        body.sonar-pulsed {\n            background: linear-gradient(135deg, var(--sonar-pulse-bg-primary) 0%, var(--sonar-pulse-bg-secondary) 100%);\n            background-size: 400% 400%;\n            animation: gradientShift 15s ease infinite;\n        }
 
         @keyframes gradientShift {
             0% { background-position: 0% 50%; }
@@ -191,34 +188,42 @@
             }
         }
 
-        /* Stellar Anomaly Effect */
-        .stellar-anomaly {
+        /* Bioluminescence Effect */
+        .bioluminescent-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(224, 187, 228, 0.8) 0%, rgba(149, 125, 173, 0.5) 50%, rgba(10, 0, 26, 0) 100%); /* Lavender to Purple gradient */
+            background: radial-gradient(circle at center, rgba(135, 206, 235, 0.8) 0%, rgba(70, 130, 180, 0.5) 50%, rgba(10, 17, 40, 0) 100%); /* Sky Blue to Steel Blue gradient */
             border-radius: 50%;
             opacity: 0;
-            animation: stellarFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: bioluminescentFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(224, 187, 228, 0.7); /* Lavender glow */
+            box-shadow: 0 0 15px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
         }
 
-        @keyframes stellarFloatAndGlow {
+        @keyframes bioluminescentFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
-            15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }\n            30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }\n            45% { opacity: 0.7; transform: translate(50vw, 25vh) scale(1.0); }\n            60% { opacity: 0.5; transform: translate(70vw, 10vh) scale(0.7); }\n            75% { opacity: 0.8; transform: translate(90vw, 30vh) scale(1.1); }\n            100% { opacity: 0; transform: translate(100vw, 0) scale(0.3); }\n        }
+            15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }
+            30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }
+            45% { opacity: 0.7; transform: translate(50vw, 25vh) scale(1.0); }
+            60% { opacity: 0.5; transform: translate(70vw, 10vh) scale(0.7); }
+            75% { opacity: 0.8; transform: translate(90vw, 30vh) scale(1.1); }
+            100% { opacity: 0; transform: translate(100vw, 0) scale(0.3); }
+        }
 
-        @keyframes shimmer {\n            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }\n        }
+        @keyframes shimmer {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.05); opacity: 0.9; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Interstellar Odyssey</h1>
+        <h1>Oceanic Depths</h1>
         <div class="fact-card" id="factCard">
-            <h2>Voyager's Grand Tour</h2>
-            <p id="main-fact" class="fact-text">Voyager 1, launched in 1977, crossed into interstellar space in 2012, becoming the first human-made probe to do so.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Voyager 1 continues to operate, sending back data from beyond our solar system. It carries a Golden Record, a phonograph record containing sounds and images selected to portray the diversity of life and culture on Earth, intended for any intelligent extraterrestrial life form who may find it.</p>
+            <h2>The Deepest Point on Earth</h2>
+            <p id="main-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum-known depth of about 11,000 meters (36,000 feet).</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the Trench, its peak would still be over a mile underwater. This extreme environment is home to unique life forms adapted to immense pressure and perpetual darkness.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Initiate Interstellar Scan</button>
-                <button class="action-button" id="anomalyButton" onclick="createStellarAnomaly()">Detect Stellar Anomaly</button>
+                <button class="action-button" id="revealButton" onclick="toggleSonarPulse()">Activate Sonar Pulse</button>
             </div>
         </div>
     </div>
@@ -235,22 +240,22 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createStellarAnomalyEffect() {
-            const anomaly = document.createElement('div');
-            anomaly.classList.add('stellar-anomaly');
-            document.body.appendChild(anomaly);
+        function createBioluminescentParticle() {
+            const particle = document.createElement('div');
+            particle.classList.add('bioluminescent-particle');
+            document.body.appendChild(particle);
 
             const size = Math.random() * 10 + 5; // 5 to 15px
-            anomaly.style.width = `${size}px`;
-            anomaly.style.height = `${size}px`;
-            anomaly.style.left = `${Math.random() * 100}vw`;
-            anomaly.style.top = `${Math.random() * 100}vh`;
-            anomaly.style.animationDelay = `${Math.random() * 20}s`;
-            anomaly.style.animationDuration = `${Math.random() * 20 + 20}s`; // 20 to 40s
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.top = `${Math.random() * 100}vh`;
+            particle.style.animationDelay = `${Math.random() * 20}s`;
+            particle.style.animationDuration = `${Math.random() * 20 + 20}s`; // 20 to 40s
         }
 
-        let anomaliesCreated = false;
-        function toggleDeepDive() {
+        let particlesCreated = false;
+        function toggleSonarPulse() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
@@ -258,42 +263,24 @@
 
             mainFact.classList.toggle('revealed');
             factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('deep-dived-cosmic');
+            body.classList.toggle('sonar-pulsed');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Orbit";
-                if (!anomaliesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 stellar anomalies
-                        createStellarAnomalyEffect();
+                revealButton.textContent = "Deactivate Sonar";
+                if (!particlesCreated) {
+                    for (let i = 0; i < 50; i++) { // Create 50 bioluminescent particles
+                        createBioluminescentParticle();
                     }
-                    anomaliesCreated = true;
+                    particlesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Initiate Interstellar Scan";
-                document.querySelectorAll('.stellar-anomaly').forEach(anomaly => anomaly.remove());
-                anomaliesCreated = false;
+                revealButton.textContent = "Activate Sonar Pulse";
+                document.querySelectorAll('.bioluminescent-particle').forEach(particle => particle.remove());
+                particlesCreated = false;
             }
         }
 
-        function createStellarAnomaly() {
-            const anomaly = document.createElement('div');
-            anomaly.classList.add('stellar-anomaly');
-            document.body.appendChild(anomaly);
-
-            const size = Math.random() * 20 + 10; // 10 to 30px for a more prominent anomaly
-            anomaly.style.width = `${size}px`;
-            anomaly.style.height = `${size}px`;
-            anomaly.style.left = `${Math.random() * 100}vw`;
-            anomaly.style.top = `${Math.random() * 100}vh`;
-            anomaly.style.animation = `stellarFloatAndGlow ${Math.random() * 5 + 5}s forwards, shimmer 3s infinite alternate`; // Shorter, more immediate animation
-
-            // Remove after a short duration
-            setTimeout(() => {
-                anomaly.remove();
-            }, 10000); // Anomaly disappears after 10 seconds
-        }
-
-        // Water ripple effect on fact card hover (renamed to cosmic ripple)
+        // Water ripple effect on fact card hover
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
             const ripple = document.createElement('span');
