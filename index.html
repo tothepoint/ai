@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Abyssal Chronos</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Abyssal Chronos Theme Colors (Deep Sea / Greenland Shark) */
-            --bg-color-primary: #000A1A; /* Very dark, deep ocean blue */
-            --bg-color-secondary: #001F3F; /* Slightly lighter, deep teal-blue */
-            --text-color: #E0F2F7; /* Light, icy blue */
-            --footer-bg: #00050A; /* Very dark blue, almost black */
-            --footer-text-color: #A0BCC2; /* Muted, light grey-blue */
-            --glass-bg: rgba(0, 31, 63, 0.7); /* Semi-transparent deep teal-blue */
-            --glass-border: rgba(160, 188, 194, 0.3); /* Soft, light grey-blue */
-            --fact-text-shadow: 0 0 15px rgba(224, 242, 247, 0.8); /* Subtle icy blue glow */
+            /* Cosmic Wonders Theme Colors (Pillars of Creation) */
+            --bg-color-primary: #0A001A; /* Very dark, deep space purple */
+            --bg-color-secondary: #1A0033; /* Slightly lighter, deep violet */
+            --text-color: #F0F8FF; /* Alice Blue - bright, starlight white */
+            --footer-bg: #05000F; /* Even darker purple, almost black */
+            --footer-text-color: #B0C4DE; /* Light steel blue - muted, visible */
+            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent deep violet */
+            --glass-border: rgba(176, 196, 222, 0.3); /* Soft, light steel blue */
+            --fact-text-shadow: 0 0 15px rgba(240, 248, 255, 0.8); /* Subtle starlight glow */
             --title-color: #FFFFFF; /* Bright white */
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white glow */
-            --main-action-btn: #007BFF; /* Vibrant, deep blue */
-            --main-action-btn-hover: #0056b3; /* Slightly darker blue */
-            --explore-glow-color: #87CEEB; /* Sky Blue for emphasis */
-            --explore-text-initial: rgba(224, 242, 247, 0.4); /* Dimmed icy blue */
+            --main-action-btn: #FFD700; /* Gold - vibrant, contrasting */
+            --main-action-btn-hover: #DAA520; /* Goldenrod - slightly darker */
+            --explore-glow-color: #FFA07A; /* Light Salmon - for emphasis */
+            --explore-text-initial: rgba(240, 248, 255, 0.4); /* Dimmed starlight white */
             --explore-text-active: #FFFFFF; /* Bright white */
             --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(160, 188, 194, 0.7); /* Vibrant, light grey-blue */
-            --fact-of-day-glow: 0 0 25px rgba(160, 188, 194, 0.9); /* Strong grey-blue glow */
+            --fact-card-border: rgba(255, 215, 0, 0.7); /* Vibrant gold */
+            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9); /* Strong gold glow */
 
-            /* Chronos-Scan Mode */
-            --chronos-scan-bg-primary: #000000; /* Black */
-            --chronos-scan-bg-secondary: #000005; /* Even darker blue */
-            --chronos-scan-indicator: #00FFFF; /* Cyan for scanner */
-            --chronos-scan-text: #00FFFF; /* Cyan for scanner text */
+            /* Cosmic Gaze Mode */
+            --cosmic-gaze-bg-primary: #000000; /* Black */
+            --cosmic-gaze-bg-secondary: #000005; /* Even darker */
+            --cosmic-gaze-indicator: #00FFFF; /* Cyan for scanner */
+            --cosmic-gaze-text: #00FFFF; /* Cyan for scanner text */
         }
 
         body {
@@ -53,8 +53,8 @@
             position: relative;
         }
 
-        body.chronos-scanned {
-            background: linear-gradient(135deg, var(--chronos-scan-bg-primary) 0%, var(--chronos-scan-bg-secondary) 100%);
+        body.cosmic-gazed {
+            background: linear-gradient(135deg, var(--cosmic-gaze-bg-primary) 0%, var(--cosmic-gaze-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -108,14 +108,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(160, 188, 194, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(255, 215, 0, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+            text-shadow: 0 0 10px rgba(255, 160, 122, 0.5);
         }
 
         .fact-text {
@@ -135,7 +135,8 @@
             display: flex;
             gap: 20px;
             margin-top: 20px;
-            flex-wrap: wrap;\n            justify-content: center;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
         .action-button {
@@ -148,13 +149,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 86, 179, 0.8);
+            box-shadow: 0 0 25px rgba(218, 165, 32, 0.8);
         }
 
         .action-button:disabled {
@@ -177,37 +178,18 @@
             z-index: 10;
         }
 
-        /* Bioluminescent Plankton Particles Effect (for fact card) */
-        .sparkle-particle {
+        /* Starlight Particles Effect */
+        .starlight-particle {
             position: absolute;
-            border-radius: 50%;
-            background-color: rgba(0, 255, 255, 0.8); /* Cyan */
-            box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
-            animation: sparkle-fade 1s ease-out forwards;
-            transform: scale(0);
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        @keyframes sparkle-fade {
-            to {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        /* Deep Sea Debris/Plankton Particles Effect */
-        .cosmic-dust-particle {
-            position: absolute;
-            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.8) 0%, rgba(0, 180, 180, 0.5) 50%, rgba(0, 10, 26, 0) 100%); /* Cyan to Teal gradient */
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
             border-radius: 50%;
             opacity: 0;
-            animation: cosmicFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: starlightFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Cyan glow */
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
 
-        @keyframes cosmicFloatAndGlow {
+        @keyframes starlightFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
             15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }
@@ -218,11 +200,12 @@
         }
 
         @keyframes shimmer {
-            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        /* Chronos-Scan Feature */
-        .scanner-container {
+        /* Cosmic Gaze Feature */
+        .gaze-container {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -234,43 +217,43 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); /* Gold shadow */
             z-index: 100;
             width: 200px;
             border: 1px solid var(--main-action-btn);
         }
 
-        .scanner-container.active {
+        .gaze-container.active {
             display: flex;
         }
 
-        .scanner-bar {
+        .gaze-bar {
             width: 10px;
             height: 150px;
-            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Blue to Deep Teal */
+            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Gold to Deep Violet */
             border-radius: 5px;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--glass-border);
         }
 
-        .scanner-indicator {
+        .gaze-indicator {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: var(--chronos-scan-indicator); /* Cyan */
+            background-color: var(--cosmic-gaze-indicator); /* Cyan */
             height: 0%;
             transition: height 5s ease-out; /* Animation for scan */
         }
 
-        .scanner-text {
+        .gaze-text {
             font-size: 1.5em;
-            color: var(--chronos-scan-text); /* Cyan */
+            color: var(--cosmic-gaze-text); /* Cyan */
             text-shadow: var(--title-shadow);
         }
 
-        .historical-fact {
+        .cosmic-event-fact {
             position: absolute;
             font-size: 1.1em;
             color: rgba(255, 255, 255, 0.8);
@@ -291,22 +274,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Abyssal Chronos</h1>
+        <h1>Cosmic Wonders</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Greenland Shark: A Living Relic</h2>
-            <p id="main-fact" class="fact-text">The Greenland Shark has an extraordinary lifespan, ranging from 300 to 500 years.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">This makes it one of the longest-living vertebrates on Earth, silently navigating the frigid depths for centuries, witnessing epochs of human history unfold above.</p>
+            <h2>The Pillars of Creation: Stellar Nurseries</h2>
+            <p id="main-fact" class="fact-text">The Pillars of Creation are towering cosmic structures of interstellar gas and dust, where new stars are born.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Located in the Eagle Nebula, these majestic formations are sculpted by the intense ultraviolet light from massive, young stars, slowly eroding away while simultaneously fostering new stellar life within their dense clouds.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="activateChronosScan()">Chronos-Scan</button>
+                <button class="action-button" id="revealButton" onclick="activateCosmicGaze()">Cosmic Gaze</button>
             </div>
         </div>
     </div>
 
-    <div class="scanner-container" id="scannerContainer">
-        <div class="scanner-bar">
-            <div class="scanner-indicator" id="scannerIndicator"></div>
+    <div class="gaze-container" id="gazeContainer">
+        <div class="gaze-bar">
+            <div class="gaze-indicator" id="gazeIndicator"></div>
         </div>
-        <p class="scanner-text" id="scanProgress">0 Years Scanned</p>
+        <p class="gaze-text" id="gazeProgress">0 Light Years Observed</p>
     </div>
 
     <footer>
@@ -321,9 +304,9 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createDeepSeaParticle() {
+        function createStarlightParticle() {
             const particle = document.createElement('div');
-            particle.classList.add('cosmic-dust-particle');
+            particle.classList.add('starlight-particle');
             document.body.appendChild(particle);
 
             const size = Math.random() * 10 + 5; // 5 to 15px
@@ -336,31 +319,30 @@
         }
 
         let particlesCreated = false;
-        let scanInterval;
-        let historicalFactInterval;
+        let gazeInterval;
+        let cosmicEventInterval;
 
-        const historicalFacts = [
-            "When this shark was born, the Renaissance was flourishing in Europe.",
-            "It was alive when Shakespeare wrote his plays.",
-            "It swam the oceans during the American Revolution.",
-            "It witnessed the Industrial Revolution from the deep.",
-            "It has lived through two World Wars and the Space Age."
+        const cosmicFacts = [
+            "These pillars are light-years long, vast beyond human comprehension.",
+            "Newborn stars within them are still hidden by dense dust clouds.",
+            "The structures are constantly changing, sculpted by stellar winds.",
+            "They are a small part of the much larger Eagle Nebula.",
+            "Light from the Pillars takes thousands of years to reach Earth."
         ];
 
-        function createHistoricalFact(fact) {
+        function createCosmicEventFact(fact) {
             const factElement = document.createElement('div');
-            factElement.classList.add('historical-fact');
+            factElement.classList.add('cosmic-event-fact');
             factElement.textContent = fact;
             document.body.appendChild(factElement);
 
             const containerRect = document.querySelector('.container').getBoundingClientRect();
             const factCardRect = document.getElementById('factCard').getBoundingClientRect();
 
-            // Position around the fact card, slightly above or below
             const randomX = Math.random() * (containerRect.width * 0.6) + (containerRect.left + containerRect.width * 0.2);
             const randomY = Math.random() < 0.5 ?
-                            factCardRect.top - 50 - Math.random() * 50 : // Above
-                            factCardRect.bottom + 20 + Math.random() * 50; // Below
+                            factCardRect.top - 50 - Math.random() * 50 :
+                            factCardRect.bottom + 20 + Math.random() * 50;
 
             factElement.style.left = `${randomX}px`;
             factElement.style.top = `${randomY}px`;
@@ -370,75 +352,75 @@
             };
         }
 
-        function activateChronosScan() {
+        function activateCosmicGaze() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
             const body = document.body;
-            const scannerContainer = document.getElementById('scannerContainer');
-            const scannerIndicator = document.getElementById('scannerIndicator');
-            const scanProgressText = document.getElementById('scanProgress');
+            const gazeContainer = document.getElementById('gazeContainer');
+            const gazeIndicator = document.getElementById('gazeIndicator');
+            const gazeProgressText = document.getElementById('gazeProgress');
 
             mainFact.classList.toggle('revealed');
             factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('chronos-scanned');
+            body.classList.toggle('cosmic-gazed');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Surface";
-                scannerContainer.classList.add('active');
-                scannerIndicator.style.height = '100%'; // Animate to full scan
+                revealButton.textContent = "Return to Nebula";
+                gazeContainer.classList.add('active');
+                gazeIndicator.style.height = '100%'; // Animate to full scan
 
-                let currentYears = 0;
-                const maxYears = 500; // Max lifespan for the shark
+                let currentLightYears = 0;
+                const maxLightYears = 7000; // Approximate distance to Pillars of Creation
                 const duration = 5000; // 5 seconds for animation
                 const steps = 100;
                 let step = 0;
 
-                scanInterval = setInterval(() => {
+                gazeInterval = setInterval(() => {
                     step++;
-                    currentYears = Math.round((step / steps) * maxYears);
-                    scanProgressText.textContent = `${currentYears} Years Scanned`;
+                    currentLightYears = Math.round((step / steps) * maxLightYears);
+                    gazeProgressText.textContent = `${currentLightYears} Light Years Observed`;
                     if (step >= steps) {
-                        clearInterval(scanInterval);
-                        scanProgressText.textContent = `500 Years Scanned (Ancient Life Detected!)`;
+                        clearInterval(gazeInterval);
+                        gazeProgressText.textContent = `${maxLightYears} Light Years Observed (Stellar Birth Detected!)`;
                     }
                 }, duration / steps);
 
-                // Start historical fact display
+                // Start cosmic event fact display
                 let factIndex = 0;
-                historicalFactInterval = setInterval(() => {
-                    if (factIndex < historicalFacts.length) {
-                        createHistoricalFact(historicalFacts[factIndex]);
+                cosmicEventInterval = setInterval(() => {
+                    if (factIndex < cosmicFacts.length) {
+                        createCosmicEventFact(cosmicFacts[factIndex]);
                         factIndex++;
                     } else {
-                        clearInterval(historicalFactInterval);
+                        clearInterval(cosmicEventInterval);
                     }
                 }, 1000); // Display a new fact every 1 second
 
                 if (!particlesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 deep sea particles
-                        createDeepSeaParticle();
+                    for (let i = 0; i < 50; i++) { // Create 50 starlight particles
+                        createStarlightParticle();
                     }
                     particlesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Chronos-Scan";
-                document.querySelectorAll('.cosmic-dust-particle').forEach(particle => particle.remove());
-                document.querySelectorAll('.historical-fact').forEach(fact => fact.remove());
+                revealButton.textContent = "Cosmic Gaze";
+                document.querySelectorAll('.starlight-particle').forEach(particle => particle.remove());
+                document.querySelectorAll('.cosmic-event-fact').forEach(fact => fact.remove());
                 particlesCreated = false;
-                scannerContainer.classList.remove('active');
-                scannerIndicator.style.height = '0%'; // Reset scanner indicator
-                scanProgressText.textContent = '0 Years Scanned';
-                clearInterval(scanInterval);
-                clearInterval(historicalFactInterval);
+                gazeContainer.classList.remove('active');
+                gazeIndicator.style.height = '0%'; // Reset gaze indicator
+                gazeProgressText.textContent = '0 Light Years Observed';
+                clearInterval(gazeInterval);
+                clearInterval(cosmicEventInterval);
             }
         }
 
-        // Bioluminescent Sparkle Particles effect on fact card hover
+        // Starlight Sparkle Particles effect on fact card hover
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
             const particle = document.createElement('span');
-            particle.classList.add('sparkle-particle');
+            particle.classList.add('sparkle-particle'); // Reusing sparkle-particle class, but it will be styled by the new theme
             this.appendChild(particle);
 
             const size = Math.random() * 10 + 5; // 5 to 15px
