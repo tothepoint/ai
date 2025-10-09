@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Wonders</title>
+    <title id="site-title">Cosmic Wonders</title>
     <style>
         :root {
-            /* Deep Sea Wonders Theme Colors */
-            --bg-color-primary: #000033; /* Very Deep Blue */
-            --bg-color-secondary: #000055; /* Slightly Lighter Deep Blue */
+            /* Cosmic Wonders Theme Colors */
+            --bg-color-primary: #0A0A2A; /* Very Dark Blue/Purple */
+            --bg-color-secondary: #1A0A3A; /* Slightly Lighter Dark Purple */
             --text-color: #E0FFFF; /* Pale Cyan */
-            --footer-bg: #001122; /* Even Darker Blue for Footer */
-            --footer-text-color: #ADD8E6; /* Light Blue */
-            --glass-bg: rgba(0, 10, 30, 0.7); /* Semi-transparent deep blue */
-            --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Blue border */
+            --footer-bg: #05051A; /* Even Darker Blue for Footer */
+            --footer-text-color: #B0E0E6; /* Powder Blue */
+            --glass-bg: rgba(20, 10, 50, 0.7); /* Semi-transparent dark space */
+            --glass-border: rgba(176, 224, 230, 0.3); /* Soft Powder Blue border */
             --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Pale Cyan glow */
-            --title-color: #87CEEB; /* Sky Blue - for a glowing title */
-            --title-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
-            --main-action-btn: #4682B4; /* Steel Blue - for action buttons */
-            --main-action-btn-hover: #5F9EA0; /* Cadet Blue */
-            --explore-glow-color: #87CEEB; /* Sky Blue for the glow */
+            --title-color: #9370DB; /* Medium Purple - for a glowing title */
+            --title-shadow: 0 0 20px rgba(147, 112, 219, 0.7); /* Medium Purple glow */
+            --main-action-btn: #8A2BE2; /* Blue Violet - for action buttons */
+            --main-action-btn-hover: #9932CC; /* Dark Orchid */
+            --explore-glow-color: #DA70D6; /* Orchid for the glow */
             --explore-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, very subtle */
             --explore-text-active: #FFFFFF; /* Bright white text */
             --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(70, 130, 180, 0.5); /* Steel Blue border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(70, 130, 180, 0.9); /* Strong Steel Blue glow */
+            --fact-card-border: rgba(138, 43, 226, 0.5); /* Blue Violet border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(138, 43, 226, 0.9); /* Strong Blue Violet glow */
 
-            /* Deep Sea Dive Mode for Overview Effect */
-            --dive-pulse-bg-primary: #00001A; /* Even Deeper Blue */
-            --dive-pulse-bg-secondary: #000033; /* Very Deep Blue */
+            /* Cosmic Dive Mode for Overview Effect */
+            --cosmic-pulse-bg-primary: #000000; /* Black */
+            --cosmic-pulse-bg-secondary: #1A0A3A; /* Dark Purple */
         }
 
         body {
@@ -51,8 +51,8 @@
             position: relative;
         }
 
-        body.dive-pulsed {
-            background: linear-gradient(135deg, var(--dive-pulse-bg-primary) 0%, var(--dive-pulse-bg-secondary) 100%);
+        body.cosmic-pulsed {
+            background: linear-gradient(135deg, var(--cosmic-pulse-bg-primary) 0%, var(--cosmic-pulse-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -106,14 +106,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(70, 130, 180, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(138, 43, 226, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
+            text-shadow: 0 0 10px rgba(218, 112, 214, 0.5);
         }
 
         .fact-text {
@@ -145,13 +145,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(70, 130, 180, 0.5);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(70, 130, 180, 0.8);
+            box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
         }
 
         .action-button:disabled {
@@ -174,36 +174,37 @@
             z-index: 10;
         }
 
-        /* Bioluminescent Bubbles Effect (for fact card) */
-        .bioluminescent-bubble {
+        /* Star Particles Effect (for fact card) */
+        .star-particle {
             position: absolute;
             border-radius: 50%;
-            background-color: rgba(135, 206, 235, 0.3); /* Sky Blue */
-            animation: bubble-effect 1s linear forwards;
+            background-color: rgba(255, 255, 200, 0.8); /* Pale Yellow */
+            box-shadow: 0 0 8px rgba(255, 255, 200, 0.6);
+            animation: star-twinkle 1s linear forwards;
             transform: scale(0);
             pointer-events: none;
             z-index: 1;
         }
 
-        @keyframes bubble-effect {
+        @keyframes star-twinkle {
             to {
                 transform: scale(2.5);
                 opacity: 0;
             }
         }
 
-        /* Deep Sea Particles Effect */
-        .deep-sea-particle {
+        /* Deep Space Particles Effect */
+        .deep-space-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(173, 216, 230, 0.8) 0%, rgba(70, 130, 180, 0.5) 50%, rgba(0, 0, 51, 0) 100%); /* Light Blue to Steel Blue gradient */
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(176, 224, 230, 0.5) 50%, rgba(10, 10, 42, 0) 100%); /* White to Powder Blue gradient */
             border-radius: 50%;
             opacity: 0;
-            animation: deepSeaFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: deepSpaceFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(173, 216, 230, 0.7); /* Light Blue glow */
+            box-shadow: 0 0 15px rgba(176, 224, 230, 0.7); /* Powder Blue glow */
         }
 
-        @keyframes deepSeaFloatAndGlow {
+        @keyframes deepSpaceFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
             15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }
@@ -221,13 +222,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Deep Sea Wonders</h1>
+        <h1>Cosmic Wonders</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Mariana Trench</h2>
-            <p id="main-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet) at the Challenger Deep.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the trench, its peak would still be over a mile underwater. This extreme environment hosts unique life forms adapted to immense pressure and perpetual darkness.</p>
+            <h2>Exoplanets: A Vast Cosmic Neighborhood</h2>
+            <p id="main-fact" class="fact-text">There are more stars in the universe than grains of sand on all the beaches on Earth.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Many of these stars host their own planets, known as exoplanets, suggesting a vast cosmic neighborhood waiting to be explored.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="exploreDeepSeaDive()">Explore the Deep</button>
+                <button class="action-button" id="revealButton" onclick="exploreCosmicDive()">Explore the Cosmos</button>
             </div>
         </div>
     </div>
@@ -244,9 +245,9 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createDeepSeaParticle() {
+        function createDeepSpaceParticle() {
             const particle = document.createElement('div');
-            particle.classList.add('deep-sea-particle');
+            particle.classList.add('deep-space-particle');
             document.body.appendChild(particle);
 
             const size = Math.random() * 10 + 5; // 5 to 15px
@@ -259,7 +260,7 @@
         }
 
         let particlesCreated = false;
-        function exploreDeepSeaDive() {
+        function exploreCosmicDive() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
@@ -267,37 +268,37 @@
 
             mainFact.classList.toggle('revealed');
             factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('dive-pulsed');
+            body.classList.toggle('cosmic-pulsed');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Surface";
+                revealButton.textContent = "Return to Orbit";
                 if (!particlesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 deep sea particles
-                        createDeepSeaParticle();
+                    for (let i = 0; i < 50; i++) { // Create 50 deep space particles
+                        createDeepSpaceParticle();
                     }
                     particlesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Explore the Deep";
-                document.querySelectorAll('.deep-sea-particle').forEach(particle => particle.remove());
+                revealButton.textContent = "Explore the Cosmos";
+                document.querySelectorAll('.deep-space-particle').forEach(particle => particle.remove());
                 particlesCreated = false;
             }
         }
 
-        // Bioluminescent Bubbles effect on fact card hover
+        // Star Particles effect on fact card hover
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
-            const bubble = document.createElement('span');
-            bubble.classList.add('bioluminescent-bubble');
-            this.appendChild(bubble);
+            const particle = document.createElement('span');
+            particle.classList.add('star-particle');
+            this.appendChild(particle);
 
-            const size = factCard.offsetWidth;
-            bubble.style.width = bubble.style.height = `${size}px`;
-            bubble.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;
-            bubble.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;
+            const size = Math.random() * 10 + 5; // 5 to 15px
+            particle.style.width = particle.style.height = `${size}px`;
+            particle.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;
+            particle.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;
 
-            bubble.onanimationend = () => {
-                bubble.remove();
+            particle.onanimationend = () => {
+                particle.remove();
             };
         });
     </script>
