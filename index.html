@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Deep Sea Wonders</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors */
-            --bg-color-primary: #0D001A; /* Deep Space Purple */
-            --bg-color-secondary: #1A0033; /* Darker Space Purple */
-            --text-color: #F0E68C; /* Khaki - for general text */
-            --footer-bg: #2E005C; /* Slightly lighter purple for footer */
-            --footer-text-color: #DDA0DD; /* Plum - for contrast */
-            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent deep purple */
-            --glass-border: rgba(221, 160, 221, 0.3); /* Soft Plum border */
-            --fact-text-shadow: 0 0 15px rgba(240, 230, 140, 0.8); /* Khaki glow */
-            --title-color: #FFD700; /* Gold - for a glowing title */
-            --title-shadow: 0 0 20px rgba(255, 215, 0, 0.7); /* Gold glow */
-            --main-action-btn: #8A2BE2; /* Blue Violet - for action buttons */
-            --main-action-btn-hover: #9370DB; /* Medium Purple */
-            --explore-glow-color: #FFD700; /* Gold for the glow */
-            --explore-text-initial: rgba(240, 230, 140, 0.4); /* Dimmed text, very subtle */
+            /* Deep Sea Wonders Theme Colors */
+            --bg-color-primary: #000033; /* Very Deep Blue */
+            --bg-color-secondary: #000055; /* Slightly Lighter Deep Blue */
+            --text-color: #E0FFFF; /* Pale Cyan */
+            --footer-bg: #001122; /* Even Darker Blue for Footer */
+            --footer-text-color: #ADD8E6; /* Light Blue */
+            --glass-bg: rgba(0, 10, 30, 0.7); /* Semi-transparent deep blue */
+            --glass-border: rgba(173, 216, 230, 0.3); /* Soft Light Blue border */
+            --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Pale Cyan glow */
+            --title-color: #87CEEB; /* Sky Blue - for a glowing title */
+            --title-shadow: 0 0 20px rgba(135, 206, 235, 0.7); /* Sky Blue glow */
+            --main-action-btn: #4682B4; /* Steel Blue - for action buttons */
+            --main-action-btn-hover: #5F9EA0; /* Cadet Blue */
+            --explore-glow-color: #87CEEB; /* Sky Blue for the glow */
+            --explore-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, very subtle */
             --explore-text-active: #FFFFFF; /* Bright white text */
             --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(138, 43, 226, 0.5); /* Blue Violet border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(138, 43, 226, 0.9); /* Strong Blue Violet glow */
+            --fact-card-border: rgba(70, 130, 180, 0.5); /* Steel Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(70, 130, 180, 0.9); /* Strong Steel Blue glow */
 
-            /* Cosmic Anomaly Mode for Overview Effect */
-            --anomaly-pulse-bg-primary: #4B0082; /* Indigo */
-            --anomaly-pulse-bg-secondary: #800080; /* Purple */
+            /* Deep Sea Dive Mode for Overview Effect */
+            --dive-pulse-bg-primary: #00001A; /* Even Deeper Blue */
+            --dive-pulse-bg-secondary: #000033; /* Very Deep Blue */
         }
 
         body {
@@ -51,8 +51,8 @@
             position: relative;
         }
 
-        body.anomaly-pulsed {
-            background: linear-gradient(135deg, var(--anomaly-pulse-bg-primary) 0%, var(--anomaly-pulse-bg-secondary) 100%);
+        body.dive-pulsed {
+            background: linear-gradient(135deg, var(--dive-pulse-bg-primary) 0%, var(--dive-pulse-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -106,14 +106,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(138, 43, 226, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(70, 130, 180, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
         }
 
         .fact-text {
@@ -145,13 +145,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 15px rgba(70, 130, 180, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
+            box-shadow: 0 0 25px rgba(70, 130, 180, 0.8);
         }
 
         .action-button:disabled {
@@ -174,43 +174,43 @@
             z-index: 10;
         }
 
-        /* Cosmic Dust Effect (for fact card) */
-        .cosmic-dust {
+        /* Bioluminescent Bubbles Effect (for fact card) */
+        .bioluminescent-bubble {
             position: absolute;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.3);
-            animation: cosmic-dust-effect 1s linear forwards;
+            background-color: rgba(135, 206, 235, 0.3); /* Sky Blue */
+            animation: bubble-effect 1s linear forwards;
             transform: scale(0);
             pointer-events: none;
             z-index: 1;
         }
 
-        @keyframes cosmic-dust-effect {
+        @keyframes bubble-effect {
             to {
                 transform: scale(2.5);
                 opacity: 0;
             }
         }
 
-        /* Stardust Effect */
-        .stardust-particle {
+        /* Deep Sea Particles Effect */
+        .deep-sea-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(240, 230, 140, 0.5) 50%, rgba(26, 0, 51, 0) 100%); /* White to Khaki gradient */
+            background: radial-gradient(circle at center, rgba(173, 216, 230, 0.8) 0%, rgba(70, 130, 180, 0.5) 50%, rgba(0, 0, 51, 0) 100%); /* Light Blue to Steel Blue gradient */
             border-radius: 50%;
             opacity: 0;
-            animation: stardustFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: deepSeaFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7); /* White glow */
+            box-shadow: 0 0 15px rgba(173, 216, 230, 0.7); /* Light Blue glow */
         }
 
-        @keyframes stardustFloatAndGlow {
+        @keyframes deepSeaFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
             15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }
             45% { opacity: 0.7; transform: translate(50vw, 25vh) scale(1.0); }
             60% { opacity: 0.5; transform: translate(70vw, 10vh) scale(0.7); }
             75% { opacity: 0.8; transform: translate(90vw, 30vh) scale(1.1); }
-            100% { opacity: 0; transform: translate(100vw, 0) scale(0.3); }\
+            100% { opacity: 0; transform: translate(100vw, 0) scale(0.3); }
         }
 
         @keyframes shimmer {
@@ -221,13 +221,13 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cosmic Wonders</h1>
+        <h1>Deep Sea Wonders</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Unfathomable Black Hole</h2>
-            <p id="main-fact" class="fact-text">A black hole is a region of spacetime where gravity is so strong that nothing—no particles or even electromagnetic radiation such as light—can escape from it.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">The boundary of no escape is called the event horizon. Beyond this point, all paths lead inward towards the singularity, a point of infinite density. Black holes are formed from the remnants of massive stars that collapse at the end of their life cycle.</p>
+            <h2>The Mariana Trench</h2>
+            <p id="main-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet) at the Challenger Deep.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the trench, its peak would still be over a mile underwater. This extreme environment hosts unique life forms adapted to immense pressure and perpetual darkness.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="exploreCosmicAnomaly()">Explore Cosmic Anomaly</button>
+                <button class="action-button" id="revealButton" onclick="exploreDeepSeaDive()">Explore the Deep</button>
             </div>
         </div>
     </div>
@@ -244,9 +244,9 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createStardustParticle() {
+        function createDeepSeaParticle() {
             const particle = document.createElement('div');
-            particle.classList.add('stardust-particle');
+            particle.classList.add('deep-sea-particle');
             document.body.appendChild(particle);
 
             const size = Math.random() * 10 + 5; // 5 to 15px
@@ -259,7 +259,7 @@
         }
 
         let particlesCreated = false;
-        function exploreCosmicAnomaly() {
+        function exploreDeepSeaDive() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
@@ -267,37 +267,37 @@
 
             mainFact.classList.toggle('revealed');
             factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('anomaly-pulsed');
+            body.classList.toggle('dive-pulsed');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Orbit";
+                revealButton.textContent = "Return to Surface";
                 if (!particlesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 stardust particles
-                        createStardustParticle();
+                    for (let i = 0; i < 50; i++) { // Create 50 deep sea particles
+                        createDeepSeaParticle();
                     }
                     particlesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Explore Cosmic Anomaly";
-                document.querySelectorAll('.stardust-particle').forEach(particle => particle.remove());
+                revealButton.textContent = "Explore the Deep";
+                document.querySelectorAll('.deep-sea-particle').forEach(particle => particle.remove());
                 particlesCreated = false;
             }
         }
 
-        // Cosmic Dust effect on fact card hover
+        // Bioluminescent Bubbles effect on fact card hover
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
-            const dust = document.createElement('span');
-            dust.classList.add('cosmic-dust');
-            this.appendChild(dust);
+            const bubble = document.createElement('span');
+            bubble.classList.add('bioluminescent-bubble');
+            this.appendChild(bubble);
 
             const size = factCard.offsetWidth;
-            dust.style.width = dust.style.height = `${size}px`;
-            dust.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;
-            dust.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;
+            bubble.style.width = bubble.style.height = `${size}px`;
+            bubble.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;
+            bubble.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;
 
-            dust.onanimationend = () => {
-                dust.remove();
+            bubble.onanimationend = () => {
+                bubble.remove();
             };
         });
     </script>
