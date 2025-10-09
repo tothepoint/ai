@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders</title>
+    <title id="site-title">Deep Sea Wonders</title>
     <style>
         :root {
-            /* Cosmic Wonders Theme Colors (Pillars of Creation) */
-            --bg-color-primary: #0A001A; /* Very dark, deep space purple */
-            --bg-color-secondary: #1A0033; /* Slightly lighter, deep violet */
-            --text-color: #F0F8FF; /* Alice Blue - bright, starlight white */
-            --footer-bg: #05000F; /* Even darker purple, almost black */
-            --footer-text-color: #B0C4DE; /* Light steel blue - muted, visible */
-            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent deep violet */
-            --glass-border: rgba(176, 196, 222, 0.3); /* Soft, light steel blue */
-            --fact-text-shadow: 0 0 15px rgba(240, 248, 255, 0.8); /* Subtle starlight glow */
+            /* Deep Sea Wonders Theme Colors (Mariana Trench) */
+            --bg-color-primary: #00071A; /* Very dark, deep ocean blue */
+            --bg-color-secondary: #001A33; /* Slightly lighter, dark teal */
+            --text-color: #A0E6FF; /* Pale Aqua - light, almost glowing */
+            --footer-bg: #00030A; /* Even darker blue, almost black */
+            --footer-text-color: #66B2FF; /* Muted, light blue */
+            --glass-bg: rgba(0, 26, 51, 0.7); /* Semi-transparent deep teal */
+            --glass-border: rgba(102, 178, 255, 0.3); /* Soft, light blue */
+            --fact-text-shadow: 0 0 15px rgba(160, 230, 255, 0.8); /* Subtle aqua glow */
             --title-color: #FFFFFF; /* Bright white */
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white glow */
-            --main-action-btn: #FFD700; /* Gold - vibrant, contrasting */
-            --main-action-btn-hover: #DAA520; /* Goldenrod - slightly darker */
-            --explore-glow-color: #FFA07A; /* Light Salmon - for emphasis */
-            --explore-text-initial: rgba(240, 248, 255, 0.4); /* Dimmed starlight white */
-            --explore-text-active: #FFFFFF; /* Bright white */
+            --main-action-btn: #FF8C00; /* Dark Orange - vibrant, contrasting */
+            --main-action-btn-hover: #E67300; /* Darker Orange */
+            --explore-glow-color: #00FFFF; /* Cyan - for emphasis */
+            --explore-text-initial: rgba(160, 230, 255, 0.4); /* Dimmed pale aqua */
+            --explore-text-active: #A0E6FF; /* Bright pale aqua */
             --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(255, 215, 0, 0.7); /* Vibrant gold */
-            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9); /* Strong gold glow */
+            --fact-card-border: rgba(0, 255, 255, 0.7); /* Vibrant cyan */
+            --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9); /* Strong cyan glow */
 
-            /* Cosmic Gaze Mode */
-            --cosmic-gaze-bg-primary: #000000; /* Black */
-            --cosmic-gaze-bg-secondary: #000005; /* Even darker */
-            --cosmic-gaze-indicator: #00FFFF; /* Cyan for scanner */
-            --cosmic-gaze-text: #00FFFF; /* Cyan for scanner text */
+            /* Sonar Scan Mode */
+            --sonar-scan-bg-primary: #000000; /* Black */
+            --sonar-scan-bg-secondary: #000005; /* Even darker */
+            --sonar-scan-indicator: #00FF00; /* Green for sonar */
+            --sonar-scan-text: #00FF00; /* Green for sonar text */
         }
 
         body {
@@ -53,8 +53,8 @@
             position: relative;
         }
 
-        body.cosmic-gazed {
-            background: linear-gradient(135deg, var(--cosmic-gaze-bg-primary) 0%, var(--cosmic-gaze-bg-secondary) 100%);
+        body.sonar-scanned {
+            background: linear-gradient(135deg, var(--sonar-scan-bg-primary) 0%, var(--sonar-scan-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -108,14 +108,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(255, 215, 0, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(0, 255, 255, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(255, 160, 122, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .fact-text {
@@ -141,7 +141,7 @@
 
         .action-button {
             background-color: var(--main-action-btn);
-            color: var(--bg-color-primary); /* Dark text on bright button */
+            color: #FFFFFF; /* White text on bright button */
             border: none;
             padding: 15px 30px;
             border-radius: 50px;
@@ -149,13 +149,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 15px rgba(255, 140, 0, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(218, 165, 32, 0.8);
+            box-shadow: 0 0 25px rgba(230, 115, 0, 0.8);
         }
 
         .action-button:disabled {
@@ -178,18 +178,18 @@
             z-index: 10;
         }
 
-        /* Starlight Particles Effect */
-        .starlight-particle {
+        /* Bioluminescent Particles Effect */
+        .bioluminescent-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.8) 0%, rgba(0, 255, 255, 0.5) 50%, rgba(0, 255, 255, 0) 100%);
             border-radius: 50%;
             opacity: 0;
-            animation: starlightFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: bioluminescentFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
         }
 
-        @keyframes starlightFloatAndGlow {
+        @keyframes bioluminescentFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 0) scale(0.2); }
             15% { opacity: 0.6; transform: translate(10vw, 20vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 5vh) scale(0.5); }
@@ -204,56 +204,55 @@
             100% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        /* Cosmic Gaze Feature */
-        .gaze-container {
+        /* Sonar Scan Feature */
+        .sonar-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: none; /* Hidden by default */
-            flex-direction: column;
-            align-items: center;
+            flex-direction: column;\n            align-items: center;
             gap: 10px;
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(255, 215, 0, 0.7); /* Gold shadow */
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7); /* Cyan shadow */
             z-index: 100;
             width: 200px;
             border: 1px solid var(--main-action-btn);
         }
 
-        .gaze-container.active {
+        .sonar-container.active {
             display: flex;
         }
 
-        .gaze-bar {
+        .sonar-bar {
             width: 10px;
             height: 150px;
-            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Gold to Deep Violet */
+            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Orange to Deep Teal */
             border-radius: 5px;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--glass-border);
         }
 
-        .gaze-indicator {
+        .sonar-indicator {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: var(--cosmic-gaze-indicator); /* Cyan */
+            background-color: var(--sonar-scan-indicator); /* Green */
             height: 0%;
             transition: height 5s ease-out; /* Animation for scan */
         }
 
-        .gaze-text {
+        .sonar-text {
             font-size: 1.5em;
-            color: var(--cosmic-gaze-text); /* Cyan */
+            color: var(--sonar-scan-text); /* Green */
             text-shadow: var(--title-shadow);
         }
 
-        .cosmic-event-fact {
+        .deep-sea-discovery-fact {
             position: absolute;
             font-size: 1.1em;
             color: rgba(255, 255, 255, 0.8);
@@ -274,22 +273,22 @@
 </head>
 <body>
     <div class="container">
-        <h1>Cosmic Wonders</h1>
+        <h1>Deep Sea Wonders</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Pillars of Creation: Stellar Nurseries</h2>
-            <p id="main-fact" class="fact-text">The Pillars of Creation are towering cosmic structures of interstellar gas and dust, where new stars are born.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Located in the Eagle Nebula, these majestic formations are sculpted by the intense ultraviolet light from massive, young stars, slowly eroding away while simultaneously fostering new stellar life within their dense clouds.</p>
+            <h2>The Mariana Trench: Earth's Deepest Abyss</h2>
+            <p id="main-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the trench, its peak would still be over a mile underwater. This extreme environment hosts unique life forms adapted to immense pressure and perpetual darkness.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="activateCosmicGaze()">Cosmic Gaze</button>
+                <button class="action-button" id="revealButton" onclick="activateSonarScan()">Sonar Scan</button>
             </div>
         </div>
     </div>
 
-    <div class="gaze-container" id="gazeContainer">
-        <div class="gaze-bar">
-            <div class="gaze-indicator" id="gazeIndicator"></div>
+    <div class="sonar-container" id="gazeContainer">
+        <div class="sonar-bar">
+            <div class="sonar-indicator" id="gazeIndicator"></div>
         </div>
-        <p class="gaze-text" id="gazeProgress">0 Light Years Observed</p>
+        <p class="sonar-text" id="gazeProgress">0 Meters Scanned</p>
     </div>
 
     <footer>
@@ -304,12 +303,12 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createStarlightParticle() {
+        function createBioluminescentParticle() {
             const particle = document.createElement('div');
-            particle.classList.add('starlight-particle');
+            particle.classList.add('bioluminescent-particle');
             document.body.appendChild(particle);
 
-            const size = Math.random() * 10 + 5; // 5 to 15px
+            const size = Math.random() * 8 + 3; // 3 to 11px, slightly smaller
             particle.style.width = `${size}px`;
             particle.style.height = `${size}px`;
             particle.style.left = `${Math.random() * 100}vw`;
@@ -319,20 +318,20 @@
         }
 
         let particlesCreated = false;
-        let gazeInterval;
-        let cosmicEventInterval;
+        let sonarInterval;
+        let deepSeaEventInterval;
 
-        const cosmicFacts = [
-            "These pillars are light-years long, vast beyond human comprehension.",
-            "Newborn stars within them are still hidden by dense dust clouds.",
-            "The structures are constantly changing, sculpted by stellar winds.",
-            "They are a small part of the much larger Eagle Nebula.",
-            "Light from the Pillars takes thousands of years to reach Earth."
+        const deepSeaFacts = [
+            "The pressure at the bottom of the Mariana Trench is over 1,000 times that at sea level.",
+            "Many organisms in the trench use chemosynthesis, not photosynthesis, for energy.",
+            "The Challenger Deep is the deepest known point, explored by only a few.",
+            "Some fish in the trench have antifreeze proteins to survive near-freezing temperatures.",
+            "Despite the extreme conditions, diverse microbial life thrives in the trench."
         ];
 
-        function createCosmicEventFact(fact) {
+        function createDeepSeaDiscoveryFact(fact) {
             const factElement = document.createElement('div');
-            factElement.classList.add('cosmic-event-fact');
+            factElement.classList.add('deep-sea-discovery-fact');
             factElement.textContent = fact;
             document.body.appendChild(factElement);
 
@@ -352,71 +351,71 @@
             };
         }
 
-        function activateCosmicGaze() {
+        function activateSonarScan() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
             const body = document.body;
-            const gazeContainer = document.getElementById('gazeContainer');
-            const gazeIndicator = document.getElementById('gazeIndicator');
-            const gazeProgressText = document.getElementById('gazeProgress');
+            const sonarContainer = document.getElementById('gazeContainer'); // Renamed ID in HTML
+            const sonarIndicator = document.getElementById('gazeIndicator'); // Renamed ID in HTML
+            const sonarProgressText = document.getElementById('gazeProgress'); // Renamed ID in HTML
 
             mainFact.classList.toggle('revealed');
             factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('cosmic-gazed');
+            body.classList.toggle('sonar-scanned');
 
             if (mainFact.classList.contains('revealed')) {
-                revealButton.textContent = "Return to Nebula";
-                gazeContainer.classList.add('active');
-                gazeIndicator.style.height = '100%'; // Animate to full scan
+                revealButton.textContent = "Return to Surface";
+                sonarContainer.classList.add('active');
+                sonarIndicator.style.height = '100%'; // Animate to full scan
 
-                let currentLightYears = 0;
-                const maxLightYears = 7000; // Approximate distance to Pillars of Creation
+                let currentMeters = 0;
+                const maxDepth = 11000; // Approximate depth of Mariana Trench
                 const duration = 5000; // 5 seconds for animation
                 const steps = 100;
                 let step = 0;
 
-                gazeInterval = setInterval(() => {
+                sonarInterval = setInterval(() => {
                     step++;
-                    currentLightYears = Math.round((step / steps) * maxLightYears);
-                    gazeProgressText.textContent = `${currentLightYears} Light Years Observed`;
+                    currentMeters = Math.round((step / steps) * maxDepth);
+                    sonarProgressText.textContent = `${currentMeters} Meters Scanned`;
                     if (step >= steps) {
-                        clearInterval(gazeInterval);
-                        gazeProgressText.textContent = `${maxLightYears} Light Years Observed (Stellar Birth Detected!)`;
+                        clearInterval(sonarInterval);
+                        sonarProgressText.textContent = `${maxDepth} Meters Scanned (Life Detected!)`;
                     }
                 }, duration / steps);
 
-                // Start cosmic event fact display
+                // Start deep sea event fact display
                 let factIndex = 0;
-                cosmicEventInterval = setInterval(() => {
-                    if (factIndex < cosmicFacts.length) {
-                        createCosmicEventFact(cosmicFacts[factIndex]);
+                deepSeaEventInterval = setInterval(() => {
+                    if (factIndex < deepSeaFacts.length) {
+                        createDeepSeaDiscoveryFact(deepSeaFacts[factIndex]);
                         factIndex++;
                     } else {
-                        clearInterval(cosmicEventInterval);
+                        clearInterval(deepSeaEventInterval);
                     }
                 }, 1000); // Display a new fact every 1 second
 
                 if (!particlesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 starlight particles
-                        createStarlightParticle();
+                    for (let i = 0; i < 50; i++) { // Create 50 bioluminescent particles
+                        createBioluminescentParticle();
                     }
                     particlesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Cosmic Gaze";
-                document.querySelectorAll('.starlight-particle').forEach(particle => particle.remove());
-                document.querySelectorAll('.cosmic-event-fact').forEach(fact => fact.remove());
+                revealButton.textContent = "Sonar Scan";
+                document.querySelectorAll('.bioluminescent-particle').forEach(particle => particle.remove());
+                document.querySelectorAll('.deep-sea-discovery-fact').forEach(fact => fact.remove());
                 particlesCreated = false;
-                gazeContainer.classList.remove('active');
-                gazeIndicator.style.height = '0%'; // Reset gaze indicator
-                gazeProgressText.textContent = '0 Light Years Observed';
-                clearInterval(gazeInterval);
-                clearInterval(cosmicEventInterval);
+                sonarContainer.classList.remove('active');
+                sonarIndicator.style.height = '0%'; // Reset sonar indicator
+                sonarProgressText.textContent = '0 Meters Scanned';
+                clearInterval(sonarInterval);
+                clearInterval(deepSeaEventInterval);
             }
         }
 
-        // Starlight Sparkle Particles effect on fact card hover
+        // Bioluminescent Sparkle Particles effect on fact card hover
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
             const particle = document.createElement('span');
