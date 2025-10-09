@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Enigmas</title>
+    <title id="site-title">Deep Sea Mysteries</title>
     <style>
         :root {
-            /* Cosmic Enigmas Theme Colors */
-            --bg-color-primary: #1A0033; /* Very Dark Purple */
-            --bg-color-secondary: #000000; /* Black */
+            /* Deep Sea Mysteries Theme Colors */
+            --bg-color-primary: #0A192F; /* Dark Navy Blue */
+            --bg-color-secondary: #00071A; /* Even Darker Blue */
             --text-color: #E0FFFF; /* Pale Cyan - for general text */
-            --footer-bg: #0D001A; /* Even darker purple for footer */
-            --footer-text-color: #B0C4DE; /* Light Steel Blue */
-            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent dark purple */
-            --glass-border: rgba(176, 196, 222, 0.3); /* Soft Light Steel Blue border */
+            --footer-bg: #000510; /* Almost Black Blue for footer */
+            --footer-text-color: #A0B0C0; /* Light Slate Gray */
+            --glass-bg: rgba(10, 25, 47, 0.7); /* Semi-transparent dark navy */
+            --glass-border: rgba(160, 176, 192, 0.3); /* Soft Light Slate Gray border */
             --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Pale Cyan glow */
-            --title-color: #9370DB; /* Medium Purple - for a cosmic title */
-            --title-shadow: 0 0 20px rgba(147, 112, 219, 0.7); /* Medium Purple glow */
-            --main-action-btn: #8A2BE2; /* Blue Violet - for action buttons */
-            --main-action-btn-hover: #9932CC; /* Dark Orchid */
+            --title-color: #4682B4; /* Steel Blue - for a deep sea title */
+            --title-shadow: 0 0 20px rgba(70, 130, 180, 0.7); /* Steel Blue glow */
+            --main-action-btn: #1E90FF; /* Dodger Blue - for action buttons */
+            --main-action-btn-hover: #007BFF; /* Stronger Blue */
             --explore-glow-color: #E0FFFF; /* Pale Cyan for the glow */
             --explore-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, very subtle */
             --explore-text-active: #E0FFFF; /* Bright text */
-            --fact-card-bg: rgba(10, 0, 20, 0.8); /* Very dark, almost black with a hint of purple */
-            --fact-card-border: rgba(147, 112, 219, 0.5); /* Medium Purple border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(147, 112, 219, 0.9); /* Strong Medium Purple glow */
+            --fact-card-bg: rgba(5, 10, 20, 0.8); /* Very dark, almost black with a hint of blue */
+            --fact-card-border: rgba(70, 130, 180, 0.5); /* Steel Blue border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(70, 130, 180, 0.9); /* Strong Steel Blue glow */
 
-            /* Dark Mode for Unseen Reveal */
+            /* Dark Mode for Dive Deeper */
             --dark-mode-bg-primary: #000000;
-            --dark-mode-bg-secondary: #1A0033;
+            --dark-mode-bg-secondary: #0A192F;
         }
 
         body {
@@ -51,7 +51,7 @@
             position: relative;
         }
 
-        body.unseen-revealed {
+        body.deep-dived {
             background: linear-gradient(135deg, var(--dark-mode-bg-primary) 0%, var(--dark-mode-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
@@ -99,9 +99,14 @@
             box-shadow: var(--fact-of-day-glow);
             max-width: 700px;
             margin: 20px 0;
-            transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out, transform 0.3s ease;
             position: relative;
             overflow: hidden;
+        }
+
+        .fact-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 35px rgba(70, 130, 180, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
@@ -140,13 +145,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 15px rgba(30, 144, 255, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(138, 43, 226, 0.8);
+            box-shadow: 0 0 25px rgba(30, 144, 255, 0.8);
         }
 
         .action-button:disabled {
@@ -169,34 +174,52 @@
             z-index: 10;
         }
 
-        /* Cosmic Dust/Stars Effect */
-        .star {
+        /* Water Ripple Effect (for fact card) */
+        .ripple {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.8); /* White/Silver */
             border-radius: 50%;
-            opacity: 0;
-            animation: twinkleAndFloat 15s infinite ease-in-out;
-            z-index: -1;
-            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.3);
+            animation: ripple-effect 1s linear forwards;
+            transform: scale(0);
+            pointer-events: none;
+            z-index: 1;
         }
 
-        @keyframes twinkleAndFloat {
+        @keyframes ripple-effect {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+
+        /* Bubbles Effect */
+        .bubble {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            opacity: 0;
+            animation: floatUp 15s infinite ease-in-out;
+            z-index: -1;
+            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+        }
+
+        @keyframes floatUp {
             0% { opacity: 0; transform: translateY(0) scale(0.5); }
-            10% { opacity: 0.8; }
-            90% { opacity: 0.8; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
             100% { opacity: 0; transform: translateY(-100vh) scale(1.2); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cosmic Enigmas</h1>
+        <h1>Deep Sea Mysteries</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Unseen Universe</h2>
-            <p id="cosmic-fact" class="fact-text">Only about 4.9% of the universe's mass-energy is made of atoms, the ordinary matter that makes up everything we can see.</p>
-            <p id="cosmic-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">The remaining 95% is composed of invisible dark matter (about 26.8%) and dark energy (about 70%), whose nature remains largely unknown.</p>
+            <h2>The Deepest Depths</h2>
+            <p id="cosmic-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).</p>
+            <p id="cosmic-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the trench, its peak would still be over a mile underwater, highlighting the immense scale of this geological feature.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="toggleUnseen()">Reveal the Unseen</button>
+                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Dive Deeper</button>
             </div>
         </div>
     </div>
@@ -213,22 +236,22 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createStar() {
-            const star = document.createElement('div');
-            star.classList.add('star');
-            document.body.appendChild(star);
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.classList.add('bubble');
+            document.body.appendChild(bubble);
 
-            const size = Math.random() * 3 + 1; // 1 to 4px
-            star.style.width = `${size}px`;
-            star.style.height = `${size}px`;
-            star.style.left = `${Math.random() * 100}vw`;
-            star.style.bottom = `-${size}px`; /* Start from below the viewport */
-            star.style.animationDelay = `${Math.random() * 10}s`;
-            star.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10 to 20s
+            const size = Math.random() * 5 + 2; // 2 to 7px
+            bubble.style.width = `${size}px`;
+            bubble.style.height = `${size}px`;
+            bubble.style.left = `${Math.random() * 100}vw`;
+            bubble.style.bottom = `-${size}px`; /* Start from below the viewport */
+            bubble.style.animationDelay = `${Math.random() * 10}s`;
+            bubble.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10 to 20s
         }
 
-        let starsCreated = false;
-        function toggleUnseen() {
+        let bubblesCreated = false;
+        function toggleDeepDive() {
             const cosmicFact = document.getElementById('cosmic-fact');
             const cosmicDetail = document.getElementById('cosmic-detail');
             const revealButton = document.getElementById('revealButton');
@@ -236,22 +259,39 @@
 
             cosmicFact.classList.toggle('revealed');
             cosmicDetail.style.display = cosmicDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('unseen-revealed');
+            body.classList.toggle('deep-dived');
 
             if (cosmicFact.classList.contains('revealed')) {
-                revealButton.textContent = "Conceal the Unseen";
-                if (!starsCreated) {
-                    for (let i = 0; i < 100; i++) { // Create 100 stars
-                        createStar();
+                revealButton.textContent = "Surface";
+                if (!bubblesCreated) {
+                    for (let i = 0; i < 70; i++) { // Create 70 bubbles
+                        createBubble();
                     }
-                    starsCreated = true;
+                    bubblesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Reveal the Unseen";
-                document.querySelectorAll('.star').forEach(star => star.remove());
-                starsCreated = false;
+                revealButton.textContent = "Dive Deeper";
+                document.querySelectorAll('.bubble').forEach(bubble => bubble.remove());
+                bubblesCreated = false;
             }
         }
+
+        // Water ripple effect on fact card hover
+        const factCard = document.getElementById('factCard');
+        factCard.addEventListener('mousemove', function(e) {
+            const ripple = document.createElement('span');
+            ripple.classList.add('ripple');
+            this.appendChild(ripple);
+
+            const size = factCard.offsetWidth;
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${e.clientX - this.getBoundingClientRect().left - size / 2}px`;
+            ripple.style.top = `${e.clientY - this.getBoundingClientRect().top - size / 2}px`;
+
+            ripple.onanimationend = () => {
+                ripple.remove();
+            };
+        });
     </script>
 </body>
 </html>
