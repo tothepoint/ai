@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Mysteries</title>
+    <title id="site-title">Cosmic Insights</title>
     <style>
         :root {
-            /* Deep Sea Mysteries Theme Colors */
-            --bg-color-primary: #0A192F; /* Dark Navy Blue */
-            --bg-color-secondary: #00071A; /* Even Darker Blue */
-            --text-color: #E0FFFF; /* Pale Cyan - for general text */
-            --footer-bg: #000510; /* Almost Black Blue for footer */
-            --footer-text-color: #A0B0C0; /* Light Slate Gray */
-            --glass-bg: rgba(10, 25, 47, 0.7); /* Semi-transparent dark navy */
-            --glass-border: rgba(160, 176, 192, 0.3); /* Soft Light Slate Gray border */
-            --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Pale Cyan glow */
-            --title-color: #4682B4; /* Steel Blue - for a deep sea title */
-            --title-shadow: 0 0 20px rgba(70, 130, 180, 0.7); /* Steel Blue glow */
-            --main-action-btn: #1E90FF; /* Dodger Blue - for action buttons */
-            --main-action-btn-hover: #007BFF; /* Stronger Blue */
-            --explore-glow-color: #E0FFFF; /* Pale Cyan for the glow */
-            --explore-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed text, very subtle */
-            --explore-text-active: #E0FFFF; /* Bright text */
-            --fact-card-bg: rgba(5, 10, 20, 0.8); /* Very dark, almost black with a hint of blue */
-            --fact-card-border: rgba(70, 130, 180, 0.5); /* Steel Blue border for emphasis */
-            --fact-of-day-glow: 0 0 25px rgba(70, 130, 180, 0.9); /* Strong Steel Blue glow */
+            /* Cosmic Insights Theme Colors */
+            --bg-color-primary: #1A0033; /* Very Dark Purple/Indigo */
+            --bg-color-secondary: #0D001A; /* Even Darker Purple */
+            --text-color: #E0E0FF; /* Light Lavender/Silver - for general text */
+            --footer-bg: #330066; /* Darker Purple for footer */
+            --footer-text-color: #C0C0D0; /* Light Grayish Blue */
+            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent dark purple */
+            --glass-border: rgba(192, 192, 208, 0.3); /* Soft Light Grayish Blue border */
+            --fact-text-shadow: 0 0 15px rgba(224, 224, 255, 0.8); /* Light Lavender glow */
+            --title-color: #9370DB; /* Medium Purple - for a cosmic title */
+            --title-shadow: 0 0 20px rgba(147, 112, 219, 0.7); /* Medium Purple glow */
+            --main-action-btn: #8A2BE2; /* Blue Violet - for action buttons */
+            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
+            --explore-glow-color: #E0E0FF; /* Light Lavender for the glow */
+            --explore-text-initial: rgba(224, 224, 255, 0.4); /* Dimmed text, very subtle */
+            --explore-text-active: #E0E0FF; /* Bright text */
+            --fact-card-bg: rgba(10, 0, 20, 0.8); /* Very dark, almost black with a hint of purple */
+            --fact-card-border: rgba(147, 112, 219, 0.5); /* Medium Purple border for emphasis */
+            --fact-of-day-glow: 0 0 25px rgba(147, 112, 219, 0.9); /* Strong Medium Purple glow */
 
-            /* Dark Mode for Dive Deeper */
-            --dark-mode-bg-primary: #000000;
-            --dark-mode-bg-secondary: #0A192F;
+            /* Deep Dive Mode for Overview Effect */
+            --deep-dive-bg-primary: #000000;
+            --deep-dive-bg-secondary: #0A001A;
         }
 
         body {
@@ -51,8 +51,8 @@
             position: relative;
         }
 
-        body.deep-dived {
-            background: linear-gradient(135deg, var(--dark-mode-bg-primary) 0%, var(--dark-mode-bg-secondary) 100%);
+        body.deep-dived-cosmic {
+            background: linear-gradient(135deg, var(--deep-dive-bg-primary) 0%, var(--deep-dive-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -185,41 +185,32 @@
             z-index: 1;
         }
 
-        @keyframes ripple-effect {
-            to {
-                transform: scale(2.5);
-                opacity: 0;
-            }
-        }
+        @keyframes ripple-effect {\n            to {\n                transform: scale(2.5);\n                opacity: 0;\n            }\n        }
 
-        /* Bubbles Effect */
-        .bubble {
+        /* Cosmic Dust Effect */
+        .cosmic-dust {
             position: absolute;
-            background-color: rgba(255, 255, 255, 0.3);
+            background-color: rgba(255, 255, 255, 0.6); /* White dust */
             border-radius: 50%;
             opacity: 0;
-            animation: floatUp 15s infinite ease-in-out;
+            animation: floatAcross 20s infinite linear;
             z-index: -1;
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.8); /* Subtle glow */
         }
 
-        @keyframes floatUp {
-            0% { opacity: 0; transform: translateY(0) scale(0.5); }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { opacity: 0; transform: translateY(-100vh) scale(1.2); }
-        }
+        @keyframes floatAcross {
+            0% { opacity: 0; transform: translate(0, 0) scale(0.5); }\n            10% { opacity: 0.8; }\n            90% { opacity: 0.8; }\n            100% { opacity: 0; transform: translate(100vw, -100vh) scale(1.2); }\n        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Deep Sea Mysteries</h1>
+        <h1>Cosmic Insights</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Deepest Depths</h2>
-            <p id="cosmic-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,000 feet).</p>
-            <p id="cosmic-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the trench, its peak would still be over a mile underwater, highlighting the immense scale of this geological feature.</p>
+            <h2>The Overview Effect</h2>
+            <p id="main-fact" class="fact-text">The Overview Effect is a cognitive shift reported by astronauts when viewing Earth from space, characterized by a profound understanding of the interconnectedness of life and the fragility of our planet.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">This experience often leads to a sense of awe, a desire to protect Earth, and a shift in perspective on humanity's place in the universe.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Dive Deeper</button>
+                <button class="action-button" id="revealButton" onclick="toggleDeepDive()">Experience Overview</button>
             </div>
         </div>
     </div>
@@ -236,43 +227,42 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createBubble() {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble');
-            document.body.appendChild(bubble);
+        function createCosmicDust() {
+            const dust = document.createElement('div');
+            dust.classList.add('cosmic-dust');
+            document.body.appendChild(dust);
 
-            const size = Math.random() * 5 + 2; // 2 to 7px
-            bubble.style.width = `${size}px`;
-            bubble.style.height = `${size}px`;
-            bubble.style.left = `${Math.random() * 100}vw`;
-            bubble.style.bottom = `-${size}px`; /* Start from below the viewport */
-            bubble.style.animationDelay = `${Math.random() * 10}s`;
-            bubble.style.animationDuration = `${Math.random() * 10 + 10}s`; // 10 to 20s
+            const size = Math.random() * 3 + 1; // 1 to 4px
+            dust.style.width = `${size}px`;
+            dust.style.height = `${size}px`;
+            dust.style.left = `${Math.random() * 100}vw`;
+            dust.style.top = `${Math.random() * 100}vh`; // Start anywhere on screen
+            dust.style.animationDelay = `${Math.random() * 15}s`;
+            dust.style.animationDuration = `${Math.random() * 15 + 15}s`; // 15 to 30s
         }
 
-        let bubblesCreated = false;
+        let dustCreated = false;
         function toggleDeepDive() {
-            const cosmicFact = document.getElementById('cosmic-fact');
-            const cosmicDetail = document.getElementById('cosmic-detail');
+            const mainFact = document.getElementById('main-fact');
+            const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
             const body = document.body;
 
-            cosmicFact.classList.toggle('revealed');
-            cosmicDetail.style.display = cosmicDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('deep-dived');
+            mainFact.classList.toggle('revealed');
+            factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
+            body.classList.toggle('deep-dived-cosmic');
 
-            if (cosmicFact.classList.contains('revealed')) {
-                revealButton.textContent = "Surface";
-                if (!bubblesCreated) {
-                    for (let i = 0; i < 70; i++) { // Create 70 bubbles
-                        createBubble();
-                    }
-                    bubblesCreated = true;
+            if (mainFact.classList.contains('revealed')) {
+                revealButton.textContent = "Return to Earth";
+                if (!dustCreated) {
+                    for (let i = 0; i < 100; i++) { // Create 100 cosmic dust particles
+                        createCosmicDust();
+                    }\n                    dustCreated = true;
                 }
             } else {
-                revealButton.textContent = "Dive Deeper";
-                document.querySelectorAll('.bubble').forEach(bubble => bubble.remove());
-                bubblesCreated = false;
+                revealButton.textContent = "Experience Overview";
+                document.querySelectorAll('.cosmic-dust').forEach(dust => dust.remove());
+                dustCreated = false;
             }
         }
 
