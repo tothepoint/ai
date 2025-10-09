@@ -3,32 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Diamonds</title>
+    <title id="site-title">Abyssal Chronos</title>
     <style>
         :root {
-            /* Cosmic Diamonds Theme Colors */
-            --bg-color-primary: #0A001F; /* Very dark, deep space blue/purple */
-            --bg-color-secondary: #1A0033; /* Slightly lighter, but still deep, space blue/purple */
-            --text-color: #E0FFFF; /* Shimmering, light diamond white */
-            --footer-bg: #050010; /* Very dark, almost black, space color */
-            --footer-text-color: #B0A0D0; /* Subtle, light violet */
-            --glass-bg: rgba(26, 0, 51, 0.7); /* Semi-transparent deep space blue/purple */
-            --glass-border: rgba(176, 160, 208, 0.3); /* Soft, light violet/blue */
-            --fact-text-shadow: 0 0 15px rgba(224, 255, 255, 0.8); /* Subtle white/blue glow */
-            --title-color: #FFFFFF; /* Bright, ethereal white/silver */
-            --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white/silver glow */
-            --main-action-btn: #8A2BE2; /* Vibrant, deep violet/blue (Blue Violet) */
-            --main-action-btn-hover: #9932CC; /* Slightly lighter, more intense violet (Dark Orchid) */
-            --explore-glow-color: #ADD8E6; /* Cool, light blue */
-            --explore-text-initial: rgba(224, 255, 255, 0.4); /* Dimmed white */
+            /* Abyssal Chronos Theme Colors (Deep Sea / Greenland Shark) */
+            --bg-color-primary: #000A1A; /* Very dark, deep ocean blue */
+            --bg-color-secondary: #001F3F; /* Slightly lighter, deep teal-blue */
+            --text-color: #E0F2F7; /* Light, icy blue */
+            --footer-bg: #00050A; /* Very dark blue, almost black */
+            --footer-text-color: #A0BCC2; /* Muted, light grey-blue */
+            --glass-bg: rgba(0, 31, 63, 0.7); /* Semi-transparent deep teal-blue */
+            --glass-border: rgba(160, 188, 194, 0.3); /* Soft, light grey-blue */
+            --fact-text-shadow: 0 0 15px rgba(224, 242, 247, 0.8); /* Subtle icy blue glow */
+            --title-color: #FFFFFF; /* Bright white */
+            --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white glow */
+            --main-action-btn: #007BFF; /* Vibrant, deep blue */
+            --main-action-btn-hover: #0056b3; /* Slightly darker blue */
+            --explore-glow-color: #87CEEB; /* Sky Blue for emphasis */
+            --explore-text-initial: rgba(224, 242, 247, 0.4); /* Dimmed icy blue */
             --explore-text-active: #FFFFFF; /* Bright white */
-            --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black, with a hint of purple */
-            --fact-card-border: rgba(176, 160, 208, 0.7); /* Vibrant, light violet */
-            --fact-of-day-glow: 0 0 25px rgba(176, 160, 208, 0.9); /* Strong violet glow */
+            --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
+            --fact-card-border: rgba(160, 188, 194, 0.7); /* Vibrant, light grey-blue */
+            --fact-of-day-glow: 0 0 25px rgba(160, 188, 194, 0.9); /* Strong grey-blue glow */
 
-            /* Cosmic Pulse Mode for Scanner Effect */
-            --cosmic-pulse-bg-primary: #000000; /* Black */
-            --cosmic-pulse-bg-secondary: #00001A; /* Very dark space blue */
+            /* Chronos-Scan Mode */
+            --chronos-scan-bg-primary: #000000; /* Black */
+            --chronos-scan-bg-secondary: #000005; /* Even darker blue */
+            --chronos-scan-indicator: #00FFFF; /* Cyan for scanner */
+            --chronos-scan-text: #00FFFF; /* Cyan for scanner text */
         }
 
         body {
@@ -51,8 +53,8 @@
             position: relative;
         }
 
-        body.cosmic-pulsed {
-            background: linear-gradient(135deg, var(--cosmic-pulse-bg-primary) 0%, var(--cosmic-pulse-bg-secondary) 100%);
+        body.chronos-scanned {
+            background: linear-gradient(135deg, var(--chronos-scan-bg-primary) 0%, var(--chronos-scan-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -106,14 +108,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(176, 160, 208, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(160, 188, 194, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+            text-shadow: 0 0 10px rgba(135, 206, 235, 0.5);
         }
 
         .fact-text {
@@ -133,8 +135,7 @@
             display: flex;
             gap: 20px;
             margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
+            flex-wrap: wrap;\n            justify-content: center;
         }
 
         .action-button {
@@ -147,13 +148,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(153, 50, 204, 0.8);
+            box-shadow: 0 0 25px rgba(0, 86, 179, 0.8);
         }
 
         .action-button:disabled {
@@ -176,12 +177,12 @@
             z-index: 10;
         }
 
-        /* Sparkle Particles Effect (for fact card) */
+        /* Bioluminescent Plankton Particles Effect (for fact card) */
         .sparkle-particle {
             position: absolute;
             border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.8); /* White */
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+            background-color: rgba(0, 255, 255, 0.8); /* Cyan */
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
             animation: sparkle-fade 1s ease-out forwards;
             transform: scale(0);
             pointer-events: none;
@@ -195,15 +196,15 @@
             }
         }
 
-        /* Cosmic Dust Particles Effect */
+        /* Deep Sea Debris/Plankton Particles Effect */
         .cosmic-dust-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(176, 160, 208, 0.5) 50%, rgba(10, 0, 31, 0) 100%); /* White to Light Violet gradient */
+            background: radial-gradient(circle at center, rgba(0, 255, 255, 0.8) 0%, rgba(0, 180, 180, 0.5) 50%, rgba(0, 10, 26, 0) 100%); /* Cyan to Teal gradient */
             border-radius: 50%;
             opacity: 0;
             animation: cosmicFloatAndGlow 25s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(176, 160, 208, 0.7); /* Light Violet glow */
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7); /* Cyan glow */
         }
 
         @keyframes cosmicFloatAndGlow {
@@ -217,11 +218,10 @@
         }
 
         @keyframes shimmer {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.05); opacity: 0.9; }
+            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        /* Exoplanet Core Scanner Feature */
+        /* Chronos-Scan Feature */
         .scanner-container {
             position: absolute;
             top: 50%;
@@ -234,7 +234,7 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.7);
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
             z-index: 100;
             width: 200px;
             border: 1px solid var(--main-action-btn);
@@ -247,7 +247,7 @@
         .scanner-bar {
             width: 10px;
             height: 150px;
-            background: linear-gradient(to top, #8A2BE2, #1A0033); /* Blue Violet to Deep Space Blue */
+            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Blue to Deep Teal */
             border-radius: 5px;
             position: relative;
             overflow: hidden;
@@ -259,27 +259,45 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #E0FFFF; /* Pale Cyan */
+            background-color: var(--chronos-scan-indicator); /* Cyan */
             height: 0%;
             transition: height 5s ease-out; /* Animation for scan */
         }
 
         .scanner-text {
             font-size: 1.5em;
-            color: var(--title-color);
+            color: var(--chronos-scan-text); /* Cyan */
             text-shadow: var(--title-shadow);
+        }
+
+        .historical-fact {
+            position: absolute;
+            font-size: 1.1em;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            animation: fact-fade-in-out 5s ease-in-out forwards;
+            pointer-events: none;
+            white-space: nowrap;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes fact-fade-in-out {
+            0% { opacity: 0; transform: translateY(20px); }
+            20% { opacity: 1; transform: translateY(0); }
+            80% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cosmic Diamonds</h1>
+        <h1>Abyssal Chronos</h1>
         <div class="fact-card" id="factCard">
-            <h2>Exoplanet 55 Cancri e: A Diamond World</h2>
-            <p id="main-fact" class="fact-text">Scientists have identified exoplanet candidates, like 55 Cancri e, that may have surfaces made of graphite and diamond.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">This 'super-Earth' is twice the size of Earth and eight times more massive, potentially hiding a diamond core comparable in size to the Moon and 100,000 times heavier than Earth!</p>
+            <h2>The Greenland Shark: A Living Relic</h2>
+            <p id="main-fact" class="fact-text">The Greenland Shark has an extraordinary lifespan, ranging from 300 to 500 years.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">This makes it one of the longest-living vertebrates on Earth, silently navigating the frigid depths for centuries, witnessing epochs of human history unfold above.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="activateExoplanetScanner()">Scan for Diamonds</button>
+                <button class="action-button" id="revealButton" onclick="activateChronosScan()">Chronos-Scan</button>
             </div>
         </div>
     </div>
@@ -288,7 +306,7 @@
         <div class="scanner-bar">
             <div class="scanner-indicator" id="scannerIndicator"></div>
         </div>
-        <p class="scanner-text" id="scanProgress">0% Scanned</p>
+        <p class="scanner-text" id="scanProgress">0 Years Scanned</p>
     </div>
 
     <footer>
@@ -303,7 +321,7 @@
         setInterval(updateTime, 1000);
         updateTime(); // Initial call
 
-        function createCosmicDustParticle() {
+        function createDeepSeaParticle() {
             const particle = document.createElement('div');
             particle.classList.add('cosmic-dust-particle');
             document.body.appendChild(particle);
@@ -319,8 +337,40 @@
 
         let particlesCreated = false;
         let scanInterval;
+        let historicalFactInterval;
 
-        function activateExoplanetScanner() {
+        const historicalFacts = [
+            "When this shark was born, the Renaissance was flourishing in Europe.",
+            "It was alive when Shakespeare wrote his plays.",
+            "It swam the oceans during the American Revolution.",
+            "It witnessed the Industrial Revolution from the deep.",
+            "It has lived through two World Wars and the Space Age."
+        ];
+
+        function createHistoricalFact(fact) {
+            const factElement = document.createElement('div');
+            factElement.classList.add('historical-fact');
+            factElement.textContent = fact;
+            document.body.appendChild(factElement);
+
+            const containerRect = document.querySelector('.container').getBoundingClientRect();
+            const factCardRect = document.getElementById('factCard').getBoundingClientRect();
+
+            // Position around the fact card, slightly above or below
+            const randomX = Math.random() * (containerRect.width * 0.6) + (containerRect.left + containerRect.width * 0.2);
+            const randomY = Math.random() < 0.5 ?
+                            factCardRect.top - 50 - Math.random() * 50 : // Above
+                            factCardRect.bottom + 20 + Math.random() * 50; // Below
+
+            factElement.style.left = `${randomX}px`;
+            factElement.style.top = `${randomY}px`;
+
+            factElement.onanimationend = () => {
+                factElement.remove();
+            };
+        }
+
+        function activateChronosScan() {
             const mainFact = document.getElementById('main-fact');
             const factDetail = document.getElementById('fact-detail');
             const revealButton = document.getElementById('revealButton');
@@ -331,47 +381,60 @@
 
             mainFact.classList.toggle('revealed');
             factDetail.style.display = factDetail.style.display === 'none' ? 'block' : 'none';
-            body.classList.toggle('cosmic-pulsed');
+            body.classList.toggle('chronos-scanned');
 
             if (mainFact.classList.contains('revealed')) {
                 revealButton.textContent = "Return to Surface";
                 scannerContainer.classList.add('active');
                 scannerIndicator.style.height = '100%'; // Animate to full scan
-                let currentProgress = 0;
-                const maxProgress = 100;
+
+                let currentYears = 0;
+                const maxYears = 500; // Max lifespan for the shark
                 const duration = 5000; // 5 seconds for animation
                 const steps = 100;
                 let step = 0;
 
                 scanInterval = setInterval(() => {
                     step++;
-                    currentProgress = Math.round((step / steps) * maxProgress);
-                    scanProgressText.textContent = `${currentProgress}% Scanned`;
+                    currentYears = Math.round((step / steps) * maxYears);
+                    scanProgressText.textContent = `${currentYears} Years Scanned`;
                     if (step >= steps) {
                         clearInterval(scanInterval);
-                        scanProgressText.textContent = `100% Scanned (Diamond Core Detected!)`;
+                        scanProgressText.textContent = `500 Years Scanned (Ancient Life Detected!)`;
                     }
                 }, duration / steps);
 
+                // Start historical fact display
+                let factIndex = 0;
+                historicalFactInterval = setInterval(() => {
+                    if (factIndex < historicalFacts.length) {
+                        createHistoricalFact(historicalFacts[factIndex]);
+                        factIndex++;
+                    } else {
+                        clearInterval(historicalFactInterval);
+                    }
+                }, 1000); // Display a new fact every 1 second
 
                 if (!particlesCreated) {
-                    for (let i = 0; i < 50; i++) { // Create 50 cosmic dust particles
-                        createCosmicDustParticle();
+                    for (let i = 0; i < 50; i++) { // Create 50 deep sea particles
+                        createDeepSeaParticle();
                     }
                     particlesCreated = true;
                 }
             } else {
-                revealButton.textContent = "Scan for Diamonds";
+                revealButton.textContent = "Chronos-Scan";
                 document.querySelectorAll('.cosmic-dust-particle').forEach(particle => particle.remove());
+                document.querySelectorAll('.historical-fact').forEach(fact => fact.remove());
                 particlesCreated = false;
                 scannerContainer.classList.remove('active');
                 scannerIndicator.style.height = '0%'; // Reset scanner indicator
-                scanProgressText.textContent = '0% Scanned';
+                scanProgressText.textContent = '0 Years Scanned';
                 clearInterval(scanInterval);
+                clearInterval(historicalFactInterval);
             }
         }
 
-        // Sparkle Particles effect on fact card hover
+        // Bioluminescent Sparkle Particles effect on fact card hover
         const factCard = document.getElementById('factCard');
         factCard.addEventListener('mousemove', function(e) {
             const particle = document.createElement('span');
