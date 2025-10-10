@@ -47,10 +47,6 @@ jobs:
           EOF
           )
 
-          echo "---- PLANNER PROMPT: -----"
-          echo "$PLANNER_PROMPT"
-          echo "---- END OF PLANNER PROMPT: -----"
-
           # Pass files and the system prompt to Gemini
           gemini $PLANNER_PROMPT \
             -m $GEMINI_MODEL -o json --yolo > plan_output.json
