@@ -50,6 +50,12 @@
             --scan-overlay-bg: rgba(0, 0, 0, 0.95);
             --scan-overlay-text: #00FFFF;
             --scan-overlay-glow: 0 0 30px #00FFFF;
+
+            /* Quantum Data Stream */
+            --quantum-stream-bg: rgba(0, 0, 0, 0.98);
+            --quantum-stream-text: #00FF00; /* Bright Green */
+            --quantum-stream-glow: 0 0 20px rgba(0, 255, 0, 0.8);
+            --quantum-stream-line: rgba(0, 255, 0, 0.5);
         }
 
         body {
@@ -276,25 +282,14 @@
             15% { opacity: 0.6; transform: translate(10vw, 80vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 95vh) scale(0.5); }
             45% { opacity: 0.7; transform: translate(50vw, 75vh) scale(1.0); }
-            60% { opacity: 0.5; transform: translate(70vw, 90vh) scale(0.7); }
-            75% { opacity: 0.8; transform: translate(90vw, 70vh) scale(1.1); }
-            100% { opacity: 0; transform: translate(100vw, 100vh) scale(0.3); }
-        }
-
-        @keyframes shimmer {
-            0% { transform: scale(1); opacity: 0.6; }
-            100% { transform: scale(1.05); opacity: 0.9; }
-        }
-
-        /* Stellar Scan Feature */
+            60% { opacity: 0.5; transform: translate(70vw, 90vh) scale(0.7); }\n            75% { opacity: 0.8; transform: translate(90vw, 70vh) scale(1.1); }\n            100% { opacity: 0; transform: translate(100vw, 100vh) scale(0.3); }\n        }\n\n        @keyframes shimmer {\n            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }\n        }\n\n        /* Stellar Scan Feature */
         .stellar-scan-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: none; /* Hidden by default */
-            flex-direction: column;
-            align-items: center;
+            flex-direction: column;\n            align-items: center;
             gap: 10px;
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
@@ -463,14 +458,87 @@
             0% { width: 0%; }
             100% { width: 100%; }
         }
+
+        /* Quantum Data Stream Overlay */
+        .quantum-stream-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--quantum-stream-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 300;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .quantum-stream-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .quantum-stream-text {
+            color: var(--quantum-stream-text);
+            font-size: 3em;
+            text-shadow: var(--quantum-stream-glow);
+            margin-bottom: 30px;
+            overflow: hidden; /* Ensures text appears letter by letter */
+            white-space: nowrap; /* Keeps text on a single line */
+            border-right: 0.15em solid var(--quantum-stream-text); /* Typing cursor */
+            animation: typing 2s steps(20, end) forwards, blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--quantum-stream-text); }
+        }
+
+        .quantum-stream-lines-container {
+            position: relative;
+            width: 80%;
+            height: 100px;
+            overflow: hidden;
+        }
+
+        .quantum-stream-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: var(--quantum-stream-line);
+            opacity: 0;
+            animation: stream-line-flow 3s infinite linear;
+        }
+
+        .quantum-stream-line:nth-child(1) { animation-delay: 0s; top: 10%; }
+        .quantum-stream-line:nth-child(2) { animation-delay: 0.5s; top: 30%; }
+        .quantum-stream-line:nth-child(3) { animation-delay: 1s; top: 50%; }
+        .quantum-stream-line:nth-child(4) { animation-delay: 1.5s; top: 70%; }
+        .quantum-stream-line:nth-child(5) { animation-delay: 2s; top: 90%; }
+
+        @keyframes stream-line-flow {
+            0% { transform: translateX(-100%); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(100%); opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title">Cosmic Microwave Background: Echo of the Big Bang</h2>
-            <p id="main-fact" class="fact-text revealed">The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.</p>
+            <h2 id="fact-title"></h2>
+            <p id="main-fact" class="fact-text"></p>
             <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;"></p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
@@ -481,9 +549,10 @@
             </div>
 
             <div class="button-group">
+                <button class="action-button" id="revealFactButton" onclick="revealFact()" style="display: none;">Reveal Fact</button>
                 <button class="action-button" id="deepDiveButton" onclick="activateDeepDive()">Cosmic Alignment Scan</button>
                 <button class="action-button" id="anomalyDetectorButton" onclick="activateAnomalyDetector()">Cosmic Anomaly Detector</button>
-                <button class="action-button" id="newFactButton" onclick="displayRandomFact()">New Discovery</button>
+                <button class="action-button" id="newFactButton" onclick="initiateQuantumStream()">New Discovery</button>
             </div>
         </div>
     </div>
@@ -501,7 +570,7 @@
         </div>
     </div>
 
-    <!-- New Cosmic Alignment Scan Overlay -->
+    <!-- Cosmic Alignment Scan Overlay -->
     <div class="scan-overlay" id="cosmicScanOverlay">
         <div class="scan-overlay-content">
             Initiating Cosmic Alignment Scan...
@@ -510,6 +579,18 @@
             <div class="scan-progress"></div>
         </div>
         <p id="scanDetailOverlayText" class="scan-detail-text"></p>
+    </div>
+
+    <!-- Quantum Data Stream Overlay -->
+    <div class="quantum-stream-overlay" id="quantumStreamOverlay">
+        <div class="quantum-stream-text" id="quantumStreamText"></div>
+        <div class="quantum-stream-lines-container">
+            <div class="quantum-stream-line"></div>
+            <div class="quantum-stream-line"></div>
+            <div class="quantum-stream-line"></div>
+            <div class="quantum-stream-line"></div>
+            <div class="quantum-stream-line"></div>
+        </div>
     </div>
 
     <script>
@@ -521,6 +602,7 @@
         const deepDiveButton = document.getElementById('deepDiveButton');
         const anomalyDetectorButton = document.getElementById('anomalyDetectorButton');
         const newFactButton = document.getElementById('newFactButton');
+        const revealFactButton = document.getElementById('revealFactButton');
         const stellarScanContainer = document.getElementById('stellarScanContainer');
         const stellarIndicator = document.getElementById('stellarIndicator');
         const stellarStatus = document.getElementById('stellarStatus');
@@ -535,6 +617,8 @@
         const root = document.documentElement;
         const cosmicScanOverlay = document.getElementById('cosmicScanOverlay');
         const scanDetailOverlayText = document.getElementById('scanDetailOverlayText');
+        const quantumStreamOverlay = document.getElementById('quantumStreamOverlay');
+        const quantumStreamText = document.getElementById('quantumStreamText');
 
         const facts = [
             {
@@ -751,7 +835,7 @@
             }
         ];
 
-        let currentFactIndex = 5; // Set to Cosmic Microwave Background fact initially
+        let currentFactIndex = Math.floor(Math.random() * facts.length); // Random fact initially
 
         function applyTheme(theme) {
             for (const [property, value] of Object.entries(theme)) {
@@ -771,23 +855,26 @@
             riddleSection.style.display = 'none';
             riddleInput.value = '';
             riddleFeedback.textContent = '';
-            mainFact.style.display = 'block'; // Show main fact by default
-            deepDiveButton.style.display = 'inline-block'; // Show deep dive button by default
-            anomalyDetectorButton.style.display = 'inline-block'; // Show anomaly detector button by default
+            deepDiveButton.style.display = 'inline-block';
+            anomalyDetectorButton.style.display = 'inline-block';
+            revealFactButton.style.display = 'none'; // Hide reveal button by default
 
             if (fact.riddle) {
                 riddleSection.style.display = 'flex';
                 riddleText.textContent = fact.riddle;
                 mainFact.style.display = 'none'; // Hide main fact until riddle is solved
                 factDetail.style.display = 'none'; // Hide detail
-                deepDiveButton.style.display = 'none'; // Hide deep dive button
-                anomalyDetectorButton.style.display = 'none'; // Hide anomaly detector button
+                deepDiveButton.style.display = 'none';
+                anomalyDetectorButton.style.display = 'none';
                 solveRiddleButton.disabled = false;
                 riddleInput.disabled = false;
                 solveRiddleButton.textContent = 'Solve Riddle';
             } else {
-                mainFact.classList.add('revealed'); // Main fact is revealed by default
-                factDetail.style.display = 'none'; // Detail is hidden by default
+                mainFact.style.display = 'none'; // Initially hide main fact for reveal
+                factDetail.style.display = 'none'; // Initially hide detail for reveal
+                mainFact.classList.remove('revealed');
+                factDetail.classList.remove('revealed');
+                revealFactButton.style.display = 'inline-block'; // Show reveal button
                 deepDiveButton.textContent = 'Cosmic Alignment Scan';
                 deepDiveButton.disabled = false;
             }
@@ -796,6 +883,42 @@
             stellarScanContainer.classList.remove('active');
             stellarIndicator.style.height = '0%';
             stellarStatus.textContent = 'Scanning...';
+        }
+
+        function revealFact() {
+            mainFact.style.display = 'block';
+            factDetail.style.display = 'block';
+            mainFact.classList.add('revealed');
+            factDetail.classList.add('revealed');
+            revealFactButton.style.display = 'none';
+        }
+
+        function initiateQuantumStream() {
+            quantumStreamOverlay.classList.add('active');
+            quantumStreamText.textContent = ''; // Clear previous text
+            const messages = [
+                "Initiating Quantum Data Stream...",
+                "Accessing interdimensional archives...",
+                "Decoding cosmic frequencies...",
+                "New discovery incoming!"
+            ];
+            let messageIndex = 0;
+
+            function typeMessage() {
+                if (messageIndex < messages.length) {
+                    quantumStreamText.style.width = '0%'; // Reset for typing animation
+                    quantumStreamText.textContent = messages[messageIndex];
+                    quantumStreamText.style.animation = 'typing 2s steps(20, end) forwards, blink-caret 0.75s step-end infinite';
+                    messageIndex++;
+                    setTimeout(typeMessage, 3000); // Wait for message to type, then next message
+                } else {
+                    setTimeout(() => {
+                        quantumStreamOverlay.classList.remove('active');
+                        displayRandomFact();
+                    }, 1000); // Short delay before revealing fact
+                }
+            }
+            typeMessage();
         }
 
         function displayRandomFact() {
@@ -839,7 +962,9 @@
                 riddleFeedback.style.color = 'lightgreen';
                 riddleFeedback.textContent = 'Riddle Solved! Fact Revealed!';
                 mainFact.style.display = 'block';
+                factDetail.style.display = 'block';
                 mainFact.classList.add('revealed');
+                factDetail.classList.add('revealed');
                 riddleInput.disabled = true;
                 solveRiddleButton.disabled = true;
                 solveRiddleButton.textContent = 'Solved!';
@@ -851,7 +976,7 @@
             }
         }
 
-        // Initial fact display (set to Cosmic Microwave Background fact)
+        // Initial fact display
         displayFact(currentFactIndex);
 
         // Stardust Particle Effect
