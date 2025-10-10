@@ -3,57 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Cosmic Wonders Explorer</title>
+    <title id="site-title">Deep Sea Wonders</title>
     <style>
         :root {
-            /* Exoplanets Theme */
-            --bg-color-primary: #001A00;
-            --bg-color-secondary: #002A00;
-            --text-color: #CCFFCC;
-            --footer-bg: #001000;
-            --footer-text-color: #AADDAA;
-            --glass-bg: rgba(0, 42, 0, 0.7);
-            --glass-border: rgba(153, 204, 153, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(204, 255, 204, 0.8);
+            /* Deep Sea Exploration Theme */
+            --bg-color-primary: #001a2b; /* Deep Ocean Blue */
+            --bg-color-secondary: #000f1a; /* Even Deeper Ocean Blue */
+            --text-color: #a0e6ff; /* Light Cyan */
+            --footer-bg: #00101a; /* Darker Footer */
+            --footer-text-color: #c0f0ff; /* Lighter Footer Text */
+            --glass-bg: rgba(0, 30, 45, 0.7); /* Translucent Deep Blue */
+            --glass-border: rgba(160, 230, 255, 0.3); /* Light Cyan Border */
+            --fact-text-shadow: 0 0 15px rgba(160, 230, 255, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #32CD32; /* Lime Green */
-            --main-action-btn-hover: #228B22; /* Forest Green */
-            --explore-glow-color: #7CFC00; /* Lawn Green */
-            --explore-text-initial: rgba(204, 255, 204, 0.4);
-            --explore-text-active: #CCFFCC;
+            --main-action-btn: #00BFFF; /* Deep Sky Blue */
+            --main-action-btn-hover: #008ECC; /* Darker Deep Sky Blue */
+            --explore-glow-color: #00FFFF; /* Cyan */
+            --explore-text-initial: rgba(160, 230, 255, 0.4);
+            --explore-text-active: #a0e6ff;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(124, 252, 0, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(124, 252, 0, 0.9);
-            --stellar-scan-bg-primary: #000000;
-            --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #7CFC00; /* Lawn Green */
-            --stellar-scan-text: #7CFC00; /* Lawn Green */
+            --fact-card-border: rgba(0, 255, 255, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9);
 
-            /* Anomaly Detector */
-            --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
-            --anomaly-text: #FFFFFF;
-            --anomaly-border: #FFD700; /* Gold */
-            --anomaly-glow: 0 0 20px rgba(255, 69, 0, 0.9);
-
-            /* Riddle Feature */
-            --riddle-input-bg: rgba(255, 255, 255, 0.1);
-            --riddle-input-border: rgba(255, 255, 255, 0.3);
-            --riddle-input-text: #F0E0FF;
-            --riddle-button-bg: #00BFFF; /* Deep Sky Blue */
-            --riddle-button-hover: #008ECC; /* Darker Deep Sky Blue */
-
-            /* Cosmic Alignment Scan */
-            --scan-line-color: #00FFFF; /* Cyan */
-            --scan-overlay-bg: rgba(0, 0, 0, 0.95);
-            --scan-overlay-text: #00FFFF;
-            --scan-overlay-glow: 0 0 30px #00FFFF;
-
-            /* Quantum Data Stream */
-            --quantum-stream-bg: rgba(0, 0, 0, 0.98);
-            --quantum-stream-text: #00FF00; /* Bright Green */
-            --quantum-stream-glow: 0 0 20px rgba(0, 255, 0, 0.8);
-            --quantum-stream-line: rgba(0, 255, 0, 0.5);
+            /* Sonar Scan Feature */
+            --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Cyan for sonar wave */
+            --sonar-text-color: #00FFFF; /* Cyan for sonar text */
+            --sonar-overlay-bg: rgba(0, 10, 20, 0.95); /* Dark overlay for scan */
         }
 
         body {
@@ -74,12 +50,6 @@
             transition: background 1.5s ease-in-out, color 0.8s ease;
             overflow-x: hidden;
             position: relative;
-        }
-
-        body.stellar-scanned {
-            background: linear-gradient(135deg, var(--stellar-scan-bg-primary) 0%, var(--stellar-scan-bg-secondary) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
         }
 
         @keyframes gradientShift {
@@ -127,7 +97,7 @@
             transition: all 0.5s ease-in-out, transform 0.3s ease;
             position: relative;
             overflow: hidden;
-            animation: fadeInScale 0.8s ease-out; /* New animation for fact card */
+            animation: fadeInScale 0.8s ease-out;
         }
 
         @keyframes fadeInScale {
@@ -137,28 +107,22 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px var(--explore-glow-color); /* Stronger glow on hover */
+            box-shadow: 0 0 35px var(--explore-glow-color);
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(218, 112, 214, 0.5);
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
         }
 
         .fact-text {
-            font-size: 1.8em; /* Increased font size */
+            font-size: 1.8em;
             line-height: 1.6;
-            color: var(--explore-text-initial); /* Initially dim */
-            text-shadow: none;
-            transition: color 1s ease, text-shadow 1s ease;
-        }
-
-        .fact-text.revealed {
-            color: var(--explore-text-active); /* Bright when revealed */
+            color: var(--explore-text-active); /* Always bright for emphasis */
             text-shadow: var(--fact-text-shadow);
-            animation: textFadeIn 1s ease-out; /* New animation for text reveal */
+            animation: textFadeIn 1s ease-out;
         }
 
         @keyframes textFadeIn {
@@ -166,17 +130,9 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .button-group {
-            display: flex;
-            gap: 20px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
         .action-button {
             background-color: var(--main-action-btn);
-            color: #FFFFFF; /* White text on bright button */
+            color: #FFFFFF;
             border: none;
             padding: 15px 30px;
             border-radius: 50px;
@@ -184,7 +140,8 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
+            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+            margin-top: 20px;
         }
 
         .action-button:hover:not(:disabled) {
@@ -198,56 +155,6 @@
             cursor: default;
             opacity: 0.7;
             box-shadow: none;
-        }
-
-        .riddle-section {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .riddle-input {
-            padding: 12px 20px;
-            border-radius: 25px;
-            border: 1px solid var(--riddle-input-border);
-            background-color: var(--riddle-input-bg);
-            color: var(--riddle-input-text);
-            font-size: 1.1em;
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-            transition: border-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .riddle-input:focus {
-            outline: none;
-            border-color: var(--riddle-button-bg);
-            box-shadow: 0 0 10px var(--riddle-button-bg);
-        }
-
-        .riddle-button {
-            background-color: var(--riddle-button-bg);
-            color: #FFFFFF;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            font-weight: bold;
-        }
-
-        .riddle-button:hover:not(:disabled) {
-            background-color: var(--riddle-button-hover);
-            transform: translateY(-2px);
-        }
-
-        .riddle-button:disabled {
-            background-color: var(--riddle-button-hover);
-            cursor: default;
-            opacity: 0.7;
         }
 
         footer {
@@ -264,20 +171,109 @@
             transition: background-color 0.5s ease, color 0.5s ease;
         }
 
-        /* Stardust Particle Effect */
-        .stardust-particle {
-            position: absolute;
-            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
-            border-radius: 50%;
+        /* Sonar Scan Feature CSS */
+        .sonar-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--sonar-overlay-bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
             opacity: 0;
-            animation: stardustFloatAndGlow 20s infinite ease-in-out, shimmer 3s infinite alternate;
-            z-index: -1;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
 
-        @keyframes stardustFloatAndGlow {
-            0% { opacity: 0; transform: translate(0, 100vh) scale(0.2); }
-            15% { opacity: 0.6; transform: translate(10vw, 80vh) scale(0.8); }
-            30% { opacity: 0.4; transform: translate(30vw, 95vh) scale(0.5); }
-            45% { opacity: 0.7; transform: translate(50vw, 75vh) scale(1.0); }
-            60% { opacity: 0.5; transform: translate(70vw, 90vh) scale(0.7); }\n            75% { opacity: 0.8; transform: translate(90vw, 70vh) scale(1.1); }\n            100% { opacity: 0; transform: translate(100vw, 100vh) scale(0.3); }\n        }\n\n        @keyframes shimmer {\n            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }\n        }\n\n        /* Stellar Scan Feature */\n        .stellar-scan-container {\n            position: absolute;\n            top: 50%;\n            left: 50%;\n            transform: translate(-50%, -50%);\n            display: none; /* Hidden by default */\n            flex-direction: column;\n            align-items: center;\n            gap: 10px;\n            background: rgba(0, 0, 0, 0.7);\n            padding: 20px;\n            border-radius: 15px;\n            box-shadow: 0 0 30px var(--main-action-btn);\n            z-index: 100;\n            width: 200px;\n            border: 1px solid var(--main-action-btn);\n        }\n\n        .stellar-scan-container.active {\n            display: flex;\n        }\n\n        .stellar-scanner-bar {\n            width: 10px;\n            height: 150px;\n            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary));\n            border-radius: 5px;\n            position: relative;\n            overflow: hidden;\n            border: 1px solid var(--glass-border);\n        }\n\n        .stellar-indicator {\n            position: absolute;\n            bottom: 0;\n            left: 0;\n            width: 100%;\n            background-color: var(--stellar-scan-indicator);\n            height: 0%;\n            transition: height 5s ease-out; /* Animation for scan */\n        }\n\n        .stellar-text {\n            font-size: 1.5em;\n            color: var(--stellar-scan-text);\n            text-shadow: var(--title-shadow);\n        }\n\n        /* Cosmic Sparkle for fact card hover */\n        .cosmic-sparkle {\n            position: absolute;\n            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);\n            border-radius: 50%;\n            animation: sparkle-fade-out 0.8s forwards;\n            pointer-events: none;\n            box-shadow: 0 0 8px rgba(255, 255, 255, 0.7);\n        }\n\n        @keyframes sparkle-fade-out {\n            0% { transform: scale(0); opacity: 1; }\n            100% { transform: scale(1.5); opacity: 0; }\n        }\n\n        /* Anomaly Detector Overlay */\n        .anomaly-overlay {\n            position: fixed;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n            background: rgba(0, 0, 0, 0.9);\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            z-index: 200;\n            opacity: 0;\n            pointer-events: none;\n            transition: opacity 0.5s ease-in-out;\n        }\n\n        .anomaly-overlay.active {\n            opacity: 1;\n            pointer-events: all;\n        }\n\n        .anomaly-content {\n            background: var(--anomaly-bg);\n            border: 2px solid var(--anomaly-border);\n            border-radius: 20px;\n            padding: 40px;\n            box-shadow: var(--anomaly-glow);\n            color: var(--anomaly-text);\n            font-size: 2em;\n            text-align: center;\n            max-width: 700px;\n            transform: scale(0.8);\n            opacity: 0;\n            animation: anomaly-reveal 0.8s forwards;\n        }\n\n        @keyframes anomaly-reveal {\n            0% { transform: scale(0.8); opacity: 0; }\n            100% { transform: scale(1); opacity: 1; }\n        }\n\n        /* Cosmic Alignment Scan Feature - Full Screen Overlay */\n        .scan-overlay {\n            position: fixed;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n            background: var(--scan-overlay-bg);\n            display: flex;\n            flex-direction: column;\n            justify-content: center;\n            align-items: center;\n            z-index: 150;\n            opacity: 0;\n            pointer-events: none;\n            transition: opacity 0.5s ease-in-out;\n        }\n\n        .scan-overlay.active {\n            opacity: 1;\n            pointer-events: all;\n        }\n\n        .scan-overlay-content {\n            color: var(--scan-overlay-text);\n            font-size: 2.5em;\n            text-shadow: var(--scan-overlay-glow);\n            animation: text-scan 2s infinite alternate;\n            margin-bottom: 30px;\n        }\n\n        .scan-detail-text {\n            font-size: 1.5em;\n            color: var(--scan-overlay-text);\n            opacity: 0;\n            transform: translateY(20px);\n            animation: detail-reveal 1s forwards 2s; /* Delay reveal */\n            max-width: 80%;\n            line-height: 1.5;\n        }\n\n        @keyframes text-scan {\n            0% { opacity: 0.5; transform: scale(1); }\n            100% { opacity: 1; transform: scale(1.05); }\n        }\n\n        @keyframes detail-reveal {\n            0% { opacity: 0; transform: translateY(20px); }\n            100% { opacity: 1; transform: translateY(0); }\n        }\n\n        .scan-progress-bar {\n            width: 300px;\n            height: 10px;\n            background-color: rgba(255, 255, 255, 0.2);\n            border-radius: 5px;\n            overflow: hidden;\n            margin-top: 20px;\n        }\n\n        .scan-progress {\n            width: 0%;\n            height: 100%;\n            background: linear-gradient(to right, transparent, var(--scan-line-color));\n            animation: progress-fill 3s forwards;\n        }\n\n        @keyframes progress-fill {\n            0% { width: 0%; }\n            100% { width: 100%; }\n        }\n\n        /* Quantum Data Stream Overlay */\n        .quantum-stream-overlay {\n            position: fixed;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n            background: var(--quantum-stream-bg);\n            display: flex;\n            flex-direction: column;\n            justify-content: center;\n            align-items: center;\n            z-index: 300;\n            opacity: 0;\n            pointer-events: none;\n            transition: opacity 0.3s ease-in-out;\n        }\n\n        .quantum-stream-overlay.active {\n            opacity: 1;\n            pointer-events: all;\n        }\n\n        .quantum-stream-text {\n            color: var(--quantum-stream-text);\n            font-size: 3em;\n            text-shadow: var(--quantum-stream-glow);\n            margin-bottom: 30px;\n            overflow: hidden; /* Ensures text appears letter by letter */\n            white-space: nowrap; /* Keeps text on a single line */\n            border-right: 0.15em solid var(--quantum-stream-text); /* Typing cursor */\n            animation: typing 2s steps(20, end) forwards, blink-caret 0.75s step-end infinite;\n        }\n\n        @keyframes typing {\n            from { width: 0 }\n            to { width: 100% }\n        }\n\n        @keyframes blink-caret {\n            from, to { border-color: transparent }\n            50% { border-color: var(--quantum-stream-text); }\n        }\n\n        .quantum-stream-lines-container {\n            position: relative;\n            width: 80%;\n            height: 100px;\n            overflow: hidden;\n        }\n\n        .quantum-stream-line {\n            position: absolute;\n            width: 100%;\n            height: 2px;\n            background: var(--quantum-stream-line);\n            opacity: 0;\n            animation: stream-line-flow 3s infinite linear;\n        }\n\n        .quantum-stream-line:nth-child(1) { animation-delay: 0s; top: 10%; }\n        .quantum-stream-line:nth-child(2) { animation-delay: 0.5s; top: 30%; }\n        .quantum-stream-line:nth-child(3) { animation-delay: 1s; top: 50%; }\n        .quantum-stream-line:nth-child(4) { animation-delay: 1.5s; top: 70%; }\n        .quantum-stream-line:nth-child(5) { animation-delay: 2s; top: 90%; }\n\n        @keyframes stream-line-flow {\n            0% { transform: translateX(-100%); opacity: 0; }\n            20% { opacity: 1; }\n            80% { opacity: 1; }\n            100% { transform: translateX(100%); opacity: 0; }\n        }\n\n        /* Cosmic Echoes Feature */\n        .cosmic-echoes-container {\n            position: fixed;\n            bottom: 80px; /* Above the footer */\n            left: 50%;\n            transform: translateX(-50%);\n            display: flex;\n            gap: 10px;\n            padding: 10px 20px;\n            background: rgba(0, 0, 0, 0.6);\n            border-radius: 20px;\n            box-shadow: 0 0 15px rgba(124, 252, 0, 0.5); /* Glow matching exoplanet theme */\n            z-index: 10;\n            backdrop-filter: blur(8px);\n            border: 1px solid rgba(124, 252, 0, 0.3);\n            max-width: 90%;\n            overflow-x: auto;\n            white-space: nowrap;\n        }\n\n        .cosmic-echo {\n            background: rgba(255, 255, 255, 0.1);\n            border: 1px solid rgba(255, 255, 255, 0.3);\n            border-radius: 10px;\n            padding: 8px 15px;\n            color: var(--text-color);\n            font-size: 0.9em;\n            cursor: pointer;\n            transition: all 0.3s ease;\n            opacity: 0.7;\n            flex-shrink: 0; /* Prevent shrinking */\n        }\n\n        .cosmic-echo:hover {\n            background: rgba(255, 255, 255, 0.2);\n            opacity: 1;\n            transform: translateY(-3px);\n            box-shadow: 0 0 10px var(--explore-glow-color);\n        }\n\n        .cosmic-echo.active {\n            background: var(--main-action-btn);\n            color: #FFFFFF;\n            opacity: 1;\n            border-color: var(--explore-glow-color);\n            box-shadow: 0 0 15px var(--explore-glow-color);\n        }\n\n        /* Fact Focus Overlay */\n        .fact-focus-overlay {\n            position: fixed;\n            top: 0;\n            left: 0;\n            width: 100%;\n            height: 100%;\n            background: rgba(0, 0, 0, 0.8);\n            display: flex;\n            justify-content: center;\n            align-items: center;\n            z-index: 400;\n            opacity: 0;\n            pointer-events: none;\n            transition: opacity 0.5s ease-in-out;\n        }\n\n        .fact-focus-overlay.active {\n            opacity: 1;\n            pointer-events: all;\n        }\n\n        .fact-focus-content {\n            background: var(--fact-card-bg);\n            border: 2px solid var(--fact-card-border);\n            border-radius: 20px;\n            padding: 50px;\n            box-shadow: var(--fact-of-day-glow);\n            color: var(--explore-text-active);\n            font-size: 2.5em;\n            text-align: center;\n            max-width: 800px;\n            transform: scale(0.8);\n            opacity: 0;\n            animation: fact-focus-reveal 0.8s forwards;\n            position: relative;\n        }\n\n        @keyframes fact-focus-reveal {\n            0% { transform: scale(0.8); opacity: 0; }\n            100% { transform: scale(1); opacity: 1; }\n        }\n\n        .close-focus-button {\n            position: absolute;\n            top: 15px;\n            right: 15px;\n            background: none;\n            border: none;\n            color: var(--text-color);\n            font-size: 2em;\n            cursor: pointer;\n            transition: color 0.3s ease;\n        }\n\n        .close-focus-button:hover {\n            color: var(--main-action-btn);\n        }\n    </style>\n</head>\n<body>\n    <div class=\"container\">\n        <h1>Cosmic Wonders Explorer</h1>\n        <div class=\"fact-card\" id=\"factCard\">\n            <h2 id=\"fact-title\">Exoplanets: Worlds Beyond Our Solar System</h2>\n            <p id=\"main-fact\" class=\"fact-text\" style=\"display: none;\">Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.</p>\n            <p id=\"fact-detail\" class=\"fact-text\" style=\"font-size: 1.2em; margin-top: 15px; display: none;\">These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.</p>\n\n            <div id=\"riddleSection\" class=\"riddle-section\" style=\"display: none;\">\n                <p id=\"riddle-text\" class=\"fact-text\"></p>\n                <input type=\"text\" id=\"riddleInput\" class=\"riddle-input\" placeholder=\"Your answer, explorer...\">\n                <button class=\"riddle-button\" id=\"solveRiddleButton\" onclick=\"solveRiddle()\">Solve Riddle</button>\n                <p id=\"riddle-feedback\" style=\"color: red; font-weight: bold;\"></p>\n            </div>\n\n            <div class=\"button-group\">\n                <button class=\"action-button\" id=\"newFactButton\" onclick=\"initiateQuantumStream()\">New Discovery</button>\n                <button class=\"action-button\" id=\"revealFactButton\" onclick=\"revealFact()\">Reveal Fact</button>\n                <button class=\"action-button\" id=\"focusFactButton\" onclick=\"focusFact()\">Focus Fact</button>\n                <button class=\"action-button\" id=\"deepDiveButton\" onclick=\"activateDeepDive()\">Cosmic Alignment Scan</button>\n                <button class=\"action-button\" id=\"anomalyDetectorButton\" onclick=\"activateAnomalyDetector()\">Cosmic Anomaly Detector</button>\n            </div>\n        </div>\n    </div>\n\n    <div class=\"stellar-scan-container\" id=\"stellarScanContainer\">\n        <div class=\"stellar-scanner-bar\">\n            <div class=\"stellar-indicator\" id=\"stellarIndicator\"></div>\n        </div>\n        <p class=\"stellar-text\" id=\"stellarStatus\">Scanning...</p>\n    </div>\n\n    <div class=\"anomaly-overlay\" id=\"anomalyOverlay\">\n        <div class=\"anomaly-content\" id=\"anomalyContent\">\n            <!-- Anomaly fact will be inserted here -->\n        </div>\n    </div>\n\n    <!-- Cosmic Alignment Scan Overlay -->\n    <div class=\"scan-overlay\" id=\"cosmicScanOverlay\">\n        <div class=\"scan-overlay-content\">\n            Initiating Cosmic Alignment Scan...\n        </div>\n        <div class=\"scan-progress-bar\">\n            <div class=\"scan-progress\"></div>\n        </div>\n        <p id=\"scanDetailOverlayText\" class=\"scan-detail-text\"></p>\n    </div>\n\n    <!-- Quantum Data Stream Overlay -->\n    <div class=\"quantum-stream-overlay\" id=\"quantumStreamOverlay\">\n        <div class=\"quantum-stream-text\" id=\"quantumStreamText\"></div>\n        <div class=\"quantum-stream-lines-container\">\n            <div class=\"quantum-stream-line\"></div>\n            <div class=\"quantum-stream-line\"></div>\n            <div class=\"quantum-stream-line\"></div>\n            <div class=\"quantum-stream-line\"></div>\n            <div class=\"quantum-stream-line\"></div>\n        </div>\n    </div>\n\n    <div class=\"cosmic-echoes-container\" id=\"cosmicEchoesContainer\">\n        <!-- Cosmic Echoes will be dynamically added here -->\n    </div>\n\n    <!-- Fact Focus Overlay -->\n    <div class=\"fact-focus-overlay\" id=\"factFocusOverlay\">\n        <div class=\"fact-focus-content\">\n            <button class=\"close-focus-button\" onclick=\"closeFocusFact()\">&times;</button>\n            <h2 id=\"focus-fact-title\"></h2>\n            <p id=\"focus-main-fact\"></p>\n            <p id=\"focus-fact-detail\" style=\"font-size: 0.8em; margin-top: 15px;\"></p>\n        </div>\n    </div>\n\n    <script>\n        const siteTitle = document.getElementById('site-title');\n        const factTitle = document.getElementById('fact-title');\n        const mainFact = document.getElementById('main-fact');\n        const factDetail = document.getElementById('fact-detail');\n        const factCard = document.getElementById('factCard');\n        const deepDiveButton = document.getElementById('deepDiveButton');\n        const anomalyDetectorButton = document.getElementById('anomalyDetectorButton');\n        const newFactButton = document.getElementById('newFactButton');\n        const revealFactButton = document.getElementById('revealFactButton');\n        const stellarScanContainer = document.getElementById('stellarScanContainer');\n        const stellarIndicator = document.getElementById('stellarIndicator');\n        const stellarStatus = document.getElementById('stellarStatus');\n        const anomalyOverlay = document.getElementById('anomalyOverlay');\n        const anomalyContent = document.getElementById('anomalyContent');\n        const riddleSection = document.getElementById('riddleSection');\n        const riddleText = document.getElementById('riddle-text');\n        const riddleInput = document.getElementById('riddleInput');\n        const solveRiddleButton = document.getElementById('solveRiddleButton');\n        const riddleFeedback = document.getElementById('riddle-feedback');\n        const body = document.body;\n        const root = document.documentElement;\n        const cosmicScanOverlay = document.getElementById('cosmicScanOverlay');\n        const scanDetailOverlayText = document.getElementById('scanDetailOverlayText');\n        const quantumStreamOverlay = document.getElementById('quantumStreamOverlay');\n        const quantumStreamText = document.getElementById('quantumStreamText');\n        const cosmicEchoesContainer = document.getElementById('cosmicEchoesContainer');\n        const factFocusOverlay = document.getElementById('factFocusOverlay');\n        const focusFactTitle = document.getElementById('focus-fact-title');\n        const focusMainFact = document.getElementById('focus-main-fact');\n        const focusFactDetail = document.getElementById('focus-fact-detail');\n\n\n        const facts = [\n            {\n                title: \"The Great Attractor: A Cosmic Anomaly\",\n                main: \"The Great Attractor is a mysterious gravitational anomaly in intergalactic space that is pulling our Milky Way galaxy and hundreds of thousands of other galaxies towards it.\",\n                detail: \"Located about 150 to 250 million light-years away, this region of space is so massive that it's causing a significant \\\"bulk flow\\\" of galaxies, yet much of its mass is obscured by our own galaxy's dust and gas, making it difficult to observe directly.\",\n                anomaly: \"Anomaly Detected: The Great Attractor's true nature might involve a supercluster of galaxies even larger than previously imagined, hidden behind the 'Zone of Avoidance'.\",\n                theme: {\n                    '--bg-color-primary': '#1A0A1A',\n                    '--bg-color-secondary': '#2A1A2A',\n                    '--text-color': '#F0E0FF',\n                    '--footer-bg': '#150C15',\n                    '--footer-text-color': '#E0C0E0',\n                    '--glass-bg': 'rgba(42, 26, 42, 0.7)',\n                    '--glass-border': 'rgba(192, 160, 192, 0.3)',\n                    '--fact-text-shadow': '0 0 15px rgba(240, 224, 255, 0.8)',\n                    '--title-color': '#FFFFFF',\n                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',\n                    '--main-action-btn': '#8B008B', /* Dark Magenta */\n                    '--main-action-btn-hover': '#6A006A', /* Darker Dark Magenta */\n                    '--explore-glow-color': '#FF00FF', /* Magenta */\n                    '--explore-text-initial': 'rgba(240, 224, 255, 0.4)',\n                    '--explore-text-active': '#F0E0FF',\n                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',\n                    '--fact-card-border': 'rgba(255, 0, 255, 0.7)',\n                    '--fact-of-day-glow': '0 0 25px rgba(255, 0, 255, 0.9)',\n                    '--stellar-scan-bg-primary': '#000000',\n                    '--stellar-scan-bg-secondary': '#000005',\n                    '--stellar-scan-indicator': '#FF00FF', /* Magenta */\n                    '--stellar-scan-text': '#FF00FF' /* Magenta */\n                }\n            },\n            {\n                title: \"Neutron Stars: Cosmic Powerhouses\",\n                main: \"Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.\",\n                detail: \"These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.\",\n                anomaly: \"Anomaly Detected: Some neutron stars, known as magnetars, possess magnetic fields trillions of times stronger than Earth's, capable of distorting spacetime.\",\n                theme: {\n                    '--bg-color-primary': '#0A0A1A',\n                    '--bg-color-secondary': '#1A0A2A',\n                    '--text-color': '#E0E0FF',\n                    '--footer-bg': '#0F0F1A',\n                    '--footer-text-color': '#C0C0E0',\n                    '--glass-bg': 'rgba(26, 10, 42, 0.7)',\n                    '--glass-border': 'rgba(160, 160, 192, 0.3)',\n                    '--fact-text-shadow': '0 0 15px rgba(224, 224, 255, 0.8)',\n                    '--title-color': '#FFFFFF',\n                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',\n                    '--main-action-btn': '#8A2BE2', /* Blue Violet */\n                    '--main-action-btn-hover': '#6A0DAD', /* Darker Blue Violet */\n                    '--explore-glow-color': '#DA70D6', /* Orchid */\n                    '--explore-text-initial': 'rgba(224, 224, 255, 0.4)',\n                    '--explore-text-active': '#E0E0FF',\n                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',\n                    '--fact-card-border': 'rgba(218, 112, 214, 0.7)',\n                    '--fact-of-day-glow': '0 0 25px rgba(218, 112, 214, 0.9)',\n                    '--stellar-scan-bg-primary': '#000000',\n                    '--stellar-scan-bg-secondary': '#000005',\n                    '--stellar-scan-indicator': '#DA70D6', /* Orchid */\n                    '--stellar-scan-text': '#DA70D6' /* Orchid */\n                }\n            },\n            {\n                title: \"Black Holes: Gravity's Ultimate Trap\",\n                main: \"Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.\",\n                detail: \"They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.\",\n                anomaly: \"Anomaly Detected: The 'information paradox' suggests that information about matter falling into a black hole might be lost forever, challenging fundamental laws of physics.\",\n                theme: {\n                    '--bg-color-primary': '#000000',\n                    '--bg-color-secondary': '#100010',\n                    '--text-color': '#FFD700', /* Gold */\n                    '--footer-bg': '#000000',\n                    '--footer-text-color': '#FFEC8B', /* Light Gold */\n                    '--glass-bg': 'rgba(16, 0, 16, 0.7)',\n                    '--glass-border': 'rgba(184, 134, 11, 0.3)',\n                    '--fact-text-shadow': '0 0 15px rgba(255, 215, 0, 0.8)',\n                    '--title-color': '#FFFFFF',\n                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',\n                    '--main-action-btn': '#FF4500', /* Orange Red */\n                    '--main-action-btn-hover': '#CC3700', /* Darker Orange Red */\n                    '--explore-glow-color': '#FFD700', /* Gold */\n                    '--explore-text-initial': 'rgba(255, 215, 0, 0.4)',\n                    '--explore-text-active': '#FFD700',\n                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',\n                    '--fact-card-border': 'rgba(255, 215, 0, 0.7)',\n                    '--fact-of-day-glow': '0 0 25px rgba(255, 215, 0, 0.9)',\n                    '--stellar-scan-bg-primary': '#000000',\n                    '--stellar-scan-bg-secondary': '#000005',\n                    '--stellar-scan-indicator': '#FFD700', /* Gold */\n                    '--stellar-scan-text': '#FFD700' /* Gold */\n                }\n            },\n            {\n                title: \"Exoplanets: Worlds Beyond Our Solar System\",\n                main: \"Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.\",\n                detail: \"These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.\",\n                anomaly: \"Anomaly Detected: Some exoplanets, known as 'rogue planets', wander through space without orbiting any star, making them incredibly difficult to detect.\",\n                theme: {\n                    '--bg-color-primary': '#001A00',\n                    '--bg-color-secondary': '#002A00',\n                    '--text-color': '#CCFFCC',\n                    '--footer-bg': '#001000',\n                    '--footer-text-color': '#AADDAA',\n                    '--glass-bg': 'rgba(0, 42, 0, 0.7)',\n                    '--glass-border': 'rgba(153, 204, 153, 0.3)',\n                    '--fact-text-shadow': '0 0 15px rgba(204, 255, 204, 0.8)',\n                    '--title-color': '#FFFFFF',\n                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',\n                    '--main-action-btn': '#32CD32', /* Lime Green */\n                    '--main-action-btn-hover': '#228B22', /* Forest Green */\n                    '--explore-glow-color': '#7CFC00', /* Lawn Green */\n                    '--explore-text-initial': 'rgba(204, 255, 204, 0.4)',\n                    '--explore-text-active': '#CCFFCC',\n                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',\n                    '--fact-card-border': 'rgba(124, 252, 0, 0.7)',\n                    '--fact-of-day-glow': '0 0 25px rgba(124, 252, 0, 0.9)',\n                    '--stellar-scan-bg-primary': '#000000',\n                    '--stellar-scan-bg-secondary': '#000005',\n                    '--stellar-scan-indicator': '#7CFC00', /* Lawn Green */\n                    '--stellar-scan-text': '#7CFC00' /* Lawn Green */\n                }\n            },\n            {\n                title: \"The Cosmic Microwave Background: Echo of the Big Bang\",\n                main: \"The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.\",\n                detail: \"Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old.\",\n                anomaly: \"Anomaly Detected: The 'Axis of Evil' is an observed alignment of certain CMB features that some theories suggest could point to a connection with other universes or a preferred direction in space.\",\n                theme: {\n                    '--bg-color-primary': '#201000',\n                    '--bg-color-secondary': '#351A00',\n                    '--text-color': '#FFFACD', /* Lemon Chiffon */\n                    '--footer-bg': '#1A0D00',\n                    '--footer-text-color': '#FFDAB9', /* Peach Puff */\n                    '--glass-bg': 'rgba(50, 26, 0, 0.7)',\n                    '--glass-border': 'rgba(210, 180, 140, 0.3)',\n                    '--fact-text-shadow': '0 0 15px rgba(255, 250, 205, 0.8)',\n                    '--title-color': '#FFFFFF',\n                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',\n                    '--main-action-btn': '#D2691E', /* Chocolate */\n                    '--main-action-btn-hover': '#A0522D', /* Sienna */\n                    '--explore-glow-color': '#F4A460', /* Sandy Brown */\n                    '--explore-text-initial': 'rgba(255, 250, 205, 0.4)',\n                    '--explore-text-active': '#FFFACD',\n                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',\n                    '--fact-card-border': 'rgba(244, 164, 96, 0.7)',\n                    '--fact-of-day-glow': '0 0 25px rgba(244, 164, 96, 0.9)',\n                    '--stellar-scan-bg-primary': '#000000',\n                    '--stellar-scan-bg-secondary': '#000005',\n                    '--stellar-scan-indicator': '#F4A460', /* Sandy Brown */\n                    '--stellar-scan-text': '#F4A460' /* Sandy Brown */\n                }\n            },\n            {\n                title: \"Cosmic Riddle: The Ghostly Traveler\",\n                riddle: \"I am a traveler, without a home, drifting through the cosmos, forever alone. I don't orbit a star, yet I'm a world in my own right. What am I?\",\n                answer: \"Rogue Planet\",\n                main: \"Rogue planets are celestial objects with planetary mass that do not orbit a star and instead drift through space as independent entities.\",\n                detail: \"These mysterious worlds are incredibly difficult to detect, as they do not emit their own light and are not illuminated by a nearby star. Their existence challenges our traditional understanding of planetary systems.\",\n                anomaly: \"Anomaly Detected: The sheer number of rogue planets could vastly outnumber stars in our galaxy, making interstellar travel potentially more hazardous and offering new possibilities for life in unexpected places.\",\n                theme: {\n                    '--bg-color-primary': '#050515',\n                    '--bg-color-secondary': '#101025',\n                    '--text-color': '#E0FFFF', /* Light Cyan */\n                    '--footer-bg': '#08081A',\n                    '--footer-text-color': '#B0E0E6', /* Powder Blue */\n                    '--glass-bg': 'rgba(16, 16, 37, 0.7)',\n                    '--glass-border': 'rgba(176, 224, 230, 0.3)',\n                    '--fact-text-shadow': '0 0 15px rgba(224, 255, 255, 0.8)',\n                    '--title-color': '#FFFFFF',\n                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',\n                    '--main-action-btn': '#4682B4', /* Steel Blue */\n                    '--main-action-btn-hover': '#36648B', /* Darker Steel Blue */\n                    '--explore-glow-color': '#ADD8E6', /* Light Blue */\n                    '--explore-text-initial': 'rgba(224, 255, 255, 0.4)',\n                    '--explore-text-active': '#E0FFFF',\n                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',\n                    '--fact-card-border': 'rgba(173, 216, 230, 0.7)',\n                    '--fact-of-day-glow': '0 0 25px rgba(173, 216, 230, 0.9)',\n                    '--stellar-scan-bg-primary': '#000000',\n                    '--stellar-scan-bg-secondary': '#000005',\n                    '--stellar-scan-indicator': '#ADD8E6', /* Light Blue */\n                    '--stellar-scan-text': '#ADD8E6' /* Light Blue */\n                }\n            }\n        ];\n\n        let currentFactIndex = 3; // Set to Exoplanets fact initially\n        let factHistory = []; // To store indices of viewed facts\n\n        function applyTheme(theme) {\n            for (const [property, value] of Object.entries(theme)) {\n                root.style.setProperty(property, value);\n            }\n        }\n\n        function displayFact(index, fromHistory = false) {\n            const fact = facts[index];\n            applyTheme(fact.theme);\n            siteTitle.textContent = \"Cosmic Wonders Explorer\";\n            factTitle.textContent = fact.title;\n\n            // Reset riddle section\n            riddleSection.style.display = 'none';\n            riddleInput.value = '';\n            riddleFeedback.textContent = '';\n            deepDiveButton.style.display = 'inline-block';\n            anomalyDetectorButton.style.display = 'inline-block';\n            revealFactButton.style.display = 'inline-block'; // Show reveal button by default\n\n            if (fact.riddle) {\n                riddleSection.style.display = 'flex';\n                riddleText.textContent = fact.riddle;\n                mainFact.style.display = 'none'; // Hide main fact until riddle is solved\n                factDetail.style.display = 'none'; // Hide detail\n                deepDiveButton.style.display = 'none';\n                anomalyDetectorButton.style.display = 'none';\n                revealFactButton.style.display = 'none'; // Hide reveal button for riddles\n                solveRiddleButton.disabled = false;\n                riddleInput.disabled = false;\n                solveRiddleButton.textContent = 'Solve Riddle';\n            } else {\n                mainFact.textContent = fact.main;\n                factDetail.textContent = fact.detail;\n                mainFact.style.display = 'none'; // Initially hidden\n                factDetail.style.display = 'none'; // Initially hidden\n                mainFact.classList.remove('revealed');\n                factDetail.classList.remove('revealed');\n                deepDiveButton.textContent = 'Cosmic Alignment Scan';\n                deepDiveButton.disabled = false;\n            }\n\n            body.classList.remove('stellar-scanned');\n            stellarScanContainer.classList.remove('active');\n            stellarIndicator.style.height = '0%';\n            stellarStatus.textContent = 'Scanning...';\n\n            if (!fromHistory) {\n                addFactToHistory(index);\n            }\n            updateCosmicEchoes();\n        }\n\n        function revealFact() {\n            mainFact.style.display = 'block';\n            factDetail.style.display = 'block';\n            mainFact.classList.add('revealed');\n            factDetail.classList.add('revealed');\n            revealFactButton.style.display = 'none';\n        }\n\n        function initiateQuantumStream() {\n            quantumStreamOverlay.classList.add('active');\n            quantumStreamText.textContent = ''; // Clear previous text\n            const messages = [\n                \"Initiating Quantum Data Stream...\",\n                \"Accessing interdimensional archives...\",\n                \"Decoding cosmic frequencies...\",\n                \"New discovery incoming!\"\n            ];\n            let messageIndex = 0;\n\n            function typeMessage() {\n                if (messageIndex < messages.length) {\n                    quantumStreamText.style.width = '0%'; // Reset for typing animation\n                    quantumStreamText.textContent = messages[messageIndex];\n                    quantumStreamText.style.animation = 'typing 2s steps(20, end) forwards, blink-caret 0.75s step-end infinite';\n                    messageIndex++;\n                    setTimeout(typeMessage, 3000); // Wait for message to type, then next message\n                } else {\n                    setTimeout(() => {\n                        quantumStreamOverlay.classList.remove('active');\n                        displayRandomFact();\n                    }, 1000); // Short delay before revealing fact\n                }\n            }\n            typeMessage();\n        }\n\n        function displayRandomFact() {\n            let newIndex;\n            do {\n                newIndex = Math.floor(Math.random() * facts.length);\n            } while (newIndex === currentFactIndex);\n            currentFactIndex = newIndex;\n            displayFact(currentFactIndex);\n        }\n\n        function activateDeepDive() {\n            deepDiveButton.disabled = true;\n            const currentFact = facts[currentFactIndex];\n\n            cosmicScanOverlay.classList.add('active');\n            scanDetailOverlayText.textContent = currentFact.detail;\n\n            setTimeout(() => {\n                cosmicScanOverlay.classList.remove('active');\n                deepDiveButton.textContent = 'Scan Complete!';\n                deepDiveButton.disabled = true;\n            }, 4000); // Overlay active for 4 seconds\n        }\n\n        function activateAnomalyDetector() {\n            const currentFact = facts[currentFactIndex];\n            anomalyContent.textContent = currentFact.anomaly;\n            anomalyOverlay.classList.add('active');\n\n            setTimeout(() => {\n                anomalyOverlay.classList.remove('active');\n            }, 6000); // Anomaly message disappears after 6 seconds\n        }\n\n        function solveRiddle() {\n            const currentFact = facts[currentFactIndex];\n            const userAnswer = riddleInput.value.trim();\n\n            if (userAnswer.toLowerCase() === currentFact.answer.toLowerCase()) {\n                riddleFeedback.style.color = 'lightgreen';\n                riddleFeedback.textContent = 'Riddle Solved! Fact Revealed!';\n                mainFact.style.display = 'block';\n                factDetail.style.display = 'block';\n                mainFact.classList.add('revealed');\n                factDetail.classList.add('revealed');\n                riddleInput.disabled = true;\n                solveRiddleButton.disabled = true;\n                solveRiddleButton.textContent = 'Solved!';\n                deepDiveButton.style.display = 'inline-block';\n                anomalyDetectorButton.style.display = 'inline-block';\n            } else {\n                riddleFeedback.style.color = 'red';\n                riddleFeedback.textContent = 'Incorrect. Try again, explorer!';\n            }\n        }\n\n        // Cosmic Echoes functions\n        function addFactToHistory(index) {\n            // Remove if already in history to move to front\n            factHistory = factHistory.filter(item => item !== index);\n            factHistory.unshift(index); // Add to the beginning\n            if (factHistory.length > 7) { // Limit history to 7 facts\n                factHistory.pop();\n            }\n        }\n\n        function updateCosmicEchoes() {\n            cosmicEchoesContainer.innerHTML = ''; // Clear existing echoes\n            factHistory.forEach(index => {\n                const fact = facts[index];\n                const echo = document.createElement('div');\n                echo.classList.add('cosmic-echo');\n                if (index === currentFactIndex) {\n                    echo.classList.add('active');\n                }\n                echo.textContent = fact.title.split(':')[0].trim(); // Display only the main title part\n                echo.onclick = () => {\n                    currentFactIndex = index;\n                    displayFact(index, true); // Indicate it's from history\n                };\n                cosmicEchoesContainer.appendChild(echo);\n            });\n        }\n\n        // New Feature: Fact Focus\n        function focusFact() {\n            const currentFact = facts[currentFactIndex];\n            focusFactTitle.textContent = currentFact.title;\n            focusMainFact.textContent = currentFact.main;\n            focusFactDetail.textContent = currentFact.detail;\n            factFocusOverlay.classList.add('active');\n        }\n\n        function closeFocusFact() {\n            factFocusOverlay.classList.remove('active');\n        }\n\n        // Initial fact display\n        displayFact(currentFactIndex);\n\n        // Stardust Particle Effect\n        function createParticle(className, animationDelay) {\n            const particle = document.createElement('div');\n            particle.classList.add(className);\n            document.body.appendChild(particle);\n\n            const size = Math.random() * 10 + 5; // 5 to 15px\n            particle.style.width = `${size}px`;\n            particle.style.height = `${size}px`;\n            particle.style.left = `${Math.random() * 100}vw`;\n            particle.style.animationDelay = `${animationDelay}s`;\n            particle.style.animationDuration = `${Math.random() * 20 + 15}s`; // 15-35s\n\n            particle.addEventListener('animationend', () => {\n                particle.remove();\n            });\n        }\n\n        setInterval(() => {\n            createParticle('stardust-particle', 0);\n        }, 500);\n\n        // Cosmic Sparkle on fact card hover\n        factCard.addEventListener('mousemove', (e) => {\n            if (Math.random() < 0.1) {\n                const sparkle = document.createElement('div');\n                sparkle.classList.add('cosmic-sparkle');\n                factCard.appendChild(sparkle);\n\n                const rect = factCard.getBoundingClientRect();\n                sparkle.style.left = `${e.clientX - rect.left - 5}px`;\n                sparkle.style.top = `${e.clientY - rect.top - 5}px`;\n\n                const size = Math.random() * 8 + 2;\n                sparkle.style.width = `${size}px`;\n                sparkle.style.height = `${size}px`;\n\n                sparkle.addEventListener('animationend', () => {\n                    sparkle.remove();\n                });\n            }\n        });\n\n        // Footer update time\n        function updateFooterTime() {\n            const footer = document.querySelector('footer');\n            const now = new Date();\n            footer.innerHTML = `&copy; ${now.getFullYear()} Cosmic Wonders Explorer. Last updated: ${now.toLocaleString()}`;\n        }\n        updateFooterTime();\n        setInterval(updateFooterTime, 60000);\n    </script>\n    <footer>\n        &copy; 2025 Cosmic Wonders Explorer. Last updated: <!-- Time will be inserted by JavaScript -->\n    </footer>\n</body>\n</html>
+        .sonar-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .sonar-wave {
+            position: absolute;
+            border: 2px solid var(--sonar-wave-color);
+            border-radius: 50%;
+            animation: sonarPulse 2s ease-out forwards;
+            opacity: 0;
+        }
+
+        @keyframes sonarPulse {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        .sonar-text {
+            color: var(--sonar-text-color);
+            font-size: 2.5em;
+            text-shadow: 0 0 20px var(--sonar-text-color);
+            opacity: 0;
+            animation: textFadeIn 1s ease-out 1s forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="site-title-display">Deep Sea Wonders</h1>
+
+        <div class="fact-card">
+            <h2>Fact of the Deep</h2>
+            <p class="fact-text" id="display-fact">
+                The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,070 feet). If Mount Everest were placed in the trench, its peak would still be over a mile beneath the surface.
+            </p>
+        </div>
+
+        <button class="action-button" id="sonar-scan-button">Initiate Sonar Scan</button>
+    </div>
+
+    <div class="sonar-overlay" id="sonar-overlay">
+        <div class="sonar-wave"></div>
+        <p class="sonar-text">Scanning the Depths...</p>
+    </div>
+
+    <footer>
+        <p>Site last updated: <span id="current-time"></span></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const updateTime = () => {
+                const now = new Date();
+                document.getElementById('current-time').textContent = now.toLocaleString();
+            };
+            updateTime();
+            setInterval(updateTime, 1000); // Update every second
+
+            const sonarScanButton = document.getElementById('sonar-scan-button');
+            const sonarOverlay = document.getElementById('sonar-overlay');
+            const sonarWave = document.querySelector('.sonar-wave');
+
+            sonarScanButton.addEventListener('click', () => {
+                sonarOverlay.classList.add('active');
+                sonarWave.style.width = '0';
+                sonarWave.style.height = '0';
+                sonarWave.style.opacity = '1';
+                setTimeout(() => {
+                    sonarWave.style.width = '150%';
+                    sonarWave.style.height = '150%';
+                }, 10); // Small delay to trigger animation
+
+                setTimeout(() => {
+                    sonarOverlay.classList.remove('active');
+                    // In a real scenario, this would trigger a new fact or more details
+                    alert('Sonar detected new information! (Feature under development)');
+                }, 2500); // Duration of the sonar animation
+            });
+        });
+    </script>
+</body>
+</html>
