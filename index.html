@@ -6,29 +6,29 @@
     <title id="site-title">Cosmic Wonders Explorer</title>
     <style>
         :root {
-            /* Exoplanets Theme */
-            --bg-color-primary: #001A00;
-            --bg-color-secondary: #002A00;
-            --text-color: #CCFFCC; /* Light Green */
-            --footer-bg: #001000;
-            --footer-text-color: #AADDAA; /* Medium Light Green */
-            --glass-bg: rgba(0, 42, 0, 0.7);
-            --glass-border: rgba(153, 204, 153, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(204, 255, 204, 0.8);
+            /* Black Holes Theme */
+            --bg-color-primary: #000000;
+            --bg-color-secondary: #100010;
+            --text-color: #FFD700; /* Gold */
+            --footer-bg: #000000;
+            --footer-text-color: #FFEC8B; /* Light Gold */
+            --glass-bg: rgba(16, 0, 16, 0.7);
+            --glass-border: rgba(184, 134, 11, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #32CD32; /* Lime Green */
-            --main-action-btn-hover: #228B22; /* Forest Green */
-            --explore-glow-color: #7CFC00; /* Lawn Green */
-            --explore-text-initial: rgba(204, 255, 204, 0.4);
-            --explore-text-active: #CCFFCC;
+            --main-action-btn: #FF4500; /* Orange Red */
+            --main-action-btn-hover: #CC3700; /* Darker Orange Red */
+            --explore-glow-color: #FFD700; /* Gold */
+            --explore-text-initial: rgba(255, 215, 0, 0.4);
+            --explore-text-active: #FFD700;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(124, 252, 0, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(124, 252, 0, 0.9);
+            --fact-card-border: rgba(255, 215, 0, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9);
             --stellar-scan-bg-primary: #000000;
             --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #7CFC00; /* Lawn Green */
-            --stellar-scan-text: #7CFC00; /* Lawn Green */
+            --stellar-scan-indicator: #FFD700; /* Gold */
+            --stellar-scan-text: #FFD700; /* Gold */
 
             /* Anomaly Detector */
             --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
@@ -536,8 +536,8 @@
 
         @keyframes stream-line-flow {
             0% { transform: translateX(-100%); opacity: 0; }
-            20% { opacity: 1; }\
-            80% { opacity: 1; }\
+            20% { opacity: 1; }
+            80% { opacity: 1; }
             100% { transform: translateX(100%); opacity: 0; }
         }
 
@@ -588,15 +588,74 @@
             border-color: var(--explore-glow-color);
             box-shadow: 0 0 15px var(--explore-glow-color);
         }
+
+        /* Fact Focus Overlay */
+        .fact-focus-overlay {
+            position: fixed;
+            top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 400;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease-in-out;
+        }
+
+        .fact-focus-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .fact-focus-content {
+            background: var(--fact-card-bg);
+            border: 2px solid var(--fact-card-border);
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: var(--fact-of-day-glow);
+            color: var(--explore-text-active);
+            font-size: 2.5em;
+            text-align: center;
+            max-width: 800px;
+            transform: scale(0.8);
+            opacity: 0;
+            animation: fact-focus-reveal 0.8s forwards;
+            position: relative;
+        }
+
+        @keyframes fact-focus-reveal {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        .close-focus-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 2em;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close-focus-button:hover {
+            color: var(--main-action-btn);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title">Exoplanets: Worlds Beyond Our Solar System</h2>
-            <p id="main-fact" class="fact-text" style="display: none;">Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.</p>
+            <h2 id="fact-title">Black Holes: Gravity's Ultimate Trap</h2>
+            <p id="main-fact" class="fact-text revealed">Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.</p>
+            <p id="fact-detail" class="fact-text revealed" style="font-size: 1.2em; margin-top: 15px;">They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.</p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
                 <p id="riddle-text" class="fact-text"></p>
@@ -606,10 +665,11 @@
             </div>
 
             <div class="button-group">
-                <button class="action-button" id="revealFactButton" onclick="revealFact()">Reveal Fact</button>
+                <button class="action-button" id="revealFactButton" onclick="revealFact()" style="display: none;">Reveal Fact</button>
                 <button class="action-button" id="deepDiveButton" onclick="activateDeepDive()">Cosmic Alignment Scan</button>
                 <button class="action-button" id="anomalyDetectorButton" onclick="activateAnomalyDetector()">Cosmic Anomaly Detector</button>
                 <button class="action-button" id="newFactButton" onclick="initiateQuantumStream()">New Discovery</button>
+                <button class="action-button" id="focusFactButton" onclick="focusFact()">Focus Fact</button>
             </div>
         </div>
     </div>
@@ -654,6 +714,16 @@
         <!-- Cosmic Echoes will be dynamically added here -->
     </div>
 
+    <!-- Fact Focus Overlay -->
+    <div class="fact-focus-overlay" id="factFocusOverlay">
+        <div class="fact-focus-content">
+            <button class="close-focus-button" onclick="closeFocusFact()">&times;</button>
+            <h2 id="focus-fact-title"></h2>
+            <p id="focus-main-fact"></p>
+            <p id="focus-fact-detail" style="font-size: 0.8em; margin-top: 15px;"></p>
+        </div>
+    </div>
+
     <script>
         const siteTitle = document.getElementById('site-title');
         const factTitle = document.getElementById('fact-title');
@@ -681,6 +751,11 @@
         const quantumStreamOverlay = document.getElementById('quantumStreamOverlay');
         const quantumStreamText = document.getElementById('quantumStreamText');
         const cosmicEchoesContainer = document.getElementById('cosmicEchoesContainer');
+        const factFocusOverlay = document.getElementById('factFocusOverlay');
+        const focusFactTitle = document.getElementById('focus-fact-title');
+        const focusMainFact = document.getElementById('focus-main-fact');
+        const focusFactDetail = document.getElementById('focus-fact-detail');
+
 
         const facts = [
             {
@@ -713,26 +788,47 @@
                     '--stellar-scan-text': '#FF00FF' /* Magenta */
                 }
             },
-            {\n                title: "Neutron Stars: Cosmic Powerhouses",\n                main: "Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.",\n                detail: "These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.",\n                anomaly: "Anomaly Detected: Some neutron stars, known as magnetars, possess magnetic fields trillions of times stronger than Earth\'s, capable of distorting spacetime.",\n                theme: {\n                    \'--bg-color-primary\': \'#0A0A1A\',\n                    \'--bg-color-secondary\': \'#1A0A2A\',\n                    \'--text-color\': \'#E0E0FF\',\n                    \'--footer-bg\': \'#0F0F1A\',\n                    \'--footer-text-color\': \'#C0C0E0\',\n                    \'--glass-bg\': \'rgba(26, 10, 42, 0.7)\',\n                    \'--glass-border\': \'rgba(160, 160, 192, 0.3)\',\n                    \'--fact-text-shadow\': \'0 0 15px rgba(224, 224, 255, 0.8)\',\n                    \'--title-color\': \'#FFFFFF\',\n                    \'--title-shadow\': \'0 0 25px rgba(255, 255, 255, 0.9)\',\n                    \'--main-action-btn\': \'#8A2BE2\', /* Blue Violet */\n                    \'--main-action-btn-hover\': \'#6A0DAD\', /* Darker Blue Violet */\n                    \'--explore-glow-color\': \'#DA70D6\', /* Orchid */\n                    \'--explore-text-initial\': \'rgba(224, 224, 255, 0.4)\',\n                    \'--explore-text-active\': \'#E0E0FF\',\n                    \'--fact-card-bg\': \'rgba(0, 0, 0, 0.8)\',\n                    \'--fact-card-border\': \'rgba(218, 112, 214, 0.7)\',\n                    \'--fact-of-day-glow\': \'0 0 25px rgba(218, 112, 214, 0.9)\',\n                    \'--stellar-scan-bg-primary\': \'#000000\',\n                    \'--stellar-scan-bg-secondary\': \'#000005\',\n                    \'--stellar-scan-indicator\': \'#00FFFF\', /* Cyan */\n                    \'--stellar-scan-text\': \'#00FFFF\' /* Cyan */\n                }\n            },\n            {\n                title: "The Observable Universe: Vast and Mysterious",\n                main: "The observable universe is estimated to be about 93 billion light-years in diameter, containing billions of galaxies.",\n                detail: "Despite its immense size, this is only the portion of the universe from which light has had time to reach us since the Big Bang. The true size of the universe remains unknown.",\n                anomaly: "Anomaly Detected: The 'Cold Spot' in the CMB is an unusually large and cold region, potentially indicating a massive void or even evidence of a parallel universe.",\n                theme: {\n                    '--bg-color-primary': '#000020',\n                    '--bg-color-secondary': '#000035',\n                    '--text-color': '#CCEEFF',\n                    '--footer-bg': '#00001A',\n                    '--footer-text-color': '#AACCFF',\n                    '--glass-bg': 'rgba(0, 0, 50, 0.7)',\n                    '--glass-border': 'rgba(153, 187, 221, 0.3)',
-                    '--fact-text-shadow': '0 0 15px rgba(204, 238, 255, 0.8)',
+            {
+                title: "Neutron Stars: Cosmic Powerhouses",
+                main: "Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.",
+                detail: "These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.",
+                anomaly: "Anomaly Detected: Some neutron stars, known as magnetars, possess magnetic fields trillions of times stronger than Earth's, capable of distorting spacetime.",
+                theme: {
+                    '--bg-color-primary': '#0A0A1A',
+                    '--bg-color-secondary': '#1A0A2A',
+                    '--text-color': '#E0E0FF',
+                    '--footer-bg': '#0F0F1A',
+                    '--footer-text-color': '#C0C0E0',
+                    '--glass-bg': 'rgba(26, 10, 42, 0.7)',
+                    '--glass-border': 'rgba(160, 160, 192, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(224, 224, 255, 0.8)',
                     '--title-color': '#FFFFFF',
                     '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
-                    '--main-action-btn': '#4169E1', /* Royal Blue */
-                    '--main-action-btn-hover': '#2A4BCC', /* Darker Royal Blue */
-                    '--explore-glow-color': '#87CEFA', /* Light Sky Blue */
-                    '--explore-text-initial': 'rgba(204, 238, 255, 0.4)',
-                    '--explore-text-active': '#CCEEFF',
+                    '--main-action-btn': '#8A2BE2', /* Blue Violet */
+                    '--main-action-btn-hover': '#6A0DAD', /* Darker Blue Violet */
+                    '--explore-glow-color': '#DA70D6', /* Orchid */
+                    '--explore-text-initial': 'rgba(224, 224, 255, 0.4)',
+                    '--explore-text-active': '#E0E0FF',
                     '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
-                    '--fact-card-border': 'rgba(135, 206, 250, 0.7)',
-                    '--fact-of-day-glow': '0 0 25px rgba(135, 206, 250, 0.9)',
+                    '--fact-card-border': 'rgba(218, 112, 214, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(218, 112, 214, 0.9)',
                     '--stellar-scan-bg-primary': '#000000',
                     '--stellar-scan-bg-secondary': '#000005',
-                    '--stellar-scan-indicator': '#87CEFA', /* Light Sky Blue */
-                    '--stellar-scan-text': '#87CEFA' /* Light Sky Blue */
+                    '--stellar-scan-indicator': '#DA70D6', /* Orchid */
+                    '--stellar-scan-text': '#DA70D6' /* Orchid */
                 }
             },
-            {\n                title: "Black Holes: Gravity\'s Ultimate Trap",\n                main: "Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.",\n                detail: "They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.",\n                anomaly: "Anomaly Detected: The 'information paradox' suggests that information about matter falling into a black hole might be lost forever, challenging fundamental laws of physics.",\n                theme: {\n                    '--bg-color-primary': '#000000',\n                    '--bg-color-secondary': '#100010',\n                    '--text-color': '#FFD700', /* Gold */
-                    '--footer-bg': '#000000',\n                    '--footer-text-color': '#FFEC8B', /* Light Gold */
+            {
+                title: "Black Holes: Gravity's Ultimate Trap",
+                main: "Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.",
+                detail: "They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.",
+                anomaly: "Anomaly Detected: The 'information paradox' suggests that information about matter falling into a black hole might be lost forever, challenging fundamental laws of physics.",
+                theme: {
+                    '--bg-color-primary': '#000000',
+                    '--bg-color-secondary': '#100010',
+                    '--text-color': '#FFD700', /* Gold */
+                    '--footer-bg': '#000000',
+                    '--footer-text-color': '#FFEC8B', /* Light Gold */
                     '--glass-bg': 'rgba(16, 0, 16, 0.7)',
                     '--glass-border': 'rgba(184, 134, 11, 0.3)',
                     '--fact-text-shadow': '0 0 15px rgba(255, 215, 0, 0.8)',
@@ -751,7 +847,19 @@
                     '--stellar-scan-indicator': '#FFD700', /* Gold */
                     '--stellar-scan-text': '#FFD700' /* Gold */
                 }
-            },\n            {\n                title: "Exoplanets: Worlds Beyond Our Solar System",\n                main: "Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.",\n                detail: "These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.",\n                anomaly: "Anomaly Detected: Some exoplanets, known as 'rogue planets', wander through space without orbiting any star, making them incredibly difficult to detect.",\n                theme: {\n                    '--bg-color-primary': '#001A00',\n                    '--bg-color-secondary': '#002A00',\n                    '--text-color': '#CCFFCC',\n                    '--footer-bg': '#001000',\n                    '--footer-text-color': '#AADDAA',\n                    '--glass-bg': 'rgba(0, 42, 0, 0.7)',
+            },
+            {
+                title: "Exoplanets: Worlds Beyond Our Solar System",
+                main: "Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.",
+                detail: "These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.",
+                anomaly: "Anomaly Detected: Some exoplanets, known as 'rogue planets', wander through space without orbiting any star, making them incredibly difficult to detect.",
+                theme: {
+                    '--bg-color-primary': '#001A00',
+                    '--bg-color-secondary': '#002A00',
+                    '--text-color': '#CCFFCC',
+                    '--footer-bg': '#001000',
+                    '--footer-text-color': '#AADDAA',
+                    '--glass-bg': 'rgba(0, 42, 0, 0.7)',
                     '--glass-border': 'rgba(153, 204, 153, 0.3)',
                     '--fact-text-shadow': '0 0 15px rgba(204, 255, 204, 0.8)',
                     '--title-color': '#FFFFFF',
@@ -769,8 +877,18 @@
                     '--stellar-scan-indicator': '#7CFC00', /* Lawn Green */
                     '--stellar-scan-text': '#7CFC00' /* Lawn Green */
                 }
-            },\n            {\n                title: "The Cosmic Microwave Background: Echo of the Big Bang",\n                main: "The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.",\n                detail: "Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old.",\n                anomaly: "Anomaly Detected: The 'Axis of Evil' is an observed alignment of certain CMB features that some theories suggest could point to a connection with other universes or a preferred direction in space.",\n                theme: {\n                    '--bg-color-primary': '#201000',\n                    '--bg-color-secondary': '#351A00',\n                    '--text-color': '#FFFACD', /* Lemon Chiffon */
-                    '--footer-bg': '#1A0D00',\n                    '--footer-text-color': '#FFDAB9', /* Peach Puff */
+            },
+            {
+                title: "The Cosmic Microwave Background: Echo of the Big Bang",
+                main: "The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.",
+                detail: "Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old.",
+                anomaly: "Anomaly Detected: The 'Axis of Evil' is an observed alignment of certain CMB features that some theories suggest could point to a connection with other universes or a preferred direction in space.",
+                theme: {
+                    '--bg-color-primary': '#201000',
+                    '--bg-color-secondary': '#351A00',
+                    '--text-color': '#FFFACD', /* Lemon Chiffon */
+                    '--footer-bg': '#1A0D00',
+                    '--footer-text-color': '#FFDAB9', /* Peach Puff */
                     '--glass-bg': 'rgba(50, 26, 0, 0.7)',
                     '--glass-border': 'rgba(210, 180, 140, 0.3)',
                     '--fact-text-shadow': '0 0 15px rgba(255, 250, 205, 0.8)',
@@ -789,8 +907,20 @@
                     '--stellar-scan-indicator': '#F4A460', /* Sandy Brown */
                     '--stellar-scan-text': '#F4A460' /* Sandy Brown */
                 }
-            },\n            {\n                title: "Cosmic Riddle: The Ghostly Traveler",\n                riddle: "I am a traveler, without a home, drifting through the cosmos, forever alone. I don\'t orbit a star, yet I\'m a world in my own right. What am I?",\n                answer: "Rogue Planet",\n                main: "Rogue planets are celestial objects with planetary mass that do not orbit a star and instead drift through space as independent entities.",\n                detail: "These mysterious worlds are incredibly difficult to detect, as they do not emit their own light and are not illuminated by a nearby star. Their existence challenges our traditional understanding of planetary systems.",\n                anomaly: "Anomaly Detected: The sheer number of rogue planets could vastly outnumber stars in our galaxy, making interstellar travel potentially more hazardous and offering new possibilities for life in unexpected places.",\n                theme: {\n                    '--bg-color-primary': '#050515',\n                    '--bg-color-secondary': '#101025',\n                    '--text-color': '#E0FFFF', /* Light Cyan */
-                    '--footer-bg': '#08081A',\n                    '--footer-text-color': '#B0E0E6', /* Powder Blue */
+            },
+            {
+                title: "Cosmic Riddle: The Ghostly Traveler",
+                riddle: "I am a traveler, without a home, drifting through the cosmos, forever alone. I don't orbit a star, yet I'm a world in my own right. What am I?",
+                answer: "Rogue Planet",
+                main: "Rogue planets are celestial objects with planetary mass that do not orbit a star and instead drift through space as independent entities.",
+                detail: "These mysterious worlds are incredibly difficult to detect, as they do not emit their own light and are not illuminated by a nearby star. Their existence challenges our traditional understanding of planetary systems.",
+                anomaly: "Anomaly Detected: The sheer number of rogue planets could vastly outnumber stars in our galaxy, making interstellar travel potentially more hazardous and offering new possibilities for life in unexpected places.",
+                theme: {
+                    '--bg-color-primary': '#050515',
+                    '--bg-color-secondary': '#101025',
+                    '--text-color': '#E0FFFF', /* Light Cyan */
+                    '--footer-bg': '#08081A',
+                    '--footer-text-color': '#B0E0E6', /* Powder Blue */
                     '--glass-bg': 'rgba(16, 16, 37, 0.7)',
                     '--glass-border': 'rgba(176, 224, 230, 0.3)',
                     '--fact-text-shadow': '0 0 15px rgba(224, 255, 255, 0.8)',
@@ -812,7 +942,7 @@
             }
         ];
 
-        let currentFactIndex = 1; // Set to Neutron Stars fact initially
+        let currentFactIndex = 2; // Set to Black Holes fact initially
         let factHistory = []; // To store indices of viewed facts
 
         function applyTheme(theme) {
@@ -985,6 +1115,19 @@
                 };
                 cosmicEchoesContainer.appendChild(echo);
             });
+        }
+
+        // New Feature: Fact Focus
+        function focusFact() {
+            const currentFact = facts[currentFactIndex];
+            focusFactTitle.textContent = currentFact.title;
+            focusMainFact.textContent = currentFact.main;
+            focusFactDetail.textContent = currentFact.detail;
+            factFocusOverlay.classList.add('active');
+        }
+
+        function closeFocusFact() {
+            factFocusOverlay.classList.remove('active');
         }
 
         // Initial fact display
