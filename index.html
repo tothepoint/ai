@@ -7,30 +7,30 @@
     <style>
         :root {
             /* Default Theme - will be overridden by JavaScript */
-            --bg-color-primary: #0A0A1A;
-            --bg-color-secondary: #1A0A2A;
-            --text-color: #E0E0FF;
-            --footer-bg: #0F0F1A; /* Slightly lighter for better visibility */
-            --footer-text-color: #C0C0E0; /* More vibrant */
-            --glass-bg: rgba(26, 10, 42, 0.7);
-            --glass-border: rgba(160, 160, 192, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(224, 224, 255, 0.8);
+            --bg-color-primary: #000000;
+            --bg-color-secondary: #100010;
+            --text-color: #FFD700; /* Gold */
+            --footer-bg: #000000;
+            --footer-text-color: #FFEC8B; /* Light Gold */
+            --glass-bg: rgba(16, 0, 16, 0.7);
+            --glass-border: rgba(184, 134, 11, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #8A2BE2; /* Blue Violet */
-            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
-            --explore-glow-color: #DA70D6; /* Orchid */
-            --explore-text-initial: rgba(224, 224, 255, 0.4);
-            --explore-text-active: #E0E0FF;
+            --main-action-btn: #FF4500; /* Orange Red */
+            --main-action-btn-hover: #CC3700; /* Darker Orange Red */
+            --explore-glow-color: #FFD700; /* Gold */
+            --explore-text-initial: rgba(255, 215, 0, 0.4);
+            --explore-text-active: #FFD700;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(218, 112, 214, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(218, 112, 214, 0.9);
+            --fact-card-border: rgba(255, 215, 0, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9);
 
             /* Stellar Scan Mode */
             --stellar-scan-bg-primary: #000000;
             --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #00FFFF; /* Cyan */
-            --stellar-scan-text: #00FFFF;
+            --stellar-scan-indicator: #FFD700; /* Gold */
+            --stellar-scan-text: #FFD700; /* Gold */
 
             /* Anomaly Detector */
             --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
@@ -415,8 +415,8 @@
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title">Neutron Stars: Cosmic Powerhouses</h2>
-            <p id="main-fact" class="fact-text revealed">Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.</p>
+            <h2 id="fact-title">Black Holes: Gravity's Ultimate Trap</h2>
+            <p id="main-fact" class="fact-text revealed">Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.</p>
             <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;"></p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
@@ -684,7 +684,7 @@
             }
         ];
 
-        let currentFactIndex = 1; // Set to Neutron Stars fact initially
+        let currentFactIndex = 3; // Set to Black Holes fact initially
 
         function applyTheme(theme) {
             for (const [property, value] of Object.entries(theme)) {
@@ -790,7 +790,7 @@
             }
         }
 
-        // Initial fact display (set to Neutron Stars fact)
+        // Initial fact display (set to Black Holes fact)
         displayFact(currentFactIndex);
 
         // Stardust Particle Effect
