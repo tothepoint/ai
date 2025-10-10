@@ -47,8 +47,12 @@ jobs:
           EOF
           )
 
+          echo "---- PLANNER PROMPT: -----"
+          echo "$PLANNER_PROMPT"
+          echo "---- END OF PLANNER PROMPT: -----"
+
           # Pass files and the system prompt to Gemini
-          gemini "$PLANNER_PROMPT" -f GEMINI.MD index.html \
+          gemini $PLANNER_PROMPT -f GEMINI.MD index.html \
             -m $GEMINI_MODEL -o json --yolo > plan_output.json
 
           # Extract the JSON response and check for task_found: true
@@ -100,7 +104,7 @@ jobs:
           echo "$GEMINI_PROMPT"
           
           # Use Gemini CLI to generate or update content
-          gemini "$GEMINI_PROMPT" \
+          gemini $GEMINI_PROMPT \
             -m gemini-2.5-flash \
             -o json \
             --yolo > output.json
