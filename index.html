@@ -6,31 +6,29 @@
     <title id="site-title">Cosmic Wonders Explorer</title>
     <style>
         :root {
-            /* Default Theme - will be overridden by JavaScript */
-            --bg-color-primary: #201000;
-            --bg-color-secondary: #351A00;
-            --text-color: #FFFACD; /* Lemon Chiffon */
-            --footer-bg: #1A0D00;
-            --footer-text-color: #FFDAB9; /* Peach Puff */
-            --glass-bg: rgba(50, 26, 0, 0.7);
-            --glass-border: rgba(210, 180, 140, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(255, 250, 205, 0.8);
+            /* Black Holes Theme */
+            --bg-color-primary: #000000;
+            --bg-color-secondary: #100010;
+            --text-color: #FFD700; /* Gold */
+            --footer-bg: #000000;
+            --footer-text-color: #FFEC8B; /* Light Gold */
+            --glass-bg: rgba(16, 0, 16, 0.7);
+            --glass-border: rgba(184, 134, 11, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #D2691E; /* Chocolate */
-            --main-action-btn-hover: #A0522D; /* Sienna */
-            --explore-glow-color: #F4A460; /* Sandy Brown */
-            --explore-text-initial: rgba(255, 250, 205, 0.4);
-            --explore-text-active: #FFFACD;
+            --main-action-btn: #FF4500; /* Orange Red */
+            --main-action-btn-hover: #CC3700; /* Darker Orange Red */
+            --explore-glow-color: #FFD700; /* Gold */
+            --explore-text-initial: rgba(255, 215, 0, 0.4);
+            --explore-text-active: #FFD700;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(244, 164, 96, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(244, 164, 96, 0.9);
-
-            /* Stellar Scan Mode */
+            --fact-card-border: rgba(255, 215, 0, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9);
             --stellar-scan-bg-primary: #000000;
             --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #F4A460; /* Sandy Brown */
-            --stellar-scan-text: #F4A460; /* Sandy Brown */
+            --stellar-scan-indicator: #FFD700; /* Gold */
+            --stellar-scan-text: #FFD700; /* Gold */
 
             /* Anomaly Detector */
             --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
@@ -282,14 +280,25 @@
             15% { opacity: 0.6; transform: translate(10vw, 80vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 95vh) scale(0.5); }
             45% { opacity: 0.7; transform: translate(50vw, 75vh) scale(1.0); }
-            60% { opacity: 0.5; transform: translate(70vw, 90vh) scale(0.7); }\n            75% { opacity: 0.8; transform: translate(90vw, 70vh) scale(1.1); }\n            100% { opacity: 0; transform: translate(100vw, 100vh) scale(0.3); }\n        }\n\n        @keyframes shimmer {\n            0% { transform: scale(1); opacity: 0.6; }\n            100% { transform: scale(1.05); opacity: 0.9; }\n        }\n\n        /* Stellar Scan Feature */
+            60% { opacity: 0.5; transform: translate(70vw, 90vh) scale(0.7); }
+            75% { opacity: 0.8; transform: translate(90vw, 70vh) scale(1.1); }
+            100% { opacity: 0; transform: translate(100vw, 100vh) scale(0.3); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.05); opacity: 0.9; }
+        }
+
+        /* Stellar Scan Feature */
         .stellar-scan-container {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             display: none; /* Hidden by default */
-            flex-direction: column;\n            align-items: center;
+            flex-direction: column;
+            align-items: center;
             gap: 10px;
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
@@ -537,9 +546,9 @@
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title"></h2>
-            <p id="main-fact" class="fact-text"></p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;"></p>
+            <h2 id="fact-title">Black Holes: Gravity's Ultimate Trap</h2>
+            <p id="main-fact" class="fact-text" style="display: none;">Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.</p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
                 <p id="riddle-text" class="fact-text"></p>
@@ -549,7 +558,7 @@
             </div>
 
             <div class="button-group">
-                <button class="action-button" id="revealFactButton" onclick="revealFact()" style="display: none;">Reveal Fact</button>
+                <button class="action-button" id="revealFactButton" onclick="revealFact()">Reveal Fact</button>
                 <button class="action-button" id="deepDiveButton" onclick="activateDeepDive()">Cosmic Alignment Scan</button>
                 <button class="action-button" id="anomalyDetectorButton" onclick="activateAnomalyDetector()">Cosmic Anomaly Detector</button>
                 <button class="action-button" id="newFactButton" onclick="initiateQuantumStream()">New Discovery</button>
@@ -835,7 +844,7 @@
             }
         ];
 
-        let currentFactIndex = Math.floor(Math.random() * facts.length); // Random fact initially
+        let currentFactIndex = 3; // Set to Black Holes fact initially
 
         function applyTheme(theme) {
             for (const [property, value] of Object.entries(theme)) {
