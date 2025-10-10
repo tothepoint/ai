@@ -6,29 +6,29 @@
     <title id="site-title">Cosmic Wonders Explorer</title>
     <style>
         :root {
-            /* Black Holes Theme */
-            --bg-color-primary: #000000;
-            --bg-color-secondary: #100010;
-            --text-color: #FFD700; /* Gold */
-            --footer-bg: #000000;
-            --footer-text-color: #FFEC8B; /* Light Gold */
-            --glass-bg: rgba(16, 0, 16, 0.7);
-            --glass-border: rgba(184, 134, 11, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            /* Exoplanets Theme */
+            --bg-color-primary: #001A00;
+            --bg-color-secondary: #002A00;
+            --text-color: #CCFFCC; /* Light Green */
+            --footer-bg: #001000;
+            --footer-text-color: #AADDAA; /* Medium Light Green */
+            --glass-bg: rgba(0, 42, 0, 0.7);
+            --glass-border: rgba(153, 204, 153, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(204, 255, 204, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #FF4500; /* Orange Red */
-            --main-action-btn-hover: #CC3700; /* Darker Orange Red */
-            --explore-glow-color: #FFD700; /* Gold */
-            --explore-text-initial: rgba(255, 215, 0, 0.4);
-            --explore-text-active: #FFD700;
+            --main-action-btn: #32CD32; /* Lime Green */
+            --main-action-btn-hover: #228B22; /* Forest Green */
+            --explore-glow-color: #7CFC00; /* Lawn Green */
+            --explore-text-initial: rgba(204, 255, 204, 0.4);
+            --explore-text-active: #CCFFCC;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(255, 215, 0, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9);
+            --fact-card-border: rgba(124, 252, 0, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(124, 252, 0, 0.9);
             --stellar-scan-bg-primary: #000000;
             --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #FFD700; /* Gold */
-            --stellar-scan-text: #FFD700; /* Gold */
+            --stellar-scan-indicator: #7CFC00; /* Lawn Green */
+            --stellar-scan-text: #7CFC00; /* Lawn Green */
 
             /* Anomaly Detector */
             --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
@@ -163,7 +163,7 @@
 
         @keyframes textFadeIn {
             from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            to { opacity: 1; transform: translateY(0); }\
         }
 
         .button-group {
@@ -540,15 +540,63 @@
             80% { opacity: 1; }
             100% { transform: translateX(100%); opacity: 0; }
         }
+
+        /* Cosmic Echoes Feature */
+        .cosmic-echoes-container {
+            position: fixed;
+            bottom: 80px; /* Above the footer */
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            padding: 10px 20px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 20px;
+            box-shadow: 0 0 15px rgba(124, 252, 0, 0.5); /* Glow matching exoplanet theme */
+            z-index: 10;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(124, 252, 0, 0.3);
+            max-width: 90%;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .cosmic-echo {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 8px 15px;
+            color: var(--text-color);
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.7;
+            flex-shrink: 0; /* Prevent shrinking */
+        }
+
+        .cosmic-echo:hover {
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 1;
+            transform: translateY(-3px);
+            box-shadow: 0 0 10px var(--explore-glow-color);
+        }
+
+        .cosmic-echo.active {
+            background: var(--main-action-btn);
+            color: #FFFFFF;
+            opacity: 1;
+            border-color: var(--explore-glow-color);
+            box-shadow: 0 0 15px var(--explore-glow-color);
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title">Black Holes: Gravity's Ultimate Trap</h2>
-            <p id="main-fact" class="fact-text" style="display: none;">Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.</p>
+            <h2 id="fact-title">Exoplanets: Worlds Beyond Our Solar System</h2>
+            <p id="main-fact" class="fact-text" style="display: none;">Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.</p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
                 <p id="riddle-text" class="fact-text"></p>
@@ -602,6 +650,10 @@
         </div>
     </div>
 
+    <div class="cosmic-echoes-container" id="cosmicEchoesContainer">
+        <!-- Cosmic Echoes will be dynamically added here -->
+    </div>
+
     <script>
         const siteTitle = document.getElementById('site-title');
         const factTitle = document.getElementById('fact-title');
@@ -628,6 +680,7 @@
         const scanDetailOverlayText = document.getElementById('scanDetailOverlayText');
         const quantumStreamOverlay = document.getElementById('quantumStreamOverlay');
         const quantumStreamText = document.getElementById('quantumStreamText');
+        const cosmicEchoesContainer = document.getElementById('cosmicEchoesContainer');
 
         const facts = [
             {
@@ -844,7 +897,8 @@
             }
         ];
 
-        let currentFactIndex = 3; // Set to Black Holes fact initially
+        let currentFactIndex = 4; // Set to Exoplanets fact initially
+        let factHistory = []; // To store indices of viewed facts
 
         function applyTheme(theme) {
             for (const [property, value] of Object.entries(theme)) {
@@ -852,7 +906,7 @@
             }
         }
 
-        function displayFact(index) {
+        function displayFact(index, fromHistory = false) {
             const fact = facts[index];
             applyTheme(fact.theme);
             siteTitle.textContent = "Cosmic Wonders Explorer";
@@ -892,6 +946,11 @@
             stellarScanContainer.classList.remove('active');
             stellarIndicator.style.height = '0%';
             stellarStatus.textContent = 'Scanning...';
+
+            if (!fromHistory) {
+                addFactToHistory(index);
+            }
+            updateCosmicEchoes();
         }
 
         function revealFact() {
@@ -983,6 +1042,34 @@
                 riddleFeedback.style.color = 'red';
                 riddleFeedback.textContent = 'Incorrect. Try again, explorer!';
             }
+        }
+
+        // Cosmic Echoes functions
+        function addFactToHistory(index) {
+            // Remove if already in history to move to front
+            factHistory = factHistory.filter(item => item !== index);
+            factHistory.unshift(index); // Add to the beginning
+            if (factHistory.length > 7) { // Limit history to 7 facts
+                factHistory.pop();
+            }
+        }
+
+        function updateCosmicEchoes() {
+            cosmicEchoesContainer.innerHTML = ''; // Clear existing echoes
+            factHistory.forEach(index => {
+                const fact = facts[index];
+                const echo = document.createElement('div');
+                echo.classList.add('cosmic-echo');
+                if (index === currentFactIndex) {
+                    echo.classList.add('active');
+                }
+                echo.textContent = fact.title.split(':')[0].trim(); // Display only the main title part
+                echo.onclick = () => {
+                    currentFactIndex = index;
+                    displayFact(index, true); // Indicate it's from history
+                };
+                cosmicEchoesContainer.appendChild(echo);
+            });
         }
 
         // Initial fact display
