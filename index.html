@@ -7,30 +7,30 @@
     <style>
         :root {
             /* Default Theme - will be overridden by JavaScript */
-            --bg-color-primary: #000000;
-            --bg-color-secondary: #100010;
-            --text-color: #FFD700; /* Gold */
-            --footer-bg: #000000;
-            --footer-text-color: #FFEC8B; /* Light Gold */
-            --glass-bg: rgba(16, 0, 16, 0.7);
-            --glass-border: rgba(184, 134, 11, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(255, 215, 0, 0.8);
+            --bg-color-primary: #201000;
+            --bg-color-secondary: #351A00;
+            --text-color: #FFFACD; /* Lemon Chiffon */
+            --footer-bg: #1A0D00;
+            --footer-text-color: #FFDAB9; /* Peach Puff */
+            --glass-bg: rgba(50, 26, 0, 0.7);
+            --glass-border: rgba(210, 180, 140, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(255, 250, 205, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #FF4500; /* Orange Red */
-            --main-action-btn-hover: #CC3700; /* Darker Orange Red */
-            --explore-glow-color: #FFD700; /* Gold */
-            --explore-text-initial: rgba(255, 215, 0, 0.4);
-            --explore-text-active: #FFD700;
+            --main-action-btn: #D2691E; /* Chocolate */
+            --main-action-btn-hover: #A0522D; /* Sienna */
+            --explore-glow-color: #F4A460; /* Sandy Brown */
+            --explore-text-initial: rgba(255, 250, 205, 0.4);
+            --explore-text-active: #FFFACD;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(255, 215, 0, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(255, 215, 0, 0.9);
+            --fact-card-border: rgba(244, 164, 96, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(244, 164, 96, 0.9);
 
             /* Stellar Scan Mode */
             --stellar-scan-bg-primary: #000000;
             --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #FFD700; /* Gold */
-            --stellar-scan-text: #FFD700; /* Gold */
+            --stellar-scan-indicator: #F4A460; /* Sandy Brown */
+            --stellar-scan-text: #F4A460; /* Sandy Brown */
 
             /* Anomaly Detector */
             --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
@@ -47,6 +47,9 @@
 
             /* Cosmic Alignment Scan */
             --scan-line-color: #00FFFF; /* Cyan */
+            --scan-overlay-bg: rgba(0, 0, 0, 0.95);
+            --scan-overlay-text: #00FFFF;
+            --scan-overlay-glow: 0 0 30px #00FFFF;
         }
 
         body {
@@ -389,25 +392,76 @@
             100% { transform: scale(1); opacity: 1; }
         }
 
-        /* Cosmic Alignment Scan Feature */
-        .scan-line {
-            position: absolute;
+        /* Cosmic Alignment Scan Feature - Full Screen Overlay */
+        .scan-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: var(--scan-line-color);
-            box-shadow: 0 0 15px var(--scan-line-color);
+            height: 100%;
+            background: var(--scan-overlay-bg);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 150;
             opacity: 0;
-            animation: scan-animation 3s forwards;
-            z-index: 5;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
         }
 
-        @keyframes scan-animation {
-            0% { top: 0%; opacity: 0; }
-            10% { opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
+        .scan-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .scan-overlay-content {
+            color: var(--scan-overlay-text);
+            font-size: 2.5em;
+            text-shadow: var(--scan-overlay-glow);
+            animation: text-scan 2s infinite alternate;
+            margin-bottom: 30px;
+        }
+
+        .scan-detail-text {
+            font-size: 1.5em;
+            color: var(--scan-overlay-text);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: detail-reveal 1s forwards 2s; /* Delay reveal */
+            max-width: 80%;
+            line-height: 1.5;
+        }
+
+        @keyframes text-scan {
+            0% { opacity: 0.5; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.05); }
+        }
+
+        @keyframes detail-reveal {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .scan-progress-bar {
+            width: 300px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+
+        .scan-progress {
+            width: 0%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, var(--scan-line-color));
+            animation: progress-fill 3s forwards;
+        }
+
+        @keyframes progress-fill {
+            0% { width: 0%; }
+            100% { width: 100%; }
         }
     </style>
 </head>
@@ -415,8 +469,8 @@
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title">Black Holes: Gravity's Ultimate Trap</h2>
-            <p id="main-fact" class="fact-text revealed">Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.</p>
+            <h2 id="fact-title">Cosmic Microwave Background: Echo of the Big Bang</h2>
+            <p id="main-fact" class="fact-text revealed">The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.</p>
             <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;"></p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
@@ -447,6 +501,17 @@
         </div>
     </div>
 
+    <!-- New Cosmic Alignment Scan Overlay -->
+    <div class="scan-overlay" id="cosmicScanOverlay">
+        <div class="scan-overlay-content">
+            Initiating Cosmic Alignment Scan...
+        </div>
+        <div class="scan-progress-bar">
+            <div class="scan-progress"></div>
+        </div>
+        <p id="scanDetailOverlayText" class="scan-detail-text"></p>
+    </div>
+
     <script>
         const siteTitle = document.getElementById('site-title');
         const factTitle = document.getElementById('fact-title');
@@ -468,6 +533,8 @@
         const riddleFeedback = document.getElementById('riddle-feedback');
         const body = document.body;
         const root = document.documentElement;
+        const cosmicScanOverlay = document.getElementById('cosmicScanOverlay');
+        const scanDetailOverlayText = document.getElementById('scanDetailOverlayText');
 
         const facts = [
             {
@@ -684,7 +751,7 @@
             }
         ];
 
-        let currentFactIndex = 3; // Set to Black Holes fact initially
+        let currentFactIndex = 5; // Set to Cosmic Microwave Background fact initially
 
         function applyTheme(theme) {
             for (const [property, value] of Object.entries(theme)) {
@@ -742,22 +809,16 @@
 
         function activateDeepDive() {
             deepDiveButton.disabled = true;
-            factDetail.style.display = 'none'; // Hide detail before scan
+            const currentFact = facts[currentFactIndex];
 
-            const scanLine = document.createElement('div');
-            scanLine.classList.add('scan-line');
-            factCard.appendChild(scanLine);
+            cosmicScanOverlay.classList.add('active');
+            scanDetailOverlayText.textContent = currentFact.detail;
 
-            mainFact.classList.remove('revealed'); // Dim main fact during scan
-
-            scanLine.addEventListener('animationend', () => {
-                scanLine.remove();
-                mainFact.classList.add('revealed'); // Re-reveal main fact after scan
-                factDetail.style.display = 'block'; // Reveal the detail
-                factDetail.classList.add('revealed'); // Apply revealed class to detail
+            setTimeout(() => {
+                cosmicScanOverlay.classList.remove('active');
                 deepDiveButton.textContent = 'Scan Complete!';
                 deepDiveButton.disabled = true;
-            });
+            }, 4000); // Overlay active for 4 seconds
         }
 
         function activateAnomalyDetector() {
@@ -790,7 +851,7 @@
             }
         }
 
-        // Initial fact display (set to Black Holes fact)
+        // Initial fact display (set to Cosmic Microwave Background fact)
         displayFact(currentFactIndex);
 
         // Stardust Particle Effect
