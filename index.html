@@ -7,30 +7,30 @@
     <style>
         :root {
             /* Default Theme - will be overridden by JavaScript */
-            --bg-color-primary: #1A0A1A;
-            --bg-color-secondary: #2A1A2A;
-            --text-color: #F0E0FF;
-            --footer-bg: #150C15; /* Slightly lighter for better visibility */
-            --footer-text-color: #E0C0E0; /* More vibrant */
-            --glass-bg: rgba(42, 26, 42, 0.7);
-            --glass-border: rgba(192, 160, 192, 0.3);
-            --fact-text-shadow: 0 0 15px rgba(240, 224, 255, 0.8);
+            --bg-color-primary: #0A0A1A;
+            --bg-color-secondary: #1A0A2A;
+            --text-color: #E0E0FF;
+            --footer-bg: #0F0F1A; /* Slightly lighter for better visibility */
+            --footer-text-color: #C0C0E0; /* More vibrant */
+            --glass-bg: rgba(26, 10, 42, 0.7);
+            --glass-border: rgba(160, 160, 192, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(224, 224, 255, 0.8);
             --title-color: #FFFFFF;
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #8B008B;
-            --main-action-btn-hover: #6A006A;
-            --explore-glow-color: #FF00FF;
-            --explore-text-initial: rgba(240, 224, 255, 0.4);
-            --explore-text-active: #F0E0FF;
+            --main-action-btn: #8A2BE2; /* Blue Violet */
+            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
+            --explore-glow-color: #DA70D6; /* Orchid */
+            --explore-text-initial: rgba(224, 224, 255, 0.4);
+            --explore-text-active: #E0E0FF;
             --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(255, 0, 255, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(255, 0, 255, 0.9);
+            --fact-card-border: rgba(218, 112, 214, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(218, 112, 214, 0.9);
 
             /* Stellar Scan Mode */
             --stellar-scan-bg-primary: #000000;
             --stellar-scan-bg-secondary: #000005;
-            --stellar-scan-indicator: #FF00FF;
-            --stellar-scan-text: #FF00FF;
+            --stellar-scan-indicator: #00FFFF; /* Cyan */
+            --stellar-scan-text: #00FFFF;
 
             /* Anomaly Detector */
             --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
@@ -44,6 +44,9 @@
             --riddle-input-text: #F0E0FF;
             --riddle-button-bg: #00BFFF; /* Deep Sky Blue */
             --riddle-button-hover: #008ECC; /* Darker Deep Sky Blue */
+
+            /* Cosmic Alignment Scan */
+            --scan-line-color: #00FFFF; /* Cyan */
         }
 
         body {
@@ -148,6 +151,12 @@
         .fact-text.revealed {
             color: var(--explore-text-active); /* Bright when revealed */
             text-shadow: var(--fact-text-shadow);
+            animation: textFadeIn 1s ease-out; /* New animation for text reveal */
+        }
+
+        @keyframes textFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .button-group {
@@ -281,7 +290,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             display: none; /* Hidden by default */
-            flex-direction: column;\
+            flex-direction: column;
             align-items: center;
             gap: 10px;
             background: rgba(0, 0, 0, 0.7);
@@ -379,14 +388,35 @@
             0% { transform: scale(0.8); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
         }
+
+        /* Cosmic Alignment Scan Feature */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--scan-line-color);
+            box-shadow: 0 0 15px var(--scan-line-color);
+            opacity: 0;
+            animation: scan-animation 3s forwards;
+            z-index: 5;
+        }
+
+        @keyframes scan-animation {
+            0% { top: 0%; opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2 id="fact-title"></h2>
-            <p id="main-fact" class="fact-text"></p>
+            <h2 id="fact-title">Neutron Stars: Cosmic Powerhouses</h2>
+            <p id="main-fact" class="fact-text revealed">Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.</p>
             <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;"></p>
 
             <div id="riddleSection" class="riddle-section" style="display: none;">
@@ -397,7 +427,7 @@
             </div>
 
             <div class="button-group">
-                <button class="action-button" id="deepDiveButton" onclick="activateDeepDive()">Deep Dive</button>
+                <button class="action-button" id="deepDiveButton" onclick="activateDeepDive()">Cosmic Alignment Scan</button>
                 <button class="action-button" id="anomalyDetectorButton" onclick="activateAnomalyDetector()">Cosmic Anomaly Detector</button>
                 <button class="action-button" id="newFactButton" onclick="displayRandomFact()">New Discovery</button>
             </div>
@@ -466,8 +496,8 @@
                     '--fact-of-day-glow': '0 0 25px rgba(255, 0, 255, 0.9)',
                     '--stellar-scan-bg-primary': '#000000',
                     '--stellar-scan-bg-secondary': '#000005',
-                    '--stellar-scan-indicator': '#FF00FF',
-                    '--stellar-scan-text': '#FF00FF'
+                    '--stellar-scan-indicator': '#FF00FF', /* Magenta */
+                    '--stellar-scan-text': '#FF00FF' /* Magenta */
                 }
             },
             {
@@ -654,7 +684,7 @@
             }
         ];
 
-        let currentFactIndex = 0;
+        let currentFactIndex = 1; // Set to Neutron Stars fact initially
 
         function applyTheme(theme) {
             for (const [property, value] of Object.entries(theme)) {
@@ -691,7 +721,7 @@
             } else {
                 mainFact.classList.add('revealed'); // Main fact is revealed by default
                 factDetail.style.display = 'none'; // Detail is hidden by default
-                deepDiveButton.textContent = 'Deep Dive';
+                deepDiveButton.textContent = 'Cosmic Alignment Scan';
                 deepDiveButton.disabled = false;
             }
 
@@ -712,22 +742,22 @@
 
         function activateDeepDive() {
             deepDiveButton.disabled = true;
-            stellarScanContainer.classList.add('active');
-            body.classList.add('stellar-scanned');
-            stellarIndicator.style.height = '100%';
+            factDetail.style.display = 'none'; // Hide detail before scan
 
-            stellarStatus.textContent = 'Scanning for deeper insights...';
+            const scanLine = document.createElement('div');
+            scanLine.classList.add('scan-line');
+            factCard.appendChild(scanLine);
 
-            setTimeout(() => {
-                stellarStatus.textContent = 'Analysis Complete!';
+            mainFact.classList.remove('revealed'); // Dim main fact during scan
+
+            scanLine.addEventListener('animationend', () => {
+                scanLine.remove();
+                mainFact.classList.add('revealed'); // Re-reveal main fact after scan
                 factDetail.style.display = 'block'; // Reveal the detail
-                deepDiveButton.textContent = 'Detail Revealed!';
+                factDetail.classList.add('revealed'); // Apply revealed class to detail
+                deepDiveButton.textContent = 'Scan Complete!';
                 deepDiveButton.disabled = true;
-                setTimeout(() => {
-                    stellarScanContainer.classList.remove('active');
-                    body.classList.remove('stellar-scanned');
-                }, 2000);
-            }, 5000);
+            });
         }
 
         function activateAnomalyDetector() {
@@ -760,8 +790,8 @@
             }
         }
 
-        // Initial fact display (randomized on load)
-        displayRandomFact();
+        // Initial fact display (set to Neutron Stars fact)
+        displayFact(currentFactIndex);
 
         // Stardust Particle Effect
         function createParticle(className, animationDelay) {
