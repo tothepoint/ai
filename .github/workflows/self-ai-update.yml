@@ -83,7 +83,7 @@ jobs:
       - name: Generate updated code with Gemini
         id: generate-code
         run: |
-          PLAN_DESCRIPTION=$(echo $PLAN_JSON | jq -r '.description')
+          # PLAN_DESCRIPTION=$(echo $PLAN_JSON | jq -r '.description')
           # Use Gemini CLI to generate or update content
           # This example generates a simple greeting and saves it to a file.
           # The '--yolo' flag bypasses prompts, which is essential for automation.
@@ -95,7 +95,7 @@ jobs:
             'Review the UI/UX and improve it.'  \
             'Make the UI clean and emphasize what is essential.' \
             'Use the plan to implement it.' \
-            'Plan: $PLAN_DESCRIPTION' \
+            'Plan: $(echo $PLAN_JSON | jq -r '.description')' \
             -m gemini-2.5-flash \
             -o json \
             --yolo > output.json
