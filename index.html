@@ -31,6 +31,12 @@
             --stellar-scan-bg-secondary: #000005;
             --stellar-scan-indicator: #FF00FF;
             --stellar-scan-text: #FF00FF;
+
+            /* Anomaly Detector */
+            --anomaly-bg: rgba(255, 69, 0, 0.8); /* OrangeRed */
+            --anomaly-text: #FFFFFF;
+            --anomaly-border: #FFD700; /* Gold */
+            --anomaly-glow: 0 0 20px rgba(255, 69, 0, 0.9);
         }
 
         body {
@@ -267,6 +273,48 @@
             0% { transform: scale(0); opacity: 1; }
             100% { transform: scale(1.5); opacity: 0; }
         }
+
+        /* Anomaly Detector Overlay */
+        .anomaly-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .anomaly-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .anomaly-content {
+            background: var(--anomaly-bg);
+            border: 2px solid var(--anomaly-border);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: var(--anomaly-glow);
+            color: var(--anomaly-text);
+            font-size: 2em;
+            text-align: center;
+            max-width: 700px;
+            transform: scale(0.8);
+            opacity: 0;
+            animation: anomaly-reveal 0.8s forwards;
+        }
+
+        @keyframes anomaly-reveal {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
 <body>
@@ -274,10 +322,11 @@
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
             <h2>The Great Attractor: A Cosmic Anomaly</h2>
-            <p id="main-fact" class="fact-text">The Great Attractor is a mysterious gravitational anomaly in intergalactic space that is pulling our Milky Way galaxy and hundreds of thousands of other galaxies towards it.</p>
+            <p id="main-fact" class="fact-text revealed">The Great Attractor is a mysterious gravitational anomaly in intergalactic space that is pulling our Milky Way galaxy and hundreds of thousands of other galaxies towards it.</p>
             <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Located about 150 to 250 million light-years away, this region of space is so massive that it's causing a significant "bulk flow" of galaxies, yet much of its mass is obscured by our own galaxy's dust and gas, making it difficult to observe directly.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="activateStellarScan()">Stellar Scan</button>
+                <button class="action-button" id="deepDiveButton" onclick="activateDeepDive()">Deep Dive</button>
+                <button class="action-button" id="anomalyDetectorButton" onclick="activateAnomalyDetector()">Cosmic Anomaly Detector</button>
                 <button class="action-button" id="newFactButton" onclick="displayRandomFact()">New Discovery</button>
             </div>
         </div>
@@ -290,16 +339,25 @@
         <p class="stellar-text" id="stellarStatus">Scanning...</p>
     </div>
 
+    <div class="anomaly-overlay" id="anomalyOverlay">
+        <div class="anomaly-content" id="anomalyContent">
+            <!-- Anomaly fact will be inserted here -->
+        </div>
+    </div>
+
     <script>
         const siteTitle = document.getElementById('site-title');
         const mainFact = document.getElementById('main-fact');
         const factDetail = document.getElementById('fact-detail');
         const factCard = document.getElementById('factCard');
-        const revealButton = document.getElementById('revealButton');
+        const deepDiveButton = document.getElementById('deepDiveButton');
+        const anomalyDetectorButton = document.getElementById('anomalyDetectorButton');
         const newFactButton = document.getElementById('newFactButton');
         const stellarScanContainer = document.getElementById('stellarScanContainer');
         const stellarIndicator = document.getElementById('stellarIndicator');
         const stellarStatus = document.getElementById('stellarStatus');
+        const anomalyOverlay = document.getElementById('anomalyOverlay');
+        const anomalyContent = document.getElementById('anomalyContent');
         const body = document.body;
         const root = document.documentElement;
 
@@ -308,6 +366,7 @@
                 title: "The Great Attractor: A Cosmic Anomaly",
                 main: "The Great Attractor is a mysterious gravitational anomaly in intergalactic space that is pulling our Milky Way galaxy and hundreds of thousands of other galaxies towards it.",
                 detail: "Located about 150 to 250 million light-years away, this region of space is so massive that it's causing a significant \"bulk flow\" of galaxies, yet much of its mass is obscured by our own galaxy's dust and gas, making it difficult to observe directly.",
+                anomaly: "Anomaly Detected: The Great Attractor's true nature might involve a supercluster of galaxies even larger than previously imagined, hidden behind the 'Zone of Avoidance'.",
                 theme: {
                     '--bg-color-primary': '#1A0A1A',
                     '--bg-color-secondary': '#2A1A2A',
@@ -337,6 +396,7 @@
                 title: "Neutron Stars: Cosmic Powerhouses",
                 main: "Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.",
                 detail: "These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.",
+                anomaly: "Anomaly Detected: Some neutron stars, known as magnetars, possess magnetic fields trillions of times stronger than Earth's, capable of distorting spacetime.",
                 theme: {
                     '--bg-color-primary': '#0A0A1A',
                     '--bg-color-secondary': '#1A0A2A',
@@ -366,6 +426,7 @@
                 title: "The Observable Universe: Vast and Mysterious",
                 main: "The observable universe is estimated to be about 93 billion light-years in diameter, containing billions of galaxies.",
                 detail: "Despite its immense size, this is only the portion of the universe from which light has had time to reach us since the Big Bang. The true size of the universe remains unknown.",
+                anomaly: "Anomaly Detected: The 'Cold Spot' in the CMB is an unusually large and cold region, potentially indicating a massive void or even evidence of a parallel universe.",
                 theme: {
                     '--bg-color-primary': '#000020',
                     '--bg-color-secondary': '#000035',
@@ -395,6 +456,7 @@
                 title: "Black Holes: Gravity's Ultimate Trap",
                 main: "Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.",
                 detail: "They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.",
+                anomaly: "Anomaly Detected: The 'information paradox' suggests that information about matter falling into a black hole might be lost forever, challenging fundamental laws of physics.",
                 theme: {
                     '--bg-color-primary': '#000000',
                     '--bg-color-secondary': '#100010',
@@ -424,6 +486,7 @@
                 title: "Exoplanets: Worlds Beyond Our Solar System",
                 main: "Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.",
                 detail: "These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.",
+                anomaly: "Anomaly Detected: Some exoplanets, known as 'rogue planets', wander through space without orbiting any star, making them incredibly difficult to detect.",
                 theme: {
                     '--bg-color-primary': '#001A00',
                     '--bg-color-secondary': '#002A00',
@@ -453,6 +516,7 @@
                 title: "The Cosmic Microwave Background: Echo of the Big Bang",
                 main: "The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.",
                 detail: "Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old.",
+                anomaly: "Anomaly Detected: The 'Axis of Evil' is an observed alignment of certain CMB features that some theories suggest could point to a connection with other universes or a preferred direction in space.",
                 theme: {
                     '--bg-color-primary': '#201000',
                     '--bg-color-secondary': '#351A00',
@@ -490,15 +554,15 @@
 
         function displayFact(index) {
             const fact = facts[index];
-            applyTheme(fact.theme); // Apply the theme for the current fact
-            siteTitle.textContent = "Cosmic Wonders Explorer"; // Keep title consistent
+            applyTheme(fact.theme);
+            siteTitle.textContent = "Cosmic Wonders Explorer";
             factCard.querySelector('h2').textContent = fact.title;
             mainFact.textContent = fact.main;
             factDetail.textContent = fact.detail;
-            mainFact.classList.remove('revealed');
-            factDetail.style.display = 'none';
-            revealButton.textContent = 'Stellar Scan';
-            revealButton.disabled = false;
+            mainFact.classList.add('revealed'); // Main fact is revealed by default
+            factDetail.style.display = 'none'; // Detail is hidden by default
+            deepDiveButton.textContent = 'Deep Dive';
+            deepDiveButton.disabled = false;
             body.classList.remove('stellar-scanned');
             stellarScanContainer.classList.remove('active');
             stellarIndicator.style.height = '0%';
@@ -509,34 +573,43 @@
             let newIndex;
             do {
                 newIndex = Math.floor(Math.random() * facts.length);
-            } while (newIndex === currentFactIndex); // Ensure a new fact is displayed
+            } while (newIndex === currentFactIndex);
             currentFactIndex = newIndex;
             displayFact(currentFactIndex);
         }
 
-        function activateStellarScan() {
-            revealButton.disabled = true;
+        function activateDeepDive() {
+            deepDiveButton.disabled = true;
             stellarScanContainer.classList.add('active');
             body.classList.add('stellar-scanned');
-            stellarIndicator.style.height = '100%'; // Start scan animation
+            stellarIndicator.style.height = '100%';
 
-            stellarStatus.textContent = 'Scanning...';
+            stellarStatus.textContent = 'Scanning for deeper insights...';
 
             setTimeout(() => {
                 stellarStatus.textContent = 'Analysis Complete!';
-                mainFact.classList.add('revealed');
-                factDetail.style.display = 'block';
-                revealButton.textContent = 'Fact Revealed!';
-                revealButton.disabled = true;
+                factDetail.style.display = 'block'; // Reveal the detail
+                deepDiveButton.textContent = 'Detail Revealed!';
+                deepDiveButton.disabled = true;
                 setTimeout(() => {
                     stellarScanContainer.classList.remove('active');
                     body.classList.remove('stellar-scanned');
-                }, 2000); // Hide scan UI after a delay
-            }, 5000); // Match this to stellarIndicator transition duration
+                }, 2000);
+            }, 5000);
         }
 
-        // Initial fact display
-        displayFact(currentFactIndex);
+        function activateAnomalyDetector() {
+            const currentFact = facts[currentFactIndex];
+            anomalyContent.textContent = currentFact.anomaly;
+            anomalyOverlay.classList.add('active');
+
+            setTimeout(() => {
+                anomalyOverlay.classList.remove('active');
+            }, 6000); // Anomaly message disappears after 6 seconds
+        }
+
+        // Initial fact display (randomized on load)
+        displayRandomFact();
 
         // Stardust Particle Effect
         function createParticle(className, animationDelay) {
@@ -551,29 +624,27 @@
             particle.style.animationDelay = `${animationDelay}s`;
             particle.style.animationDuration = `${Math.random() * 20 + 15}s`; // 15-35s
 
-            // Remove particle after animation to prevent DOM clutter
             particle.addEventListener('animationend', () => {
                 particle.remove();
             });
         }
 
-        // Generate a continuous stream of stardust
         setInterval(() => {
             createParticle('stardust-particle', 0);
-        }, 500); // Create a new particle every 0.5 seconds
+        }, 500);
 
         // Cosmic Sparkle on fact card hover
         factCard.addEventListener('mousemove', (e) => {
-            if (Math.random() < 0.1) { // Only create a sparkle 10% of the time for performance
+            if (Math.random() < 0.1) {
                 const sparkle = document.createElement('div');
                 sparkle.classList.add('cosmic-sparkle');
                 factCard.appendChild(sparkle);
 
                 const rect = factCard.getBoundingClientRect();
-                sparkle.style.left = `${e.clientX - rect.left - 5}px`; // Adjust for sparkle size
+                sparkle.style.left = `${e.clientX - rect.left - 5}px`;
                 sparkle.style.top = `${e.clientY - rect.top - 5}px`;
 
-                const size = Math.random() * 8 + 2; // 2 to 10px
+                const size = Math.random() * 8 + 2;
                 sparkle.style.width = `${size}px`;
                 sparkle.style.height = `${size}px`;
 
@@ -590,8 +661,7 @@
             footer.innerHTML = `&copy; ${now.getFullYear()} Cosmic Wonders Explorer. Last updated: ${now.toLocaleString()}`;
         }
         updateFooterTime();
-        setInterval(updateFooterTime, 60000); // Update every minute
-
+        setInterval(updateFooterTime, 60000);
     </script>
     <footer>
         &copy; 2025 Cosmic Wonders Explorer. Last updated: <!-- Time will be inserted by JavaScript -->
