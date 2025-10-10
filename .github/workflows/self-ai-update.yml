@@ -96,6 +96,8 @@ jobs:
           Plan: $PLAN_DESCRIPTION
           EOF
           )
+
+          echo "$GEMINI_PROMPT"
           
           # Use Gemini CLI to generate or update content
           gemini "$GEMINI_PROMPT" \
