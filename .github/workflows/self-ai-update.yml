@@ -9,7 +9,67 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  # ----------------------------------------------------------------------
+  # 1. THE PLANNER AGENT: Determines the next task and outputs a JSON plan.
+  # ----------------------------------------------------------------------
+  planner:
+    runs-on: ubuntu-latest
+    outputs:
+      plan_details: ${{ steps.plan-step.outputs.plan }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Install dependencies (Gemini CLI & JQ)
+        run: |
+          npm install -g @google/gemini-cli
+          sudo apt-get install -y jq
+
+      - name: Planner Agent:Generate Task Plan
+        id: plan-step
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          PLANNER_PROMPT=$(cat <<EOF
+          SYSTEM: You are the Planner Agent. Your job is to read the site direction (GEMINI.MD, if it exists) and the current code (index.html), and propose one *minimal, specific, and self-contained* improvement. 
+          
+          You must output *only* a single JSON object. DO NOT include any text outside the JSON block. Your goal is to guide the site toward the goals in GEMINI.MD. Prioritize technical debt, UI/UX improvements, or small, interesting feature additions.
+          
+          The output JSON must strictly follow this format: 
+          {
+            "task_found": true, 
+            "feature_name": "A concise, 5-word title for the change (e.g., 'Implement Dark Mode Toggle')",
+            "description": "A detailed, technical description of the exact files and code changes required. Must be precise.",
+            "files_to_change": ["index.html"]
+          }
+          
+          If you cannot find a suitable task, respond with "task_found: false".
+          EOF
+          )
+
+          # Pass files and the system prompt to Gemini
+          gemini "$PLANNER_PROMPT" -f GEMINI.MD index.html \
+            -m $GEMINI_MODEL -o json --yolo > plan_output.json
+
+          # Extract the JSON response and check for task_found: true
+          PLAN_JSON=$(jq -r '.response' plan_output.json)
+          echo "PLAN_JSON: $PLAN_JSON"
+          
+          # Save the plan for downstream jobs
+          echo "$PLAN_JSON" > plan.json
+          
+          # Set the plan as an output for job dependency
+          echo "plan=$PLAN_JSON" >> $GITHUB_OUTPUT
+
+      - name: Upload Plan Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: evolution-plan
+          path: plan.json
+          
   update-repo:
+    needs: planner
+    if: fromJson(needs.planner.outputs.plan_details).task_found == true
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,6 +83,7 @@ jobs:
       - name: Generate updated code with Gemini
         id: generate-code
         run: |
+          PLAN_DESCRIPTION=$(echo $PLAN_JSON | jq -r '.description')
           # Use Gemini CLI to generate or update content
           # This example generates a simple greeting and saves it to a file.
           # The '--yolo' flag bypasses prompts, which is essential for automation.
@@ -33,8 +94,8 @@ jobs:
             'It should also choose text color for the text to be clearly visible. Updated the footer color to also be clearly visible.' \
             'Review the UI/UX and improve it.'  \
             'Make the UI clean and emphasize what is essential.' \
-            'Think of an interesting feature and implement it.' \
-            'When thinking of UI/UX, think of it creatively, this should be as fun as a game!' \
+            'Use the plan to implement it.' \
+            'Plan: $PLAN_DESCRIPTION' \
             -m gemini-2.5-flash \
             -o json \
             --yolo > output.json
@@ -48,6 +109,7 @@ jobs:
           
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          PLAN_JSON: ${{ needs.planner.outputs.plan_details }}
 
       - name: Read and Clean index.html
         id: cleanup_html
