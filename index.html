@@ -6,31 +6,31 @@
     <title id="site-title">Cosmic Wonders Explorer</title>
     <style>
         :root {
-            /* Cosmic Wonders Explorer Theme Colors */
-            --bg-color-primary: #0A0A1A; /* Very dark space blue */
-            --bg-color-secondary: #1A0A2A; /* Slightly lighter, deep purple */
-            --text-color: #E0E0FF; /* Pale lavender */
-            --footer-bg: #050510; /* Even darker space blue */
-            --footer-text-color: #A0A0C0; /* Muted light purple */
-            --glass-bg: rgba(26, 10, 42, 0.7); /* Semi-transparent deep purple */
-            --glass-border: rgba(160, 160, 192, 0.3); /* Soft, muted light purple */
-            --fact-text-shadow: 0 0 15px rgba(224, 224, 255, 0.8); /* Subtle pale lavender glow */
-            --title-color: #FFFFFF; /* Bright white */
-            --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white glow */
-            --main-action-btn: #8A2BE2; /* Blue Violet - vibrant, contrasting */
-            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
-            --explore-glow-color: #DA70D6; /* Orchid - for emphasis */
-            --explore-text-initial: rgba(224, 224, 255, 0.4); /* Dimmed pale lavender */
-            --explore-text-active: #E0E0FF; /* Bright pale lavender */
-            --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(218, 112, 214, 0.7); /* Vibrant orchid */
-            --fact-of-day-glow: 0 0 25px rgba(218, 112, 214, 0.9); /* Strong orchid glow */
+            /* Default Theme - will be overridden by JavaScript */
+            --bg-color-primary: #1A0A1A;
+            --bg-color-secondary: #2A1A2A;
+            --text-color: #F0E0FF;
+            --footer-bg: #0A050A;
+            --footer-text-color: #C0A0C0;
+            --glass-bg: rgba(42, 26, 42, 0.7);
+            --glass-border: rgba(192, 160, 192, 0.3);
+            --fact-text-shadow: 0 0 15px rgba(240, 224, 255, 0.8);
+            --title-color: #FFFFFF;
+            --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
+            --main-action-btn: #8B008B;
+            --main-action-btn-hover: #6A006A;
+            --explore-glow-color: #FF00FF;
+            --explore-text-initial: rgba(240, 224, 255, 0.4);
+            --explore-text-active: #F0E0FF;
+            --fact-card-bg: rgba(0, 0, 0, 0.8);
+            --fact-card-border: rgba(255, 0, 255, 0.7);
+            --fact-of-day-glow: 0 0 25px rgba(255, 0, 255, 0.9);
 
             /* Stellar Scan Mode */
-            --stellar-scan-bg-primary: #000000; /* Black */
-            --stellar-scan-bg-secondary: #000005; /* Even darker */
-            --stellar-scan-indicator: #00FFFF; /* Cyan for scan */
-            --stellar-scan-text: #00FFFF; /* Cyan for scan text */
+            --stellar-scan-bg-primary: #000000;
+            --stellar-scan-bg-secondary: #000005;
+            --stellar-scan-indicator: #FF00FF;
+            --stellar-scan-text: #FF00FF;
         }
 
         body {
@@ -108,7 +108,7 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(218, 112, 214, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px var(--explore-glow-color); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
@@ -155,7 +155,7 @@
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(106, 13, 173, 0.8);
+            box-shadow: 0 0 25px var(--main-action-btn-hover);
         }
 
         .action-button:disabled {
@@ -217,7 +217,7 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.7); /* Blue Violet shadow */
+            box-shadow: 0 0 30px var(--main-action-btn);
             z-index: 100;
             width: 200px;
             border: 1px solid var(--main-action-btn);
@@ -230,7 +230,7 @@
         .stellar-scanner-bar {
             width: 10px;
             height: 150px;
-            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Blue Violet to Deep Purple */
+            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary));
             border-radius: 5px;
             position: relative;
             overflow: hidden;
@@ -242,14 +242,14 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: var(--stellar-scan-indicator); /* Cyan */
+            background-color: var(--stellar-scan-indicator);
             height: 0%;
             transition: height 5s ease-out; /* Animation for scan */
         }
 
         .stellar-text {
             font-size: 1.5em;
-            color: var(--stellar-scan-text); /* Cyan */
+            color: var(--stellar-scan-text);
             text-shadow: var(--title-shadow);
         }
 
@@ -273,9 +273,9 @@
     <div class="container">
         <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2>Neutron Stars: Cosmic Powerhouses</h2>
-            <p id="main-fact" class="fact-text">Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.</p>
+            <h2>The Great Attractor: A Cosmic Anomaly</h2>
+            <p id="main-fact" class="fact-text">The Great Attractor is a mysterious gravitational anomaly in intergalactic space that is pulling our Milky Way galaxy and hundreds of thousands of other galaxies towards it.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">Located about 150 to 250 million light-years away, this region of space is so massive that it's causing a significant "bulk flow" of galaxies, yet much of its mass is obscured by our own galaxy's dust and gas, making it difficult to observe directly.</p>
             <div class="button-group">
                 <button class="action-button" id="revealButton" onclick="activateStellarScan()">Stellar Scan</button>
                 <button class="action-button" id="newFactButton" onclick="displayRandomFact()">New Discovery</button>
@@ -301,39 +301,196 @@
         const stellarIndicator = document.getElementById('stellarIndicator');
         const stellarStatus = document.getElementById('stellarStatus');
         const body = document.body;
+        const root = document.documentElement;
 
         const facts = [
             {
+                title: "The Great Attractor: A Cosmic Anomaly",
+                main: "The Great Attractor is a mysterious gravitational anomaly in intergalactic space that is pulling our Milky Way galaxy and hundreds of thousands of other galaxies towards it.",
+                detail: "Located about 150 to 250 million light-years away, this region of space is so massive that it's causing a significant \"bulk flow\" of galaxies, yet much of its mass is obscured by our own galaxy's dust and gas, making it difficult to observe directly.",
+                theme: {
+                    '--bg-color-primary': '#1A0A1A',
+                    '--bg-color-secondary': '#2A1A2A',
+                    '--text-color': '#F0E0FF',
+                    '--footer-bg': '#0A050A',
+                    '--footer-text-color': '#C0A0C0',
+                    '--glass-bg': 'rgba(42, 26, 42, 0.7)',
+                    '--glass-border': 'rgba(192, 160, 192, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(240, 224, 255, 0.8)',
+                    '--title-color': '#FFFFFF',
+                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
+                    '--main-action-btn': '#8B008B', /* Dark Magenta */
+                    '--main-action-btn-hover': '#6A006A', /* Darker Dark Magenta */
+                    '--explore-glow-color': '#FF00FF', /* Magenta */
+                    '--explore-text-initial': 'rgba(240, 224, 255, 0.4)',
+                    '--explore-text-active': '#F0E0FF',
+                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
+                    '--fact-card-border': 'rgba(255, 0, 255, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(255, 0, 255, 0.9)',
+                    '--stellar-scan-bg-primary': '#000000',
+                    '--stellar-scan-bg-secondary': '#000005',
+                    '--stellar-scan-indicator': '#FF00FF',
+                    '--stellar-scan-text': '#FF00FF'
+                }
+            },
+            {
                 title: "Neutron Stars: Cosmic Powerhouses",
                 main: "Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.",
-                detail: "These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth."
+                detail: "These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.",
+                theme: {
+                    '--bg-color-primary': '#0A0A1A',
+                    '--bg-color-secondary': '#1A0A2A',
+                    '--text-color': '#E0E0FF',
+                    '--footer-bg': '#050510',
+                    '--footer-text-color': '#A0A0C0',
+                    '--glass-bg': 'rgba(26, 10, 42, 0.7)',
+                    '--glass-border': 'rgba(160, 160, 192, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(224, 224, 255, 0.8)',
+                    '--title-color': '#FFFFFF',
+                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
+                    '--main-action-btn': '#8A2BE2', /* Blue Violet */
+                    '--main-action-btn-hover': '#6A0DAD', /* Darker Blue Violet */
+                    '--explore-glow-color': '#DA70D6', /* Orchid */
+                    '--explore-text-initial': 'rgba(224, 224, 255, 0.4)',
+                    '--explore-text-active': '#E0E0FF',
+                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
+                    '--fact-card-border': 'rgba(218, 112, 214, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(218, 112, 214, 0.9)',
+                    '--stellar-scan-bg-primary': '#000000',
+                    '--stellar-scan-bg-secondary': '#000005',
+                    '--stellar-scan-indicator': '#00FFFF', /* Cyan */
+                    '--stellar-scan-text': '#00FFFF' /* Cyan */
+                }
             },
             {
                 title: "The Observable Universe: Vast and Mysterious",
                 main: "The observable universe is estimated to be about 93 billion light-years in diameter, containing billions of galaxies.",
-                detail: "Despite its immense size, this is only the portion of the universe from which light has had time to reach us since the Big Bang. The true size of the universe remains unknown."
+                detail: "Despite its immense size, this is only the portion of the universe from which light has had time to reach us since the Big Bang. The true size of the universe remains unknown.",
+                theme: {
+                    '--bg-color-primary': '#000020',
+                    '--bg-color-secondary': '#000035',
+                    '--text-color': '#CCEEFF',
+                    '--footer-bg': '#000010',
+                    '--footer-text-color': '#99BBDD',
+                    '--glass-bg': 'rgba(0, 0, 50, 0.7)',
+                    '--glass-border': 'rgba(153, 187, 221, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(204, 238, 255, 0.8)',
+                    '--title-color': '#FFFFFF',
+                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
+                    '--main-action-btn': '#4169E1', /* Royal Blue */
+                    '--main-action-btn-hover': '#2A4BCC', /* Darker Royal Blue */
+                    '--explore-glow-color': '#87CEFA', /* Light Sky Blue */
+                    '--explore-text-initial': 'rgba(204, 238, 255, 0.4)',
+                    '--explore-text-active': '#CCEEFF',
+                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
+                    '--fact-card-border': 'rgba(135, 206, 250, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(135, 206, 250, 0.9)',
+                    '--stellar-scan-bg-primary': '#000000',
+                    '--stellar-scan-bg-secondary': '#000005',
+                    '--stellar-scan-indicator': '#87CEFA', /* Light Sky Blue */
+                    '--stellar-scan-text': '#87CEFA' /* Light Sky Blue */
+                }
             },
             {
                 title: "Black Holes: Gravity's Ultimate Trap",
                 main: "Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.",
-                detail: "They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies."
+                detail: "They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies.",
+                theme: {
+                    '--bg-color-primary': '#000000',
+                    '--bg-color-secondary': '#100010',
+                    '--text-color': '#FFD700', /* Gold */
+                    '--footer-bg': '#000000',
+                    '--footer-text-color': '#B8860B', /* Dark Goldenrod */
+                    '--glass-bg': 'rgba(16, 0, 16, 0.7)',
+                    '--glass-border': 'rgba(184, 134, 11, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(255, 215, 0, 0.8)',
+                    '--title-color': '#FFFFFF',
+                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
+                    '--main-action-btn': '#FF4500', /* Orange Red */
+                    '--main-action-btn-hover': '#CC3700', /* Darker Orange Red */
+                    '--explore-glow-color': '#FFD700', /* Gold */
+                    '--explore-text-initial': 'rgba(255, 215, 0, 0.4)',
+                    '--explore-text-active': '#FFD700',
+                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
+                    '--fact-card-border': 'rgba(255, 215, 0, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(255, 215, 0, 0.9)',
+                    '--stellar-scan-bg-primary': '#000000',
+                    '--stellar-scan-bg-secondary': '#000005',
+                    '--stellar-scan-indicator': '#FFD700', /* Gold */
+                    '--stellar-scan-text': '#FFD700' /* Gold */
+                }
             },
             {
                 title: "Exoplanets: Worlds Beyond Our Solar System",
                 main: "Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.",
-                detail: "These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life."
+                detail: "These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life.",
+                theme: {
+                    '--bg-color-primary': '#001A00',
+                    '--bg-color-secondary': '#002A00',
+                    '--text-color': '#CCFFCC',
+                    '--footer-bg': '#000A00',
+                    '--footer-text-color': '#99CC99',
+                    '--glass-bg': 'rgba(0, 42, 0, 0.7)',
+                    '--glass-border': 'rgba(153, 204, 153, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(204, 255, 204, 0.8)',
+                    '--title-color': '#FFFFFF',
+                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
+                    '--main-action-btn': '#32CD32', /* Lime Green */
+                    '--main-action-btn-hover': '#228B22', /* Forest Green */
+                    '--explore-glow-color': '#7CFC00', /* Lawn Green */
+                    '--explore-text-initial': 'rgba(204, 255, 204, 0.4)',
+                    '--explore-text-active': '#CCFFCC',
+                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
+                    '--fact-card-border': 'rgba(124, 252, 0, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(124, 252, 0, 0.9)',
+                    '--stellar-scan-bg-primary': '#000000',
+                    '--stellar-scan-bg-secondary': '#000005',
+                    '--stellar-scan-indicator': '#7CFC00', /* Lawn Green */
+                    '--stellar-scan-text': '#7CFC00' /* Lawn Green */
+                }
             },
             {
                 title: "The Cosmic Microwave Background: Echo of the Big Bang",
                 main: "The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.",
-                detail: "Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old."
+                detail: "Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old.",
+                theme: {
+                    '--bg-color-primary': '#201000',
+                    '--bg-color-secondary': '#351A00',
+                    '--text-color': '#FFFACD', /* Lemon Chiffon */
+                    '--footer-bg': '#100800',
+                    '--footer-text-color': '#D2B48C', /* Tan */
+                    '--glass-bg': 'rgba(50, 26, 0, 0.7)',
+                    '--glass-border': 'rgba(210, 180, 140, 0.3)',
+                    '--fact-text-shadow': '0 0 15px rgba(255, 250, 205, 0.8)',
+                    '--title-color': '#FFFFFF',
+                    '--title-shadow': '0 0 25px rgba(255, 255, 255, 0.9)',
+                    '--main-action-btn': '#D2691E', /* Chocolate */
+                    '--main-action-btn-hover': '#A0522D', /* Sienna */
+                    '--explore-glow-color': '#F4A460', /* Sandy Brown */
+                    '--explore-text-initial': 'rgba(255, 250, 205, 0.4)',
+                    '--explore-text-active': '#FFFACD',
+                    '--fact-card-bg': 'rgba(0, 0, 0, 0.8)',
+                    '--fact-card-border': 'rgba(244, 164, 96, 0.7)',
+                    '--fact-of-day-glow': '0 0 25px rgba(244, 164, 96, 0.9)',
+                    '--stellar-scan-bg-primary': '#000000',
+                    '--stellar-scan-bg-secondary': '#000005',
+                    '--stellar-scan-indicator': '#F4A460', /* Sandy Brown */
+                    '--stellar-scan-text': '#F4A460' /* Sandy Brown */
+                }
             }
         ];
 
         let currentFactIndex = 0;
 
+        function applyTheme(theme) {
+            for (const [property, value] of Object.entries(theme)) {
+                root.style.setProperty(property, value);
+            }
+        }
+
         function displayFact(index) {
             const fact = facts[index];
+            applyTheme(fact.theme); // Apply the theme for the current fact
             siteTitle.textContent = "Cosmic Wonders Explorer"; // Keep title consistent
             factCard.querySelector('h2').textContent = fact.title;
             mainFact.textContent = fact.main;
