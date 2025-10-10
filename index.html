@@ -3,34 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Explorer</title>
+    <title id="site-title">Cosmic Wonders Explorer</title>
     <style>
         :root {
-            /* Deep Sea Explorer Theme Colors */
-            --bg-color-primary: #001A33; /* Very dark blue */
-            --bg-color-secondary: #002B55; /* Slightly lighter, deep blue */
-            --text-color: #CCEEFF; /* Pale cyan */
-            --footer-bg: #000F1A; /* Even darker blue */
-            --footer-text-color: #88BBDD; /* Muted light blue */
-            --glass-bg: rgba(0, 43, 85, 0.7); /* Semi-transparent deep blue */
-            --glass-border: rgba(136, 187, 221, 0.3); /* Soft, muted light blue */
-            --fact-text-shadow: 0 0 15px rgba(204, 238, 255, 0.8); /* Subtle pale cyan glow */
+            /* Cosmic Wonders Explorer Theme Colors */
+            --bg-color-primary: #0A0A1A; /* Very dark space blue */
+            --bg-color-secondary: #1A0A2A; /* Slightly lighter, deep purple */
+            --text-color: #E0E0FF; /* Pale lavender */
+            --footer-bg: #050510; /* Even darker space blue */
+            --footer-text-color: #A0A0C0; /* Muted light purple */
+            --glass-bg: rgba(26, 10, 42, 0.7); /* Semi-transparent deep purple */
+            --glass-border: rgba(160, 160, 192, 0.3); /* Soft, muted light purple */
+            --fact-text-shadow: 0 0 15px rgba(224, 224, 255, 0.8); /* Subtle pale lavender glow */
             --title-color: #FFFFFF; /* Bright white */
             --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9); /* Strong white glow */
-            --main-action-btn: #00FFFF; /* Cyan - vibrant, contrasting */
-            --main-action-btn-hover: #00CCCC; /* Darker Cyan */
-            --explore-glow-color: #00CCFF; /* Vibrant blue - for emphasis */
-            --explore-text-initial: rgba(204, 238, 255, 0.4); /* Dimmed pale cyan */
-            --explore-text-active: #CCEEFF; /* Bright pale cyan */
+            --main-action-btn: #8A2BE2; /* Blue Violet - vibrant, contrasting */
+            --main-action-btn-hover: #6A0DAD; /* Darker Blue Violet */
+            --explore-glow-color: #DA70D6; /* Orchid - for emphasis */
+            --explore-text-initial: rgba(224, 224, 255, 0.4); /* Dimmed pale lavender */
+            --explore-text-active: #E0E0FF; /* Bright pale lavender */
             --fact-card-bg: rgba(0, 0, 0, 0.8); /* Very dark, almost black */
-            --fact-card-border: rgba(0, 204, 255, 0.7); /* Vibrant blue */
-            --fact-of-day-glow: 0 0 25px rgba(0, 204, 255, 0.9); /* Strong blue glow */
+            --fact-card-border: rgba(218, 112, 214, 0.7); /* Vibrant orchid */
+            --fact-of-day-glow: 0 0 25px rgba(218, 112, 214, 0.9); /* Strong orchid glow */
 
-            /* Sonar Scan Mode */
-            --gaze-scan-bg-primary: #000000; /* Black */
-            --gaze-scan-bg-secondary: #000005; /* Even darker */
-            --gaze-scan-indicator: #00FF00; /* Green for scan */
-            --gaze-scan-text: #00FF00; /* Green for scan text */
+            /* Stellar Scan Mode */
+            --stellar-scan-bg-primary: #000000; /* Black */
+            --stellar-scan-bg-secondary: #000005; /* Even darker */
+            --stellar-scan-indicator: #00FFFF; /* Cyan for scan */
+            --stellar-scan-text: #00FFFF; /* Cyan for scan text */
         }
 
         body {
@@ -53,8 +53,8 @@
             position: relative;
         }
 
-        body.gaze-scanned {
-            background: linear-gradient(135deg, var(--gaze-scan-bg-primary) 0%, var(--gaze-scan-bg-secondary) 100%);
+        body.stellar-scanned {
+            background: linear-gradient(135deg, var(--stellar-scan-bg-primary) 0%, var(--stellar-scan-bg-secondary) 100%);
             background-size: 400% 400%;
             animation: gradientShift 15s ease infinite;
         }
@@ -108,14 +108,14 @@
 
         .fact-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 0 35px rgba(0, 204, 255, 1); /* Stronger glow on hover */
+            box-shadow: 0 0 35px rgba(218, 112, 214, 1); /* Stronger glow on hover */
         }
 
         .fact-card h2 {
             color: var(--explore-glow-color);
             font-size: 2.2em;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 204, 255, 0.5);
+            text-shadow: 0 0 10px rgba(218, 112, 214, 0.5);
         }
 
         .fact-text {
@@ -141,7 +141,7 @@
 
         .action-button {
             background-color: var(--main-action-btn);
-            color: #000000; /* Black text on bright button */
+            color: #FFFFFF; /* White text on bright button */
             border: none;
             padding: 15px 30px;
             border-radius: 50px;
@@ -149,13 +149,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
             font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(138, 43, 226, 0.5);
         }
 
         .action-button:hover:not(:disabled) {
             background-color: var(--main-action-btn-hover);
             transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 204, 204, 0.8);
+            box-shadow: 0 0 25px rgba(106, 13, 173, 0.8);
         }
 
         .action-button:disabled {
@@ -178,18 +178,18 @@
             z-index: 10;
         }
 
-        /* Deep Sea Bubbles Effect */
-        .deep-sea-bubble {
+        /* Stardust Particle Effect */
+        .stardust-particle {
             position: absolute;
-            background: radial-gradient(circle at center, rgba(0, 204, 255, 0.8) 0%, rgba(0, 204, 255, 0.5) 50%, rgba(0, 204, 255, 0) 100%);
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
             border-radius: 50%;
             opacity: 0;
-            animation: bubbleFloatAndGlow 20s infinite ease-in-out, shimmer 3s infinite alternate;
+            animation: stardustFloatAndGlow 20s infinite ease-in-out, shimmer 3s infinite alternate;
             z-index: -1;
-            box-shadow: 0 0 15px rgba(0, 204, 255, 0.7);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
         }
 
-        @keyframes bubbleFloatAndGlow {
+        @keyframes stardustFloatAndGlow {
             0% { opacity: 0; transform: translate(0, 100vh) scale(0.2); }
             15% { opacity: 0.6; transform: translate(10vw, 80vh) scale(0.8); }
             30% { opacity: 0.4; transform: translate(30vw, 95vh) scale(0.5); }
@@ -204,8 +204,8 @@
             100% { transform: scale(1.05); opacity: 0.9; }
         }
 
-        /* Sonar Scan Feature */
-        .gaze-container { /* Renamed from gaze-container to sonar-container for clarity */
+        /* Stellar Scan Feature */
+        .stellar-scan-container {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -217,62 +217,44 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 0 30px rgba(0, 204, 255, 0.7); /* Blue shadow */
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.7); /* Blue Violet shadow */
             z-index: 100;
             width: 200px;
             border: 1px solid var(--main-action-btn);
         }
 
-        .gaze-container.active {
+        .stellar-scan-container.active {
             display: flex;
         }
 
-        .gaze-scanner-bar {
+        .stellar-scanner-bar {
             width: 10px;
             height: 150px;
-            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Cyan to Deep Blue */
+            background: linear-gradient(to top, var(--main-action-btn), var(--bg-color-secondary)); /* Blue Violet to Deep Purple */
             border-radius: 5px;
             position: relative;
             overflow: hidden;
             border: 1px solid var(--glass-border);
         }
 
-        .gaze-indicator {
+        .stellar-indicator {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: var(--gaze-scan-indicator); /* Green */
+            background-color: var(--stellar-scan-indicator); /* Cyan */
             height: 0%;
             transition: height 5s ease-out; /* Animation for scan */
         }
 
-        .gaze-text {
+        .stellar-text {
             font-size: 1.5em;
-            color: var(--gaze-scan-text); /* Green */
+            color: var(--stellar-scan-text); /* Cyan */
             text-shadow: var(--title-shadow);
         }
 
-        .cosmic-discovery-fact { /* Renamed to sonar-discovery-fact */
-            position: absolute;
-            font-size: 1.1em;
-            color: rgba(255, 255, 255, 0.8);
-            opacity: 0;
-            animation: fact-fade-in-out 5s ease-in-out forwards;
-            pointer-events: none;
-            white-space: nowrap;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-        }
-
-        @keyframes fact-fade-in-out {
-            0% { opacity: 0; transform: translateY(20px); }
-            20% { opacity: 1; transform: translateY(0); }
-            80% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-
-        /* Sparkle Particle for fact card hover */
-        .sparkle-particle {
+        /* Cosmic Sparkle for fact card hover */
+        .cosmic-sparkle {
             position: absolute;
             background: radial-gradient(circle at center, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 50%, rgba(255, 255, 255, 0) 100%);
             border-radius: 50%;
@@ -289,23 +271,23 @@
 </head>
 <body>
     <div class="container">
-        <h1>Deep Sea Explorer</h1>
+        <h1>Cosmic Wonders Explorer</h1>
         <div class="fact-card" id="factCard">
-            <h2>The Mariana Trench: Earth's Deepest Scar</h2>
-            <p id="main-fact" class="fact-text">The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet) at the Challenger Deep.</p>
-            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">If Mount Everest were placed in the Trench, its peak would still be over a mile underwater. This extreme environment is home to unique life forms adapted to immense pressure and perpetual darkness.</p>
+            <h2>Neutron Stars: Cosmic Powerhouses</h2>
+            <p id="main-fact" class="fact-text">Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.</p>
+            <p id="fact-detail" class="fact-text" style="display: none; font-size: 1.2em; margin-top: 15px;">These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth.</p>
             <div class="button-group">
-                <button class="action-button" id="revealButton" onclick="activateSonarScan()">Sonar Scan</button>
+                <button class="action-button" id="revealButton" onclick="activateStellarScan()">Stellar Scan</button>
                 <button class="action-button" id="newFactButton" onclick="displayRandomFact()">New Discovery</button>
             </div>
         </div>
     </div>
 
-    <div class="gaze-container" id="gazeContainer">
-        <div class="gaze-scanner-bar">
-            <div class="gaze-indicator" id="gazeIndicator"></div>
+    <div class="stellar-scan-container" id="stellarScanContainer">
+        <div class="stellar-scanner-bar">
+            <div class="stellar-indicator" id="stellarIndicator"></div>
         </div>
-        <p class="gaze-text" id="gazeStatus">Scanning...</p>
+        <p class="stellar-text" id="stellarStatus">Scanning...</p>
     </div>
 
     <script>
@@ -315,36 +297,36 @@
         const factCard = document.getElementById('factCard');
         const revealButton = document.getElementById('revealButton');
         const newFactButton = document.getElementById('newFactButton');
-        const gazeContainer = document.getElementById('gazeContainer');
-        const gazeIndicator = document.getElementById('gazeIndicator');
-        const gazeStatus = document.getElementById('gazeStatus');
+        const stellarScanContainer = document.getElementById('stellarScanContainer');
+        const stellarIndicator = document.getElementById('stellarIndicator');
+        const stellarStatus = document.getElementById('stellarStatus');
         const body = document.body;
 
         const facts = [
             {
-                title: "The Mariana Trench: Earth's Deepest Scar",
-                main: "The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of 10,984 meters (36,037 feet) at the Challenger Deep.",
-                detail: "If Mount Everest were placed in the Trench, its peak would still be over a mile underwater. This extreme environment is home to unique life forms adapted to immense pressure and perpetual darkness."
+                title: "Neutron Stars: Cosmic Powerhouses",
+                main: "Neutron stars are so dense that a single teaspoon of their material would weigh about 6 billion tons on Earth.",
+                detail: "These incredibly compact stellar remnants are formed from the collapsed cores of massive stars during supernova explosions. Their immense gravity and rapid rotation create extreme conditions unlike anything found on Earth."
             },
             {
-                title: "Hydrothermal Vents: Oases of the Deep",
-                main: "Hydrothermal vents on the ocean floor spew superheated, mineral-rich water, creating unique ecosystems thriving without sunlight.",
-                detail: "These vents support diverse communities of organisms, including giant tube worms, clams, and shrimp, which rely on chemosynthesis rather than photosynthesis for energy."
+                title: "The Observable Universe: Vast and Mysterious",
+                main: "The observable universe is estimated to be about 93 billion light-years in diameter, containing billions of galaxies.",
+                detail: "Despite its immense size, this is only the portion of the universe from which light has had time to reach us since the Big Bang. The true size of the universe remains unknown."
             },
             {
-                title: "Bioluminescence: The Ocean's Light Show",
-                main: "Many deep-sea creatures produce their own light through bioluminescence, using it for hunting, defense, and communication.",
-                detail: "From glowing jellyfish to anglerfish with their luminous lures, bioluminescence is a common adaptation in the perpetually dark deep ocean, creating spectacular natural light displays."
+                title: "Black Holes: Gravity's Ultimate Trap",
+                main: "Black holes are regions of spacetime where gravity is so strong that nothing, not even light, can escape.",
+                detail: "They are formed from the remnants of massive stars and come in various sizes, from stellar-mass black holes to supermassive black holes found at the centers of galaxies."
             },
             {
-                title: "The Ocean's 'Twilight Zone'",
-                main: "The mesopelagic zone, or 'twilight zone,' extends from 200 to 1,000 meters deep, where only faint sunlight penetrates.",
-                detail: "This zone is home to a vast array of marine life, including many species that undertake daily vertical migrations to feed in shallower waters at night and retreat to the depths during the day."
+                title: "Exoplanets: Worlds Beyond Our Solar System",
+                main: "Thousands of exoplanets have been discovered, orbiting stars other than our Sun, with many potentially habitable.",
+                detail: "These distant worlds offer a glimpse into the diversity of planetary systems in our galaxy and fuel the search for extraterrestrial life."
             },
             {
-                title: "Plastic Pollution: A Deep Sea Threat",
-                main: "Plastic pollution has reached the deepest parts of the ocean, with microplastics found even in the Mariana Trench.",
-                detail: "This pervasive issue threatens marine ecosystems globally, impacting deep-sea organisms that ingest plastic, leading to starvation, injury, and exposure to harmful chemicals."
+                title: "The Cosmic Microwave Background: Echo of the Big Bang",
+                main: "The Cosmic Microwave Background (CMB) is faint radiation filling all space, a remnant heat from the Big Bang.",
+                detail: "Discovered in 1964, the CMB provides crucial evidence for the Big Bang theory and offers a snapshot of the early universe when it was only about 380,000 years old."
             }
         ];
 
@@ -352,18 +334,18 @@
 
         function displayFact(index) {
             const fact = facts[index];
-            siteTitle.textContent = "Deep Sea Explorer"; // Keep title consistent
+            siteTitle.textContent = "Cosmic Wonders Explorer"; // Keep title consistent
             factCard.querySelector('h2').textContent = fact.title;
             mainFact.textContent = fact.main;
             factDetail.textContent = fact.detail;
             mainFact.classList.remove('revealed');
             factDetail.style.display = 'none';
-            revealButton.textContent = 'Sonar Scan';
+            revealButton.textContent = 'Stellar Scan';
             revealButton.disabled = false;
-            body.classList.remove('gaze-scanned');
-            gazeContainer.classList.remove('active');
-            gazeIndicator.style.height = '0%';
-            gazeStatus.textContent = 'Scanning...';
+            body.classList.remove('stellar-scanned');
+            stellarScanContainer.classList.remove('active');
+            stellarIndicator.style.height = '0%';
+            stellarStatus.textContent = 'Scanning...';
         }
 
         function displayRandomFact() {
@@ -375,31 +357,31 @@
             displayFact(currentFactIndex);
         }
 
-        function activateSonarScan() {
+        function activateStellarScan() {
             revealButton.disabled = true;
-            gazeContainer.classList.add('active');
-            body.classList.add('gaze-scanned');
-            gazeIndicator.style.height = '100%'; // Start scan animation
+            stellarScanContainer.classList.add('active');
+            body.classList.add('stellar-scanned');
+            stellarIndicator.style.height = '100%'; // Start scan animation
 
-            gazeStatus.textContent = 'Scanning...';
+            stellarStatus.textContent = 'Scanning...';
 
             setTimeout(() => {
-                gazeStatus.textContent = 'Analysis Complete!';
+                stellarStatus.textContent = 'Analysis Complete!';
                 mainFact.classList.add('revealed');
                 factDetail.style.display = 'block';
                 revealButton.textContent = 'Fact Revealed!';
                 revealButton.disabled = true;
                 setTimeout(() => {
-                    gazeContainer.classList.remove('active');
-                    body.classList.remove('gaze-scanned');
+                    stellarScanContainer.classList.remove('active');
+                    body.classList.remove('stellar-scanned');
                 }, 2000); // Hide scan UI after a delay
-            }, 5000); // Match this to gazeIndicator transition duration
+            }, 5000); // Match this to stellarIndicator transition duration
         }
 
         // Initial fact display
         displayFact(currentFactIndex);
 
-        // Cosmic Dust/Bubble Particles
+        // Stardust Particle Effect
         function createParticle(className, animationDelay) {
             const particle = document.createElement('div');
             particle.classList.add(className);
@@ -418,16 +400,16 @@
             });
         }
 
-        // Generate a continuous stream of bubbles
+        // Generate a continuous stream of stardust
         setInterval(() => {
-            createParticle('deep-sea-bubble', 0);
-        }, 500); // Create a new bubble every 0.5 seconds
+            createParticle('stardust-particle', 0);
+        }, 500); // Create a new particle every 0.5 seconds
 
-        // Sparkle on fact card hover
+        // Cosmic Sparkle on fact card hover
         factCard.addEventListener('mousemove', (e) => {
             if (Math.random() < 0.1) { // Only create a sparkle 10% of the time for performance
                 const sparkle = document.createElement('div');
-                sparkle.classList.add('sparkle-particle');
+                sparkle.classList.add('cosmic-sparkle');
                 factCard.appendChild(sparkle);
 
                 const rect = factCard.getBoundingClientRect();
@@ -448,14 +430,14 @@
         function updateFooterTime() {
             const footer = document.querySelector('footer');
             const now = new Date();
-            footer.innerHTML = `&copy; ${now.getFullYear()} Deep Sea Explorer. Last updated: ${now.toLocaleString()}`;
+            footer.innerHTML = `&copy; ${now.getFullYear()} Cosmic Wonders Explorer. Last updated: ${now.toLocaleString()}`;
         }
         updateFooterTime();
         setInterval(updateFooterTime, 60000); // Update every minute
 
     </script>
     <footer>
-        &copy; 2025 Deep Sea Explorer. Last updated: <!-- Time will be inserted by JavaScript -->
+        &copy; 2025 Cosmic Wonders Explorer. Last updated: <!-- Time will be inserted by JavaScript -->
     </footer>
 </body>
 </html>
