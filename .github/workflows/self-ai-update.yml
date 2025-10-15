@@ -57,9 +57,7 @@ jobs:
           # Save the plan for downstream jobs
           echo "$PLAN_JSON" > plan.json
           
-          echo "plan<<EOF" >> $GITHUB_OUTPUT
           echo "$PLAN_JSON" >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
 
       - name: Upload Plan Artifact
         uses: actions/upload-artifact@v4
