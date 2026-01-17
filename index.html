@@ -2,278 +2,283 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="site-title">Deep Sea Wonders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cute LT Plate Generator</title>
     <style>
         :root {
-            /* Deep Sea Exploration Theme */
-            --bg-color-primary: #001a2b; /* Deep Ocean Blue */
-            --bg-color-secondary: #000f1a; /* Even Deeper Ocean Blue */
-            --text-color: #a0e6ff; /* Light Cyan */
-            --footer-bg: #00101a; /* Darker Footer */
-            --footer-text-color: #c0f0ff; /* Lighter Footer Text */
-            --glass-bg: rgba(0, 30, 45, 0.7); /* Translucent Deep Blue */
-            --glass-border: rgba(160, 230, 255, 0.3); /* Light Cyan Border */
-            --fact-text-shadow: 0 0 15px rgba(160, 230, 255, 0.8);
-            --title-color: #FFFFFF;
-            --title-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            --main-action-btn: #00BFFF; /* Deep Sky Blue */
-            --main-action-btn-hover: #008ECC; /* Darker Deep Sky Blue */
-            --explore-glow-color: #00FFFF; /* Cyan */
-            --explore-text-initial: rgba(160, 230, 255, 0.4);
-            --explore-text-active: #a0e6ff;
-            --fact-card-bg: rgba(0, 0, 0, 0.8);
-            --fact-card-border: rgba(0, 255, 255, 0.7);
-            --fact-of-day-glow: 0 0 25px rgba(0, 255, 255, 0.9);
-
-            /* Sonar Scan Feature */
-            --sonar-wave-color: rgba(0, 255, 255, 0.6); /* Cyan for sonar wave */
-            --sonar-text-color: #00FFFF; /* Cyan for sonar text */
-            --sonar-overlay-bg: rgba(0, 10, 20, 0.95); /* Dark overlay for scan */
+            --bg-sky: #bae6fd;
+            --road: #64748b;
+            --primary: #fda4af;
+            --accent: #f43f5e;
         }
-
         body {
-            background: linear-gradient(135deg, var(--bg-color-primary) 0%, var(--bg-color-secondary) 100%);
-            background-size: 400% 400%;
-            animation: gradientShift 15s ease infinite;
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            min-height: 100vh;
             margin: 0;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            transition: background 1.5s ease-in-out, color 0.8s ease;
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        @keyframes gradientShift {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .container {
-            background: var(--glass-bg);
-            border-radius: 25px;
-            padding: 40px 60px;
-            margin: auto;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--glass-border);
-            max-width: 900px;
-            width: 90%;
+            padding: 10px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 30px;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.5s ease-in-out;
+            background-color: #f0f9ff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            touch-action: manipulation;
         }
-
-        h1 {
-            color: var(--title-color);
-            text-shadow: var(--title-shadow);
-            font-size: 3.5em;
-            margin-bottom: 20px;
-            letter-spacing: 2px;
-            transition: color 0.5s ease, text-shadow 0.5s ease;
-        }
-
-        .fact-card {
-            background: var(--fact-card-bg);
-            border: 1px solid var(--fact-card-border);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: var(--fact-of-day-glow);
-            max-width: 700px;
-            margin: 20px 0;
-            transition: all 0.5s ease-in-out, transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            animation: fadeInScale 0.8s ease-out;
-        }
-
-        @keyframes fadeInScale {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        .fact-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 0 35px var(--explore-glow-color);
-        }
-
-        .fact-card h2 {
-            color: var(--explore-glow-color);
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        .fact-text {
-            font-size: 1.8em;
-            line-height: 1.6;
-            color: var(--explore-text-active); /* Always bright for emphasis */
-            text-shadow: var(--fact-text-shadow);
-            animation: textFadeIn 1s ease-out;
-        }
-
-        @keyframes textFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .action-button {
-            background-color: var(--main-action-btn);
-            color: #FFFFFF;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.2em;
-            cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-            font-weight: bold;
-            box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
-            margin-top: 20px;
-        }
-
-        .action-button:hover:not(:disabled) {
-            background-color: var(--main-action-btn-hover);
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px var(--main-action-btn-hover);
-        }
-
-        .action-button:disabled {
-            background-color: var(--main-action-btn-hover);
-            cursor: default;
-            opacity: 0.7;
-            box-shadow: none;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            background-color: var(--footer-bg);
-            color: var(--footer-text-color);
+        #app-container {
             width: 100%;
-            box-sizing: border-box;
-            border-top: 1px solid var(--glass-border);
-            font-size: 0.9em;
-            position: relative;
-            z-index: 10;
-            transition: background-color 0.5s ease, color 0.5s ease;
-        }
-
-        /* Sonar Scan Feature CSS */
-        .sonar-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--sonar-overlay-bg);
+            max-width: 500px;
+            background: white;
+            border-radius: 24px;
+            padding: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-
-        .sonar-overlay.active {
-            opacity: 1;
-            visibility: visible;
+        canvas {
+            width: 100%;
+            height: auto;
+            background: linear-gradient(to bottom, #7dd3fc, #bae6fd);
+            border-radius: 18px;
+            display: block;
         }
-
-        .sonar-wave {
-            position: absolute;
-            border: 2px solid var(--sonar-wave-color);
-            border-radius: 50%;
-            animation: sonarPulse 2s ease-out forwards;
-            opacity: 0;
+        .controls {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
         }
-
-        @keyframes sonarPulse {
-            0% {
-                transform: scale(0);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
+        button {
+            width: 80%;
+            padding: 18px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background-color: var(--primary);
+            border: none;
+            border-radius: 50px;
+            box-shadow: 0 6px 0 var(--accent);
+            transition: all 0.1s;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
         }
-
-        .sonar-text {
-            color: var(--sonar-text-color);
-            font-size: 2.5em;
-            text-shadow: 0 0 20px var(--sonar-text-color);
-            opacity: 0;
-            animation: textFadeIn 1s ease-out 1s forwards;
+        button:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 var(--accent);
+        }
+        #history-section {
+            width: 100%;
+            max-width: 500px;
+            margin-top: 20px;
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+        h3 { color: #475569; font-size: 16px; margin-top: 0; }
+        .plate-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        .plate-item {
+            background: #f1f5f9;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-weight: bold;
+            font-size: 14px;
+            border-left: 4px solid var(--accent);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1 id="site-title-display">Deep Sea Wonders</h1>
 
-        <div class="fact-card">
-            <h2>Fact of the Deep</h2>
-            <p class="fact-text" id="display-fact">
-                The Mariana Trench is the deepest oceanic trench on Earth, reaching a maximum known depth of about 11,000 meters (36,070 feet). If Mount Everest were placed in the trench, its peak would still be over a mile beneath the surface.
-            </p>
+    <div id="app-container">
+        <canvas id="gameCanvas" width="400" height="250"></canvas>
+        <div class="controls">
+            <button id="goBtn">CHANGE LIGHT 🚦</button>
         </div>
-
-        <button class="action-button" id="sonar-scan-button">Initiate Sonar Scan</button>
     </div>
 
-    <div class="sonar-overlay" id="sonar-overlay">
-        <div class="sonar-wave"></div>
-        <p class="sonar-text">Scanning the Depths...</p>
+    <div id="history-section">
+        <h3>Generated Plates History:</h3>
+        <div class="plate-list" id="plateHistory"></div>
     </div>
 
-    <footer>
-        <p>Site last updated: <span id="current-time"></span></p>
-    </footer>
+<script>
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+    const btn = document.getElementById('goBtn');
+    const historyList = document.getElementById('plateHistory');
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const updateTime = () => {
-                const now = new Date();
-                document.getElementById('current-time').textContent = now.toLocaleString();
-            };
-            updateTime();
-            setInterval(updateTime, 1000); // Update every second
+    // --- Polyfill for roundRect (Compatibility for older mobiles) ---
+    if (!CanvasRenderingContext2D.prototype.roundRect) {
+        CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
+            if (w < 2 * r) r = w / 2;
+            if (h < 2 * r) r = h / 2;
+            this.beginPath();
+            this.moveTo(x + r, y);
+            this.arcTo(x + w, y, x + w, y + h, r);
+            this.arcTo(x + w, y + h, x, y + h, r);
+            this.arcTo(x, y + h, x, y, r);
+            this.arcTo(x, y, x + w, y, r);
+            this.closePath();
+            return this;
+        };
+    }
 
-            const sonarScanButton = document.getElementById('sonar-scan-button');
-            const sonarOverlay = document.getElementById('sonar-overlay');
-            const sonarWave = document.querySelector('.sonar-wave');
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-            sonarScanButton.addEventListener('click', () => {
-                sonarOverlay.classList.add('active');
-                sonarWave.style.width = '0';
-                sonarWave.style.height = '0';
-                sonarWave.style.opacity = '1';
-                setTimeout(() => {
-                    sonarWave.style.width = '150%';
-                    sonarWave.style.height = '150%';
-                }, 10); // Small delay to trigger animation
+    function playTone(freq, type, dur) {
+        try {
+            if (audioCtx.state === 'suspended') audioCtx.resume();
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = type;
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + dur);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start();
+            osc.stop(audioCtx.currentTime + dur);
+        } catch(e) { console.log("Audio blocked"); }
+    }
 
-                setTimeout(() => {
-                    sonarOverlay.classList.remove('active');
-                    // In a real scenario, this would trigger a new fact or more details
-                    alert('Sonar detected new information! (Feature under development)');
-                }, 2500); // Duration of the sonar animation
-            });
+    let state = 'ENTERING';
+    let carX = -120;
+    let carColor = '#fda4af';
+    let currentPlate = generatePlate();
+    let lightStatus = 'RED';
+    let bounce = 0;
+    let clouds = [{x: 50, y: 30}, {x: 250, y: 50}];
+
+    function generatePlate() {
+        const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        let res = "";
+        for(let i=0; i<3; i++) res += letters.charAt(Math.floor(Math.random()*26));
+        res += " " + (Math.floor(Math.random()*899) + 100);
+        return res;
+    }
+
+    function addHistory(plate) {
+        const item = document.createElement('div');
+        item.className = 'plate-item';
+        item.innerText = plate;
+        historyList.prepend(item);
+    }
+
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Clouds
+        ctx.fillStyle = "white";
+        clouds.forEach(c => {
+            ctx.beginPath();
+            ctx.arc(c.x, c.y, 15, 0, Math.PI*2);
+            ctx.arc(c.x + 10, c.y - 10, 12, 0, Math.PI*2);
+            ctx.arc(c.x + 20, c.y, 15, 0, Math.PI*2);
+            ctx.fill();
+            c.x += 0.2;
+            if(c.x > 450) c.x = -50;
         });
-    </script>
+
+        // Road
+        ctx.fillStyle = "#94a3b8";
+        ctx.fillRect(0, 200, 400, 50);
+        ctx.fillStyle = "white";
+        for(let i=0; i<5; i++) ctx.fillRect(i*100 + 20, 222, 40, 4);
+
+        // Traffic Light Box
+        ctx.fillStyle = "#334155";
+        ctx.roundRect(320, 50, 30, 80, 10);
+        ctx.fill();
+        ctx.fillRect(333, 130, 4, 70);
+        
+        // Red Light
+        ctx.fillStyle = (lightStatus === 'RED') ? "#ff4d6d" : "#441b24";
+        ctx.beginPath(); ctx.arc(335, 75, 10, 0, Math.PI*2); ctx.fill();
+        // Green Light
+        ctx.fillStyle = (lightStatus === 'GREEN') ? "#2dd4bf" : "#132d29";
+        ctx.beginPath(); ctx.arc(335, 105, 10, 0, Math.PI*2); ctx.fill();
+
+        // Car Drawing
+        ctx.save();
+        ctx.translate(carX, 160 + bounce);
+        
+        ctx.fillStyle = carColor;
+        ctx.roundRect(0, 0, 120, 45, 15); ctx.fill();
+        ctx.roundRect(25, -30, 70, 40, 15); ctx.fill();
+        
+        ctx.fillStyle = "#e0f2fe";
+        ctx.roundRect(32, -22, 25, 25, 5); ctx.fill();
+        ctx.roundRect(62, -22, 25, 25, 5); ctx.fill();
+        
+        ctx.fillStyle = "#1e293b";
+        ctx.beginPath(); ctx.arc(30, 45, 14, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(90, 45, 14, 0, Math.PI*2); ctx.fill();
+
+        ctx.fillStyle = "white";
+        ctx.fillRect(35, 12, 50, 20);
+        ctx.fillStyle = "black";
+        ctx.font = "bold 11px monospace";
+        ctx.textAlign = "center";
+        ctx.fillText(currentPlate, 60, 26);
+        ctx.restore();
+
+        updateLogic();
+        requestAnimationFrame(draw);
+    }
+
+    function updateLogic() {
+        if(state === 'ENTERING') {
+            carX += 3;
+            if(carX >= 110) {
+                carX = 110;
+                state = 'STOPPED';
+                doBounce();
+                playTone(200, 'sine', 0.1);
+            }
+        } else if (state === 'STOPPED') {
+            bounce = Math.sin(Date.now() * 0.01) * 0.5;
+        } else if (state === 'EXITING') {
+            carX += 6;
+            if(carX > 450) {
+                resetCar();
+            }
+        }
+    }
+
+    function doBounce() {
+        let v = 0;
+        let itv = setInterval(() => {
+            bounce = Math.sin(v) * 6;
+            v += 0.5;
+            if(v > 6.2) { clearInterval(itv); bounce = 0; }
+        }, 20);
+    }
+
+    function resetCar() {
+        carX = -150;
+        currentPlate = generatePlate();
+        const colors = ['#fda4af', '#93c5fd', '#86efac', '#fde047', '#d8b4fe'];
+        carColor = colors[Math.floor(Math.random()*5)];
+        lightStatus = 'RED';
+        state = 'ENTERING';
+    }
+
+    btn.addEventListener('click', () => {
+        if(state === 'STOPPED' && lightStatus === 'RED') {
+            addHistory(currentPlate);
+            lightStatus = 'GREEN';
+            playTone(600, 'triangle', 0.2);
+            setTimeout(() => {
+                state = 'EXITING';
+                playTone(150, 'sawtooth', 0.5);
+            }, 400);
+        }
+    });
+
+    draw();
+</script>
 </body>
 </html>
