@@ -71,22 +71,27 @@
             padding: 15px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
-        h3 { color: #475569; font-size: 16px; margin-top: 0; }
+        h3 { color: #475569; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; margin-top: 0; }
         .plate-list {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            max-height: 120px;
+            max-height: 150px;
             overflow-y: auto;
         }
         .plate-item {
             background: #f1f5f9;
             padding: 5px 12px;
             border-radius: 6px;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-weight: bold;
             font-size: 14px;
             border-left: 4px solid var(--accent);
+            animation: popIn 0.3s ease-out;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
@@ -95,12 +100,12 @@
     <div id="app-container">
         <canvas id="gameCanvas" width="400" height="250"></canvas>
         <div class="controls">
-            <button id="goBtn">CHANGE LIGHT 🚦</button>
+            <button id="goBtn">GO! 🚦</button>
         </div>
     </div>
 
     <div id="history-section">
-        <h3>Generated Plates History:</h3>
+        <h3>Generated Plates</h3>
         <div class="plate-list" id="plateHistory"></div>
     </div>
 
@@ -110,7 +115,7 @@
     const btn = document.getElementById('goBtn');
     const historyList = document.getElementById('plateHistory');
 
-    // --- Polyfill for roundRect (Compatibility for older mobiles) ---
+    // RoundRect Polyfill
     if (!CanvasRenderingContext2D.prototype.roundRect) {
         CanvasRenderingContext2D.prototype.roundRect = function (x, y, w, h, r) {
             if (w < 2 * r) r = w / 2;
@@ -127,28 +132,28 @@
     }
 
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-
-    function playTone(freq, type, dur) {
+    function playTone(freq, type, dur, vol=0.05) {
         try {
             if (audioCtx.state === 'suspended') audioCtx.resume();
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
             osc.type = type;
             osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+            gain.gain.setValueAtTime(vol, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + dur);
             osc.connect(gain);
             gain.connect(audioCtx.destination);
             osc.start();
             osc.stop(audioCtx.currentTime + dur);
-        } catch(e) { console.log("Audio blocked"); }
+        } catch(e) {}
     }
 
-    let state = 'ENTERING';
-    let carX = -120;
+    // App State
+    let state = 'ENTERING'; // ENTERING, STOPPED, EXITING
+    let lightStatus = 'RED'; // RED, YELLOW, GREEN
+    let carX = -150;
     let carColor = '#fda4af';
     let currentPlate = generatePlate();
-    let lightStatus = 'RED';
     let bounce = 0;
     let clouds = [{x: 50, y: 30}, {x: 250, y: 50}];
 
@@ -185,38 +190,47 @@
         // Road
         ctx.fillStyle = "#94a3b8";
         ctx.fillRect(0, 200, 400, 50);
-        ctx.fillStyle = "white";
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
         for(let i=0; i<5; i++) ctx.fillRect(i*100 + 20, 222, 40, 4);
 
         // Traffic Light Box
         ctx.fillStyle = "#334155";
-        ctx.roundRect(320, 50, 30, 80, 10);
+        ctx.roundRect(320, 40, 34, 100, 10);
         ctx.fill();
-        ctx.fillRect(333, 130, 4, 70);
+        ctx.fillRect(334, 140, 6, 60);
         
-        // Red Light
+        // RED Light
+        ctx.shadowBlur = (lightStatus === 'RED') ? 15 : 0;
+        ctx.shadowColor = "#ff4d6d";
         ctx.fillStyle = (lightStatus === 'RED') ? "#ff4d6d" : "#441b24";
-        ctx.beginPath(); ctx.arc(335, 75, 10, 0, Math.PI*2); ctx.fill();
-        // Green Light
-        ctx.fillStyle = (lightStatus === 'GREEN') ? "#2dd4bf" : "#132d29";
-        ctx.beginPath(); ctx.arc(335, 105, 10, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.arc(337, 58, 10, 0, Math.PI*2); ctx.fill();
+        
+        // YELLOW Light
+        ctx.shadowBlur = (lightStatus === 'YELLOW') ? 15 : 0;
+        ctx.shadowColor = "#fbbf24";
+        ctx.fillStyle = (lightStatus === 'YELLOW') ? "#fbbf24" : "#42320a";
+        ctx.beginPath(); ctx.arc(337, 90, 10, 0, Math.PI*2); ctx.fill();
 
-        // Car Drawing
+        // GREEN Light
+        ctx.shadowBlur = (lightStatus === 'GREEN') ? 15 : 0;
+        ctx.shadowColor = "#2dd4bf";
+        ctx.fillStyle = (lightStatus === 'GREEN') ? "#2dd4bf" : "#132d29";
+        ctx.beginPath(); ctx.arc(337, 122, 10, 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0;
+
+        // Car
         ctx.save();
         ctx.translate(carX, 160 + bounce);
-        
         ctx.fillStyle = carColor;
-        ctx.roundRect(0, 0, 120, 45, 15); ctx.fill();
-        ctx.roundRect(25, -30, 70, 40, 15); ctx.fill();
-        
-        ctx.fillStyle = "#e0f2fe";
+        ctx.roundRect(0, 0, 120, 45, 15); ctx.fill(); // Body
+        ctx.roundRect(25, -30, 70, 40, 15); ctx.fill(); // Roof
+        ctx.fillStyle = "#e0f2fe"; // Windows
         ctx.roundRect(32, -22, 25, 25, 5); ctx.fill();
         ctx.roundRect(62, -22, 25, 25, 5); ctx.fill();
-        
-        ctx.fillStyle = "#1e293b";
+        ctx.fillStyle = "#1e293b"; // Wheels
         ctx.beginPath(); ctx.arc(30, 45, 14, 0, Math.PI*2); ctx.fill();
         ctx.beginPath(); ctx.arc(90, 45, 14, 0, Math.PI*2); ctx.fill();
-
+        // Plate
         ctx.fillStyle = "white";
         ctx.fillRect(35, 12, 50, 20);
         ctx.fillStyle = "black";
@@ -225,21 +239,21 @@
         ctx.fillText(currentPlate, 60, 26);
         ctx.restore();
 
-        updateLogic();
+        update();
         requestAnimationFrame(draw);
     }
 
-    function updateLogic() {
+    function update() {
         if(state === 'ENTERING') {
             carX += 3;
             if(carX >= 110) {
                 carX = 110;
                 state = 'STOPPED';
                 doBounce();
-                playTone(200, 'sine', 0.1);
+                playTone(300, 'sine', 0.1);
             }
         } else if (state === 'STOPPED') {
-            bounce = Math.sin(Date.now() * 0.01) * 0.5;
+            bounce = Math.sin(Date.now() * 0.01) * 0.5; // Idle vibe
         } else if (state === 'EXITING') {
             carX += 6;
             if(carX > 450) {
@@ -269,12 +283,21 @@
     btn.addEventListener('click', () => {
         if(state === 'STOPPED' && lightStatus === 'RED') {
             addHistory(currentPlate);
-            lightStatus = 'GREEN';
-            playTone(600, 'triangle', 0.2);
+            
+            // Sequence: Red -> Yellow -> Green
+            lightStatus = 'YELLOW';
+            playTone(400, 'sine', 0.1);
+
             setTimeout(() => {
-                state = 'EXITING';
-                playTone(150, 'sawtooth', 0.5);
-            }, 400);
+                lightStatus = 'GREEN';
+                playTone(600, 'triangle', 0.2);
+                
+                // Reaction time before driving
+                setTimeout(() => {
+                    state = 'EXITING';
+                    playTone(150, 'sawtooth', 0.6, 0.03);
+                }, 300);
+            }, 600);
         }
     });
 
