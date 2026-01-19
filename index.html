@@ -195,31 +195,36 @@
         for(let i=0; i<5; i++) ctx.fillRect(i*100 + 20, 222, 40, 4);
 
         // Traffic Light Box
+        ctx.beginPath();
         ctx.fillStyle = "#334155";
         ctx.roundRect(320, 40, 34, 100, 10);
         ctx.fill();
         ctx.fillRect(334, 140, 6, 60);
         
         // RED Light
+        ctx.beginPath(); 
         ctx.shadowBlur = (lightStatus === 'RED') ? 15 : 0;
         ctx.shadowColor = "#ff4d6d";
         ctx.fillStyle = (lightStatus === 'RED') ? "#ff4d6d" : "#441b24";
-        ctx.beginPath(); ctx.arc(337, 58, 10, 0, Math.PI*2); ctx.fill();
+        ctx.arc(337, 58, 10, 0, Math.PI*2); ctx.fill();
         
         // YELLOW Light
+        ctx.beginPath();
         ctx.shadowBlur = (lightStatus === 'YELLOW') ? 15 : 0;
         ctx.shadowColor = "#fbbf24";
-        ctx.fillStyle = (lightStatus === 'YELLOW') ? "#fbbf24" : "#42320a";
-        ctx.beginPath(); ctx.arc(337, 90, 10, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = (lightStatus === 'YELLOW') ? "#fbbf24" : "#42320a"; 
+        ctx.arc(337, 90, 10, 0, Math.PI*2); ctx.fill();
 
         // GREEN Light
+        ctx.beginPath(); 
         ctx.shadowBlur = (lightStatus === 'GREEN') ? 15 : 0;
         ctx.shadowColor = "#2dd4bf";
         ctx.fillStyle = (lightStatus === 'GREEN') ? "#2dd4bf" : "#132d29";
-        ctx.beginPath(); ctx.arc(337, 122, 10, 0, Math.PI*2); ctx.fill();
+        ctx.arc(337, 122, 10, 0, Math.PI*2); ctx.fill();
         ctx.shadowBlur = 0;
 
         // Car
+        ctx.beginPath(); 
         ctx.save();
         ctx.translate(carX, 160 + bounce);
         ctx.fillStyle = carColor;
